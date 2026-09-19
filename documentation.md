@@ -895,3 +895,12 @@ Offene Punkte / nächste Übergabe:
 - Veröffentlichung aus einem sauberen temporären Checkout außerhalb von Google
   Drive, da eine desktop.ini in lokalen Git-Referenzen den Fetch störte.
 - Originalmaterialien, lokale Schülerdaten und private Dateien bleiben ausgeschlossen.
+
+- **Live bestätigt:** Commit `fe43558` (Excel-Lab) und `699853f` (Sawazki Electronics),
+  beide GitHub-Pages-Deployments erfolgreich. Öffentliche Startseite zeigt 0.7.0;
+  Projektkarte und ausführliches Projektprofil vorhanden. L1.5 mit sieben
+  Abschnitten und fünf vollständigen Datensätzen, schreibgeschützte Entwicklervorschau
+  und erneute Zugangssperre nach Reload im Browser erfolgreich geprüft.
+- Einstiegstext auf der Homepage an das Arbeiten mit den Aufgaben auf den Lernseiten
+  angepasst. Lokale Git-Metadaten von störenden Windows-Dateien bereinigt, diese zuvor
+  außerhalb der Repositories gesichert. Kanonische Arbeitsordner bleiben maßgeblich.
