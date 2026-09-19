@@ -495,6 +495,10 @@ unabhängigen Änderungen anderer Agenten.
 
 - Vor jeder Änderung den aktuellen Dateistand erneut lesen, weil andere
   Agenten parallel arbeiten können.
+- Vor Änderungen zusätzlich `git status --short --branch` prüfen. Das
+  gemeinsame Hauptrepository liegt unter
+  <https://github.com/JakobSawazki/excel-lab>; die öffentliche Seite wird aus
+  `main` bereitgestellt.
 - Bestehende Gestaltung, Datenschema und lokale Speicherlogik beibehalten.
 - Materialien unter `../BPE1` und `materialien/BPE1` ausschließlich als
   fachliche Quellen behandeln; Musterlösungen nicht im Schülerbereich
@@ -633,3 +637,31 @@ Offene Punkte / nächste Übergabe:
 - **Grenzen / nächste Schritte:** Keine Änderungen an Berechtigungsmodell oder
   Lernstandschema; keine Veröffentlichung, Installation oder externen Dienste.
   Als Nächstes Startseite mit Lernenden erproben und L1.3 separat ausarbeiten.
+
+### Übergabe H-2026-09-19-03 – GitHub und öffentliche Beta
+
+- **Status:** abgeschlossen am 19. September 2026.
+- **Agent/Modell:** Codex, koordinierter Hauptagent.
+- **Auftrag:** aktuellen gemeinsamen Projektstand in GitHub veröffentlichen und
+  Excel-Lab über GitHub Pages online bereitstellen.
+- **Repository:** <https://github.com/JakobSawazki/excel-lab>
+- **Website:** <https://jakobsawazki.github.io/excel-lab/>
+- **Geänderte Dateien:** neue `.nojekyll` und `deployment.js`; `.gitignore`,
+  `README.md`, `documentation.md`, `index.html`, `l1-1.html`, `l1-2.html`,
+  `app.js` und `styles.css` gezielt für Version 0.6.1 und die Veröffentlichung
+  ergänzt.
+- **Sicherheits- und Lizenzentscheidung:** `materialien/BPE1`, `.tmp` und
+  `desktop.ini` sind nicht versioniert. Auf GitHub Pages werden lokale
+  Materiallinks und das eingebundene Video durch einen nachvollziehbaren
+  Verweis auf den Landesbildungsserver ersetzt; lokal bleiben die direkten
+  Dateien erhalten. Es wurden keine Zugangsdaten oder absoluten privaten
+  Dateipfade veröffentlicht.
+- **Prüfungen:** JavaScript-Syntax aller Dateien; exakte Groß-/Kleinschreibung
+  aller lokalen HTML-Ressourcen; Veröffentlichungsliste und Git-Ignore-Regeln;
+  Scan auf Zugangsdaten und lokale Benutzerpfade; GitHub-Pages-Build erfolgreich;
+  HTTP 200 für Startseite, L1.1, L1.2, Startbild und `deployment.js`; echter
+  Browsertest der öffentlichen Startseite und der drei L1.2-Materialverweise.
+- **Nächste Übergabe:** Vor parallelen Änderungen `git status` und den neuesten
+  Stand dieser Datei lesen. Sinnvoller nächster fachlicher Arbeitsblock ist
+  L1.3; die Verlinkung von Sawazki Electronics zu Excel-Lab bleibt separat
+  offen.
