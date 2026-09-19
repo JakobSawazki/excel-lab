@@ -10,7 +10,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.6.1";
+  const APP_VERSION = "0.7.0";
   const POINTS_PER_LESSON = 100;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
@@ -171,7 +171,7 @@
     const previousComplete = index <= 0 || getLessonProgress(lessons[index - 1].id).completed;
     return {
       index,
-      unlocked: progress.completed || previousComplete,
+      unlocked: Boolean(window.EXCEL_LAB_DEV?.enabled) || progress.completed || previousComplete,
       requiredPoints: Math.max(0, index * POINTS_PER_LESSON),
       points: lesson.points || POINTS_PER_LESSON
     };
@@ -362,6 +362,11 @@
   function lessonCard(lesson, stage) {
     const progress = getLessonProgress(lesson.id);
     const access = lessonAccess(lesson);
+    const statusIcon = progress.completed
+      ? `<svg class="lesson-status-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m6.5 12.5 3.3 3.3 7.7-8.1"/></svg>`
+      : access.unlocked
+        ? `<svg class="lesson-status-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5.5 12h12m-4.5-4.5L17.5 12 13 16.5"/></svg>`
+        : `<svg class="lesson-status-icon lesson-status-icon-lock" aria-hidden="true" viewBox="0 0 24 24"><rect x="6.5" y="10.5" width="11" height="8" rx="2"/><path d="M9 10.5V8a3 3 0 0 1 6 0v2.5M12 14v1.5"/></svg>`;
     return `
       <button class="lesson-card ${progress.completed ? "is-complete" : ""} ${access.unlocked ? "" : "is-locked"}" type="button" data-open-lesson="${lesson.id}" style="--stage-color:${stage.color}" ${access.unlocked ? "" : 'aria-disabled="true"'}>
         <span>
@@ -370,7 +375,7 @@
           <p>${access.unlocked ? escapeHtml(lesson.description) : `Noch gesperrt. Schließe zuerst das vorherige Kapitel ab und sammle ${access.requiredPoints} Punkte.`}</p>
           <span class="lesson-tags">${lesson.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</span>
         </span>
-        <span class="lesson-status" aria-label="${progress.completed ? "Erledigt" : access.unlocked ? "Offen" : "Gesperrt"}">${progress.completed ? "✓" : access.unlocked ? "→" : "▣"}</span>
+        <span class="lesson-status" aria-label="${progress.completed ? "Erledigt" : access.unlocked ? "Einheit öffnen" : "Gesperrt"}">${statusIcon}</span>
       </button>`;
   }
 
@@ -407,7 +412,7 @@
   function openLesson(lessonId) {
     const lesson = lessons.find((item) => item.id === lessonId);
     if (!lesson) return;
-    if (!ensureProfile()) return;
+    if (!window.EXCEL_LAB_DEV?.enabled && !ensureProfile()) return;
     const access = lessonAccess(lesson);
     if (!access.unlocked) {
       showToast(`Dieses Kapitel wird mit ${access.requiredPoints} Punkten freigeschaltet.`);
@@ -434,18 +439,15 @@
       </header>
       <div class="lesson-detail-body">
         <div class="lesson-content">
-          <section class="lesson-section">
-            <h3>Das musst du wissen</h3>
+          <details class="lesson-disclosure" open><summary><h3>Das musst du wissen</h3><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <div class="key-points">${lesson.keyPoints.map((point) => `<div class="key-point"><strong>${escapeHtml(point.title)}</strong><span>${escapeHtml(point.text)}</span></div>`).join("")}</div>
-          </section>
-          <section class="lesson-section">
-            <h3>Formeln und Merksätze</h3>
+          </div></details>
+          <details class="lesson-disclosure"><summary><h3>Formeln und Merksätze</h3><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             ${lesson.formulas.map((formula) => `<div class="lesson-formula"><code>${escapeHtml(formula.code)}</code><span>${escapeHtml(formula.note)}</span></div>`).join("")}
-          </section>
-          <section class="lesson-section">
-            <h3>Dein Arbeitsauftrag</h3>
+          </div></details>
+          <details class="lesson-disclosure"><summary><h3>Dein Arbeitsauftrag</h3><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <ol>${lesson.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>
-          </section>
+          </div></details>
           <section class="lesson-section">
             <div class="tip-box"><strong>Praxis-Tipp:</strong> ${escapeHtml(lesson.tip)}</div>
           </section>
@@ -483,11 +485,14 @@
         </aside>
       </div>`;
     const dialog = $("#lesson-dialog");
+    if (window.EXCEL_LAB_DEV?.enabled) {
+      dialog.querySelectorAll("[data-check-index], [data-teacher-check], [data-toggle-complete]").forEach((el) => { el.disabled = true; });
+    }
     if (!dialog.open) dialog.showModal();
   }
 
   function updateOpenLessonCheck(index, checked) {
-    if (!openLessonId || !ensureProfile()) return false;
+    if (window.EXCEL_LAB_DEV?.enabled || !openLessonId || !ensureProfile()) return false;
     const progress = getLessonProgress(openLessonId);
     progress.checks[index] = Boolean(checked);
     writeLessonProgress(openLessonId, progress);
@@ -495,7 +500,7 @@
   }
 
   function updateOpenLessonTeacherCheck(checked) {
-    if (!openLessonId || !ensureProfile()) return false;
+    if (window.EXCEL_LAB_DEV?.enabled || !openLessonId || !ensureProfile()) return false;
     const progress = getLessonProgress(openLessonId);
     progress.teacherChecked = Boolean(checked);
     writeLessonProgress(openLessonId, progress);
@@ -503,7 +508,7 @@
   }
 
   function toggleOpenLessonComplete() {
-    if (!openLessonId || !ensureProfile()) return;
+    if (window.EXCEL_LAB_DEV?.enabled || !openLessonId || !ensureProfile()) return;
     const lesson = lessons.find((item) => item.id === openLessonId);
     const progress = getLessonProgress(openLessonId);
     if (!progress.completed && progress.checks.some((checked) => !checked)) {
@@ -811,6 +816,10 @@
       if (event.key === "Escape") closeLearningMenu();
     });
 
+    window.addEventListener("excel-lab-dev-change", () => {
+      $("#lesson-dialog").close();
+      renderAll();
+    });
     window.addEventListener("hashchange", syncRouteFromHash);
   }
 
@@ -818,7 +827,7 @@
     bindEvents();
     renderAll();
     syncRouteFromHash();
-    if (!currentProfile()) window.setTimeout(openProfileDialog, 250);
+    if (!currentProfile() && !window.EXCEL_LAB_DEV?.enabled) window.setTimeout(openProfileDialog, 250);
   }
 
   init();

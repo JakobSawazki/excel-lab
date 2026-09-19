@@ -9,7 +9,10 @@
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>L1.1 · Tabelle planen · Excel-Lab</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson-workspace.css">
     <script src="deployment.js" defer></script>
+    <script src="developer-mode.js" defer></script>
+    <script src="lesson-workspace.js" defer></script>
     <script src="l1-1.js" defer></script>
   </head>
   <body class="lesson-page-body">
@@ -42,7 +45,7 @@
             <div>
               <p class="eyebrow"><span>L1.1</span> BPE 1.1 · 100 Punkte</p>
               <h1>Eine Tabelle planen und in Excel erfassen</h1>
-              <p>Du planst zuerst eine Getränkeliste auf Papier. Danach überträgst du sie sauber in Excel und speicherst deine eigene Arbeitsdatei.</p>
+              <p>Du liest die Anleitung hier und erstellst deine Getränkeliste direkt in Excel. Ein ausgedrucktes Arbeitsblatt brauchst du nicht.</p>
             </div>
             <div class="lesson-score-card">
               <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
@@ -60,9 +63,12 @@
 
       <div class="page-shell page-shell-narrow lesson-page-layout">
         <article class="lesson-article">
-          <section class="content-section" aria-labelledby="ziel-heading">
-            <p class="section-index">01 · Lernziel</p>
-            <h2 id="ziel-heading">Was du nach dieser Einheit kannst</h2>
+          <div class="lesson-workspace-intro">
+            <p><strong>Hier lesen. In Excel arbeiten.</strong> Öffne die Abschnitte in deinem Tempo. Alle Informationen und Aufgaben stehen direkt hier.</p>
+            <div class="lesson-workspace-actions"><a class="button button-primary" href="#aufgabe1-heading">Zur Aufgabe ↓</a><button class="button button-secondary" type="button" data-expand-lessons hidden>Alle öffnen</button><button class="button button-secondary" type="button" data-collapse-lessons hidden>Alle schließen</button></div>
+          </div>
+
+          <details class="lesson-disclosure" open><summary><span class="section-index">01 · Lernziel</span><h2 id="ziel-heading">Was du nach dieser Einheit kannst</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Du kannst Informationen aus einem Text in eine übersichtliche Tabelle übertragen. Du weißt, welche Angaben als Spaltenüberschriften geeignet sind, wie zusammengehörende Werte angeordnet werden und wie du Daten in Excel eingibst.</p>
             <ul class="learning-goals">
               <li><span>✓</span> Tabellenkopf aus einem Sachverhalt entwickeln</li>
@@ -70,11 +76,9 @@
               <li><span>✓</span> Zellinhalt eingeben und mit Enter übernehmen</li>
               <li><span>✓</span> Spaltenbreite manuell oder automatisch anpassen</li>
             </ul>
-          </section>
+          </div></details>
 
-          <section class="content-section" aria-labelledby="grundlagen-heading">
-            <p class="section-index">02 · Informieren</p>
-            <h2 id="grundlagen-heading">So entsteht eine sinnvolle Tabelle</h2>
+          <details class="lesson-disclosure"><summary><span class="section-index">02 · Informieren</span><h2 id="grundlagen-heading">So entsteht eine sinnvolle Tabelle</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <div class="concept-grid">
               <article><span>A</span><h3>Eine Spalte pro Merkmal</h3><p>Jede Spalte erhält eine eindeutige Überschrift, zum Beispiel „Getränkeart“ oder „Menge“.</p></article>
               <article><span>1</span><h3>Eine Zeile pro Getränk</h3><p>Preis, Menge und Gesamtpreis eines Getränks stehen immer in derselben Zeile.</p></article>
@@ -82,11 +86,9 @@
               <article><span>Σ</span><h3>Summe am Tabellenende</h3><p>Unter den Einzelpositionen wird der gesamte Getränkeeinkauf zusammengefasst.</p></article>
             </div>
             <div class="formula-principle"><strong>Fachliche Regel</strong><code>Gesamtpreis = Einkaufspreis je Flasche × Menge</code><span>Die Umsetzung als Excel-Formel folgt im nächsten Kapitel L1.2.</span></div>
-          </section>
+          </div></details>
 
-          <section class="content-section" aria-labelledby="excel-heading">
-            <p class="section-index">03 · Excel-Grundlagen</p>
-            <h2 id="excel-heading">Daten eingeben und Spalten anpassen</h2>
+          <details class="lesson-disclosure"><summary><span class="section-index">03 · Excel-Grundlagen</span><h2 id="excel-heading">Daten eingeben und Spalten anpassen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <div class="excel-instruction-grid">
               <div class="excel-demo" aria-label="Schematische Excel-Eingabe">
                 <div class="excel-demo-formula"><strong>D1</strong><span>Jetzt schreiben wir in die Zelle D1</span></div>
@@ -99,11 +101,9 @@
                 <li><span>4</span><div><strong>Spaltenbreite anpassen</strong><p>Ziehe die Grenze zwischen zwei Spaltenköpfen. Ein Doppelklick stellt die optimale Breite ein.</p></div></li>
               </ol>
             </div>
-          </section>
+          </div></details>
 
-          <section class="content-section task-section" aria-labelledby="aufgabe1-heading">
-            <p class="section-index">04 · Aufgabe 1</p>
-            <h2 id="aufgabe1-heading">Getränkeliste planen und berechnen</h2>
+          <details class="lesson-disclosure task-section"><summary><span class="section-index">04 · Aufgabe 1</span><h2 id="aufgabe1-heading">Getränkeliste planen und berechnen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Die Eingangsklassen eines Wirtschaftsgymnasiums planen eine Party. Das Organisationsteam benötigt eine Übersicht über die Kosten des Getränkeeinkaufs.</p>
             <div class="source-data-grid">
               <article><small>Cola</small><strong>1,40 €</strong><span>30 Flaschen</span></article>
@@ -113,32 +113,29 @@
               <article><small>Orangensaft</small><strong>1,74 €</strong><span>15 Flaschen</span></article>
             </div>
             <div class="task-list">
-              <div><span>1</span><p>Übernimm die Daten handschriftlich in eine Tabelle mit den Spalten <strong>Getränkeart</strong>, <strong>Einkaufspreis je Flasche</strong>, <strong>Menge</strong> und <strong>Gesamtpreis</strong>.</p></div>
-              <div><span>2</span><p>Berechne für jedes Getränk den Gesamtpreis. Nutze die fachliche Regel von oben.</p></div>
+              <div><span>1</span><p>Plane die Anordnung kurz und lege in einer leeren Excel-Arbeitsmappe eine Tabelle mit diesen Spalten an: <strong>Getränkeart</strong>, <strong>Einkaufspreis je Flasche</strong>, <strong>Menge</strong> und <strong>Gesamtpreis</strong>.</p></div>
+              <div><span>2</span><p>Berechne für jedes Getränk den Gesamtpreis mit Einkaufspreis je Flasche mal Menge. Trage die berechneten Zahlen in die Spalte Gesamtpreis ein; Excel-Formeln lernst du in L1.2.</p></div>
               <div><span>3</span><p>Ermittle anschließend die Summe aller Gesamtpreise. Prüfe mit einer Überschlagsrechnung, ob dein Ergebnis plausibel ist.</p></div>
             </div>
-          </section>
+          </div></details>
 
-          <section class="content-section task-section" aria-labelledby="aufgabe2-heading">
-            <p class="section-index">05 · Aufgabe 2</p>
-            <h2 id="aufgabe2-heading">Den Entwurf nach Excel übertragen</h2>
+          <details class="lesson-disclosure task-section"><summary><span class="section-index">05 · Aufgabe 2</span><h2 id="aufgabe2-heading">Deine Excel-Tabelle prüfen und speichern</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <div class="task-list">
-              <div><span>1</span><p>Öffne Excel und übertrage Titel, Spaltenüberschriften und alle Werte aus deinem Entwurf.</p></div>
+              <div><span>1</span><p>Prüfe deine Excel-Tabelle: Sind Titel, die vier Spaltenüberschriften und alle fünf Getränke mit den richtigen Preisen und Mengen vorhanden?</p></div>
               <div><span>2</span><p>Passe die Spaltenbreiten so an, dass alle Überschriften und Werte vollständig sichtbar sind.</p></div>
               <div><span>3</span><p>Speichere deine Arbeitsmappe im Ordner <strong>Ergebnisse</strong> unter dem Namen <code>L1_1.2 Getränkeliste.xlsx</code>.</p></div>
             </div>
             <p class="important-note"><strong>Wichtig:</strong> In dieser Einheit darfst du die Gesamtpreise zunächst als berechnete Werte übernehmen. Wie Excel selbst mit Zelladressen rechnet, lernst du in L1.2.</p>
-          </section>
+          </div></details>
 
-          <section class="content-section material-section" aria-labelledby="material-heading">
-            <p class="section-index">06 · Originalmaterial</p>
-            <h2 id="material-heading">Dateien aus dem Materialpaket</h2>
-            <div class="download-list page-downloads">
-              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_1 Informationsmaterial Erstellen einer Tabelle in Excel.docx" download><span class="file-type">DOCX</span><strong>Informationsmaterial zur Dateneingabe</strong><span class="arrow" aria-hidden="true">↓</span></a>
-              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_1.1 Aufgabenstellung Entwurf einer Tabelle.docx" download><span class="file-type">DOCX</span><strong>Aufgabe Tabellenentwurf</strong><span class="arrow" aria-hidden="true">↓</span></a>
-              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_1.2 Aufgabenstellung Erstellen einer Tabelle in Excel.docx" download><span class="file-type">DOCX</span><strong>Aufgabe Tabelle in Excel</strong><span class="arrow" aria-hidden="true">↓</span></a>
-            </div>
-          </section>
+          <details class="lesson-disclosure"><summary><span class="section-index">06 · Am Schüler-PC</span><h2 id="material-heading">Browser und Excel nebeneinander</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+            <ol class="instruction-list">
+              <li><span>1</span><div><strong>Excel starten</strong><p>Öffne das Windows-Startmenü, tippe „Excel“ und wähle <strong>Leere Arbeitsmappe</strong>.</p></div></li>
+              <li><span>2</span><div><strong>Anleitung im Blick behalten</strong><p>Ordne Browser und Excel nebeneinander an. Unter Windows geht das mit der Windows-Taste und Pfeil links bzw. rechts. Klappe hier nur den Abschnitt auf, den du gerade brauchst.</p></div></li>
+              <li><span>3</span><div><strong>Eigene Datei sichern</strong><p>Speichere im Ordner <strong>Ergebnisse</strong> als <code>L1_1.2 Getränkeliste.xlsx</code>. Notiere dir den Speicherort, damit du später weiterarbeiten kannst.</p></div></li>
+            </ol>
+            <p>Alle Informationen, Ausgangsdaten und Aufgaben stehen auf dieser Seite. Für L1.1 ist weder eine Vorlage noch ein separates Informations- oder Aufgabenblatt nötig.</p>
+          </div></details>
         </article>
 
         <aside class="lesson-page-sidebar">
@@ -148,7 +145,7 @@
             <p>Setze die Haken erst, wenn der jeweilige Arbeitsschritt wirklich erledigt ist. Du kannst jeden Haken wieder entfernen.</p>
             <div class="completion-list">
               <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe alle Informationen gelesen.</span></label>
-              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Mein Tabellenentwurf und alle Berechnungen sind fertig.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Meine Excel-Tabelle enthält alle fünf Getränke, die Gesamtpreise je Zeile und die Gesamtsumme.</span></label>
               <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Meine Excel-Datei ist richtig benannt und gespeichert.</span></label>
               <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Die Lehrkraft hat meine Aufgabe gesehen, mit mir besprochen und als richtig bestätigt.</span></label>
             </div>

@@ -9,7 +9,10 @@
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>L1.2 · Rechnen mit Zelladressen · Excel-Lab</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson-workspace.css">
     <script src="deployment.js" defer></script>
+    <script src="developer-mode.js" defer></script>
+    <script src="lesson-workspace.js" defer></script>
     <script src="l1-2.js" defer></script>
   </head>
   <body class="lesson-page-body l12-page">
@@ -67,16 +70,19 @@
       </section>
       <div id="l12-content" class="page-shell page-shell-narrow lesson-page-layout" hidden>
         <article class="lesson-article">
-          <section class="content-section" aria-labelledby="ziel-heading">
-            <p class="section-index">01 · Lernziel</p><h2 id="ziel-heading">Excel rechnet für dich</h2>
+          <div class="lesson-workspace-intro">
+            <p><strong>Hier lesen. In Excel arbeiten.</strong> Öffne die Abschnitte in deinem Tempo. Alle Informationen und Aufgaben stehen direkt hier.</p>
+            <div class="lesson-workspace-actions"><a class="button button-primary" href="#aufgabe-heading">Zur Aufgabe ↓</a><button class="button button-secondary" type="button" data-expand-lessons hidden>Alle öffnen</button><button class="button button-secondary" type="button" data-collapse-lessons hidden>Alle schließen</button></div>
+          </div>
+
+          <details class="lesson-disclosure" open><summary><span class="section-index">01 · Lernziel</span><h2 id="ziel-heading">Excel rechnet für dich</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Du ersetzt feste Ergebnisse durch Formeln. Ändert sich ein Preis oder eine Menge, berechnet Excel den Gesamtpreis neu.</p>
             <ul class="learning-goals">
               <li><span>✓</span> Formeln mit = beginnen</li><li><span>✓</span> Zelladressen statt fester Zahlen verwenden</li>
               <li><span>✓</span> Die vier Rechenzeichen einsetzen</li><li><span>✓</span> Formeln und Ergebnisse prüfen</li>
             </ul>
-          </section>
-          <section class="content-section" aria-labelledby="grundlagen-heading">
-            <p class="section-index">02 · Informieren</p><h2 id="grundlagen-heading">Vom Zellwert zur Formel</h2>
+          </div></details>
+          <details class="lesson-disclosure"><summary><span class="section-index">02 · Informieren</span><h2 id="grundlagen-heading">Vom Zellwert zur Formel</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <div class="concept-grid">
               <article><span>=</span><h3>So beginnt eine Formel</h3><p>Das Gleichheitszeichen sagt Excel: Jetzt folgt eine Berechnung. Ohne = wird deine Eingabe nicht als Formel berechnet.</p></article>
               <article><span>B2</span><h3>Eine Adresse, ein Wert</h3><p>B2 bezeichnet die Zelle in Spalte B und Zeile 2. Eine Formel mit B2 verwendet den dort gespeicherten Wert.</p></article>
@@ -92,9 +98,8 @@
               <div><dt><code>/</code> Dividieren</dt><dd><code>=B2/C2</code> teilt den ersten Wert durch den zweiten. Der zweite Wert darf nicht null sein.</dd></div>
             </dl>
             <p>Excel rechnet Punkt vor Strich. Klammern ändern die Reihenfolge: <code>=(B2+C2)*E2</code> addiert zuerst. Mehrere Ergebnisse kannst du mit <code>+</code> verbinden, zum Beispiel <code>=D2+D3+D4</code>.</p>
-          </section>
-          <section class="content-section" aria-labelledby="excel-heading">
-            <p class="section-index">03 · Anwenden und prüfen</p><h2 id="excel-heading">Formel eingeben, anzeigen und kontrollieren</h2>
+          </div></details>
+          <details class="lesson-disclosure"><summary><span class="section-index">03 · Anwenden und prüfen</span><h2 id="excel-heading">Formel eingeben, anzeigen und kontrollieren</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <ol class="instruction-list">
               <li><span>1</span><div><strong>Ergebniszelle auswählen</strong><p>Tippe =, klicke die erste Eingabezelle an, tippe das Rechenzeichen und klicke die zweite Eingabezelle an. Du kannst die Adressen auch eintippen.</p></div></li>
               <li><span>2</span><div><strong>Mit Enter bestätigen</strong><p>In der Zelle erscheint normalerweise das Ergebnis. Wähle sie erneut aus: Oben in der Bearbeitungsleiste siehst du die Formel.</p></div></li>
@@ -107,9 +112,8 @@
               <video controls preload="none" aria-label="Video Einführung in Formeln" src="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_2 Video Einführung in Formeln.m4v"></video>
               <p>Falls dein Browser das Video nicht abspielt, öffne es über den Materiallink unten in einem Videoplayer.</p>
             </details>
-          </section>
-          <section class="content-section task-section" aria-labelledby="aufgabe-heading">
-            <p class="section-index">04 · Deine Aufgabe</p><h2 id="aufgabe-heading">Die Getränkeliste rechnet mit</h2>
+          </div></details>
+          <details class="lesson-disclosure task-section"><summary><span class="section-index">04 · Deine Aufgabe</span><h2 id="aufgabe-heading">Die Getränkeliste rechnet mit</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Das Organisationsteam der Eingangsklassen plant eine Party. Die Einkaufskosten sollen sich automatisch ändern, wenn Preise oder Mengen angepasst werden.</p>
             <p>Verwende die unten verlinkte <strong>Excel-Vorlage Getränkeliste</strong>. In Spalte A stehen die Getränke, in B der Einkaufspreis je Flasche und in C die Menge. Die Getränke stehen in den Zeilen 4 bis 8; Zeile 9 ist für die Summe vorgesehen.</p>
             <div class="task-list">
@@ -120,16 +124,15 @@
               <div><span>5</span><p>Prüfe die Größenordnung durch Überschlagen. Ändere eine Menge probeweise: Ändern sich der zugehörige Gesamtpreis und die Summe? Stelle die ursprüngliche Menge wieder her, schalte zurück zur Ergebnisanzeige und speichere erneut.</p></div>
               <div><span>6</span><p>Zeige der Lehrkraft deine gespeicherte Datei und erkläre an einer Formel, welche Zellwerte verwendet werden. Schließe anschließend den Check ab.</p></div>
             </div>
-            <p class="important-note"><strong>Hinweis zur Vorlage:</strong> Die Originalaufgabe spricht vom Ersetzen vorhandener Werte. In der hier bereitgestellten Vorlage sind die Ergebniszellen in Spalte D leer. Trage dort deine Formeln ein. Deine Datei aus L1.1 bleibt als vorheriger Arbeitsschritt erhalten.</p>
-          </section>
-          <section class="content-section material-section" aria-labelledby="material-heading">
-            <p class="section-index">05 · Originalmaterial</p><h2 id="material-heading">Deine Arbeitsmaterialien</h2>
+            <p class="important-note"><strong>Hinweis zur Vorlage:</strong> In der bereitgestellten Vorlage sind die Ergebniszellen in Spalte D leer. Trage dort deine Formeln ein. Deine Datei aus L1.1 bleibt als vorheriger Arbeitsschritt erhalten.</p>
+          </div></details>
+          <details class="lesson-disclosure material-section"><summary><span class="section-index">05 · In Excel arbeiten</span><h2 id="material-heading">Excel-Vorlage und optionales Video</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+            <p>Die komplette Anleitung steht oben. Du brauchst nur die Excel-Vorlage. Speichere nach dem Öffnen deine eigene Kopie unter dem angegebenen Namen. Ordne Browser und Excel nebeneinander an (Windows-Taste + Pfeil links/rechts).</p>
             <div class="download-list page-downloads">
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_2 Tabellenvorlage Formeln in Excel.xlsx" download><span class="file-type">XLSX</span><strong>Excel-Vorlage Getränkeliste</strong><span class="arrow" aria-hidden="true">↓</span></a>
-              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_2 Aufgabenstellung Formeln in Excel.docx" download><span class="file-type">DOCX</span><strong>Originalaufgabe Formeln in Excel</strong><span class="arrow" aria-hidden="true">↓</span></a>
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_2 Video Einführung in Formeln.m4v" download><span class="file-type">VIDEO</span><strong>Video Einführung in Formeln</strong><span class="arrow" aria-hidden="true">↓</span></a>
             </div>
-          </section>
+          </div></details>
         </article>
         <aside class="lesson-page-sidebar">
           <section class="lesson-check-panel">

@@ -36,6 +36,19 @@ python -m http.server 4173
 
 Danach ist die Seite unter `http://localhost:4173` erreichbar.
 
+## Direkt im Browser lernen
+
+L1.1 bis L1.5 enthalten Informationen und Aufgaben vollständig als aufklappbare
+Abschnitte. Ein separates Informations- oder Aufgabenblatt wird dafür nicht
+benötigt. Browser und Excel lassen sich mit Windows-Taste + Pfeil links/rechts
+nebeneinander anordnen. Die Excel-Datei wird am Schüler-PC bearbeitet und gespeichert.
+
+Lokale Excel-Vorlagen bieten neben dem Download einen optionalen Direktaufruf
+in installiertem Excel. Dieser setzt HTTP(S) und einen funktionierenden
+Office-Protokollhandler voraus. Falls der Aufruf nicht funktioniert, die Datei
+herunterladen und aus dem Downloadordner öffnen. Online bleiben die bisherigen
+Verweise auf den Landesbildungsserver bestehen.
+
 ## Lernprofile und Datenschutz
 
 Die erste Fassung verwendet lokale Browserprofile. Schulischer Account-Name,
@@ -78,14 +91,23 @@ Excel-Lab/
 ├── index.html                 App-Shell und semantische Seitenstruktur
 ├── l1-1.html                  eigene Informations- und Aufgabenseite für L1.1
 ├── l1-2.html                  eigene Lernseite: Rechnen mit Zelladressen
+├── l1-3.html                  eigene Lernseite: Zahlen und Tabellen formatieren
+├── l1-4.html                  eigene Lernseite: Formeln kopieren
+├── l1-5.html                  eigene Lernseite: Tabellenstruktur und Sommerfest
 ├── home.css                   Gestaltung der Startseite
 ├── home.js                    interaktives Formel-Lab ohne Lernstandänderungen
+├── lesson-workspace.css       aufklappbare Lernabschnitte
+├── lesson-workspace.js        Abschnittsbedienung und optionale Excel-Links
 ├── deployment.js              lokale/öffentliche Materialverweise
 ├── styles.css                 responsives Design und Farbschemata
 ├── content.js                 vier Lernschritte, 27 Einheiten, Formelsammlung
 ├── app.js                     Navigation, lokale Profile, Fortschritt, JSON
 ├── l1-1.js                    Fortschritt und Freischaltung auf der L1.1-Seite
 ├── l1-2.js                    Zugang, Abschluss und Punkte auf der L1.2-Seite
+├── l1-3.js                    Zugang, Abschluss und Punkte auf der L1.3-Seite
+├── l1-4.js                    Lernfortschritt und interaktive Kopier-Demo
+├── l1-5.js                    Zugang, Abschluss und Punkte auf der L1.5-Seite
+├── developer-mode.js          temporäre Entwicklervorschau
 ├── documentation.md           Projektstand, Aufgaben, Ideen und Änderungsprotokoll
 ├── .nojekyll                  direkte statische Bereitstellung über GitHub Pages
 ├── assets/images/             fotorealistisches Startmotiv
@@ -106,3 +128,15 @@ Excel-Lab/
 
 Die Links zu den offiziellen Quellen sind in der Anwendung unter „Quellen“
 hinterlegt.
+
+## Temporärer Entwicklermodus
+
+Auf der Startseite das Profilmenü oben rechts öffnen und **AltGr + S** drücken
+(ersatzweise Strg + Alt + S). Der zunächst versteckte Button **Entwickler-Modus**
+erscheint. Erst ein Klick darauf öffnet alle 27 Einheiten als Vorschau, auch ohne
+Lernprofil. Lernstands- und Abschlussfelder bleiben dabei deaktiviert.
+
+Die Vorschau gilt im aktuellen Tab auch beim Wechsel zu eigenen Lernseiten.
+Neuladen oder „Beenden“ schaltet sie aus. Sie verwendet einen separaten
+SessionStorage-Schalter; Profile, Punkte und JSON-Exporte werden nicht freigeschaltet
+oder umgeschrieben. Das ist eine Entwicklungshilfe, keine geschützte Benutzerrolle.

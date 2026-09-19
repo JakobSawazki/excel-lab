@@ -1,0 +1,74 @@
+/* Shared, native lesson disclosures. No dependency on profile storage. */
+.lesson-workspace-intro { margin-bottom:1.5rem; padding:1.2rem; border:1px solid var(--line); border-radius:14px; background:var(--surface); }
+.lesson-workspace-intro p { color:var(--text-soft); margin:0 0 1rem; font-size:.88rem; }
+.lesson-workspace-intro strong { color:var(--text); }
+.lesson-workspace-actions { display:flex; flex-wrap:wrap; gap:.6rem; }
+.lesson-workspace-actions .button { font-size:.75rem; min-height:44px; }
+.lesson-workspace-actions [hidden] { display:none; }
+.lesson-disclosure { border:1px solid var(--line-strong); border-radius:14px; background:var(--bg-elevated); margin-bottom:1rem; overflow:clip; }
+.lesson-disclosure > summary { display:block; position:relative; padding:1.3rem 4.2rem 1.3rem 1.3rem; cursor:pointer; list-style:none; }
+.lesson-disclosure > summary::-webkit-details-marker { display:none; }
+.lesson-disclosure > summary:hover { background:color-mix(in srgb,var(--green) 5%,transparent); }
+.lesson-disclosure > summary:focus-visible { outline:3px solid var(--green); outline-offset:-4px; }
+.lesson-disclosure > summary h2, .lesson-disclosure > summary h3 { margin:0; font-size:1.2rem; line-height:1.25; scroll-margin-top:100px; }
+.lesson-disclosure .section-index { display:block; margin-bottom:.5rem; font-size:.65rem; }
+.lesson-disclosure-icon { position:absolute; right:1.1rem; top:50%; transform:translateY(-50%); width:2.25rem; height:2.25rem; border:1px solid #99aaa9; border-radius:11px; background:linear-gradient(145deg,#f0f5f3 0%,#b7c5c3 25%,#647876 48%,#9dadaa 52%,#d6dfdc 75%,#829692 100%); box-shadow:inset 0 1px 1px #fff9,inset 0 -2px 3px #172e3566,0 3px 8px #0004; font-size:0; color:#122b29; pointer-events:none; }
+.lesson-disclosure-icon::before, .lesson-disclosure-icon::after { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:currentColor; border-radius:2px; box-shadow:0 1px 0 #ffffff70; }
+.lesson-disclosure-icon::before { width:12px; height:2px; }
+.lesson-disclosure-icon::after { width:2px; height:12px; }
+.lesson-disclosure[open] > summary .lesson-disclosure-icon::after { display:none; }
+.lesson-disclosure > summary:hover .lesson-disclosure-icon { filter:brightness(1.12); }
+@media(forced-colors:active) { .lesson-disclosure-icon { background:ButtonFace; color:ButtonText; border-color:ButtonText; } .lesson-disclosure-icon::before, .lesson-disclosure-icon::after { background:ButtonText; forced-color-adjust:none; } }
+
+.lesson-disclosure[open] > summary { border-bottom:1px solid var(--line); }
+.lesson-disclosure-body { padding:1.4rem; }
+.lesson-disclosure-body > p { color:var(--text-soft); }
+.lesson-disclosure-body > :first-child { margin-top:0; }
+.lesson-disclosure-body > :last-child { margin-bottom:0; }
+.lesson-disclosure-body code { overflow-wrap:anywhere; }
+.lesson-disclosure.task-section { border-left:3px solid var(--green); }
+.excel-open-actions { display:grid; gap:.35rem; padding:.5rem .65rem 1rem; }
+.excel-open-actions .text-button { justify-self:start; min-height:44px; white-space:normal; text-align:left; }
+.excel-open-actions small { color:var(--text-soft); font-size:.72rem; line-height:1.6; }
+@media(max-width:760px) {
+ .lesson-disclosure-body { padding:1rem; }
+ .lesson-disclosure > summary { padding-left:1rem; }
+ .lesson-disclosure > summary h2 { font-size:1.1rem; }
+ .lesson-workspace-actions { flex-direction:column; }
+ .lesson-disclosure .source-data-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(prefers-reduced-motion:reduce) { .lesson-disclosure-icon { transition:none; } }
+@media print { .lesson-workspace-actions, .excel-open-actions { display:none; } }
+
+.lesson-page-body [hidden], .developer-preview-banner[hidden], #developer-mode-button[hidden] { display:none !important; }
+.developer-preview-banner { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:.8rem; padding:.7rem 1rem; background:var(--surface-2); border-bottom:1px solid var(--amber); color:var(--text); font-size:.8rem; }
+.developer-preview-banner button { padding:.4rem .7rem; border:1px solid var(--line-strong); border-radius:8px; background:var(--surface); cursor:pointer; }
+#developer-mode-button { display:flex; width:100%; justify-content:center; text-align:center; margin:1rem 0; }
+
+.l13-access { padding-top:3rem; padding-bottom:4rem; }
+.l13-access .button { margin:.5rem .5rem .5rem 0; }
+
+/* L1.4: copying demo and optional local video. */
+.l14-access { padding-top:3rem; padding-bottom:4rem; }
+.l14-access .button { margin:.5rem .5rem .5rem 0; }
+.l14-copy-demo { padding:1rem; border:1px solid var(--line-strong); border-radius:12px; }
+.l14-copy-demo label { display:block; margin-bottom:.5rem; font-weight:700; }
+.l14-copy-demo select { width:100%; padding:.7rem; margin-bottom:1rem; border:1px solid var(--line-strong); border-radius:8px; background:var(--surface); color:var(--text); font:inherit; }
+.l14-copy-demo select:focus-visible { outline:3px solid var(--green); outline-offset:3px; }
+.l14-copy-demo code { color:var(--green); }
+.l14-copy-demo > p { color:var(--text-soft); }
+.l14-video { display:block; width:100%; margin:1rem 0; }
+
+/* L1.5: source records stay readable without widening the page. */
+.l15-access { padding-top:3rem; padding-bottom:4rem; }
+.l15-access .button { margin:.5rem .5rem .5rem 0; }
+.l15-records { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:1rem 0; }
+.l15-records article { padding:1rem; border:1px solid var(--line-strong); border-radius:12px; background:var(--surface); min-width:0; }
+.l15-records h3 { margin:0 0 .7rem; font-size:1rem; }
+.l15-records dl { display:grid; grid-template-columns:auto minmax(0,1fr); gap:.3rem .7rem; margin:0; font-size:.85rem; }
+.l15-records dt { color:var(--text-soft); }
+.l15-records dd { margin:0; overflow-wrap:anywhere; }
+.l15-structure { display:grid; gap:.55rem; margin:1rem 0; }
+.l15-structure > div { padding:1rem; border:1px solid var(--line-strong); border-left:3px solid var(--green); border-radius:9px; }
+.l15-structure small { display:block; color:var(--text-soft); margin-top:.35rem; }
+@media(max-width:600px) { .l15-records { grid-template-columns:1fr; } }

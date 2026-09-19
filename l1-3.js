@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   const KEY = "excelLab.state.v1";
-  const ID = "l1-2";
+  const ID = "l1-3";
   const $ = (s) => document.querySelector(s);
   const checks = Array.from(document.querySelectorAll("[data-page-check]"));
   let state, profile;
@@ -9,7 +9,7 @@
     try { state = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { state = null; }
     profile = Array.isArray(state?.profiles) ? state.profiles.find((p) => p.id === state.currentProfileId) : null;
   }
-  function unlocked() { return Boolean(window.EXCEL_LAB_DEV?.enabled) || Boolean(profile?.progress?.["l1-1"]?.completed); }
+  function unlocked() { return Boolean(window.EXCEL_LAB_DEV?.enabled) || Boolean(profile?.progress?.["l1-2"]?.completed); }
   function progress() {
     const p = profile?.progress?.[ID];
     return { completed: Boolean(p?.completed), teacherChecked: Boolean(p?.teacherChecked), checks: checks.map((_, i) => Boolean(p?.checks?.[i])) };
@@ -25,10 +25,10 @@
   function save(next) {
     if (window.EXCEL_LAB_DEV?.enabled || !profile) return false;
     profile.progress = profile.progress && typeof profile.progress === "object" ? profile.progress : {};
-    // The existing overview treats a completed L1.3 as unlocked even without L1.2.
+    // The existing overview treats a completed L1.4 as unlocked even without L1.3.
     // Revoke that completion too, retaining its checks and all other lesson data.
-    if (!next.completed && profile.progress[ID]?.completed && profile.progress["l1-3"]) {
-      profile.progress["l1-3"].completed = false;
+    if (!next.completed && profile.progress[ID]?.completed && profile.progress["l1-4"]) {
+      profile.progress["l1-4"].completed = false;
     }
     profile.progress[ID] = next; profile.updatedAt = new Date().toISOString();
     return persist();
@@ -39,8 +39,8 @@
     const percent = open ? p.completed ? 100 : Math.round(count / (checks.length + 2) * 100) : 0;
     document.documentElement.dataset.theme = state?.theme === "light" ? "light" : "dark";
     $("meta[name='theme-color']").content = state?.theme === "light" ? "#f4f7f4" : "#0b1422";
-    $("#l12-content").hidden = !open; $("#l12-access").hidden = open;
-    $("#l12-access-message").textContent = profile ? "Schließe L1.1 mit allen eigenen Checks und der Lehrkraftbestätigung ab. Danach kannst du hier weiterlernen." : "Lege auf der Startseite dein Lernprofil an und schließe L1.1 ab.";
+    $("#l13-content").hidden = !open; $("#l13-access").hidden = open;
+    $("#l13-access-message").textContent = profile ? "Schließe L1.2 mit allen eigenen Checks und der Lehrkraftbestätigung ab. Danach kannst du hier weiterlernen." : "Lege auf der Startseite dein Lernprofil an und schließe L1.2 ab.";
     $("#lesson-profile-name").textContent = profile ? `${profile.name} · ${profile.className}` : "Profil anlegen";
     $("#lesson-profile-avatar").textContent = String(profile?.name || "?").split(/[.\s]+/).filter(Boolean).slice(0, 2).map((s) => s[0]).join("").toUpperCase();
     $("#lesson-score-ring").style.setProperty("--progress", percent);
@@ -50,9 +50,9 @@
     checks.forEach((el, i) => { el.checked = p.checks[i]; el.disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled); });
     $("#page-teacher-check").checked = p.teacherChecked; $("#page-teacher-check").disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled);
     const button = $("#page-complete-button"); button.disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled);
-    button.textContent = p.completed ? "✓ L1.2 wieder öffnen" : "L1.2 abschließen";
+    button.textContent = p.completed ? "✓ L1.3 wieder öffnen" : "L1.3 abschließen";
     button.classList.toggle("button-primary", !p.completed); button.classList.toggle("button-secondary", p.completed);
-    $("#page-completion-note").textContent = p.completed ? "100 Punkte wurden gutgeschrieben. Beim Wiederöffnen wird L1.3 erneut gesperrt; ein dortiger Abschluss wird ebenfalls zurückgenommen." : "Alle drei eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt 100 Punkte gut.";
+    $("#page-completion-note").textContent = p.completed ? "100 Punkte wurden gutgeschrieben. Beim Wiederöffnen wird L1.4 erneut gesperrt; ein dortiger Abschluss wird ebenfalls zurückgenommen." : "Alle drei eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt 100 Punkte gut.";
     const next = $("#next-lesson-link"), ready = open && (p.completed || window.EXCEL_LAB_DEV?.enabled);
     next.classList.toggle("is-disabled", !ready); next.setAttribute("aria-disabled", String(!ready));
     next.tabIndex = ready ? 0 : -1;
@@ -69,7 +69,7 @@
     const revoked = next.completed && (!next.teacherChecked || !next.checks.every(Boolean));
     if (revoked) next.completed = false;
     const saved = save(next); render();
-    if (saved && revoked) toast("Abschluss zurückgenommen. L1.3 ist wieder gesperrt.");
+    if (saved && revoked) toast("Abschluss zurückgenommen. L1.4 ist wieder gesperrt.");
   });
   $("#page-complete-button").addEventListener("click", () => {
     if (window.EXCEL_LAB_DEV?.enabled) return;
@@ -80,10 +80,10 @@
     if (!next.completed && !next.teacherChecked) { toast("Die Bestätigung durch die Lehrkraft fehlt noch."); return; }
     next.completed = !next.completed;
     const saved = save(next); render();
-    if (saved) toast(next.completed ? "L1.2 abgeschlossen: 100 Punkte. L1.3 ist freigeschaltet." : "L1.2 ist wieder offen. L1.3 ist wieder gesperrt.");
+    if (saved) toast(next.completed ? "L1.3 abgeschlossen: 100 Punkte. L1.4 ist freigeschaltet." : "L1.3 ist wieder offen. L1.4 ist wieder gesperrt.");
   });
   $("#next-lesson-link").addEventListener("click", (event) => {
-    refresh(); if (!window.EXCEL_LAB_DEV?.enabled && (!unlocked() || !progress().completed)) { event.preventDefault(); render(); toast("Schließe zuerst L1.2 ab."); }
+    refresh(); if (!window.EXCEL_LAB_DEV?.enabled && (!unlocked() || !progress().completed)) { event.preventDefault(); render(); toast("Schließe zuerst L1.3 ab."); }
   });
   $("#lesson-theme-toggle").addEventListener("click", () => {
     refresh(); state = state || { version: 1, theme: "dark", currentProfileId: null, profiles: [] };

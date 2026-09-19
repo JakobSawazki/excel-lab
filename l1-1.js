@@ -35,7 +35,7 @@
   }
 
   function saveProgress(state, profile, nextProgress) {
-    if (!state || !profile) return false;
+    if (window.EXCEL_LAB_DEV?.enabled || !state || !profile) return false;
     profile.progress = profile.progress && typeof profile.progress === "object" ? profile.progress : {};
     profile.progress[LESSON_ID] = nextProgress;
     profile.updatedAt = new Date().toISOString();
@@ -70,20 +70,21 @@
 
     $$('[data-page-check]').forEach((input) => {
       input.checked = saved.checks[Number(input.dataset.pageCheck)];
-      input.disabled = !profile;
+      input.disabled = !profile || Boolean(window.EXCEL_LAB_DEV?.enabled);
     });
     $("#page-teacher-check").checked = saved.teacherChecked;
-    $("#page-teacher-check").disabled = !profile;
+    $("#page-teacher-check").disabled = !profile || Boolean(window.EXCEL_LAB_DEV?.enabled);
 
     const completeButton = $("#page-complete-button");
+    completeButton.disabled = Boolean(window.EXCEL_LAB_DEV?.enabled);
     completeButton.textContent = profile ? saved.completed ? "✓ L1.1 wieder öffnen" : "L1.1 abschließen" : "Zuerst Lernprofil anlegen";
     completeButton.classList.toggle("button-primary", !saved.completed);
     completeButton.classList.toggle("button-secondary", saved.completed);
     completeButton.classList.toggle("is-complete", saved.completed);
 
     const nextLink = $("#next-lesson-link");
-    nextLink.classList.toggle("is-disabled", !saved.completed);
-    nextLink.setAttribute("aria-disabled", saved.completed ? "false" : "true");
+    nextLink.classList.toggle("is-disabled", !(saved.completed || window.EXCEL_LAB_DEV?.enabled));
+    nextLink.setAttribute("aria-disabled", saved.completed || window.EXCEL_LAB_DEV?.enabled ? "false" : "true");
     $("#page-completion-note").textContent = profile
       ? saved.completed
         ? "100 Punkte wurden gutgeschrieben. Du kannst den Abschluss wieder zurücknehmen."
@@ -92,7 +93,7 @@
   }
 
   function updateFromForm() {
-    if (!profile) return;
+    if (!profile || window.EXCEL_LAB_DEV?.enabled) return;
     const next = progress(profile);
     next.checks = $$('[data-page-check]').map((input) => input.checked);
     next.teacherChecked = $("#page-teacher-check").checked;
@@ -112,6 +113,7 @@
   });
 
   $("#page-complete-button").addEventListener("click", () => {
+    if (window.EXCEL_LAB_DEV?.enabled) return;
     if (!profile) {
       window.location.href = "index.html#uebersicht";
       return;
@@ -139,11 +141,12 @@
   });
 
   $("#next-lesson-link").addEventListener("click", (event) => {
-    if (!progress(profile).completed) {
+    if (!window.EXCEL_LAB_DEV?.enabled && !progress(profile).completed) {
       event.preventDefault();
       showToast("Schließe zuerst L1.1 ab.");
     }
   });
 
+  window.addEventListener("excel-lab-dev-change", render);
   render();
 })();

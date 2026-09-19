@@ -1,7 +1,7 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 19. September 2026  
-Projektversion: 0.6.0  
+Projektversion: 0.7.0
 Status: lokaler, funktionsfähiger Prototyp  
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
@@ -665,3 +665,233 @@ Offene Punkte / nächste Übergabe:
   Stand dieser Datei lesen. Sinnvoller nächster fachlicher Arbeitsblock ist
   L1.3; die Verlinkung von Sawazki Electronics zu Excel-Lab bleibt separat
   offen.
+
+
+### Übergabe H-2026-09-19-04 – Lerneinheiten direkt im Browser
+
+- **Status:** abgeschlossen am 19. September 2026 für die bestehenden eigenen
+  Lernseiten L1.1/L1.2 und die gemeinsame Abschnittsbedienung.
+- **Benutzerentscheidung:** Selbst erstellte Informations-/Aufgaben-PDFs werden
+  nicht mehr als notwendiges Schüler-Arbeitsmittel verwendet. Informationen,
+  Ausgangsdaten, Aufgaben, Speicherauftrag und Selbstkontrolle gehören auf die
+  jeweilige Lernseite. Lernende bearbeiten ihre Dateien in Excel am Schüler-PC.
+  Bei weiteren Kapiteln dieses Prinzip übernehmen, statt zusätzliche PDFs zu bauen.
+- **Umgesetzt:** L1.1 mit dem vorhandenen zweiseitigen eigenen PDF inhaltlich
+  abgeglichen (Dateneingabe, Spaltenbreite, fünf Getränke, Berechnungsauftrag,
+  Kontrolle). Den Papierentwurf durch Planung und Datenerfassung direkt in Excel
+  ersetzt; keine Ergebnisse vorgegeben. L1.1/L1.2 benötigen keine DOCX-/PDF-Blätter
+  mehr. Originaldateien bleiben unverändert archiviert. In L1.2 bleiben die
+  Excel-Vorlage und das optionale Video nutzbar.
+- **Bedienung:** Native `details`/`summary`-Abschnitte, Lernziel zunächst offen,
+  übrige Abschnitte gezielt aufklappbar, Alle öffnen/schließen und Aufgabensprung.
+  Die kompakten Ansichten der übrigen 25 Einheiten erhalten ebenfalls aufklappbare
+  Grundlagen, Formelbeispiele und Aufgaben. Deren Originalmaterialien bleiben
+  erreichbar: vollständige fachliche Übertragung dieser Kapitel steht noch aus.
+- **Excel-Anbindung:** Bei lokalen HTTP(S)-Vorlagen optionaler Link
+  `ms-excel:ofv|u|...` zum Öffnen in installiertem Excel; schreibgeschütztes Öffnen
+  schützt die Vorlage, Speichern unter erzeugt die Schülerdatei. Download bleibt
+  als Alternative. Kein automatischer App-Start, keine Einbettung, keine Uploads.
+  Öffnen im konkreten Schul-Office ist noch vor Ort zu testen. Bei `file://`
+  gibt es nur Downloads; im öffentlichen Modus keine Excel-Links zu dort nicht
+  mitgelieferten Materialien. Die vorhandene Lizenz-/Veröffentlichungslogik bleibt.
+- **Technische Quellen:** Microsoft Office URI Schemes
+  <https://learn.microsoft.com/en-us/office/client-developer/office-uri-schemes>;
+  Microsoft beschreibt eingebettete Excel-Arbeitsmappen als nicht direkt editierbar:
+  <https://support.microsoft.com/en-us/excel/embed-your-excel-workbook-on-your-web-page-or-blog-from-sharepoint-or-onedrive-for-business>.
+- **Geänderte Dateien:** `l1-1.html`, `l1-2.html`, neue `lesson-workspace.css`
+  und `lesson-workspace.js`, Einbindungen in `index.html`, gezielte Umstellung
+  der drei Dialogabschnitte in `app.js`, L1.1-Beschreibung/Schritt in `content.js`,
+  `README.md`, `documentation.md`. Bereits vorhandene Änderungen an Status-Icons
+  in `app.js` und `styles.css` wurden erhalten; `styles.css` nicht bearbeitet.
+- **Prüfungen:** JS-Syntax; Edge-Browsertests für native Tastaturbedienung,
+  Alle öffnen/schließen, Aufgabensprung, Funktion der L1.1-Abschnitte ohne JS,
+  keine PDF-/DOCX-Links auf L1.1/L1.2, lokale Excel-URI und HTTP-Erreichbarkeit der
+  Vorlage, öffentlicher Vorschaumodus ohne defekte direkte Materiallinks,
+  1440/768/390/320 Pixel ohne horizontalen Überlauf, Desktop/Mobil visuell geprüft,
+  L1.2 weiterhin 100 Punkte und rücknehmbar mit erneuter L1.3-Sperre,
+  aufklappbare L1.3-Dialogansicht, keine Konsolenfehler/-warnungen.
+- **Nächster fachlicher Schritt:** L1.3 und danach die weiteren Einheiten aus
+  ihren Originalquellen vollständig in eigene Lernseiten übertragen. Erst dann
+  die dort noch notwendigen Arbeitsblattlinks entfernen. Kein Push in diesem Auftrag.
+
+
+### Übergabe H-2026-09-19-05 – L1.3 und Entwicklervorschau
+
+- **Status:** L1.3, Entwicklermodus und kurzer Profilhinweis abgeschlossen;
+  Entfernen des alten L1.1-PDF-Ordners durch automatische Sicherheitsprüfung blockiert.
+- **Auftrag:** Nächste Einheit direkt auf der Website ausarbeiten, fachlich
+  vertiefen, alle Einheiten temporär für Entwickler öffnen, Profilhinweis kürzen
+  und überflüssigen L1.1-Arbeitsblattordner entfernen.
+- **L1.3:** Vollständige eigene Seite mit sechs nativen aufklappbaren Abschnitten.
+  Alle Vorgaben aus den lokalen L1_3-Aufgaben-/Informations-DOCX berücksichtigt:
+  blau/grün/rot nach Inhaltstyp, Titel Arial 20 fett/zentriert, Überschriften
+  Calibri 14 fett horizontal/vertikal zentriert und B3 zweizeilig, übrige Inhalte
+  Calibri 11, Euro mit zwei Nachkommastellen, Mengenformat `0 "Flaschen"`,
+  Rahmen über der Summenzeile, Datei `Ergebnisse/L1_3 Getränkeliste formatiert.xlsx`.
+  Zusätzlich Zellwert vs. Anzeige, Anzeige-Rundung, Markieren/Strg+1, sichere
+  Titelzentrierung, Formatübertragung, Fehlerdiagnose und freiwilliger Transfer.
+  Die missverständliche Prozent-Erklärung im Original wurde fachlich berichtigt:
+  ein vorhandener Wert 0,2 erscheint als 20 %, der gespeicherte Wert bleibt erhalten.
+  Microsoft-Quellen sind auf der Seite verlinkt. Keine Lösungsergebnisse übernommen.
+- **Lernlogik:** Normaler Zugang nach L1.2. Drei Checks und Lehrkraftbestätigung
+  plus Abschlussaktion vergeben 100 Punkte. Rücknahme bzw. Entfernen eines Checks
+  nimmt den Abschluss zurück und sperrt L1.4 erneut, einschließlich eines dort
+  eventuell bereits gesetzten Abschlusses; die dortigen Checks bleiben erhalten.
+- **Entwicklermodus:** Profilmanager öffnen, AltGr+S bzw. Strg+Alt+S, dann auf den
+  sichtbaren Entwickler-Button klicken. Alle 27 Einheiten einschließlich der
+  eigenen Lernseiten sind als Vorschau offen, auch ohne Profil. Keine Änderungen
+  an Punkten oder Lernständen; Abschlussfelder während der Vorschau deaktiviert.
+  Zustand separat in SessionStorage, seitenübergreifend im Tab; bei Neuladen
+  gelöscht. Beenden ist jederzeit über das sichtbare Vorschau-Band möglich.
+  Auch Browser-Zurück aus dem Seitencache liest den aktuellen Vorschauzustand.
+- **Profilhinweis:** „Lernstand lokal speichern oder als JSON sichern.“
+- **Ordner:** Der angefragte Ordner `../BPE1/Lernfortschritt_1/L1.1` enthält nur
+  das bereits übertragene eigene PDF und `desktop.ini`. Ein eng begrenzter,
+  pfadgeprüfter Löschaufruf mit vorgesehener lokaler Sicherheitskopie wurde vom
+  Tool vor der Ausführung mit „blocked by policy“ abgelehnt. Weder Kopie noch
+  Löschung erfolgten. Ordner unverändert; keine Umgehung über andere Werkzeuge.
+- **Geänderte Dateien:** neue `l1-3.html`, `l1-3.js`, `developer-mode.js`;
+  `index.html`, `app.js`, `content.js`, `l1-1.html`, `l1-2.html`, `l1-1.js`,
+  `l1-2.js`, `lesson-workspace.css`, `README.md`, `documentation.md` gezielt ergänzt.
+  Vorhandene Änderungen anderer Arbeitspakete bewahrt; kein Push/Upload.
+- **Prüfungen:** JS-Syntax; lokale Ressourcen vorhanden; git diff --check;
+  Edge/Playwright: versteckter Button, Hotkey allein aktiviert noch nicht,
+  alle 27 Einheiten offen nach Klick, seitenübergreifende Vorschau,
+  schreibgeschützte Fortschrittsfelder in allen drei Seiten und im Dialog,
+  unveränderter Lernstand, mit/ohne Profil, Rücksetzung beim Reload und Beenden,
+  Button nach Reload wieder verborgen. L1.3: Zugangssperre, fehlende Checks,
+  fehlende Lehrkraft, 100 Punkte, Neuladen, Rücknahme und L1.4-Sperre.
+  Desktop/Mobil und Hell/Dunkel visuell geprüft; kein horizontaler Überlauf
+  bei 1440/768/390/320 Pixeln; Browserkonsole fehler-/warnungsfrei.
+- **Nächste Einheit:** L1.4 „Formeln kopieren“ aus Originalquellen als vollständige
+  Lernseite umsetzen. Das Entfernen des alten PDF-Ordners bleibt separat offen.
+
+
+### Übergabe H-2026-09-19-06 – L1.4 Formeln kopieren
+
+- **Status:** abgeschlossen am 19. September 2026, lokal geprüft.
+- **Auftrag:** Autark die nächste Einheit nach L1.3 gemäß dem vereinbarten
+  Browser-/Excel-Konzept ausarbeiten.
+- **Quellen:** Lokale `L1_4 Aufgabenstellung Formeln kopieren.docx` und
+  `L1_4 Informationsmaterial Kopieren von Formeln.docx`; vorhandenes M4V als
+  optionale Ergänzung. Microsoft-Primärquellen zu Ausfüllen und relativen Bezügen
+  auf der Seite verlinkt. Keine Musterlösungen verwendet oder veröffentlicht.
+- **Inhalt:** Sechs aufklappbare Abschnitte: Lernziel, relative Bezüge,
+  interaktive Kopier-Demo, drei Kopierwege, vollständiger Getränkeauftrag,
+  Fehlerdiagnose/Vertiefung. Die Demo verwendet ein separates Beispiel E2 mit
+  `=C2*D2`, 1–4 Zeilen Versatz, Live-Formel und zugänglicher Statusmeldung;
+  keine Ausführung eingegebener Formeln, keine Speicherung von Demowerten.
+- **Arbeitsauftrag:** 12 Flaschen Apfelsaftschorle zu je 1,25 € ergänzen;
+  ganze Zeile vor der bisherigen Summenzeile einfügen, Positionsformel kopieren,
+  Bezüge und Summe aller sechs Positionen prüfen, Formate/Rahmen kontrollieren,
+  Änderungstest und ursprüngliche Menge wiederherstellen. Speicherauftrag
+  `Ergebnisse/L1_4 Getränkeliste kopierte Formeln.xlsx`. Ergebnisbeträge und
+  fertige Aufgabenformeln werden nicht vorgegeben. Keine separaten Arbeitsblätter.
+- **Didaktische Präzisierung:** Kopieren einer Zelle vs. Kopieren ihres Formeltexts,
+  Ausschneiden vs. Kopieren, nur Werte vs. Formel, bewusstes Ende des Ausfüllens
+  vor der Summe. Die Addition einzelner Zellen aus L1.2 muss um die neue Position
+  ergänzt werden; eine neue Zeile allein garantiert keine vollständige Summe.
+- **Lernlogik:** Zugang nach L1.3, drei eigene Checks und Lehrkraftbestätigung,
+  Abschlussaktion mit 100 Punkten, Rücknahme sperrt L1.5 erneut. Entwicklervorschau
+  ist integriert und verändert keine Punkte; Neuladen stellt die Sperre wieder her.
+- **Geänderte Dateien:** neue `l1-4.html` und `l1-4.js`, nur L1.4-Eintrag in
+  `content.js`, gekennzeichnete L1.4-Ergänzungen in `lesson-workspace.css`,
+  `README.md` und dieser Dokumentationsabschnitt. Alle anderen Änderungen bewahrt.
+- **Prüfungen:** JS-Syntax, lokale Ressourcen und eindeutige HTML-IDs,
+  git diff --check; Edge/Playwright: Zugangssperre/Freigabe, native Abschnitte,
+  Tastatur-Demo (1/4 Zeilen und Rückweg), kein Lernstandschreiben durch Demo,
+  1440/768/390/320 Pixel ohne Überbreite, Hell/Dunkel und Desktop/Mobil,
+  fehlende Checks/Lehrkraft, Abschluss/100 Punkte/Neuladen, Aufruf aus Lernpfad,
+  Rücknahme durch Lehrkraft-Check mit L1.5-Sperre auch bei zuvor abgeschlossenem
+  L1.5, zweites Profil unverändert, Entwicklermodus/Neuladen, öffentlicher
+  Vorschaumodus ohne lokale Video-/Materiallinks, fehler-/warnungsfreie Konsole.
+- **Grenzen:** Excel-Dateien werden weiterhin durch die Lehrkraft geprüft.
+  Video-Erreichbarkeit/Einbindung geprüft, Codec-Wiedergabe nicht zugesichert.
+  Keine Installation, keine Online-Veröffentlichung und kein Push durchgeführt.
+- **Nächste Einheit:** L1.5 „Tabellen logisch strukturieren“ anhand der Originale
+  zum Sommerfest vollständig auf eine eigene Lernseite übertragen. Der zuvor
+  blockierte Löschauftrag für den alten L1.1-PDF-Ordner bleibt unverändert offen.
+
+
+### Übergabe H-2026-09-19-07 – L1.5 vollständig und Abschnittsbedienung
+
+- **Status:** abgeschlossen am 19. September 2026, lokal umgesetzt und geprüft.
+- **Auftrag:** Die unterbrochene Fortsetzung abschließen: Informationen und
+  vollständige Aufgaben der nächsten Einheit direkt in deren eigener Seite;
+  zusätzlich Entwickler-Button verbreitern und per Hotkey ein-/ausblenden,
+  metallische und mittig ausgerichtete Plus-/Minus-Symbole für Lernabschnitte.
+- **Neue Lernseite:** `l1-5.html` / `l1-5.js`, sieben native aufklappbare Abschnitte:
+  Lernziel, Tabellenaufbau, Formelbezüge, Datentypen/Gestaltung, vollständiger
+  Sommerfest-Auftrag, Änderungstests/Fehlerdiagnose und freiwillige Vertiefung.
+  `content.js` öffnet die eigene Seite; keine separaten PDF-/DOCX-Arbeitsblätter
+  erforderlich. Lernende erstellen ihre Arbeitsmappe direkt in Excel.
+- **Quellenabgleich:** Beide lokalen L1_5-DOCX aus
+  `../BPE1/Lernfortschritt_1/Aufgabenstellungen` bzw. `Informationsmaterial`
+  vollständig ausgelesen und gegen die Lernseite geprüft. Keine Musterlösung
+  und keine fertigen Aufgaben-Ergebnisbeträge übernommen.
+
+| Originalinhalt | Umsetzung auf L1.5 |
+| --- | --- |
+| Sommerfest, 10,00 € Beitrag, eigener Tabellenentwurf | Lernziel und vollständiger Auftrag in Abschnitt 05 |
+| Fünf Personen mit Vor-/Nachname, Klasse, Wohnort, Telefon, Zahlung | Fünf vollständige Datenkarten in Abschnitt 05; Werte einzeln im Browser geprüft |
+| Kostenbeitrag, bisherige Zahlung, offener Betrag je Person | Alle acht geforderten Merkmale explizit aufgeführt; Beitrag per Zellbezug, offene Beträge per Formel |
+| Dateiname L1_5 Sommerfest.xlsx | Arbeitsweg, Abschlusscheck und Speicherauftrag; Ergebnisse-Ordner ergänzt |
+| Titel, gemeinsamer Kopf, Tabellenrumpf; größere Anzahl in Zeilen | Strukturübersicht und Eingabe-/Ausgabe-Erklärung in Abschnitt 02 |
+| Titel zentriert und mit Abstand, betonte Spaltenüberschriften | Gestaltungshilfen in Abschnitt 04 |
+| Einheitliche Dezimalstellen, Tausenderpunkt, Dezimalkomma, zwei Stellen für Währung | Zahlenformat mit eigenständigem Beispiel in Abschnitt 04 |
+| Gezielte senkrechte/waagerechte Linien; waagerecht nur Summen/Gruppierungen; zurückhaltende Farben | Abschnitt 04 und Gestaltungsauftrag |
+| Möglichst eine Seite, sonst Überschriften wiederholen | Druckvorschau, Ausrichtung und Wiederholungszeilen in Abschnitt 04 |
+| Gemeinsame Werte einmal; berechenbare Inhalte durch Formeln; Zelladressen statt fester Zahlen | Abschnitt 03 und Arbeitsauftrag, mit verständlicher Einführung absoluter Bezüge |
+
+- **Fachliche Ergänzung:** Kopf enthält gemeinsame Eingaben, Tabellenkörper sowohl
+  individuelle Eingaben als auch Ergebnisse. Absolute Bezüge halten die zentrale
+  Eingabezelle beim Kopieren fest; separates Werkstatt-Beispiel mit Microsoft-Link.
+  Telefonnummern vor der Eingabe als Text formatieren. Zwei Änderungstests prüfen
+  Einzelzahlung und zentralen Beitrag; danach Originalwerte wiederherstellen.
+  Freiwillige Erweiterung mit erfundener Person in separater Kopie.
+- **Fortschritt:** Zugang nach L1.4, drei eigene Checks plus Lehrkraftbestätigung,
+  Abschlussaktion mit 100 Punkten. Rücknahme sperrt L1.6 erneut und widerruft einen
+  dortigen Abschluss; Checks bleiben erhalten. Entwicklervorschau schreibgeschützt.
+- **Entwickler-Button:** Volle Breite und zentrierter Text, bündig mit den
+  Profilaktionen. AltGr+S bzw. Strg+Alt+S schaltet die Sichtbarkeit abwechselnd um.
+  Sichtbarkeit und aktiver Modus sind getrennt; Ausblenden beendet den Modus nicht.
+  Erneuter Klick beendet ihn weiterhin. Fokus geht beim Ausblenden zurück zum
+  Schließen-Button des Dialogs. Neuladen beendet die Vorschau wie bisher.
+- **Abschnittssymbole:** Gemeinsamer silberner Metallstil mit dezentem Glanz,
+  Kontur und Schatten. Geometrisch zentrierte Balken statt Schriftzeichen:
+  geschlossen Plus, geöffnet Minus. Native Tastaturbedienung bleibt erhalten;
+  Symbol ist dekorativ und kein verschachtelter Button. Gilt für eigene Seiten
+  und die kompakten Lektionen auf der Übersicht. Systemkontrast berücksichtigt.
+- **Prüfungen:** Node-Syntaxprüfung, git diff --check, eindeutige IDs und lokale
+  Ressourcen. Edge/Playwright: Quelle aller fünf Datensätze, Zugang ohne/mit
+  Vorgängerabschluss, sieben Abschnitte und Aufgaben-Sprung, fehlende Checks/
+  Lehrkraft, Abschluss/100 Punkte/Reload, Rücknahme einschließlich altem L1.6-
+  Abschluss, zweites Profil unverändert, Lernpfad-Navigation. Plus/Minus und
+  Tastaturbedienung auf L1.1 bis L1.5 geprüft. Entwickler-Button: volle Breite
+  bei 1440/768/390/320 Pixeln, Anzeigen/Verbergen auch bei aktivem Modus, Ein/Aus
+  durch Klick, unveränderter Lernstand, alle 27 Einheiten ohne Profil freigegeben,
+  Fortschrittsfelder gesperrt, Reload beendet Vorschau. Keine Browserfehler;
+  L1.5 ohne Seitenüberlauf bei allen vier Breiten. Hell/Dunkel, Desktop/Mobil
+  sowie Metall-Icons und Profilmanager visuell geprüft.
+- **Dateien dieses Arbeitspakets:** neue `l1-5.html`, `l1-5.js`; Ergänzungen in
+  `content.js`, `developer-mode.js`, `lesson-workspace.css`, `README.md` und hier.
+  Vorhandene Änderungen anderer Arbeitspakete erhalten. Keine Veröffentlichung,
+  kein Push, keine Installation. Excel-Ergebnisprüfung bleibt bei der Lehrkraft.
+- **Fortsetzungsregel:** Für jede folgende Einheit stets Informationsmaterial
+  UND sämtliche Originalaufgaben samt benötigten Ausgangsdaten übertragen;
+  fachlich ergänzen, Quellenabgleich dokumentieren, keine bloße Kurzfassung.
+- **Nächste Einheit:** L1.6 „Vertiefung: kaufmännische Rechenmodelle“ mit allen
+  Originalaufgaben und Informationsmaterialien ausarbeiten. Der früher blockierte
+  Löschauftrag zum L1.1-PDF-Ordner bleibt unverändert separat offen.
+
+
+### Übergabe H-2026-09-19-08 – Veröffentlichung 0.7.0 und Sawazki Electronics
+
+- Jakob hat Push und Veröffentlichung ausdrücklich beauftragt.
+- Version 0.7.0 bündelt die ausgearbeiteten Lernseiten bis L1.5, aufklappbare
+  Abschnitte, temporäre Entwicklervorschau, Metall-Symbole und Profilverbesserungen.
+- Excel-Lab wird auf Sawazki Electronics auf Start- und Projektseite mit dem
+  vorhandenen lokalen grünen Symbol und direktem GitHub-Pages-Link vorgestellt.
+- Veröffentlichung aus einem sauberen temporären Checkout außerhalb von Google
+  Drive, da eine desktop.ini in lokalen Git-Referenzen den Fetch störte.
+- Originalmaterialien, lokale Schülerdaten und private Dateien bleiben ausgeschlossen.

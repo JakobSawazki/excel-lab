@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab L1.5: Tabellen logisch strukturieren.">
+    <meta name="theme-color" content="#0b1422">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l1-5.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>L1.5 · Tabellen logisch strukturieren · Excel-Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson-workspace.css">
+    <script src="deployment.js" defer></script>
+    <script src="developer-mode.js" defer></script>
+    <script src="lesson-workspace.js" defer></script>
+    <script src="l1-5.js" defer></script>
+  </head>
+  <body class="lesson-page-body l15-page">
+    <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
+
+    <header class="site-header lesson-page-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>L1.5 · Tabellen logisch strukturieren</small></span>
+      </a>
+      <nav class="lesson-breadcrumb" aria-label="Brotkrümelnavigation">
+        <a href="index.html#lernpfad">Lernpfad</a><span aria-hidden="true">›</span><strong>L1.5</strong>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="lesson-theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
+        </button>
+        <a class="profile-button lesson-profile" href="index.html#uebersicht" id="lesson-profile-link">
+          <span class="profile-avatar" id="lesson-profile-avatar">?</span>
+          <span class="profile-copy"><small>Lernprofil</small><strong id="lesson-profile-name">Nicht angemeldet</strong></span>
+        </a>
+      </div>
+    </header>
+
+    <main id="lesson-main" class="lesson-page-main">
+      <section class="lesson-page-hero">
+        <div class="page-shell page-shell-narrow">
+          <a class="back-link" href="index.html#lernpfad"><span aria-hidden="true">‹</span> Zurück zum Lernpfad</a>
+          <div class="lesson-page-title">
+            <div>
+              <p class="eyebrow"><span>L1.5</span> BPE 1.1 · 100 Punkte</p>
+              <h1>Tabellen logisch strukturieren</h1>
+              <p>Du planst die Teilnehmerliste für ein Sommerfest: klare Eingaben, ein gemeinsamer Kostenbeitrag und automatisch berechnete offene Beträge. Plane etwa 40 Minuten ein.</p>
+            </div>
+            <div class="lesson-score-card">
+              <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
+              <div><small>Fortschritt L1.5</small><strong id="lesson-page-status">Noch nicht begonnen</strong><span id="lesson-points-status">0 von 100 Punkten</span></div>
+            </div>
+          </div>
+          <ol class="lesson-stepper" aria-label="Arbeitsreihenfolge">
+            <li class="is-active"><span>1</span><div><strong>Informieren</strong><small>Grundlagen lesen</small></div></li>
+            <li><span>2</span><div><strong>Verstehen</strong><small>Struktur planen</small></div></li>
+            <li><span>3</span><div><strong>In Excel arbeiten</strong><small>Datei erstellen</small></div></li>
+            <li><span>4</span><div><strong>Besprechen</strong><small>Lehrkraft bestätigt</small></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="l15-access" class="page-shell page-shell-narrow l15-access" aria-labelledby="l15-access-heading">
+        <h2 id="l15-access-heading">Zuerst L1.4 abschließen</h2>
+        <p id="l15-access-message">Lege ein Lernprofil an und schließe L1.4 ab, um diese Einheit zu öffnen.</p>
+        <a class="button button-primary" href="l1-4.html">Zu L1.4</a>
+        <a class="button button-secondary" href="index.html#uebersicht">Zum Lernprofil</a>
+        <noscript><p>Aktiviere JavaScript, damit dein lokaler Lernstand geprüft werden kann.</p></noscript>
+      </section>
+      <div id="l15-content" class="page-shell page-shell-narrow lesson-page-layout" hidden>
+<article class="lesson-article"><div class="lesson-workspace-intro"><p><strong>Hier lesen. In Excel arbeiten.</strong> Öffne die Abschnitte nach Bedarf. Für das Sommerfest beginnst du mit einer leeren Arbeitsmappe.</p><div class="lesson-workspace-actions"><a class="button button-primary" href="#aufgabe-heading">Zur Aufgabe ↓</a><button class="button button-secondary" type="button" data-expand-lessons hidden>Alle öffnen</button><button class="button button-secondary" type="button" data-collapse-lessons hidden>Alle schließen</button></div></div><details class="lesson-disclosure" open>
+<summary><span class="section-index">01 · Lernziel</span><h2 id="l15-section-1">Eine Liste, die mitdenkt</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+<div class="lesson-disclosure-body"><p>Die Eingangsklassen des Beruflichen Gymnasiums planen ein Sommerfest. Wer teilnimmt, meldet sich an und zahlt einen Kostenbeitrag von <strong>10,00 €</strong>. Deine Excel-Liste soll zeigen, wer bereits wie viel bezahlt hat und welcher Betrag noch offen ist.</p><ul class="learning-goals"><li><span>✓</span> Eine Tabelle selbstständig in sinnvolle Bereiche gliedern</li><li><span>✓</span> Gemeinsame Werte einmal eingeben und mehrfach verwenden</li><li><span>✓</span> Kontaktdaten und Zahlungen als passende Datentypen erfassen</li><li><span>✓</span> Berechnungen kopieren und mit Änderungen prüfen</li></ul><p>Alle Informationen, fünf Ausgangsdatensätze und der vollständige Arbeitsauftrag stehen auf dieser Seite. Du brauchst kein separates Informations- oder Aufgabenblatt.</p></div></details>
+<details class="lesson-disclosure">
+<summary><span class="section-index">02 · Informieren</span><h2 id="l15-section-2">Titel, Tabellenkopf und Tabellenkörper</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+<div class="lesson-disclosure-body"><p>Plane zuerst, welche Angaben für alle gelten und welche sich von Person zu Person unterscheiden. Erst danach legst du die Zellen fest.</p><div class="l15-structure" aria-label="Aufbau einer Tabelle"><div><strong>Titel · Worum geht es?</strong><small>Eine aussagekräftige Überschrift über der Breite des Tabellenkörpers, zentriert und mit Abstand zum Rest.</small></div><div><strong>Tabellenkopf · Was gilt gemeinsam?</strong><small>Hier stehen zentrale Vorgaben mit eindeutiger Beschriftung und Einheit, etwa der Kostenbeitrag pro Person.</small></div><div><strong>Spaltenüberschriften · Was steht wo?</strong><small>Jede Spalte hat ein Merkmal. Hebe die Überschriften hervor und mache lange Beschriftungen mit Zeilenumbruch lesbar.</small></div><div><strong>Tabellenkörper · Eine Zeile je Person</strong><small>Hier stehen individuelle Eingaben und die dazugehörigen berechneten Ergebnisse.</small></div></div><p><strong>Die größere Anzahl gehört in die Zeilen:</strong> Viele Teilnehmende werden untereinander erfasst, ihre wenigen Merkmale nebeneinander in Spalten. So lassen sich weitere Personen ergänzen.</p><div class="concept-grid"><article><span>IN</span><h3>Eingaben</h3><p>Den gemeinsamen Beitrag trägst du einmal im Kopf ein. Namen, Klasse, Wohnort, Telefon und bisherige Zahlung erfasst du für jede Person im Körper.</p></article><article><span>OUT</span><h3>Ausgaben</h3><p>Der Kostenbeitrag je Person wird aus dem Kopf übernommen. Der offene Betrag wird berechnet. Beschriftung und eine sparsame Formatierung machen Eingaben und Ergebnisse unterscheidbar.</p></article></div><p class="important-note">Der Tabellenkörper enthält also <strong>nicht nur Ergebnisse</strong>, sondern auch die individuellen Eingaben. Verbinde dort keine Zellen und füge zwischen den Personen keine Leerzeilen ein. Eine Person soll einen vollständigen Datensatz in genau einer Zeile bilden.</p></div></details>
+<details class="lesson-disclosure">
+<summary><span class="section-index">03 · Formeln verstehen</span><h2 id="l15-section-3">Ein gemeinsamer Wert – viele Verwendungen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+<div class="lesson-disclosure-body"><p>Alles, was sich berechnen lässt, entsteht durch eine Formel. Verwende Zelladressen statt fest eingetippter Zahlen. Für diese Aufgabe gilt die Rechenregel: <strong>offener Betrag = Kostenbeitrag − bereits geleistete Zahlung</strong>.</p><p>Der Beitrag ist zwar in jeder Personenzeile zu sehen, wird aber nur <strong>einmal von Hand eingegeben</strong>. Die Beitragszellen im Körper beziehen ihren Wert per Formel aus der gemeinsamen Eingabezelle.</p><div class="formula-principle"><strong>Anderes Beispiel: Materialpreis für eine Werkstatt</strong><code>=$C$2*D6 → beim Kopieren nach unten: =$C$2*D7</code><span>In C2 steht der gemeinsame Stückpreis, in D6 bzw. D7 die jeweilige Menge. Die Beispieladressen gehören nicht zu deinem Sommerfest-Entwurf.</span></div><div class="concept-grid"><article><span>$</span><h3>Gemeinsame Zelle festhalten</h3><p><code>$C$2</code> ist ein absoluter Bezug: Das erste Dollarzeichen hält die Spalte, das zweite die Zeile beim Kopieren fest. Ein einfacher Verweis <code>=$C$2</code> zeigt den Wert dieser Zelle an.</p></article><article><span>↓</span><h3>Personenbezogene Zelle mitnehmen</h3><p>Ein Bezug wie <code>D6</code> bleibt relativ. Beim Kopieren um eine Zeile nach unten wird daraus <code>D7</code>. So wird jeweils die Eingabe der passenden Zeile verwendet.</p></article></div><p>Setze die Dollarzeichen bei der Adresse deiner gemeinsamen Eingabezelle. Du kannst sie direkt tippen. In Excel für Windows wechselt <kbd>F4</kbd> die Bezugsart, wenn du den Zellbezug beim Bearbeiten einer Formel markierst; manche Tastaturen benötigen zusätzlich Fn.</p><p><strong>Dein Entwurf bleibt deine Entscheidung:</strong> Lege die Zelladressen selbst fest, entwickle zuerst die Formeln für eine Person und kopiere erst nach der Kontrolle. Öffne anschließend eine Formel in einer späteren Zeile: Der gemeinsame Bezug muss gleich bleiben, der individuelle Bezug zur neuen Person passen.</p><p>Vertiefung: <a href="https://support.microsoft.com/en-us/excel/switch-between-relative-absolute-and-mixed-references" target="_blank" rel="noopener noreferrer">Microsoft: relative und absolute Zellbezüge</a>.</p></div></details>
+<details class="lesson-disclosure">
+<summary><span class="section-index">04 · Werkzeuge und Gestaltung</span><h2 id="l15-section-4">Gut lesbar – und mit den richtigen Datentypen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+<div class="lesson-disclosure-body"><ol class="instruction-list"><li><span>1</span><div><strong>Telefonnummern als Text behandeln</strong><p>Mit Telefonnummern wird nicht gerechnet. Markiere die Telefonzellen <strong>vor der Eingabe</strong>, öffne mit Strg + 1 „Zellen formatieren“ und wähle „Text“. Übernimm führende Nullen und Bindestriche unverändert. Ein nachträglicher Formatwechsel stellt bereits verlorene Nullen nicht wieder her; korrigiere dann die Eingaben anhand der Ausgangsdaten.</p></div></li><li><span>2</span><div><strong>Zahlungen als Zahlen eingeben</strong><p>Gib Beträge als Zahlen ein, etwa <code>5</code>. Weise danach ein Euro-Zahlenformat mit Tausendertrennzeichen und zwei Dezimalstellen zu. In deutscher Darstellung wird beispielsweise <code>1234,5</code> als <code>1.234,50 €</code> angezeigt. Gleichartige Werte erhalten überall dieselbe Anzahl an Dezimalstellen. Eine Zahlung von null wird ausdrücklich als Zahl 0 erfasst.</p></div></li><li><span>3</span><div><strong>Struktur sichtbar machen</strong><p>Zentriere den Titel über der Breite des Tabellenkörpers und trenne ihn durch Abstand. Markiere dafür den Titelbereich und nutze bei Bedarf Strg + 1 → Ausrichtung → Horizontal → „Über Auswahl zentrieren“. Hebe Spaltenüberschriften hervor. Verwende Farben, Schattierungen und Rahmen sparsam. Senkrechte Linien können Bereiche trennen; waagerechte Linien setzt du gezielt bei Gruppierungen oder Summen ein, nicht als Gitter um jede Zelle.</p></div></li><li><span>4</span><div><strong>Druckbild mitdenken</strong><p>Prüfe über Datei → Drucken, ob die Tabelle gut lesbar auf eine Seite passt. Passe Spaltenbreiten, Zeilenumbrüche und gegebenenfalls die Seitenausrichtung an. Verkleinere die Schrift nicht bis zur Unlesbarkeit. Wird eine längere Liste auf mehrere Seiten verteilt, lege in der Desktop-App unter Seitenlayout → Drucktitel die Zeile der Spaltenüberschriften als „Wiederholungszeilen oben“ fest.</p></div></li></ol><p class="important-note"><strong>Anzeige ist nicht Zellinhalt:</strong> Das Euroformat macht aus Text keine berechenbare Zahl. Prüfe bei Problemen den Zellinhalt. <code>#####</code> bei einem Geldbetrag deutet häufig auf eine zu schmale Spalte hin.</p></div></details>
+<details class="lesson-disclosure task-section">
+<summary><span class="section-index">05 · Deine Aufgabe</span><h2 id="aufgabe-heading">Die Teilnehmerliste für das Sommerfest entwerfen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+<div class="lesson-disclosure-body"><p>Erstelle eine übersichtliche Liste für das Sommerfest der Eingangsklassen des Beruflichen Gymnasiums. Der Kostenbeitrag beträgt für alle <strong>10,00 € pro Person</strong>. Die Liste soll erkennen lassen, wer bereits bezahlt hat und wie viel noch offen ist.</p><p><strong>Für jede Person müssen alle acht Angaben sichtbar sein:</strong> Vorname, Nachname, Klassenbezeichnung, Wohnort, Telefonnummer, Kostenbeitrag, bereits geleistete Zahlung und offen stehender Betrag.</p><h3>Die fünf Teilnehmenden aus dem Aufgabenblatt</h3><p>Übernimm diese Ausgangsdaten vollständig. „Bezahlt“ ist die bisher geleistete Zahlung; berechne die noch offenen Beträge selbst.</p><div class="l15-records"><article><h3>Daniel Zimpel</h3><dl><dt>Vorname</dt><dd>Daniel</dd><dt>Nachname</dt><dd>Zimpel</dd><dt>Klasse</dt><dd>11_1</dd><dt>Wohnort</dt><dd>Möhringen</dd><dt>Telefon</dt><dd>0160-584247</dd><dt>Bezahlt</dt><dd>10,00 €</dd></dl></article><article><h3>Visnuka Dahwan</h3><dl><dt>Vorname</dt><dd>Visnuka</dd><dt>Nachname</dt><dd>Dahwan</dd><dt>Klasse</dt><dd>11_1</dd><dt>Wohnort</dt><dd>Stammheim</dd><dt>Telefon</dt><dd>0173-2548764</dd><dt>Bezahlt</dt><dd>0,00 €</dd></dl></article><article><h3>Klea Xavier</h3><dl><dt>Vorname</dt><dd>Klea</dd><dt>Nachname</dt><dd>Xavier</dd><dt>Klasse</dt><dd>11_2</dd><dt>Wohnort</dt><dd>Kornwestheim</dd><dt>Telefon</dt><dd>0175-5687451</dd><dt>Bezahlt</dt><dd>5,00 €</dd></dl></article><article><h3>Lisa Spyra</h3><dl><dt>Vorname</dt><dd>Lisa</dd><dt>Nachname</dt><dd>Spyra</dd><dt>Klasse</dt><dd>11_1</dd><dt>Wohnort</dt><dd>Stuttgart-West</dd><dt>Telefon</dt><dd>0173-7885473</dd><dt>Bezahlt</dt><dd>10,00 €</dd></dl></article><article><h3>Umut Özengan</h3><dl><dt>Vorname</dt><dd>Umut</dd><dt>Nachname</dt><dd>Özengan</dd><dt>Klasse</dt><dd>11_2</dd><dt>Wohnort</dt><dd>Feuerbach</dd><dt>Telefon</dt><dd>0160-8875621</dd><dt>Bezahlt</dt><dd>3,00 €</dd></dl></article></div><h3>Dein Arbeitsweg in Excel</h3><div class="task-list"><div><span>1</span><p><strong>Neue Arbeitsmappe anlegen:</strong> Öffne Excel am Schüler-PC über das Windows-Startmenü und wähle „Leere Arbeitsmappe“. Ordne Browser und Excel nebeneinander an, zum Beispiel mit Windows + Pfeil links/rechts. Speichere im Ordner <strong>Ergebnisse</strong> als <code>L1_5 Sommerfest.xlsx</code>.</p></div><div><span>2</span><p><strong>Struktur entwerfen:</strong> Plane Titel, gemeinsamen Tabellenkopf, acht Spaltenüberschriften und zunächst fünf Personenzeilen. Bestimme, welche Zellen Eingaben und welche Formeln enthalten. Wähle die Zelladressen selbst.</p></div><div><span>3</span><p><strong>Gemeinsamen Beitrag erfassen:</strong> Trage 10,00 € als Zahlenwert genau einmal in einer beschrifteten Eingabezelle im Kopf ein. Bereite Telefonnummern als Text und Beträge als Euro mit zwei Dezimalstellen vor.</p></div><div><span>4</span><p><strong>Daten eingeben:</strong> Erfasse alle fünf Datensätze aus den Karten. Trenne Vor- und Nachnamen, behalte die Klassenbezeichnungen mit Unterstrich bei und prüfe jede Telefonnummer. Trage die bisherigen Zahlungen als Zahlen ein.</p></div><div><span>5</span><p><strong>Formeln entwickeln:</strong> Lass den Beitrag in der ersten Personenzeile durch einen Bezug auf die gemeinsame Eingabezelle anzeigen. Berechne daneben den offenen Betrag aus den passenden Zelladressen. Prüfe beide Formeln und kopiere sie in die übrigen Personenzeilen. Halte den gemeinsamen Bezug beim Kopieren fest.</p></div><div><span>6</span><p><strong>Lesbar gestalten:</strong> Zentriere den Titel, betone Überschriften, passe Spaltenbreiten und Zeilenumbrüche an. Verwende einheitliche Zahlenformate und gezielte Trennlinien. Kontrolliere das Druckbild.</p></div><div><span>7</span><p><strong>Prüfen und sichern:</strong> Führe die Änderungstests im nächsten Abschnitt durch und stelle anschließend alle Originalwerte wieder her. Speichere <code>L1_5 Sommerfest.xlsx</code> und zeige der Lehrkraft deinen Entwurf, die Formeln und ihre Reaktion auf veränderte Eingaben.</p></div></div></div></details>
+<details class="lesson-disclosure">
+<summary><span class="section-index">06 · Kontrollieren</span><h2 id="l15-section-6">Rechnet die Liste auch nach einer Änderung richtig?</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+<div class="lesson-disclosure-body"><div class="concept-grid"><article><span>01</span><h3>Eine Zahlung verändern</h3><p>Erhöhe probeweise die Zahlung einer Person um 1 €. Nur deren offener Betrag muss um 1 € sinken; alle anderen Personen bleiben unverändert. Stelle anschließend die Originalzahlung wieder her.</p></article><article><span>02</span><h3>Gemeinsamen Beitrag verändern</h3><p>Erhöhe probeweise den zentralen Beitrag um 1 €. Der angezeigte Kostenbeitrag und der offene Betrag müssen in jeder Personenzeile jeweils um 1 € steigen. Setze den Beitrag danach wieder auf 10,00 €.</p></article><article><span>03</span><h3>Die letzte Formel prüfen</h3><p>Kontrolliere besonders die letzte Personenzeile: Verweist der Beitrag noch auf dieselbe Kopfzelle? Verwendet der offene Betrag die Zahlung der richtigen Person? Prüfe den Formeltext in der Bearbeitungsleiste.</p></article><article><span>04</span><h3>Vollständigkeit prüfen</h3><p>Sind alle fünf Personen und acht geforderten Merkmale vorhanden? Stimmen Telefonnummern und Zahlungen mit den Karten überein? Sind die Eingaben wieder im Ausgangszustand und ist die Datei gespeichert?</p></article></div><p><strong>Wenn etwas nicht stimmt:</strong> Unveränderte Ergebnisse deuten auf eingetippte Ergebniszahlen oder feste Zahlen in Formeln hin. Unterschiedliche Beiträge können durch einen beim Kopieren verrutschten Kopfbezug entstehen. Bei <code>#WERT!</code> prüfst du, ob die verwendeten Geldbeträge als Zahlen vorliegen.</p><p class="important-note"><strong>Ergebnisse einordnen:</strong> Ein offener Betrag von null bedeutet „vollständig bezahlt“. Ein negativer offener Betrag würde eine Überzahlung anzeigen. Verstecke ihn nicht einfach durch Formatierung, sondern prüfe Beitrag und Zahlung.</p></div></details>
+<details class="lesson-disclosure">
+<summary><span class="section-index">07 · Vertiefen</span><h2 id="l15-section-7">Eine gute Tabelle lässt sich erklären und erweitern</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+<div class="lesson-disclosure-body"><p>Besprich deinen Entwurf mit einer anderen Person oder der Lehrkraft:</p><ul><li>Warum wird der gemeinsame Beitrag nur einmal eingegeben, obwohl er in jeder Zeile angezeigt wird?</li><li>Welche Zellbezüge müssen beim Kopieren gleich bleiben und welche müssen sich verändern?</li><li>Woran erkennst du Eingabezellen und Formelergebnisse, auch ohne Farben?</li><li>Welche Nachteile hätte es, die Teilnehmenden nebeneinander in Spalten anzuordnen?</li></ul><p><strong>Zusatz für Schnelle:</strong> Ergänze in einer separaten Kopie eine erfundene sechste Person ohne echte Kontaktdaten. Übernimm die Formeln und prüfe, ob dein Aufbau ohne Umbau weiterverwendet werden kann. Ergänze optional Summen für Beiträge, Zahlungen und offene Beträge. Entwickle eine eigene Kontrollrechnung, mit der du prüfen kannst, ob diese Summen zusammenpassen.</p><p>Die Abgabedatei enthält die fünf vorgegebenen Personen mit den Originalwerten. Die Zusatzaufgabe ist freiwillig.</p></div></details></article>
+<aside class="lesson-page-sidebar">
+          <section class="lesson-check-panel">
+            <p class="eyebrow">Abschluss und Punkte</p>
+            <h2>L1.5 abschließen</h2>
+            <p>Setze die Haken erst, wenn der jeweilige Arbeitsschritt wirklich erledigt ist. Du kannst jeden Haken wieder entfernen. Damit wird auch der Abschluss zurückgenommen.</p>
+            <div class="completion-list">
+              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Meine Liste enthält alle fünf Personen und acht Merkmale; Telefonnummern und Zahlungen stimmen.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Der Beitrag wird nur einmal eingegeben; beide Änderungstests funktionieren und die Originalwerte sind wiederhergestellt.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Meine übersichtliche Tabelle ist als L1_5 Sommerfest.xlsx im Ordner Ergebnisse gespeichert.</span></label>
+              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Die Lehrkraft hat meine Aufgabe gesehen, mit mir besprochen und als richtig bestätigt.</span></label>
+            </div>
+            <button class="button button-primary button-full" type="button" id="page-complete-button">L1.5 abschließen</button>
+            <p class="check-note" id="page-completion-note">Erst nach der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
+            <p class="check-note">Die Bestätigung erfolgt lokal im Gespräch mit der Lehrkraft; es gibt keine automatische Prüfung deiner Excel-Datei.</p>
+          </section>
+          <section class="next-lesson-panel">
+            <small>Danach</small><strong>L1.6 Kaufmännische Rechenmodelle</strong><p>Dieses Kapitel wird nach dem Abschluss von L1.5 freigeschaltet.</p>
+            <a class="button button-secondary button-full is-disabled" href="index.html#lernpfad" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer lesson-page-footer">
+      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span></a>
+      <p>Inhaltlich aufgebaut nach dem lokalen BPE1-Materialpaket des Landesbildungsservers Baden-Württemberg.</p>
+    </footer>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

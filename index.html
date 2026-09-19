@@ -15,10 +15,13 @@
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="lesson-workspace.css">
     <script src="deployment.js" defer></script>
+    <script src="developer-mode.js" defer></script>
     <script src="content.js" defer></script>
     <script src="app.js" defer></script>
     <script src="home.js" defer></script>
+    <script src="lesson-workspace.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -327,7 +330,7 @@
           <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
           <span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span>
         </a>
-        <p>Version 0.6.1 · Lernstand bleibt lokal im Browser</p>
+        <p>Version 0.7.0 · Lernstand bleibt lokal im Browser</p>
       </div>
       <div class="footer-links">
         <a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Designed by Sawazki Electronics</a>
@@ -364,6 +367,7 @@
         <p class="eyebrow">Profile und Lernstand</p>
         <h2 id="manager-dialog-title">Lokale Daten verwalten</h2>
         <div class="profile-list" id="profile-list"></div>
+        <button class="button button-secondary" id="developer-mode-button" type="button" hidden aria-pressed="false">Entwickler-Modus</button>
         <div class="manager-actions">
           <button class="button button-secondary" type="button" id="new-profile-button">Neues Profil</button>
           <button class="button button-secondary" type="button" id="export-button">JSON exportieren</button>
@@ -371,7 +375,7 @@
           <button class="button button-danger" type="button" id="reset-button">Fortschritt zurücksetzen</button>
         </div>
         <input id="import-file" type="file" accept="application/json,.json" hidden>
-        <p class="dialog-hint">Account, Klassenbezeichnung, Exportzeit und anonyme Browser-ID werden in der JSON-Datei gespeichert. MAC-Adresse und Windows-Benutzername sind für eine normale Website nicht zugänglich.</p>
+        <p class="dialog-hint">Lernstand lokal speichern oder als JSON sichern.</p>
       </div>
     </dialog>
 
@@ -393,6 +397,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.7.0</span><div><strong>Direkt auf der Lernseite lernen</strong><small>Eigene Lernseiten bis L1.5 mit aufklappbaren Informationen und Aufgaben, metallischen Plus-/Minus-Symbolen und temporärer Entwicklervorschau.</small></div></li>
             <li><span>0.6.1</span><div><strong>Online verfügbar</strong><small>GitHub-Pages-Bereitstellung mit datensparsamen lokalen Profilen und sicheren Verweisen auf die offiziellen BPE1-Materialien.</small></div></li>
             <li><span>0.6</span><div><strong>Mehr entdecken, direkt ausprobieren</strong><small>Neue Startseitengestaltung, interaktives Formel-Lab und eigene Lernseite L1.2.</small></div></li>
             <li><span>0.5</span><div><strong>L1.1 und Lernfortschritt</strong><small>Fotorealistisches Startbild, Kapitelmenüs, Punkte, Freischaltung, Fortschrittsbalken und eigene L1.1-Seite.</small></div></li>

@@ -54,7 +54,7 @@
       points: 100,
       page: "l1-1.html",
       tags: ["Tabellenentwurf", "Daten"],
-      description: "Du planst eine Getränkeliste, berechnest die Einkaufskosten und überträgst den Entwurf anschließend nach Excel.",
+      description: "Du planst eine Getränkeliste direkt in Excel, erfasst die Daten und berechnest die Einkaufskosten.",
       goal: "Du kannst aus einem Sachverhalt einen sinnvollen Tabellenkopf entwickeln, Daten in Zellen eingeben und die Spaltenbreite passend einstellen.",
       keyPoints: [
         { title: "Ein Datensatz pro Zeile", text: "Zusammengehörende Angaben stehen in derselben Zeile." },
@@ -66,7 +66,7 @@
       steps: [
         "Lies zuerst alle Informationen auf der L1.1-Seite.",
         "Entwirf die Getränkeliste mit Getränkeart, Einkaufspreis je Flasche, Menge und Gesamtpreis.",
-        "Übertrage den Entwurf nach Excel und speichere ihn im Ordner Ergebnisse als „L1_1.2 Getränkeliste.xlsx“."
+        "Prüfe deine Excel-Tabelle und speichere sie im Ordner Ergebnisse als „L1_1.2 Getränkeliste.xlsx“."
       ],
       checks: ["Informationen vollständig gelesen", "Tabellenentwurf und Berechnungen fertig", "Excel-Datei unter dem vorgegebenen Namen gespeichert"],
       tip: "Wenn eine Überschrift abgeschnitten wird, doppelklicke auf die rechte Grenze des Spaltenkopfs. Excel stellt dann die optimale Breite ein.",
@@ -118,6 +118,8 @@
       title: "Zahlen und Tabellen formatieren",
       duration: "35 Min.",
       level: "Einstieg",
+      points: 100,
+      page: "l1-3.html",
       tags: ["Zahlenformat", "Layout"],
       description: "Du verbesserst Lesbarkeit und Aussagekraft mit passenden Zahlenformaten, Ausrichtung und zurückhaltender Gestaltung.",
       goal: "Du kannst Währung, Prozent, Datum und benutzerdefinierte Einheiten formatieren, ohne den Zellwert zu verändern.",
@@ -132,11 +134,11 @@
         { code: "0 \"Flaschen\"", note: "Benutzerdefiniertes Format mit einer Einheit." }
       ],
       steps: [
-        "Formatiere eingegebene Texte, Eingabezahlen und Formelergebnisse wie in der Aufgabenstellung beschrieben.",
+        "Öffne deine Datei aus L1.2 und folge dem vollständigen Formatierungsauftrag auf der L1.3-Seite.",
         "Setze die Überschrift, Spaltenköpfe, Währungsbeträge und Mengenangaben passend.",
-        "Prüfe, ob lange Überschriften umbrechen und alle Werte vollständig sichtbar sind."
+        "Prüfe Formeln und Lesbarkeit; speichere als L1_3 Getränkeliste formatiert.xlsx im Ordner Ergebnisse."
       ],
-      checks: ["Währungswerte zeigen zwei Dezimalstellen", "Spaltenköpfe sind gut lesbar", "Keine Zahl wird durch Text ersetzt"],
+      checks: ["Schrift, Farben, Ausrichtung, Umbruch und Rahmen gestaltet", "Zahlenformate stimmen und Formeln funktionieren", "L1_3 Getränkeliste formatiert.xlsx gespeichert"],
       tip: "Nutze „Format übertragen“, wenn mehrere Zellen exakt gleich gestaltet werden sollen.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_3 Aufgabenstellung Formatieren von Texten und Zahlen.docx", "Aufgabe Formatierung", "DOCX"),
@@ -150,6 +152,8 @@
       title: "Formeln kopieren",
       duration: "25 Min.",
       level: "Einstieg",
+      points: 100,
+      page: "l1-4.html",
       tags: ["Ausfüllkästchen", "Kopieren"],
       description: "Du nutzt die automatische Anpassung relativer Zellbezüge und vermeidest unnötige Mehrfacheingaben.",
       goal: "Du kannst eine passende Ausgangsformel erstellen und sie fehlerfrei über mehrere Zeilen kopieren.",
@@ -161,11 +165,11 @@
       ],
       formulas: [{ code: "=B4*C4  →  =B5*C5", note: "Excel passt Zeile und Spalte relativ zur Zielposition an." }],
       steps: [
-        "Ergänze die Getränkeliste um Apfelsaftschorle.",
+        "Ergänze vor der Summenzeile 12 Flaschen Apfelsaftschorle für je 1,25 €.",
         "Kopiere die Formel für den Gesamtpreis, statt sie erneut einzugeben.",
-        "Öffne einzelne kopierte Zellen und kontrolliere die Bezüge."
+        "Prüfe Bezüge und die Summe aller sechs Getränke; speichere als L1_4 Getränkeliste kopierte Formeln.xlsx."
       ],
-      checks: ["Formel wurde kopiert", "Bezüge passen sich je Zeile an", "Summe berücksichtigt den neuen Datensatz"],
+      checks: ["Getränkezeile ergänzt und Formel kopiert", "Bezüge und Summe aller sechs Getränke im Änderungstest geprüft", "L1_4 Getränkeliste kopierte Formeln.xlsx gespeichert"],
       tip: "Doppelklick auf das Ausfüllkästchen kopiert eine Formel oft bis zum Ende des benachbarten Datenbereichs.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_4 Aufgabenstellung Formeln kopieren.docx", "Aufgabe Formeln kopieren", "DOCX"),
@@ -175,6 +179,8 @@
     },
     {
       id: "l1-5",
+      page: "l1-5.html",
+      points: 100,
       stage: 1,
       code: "L1.5",
       title: "Tabellen logisch strukturieren",
@@ -195,7 +201,7 @@
         "Erfasse die fünf vorgegebenen Teilnehmenden mit Kontaktdaten und Zahlung.",
         "Berechne den offenen Betrag so, dass die Formel kopierfähig ist."
       ],
-      checks: ["Kostenbeitrag nur einmal erfasst", "Telefonnummern korrekt angezeigt", "Offene Beträge werden berechnet"],
+      checks: ["Fünf Personen mit allen acht Merkmalen erfasst", "Zentraler Beitrag und offene Beträge bestehen die Änderungstests", "Übersichtliche Datei L1_5 Sommerfest.xlsx gespeichert"],
       tip: "Vermeide verbundene Zellen im eigentlichen Datenbereich. Sie erschweren Sortieren und Filtern.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_5 Aufgabenstellung Tabellenstruktur entwerfen.docx", "Aufgabe Sommerfest", "DOCX"),
