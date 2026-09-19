@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab L1.2: Rechnen mit Zelladressen.">
+    <meta name="theme-color" content="#0b1422">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l1-2.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>L1.2 · Rechnen mit Zelladressen · Excel-Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="deployment.js" defer></script>
+    <script src="l1-2.js" defer></script>
+  </head>
+  <body class="lesson-page-body l12-page">
+    <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
+
+    <header class="site-header lesson-page-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>L1.2 · Zelladressen</small></span>
+      </a>
+      <nav class="lesson-breadcrumb" aria-label="Brotkrümelnavigation">
+        <a href="index.html#lernpfad">Lernpfad</a><span aria-hidden="true">›</span><strong>L1.2</strong>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="lesson-theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
+        </button>
+        <a class="profile-button lesson-profile" href="index.html#uebersicht" id="lesson-profile-link">
+          <span class="profile-avatar" id="lesson-profile-avatar">?</span>
+          <span class="profile-copy"><small>Lernprofil</small><strong id="lesson-profile-name">Nicht angemeldet</strong></span>
+        </a>
+      </div>
+    </header>
+
+    <main id="lesson-main" class="lesson-page-main">
+      <section class="lesson-page-hero">
+        <div class="page-shell page-shell-narrow">
+          <a class="back-link" href="index.html#lernpfad"><span aria-hidden="true">‹</span> Zurück zum Lernpfad</a>
+          <div class="lesson-page-title">
+            <div>
+              <p class="eyebrow"><span>L1.2</span> BPE 1.1 · 100 Punkte</p>
+              <h1>Rechnen mit Zelladressen</h1>
+              <p>Du lässt Excel mit Zelladressen rechnen und prüfst, ob sich Ergebnisse bei Änderungen automatisch anpassen. Plane etwa 30 Minuten ein.</p>
+            </div>
+            <div class="lesson-score-card">
+              <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
+              <div><small>Fortschritt L1.2</small><strong id="lesson-page-status">Noch nicht begonnen</strong><span id="lesson-points-status">0 von 100 Punkten</span></div>
+            </div>
+          </div>
+          <ol class="lesson-stepper" aria-label="Arbeitsreihenfolge">
+            <li class="is-active"><span>1</span><div><strong>Informieren</strong><small>Grundlagen lesen</small></div></li>
+            <li><span>2</span><div><strong>Verstehen</strong><small>Formeln nachvollziehen</small></div></li>
+            <li><span>3</span><div><strong>In Excel arbeiten</strong><small>Datei erstellen</small></div></li>
+            <li><span>4</span><div><strong>Besprechen</strong><small>Lehrkraft bestätigt</small></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="l12-access" class="page-shell page-shell-narrow l12-access" aria-labelledby="l12-access-heading">
+        <h2 id="l12-access-heading">Zuerst L1.1 abschließen</h2>
+        <p id="l12-access-message">Lege ein Lernprofil an und schließe L1.1 ab, um diese Einheit zu öffnen.</p>
+        <a class="button button-primary" href="l1-1.html">Zu L1.1</a>
+        <a class="button button-secondary" href="index.html#uebersicht">Zum Lernprofil</a>
+        <noscript><p>Aktiviere JavaScript, damit dein lokaler Lernstand geprüft werden kann.</p></noscript>
+      </section>
+      <div id="l12-content" class="page-shell page-shell-narrow lesson-page-layout" hidden>
+        <article class="lesson-article">
+          <section class="content-section" aria-labelledby="ziel-heading">
+            <p class="section-index">01 · Lernziel</p><h2 id="ziel-heading">Excel rechnet für dich</h2>
+            <p>Du ersetzt feste Ergebnisse durch Formeln. Ändert sich ein Preis oder eine Menge, berechnet Excel den Gesamtpreis neu.</p>
+            <ul class="learning-goals">
+              <li><span>✓</span> Formeln mit = beginnen</li><li><span>✓</span> Zelladressen statt fester Zahlen verwenden</li>
+              <li><span>✓</span> Die vier Rechenzeichen einsetzen</li><li><span>✓</span> Formeln und Ergebnisse prüfen</li>
+            </ul>
+          </section>
+          <section class="content-section" aria-labelledby="grundlagen-heading">
+            <p class="section-index">02 · Informieren</p><h2 id="grundlagen-heading">Vom Zellwert zur Formel</h2>
+            <div class="concept-grid">
+              <article><span>=</span><h3>So beginnt eine Formel</h3><p>Das Gleichheitszeichen sagt Excel: Jetzt folgt eine Berechnung. Ohne = wird deine Eingabe nicht als Formel berechnet.</p></article>
+              <article><span>B2</span><h3>Eine Adresse, ein Wert</h3><p>B2 bezeichnet die Zelle in Spalte B und Zeile 2. Eine Formel mit B2 verwendet den dort gespeicherten Wert.</p></article>
+            </div>
+            <div class="formula-principle"><strong>Beispiel: Hefte einkaufen</strong><code>=B2*C2</code><span>In einer anderen Übungstabelle steht der Heftpreis in B2 und die Anzahl in C2. Die Formel multipliziert beide Zellwerte.</span></div>
+            <p>Die Formel steht in einer eigenen Ergebniszelle, zum Beispiel D2. Trage sie nicht in eine ihrer Eingabezellen ein: Ein Bezug auf die eigene Zelle erzeugt einen Zirkelbezug.</p>
+            <p>Eine feste Rechnung wie <code>=2*6</code> passt sich neuen Eingaben in B2 oder C2 nicht an. Mit Zelladressen bleibt die Berechnung mit deinen Eingabedaten verbunden.</p>
+            <h3>Vier Zeichen zum Rechnen</h3>
+            <dl class="l12-operators">
+              <div><dt><code>+</code> Addieren</dt><dd><code>=B2+C2</code> addiert zwei Zellwerte.</dd></div>
+              <div><dt><code>-</code> Subtrahieren</dt><dd><code>=B2-C2</code> zieht den zweiten Wert vom ersten ab.</dd></div>
+              <div><dt><code>*</code> Multiplizieren</dt><dd><code>=B2*C2</code> multipliziert die Werte. Verwende den Stern, nicht den Buchstaben x.</dd></div>
+              <div><dt><code>/</code> Dividieren</dt><dd><code>=B2/C2</code> teilt den ersten Wert durch den zweiten. Der zweite Wert darf nicht null sein.</dd></div>
+            </dl>
+            <p>Excel rechnet Punkt vor Strich. Klammern ändern die Reihenfolge: <code>=(B2+C2)*E2</code> addiert zuerst. Mehrere Ergebnisse kannst du mit <code>+</code> verbinden, zum Beispiel <code>=D2+D3+D4</code>.</p>
+          </section>
+          <section class="content-section" aria-labelledby="excel-heading">
+            <p class="section-index">03 · Anwenden und prüfen</p><h2 id="excel-heading">Formel eingeben, anzeigen und kontrollieren</h2>
+            <ol class="instruction-list">
+              <li><span>1</span><div><strong>Ergebniszelle auswählen</strong><p>Tippe =, klicke die erste Eingabezelle an, tippe das Rechenzeichen und klicke die zweite Eingabezelle an. Du kannst die Adressen auch eintippen.</p></div></li>
+              <li><span>2</span><div><strong>Mit Enter bestätigen</strong><p>In der Zelle erscheint normalerweise das Ergebnis. Wähle sie erneut aus: Oben in der Bearbeitungsleiste siehst du die Formel.</p></div></li>
+              <li><span>3</span><div><strong>Alle Formeln sichtbar machen</strong><p>Wähle im Menüband <strong>Formeln → Formeln anzeigen</strong>. Prüfe Zelladressen und Rechenzeichen. Schalte dieselbe Funktion danach wieder aus.</p></div></li>
+              <li><span>4</span><div><strong>Plausibilität prüfen</strong><p>Runde die Eingabewerte gedanklich und überschlage das Ergebnis. Passt die Größenordnung? Ändere probeweise eine Menge, beobachte das Ergebnis und stelle anschließend den ursprünglichen Wert wieder her.</p></div></li>
+            </ol>
+            <p class="important-note"><strong>Wenn etwas nicht stimmt:</strong> Prüfe =, Zelladressen und Operatoren. Bleibt nur in einer Zelle die Formel als Text stehen, kontrolliere ein führendes Apostroph oder das Zellformat „Text“. Stelle auf „Standard“ um und bestätige die Formel erneut. <code>#DIV/0!</code> weist auf eine Division durch null oder eine leere Divisorzelle hin.</p>
+            <details class="l12-video"><summary>Optional: Einführung in Formeln als Video</summary>
+              <p>Das lokale Originalvideo ergänzt die schriftliche Anleitung oben.</p>
+              <video controls preload="none" aria-label="Video Einführung in Formeln" src="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_2 Video Einführung in Formeln.m4v"></video>
+              <p>Falls dein Browser das Video nicht abspielt, öffne es über den Materiallink unten in einem Videoplayer.</p>
+            </details>
+          </section>
+          <section class="content-section task-section" aria-labelledby="aufgabe-heading">
+            <p class="section-index">04 · Deine Aufgabe</p><h2 id="aufgabe-heading">Die Getränkeliste rechnet mit</h2>
+            <p>Das Organisationsteam der Eingangsklassen plant eine Party. Die Einkaufskosten sollen sich automatisch ändern, wenn Preise oder Mengen angepasst werden.</p>
+            <p>Verwende die unten verlinkte <strong>Excel-Vorlage Getränkeliste</strong>. In Spalte A stehen die Getränke, in B der Einkaufspreis je Flasche und in C die Menge. Die Getränke stehen in den Zeilen 4 bis 8; Zeile 9 ist für die Summe vorgesehen.</p>
+            <div class="task-list">
+              <div><span>1</span><p>Lade <code>L1_2 Tabellenvorlage Formeln in Excel.xlsx</code> herunter und öffne sie in Excel. Speichere deine eigene Kopie mit <strong>Speichern unter</strong> im Ordner <strong>Ergebnisse</strong> als <code>L1_2 Getränkeliste.xlsx</code>.</p></div>
+              <div><span>2</span><p>Berechne in <strong>D4 bis D8</strong> für jedes Getränk den Gesamtpreis mit einer Formel: Einkaufspreis je Flasche mal Menge. Verwende die Zelladressen derselben Zeile und beginne mit =.</p></div>
+              <div><span>3</span><p>Berechne in <strong>D9</strong> die Summe der fünf Gesamtpreise. Verbinde dafür die Ergebniszellen mit dem Pluszeichen. Gib keinen fertig ausgerechneten Gesamtbetrag ein.</p></div>
+              <div><span>4</span><p>Prüfe in der Formelanzeige alle sechs Ergebniszellen. Stimmen Zeilen, Rechenzeichen und die fünf Summanden? Die Summenzelle selbst darf kein Summand sein.</p></div>
+              <div><span>5</span><p>Prüfe die Größenordnung durch Überschlagen. Ändere eine Menge probeweise: Ändern sich der zugehörige Gesamtpreis und die Summe? Stelle die ursprüngliche Menge wieder her, schalte zurück zur Ergebnisanzeige und speichere erneut.</p></div>
+              <div><span>6</span><p>Zeige der Lehrkraft deine gespeicherte Datei und erkläre an einer Formel, welche Zellwerte verwendet werden. Schließe anschließend den Check ab.</p></div>
+            </div>
+            <p class="important-note"><strong>Hinweis zur Vorlage:</strong> Die Originalaufgabe spricht vom Ersetzen vorhandener Werte. In der hier bereitgestellten Vorlage sind die Ergebniszellen in Spalte D leer. Trage dort deine Formeln ein. Deine Datei aus L1.1 bleibt als vorheriger Arbeitsschritt erhalten.</p>
+          </section>
+          <section class="content-section material-section" aria-labelledby="material-heading">
+            <p class="section-index">05 · Originalmaterial</p><h2 id="material-heading">Deine Arbeitsmaterialien</h2>
+            <div class="download-list page-downloads">
+              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_2 Tabellenvorlage Formeln in Excel.xlsx" download><span class="file-type">XLSX</span><strong>Excel-Vorlage Getränkeliste</strong><span class="arrow" aria-hidden="true">↓</span></a>
+              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_2 Aufgabenstellung Formeln in Excel.docx" download><span class="file-type">DOCX</span><strong>Originalaufgabe Formeln in Excel</strong><span class="arrow" aria-hidden="true">↓</span></a>
+              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_2 Video Einführung in Formeln.m4v" download><span class="file-type">VIDEO</span><strong>Video Einführung in Formeln</strong><span class="arrow" aria-hidden="true">↓</span></a>
+            </div>
+          </section>
+        </article>
+        <aside class="lesson-page-sidebar">
+          <section class="lesson-check-panel">
+            <p class="eyebrow">Abschluss und Punkte</p>
+            <h2>L1.2 abschließen</h2>
+            <p>Setze die Haken erst, wenn der jeweilige Arbeitsschritt wirklich erledigt ist. Du kannst jeden Haken wieder entfernen. Damit wird auch der Abschluss zurückgenommen.</p>
+            <div class="completion-list">
+              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe die Informationen gelesen und alle sechs Formeln mit Zelladressen geprüft.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Ich habe die Ergebnisse überschlagen, die automatische Neuberechnung getestet und die ursprüngliche Menge wiederhergestellt.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Meine Datei ist im Ordner Ergebnisse als L1_2 Getränkeliste.xlsx gespeichert.</span></label>
+              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Die Lehrkraft hat meine Aufgabe gesehen, mit mir besprochen und als richtig bestätigt.</span></label>
+            </div>
+            <button class="button button-primary button-full" type="button" id="page-complete-button">L1.2 abschließen</button>
+            <p class="check-note" id="page-completion-note">Erst nach der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
+            <p class="check-note">Die Bestätigung erfolgt lokal im Gespräch mit der Lehrkraft; es gibt keine automatische Prüfung deiner Excel-Datei.</p>
+          </section>
+          <section class="next-lesson-panel">
+            <small>Danach</small><strong>L1.3 Zahlen und Tabellen formatieren</strong><p>Dieses Kapitel wird nach dem Abschluss von L1.2 freigeschaltet.</p>
+            <a class="button button-secondary button-full is-disabled" href="index.html#lernpfad" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer lesson-page-footer">
+      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span></a>
+      <p>Inhaltlich aufgebaut nach dem lokalen BPE1-Materialpaket des Landesbildungsservers Baden-Württemberg.</p>
+    </footer>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

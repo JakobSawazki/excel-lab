@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab: Selbstlernplattform zur Tabellenkalkulation für berufliche Schulen.">
+    <meta name="theme-color" content="#0b1422">
+    <meta property="og:title" content="Excel-Lab · Tabellenkalkulation lernen">
+    <meta property="og:description" content="Interaktive Excel-Grundlagen für berufliche Schulen.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jakobsawazki.github.io/excel-lab/">
+    <meta property="og:image" content="https://jakobsawazki.github.io/excel-lab/assets/images/hero-students-excel-v1.png">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>Excel-Lab · Tabellenkalkulation lernen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home.css">
+    <script src="deployment.js" defer></script>
+    <script src="content.js" defer></script>
+    <script src="app.js" defer></script>
+    <script src="home.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
+
+    <header class="site-header">
+      <a class="brand" href="#uebersicht" data-brand-home aria-label="Excel-Lab Startseite und Versionsinformationen">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/brand/excel-lab-mark.svg" alt="">
+        </span>
+        <span class="brand-copy">
+          <strong>Excel-Lab</strong>
+          <small>Tabellenkalkulation verstehen</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <button class="nav-link is-active" type="button" data-view="dashboard">Übersicht</button>
+        <button class="nav-link" type="button" data-view="learning">Lernpfad</button>
+        <details class="nav-dropdown" id="learning-menu">
+          <summary class="nav-link">Lernschritte <svg class="nav-chevron" aria-hidden="true" viewBox="0 0 20 20"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg></summary>
+          <div class="nav-dropdown-menu" id="nav-stage-menu" aria-label="Lernschritte und Kapitel"></div>
+        </details>
+        <button class="nav-link" type="button" data-view="formulas">Formelsammlung</button>
+        <button class="nav-link" type="button" data-view="sources">Quellen</button>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
+        </button>
+        <button class="profile-button" id="profile-button" type="button" aria-label="Lokales Profil verwalten">
+          <span class="profile-avatar" id="profile-avatar">?</span>
+          <span class="profile-copy">
+            <small>Lokales Profil</small>
+            <strong id="profile-name">Anmelden</strong>
+          </span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="view is-active" id="view-dashboard" data-view-panel="dashboard">
+        <div class="page-shell">
+          <div class="home-topline"><span><i aria-hidden="true"></i> Dein Raum zum Ausprobieren</span><span>BPE 1 <b aria-hidden="true">/</b> 4 Lernschritte <b aria-hidden="true">/</b> 27 Einheiten</span></div>
+          <section class="hero">
+            <div class="hero-copy">
+              <p class="eyebrow"><span>Excel-Lab</span> Wissen wird Können</p>
+              <h1>Aus Zellen<br>werden <span class="home-headline-accent">Ideen.</span></h1>
+              <p class="hero-lead">Eine Tabelle ist erst der Anfang. Entdecke, wie du mit Excel rechnest, Zusammenhänge erkennst und Daten sichtbar machst. Schritt für Schritt, in deinem Tempo.</p>
+              <div class="hero-actions">
+                <button class="button button-primary" id="continue-button" type="button">Lernpfad starten</button>
+                <button class="button button-secondary" type="button" data-go-view="formulas">Formeln entdecken</button>
+              </div>
+              <ul class="hero-facts" aria-label="Das erwartet dich">
+                <li><span aria-hidden="true">✓</span> verständliche Erklärungen</li>
+                <li><span aria-hidden="true">✓</span> Aufgaben direkt in Excel</li>
+                <li><span aria-hidden="true">✓</span> sichtbarer Lernfortschritt</li>
+              </ul>
+            </div>
+
+            <div class="hero-visual" aria-label="Zwei Lernende arbeiten gemeinsam an einer Tabellenkalkulation">
+              <div class="home-window-bar" aria-hidden="true"><span class="home-window-dots">● ● ●</span><span>EXCEL-LAB / DEIN WORKSPACE</span><span>↗</span></div>
+              <figure class="hero-photo-frame">
+                <img fetchpriority="high" width="1536" height="1024" src="assets/images/hero-students-excel-v1.png" alt="Zwei Schülerinnen und Schüler bearbeiten gemeinsam eine Tabellenkalkulation an einem modernen Computer.">
+                <figcaption><span>Gemeinsam verstehen</span><strong>Direkt in Excel anwenden</strong></figcaption>
+              </figure>
+              <div class="hero-outcomes" aria-label="Ablauf der Lernplattform">
+                <span><small>01</small><strong>Verstehen</strong></span>
+                <span><small>02</small><strong>Üben</strong></span>
+                <span><small>03</small><strong>Prüfen</strong></span>
+              </div>
+              <div class="floating-progress">
+                <span class="ring ring-small" id="hero-ring" style="--progress: 0"><strong id="hero-percent">0%</strong></span>
+                <div><small>Dein Fortschritt</small><strong id="hero-progress-text">Noch nicht begonnen</strong></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="next-section home-next" id="next-section" aria-labelledby="next-heading"></section>
+
+          <section class="home-lab dashboard-section" aria-labelledby="home-lab-heading">
+            <div class="home-lab-copy">
+              <p class="eyebrow"><span>Zum Ausprobieren</span> Das kleine Formel-Lab</p>
+              <h2 id="home-lab-heading">Ein Wert verändert.<br>Alles rechnet mit.</h2>
+              <p>Du kaufst Hefte für ein Projekt. Verschiebe die Menge und beobachte, wie Excel mit Zelladressen rechnet.</p>
+              <p class="home-lab-prompt"><span aria-hidden="true">↗</span> Was passiert mit dem Gesamtpreis, wenn du die Menge verdoppelst?</p>
+              <div class="home-lab-control">
+                <label for="lab-quantity">Menge ändern <output id="lab-quantity-label" for="lab-quantity">6 Hefte</output></label>
+                <input id="lab-quantity" type="range" min="1" max="20" value="6" step="1" aria-describedby="lab-help" disabled>
+                <div class="home-range-scale" aria-hidden="true"><span>1 Heft</span><span>20 Hefte</span></div>
+                <small id="lab-help">Mit Maus, Touch oder den Pfeiltasten ausprobieren.</small>
+              </div>
+              <button type="button" class="text-button" id="lab-reset" disabled>Auf 6 Hefte zurücksetzen <span aria-hidden="true">↺</span></button>
+              <noscript><p>Mit JavaScript kannst du die Menge hier interaktiv verändern.</p></noscript>
+            </div>
+            <div class="home-sheet">
+              <div class="home-sheet-title"><span><i aria-hidden="true"></i> Projektbedarf.xlsx</span><span>Mini-Demo</span></div>
+              <div class="home-formula-bar"><span>D2</span><span aria-hidden="true">ƒx</span><code>=B2*C2</code></div>
+              <table class="home-sheet-table">
+                <caption class="sr-only">Heftkauf: Preis mal Menge ergibt den Gesamtpreis</caption>
+                <thead><tr><th scope="col" aria-label="Zeile"></th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">1</th><td>Artikel</td><td>Preis</td><td>Menge</td><td>Gesamt</td></tr>
+                  <tr><th scope="row">2</th><td>Hefte</td><td class="home-price-cell">2,50 €</td><td id="lab-cell-quantity" class="home-quantity-cell">6</td><td id="lab-cell-total" class="home-result-cell">15,00 €</td></tr>
+                  <tr aria-hidden="true"><th>3</th><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+              </table>
+              <div class="home-lab-result">
+                <span>Dein Gesamtpreis</span><output id="lab-total" for="lab-quantity" aria-live="off">15,00 €</output>
+                <div class="home-lab-meter" aria-hidden="true"><span id="lab-meter" style="--lab-fill:30%"></span></div>
+                <p id="lab-explanation">2,50 € × 6 Hefte = 15,00 €</p>
+                <p class="home-lab-insight">Die Werte ändern sich. Die Formel bleibt.</p>
+              </div>
+              <div class="home-sheet-footer"><span class="home-sheet-tab">Heftkauf</span><span>Beispiel zum Entdecken · ohne Punkte</span></div>
+              <p id="lab-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+            </div>
+          </section>
+
+          <section class="dashboard-section onboarding-section" aria-labelledby="onboarding-heading">
+            <div class="section-heading onboarding-heading">
+              <div>
+                <p class="eyebrow">Einfach loslegen</p>
+                <h2 id="onboarding-heading">So arbeitest du mit Excel-Lab</h2>
+              </div>
+              <p class="section-note">Arbeite die Einheiten am besten in der Reihenfolge L1 bis L4 durch.</p>
+            </div>
+
+            <div class="workflow-grid">
+              <article class="workflow-card">
+                <span class="workflow-number" aria-hidden="true">1</span>
+                <div>
+                  <h3>Verstehen</h3>
+                  <p>Öffne eine Einheit und lies zuerst Lernziel, Grundlagen und Formelbeispiele.</p>
+                </div>
+              </article>
+              <article class="workflow-card">
+                <span class="workflow-number" aria-hidden="true">2</span>
+                <div>
+                  <h3>In Excel üben</h3>
+                  <p>Lade die Aufgabe oder Vorlage herunter, bearbeite sie und speichere deine eigene Datei.</p>
+                </div>
+              </article>
+              <article class="workflow-card">
+                <span class="workflow-number" aria-hidden="true">3</span>
+                <div>
+                  <h3>Prüfen und abhaken</h3>
+                  <p>Besprich dein Ergebnis mit der Lehrkraft. Erst nach der Freigabe hakst du die Einheit ab.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="starter-strip">
+              <div class="starter-copy">
+                <span class="starter-kicker">Excel-Grundregel</span>
+                <strong>Eine Formel beginnt immer mit <code>=</code>.</strong>
+                <span>Zelladressen bestehen aus Spalte und Zeile, zum Beispiel <code>B4</code>. Mit <code>$B$4</code> bleibt der Bezug beim Kopieren fest.</span>
+              </div>
+                <button class="button button-primary starter-button" type="button" data-open-lesson="l1-1">Erste Einheit öffnen <span aria-hidden="true">›</span></button>
+            </div>
+          </section>
+
+          <section class="dashboard-section" aria-labelledby="overview-heading">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Dein Lernstand</p>
+                <h2 id="overview-heading">Weiterlernen, wo du aufgehört hast</h2>
+              </div>
+              <button class="text-button" type="button" data-go-view="learning">Alle Lerneinheiten ansehen <span aria-hidden="true">→</span></button>
+            </div>
+
+            <div class="stats-grid">
+              <article class="stat-card stat-progress">
+                <span class="ring" id="total-ring" style="--progress: 0"><strong id="total-percent">0%</strong></span>
+                <div><small>Gesamtfortschritt</small><strong id="completed-count">0 von 27 Einheiten</strong><span>automatisch im Browser gespeichert</span></div>
+              </article>
+              <article class="stat-card">
+                <span class="stat-icon formula-icon" aria-hidden="true">fx</span>
+                <div><small>Formelwissen</small><strong id="formula-count">20 Formeln</strong><span>mit deutschen Excel-Beispielen</span></div>
+              </article>
+              <article class="stat-card">
+                <span class="stat-icon file-icon" aria-hidden="true">.xlsx</span>
+                <div><small>Praxis</small><strong>27 Lerneinheiten</strong><span>Aufgaben und Vorlagen für Excel</span></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="dashboard-section" aria-labelledby="stages-heading">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Vier Lernschritte</p>
+                <h2 id="stages-heading">Vom Tabellenentwurf zur Datenanalyse</h2>
+              </div>
+            </div>
+            <div class="chapter-grid" id="chapter-grid"></div>
+          </section>
+
+        </div>
+      </section>
+
+      <section class="view" id="view-learning" data-view-panel="learning" hidden>
+        <div class="page-shell page-shell-narrow">
+          <header class="page-intro">
+            <p class="eyebrow">BPE 1 · 16 Unterrichtsstunden</p>
+            <h1 id="learning-heading">Dein Lernpfad</h1>
+            <p>Beginne mit L1.1. Jede abgeschlossene und von der Lehrkraft bestätigte Einheit bringt 100 Punkte und schaltet das nächste Kapitel frei.</p>
+          </header>
+
+          <div class="toolbar" role="search">
+            <label class="search-field">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+              <span class="sr-only">Lerneinheiten durchsuchen</span>
+              <input id="lesson-search" type="search" placeholder="Thema, Formel oder Aufgabe suchen …" autocomplete="off">
+            </label>
+            <div class="filter-chips" id="stage-filters" aria-label="Nach Lernschritt filtern"></div>
+          </div>
+
+          <div class="learning-summary" id="learning-summary"></div>
+          <div class="lesson-list" id="lesson-list"></div>
+          <p class="empty-state" id="learning-empty" hidden>Zu dieser Suche wurde keine Lerneinheit gefunden.</p>
+        </div>
+      </section>
+
+      <section class="view" id="view-formulas" data-view-panel="formulas" hidden>
+        <div class="page-shell page-shell-narrow">
+          <header class="page-intro formula-intro">
+            <div>
+              <p class="eyebrow">Schnell nachschlagen</p>
+              <h1>Formelsammlung</h1>
+              <p>Deutsche Funktionsnamen, Semikolon als Trennzeichen und Beispiele aus kaufmännischen sowie schulischen Situationen.</p>
+            </div>
+            <div class="formula-chip-large"><span>fx</span><code>=WENN(B2&gt;=100000;"A";"B")</code></div>
+          </header>
+
+          <div class="toolbar formula-toolbar" role="search">
+            <label class="search-field">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+              <span class="sr-only">Formeln durchsuchen</span>
+              <input id="formula-search" type="search" placeholder="z. B. Mittelwert, SVERWEIS, runden …" autocomplete="off">
+            </label>
+            <div class="filter-chips" id="formula-filters" aria-label="Formelkategorie filtern"></div>
+          </div>
+
+          <div class="formula-grid" id="formula-grid"></div>
+          <p class="empty-state" id="formula-empty" hidden>Keine passende Formel gefunden.</p>
+        </div>
+      </section>
+
+      <section class="view" id="view-sources" data-view-panel="sources" hidden>
+        <div class="page-shell page-shell-narrow">
+          <header class="page-intro">
+            <p class="eyebrow">Transparenz und Einordnung</p>
+            <h1>Quellen und Bildungsplanbezug</h1>
+            <p>Excel-Lab ordnet die vorhandenen Unterrichtsmaterialien in einen klaren Lernpfad ein und ergänzt sie um kompakte Erklärungen und Formelbeispiele.</p>
+          </header>
+
+          <div class="source-layout">
+            <article class="source-card source-card-main">
+              <span class="source-number">01</span>
+              <p class="eyebrow">Verbindlicher Rahmen</p>
+              <h2>Bildungsplaneinheit 1 Tabellenkalkulation</h2>
+              <p>Der Bildungsplan sieht für die Eingangsklasse 16 Stunden vor. Lernende sollen Daten strukturiert erfassen, mit Formeln und Funktionen auswerten und in geeigneten Diagrammen darstellen.</p>
+              <ul class="check-list static">
+                <li><span>✓</span> BPE 1.1 Grundlegende Tabellenfunktionen</li>
+                <li><span>✓</span> BPE 1.2 Relative und absolute Adressierung</li>
+                <li><span>✓</span> BPE 1.3 Daten mit Funktionen auswerten</li>
+                <li><span>✓</span> BPE 1.4 Daten in Diagrammen darstellen</li>
+              </ul>
+              <a class="button button-secondary" href="https://bildungsplaene-bw.de/,Lde/In_OS_nichtTG" target="_blank" rel="noopener noreferrer">Bildungsplan öffnen <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <div class="source-stack">
+              <article class="source-card">
+                <span class="source-number">02</span>
+                <h2>Landesbildungsserver Baden-Württemberg</h2>
+                <p>Die vier Lernfortschritte, Aufgaben, Informationsblätter, Videos und Excel-Vorlagen basieren auf dem Materialpaket „Tabellenkalkulation“, Stand 08.09.2018.</p>
+                <a class="text-button" href="https://www.schule-bw.de/faecher-und-schularten/mathematisch-naturwissenschaftliche-faecher/informatik/material/materialien-zum-neuen-bildungsplan-informatik-an-den-nichtgewerblichen-beruflichen-gymnasien" target="_blank" rel="noopener noreferrer">Materialseite öffnen <span aria-hidden="true">↗</span></a>
+              </article>
+              <article class="source-card">
+                <span class="source-number">03</span>
+                <h2>Lizenz und Veröffentlichung</h2>
+                <p>Der Seitentext des Landesbildungsservers ist als CC BY 4.0 gekennzeichnet. Für eingebundene Bilder und Dateien können abweichende Bedingungen gelten. Deshalb bleiben die lokal synchronisierten Originaldateien vorerst von Git ausgeschlossen.</p>
+                <p class="source-note">Vor einer öffentlichen Veröffentlichung muss die Weiterverwendung der einzelnen Dateien geklärt werden.</p>
+              </article>
+            </div>
+          </div>
+
+          <section class="audience-section" aria-labelledby="audience-heading">
+            <div>
+              <p class="eyebrow">Für mehrere Bildungsgänge</p>
+              <h2 id="audience-heading">Ein gemeinsamer Kern, unterschiedliche Praxisfälle</h2>
+            </div>
+            <div class="audience-grid">
+              <article><strong>Berufliches Gymnasium</strong><span>Bildungsplanorientierter Einstieg in BPE 1</span></article>
+              <article><strong>Berufskolleg</strong><span>Sichere Grundlagen für kaufmännische Auswertungen</span></article>
+              <article><strong>Berufsschule</strong><span>Praxisfälle aus Handel, Industrie und Verwaltung</span></article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand footer-brand" href="#uebersicht" data-brand-home aria-label="Excel-Lab Startseite und Versionsinformationen">
+          <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+          <span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span>
+        </a>
+        <p>Version 0.6.1 · Lernstand bleibt lokal im Browser</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Designed by Sawazki Electronics</a>
+        <button type="button" data-go-view="sources">Quellen</button>
+        <button type="button" id="footer-data-button">Daten verwalten</button>
+      </div>
+    </footer>
+
+    <dialog class="dialog profile-dialog" id="profile-dialog" aria-labelledby="profile-dialog-title">
+      <form method="dialog" id="profile-form">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+        <span class="dialog-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <p class="eyebrow">Willkommen im Excel-Lab</p>
+        <h2 id="profile-dialog-title">Lokales Lernprofil anlegen</h2>
+        <p>Verwende deinen schulischen Account-Namen und die vollständige WebUntis-Klassenbezeichnung. Dein Fortschritt bleibt ausschließlich in diesem Browser.</p>
+        <label>
+          <span>Account-Name</span>
+          <input id="profile-name-input" name="name" type="text" maxlength="7" placeholder="z. B. jak.saw" pattern="[a-zäöüß]{3}\.[a-zäöüß]{3}" required autocapitalize="none" autocomplete="username" spellcheck="false" aria-describedby="account-hint">
+          <small class="field-hint" id="account-hint">Je drei Anfangsbuchstaben von Vor- und Nachname, getrennt durch einen Punkt.</small>
+        </label>
+        <label>
+          <span>Klassenbezeichnung</span>
+          <input id="profile-class-input" name="className" type="text" maxlength="16" placeholder="z. B. WGWEK1" pattern="[A-Za-z0-9\-]{3,16}" required autocapitalize="characters" spellcheck="false" aria-describedby="class-hint">
+          <small class="field-hint" id="class-hint">Bitte vollständig wie in WebUntis eintragen.</small>
+        </label>
+        <button class="button button-primary button-full" type="submit">Lernprofil starten</button>
+        <p class="privacy-note"><span aria-hidden="true">●</span> Lokal mit anonymer Browser-ID gespeichert · jederzeit als JSON exportierbar</p>
+      </form>
+    </dialog>
+
+    <dialog class="dialog manager-dialog" id="manager-dialog" aria-labelledby="manager-dialog-title">
+      <div class="dialog-content">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+        <p class="eyebrow">Profile und Lernstand</p>
+        <h2 id="manager-dialog-title">Lokale Daten verwalten</h2>
+        <div class="profile-list" id="profile-list"></div>
+        <div class="manager-actions">
+          <button class="button button-secondary" type="button" id="new-profile-button">Neues Profil</button>
+          <button class="button button-secondary" type="button" id="export-button">JSON exportieren</button>
+          <button class="button button-secondary" type="button" id="import-button">JSON importieren</button>
+          <button class="button button-danger" type="button" id="reset-button">Fortschritt zurücksetzen</button>
+        </div>
+        <input id="import-file" type="file" accept="application/json,.json" hidden>
+        <p class="dialog-hint">Account, Klassenbezeichnung, Exportzeit und anonyme Browser-ID werden in der JSON-Datei gespeichert. MAC-Adresse und Windows-Benutzername sind für eine normale Website nicht zugänglich.</p>
+      </div>
+    </dialog>
+
+    <dialog class="dialog lesson-dialog" id="lesson-dialog" aria-labelledby="lesson-dialog-title">
+      <div class="lesson-dialog-shell">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Lerneinheit schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+        <div id="lesson-dialog-content"></div>
+      </div>
+    </dialog>
+
+    <dialog class="dialog about-dialog" id="about-dialog" aria-labelledby="about-dialog-title">
+      <div class="dialog-content">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+        <span class="dialog-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <p class="eyebrow">Excel-Lab</p>
+        <h2 id="about-dialog-title">Versionen und Impressum</h2>
+        <p>Lernplattform zur Tabellenkalkulation für berufliche Schulen.</p>
+
+        <section class="about-section" aria-labelledby="version-heading">
+          <h3 id="version-heading">Versionsverlauf</h3>
+          <ol class="version-timeline">
+            <li><span>0.6.1</span><div><strong>Online verfügbar</strong><small>GitHub-Pages-Bereitstellung mit datensparsamen lokalen Profilen und sicheren Verweisen auf die offiziellen BPE1-Materialien.</small></div></li>
+            <li><span>0.6</span><div><strong>Mehr entdecken, direkt ausprobieren</strong><small>Neue Startseitengestaltung, interaktives Formel-Lab und eigene Lernseite L1.2.</small></div></li>
+            <li><span>0.5</span><div><strong>L1.1 und Lernfortschritt</strong><small>Fotorealistisches Startbild, Kapitelmenüs, Punkte, Freischaltung, Fortschrittsbalken und eigene L1.1-Seite.</small></div></li>
+            <li><span>0.4</span><div><strong>Metallisches Erscheinungsbild</strong><small>Neues Symbol, gerade Grafiken, Lernschritt-Menü und präziser JSON-Export.</small></div></li>
+            <li><span>0.3</span><div><strong>Schaltflächen</strong><small>Metallisch-grüne Aktionsflächen mit Hover- und Fokuszuständen.</small></div></li>
+            <li><span>0.2</span><div><strong>Dokumentation und Einstieg</strong><small>Projektübersicht, Arbeitsablauf und Excel-Grundregeln ergänzt.</small></div></li>
+            <li><span>0.1</span><div><strong>Erster Lernprototyp</strong><small>Vier Lernschritte, Profile, Fortschritt, Formelsammlung und Materialdownloads.</small></div></li>
+          </ol>
+        </section>
+
+        <section class="about-section imprint" aria-labelledby="imprint-heading">
+          <h3 id="imprint-heading">Impressum</h3>
+          <p><strong>Verantwortlich für dieses Lernangebot</strong><br>Jakob Sawazki · Sawazki Electronics<br>Mörikestraße 15 · 72250 Freudenstadt</p>
+          <p>Mobil: <a href="tel:+4915202967632">0152 02967632</a><br><a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Sawazki Electronics</a></p>
+          <small>Excel-Lab verwendet kein eigenes Backend. Lernprofile und Fortschritt werden ausschließlich lokal im Browser gespeichert.</small>
+        </section>
+      </div>
+    </dialog>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

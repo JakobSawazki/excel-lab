@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab L1.1: Eine Tabelle planen und in Excel erfassen.">
+    <meta name="theme-color" content="#0b1422">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l1-1.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>L1.1 · Tabelle planen · Excel-Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="deployment.js" defer></script>
+    <script src="l1-1.js" defer></script>
+  </head>
+  <body class="lesson-page-body">
+    <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
+
+    <header class="site-header lesson-page-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>L1.1 · Tabellen planen</small></span>
+      </a>
+      <nav class="lesson-breadcrumb" aria-label="Brotkrümelnavigation">
+        <a href="index.html#lernpfad">Lernpfad</a><span aria-hidden="true">›</span><strong>L1.1</strong>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="lesson-theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
+        </button>
+        <a class="profile-button lesson-profile" href="index.html#uebersicht" id="lesson-profile-link">
+          <span class="profile-avatar" id="lesson-profile-avatar">?</span>
+          <span class="profile-copy"><small>Lernprofil</small><strong id="lesson-profile-name">Nicht angemeldet</strong></span>
+        </a>
+      </div>
+    </header>
+
+    <main id="lesson-main" class="lesson-page-main">
+      <section class="lesson-page-hero">
+        <div class="page-shell page-shell-narrow">
+          <a class="back-link" href="index.html#lernpfad"><span aria-hidden="true">‹</span> Zurück zum Lernpfad</a>
+          <div class="lesson-page-title">
+            <div>
+              <p class="eyebrow"><span>L1.1</span> BPE 1.1 · 100 Punkte</p>
+              <h1>Eine Tabelle planen und in Excel erfassen</h1>
+              <p>Du planst zuerst eine Getränkeliste auf Papier. Danach überträgst du sie sauber in Excel und speicherst deine eigene Arbeitsdatei.</p>
+            </div>
+            <div class="lesson-score-card">
+              <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
+              <div><small>Fortschritt L1.1</small><strong id="lesson-page-status">Noch nicht begonnen</strong><span id="lesson-points-status">0 von 100 Punkten</span></div>
+            </div>
+          </div>
+          <ol class="lesson-stepper" aria-label="Arbeitsreihenfolge">
+            <li class="is-active"><span>1</span><div><strong>Informieren</strong><small>Grundlagen lesen</small></div></li>
+            <li><span>2</span><div><strong>Planen</strong><small>Tabelle entwerfen</small></div></li>
+            <li><span>3</span><div><strong>In Excel arbeiten</strong><small>Datei erstellen</small></div></li>
+            <li><span>4</span><div><strong>Besprechen</strong><small>Lehrkraft bestätigt</small></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <div class="page-shell page-shell-narrow lesson-page-layout">
+        <article class="lesson-article">
+          <section class="content-section" aria-labelledby="ziel-heading">
+            <p class="section-index">01 · Lernziel</p>
+            <h2 id="ziel-heading">Was du nach dieser Einheit kannst</h2>
+            <p>Du kannst Informationen aus einem Text in eine übersichtliche Tabelle übertragen. Du weißt, welche Angaben als Spaltenüberschriften geeignet sind, wie zusammengehörende Werte angeordnet werden und wie du Daten in Excel eingibst.</p>
+            <ul class="learning-goals">
+              <li><span>✓</span> Tabellenkopf aus einem Sachverhalt entwickeln</li>
+              <li><span>✓</span> Ein Getränk vollständig in einer Zeile erfassen</li>
+              <li><span>✓</span> Zellinhalt eingeben und mit Enter übernehmen</li>
+              <li><span>✓</span> Spaltenbreite manuell oder automatisch anpassen</li>
+            </ul>
+          </section>
+
+          <section class="content-section" aria-labelledby="grundlagen-heading">
+            <p class="section-index">02 · Informieren</p>
+            <h2 id="grundlagen-heading">So entsteht eine sinnvolle Tabelle</h2>
+            <div class="concept-grid">
+              <article><span>A</span><h3>Eine Spalte pro Merkmal</h3><p>Jede Spalte erhält eine eindeutige Überschrift, zum Beispiel „Getränkeart“ oder „Menge“.</p></article>
+              <article><span>1</span><h3>Eine Zeile pro Getränk</h3><p>Preis, Menge und Gesamtpreis eines Getränks stehen immer in derselben Zeile.</p></article>
+              <article><span>fx</span><h3>Berechnung klar benennen</h3><p>Der Gesamtpreis einer Position ergibt sich aus Einkaufspreis je Flasche mal Menge.</p></article>
+              <article><span>Σ</span><h3>Summe am Tabellenende</h3><p>Unter den Einzelpositionen wird der gesamte Getränkeeinkauf zusammengefasst.</p></article>
+            </div>
+            <div class="formula-principle"><strong>Fachliche Regel</strong><code>Gesamtpreis = Einkaufspreis je Flasche × Menge</code><span>Die Umsetzung als Excel-Formel folgt im nächsten Kapitel L1.2.</span></div>
+          </section>
+
+          <section class="content-section" aria-labelledby="excel-heading">
+            <p class="section-index">03 · Excel-Grundlagen</p>
+            <h2 id="excel-heading">Daten eingeben und Spalten anpassen</h2>
+            <div class="excel-instruction-grid">
+              <div class="excel-demo" aria-label="Schematische Excel-Eingabe">
+                <div class="excel-demo-formula"><strong>D1</strong><span>Jetzt schreiben wir in die Zelle D1</span></div>
+                <div class="excel-demo-grid"><span></span><span>A</span><span>B</span><span>C</span><span class="selected">D</span><span>E</span><span>1</span><span></span><span></span><span></span><strong>Text eingeben</strong><span></span></div>
+              </div>
+              <ol class="instruction-list">
+                <li><span>1</span><div><strong>Zelle anklicken</strong><p>Markiere die Zelle, in der der neue Wert stehen soll.</p></div></li>
+                <li><span>2</span><div><strong>Daten eingeben</strong><p>Tippe Text oder Zahl direkt ein. Die Eingabe erscheint auch in der Bearbeitungszeile.</p></div></li>
+                <li><span>3</span><div><strong>Mit Enter bestätigen</strong><p>Excel übernimmt die Eingabe in die aktive Zelle und wechselt normalerweise eine Zeile nach unten.</p></div></li>
+                <li><span>4</span><div><strong>Spaltenbreite anpassen</strong><p>Ziehe die Grenze zwischen zwei Spaltenköpfen. Ein Doppelklick stellt die optimale Breite ein.</p></div></li>
+              </ol>
+            </div>
+          </section>
+
+          <section class="content-section task-section" aria-labelledby="aufgabe1-heading">
+            <p class="section-index">04 · Aufgabe 1</p>
+            <h2 id="aufgabe1-heading">Getränkeliste planen und berechnen</h2>
+            <p>Die Eingangsklassen eines Wirtschaftsgymnasiums planen eine Party. Das Organisationsteam benötigt eine Übersicht über die Kosten des Getränkeeinkaufs.</p>
+            <div class="source-data-grid">
+              <article><small>Cola</small><strong>1,40 €</strong><span>30 Flaschen</span></article>
+              <article><small>Apfelsaft</small><strong>1,59 €</strong><span>10 Flaschen</span></article>
+              <article><small>Limonade</small><strong>1,00 €</strong><span>15 Flaschen</span></article>
+              <article><small>Mineralwasser</small><strong>0,79 €</strong><span>8 Flaschen</span></article>
+              <article><small>Orangensaft</small><strong>1,74 €</strong><span>15 Flaschen</span></article>
+            </div>
+            <div class="task-list">
+              <div><span>1</span><p>Übernimm die Daten handschriftlich in eine Tabelle mit den Spalten <strong>Getränkeart</strong>, <strong>Einkaufspreis je Flasche</strong>, <strong>Menge</strong> und <strong>Gesamtpreis</strong>.</p></div>
+              <div><span>2</span><p>Berechne für jedes Getränk den Gesamtpreis. Nutze die fachliche Regel von oben.</p></div>
+              <div><span>3</span><p>Ermittle anschließend die Summe aller Gesamtpreise. Prüfe mit einer Überschlagsrechnung, ob dein Ergebnis plausibel ist.</p></div>
+            </div>
+          </section>
+
+          <section class="content-section task-section" aria-labelledby="aufgabe2-heading">
+            <p class="section-index">05 · Aufgabe 2</p>
+            <h2 id="aufgabe2-heading">Den Entwurf nach Excel übertragen</h2>
+            <div class="task-list">
+              <div><span>1</span><p>Öffne Excel und übertrage Titel, Spaltenüberschriften und alle Werte aus deinem Entwurf.</p></div>
+              <div><span>2</span><p>Passe die Spaltenbreiten so an, dass alle Überschriften und Werte vollständig sichtbar sind.</p></div>
+              <div><span>3</span><p>Speichere deine Arbeitsmappe im Ordner <strong>Ergebnisse</strong> unter dem Namen <code>L1_1.2 Getränkeliste.xlsx</code>.</p></div>
+            </div>
+            <p class="important-note"><strong>Wichtig:</strong> In dieser Einheit darfst du die Gesamtpreise zunächst als berechnete Werte übernehmen. Wie Excel selbst mit Zelladressen rechnet, lernst du in L1.2.</p>
+          </section>
+
+          <section class="content-section material-section" aria-labelledby="material-heading">
+            <p class="section-index">06 · Originalmaterial</p>
+            <h2 id="material-heading">Dateien aus dem Materialpaket</h2>
+            <div class="download-list page-downloads">
+              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_1 Informationsmaterial Erstellen einer Tabelle in Excel.docx" download><span class="file-type">DOCX</span><strong>Informationsmaterial zur Dateneingabe</strong><span class="arrow" aria-hidden="true">↓</span></a>
+              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_1.1 Aufgabenstellung Entwurf einer Tabelle.docx" download><span class="file-type">DOCX</span><strong>Aufgabe Tabellenentwurf</strong><span class="arrow" aria-hidden="true">↓</span></a>
+              <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_1.2 Aufgabenstellung Erstellen einer Tabelle in Excel.docx" download><span class="file-type">DOCX</span><strong>Aufgabe Tabelle in Excel</strong><span class="arrow" aria-hidden="true">↓</span></a>
+            </div>
+          </section>
+        </article>
+
+        <aside class="lesson-page-sidebar">
+          <section class="lesson-check-panel">
+            <p class="eyebrow">Abschluss und Punkte</p>
+            <h2>L1.1 abschließen</h2>
+            <p>Setze die Haken erst, wenn der jeweilige Arbeitsschritt wirklich erledigt ist. Du kannst jeden Haken wieder entfernen.</p>
+            <div class="completion-list">
+              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe alle Informationen gelesen.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Mein Tabellenentwurf und alle Berechnungen sind fertig.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Meine Excel-Datei ist richtig benannt und gespeichert.</span></label>
+              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Die Lehrkraft hat meine Aufgabe gesehen, mit mir besprochen und als richtig bestätigt.</span></label>
+            </div>
+            <button class="button button-primary button-full" type="button" id="page-complete-button">L1.1 abschließen</button>
+            <p class="check-note" id="page-completion-note">Erst nach der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
+          </section>
+          <section class="next-lesson-panel">
+            <small>Danach</small><strong>L1.2 Rechnen mit Zelladressen</strong><p>Dieses Kapitel wird nach dem Abschluss von L1.1 freigeschaltet.</p>
+            <a class="button button-secondary button-full is-disabled" href="index.html#lernpfad" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer lesson-page-footer">
+      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span></a>
+      <p>Inhaltlich aufgebaut nach dem lokalen BPE1-Materialpaket des Landesbildungsservers Baden-Württemberg.</p>
+    </footer>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

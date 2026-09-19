@@ -1,0 +1,10 @@
+# Local teaching materials are synchronized from ../BPE1 for local use only.
+# Their redistribution license must be checked before a public deployment.
+materialien/BPE1/
+
+# Local development files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.tmp/
