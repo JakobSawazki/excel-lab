@@ -2,7 +2,7 @@
 
 Stand: 26. September 2026, Europe/Berlin
 Projektversion: 0.8.0
-Status: Veröffentlichung von Version 0.8.0 in Vorbereitung
+Status: Version 0.8.0 über GitHub Pages veröffentlicht
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
@@ -20,8 +20,8 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 - **Weiter offen:** Unterrichtstest, Barrierefreiheit, Lizenzklärung,
   geschützter Lehrerbereich, Verständnis-Checks für die übrigen Einheiten und
   Lernseiten ab L2.5.
-- **Veröffentlichung:** Version 0.8.0 ist für GitHub Pages vorbereitet.
-  Der öffentliche Stand wird nach dem Push überprüft.
+- **Veröffentlichung:** Version 0.8.0 ist auf GitHub Pages verfügbar.
+  Startseite, L1.6 und L2.1–L2.4 wurden mit HTTP 200 geprüft.
 
 ## 1. Vision
 
@@ -45,7 +45,7 @@ Leitidee:
 
 ## 2. Aktueller Meilenstein: Version 0.8.0
 
-Status: lokal getestet; Veröffentlichung über GitHub Pages in Vorbereitung
+Status: lokal getestet und über GitHub Pages veröffentlicht
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Repository: <https://github.com/JakobSawazki/excel-lab>
@@ -491,6 +491,7 @@ sonst ist bewusst nur das dokumentierte Datum angegeben.
 | 26.09.2026, 11:46 Uhr | Verständnis-Check in L2.3 ergänzt und lokal getestet; Codex-Projekte nach Update weiterhin im App-Datenbestand nachweisbar | Übergabe H-19 |
 | 26.09.2026, 13:37 Uhr | Verständnis-Check in L2.2 ergänzt und lokal getestet; Projekt „Lehramt“ in Codex angeheftet, Anzeige noch unbestätigt | Übergabe H-20 |
 | 26.09.2026, 18:04 Uhr | Version 0.8.0 für GitHub Pages vorbereitet; Lernseiten-, Navigations- und Syntaxprüfungen bestanden | Release-Vorbereitung |
+| 26.09.2026, 18:06 Uhr | Version 0.8.0 veröffentlicht; Pages-Build und Start-/Lernseiten online geprüft | Commit `069b505` |
 | 25.09.2026, 11:43 | Beide BPE1-Bäume nach SHA-256 geprüft: 141 identische Dateien und 67 zusätzliche Quelldateien | lokaler Bestandsabgleich |
 | 25.09.2026 | Projekt- und Materialdokumentation hier zusammengeführt; Materialbereinigung durch Umgebung blockiert | Übergabe H-15 |
 
@@ -1360,3 +1361,21 @@ Offene Punkte / nächste Übergabe:
   ergänzen und danach die L1-Einheiten prüfen. L2.5 bleibt als nächste
   neue Inhaltsseite offen. Das Anzeigeproblem der Codex-Projekte separat
   anhand der aktuellen App-Ansicht nachverfolgen.
+
+### Übergabe H-2026-09-26-21 – Veröffentlichung 0.8.0
+
+- **Status:** Der bis H-20 erarbeitete lokale Stand wurde als `069b505` auf
+  `main` gepusht. Der GitHub-Pages-Build für diesen Commit meldete `built`.
+  Die öffentliche Startseite zeigte Version 0.8.0; L1.6 sowie L2.1 bis
+  L2.4 und das gemeinsame Navigationsskript lieferten HTTP 200.
+- **Tests:** Browser-Smoke-Tests für L1.6, L2.1–L2.4 und die Navigation
+  auf Desktop/Mobil, JavaScript-Syntax und `git diff --check` bestanden.
+  Der Navigationstest wurde an die inzwischen eigenständige L2.1-Seite
+  angepasst; diese Testdatei liegt nur unter `.tmp/` und wird nicht
+  veröffentlicht.
+- **Materialschutz:** `materialien/BPE1/` blieb per `.gitignore` außerhalb
+  des Commits. Die Online-Ansicht verweist für Originaldateien weiterhin
+  auf den Landesbildungsserver. Keine Musterlösungen wurden mitgeliefert.
+- **Nächster Schritt:** L2.1 fachlich mit einem Verständnis-Check ergänzen;
+  anschließend die L1-Einheiten und L2.5 bearbeiten. Die Codex-Projekt-
+  Seitenleiste bleibt ein separates Anzeigeproblem.
