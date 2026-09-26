@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab L2.4: Projektwochendaten mit SUMME, MITTELWERT, MIN und MAX auswerten.">
+    <meta name="theme-color" content="#0b1422">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l2-4.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>L2.4 · Funktionen für die Projektwoche · Excel-Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson-workspace.css">
+    <script src="deployment.js" defer></script>
+    <script src="developer-mode.js" defer></script>
+    <script src="content.js" defer></script>
+    <script src="lesson-navigation.js" defer></script>
+    <script src="lesson-workspace.js" defer></script>
+    <script src="l2-4.js" defer></script>
+  </head>
+  <body class="lesson-page-body l24-page">
+    <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
+    <header class="site-header lesson-page-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>L2.4 · Funktionen</small></span>
+      </a>
+      <nav class="lesson-breadcrumb" aria-label="Brotkrümelnavigation">
+        <a href="index.html#lernpfad/2">Lernpfad</a><span aria-hidden="true">›</span><strong>L2.4</strong>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="lesson-theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
+        </button>
+        <a class="profile-button lesson-profile" href="index.html#uebersicht" id="lesson-profile-link">
+          <span class="profile-avatar" id="lesson-profile-avatar">?</span>
+          <span class="profile-copy"><small>Lernprofil</small><strong id="lesson-profile-name">Nicht angemeldet</strong></span>
+        </a>
+      </div>
+    </header>
+
+    <main id="lesson-main" class="lesson-page-main">
+      <section class="lesson-page-hero">
+        <div class="page-shell page-shell-narrow">
+          <a class="back-link" href="index.html#lernpfad/2"><span aria-hidden="true">‹</span> Zurück zu Lernschritt L2</a>
+          <div class="lesson-page-title">
+            <div>
+              <p class="eyebrow"><span>L2.4</span> BPE 1.2 · 100 Punkte</p>
+              <h1>SUMME, MITTELWERT, MIN und MAX</h1>
+              <p>Du wertest die sechs Kurse der Projektwoche in Excel aus: Wie viele Teilnehmende gab es insgesamt, und welche Werte sind durchschnittlich, am kleinsten oder am größten?</p>
+            </div>
+            <div class="lesson-score-card">
+              <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
+              <div><small>Fortschritt L2.4</small><strong id="lesson-page-status">Noch nicht begonnen</strong><span id="lesson-points-status">0 von 100 Punkten</span></div>
+            </div>
+          </div>
+          <ol class="lesson-stepper" aria-label="Arbeitsreihenfolge">
+            <li class="is-active"><span>1</span><div><strong>Informieren</strong><small>Funktionen verstehen</small></div></li>
+            <li><span>2</span><div><strong>Vorlage öffnen</strong><small>Bereiche prüfen</small></div></li>
+            <li><span>3</span><div><strong>Auswerten</strong><small>Drei Spalten</small></div></li>
+            <li><span>4</span><div><strong>Besprechen</strong><small>Lehrkraft bestätigt</small></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="l24-access" class="page-shell page-shell-narrow l23-access" aria-labelledby="l24-access-heading">
+        <h2 id="l24-access-heading">Zuerst L2.3 abschließen</h2>
+        <p id="l24-access-message">Lege ein Lernprofil an und schließe L2.3 ab, um diese Einheit zu öffnen.</p>
+        <a class="button button-primary" href="l2-3.html">Zu L2.3</a>
+        <a class="button button-secondary" href="index.html#uebersicht">Zum Lernprofil</a>
+        <noscript><p>Aktiviere JavaScript, damit dein lokaler Lernstand geprüft werden kann.</p></noscript>
+      </section>
+
+      <div id="l24-content" class="page-shell page-shell-narrow lesson-page-layout" hidden>
+        <article class="lesson-article">
+          <div class="lesson-workspace-intro">
+            <p><strong>Erst informieren, dann selbst rechnen.</strong> Die Aufgabe wird in der mitgelieferten Excel-Vorlage bearbeitet. Speichere deine fertige Arbeitsmappe am Schüler-PC.</p>
+            <div class="lesson-workspace-actions">
+              <a class="button button-primary" href="#l24-task-heading">Zur Aufgabe ↓</a>
+              <button class="button button-secondary" type="button" data-expand-lessons hidden>Alle öffnen</button>
+              <button class="button button-secondary" type="button" data-collapse-lessons hidden>Alle schließen</button>
+            </div>
+          </div>
+
+          <details class="lesson-disclosure" open>
+            <summary><span class="section-index">01 · Lernziel</span><h2>Eine Tabelle mit Funktionen auswerten</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Du setzt vier Standardfunktionen auf drei Datenbereiche an. Die fertige Tabelle zeigt jeweils <strong>Summe, Durchschnitt, größten und kleinsten Wert</strong> für Teilnehmerzahl, Stundenzahl und Verdienst.</p>
+              <ul class="learning-goals">
+                <li><span>✓</span> Funktionsnamen, Klammern und Doppelpunkt richtig schreiben</li>
+                <li><span>✓</span> Alle sechs Kurse, aber keine Auswertungszelle einbeziehen</li>
+                <li><span>✓</span> Formeln passend auf weitere Spalten übertragen</li>
+                <li><span>✓</span> Ergebnisse mit sinnvoller Einheit prüfen</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">02 · Informieren</span><h2>So ist eine Funktion aufgebaut</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Eine Excel-Formel beginnt mit <code>=</code>. Danach folgen der <strong>Funktionsname</strong> und in Klammern der <strong>Bereich</strong>. Der Doppelpunkt in <code>C6:C11</code> bedeutet: von C6 <em>bis einschließlich</em> C11.</p>
+              <div class="formula-principle"><strong>Beispiel: alle Teilnehmerzahlen addieren</strong><code>=SUMME(C6:C11)</code><span>Sechs Zellen in einer Formel statt <code>=C6+C7+C8+C9+C10+C11</code>.</span></div>
+              <div class="l21-table-scroll"><table class="l21-data-table"><caption>Vier Funktionen für dieselben Quelldaten</caption><thead><tr><th scope="col">Frage</th><th scope="col">Funktion</th><th scope="col">Bedeutung</th></tr></thead><tbody><tr><th scope="row">Wie viel insgesamt?</th><td><code>SUMME</code></td><td>Addiert Zahlen.</td></tr><tr><th scope="row">Wie viel im Durchschnitt?</th><td><code>MITTELWERT</code></td><td>Addiert Zahlen und teilt durch ihre Anzahl.</td></tr><tr><th scope="row">Welcher Wert ist am größten?</th><td><code>MAX</code></td><td>Ermittelt den größten Zahlenwert.</td></tr><tr><th scope="row">Welcher Wert ist am kleinsten?</th><td><code>MIN</code></td><td>Ermittelt den kleinsten Zahlenwert.</td></tr></tbody></table></div>
+              <p>Du kannst die Funktion eintippen oder über <strong>Formeln → Funktion einfügen</strong> auswählen. Im Dialog wählst du den Datenbereich. Eine Funktionsformel lässt sich wie andere Formeln kopieren; der relative Spaltenbezug wandert dabei mit.</p>
+              <p class="important-note"><strong>Achtung beim Bereich:</strong> Das ältere Informationsblatt zeigt beispielhaft <code>C6:C10</code>. In der bereitgestellten Vorlage steht jedoch noch <strong>Handball in Zeile 11</strong>. Verwende deshalb bei dieser Aufgabe <code>C6:C11</code> und entsprechend die Zeilen 6 bis 11 in den anderen Spalten.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">03 · Vorlage verstehen</span><h2>Drei Spalten, sechs Kurse</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Die Arbeitsmappe <code>L2_2.1 Tabellenvorlage Projektwoche Funktionen.xlsx</code> enthält im Blatt <strong>Ergebnisansicht</strong> bereits sechs Sportkurse in Zeile 6 bis 11. Die Verdienste in Spalte F sind schon durch Formeln berechnet.</p>
+              <div class="l21-table-scroll"><table class="l21-data-table"><caption>Bereiche für die statistische Auswertung</caption><thead><tr><th scope="col">Kennzahl</th><th scope="col">Spalte</th><th scope="col">Datenbereich</th><th scope="col">Einheit</th></tr></thead><tbody><tr><th scope="row">Teilnehmerzahl</th><td>C</td><td><code>C6:C11</code></td><td>Personen</td></tr><tr><th scope="row">Stundenzahl</th><td>E</td><td><code>E6:E11</code></td><td>Stunden</td></tr><tr><th scope="row">Verdienst</th><td>F</td><td><code>F6:F11</code></td><td>Euro</td></tr></tbody></table></div>
+              <p>Spalte D enthält dagegen die <strong>Vergütung je Stunde</strong>. Sie gehört nicht zu den drei im Aufgabenblatt verlangten Auswertungsgrößen. Beziehe in die Funktionen auch keine Überschriften oder später hinzugefügten Ergebniszeilen ein.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure task-section">
+            <summary><span class="section-index">04 · Aufgabe</span><h2 id="l24-task-heading">Projektwoche statistisch auswerten</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <ol class="instruction-list">
+                <li><span>1</span><div><strong>Arbeitsmappe öffnen</strong><p>Öffne die unten verlinkte Vorlage in Excel. Prüfe im Blatt „Ergebnisansicht“, dass die sechs Kurse von Tennis bis Handball vollständig vorhanden sind. Speichere sofort eine eigene Kopie im Ordner <strong>Ergebnisse</strong>.</p></div></li>
+                <li><span>2</span><div><strong>Auswertung anlegen</strong><p>Setze unterhalb der Kursdaten vier beschriftete Zeilen für <strong>Summe, Durchschnitt, Maximum und Minimum</strong>. Lasse bei Bedarf eine Leerzeile zwischen Daten und Auswertung. Trage die Ergebnisse in den Spalten C, E und F ein.</p></div></li>
+                <li><span>3</span><div><strong>Vier Funktionen anwenden</strong><p>Beginne für die Teilnehmerzahl mit <code>=SUMME(C6:C11)</code>. Verwende für dieselben sechs Zellen die drei weiteren Funktionen. Übertrage die Formeln anschließend passend auf die Stundenzahl in E und den Verdienst in F. Falls du kopierst, überspringe Spalte D bewusst oder passe den Bezug an.</p></div></li>
+                <li><span>4</span><div><strong>Formatieren und speichern</strong><p>Stelle Teilnehmerzahlen und Stunden als gut lesbare Zahlen, Verdienst als Euro-Beträge dar. Für Durchschnittswerte darf eine Dezimalstelle sinnvoll sein. Speichere unter <code>L2_2.1 Projektwoche Funktionen.xlsx</code> im Ordner Ergebnisse.</p></div></li>
+              </ol>
+              <p class="important-note"><strong>Selbstständig arbeiten:</strong> Die Vorlage ist der Startpunkt, keine fertige Lösung. Trage die Funktionsformeln selbst ein und lass die fertige Datei anschließend von der Lehrkraft ansehen.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">05 · Kontrollieren</span><h2>Stimmen Bereich, Funktion und Einheit?</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <ul>
+                <li>Jede der drei Auswertungsspalten enthält vier Funktionsformeln. Alle Bereiche beginnen in Zeile 6 und enden in Zeile 11.</li>
+                <li>Die Summe ist mindestens so groß wie der größte Einzelwert. Minimum ist höchstens so groß wie Maximum.</li>
+                <li>Der Mittelwert liegt zwischen Minimum und Maximum. Eine Auswertungszeile wird nicht mitgemittelt.</li>
+                <li>Ändere testweise <em>einen</em> Kurswert in deiner Kopie: Die passenden Kennzahlen müssen sich neu berechnen. Stelle danach den ursprünglichen Wert wieder her.</li>
+                <li>Die gespeicherte Datei lässt sich erneut öffnen und enthält deine Formeln, nicht nur eingetippte Ergebniszahlen.</li>
+              </ul>
+              <p>Erkläre der Lehrkraft an deiner Datei, warum der Bereich bis Zeile 11 reicht und warum du beim Kopieren von C nach E die Spalte D überspringst. Den Abschluss setzt du erst nach ihrer Prüfung und Bestätigung.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure" id="l24-mastery-section">
+            <summary><span class="section-index">06 · Verstehen</span><h2>Prüfe dein Verständnis</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Beantworte alle drei Fragen ohne Blick auf die Formelsammlung. Bei Fehlern kannst du die Erklärung oben noch einmal lesen und den Check wiederholen. Der Check prüft Formeln und Bereiche, nicht deine Excel-Datei.</p>
+              <form id="l24-mastery-form" class="mastery-form">
+                <fieldset class="mastery-question" data-mastery-question="range">
+                  <legend>1. Welche Formel addiert die Teilnehmerzahlen aller sechs Kurse?</legend>
+                  <label><input type="radio" name="range" value="a"><code>=SUMME(C6:C10)</code></label>
+                  <label><input type="radio" name="range" value="b"><code>=SUMME(C6:C11)</code></label>
+                  <label><input type="radio" name="range" value="c"><code>=SUMME(C6;C11)</code></label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="average">
+                  <legend>2. Welche Formel berechnet den durchschnittlichen Verdienst pro Kurs?</legend>
+                  <label><input type="radio" name="average" value="a"><code>=MITTELWERT(D6:D11)</code></label>
+                  <label><input type="radio" name="average" value="b"><code>=SUMME(F6:F11)</code></label>
+                  <label><input type="radio" name="average" value="c"><code>=MITTELWERT(F6:F11)</code></label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="copy">
+                  <legend>3. Du kopierst <code>=SUMME(C6:C11)</code> genau eine Spalte nach rechts. Welche Werte werden dann addiert?</legend>
+                  <label><input type="radio" name="copy" value="a">Die Stundenzahlen in E6:E11</label>
+                  <label><input type="radio" name="copy" value="b">Die Stundenvergütungen in D6:D11</label>
+                  <label><input type="radio" name="copy" value="c">Weiterhin die Teilnehmerzahlen in C6:C11</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <button class="button button-primary" type="submit">Antworten prüfen</button>
+                <p id="l24-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.</p>
+              </form>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">07 · Quellen</span><h2>Originalmaterial zum Nachlesen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Alle benötigten Erklärungen stehen oben. Die lokalen Originaldateien kannst du zusätzlich öffnen:</p>
+              <div class="download-list">
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen/L2_2.1 Tabellenvorlage Projektwoche Funktionen.xlsx" download><span class="file-type">XLSX</span><strong>Excel-Vorlage Projektwoche</strong><span class="arrow" aria-hidden="true">↓</span></a>
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen/L2_2.1 Aufgabenstellung Funktionen.docx" download><span class="file-type">DOCX</span><strong>Original-Aufgabenstellung</strong><span class="arrow" aria-hidden="true">↓</span></a>
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Informationsmaterial/L2_2.1 Informationsmaterial zu Funktionen.docx" download><span class="file-type">DOCX</span><strong>Informationsmaterial zu Funktionen</strong><span class="arrow" aria-hidden="true">↓</span></a>
+              </div>
+              <p class="download-note">Die Originaldateien werden aus Lizenzgründen nicht mit der öffentlichen Website ausgeliefert.</p>
+            </div>
+          </details>
+        </article>
+
+        <aside class="lesson-page-sidebar">
+          <section class="lesson-check-panel">
+            <p class="eyebrow">Abschluss und Punkte</p>
+            <h2>L2.4 abschließen</h2>
+            <p>Setze die Haken erst nach der tatsächlichen Bearbeitung. Bestehe zusätzlich den Verständnis-Check und besprich die Datei mit der Lehrkraft. Haken lassen sich wieder entfernen.</p>
+            <div class="completion-list">
+              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe die Projektwochen-Vorlage geöffnet und für C, E und F jeweils alle sechs Kurszeilen berücksichtigt.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Ich habe für Teilnehmerzahl, Stundenzahl und Verdienst jeweils SUMME, MITTELWERT, MAX und MIN selbst eingetragen.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Ich habe Bereiche, Einheiten und Formeln geprüft und meine eigene Arbeitsmappe im Ordner Ergebnisse gespeichert.</span></label>
+              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Ich habe der Lehrkraft die Bereiche und das Kopieren der Formeln an meiner Arbeitsmappe erklärt. Sie hat das Ergebnis geprüft und als richtig bestätigt.</span></label>
+            </div>
+            <button class="button button-primary button-full" type="button" id="page-complete-button">L2.4 abschließen</button>
+            <p class="check-note" id="page-completion-note">Erst nach Verständnis-Check, allen eigenen Checks und der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
+            <p class="check-note">Die Bestätigung erfolgt lokal im Gespräch; Excel-Dateien werden hier nicht automatisch geprüft.</p>
+          </section>
+          <section class="next-lesson-panel">
+            <small>Danach</small><strong>L2.5 Funktionen im Vergleich</strong><p>Im nächsten Kapitel wertest du Klassenfahrt und Provisionsabrechnung aus.</p>
+            <a class="button button-secondary button-full is-disabled" href="index.html#lernpfad/2/l2-5" id="next-lesson-link" aria-disabled="true">Zu L2.5 <span aria-hidden="true">›</span></a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer lesson-page-footer">
+      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span></a>
+      <p>Inhaltlich aufgebaut nach dem lokalen BPE1-Materialpaket des Landesbildungsservers Baden-Württemberg.</p>
+    </footer>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

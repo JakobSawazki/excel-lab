@@ -208,12 +208,13 @@
         resource("Lernfortschritt_1/Informationsmaterial/L1_5 Informationsmaterial Tabellenstruktur entwerfen.docx", "Regeln für gute Tabellen", "DOCX")
       ]
     },
-    {
-      id: "l1-6",
-      stage: 1,
-      code: "L1.6",
-      title: "Vertiefung: kaufmännische Rechenmodelle",
-      duration: "75 Min.",
+      {
+        id: "l1-6",
+        page: "l1-6.html",
+        stage: 1,
+        code: "L1.6",
+        title: "Vertiefung: kaufmännische Rechenmodelle",
+        duration: "Mehrere Stunden",
       level: "Vertiefung",
       tags: ["Transfer", "Zinsen", "Tarife"],
       description: "Du überträgst die Grundlagen auf Kinoeinnahmen, Produktionszeiten, Füllmengen, Zinsen und Tarifvergleiche.",
@@ -228,12 +229,12 @@
         { code: "=Kapital*Tage*Zinssatz/36000", note: "Kaufmännische Zinsformel bei Prozentangabe als ganze Zahl." },
         { code: "=Grundpreis+Zusatzminuten*Minutenpreis+ZusatzSMS*SMSPreis", note: "Grundstruktur eines Tarifvergleichs." }
       ],
-      steps: [
-        "Wähle mindestens zwei Vertiefungsaufgaben aus unterschiedlichen Kontexten.",
-        "Erstelle jeweils eine übersichtliche Ergebnisansicht und eine kontrollierbare Formelansicht.",
-        "Verändere mindestens einen Eingabewert und prüfe, ob alle Ergebnisse korrekt reagieren."
-      ],
-      checks: ["Mindestens zwei Aufgaben gelöst", "Eingaben und Ergebnisse getrennt", "Formeln durch Testwerte geprüft"],
+        steps: [
+          "Bearbeite alle fünf Vertiefungsaufgaben: Kino, Brötchen, Dosen, Zinsen und Tarifvergleich.",
+          "Erstelle für die Aufgaben 2 bis 5 eine Ergebnis- und eine Formelansicht.",
+          "Prüfe die Formeln durch Änderungstests, speichere fünf Dateien und bespreche sie mit der Lehrkraft."
+        ],
+        checks: ["Alle fünf Aufgaben bearbeitet und Dateien gespeichert", "Aufgaben 2 bis 5 mit Ergebnis- und Formelansicht", "Formeln durch Änderungstests geprüft"],
       tip: "Brüche wie 1/3 können als Datum erkannt werden. Formatiere die Zelle vor der Eingabe als Bruch.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_6.1 Vertiefungsaufgabe1 Tabellen entwerfen.docx", "Vertiefung Kino", "DOCX"),
@@ -248,6 +249,7 @@
     {
       id: "l2-1",
       stage: 2,
+      page: "l2-1.html",
       code: "L2.1",
       title: "Relative Adressierung",
       duration: "35 Min.",
@@ -278,6 +280,7 @@
     {
       id: "l2-2",
       stage: 2,
+      page: "l2-2.html",
       code: "L2.2",
       title: "Absolute Adressierung",
       duration: "40 Min.",
@@ -309,13 +312,14 @@
     {
       id: "l2-3",
       stage: 2,
+      page: "l2-3.html",
       code: "L2.3",
       title: "Gemischte und symbolische Bezüge",
-      duration: "55 Min.",
+      duration: "Mehrere Stunden",
       level: "Aufbau",
       tags: ["D$4", "$C7", "Namen"],
-      description: "Du kopierst Formeln gleichzeitig nach unten und rechts und lernst benannte Zellen als lesbare Alternative kennen.",
-      goal: "Du kannst gezielt nur die Zeile oder nur die Spalte fixieren und eine Formel zweidimensional kopierfähig machen.",
+      description: "Du vergleichst Klassenfahrtpreise mit zweidimensional kopierbaren Formeln und verwendest benannte Zellen für ein gemeinsames Festgehalt.",
+      goal: "Du kannst gezielt nur Zeile oder Spalte fixieren, Formeln in zwei Richtungen kopieren und einen gemeinsamen Festwert durch einen definierten Namen ansprechen.",
       keyPoints: [
         { title: "D$4", text: "Die Zeile 4 bleibt fest, die Spalte darf wandern." },
         { title: "$C7", text: "Die Spalte C bleibt fest, die Zeile darf wandern." },
@@ -324,21 +328,23 @@
       ],
       formulas: [
         { code: "=D$4*$C7+$B7", note: "Gemischte Adressierung für Ziele in Spalten und Anbieter in Zeilen." },
-        { code: "=Umsatz*Provisionssatz+Festgehalt", note: "Symbolische Bezüge nutzen definierte Namen." }
+        { code: "=F6+Festgehalt", note: "Der definierte Name verweist auf die feste Zelle B3." }
       ],
       steps: [
-        "Bearbeite die Klassenfahrt schrittweise für mehrere Busanbieter und Reiseziele.",
-        "Formuliere die Zelle D7 so, dass sie nach unten und rechts kopiert werden kann.",
-        "Übertrage das Prinzip in der Provisionsaufgabe auf einen gemeinsamen Festwert."
+        "Bearbeite alle drei Klassenfahrt-Teile mit drei Anbietern und drei Zielen.",
+        "Prüfe, dass die Formel in D7 nach unten und rechts kopierbar ist.",
+        "Erstelle alle drei Teile der Provisionsabrechnung und ersetze den festen Zellbezug durch den Namen Festgehalt."
       ],
-      checks: ["Formel horizontal und vertikal kopierbar", "Fixierte Zeilen und Spalten begründet", "Ergebnisse an Randzellen geprüft"],
+      checks: ["Drei Klassenfahrt-Dateien mit kopierbarer Formel", "Drei Provisionsdateien mit benanntem Festgehalt", "Randzellen und Änderungstests geprüft"],
       tip: "Sprich den Bezug laut: „Spalte C fest, Zeile beweglich“. Dann ist $C7 leichter zu merken.",
       downloads: [
         resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.2.1 Vertiefungsaufgabe Klassenfahrt Teil 1.docx", "Klassenfahrt Teil 1", "DOCX"),
         resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.2.2 Vertiefungsaufgabe Klassenfahrt Teil 2.docx", "Klassenfahrt Teil 2", "DOCX"),
         resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.2.3 Vertiefungsaufgabe Klassenfahrt Teil 3.docx", "Klassenfahrt Teil 3", "DOCX"),
         resource("Lernfortschritt_2/Informationsmaterial/L2_1.2.3 Informationsmaterial gemischte Adressierung.docx", "Gemischte Adressierung", "DOCX"),
-        resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.3.3 Vertiefungsaufgabe Provisionsabrechnung Teil 3.docx", "Symbolische Adressierung", "DOCX")
+        resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.3.1 Vertiefungsaufgabe Provisionsabrechnung Teil 1.docx", "Provisionsabrechnung Teil 1", "DOCX"),
+        resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.3.2 Vertiefungsaufgabe Provisionsabrechnung Teil 2.docx", "Provisionsabrechnung Teil 2", "DOCX"),
+        resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.3.3 Vertiefungsaufgabe Provisionsabrechnung Teil 3.docx", "Provisionsabrechnung Teil 3", "DOCX")
       ]
     },
     {
@@ -346,25 +352,26 @@
       stage: 2,
       code: "L2.4",
       title: "SUMME, MITTELWERT, MIN und MAX",
+      page: "l2-4.html",
       duration: "40 Min.",
       level: "Grundlage",
       tags: ["Statistik", "Funktionen"],
       description: "Du fasst Datenbereiche mit Standardfunktionen zusammen und kopierst Auswertungsformeln über mehrere Spalten.",
       goal: "Du kannst Funktionsname, Klammern und Bereichsoperator korrekt einsetzen und passende Kennzahlen auswählen.",
       keyPoints: [
-        { title: "Doppelpunkt", text: "C6:C10 bezeichnet alle Zellen von C6 bis C10." },
+        { title: "Doppelpunkt", text: "C6:C11 bezeichnet alle sechs Teilnehmerzahlen von Zeile 6 bis 11." },
         { title: "SUMME", text: "Addiert alle numerischen Werte im Bereich." },
         { title: "MITTELWERT", text: "Berechnet den arithmetischen Durchschnitt." },
         { title: "MIN und MAX", text: "Liefern kleinsten und größten Wert." }
       ],
       formulas: [
-        { code: "=SUMME(C6:C10)", note: "Summe der Teilnehmerzahlen." },
-        { code: "=MITTELWERT(C6:C10)", note: "Durchschnitt ohne die Summenzeile einzubeziehen." },
-        { code: "=MIN(C6:C10)  ·  =MAX(C6:C10)", note: "Kleinster und größter Wert im Datenbereich." }
+        { code: "=SUMME(C6:C11)", note: "Summe aller sechs Teilnehmerzahlen." },
+        { code: "=MITTELWERT(C6:C11)", note: "Durchschnitt ohne eine Auswertungszeile einzubeziehen." },
+        { code: "=MIN(C6:C11)  ·  =MAX(C6:C11)", note: "Kleinster und größter Wert im Datenbereich." }
       ],
       steps: [
         "Öffne die Projektwochen-Vorlage.",
-        "Berechne Summe, Durchschnitt, Minimum und Maximum für Teilnehmer, Vergütung und Verdienst.",
+        "Berechne Summe, Durchschnitt, Minimum und Maximum für Teilnehmerzahl, Stundenzahl und Verdienst.",
         "Kontrolliere, dass keine Ergebniszeile versehentlich Teil des Mittelwertbereichs ist."
       ],
       checks: ["Bereiche enthalten nur Rohdaten", "Vier Kennzahlen vollständig", "Formeln sinnvoll kopiert"],

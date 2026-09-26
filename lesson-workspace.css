@@ -72,3 +72,55 @@
 .l15-structure > div { padding:1rem; border:1px solid var(--line-strong); border-left:3px solid var(--green); border-radius:9px; }
 .l15-structure small { display:block; color:var(--text-soft); margin-top:.35rem; }
 @media(max-width:600px) { .l15-records { grid-template-columns:1fr; } }
+
+/* L1.6: compact source tables and optional source control values. */
+.l16-access { padding-top:3rem; padding-bottom:4rem; }
+.l16-access .button { margin:.5rem .5rem .5rem 0; }
+.l16-table-scroll { overflow-x:auto; max-width:100%; margin:1.2rem 0; border:1px solid var(--line-strong); border-radius:12px; }
+.l16-data-table { width:100%; border-collapse:collapse; min-width:490px; font-size:.83rem; font-variant-numeric:tabular-nums; }
+.l16-data-table caption { caption-side:top; padding:.75rem 1rem; text-align:left; font-weight:700; color:var(--text); background:var(--surface); }
+.l16-data-table th, .l16-data-table td { padding:.65rem .75rem; border-top:1px solid var(--line); text-align:right; white-space:nowrap; }
+.l16-data-table thead th { background:var(--surface-2); color:var(--text); }
+.l16-data-table th:first-child { text-align:left; }
+.l16-data-table tbody tr:nth-child(odd) { background:color-mix(in srgb,var(--green) 4%,var(--surface)); }
+.l16-source-check { margin:1.1rem 0 0; padding:.85rem 1rem; border:1px solid var(--line-strong); border-radius:10px; background:var(--surface); }
+.l16-source-check > summary { cursor:pointer; color:var(--green); font-weight:700; }
+.l16-source-check > summary:focus-visible { outline:3px solid var(--green); outline-offset:3px; }
+.l16-source-check > p { margin:.8rem 0 0; color:var(--text-soft); }
+
+/* L2.1 shares the compact data-table pattern for its six-course assignment. */
+.l21-access { padding-top:3rem; padding-bottom:4rem; }
+.l21-access .button { margin:.5rem .5rem .5rem 0; }
+.l21-table-scroll { overflow-x:auto; max-width:100%; margin:1.2rem 0; border:1px solid var(--line-strong); border-radius:12px; }
+.l21-data-table { width:100%; border-collapse:collapse; min-width:490px; font-size:.83rem; font-variant-numeric:tabular-nums; }
+.l21-data-table caption { caption-side:top; padding:.75rem 1rem; text-align:left; font-weight:700; color:var(--text); background:var(--surface); }
+.l21-data-table th, .l21-data-table td { padding:.65rem .75rem; border-top:1px solid var(--line); text-align:right; white-space:nowrap; }
+.l21-data-table thead th { background:var(--surface-2); color:var(--text); }
+.l21-data-table th:first-child, .l21-data-table td:nth-child(2) { text-align:left; }
+.l21-data-table tbody tr:nth-child(odd) { background:color-mix(in srgb,var(--green) 4%,var(--surface)); }
+
+/* L2.2 uses the same compact assignment table and access gate. */
+.l22-access { padding-top:3rem; padding-bottom:4rem; }
+.l22-access .button { margin:.5rem .5rem .5rem 0; }
+
+/* L2.3 spans two multi-part Excel assignments. */
+.l23-access { padding-top:3rem; padding-bottom:4rem; }
+.l23-access .button { margin:.5rem .5rem .5rem 0; }
+.l23-provision-data td:nth-child(3) { text-align:left; }
+
+/* Kurzer Verständnis-Check: einheitlich nutzbar für weitere Lernseiten. */
+.mastery-form { display:grid; gap:1rem; margin-top:1rem; }
+.mastery-question { min-width:0; margin:0; padding:1rem; border:1px solid var(--line-strong); border-radius:12px; background:var(--surface); }
+.mastery-question legend { padding:0 .35rem; font-weight:700; line-height:1.5; }
+.mastery-question label { display:flex; align-items:flex-start; gap:.65rem; margin:.55rem 0; padding:.7rem .8rem; border:1px solid var(--line); border-radius:9px; cursor:pointer; line-height:1.5; }
+.mastery-question label:hover { border-color:var(--green); background:color-mix(in srgb,var(--green) 6%,var(--surface)); }
+.mastery-question label:has(input:checked) { border-color:var(--green); background:color-mix(in srgb,var(--green) 12%,var(--surface)); }
+.mastery-question label:has(input:focus-visible) { outline:3px solid var(--green); outline-offset:2px; }
+.mastery-question input { flex:none; margin:.25rem 0 0; accent-color:var(--green); }
+.mastery-question code { overflow-wrap:anywhere; }
+.mastery-question[data-result="incorrect"] { border-color:var(--amber); }
+.mastery-question[data-result="correct"] { border-color:var(--green); }
+.mastery-feedback { min-height:1.3em; margin:.45rem 0 0; color:var(--text-soft); font-size:.83rem; }
+.mastery-question[data-result="incorrect"] .mastery-feedback { color:var(--amber); }
+.mastery-question[data-result="correct"] .mastery-feedback, .mastery-status.is-passed { color:var(--green); }
+.mastery-status { margin:.1rem 0 0; color:var(--text-soft); }

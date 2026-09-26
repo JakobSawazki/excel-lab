@@ -39,11 +39,11 @@
 
       <nav class="main-nav" aria-label="Hauptnavigation">
         <button class="nav-link is-active" type="button" data-view="dashboard">Übersicht</button>
-        <button class="nav-link" type="button" data-view="learning">Lernpfad</button>
-        <details class="nav-dropdown" id="learning-menu">
-          <summary class="nav-link">Lernschritte <svg class="nav-chevron" aria-hidden="true" viewBox="0 0 20 20"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg></summary>
+        <div class="nav-dropdown" id="learning-menu">
+          <button class="nav-link nav-learning-link" id="learning-path-button" type="button" data-view="learning" aria-expanded="false" aria-controls="nav-stage-menu">Lernpfad</button>
+          <button class="nav-menu-toggle" type="button" data-learning-toggle aria-label="Lernschritte und Kapitel anzeigen" aria-expanded="false" aria-controls="nav-stage-menu"><svg class="nav-chevron" aria-hidden="true" viewBox="0 0 20 20"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg></button>
           <div class="nav-dropdown-menu" id="nav-stage-menu" aria-label="Lernschritte und Kapitel"></div>
-        </details>
+        </div>
         <button class="nav-link" type="button" data-view="formulas">Formelsammlung</button>
         <button class="nav-link" type="button" data-view="sources">Quellen</button>
       </nav>
@@ -330,7 +330,7 @@
           <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
           <span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span>
         </a>
-        <p>Version 0.7.0 · Lernstand bleibt lokal im Browser</p>
+        <p>Version 0.8.0 · Lernstand bleibt lokal im Browser</p>
       </div>
       <div class="footer-links">
         <a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Designed by Sawazki Electronics</a>
@@ -397,6 +397,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.8.0</span><div><strong>Mehr Lernseiten und Verständnis-Checks</strong><small>L1.6 und L2.1 bis L2.4 als eigene Lernseiten; gemeinsames Lernpfad-Menü und verpflichtende Verständnisfragen in L2.2 bis L2.4.</small></div></li>
             <li><span>0.7.0</span><div><strong>Direkt auf der Lernseite lernen</strong><small>Eigene Lernseiten bis L1.5 mit aufklappbaren Informationen und Aufgaben, metallischen Plus-/Minus-Symbolen und temporärer Entwicklervorschau.</small></div></li>
             <li><span>0.6.1</span><div><strong>Online verfügbar</strong><small>GitHub-Pages-Bereitstellung mit datensparsamen lokalen Profilen und sicheren Verweisen auf die offiziellen BPE1-Materialien.</small></div></li>
             <li><span>0.6</span><div><strong>Mehr entdecken, direkt ausprobieren</strong><small>Neue Startseitengestaltung, interaktives Formel-Lab und eigene Lernseite L1.2.</small></div></li>

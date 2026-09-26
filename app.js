@@ -10,7 +10,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.7.0";
+  const APP_VERSION = "0.8.0";
   const POINTS_PER_LESSON = 100;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
@@ -72,6 +72,7 @@
         safeProgress[lesson.id] = {
           completed: Boolean(candidate.completed),
           teacherChecked: Boolean(candidate.teacherChecked),
+          masteryPassed: Boolean(candidate.masteryPassed || (["l2-2", "l2-3", "l2-4"].includes(lesson.id) && candidate.completed)),
           checks: Array.isArray(candidate.checks)
             ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
             : lesson.checks.map(() => false)
@@ -135,6 +136,7 @@
     return {
       completed: Boolean(saved?.completed),
       teacherChecked: Boolean(saved?.teacherChecked),
+      masteryPassed: Boolean(saved?.masteryPassed || (["l2-2", "l2-3", "l2-4"].includes(lessonId) && saved?.completed)),
       checks: lesson.checks.map((_, index) => Boolean(saved?.checks?.[index]))
     };
   }
@@ -145,6 +147,7 @@
     profile.progress[lessonId] = {
       completed: Boolean(progress.completed),
       teacherChecked: Boolean(progress.teacherChecked),
+      masteryPassed: Boolean(progress.masteryPassed),
       checks: Array.isArray(progress.checks) ? progress.checks.map(Boolean) : []
     };
     profile.updatedAt = new Date().toISOString();
@@ -207,8 +210,15 @@
   }
 
   function syncRouteFromHash() {
-    const route = location.hash.replace(/^#/, "").split("/")[0];
+    const [route, stageId, lessonId] = location.hash.replace(/^#/, "").split("/");
+    if (route === routeMap.learning && stages.some((stage) => String(stage.id) === stageId)) {
+      activeStage = stageId;
+      renderStageFilters();
+    }
     setView(routeMapReverse[route] || "dashboard", false);
+    if (route === routeMap.learning && lessonId && lessons.some((lesson) => lesson.id === lessonId)) {
+      openLesson(lessonId);
+    }
   }
 
   function renderAll() {
@@ -236,17 +246,17 @@
       const stageLessons = lessons.filter((lesson) => lesson.stage === stage.id);
       return `
         <div class="nav-stage-entry">
-          <button class="nav-stage-button" type="button" data-stage-open="${stage.id}" aria-haspopup="true">
+          <button class="nav-stage-button" type="button" data-stage-open="${stage.id}">
             <span class="nav-stage-badge">${escapeHtml(stage.code)}</span>
             <span><strong>${escapeHtml(stage.shortTitle)}</strong><small>${stageLessons.length} Kapitel</small></span>
-            <svg aria-hidden="true" viewBox="0 0 20 20"><path d="m7.5 5.5 4.5 4.5-4.5 4.5"/></svg>
           </button>
-          <div class="nav-chapter-flyout" role="menu" aria-label="Kapitel ${escapeHtml(stage.code)}">
+          <button class="nav-stage-toggle" type="button" data-stage-toggle="${stage.id}" aria-label="Kapitel von ${escapeHtml(stage.code)} anzeigen" aria-expanded="false" aria-controls="nav-chapters-${stage.id}"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="m7.5 5.5 4.5 4.5-4.5 4.5"/></svg></button>
+          <div class="nav-chapter-flyout" id="nav-chapters-${stage.id}" role="group" aria-label="Kapitel ${escapeHtml(stage.code)}">
             <p><span>${escapeHtml(stage.code)}</span> ${escapeHtml(stage.title)}</p>
             ${stageLessons.map((lesson) => {
               const progress = getLessonProgress(lesson.id);
               const access = lessonAccess(lesson);
-              return `<button class="nav-chapter-link ${access.unlocked ? "" : "is-locked"}" type="button" data-open-lesson="${lesson.id}" role="menuitem">
+              return `<button class="nav-chapter-link ${access.unlocked ? "" : "is-locked"}" type="button" data-open-lesson="${lesson.id}">
                 <span>${access.unlocked ? progress.completed ? "✓" : escapeHtml(lesson.code) : "▣"}</span>
                 <strong>${escapeHtml(lesson.title)}</strong>
                 <small>${access.unlocked ? `${access.points} Punkte` : `${access.requiredPoints} Punkte nötig`}</small>
@@ -418,7 +428,7 @@
       showToast(`Dieses Kapitel wird mit ${access.requiredPoints} Punkten freigeschaltet.`);
       return;
     }
-    $("#learning-menu")?.removeAttribute("open");
+    closeLearningMenu();
     if (lesson.page) {
       window.location.href = lesson.page;
       return;
@@ -656,7 +666,20 @@
   }
 
   function closeLearningMenu() {
-    $("#learning-menu")?.removeAttribute("open");
+    const menu = $("#learning-menu");
+    if (!menu) return;
+    menu.classList.remove("is-open");
+    menu.querySelectorAll("[aria-expanded]").forEach((button) => button.setAttribute("aria-expanded", "false"));
+    menu.querySelectorAll(".nav-stage-entry.is-open").forEach((entry) => entry.classList.remove("is-open"));
+  }
+
+  function setLearningMenuOpen(open) {
+    const menu = $("#learning-menu");
+    if (!menu) return;
+    if (!open) { closeLearningMenu(); return; }
+    menu.classList.toggle("is-open", open);
+    menu.querySelector("#learning-path-button").setAttribute("aria-expanded", String(open));
+    menu.querySelector("[data-learning-toggle]").setAttribute("aria-expanded", String(open));
   }
 
   async function copyFormula(value) {
@@ -684,7 +707,25 @@
   }
 
   function bindEvents() {
+    let suppressLearningFocusOpen = false;
     document.addEventListener("click", (event) => {
+      const menuToggle = event.target.closest("[data-learning-toggle]");
+      if (menuToggle) {
+        setLearningMenuOpen(!$("#learning-menu").classList.contains("is-open"));
+        return;
+      }
+
+      const stageToggle = event.target.closest("[data-stage-toggle]");
+      if (stageToggle) {
+        const entry = stageToggle.closest(".nav-stage-entry");
+        const open = !entry.classList.contains("is-open");
+        $("#learning-menu").querySelectorAll(".nav-stage-entry.is-open").forEach((item) => item.classList.remove("is-open"));
+        $("#learning-menu").querySelectorAll("[data-stage-toggle]").forEach((button) => button.setAttribute("aria-expanded", "false"));
+        entry.classList.toggle("is-open", open);
+        stageToggle.setAttribute("aria-expanded", String(open));
+        return;
+      }
+
       const brandHome = event.target.closest("[data-brand-home]");
       if (brandHome) {
         event.preventDefault();
@@ -705,7 +746,7 @@
 
       const chapter = event.target.closest("[data-stage-open]");
       if (chapter) {
-        chapter.closest(".nav-dropdown")?.removeAttribute("open");
+        closeLearningMenu();
         activeStage = chapter.dataset.stageOpen;
         renderStageFilters();
         setView("learning");
@@ -813,7 +854,33 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeLearningMenu();
+      if (event.key === "Escape" && $("#learning-menu").classList.contains("is-open")) {
+        closeLearningMenu();
+        suppressLearningFocusOpen = true;
+        $("#learning-path-button").focus();
+        suppressLearningFocusOpen = false;
+      }
+    });
+
+    const learningMenu = $("#learning-menu");
+    learningMenu.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse" || event.pointerType === "pen") setLearningMenuOpen(true);
+    });
+    learningMenu.addEventListener("pointerleave", (event) => {
+      if (event.pointerType === "mouse" || event.pointerType === "pen") closeLearningMenu();
+    });
+    learningMenu.addEventListener("focusin", (event) => {
+      if (event.target.id === "learning-path-button" && !suppressLearningFocusOpen) setLearningMenuOpen(true);
+      const stageButton = event.target.closest(".nav-stage-button");
+      if (stageButton) {
+        learningMenu.querySelectorAll(".nav-stage-entry.is-open").forEach((entry) => entry.classList.remove("is-open"));
+        learningMenu.querySelectorAll("[data-stage-toggle]").forEach((button) => button.setAttribute("aria-expanded", "false"));
+        stageButton.closest(".nav-stage-entry").classList.add("is-open");
+        stageButton.nextElementSibling?.setAttribute("aria-expanded", "true");
+      }
+    });
+    learningMenu.addEventListener("focusout", (event) => {
+      if (!learningMenu.contains(event.relatedTarget)) closeLearningMenu();
     });
 
     window.addEventListener("excel-lab-dev-change", () => {

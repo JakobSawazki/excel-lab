@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab L2.2: Absolute Zellbezüge verstehen und eine feste Aufwandspauschale in Excel-Formeln verwenden.">
+    <meta name="theme-color" content="#0b1422">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l2-2.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>L2.2 · Absolute Adressierung · Excel-Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson-workspace.css">
+    <script src="deployment.js" defer></script>
+    <script src="developer-mode.js" defer></script>
+    <script src="content.js" defer></script>
+    <script src="lesson-navigation.js" defer></script>
+    <script src="lesson-workspace.js" defer></script>
+    <script src="l2-2.js" defer></script>
+  </head>
+  <body class="lesson-page-body l22-page">
+    <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
+    <header class="site-header lesson-page-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>L2.2 · Absolute Adressierung</small></span>
+      </a>
+      <nav class="lesson-breadcrumb" aria-label="Brotkrümelnavigation">
+        <a href="index.html#lernpfad/2">Lernpfad</a><span aria-hidden="true">›</span><strong>L2.2</strong>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="lesson-theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
+        </button>
+        <a class="profile-button lesson-profile" href="index.html#uebersicht" id="lesson-profile-link">
+          <span class="profile-avatar" id="lesson-profile-avatar">?</span>
+          <span class="profile-copy"><small>Lernprofil</small><strong id="lesson-profile-name">Nicht angemeldet</strong></span>
+        </a>
+      </div>
+    </header>
+
+    <main id="lesson-main" class="lesson-page-main">
+      <section class="lesson-page-hero">
+        <div class="page-shell page-shell-narrow">
+          <a class="back-link" href="index.html#lernpfad/2"><span aria-hidden="true">‹</span> Zurück zu Lernschritt L2</a>
+          <div class="lesson-page-title">
+            <div>
+              <p class="eyebrow"><span>L2.2</span> BPE 1.2 · 100 Punkte</p>
+              <h1>Absolute Adressierung</h1>
+              <p>Eine feste Aufwandspauschale für alle sechs Kurse: Du kombinierst relative und absolute Zellbezüge und kontrollierst, ob deine Formel beim Kopieren korrekt bleibt.</p>
+            </div>
+            <div class="lesson-score-card">
+              <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
+              <div><small>Fortschritt L2.2</small><strong id="lesson-page-status">Noch nicht begonnen</strong><span id="lesson-points-status">0 von 100 Punkten</span></div>
+            </div>
+          </div>
+          <ol class="lesson-stepper" aria-label="Arbeitsreihenfolge">
+            <li class="is-active"><span>1</span><div><strong>Informieren</strong><small>Festwert verstehen</small></div></li>
+            <li><span>2</span><div><strong>Vorbereiten</strong><small>Zeilen einfügen</small></div></li>
+            <li><span>3</span><div><strong>In Excel arbeiten</strong><small>Festwert fixieren</small></div></li>
+            <li><span>4</span><div><strong>Besprechen</strong><small>Lehrkraft bestätigt</small></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="l22-access" class="page-shell page-shell-narrow l22-access" aria-labelledby="l22-access-heading">
+        <h2 id="l22-access-heading">Zuerst L2.1 abschließen</h2>
+        <p id="l22-access-message">Lege ein Lernprofil an und schließe L2.1 ab, um diese Einheit zu öffnen.</p>
+        <a class="button button-primary" href="l2-1.html">Zu L2.1</a>
+        <a class="button button-secondary" href="index.html#uebersicht">Zum Lernprofil</a>
+        <noscript><p>Aktiviere JavaScript, damit dein lokaler Lernstand geprüft werden kann.</p></noscript>
+      </section>
+
+      <div id="l22-content" class="page-shell page-shell-narrow lesson-page-layout" hidden>
+        <article class="lesson-article">
+          <div class="lesson-workspace-intro">
+            <p><strong>Erst verstehen, dann in Excel anwenden.</strong> Alle Ausgangsdaten und Arbeitsschritte stehen auf dieser Seite. Du erstellst und speicherst deine eigene Arbeitsmappe am Schüler-PC.</p>
+            <div class="lesson-workspace-actions">
+              <a class="button button-primary" href="#l22-task-heading">Zur Aufgabe ↓</a>
+              <button class="button button-secondary" type="button" data-expand-lessons hidden>Alle öffnen</button>
+              <button class="button button-secondary" type="button" data-collapse-lessons hidden>Alle schließen</button>
+            </div>
+          </div>
+
+          <details class="lesson-disclosure" open>
+            <summary><span class="section-index">01 · Lernziel</span><h2 id="l22-section-1">Eine Pauschale für alle Kurse</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Du erweiterst die Projektwochen-Tabelle: Jede Betreuungsperson erhält zusätzlich 20,00 € Aufwandspauschale. Der Betrag steht nur einmal in der Tabelle. Eine kopierfähige Formel nutzt ihn trotzdem in jeder Kurszeile.</p>
+              <ul class="learning-goals">
+                <li><span>✓</span> Relative und absolute Zellbezüge unterscheiden</li>
+                <li><span>✓</span> Zwei Zeilen einfügen, ohne vorhandene Daten zu überschreiben</li>
+                <li><span>✓</span> Die gemeinsame Pauschale in einer einzigen Zelle speichern</li>
+                <li><span>✓</span> Eine Formel mit relativen und absoluten Bezügen kopieren</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">02 · Informieren</span><h2 id="l22-section-2">Was beim Kopieren fest bleiben muss</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Aus L2.1 kennst du <strong>relative Bezüge</strong>: Beim Kopieren von <code>F6</code> nach <code>F7</code> wird aus <code>D6*E6</code> automatisch <code>D7*E7</code>. Das ist richtig, weil jede Kurszeile ihre eigenen Stunden und ihren eigenen Stundensatz hat.</p>
+              <p>Die neue Pauschale steht dagegen für <em>alle</em> Kurse in <code>B3</code>. Würde die Formel nur <code>B3</code> enthalten, würde Excel beim Kopieren daraus <code>B4</code>, dann <code>B5</code> machen. Der Wert wandert fälschlich mit.</p>
+              <div class="formula-principle"><strong>Kopierfähige Formel in F6</strong><code>=D6*E6+$B$3</code><span><code>D6</code> und <code>E6</code> wandern beim Kopieren mit. <code>$B$3</code> bleibt immer dieselbe Zelle.</span></div>
+              <p>Das Dollarzeichen vor <code>B</code> fixiert die Spalte, das vor <code>3</code> die Zeile. Zusammen entsteht ein <strong>absoluter Bezug</strong>. Eine Formel darf relative und absolute Bezüge kombinieren.</p>
+              <p class="important-note"><strong>F4-Taste:</strong> Setze den Cursor beim Bearbeiten der Formel auf den Zellbezug <code>B3</code> und drücke <kbd>F4</kbd>, bis <code>$B$3</code> erscheint. Auf manchen Schul-PCs ist zusätzlich <kbd>Fn</kbd> nötig. Du kannst die Dollarzeichen auch direkt tippen.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">03 · Informieren</span><h2 id="l22-section-3">Platz für den gemeinsamen Wert schaffen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>In der mitgelieferten Vorlage steht die Überschrift <strong>Betreuer</strong> zunächst in <code>B3</code>. Du darfst dort die 20,00 € nicht einfach hineinschreiben: Die Überschrift ginge verloren. Füge zuerst <strong>zwei ganze Zeilen vor der bisherigen Zeile 3</strong> ein. Danach stehen die Spaltenüberschriften in Zeile 5 und die sechs Kurse in Zeile 6 bis 11. Jetzt ist <code>B3</code> frei.</p>
+              <ol class="instruction-list">
+                <li><span>1</span><div><strong>Zeilen markieren</strong><p>Klicke links auf den Zeilenkopf <code>3</code> und markiere zwei ganze Zeilen, also 3 und 4.</p></div></li>
+                <li><span>2</span><div><strong>Einfügen</strong><p>Öffne per rechter Maustaste das Kontextmenü und wähle <strong>Zellen einfügen</strong> beziehungsweise <strong>Blattzeilen einfügen</strong>. Prüfe, dass die vorhandenen Überschriften und Kursdaten nach unten gerückt sind.</p></div></li>
+                <li><span>3</span><div><strong>Pauschale eintragen</strong><p>Schreibe in <code>A3</code> „Aufwandspauschale“ und in <code>B3</code> den numerischen Wert <code>20</code>. Formatiere <code>B3</code> als Euro-Betrag.</p></div></li>
+              </ol>
+              <p>Das Infomaterial zeigt außerdem das Einfügen einzelner Zellen, Spalten und das Verschieben von Zellbereichen. Für diese Aufgabe sind zwei <em>ganze Zeilen</em> die übersichtlichste Lösung.</p>
+              <details><summary>Optionales Video zur absoluten Adressierung</summary><p>Die Erklärung oben und die folgenden Schritte reichen für die Aufgabe aus.</p><video class="l14-video" controls preload="none" aria-label="Video zur absoluten Adressierung" src="materialien/BPE1/Lernfortschritt_2/Informationsmaterial/L2_1.1.2 Video absolute Adressierung.m4v"></video><p class="download-note">Das Video liegt lokal im BPE1-Materialordner. Online führt ein Hinweis zur offiziellen Materialseite.</p></details>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure task-section">
+            <summary><span class="section-index">04 · Aufgabe</span><h2 id="l22-task-heading">Projektwoche Teil 2</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Die Schulleitung gewährt allen sechs Betreuenden zusätzlich zu ihrem bisherigen Verdienst eine einmalige Aufwandspauschale von <strong>20,00 € pro Person</strong>. Erweitere die Tabelle so, dass der gemeinsame Betrag nur in <code>B3</code> steht und jede Verdienstformel ihn berücksichtigt.</p>
+              <p><strong>Denke vor dem Öffnen der Vorlage kurz nach:</strong> Welche vorhandenen Inhalte müssen Platz machen? Welche Zellbezüge sollen beim Kopieren mitwandern, und welcher Bezug muss fest bleiben? Notiere deine Antwort in ein bis zwei Sätzen oder besprich sie mit einer Mitschülerin oder einem Mitschüler.</p>
+              <div class="l21-table-scroll"><table class="l21-data-table"><caption>Ausgangsdaten der mitgelieferten L2.2-Excel-Vorlage</caption><thead><tr><th scope="col">Kurs</th><th scope="col">Betreuer</th><th scope="col">Teilnehmer</th><th scope="col">Stunden</th><th scope="col">€/Stunde</th></tr></thead><tbody><tr><th scope="row">Tennis</th><td>Hakan</td><td>12</td><td>10</td><td>6,00</td></tr><tr><th scope="row">Badminton</th><td>Laura</td><td>18</td><td>16</td><td>4,00</td></tr><tr><th scope="row">Volleyball</th><td>Dennis</td><td>20</td><td>20</td><td>5,00</td></tr><tr><th scope="row">Basketball</th><td>Marie</td><td>14</td><td>18</td><td>4,00</td></tr><tr><th scope="row">Tischtennis</th><td>Nikolai</td><td>15</td><td>20</td><td>5,00</td></tr><tr><th scope="row">Handball</th><td>Umut</td><td>18</td><td>15</td><td>4,50</td></tr></tbody></table></div>
+              <p class="important-note"><strong>Unterschied zu L2.1:</strong> Die dortige Aufgabenstellung nennt für Badminton 10 Stunden, diese L2.2-Vorlage enthält 16. Wenn du die <em>L2.2-Vorlage</em> verwendest, lass ihre 16 Stunden stehen. Wenn deine Lehrkraft stattdessen deine eigene L2.1-Datei fortführen lässt, behalte deren 10 Stunden. Mische die Ausgangsdaten nicht unbemerkt.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure task-section">
+            <summary><span class="section-index">05 · Arbeitsauftrag</span><h2 id="l22-section-5">Die Arbeitsmappe in Excel erweitern</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <ol class="instruction-list">
+                <li><span>1</span><div><strong>Vorlage öffnen</strong><p>Lade die <a href="materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen/L2_1.1.2 Tabellenvorlage Projektwoche absolute Adressierung.xlsx" download>Excel-Vorlage Projektwoche</a> herunter und öffne sie in Excel. Sie enthält sechs Kurse, aber noch keine berechneten Verdienste.</p></div></li>
+                <li><span>2</span><div><strong>Platz schaffen</strong><p>Füge zwei ganze Zeilen vor der bisherigen Zeile 3 ein. Kontrolliere danach: Die Überschriften stehen in Zeile 5, Tennis in Zeile 6 und Handball in Zeile 11.</p></div></li>
+                <li><span>3</span><div><strong>Festwert erfassen</strong><p>Trage „Aufwandspauschale“ in <code>A3</code> und den Wert <code>20</code> in <code>B3</code> ein. Formatiere den Wert als Währung. Der Betrag darf nicht in jede Formel als Zahl eingetippt werden.</p></div></li>
+                <li><span>4</span><div><strong>Formel schreiben und kopieren</strong><p>Gib in <code>F6</code> <code>=D6*E6+$B$3</code> ein. Kopiere die <em>Formelzelle</em> bis <code>F11</code>. Formatiere die Verdienste in <code>F6:F11</code> als Euro.</p></div></li>
+                <li><span>5</span><div><strong>Kontrollieren und speichern</strong><p>Prüfe die Formeln in <code>F7</code> und <code>F11</code>. Ändere testweise nur <code>B3</code>, beobachte alle sechs Ergebnisse und stelle danach <code>20</code> wieder her. Speichere die Datei im Ordner <strong>Ergebnisse</strong> als <code>L2_1.1.2 Projektwoche Teil 2.xlsx</code>.</p></div></li>
+              </ol>
+              <p class="important-note"><strong>Zeilenangabe im Aufgabenblatt:</strong> Dort steht für die neue Formel <code>F4</code>. Das ist die erste Datenzeile der <em>unveränderten</em> Vorlage. Sobald du wie beschrieben zwei Zeilen eingefügt und <code>B3</code> freigemacht hast, lautet die erste Datenzeile <code>F6</code>; kopiere dann fünfmal bis <code>F11</code>.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">06 · Kontrollieren</span><h2 id="l22-section-6">Bleibt die Pauschale wirklich fest?</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <ul>
+                <li>In <code>B3</code> steht genau einmal die Zahl 20, als Euro formatiert. Die Betreuer-Überschrift steht weiterhin in <code>B5</code>.</li>
+                <li>In <code>F6:F11</code> stehen Formeln. In <code>F7</code> lautet der Bezug <code>=D7*E7+$B$3</code>; in <code>F11</code> entsprechend <code>=D11*E11+$B$3</code>.</li>
+                <li>Nach einem Testwert in <code>B3</code> ändern sich alle sechs Verdienste. Danach steht dort wieder 20,00 €.</li>
+                <li>Die Datei wurde mit dem vereinbarten Namen gespeichert und lässt sich erneut öffnen.</li>
+              </ul>
+              <details class="l16-source-check"><summary>Kontrollwert erst nach eigener Rechnung öffnen</summary><p>Für Tennis zeigt das Infomaterial mit 10 Stunden und 6,00 € je Stunde plus 20,00 € Pauschale einen Verdienst von <strong>80,00 €</strong>.</p></details>
+              <p>Erkläre der Lehrkraft an deiner Arbeitsmappe, warum die Kursbezüge mitwandern, <code>$B$3</code> aber fest bleibt. Erst nach dieser Kontrolle wird L2.2 abgeschlossen.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure" id="l22-mastery-section">
+            <summary><span class="section-index">07 · Verstehen</span><h2>Prüfe dein Verständnis</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Beantworte die drei Fragen zur verschobenen Tabelle und zur kopierfähigen Formel. Wenn etwas noch nicht stimmt, lies die Erklärung oben erneut und versuche es wieder. Deine Excel-Datei prüft anschließend die Lehrkraft.</p>
+              <form id="l22-mastery-form" class="mastery-form">
+                <fieldset class="mastery-question" data-mastery-question="row">
+                  <legend>1. Du fügst zwei ganze Zeilen vor der bisherigen Zeile 3 ein. In welcher Zeile beginnt danach der erste Kurs?</legend>
+                  <label><input type="radio" name="row" value="a">Zeile 4</label>
+                  <label><input type="radio" name="row" value="b">Zeile 6</label>
+                  <label><input type="radio" name="row" value="c">Zeile 8</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="formula">
+                  <legend>2. Welche Formel in F6 kannst du nach unten kopieren, wenn die Pauschale nur in B3 steht?</legend>
+                  <label><input type="radio" name="formula" value="a"><code>=D6*E6+B3</code></label>
+                  <label><input type="radio" name="formula" value="b"><code>=$D$6*$E$6+$B$3</code></label>
+                  <label><input type="radio" name="formula" value="c"><code>=D6*E6+$B$3</code></label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="copy">
+                  <legend>3. Was steht nach dem Kopieren dieser Formel aus F6 in F7?</legend>
+                  <label><input type="radio" name="copy" value="a"><code>=D7*E7+$B$3</code></label>
+                  <label><input type="radio" name="copy" value="b"><code>=D7*E7+B4</code></label>
+                  <label><input type="radio" name="copy" value="c"><code>=D6*E6+$B$3</code></label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <button class="button button-primary" type="submit">Antworten prüfen</button>
+                <p id="l22-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.</p>
+              </form>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">08 · Quellen</span><h2 id="l22-section-7">Originalmaterial zum Nachlesen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Die Informationen und der Arbeitsauftrag stehen oben vollständig. Die lokalen Originaldateien kannst du ergänzend öffnen:</p>
+              <div class="download-list">
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen/L2_1.1.2 Aufgabenstellung Tabellenentwurf-Absolute Adressierung.docx" download><span class="file-type">DOCX</span><strong>Aufgabenstellung: Projektwoche Teil 2</strong><span class="arrow" aria-hidden="true">↓</span></a>
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen/L2_1.1.2 Tabellenvorlage Projektwoche absolute Adressierung.xlsx" download><span class="file-type">XLSX</span><strong>Leere Excel-Vorlage: Projektwoche</strong><span class="arrow" aria-hidden="true">↓</span></a>
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Informationsmaterial/L2_1.1.2a Informationsmaterial Zellen einfügen und verschieben.docx" download><span class="file-type">DOCX</span><strong>Information: Zellen und Zeilen einfügen</strong><span class="arrow" aria-hidden="true">↓</span></a>
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Informationsmaterial/L2_1.1.2b Informationsmaterial Relative und Absolute Adressierung.docx" download><span class="file-type">DOCX</span><strong>Information: relative und absolute Bezüge</strong><span class="arrow" aria-hidden="true">↓</span></a>
+              </div>
+              <p class="download-note">Die Originaldateien werden aus Lizenzgründen nicht mit der öffentlichen Website ausgeliefert.</p>
+            </div>
+          </details>
+        </article>
+
+        <aside class="lesson-page-sidebar">
+          <section class="lesson-check-panel">
+            <p class="eyebrow">Abschluss und Punkte</p>
+            <h2>L2.2 abschließen</h2>
+            <p>Setze die Haken erst nach der tatsächlichen Bearbeitung. Bestehe den Verständnis-Check und erkläre deine Formel der Lehrkraft. Du kannst Haken wieder entfernen.</p>
+            <div class="completion-list">
+              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe zwei Zeilen eingefügt, die sechs Kurse erhalten und die Aufwandspauschale nur in B3 eingetragen.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>In F6:F11 stehen kopierte Formeln mit relativen Kursbezügen und dem festen Bezug $B$3.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Ich habe F7 und F11 sowie den Test mit verändertem B3 geprüft, den Wert 20 wiederhergestellt und die Datei gespeichert.</span></label>
+              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Ich habe der Lehrkraft an meiner Arbeitsmappe erklärt, warum die Kursbezüge mitwandern und $B$3 fest bleibt. Sie hat das Ergebnis geprüft und bestätigt.</span></label>
+            </div>
+            <button class="button button-primary button-full" type="button" id="page-complete-button">L2.2 abschließen</button>
+            <p class="check-note" id="page-completion-note">Erst nach Verständnis-Check, allen eigenen Checks und der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
+            <p class="check-note">Die Bestätigung erfolgt lokal im Gespräch; Excel-Dateien werden hier nicht automatisch geprüft.</p>
+          </section>
+          <section class="next-lesson-panel">
+            <small>Danach</small><strong>L2.3 Gemischte und symbolische Bezüge</strong><p>Im nächsten Kapitel fixierst du nur den Teil einer Adresse, der unverändert bleiben soll.</p>
+            <a class="button button-secondary button-full is-disabled" href="l2-3.html" id="next-lesson-link" aria-disabled="true">Zu L2.3 <span aria-hidden="true">›</span></a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer lesson-page-footer">
+      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span></a>
+      <p>Inhaltlich aufgebaut nach dem lokalen BPE1-Materialpaket des Landesbildungsservers Baden-Württemberg.</p>
+    </footer>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

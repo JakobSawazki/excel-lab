@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab L2.1: Relative Zellbezüge verstehen und in einer Projektwochen-Tabelle anwenden.">
+    <meta name="theme-color" content="#0b1422">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l2-1.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>L2.1 · Relative Adressierung · Excel-Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson-workspace.css">
+    <script src="deployment.js" defer></script>
+    <script src="developer-mode.js" defer></script>
+    <script src="content.js" defer></script>
+    <script src="lesson-navigation.js" defer></script>
+    <script src="lesson-workspace.js" defer></script>
+    <script src="l2-1.js" defer></script>
+  </head>
+  <body class="lesson-page-body l21-page">
+    <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
+    <header class="site-header lesson-page-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>L2.1 · Relative Adressierung</small></span>
+      </a>
+      <nav class="lesson-breadcrumb" aria-label="Brotkrümelnavigation">
+        <a href="index.html#lernpfad/2">Lernpfad</a><span aria-hidden="true">›</span><strong>L2.1</strong>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="lesson-theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
+        </button>
+        <a class="profile-button lesson-profile" href="index.html#uebersicht" id="lesson-profile-link">
+          <span class="profile-avatar" id="lesson-profile-avatar">?</span>
+          <span class="profile-copy"><small>Lernprofil</small><strong id="lesson-profile-name">Nicht angemeldet</strong></span>
+        </a>
+      </div>
+    </header>
+
+    <main id="lesson-main" class="lesson-page-main">
+      <section class="lesson-page-hero">
+        <div class="page-shell page-shell-narrow">
+          <a class="back-link" href="index.html#lernpfad/2"><span aria-hidden="true">‹</span> Zurück zu Lernschritt L2</a>
+          <div class="lesson-page-title">
+            <div>
+              <p class="eyebrow"><span>L2.1</span> BPE 1.2 · 100 Punkte</p>
+              <h1>Relative Adressierung</h1>
+              <p>Eine Formel für sechs Zeilen: Du berechnest die Vergütung der Betreuenden einer Projektwoche und lernst, warum Excel die Zelladressen beim Kopieren anpasst.</p>
+            </div>
+            <div class="lesson-score-card">
+              <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
+              <div><small>Fortschritt L2.1</small><strong id="lesson-page-status">Noch nicht begonnen</strong><span id="lesson-points-status">0 von 100 Punkten</span></div>
+            </div>
+          </div>
+          <ol class="lesson-stepper" aria-label="Arbeitsreihenfolge">
+            <li class="is-active"><span>1</span><div><strong>Informieren</strong><small>Bezüge verstehen</small></div></li>
+            <li><span>2</span><div><strong>Planen</strong><small>Spalten festlegen</small></div></li>
+            <li><span>3</span><div><strong>In Excel arbeiten</strong><small>Formel kopieren</small></div></li>
+            <li><span>4</span><div><strong>Besprechen</strong><small>Lehrkraft bestätigt</small></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="l21-access" class="page-shell page-shell-narrow l21-access" aria-labelledby="l21-access-heading">
+        <h2 id="l21-access-heading">Zuerst L1.6 abschließen</h2>
+        <p id="l21-access-message">Lege ein Lernprofil an und schließe L1.6 ab, um diese Einheit zu öffnen.</p>
+        <a class="button button-primary" href="l1-6.html">Zu L1.6</a>
+        <a class="button button-secondary" href="index.html#uebersicht">Zum Lernprofil</a>
+        <noscript><p>Aktiviere JavaScript, damit dein lokaler Lernstand geprüft werden kann.</p></noscript>
+      </section>
+
+      <div id="l21-content" class="page-shell page-shell-narrow lesson-page-layout" hidden>
+        <article class="lesson-article">
+          <div class="lesson-workspace-intro">
+            <p><strong>Erst verstehen, dann in Excel anwenden.</strong> Alle Ausgangsdaten und Arbeitsschritte stehen auf dieser Seite. Du erstellst und speicherst deine eigene Arbeitsmappe am Schüler-PC.</p>
+            <div class="lesson-workspace-actions">
+              <a class="button button-primary" href="#l21-task-heading">Zur Aufgabe ↓</a>
+              <button class="button button-secondary" type="button" data-expand-lessons hidden>Alle öffnen</button>
+              <button class="button button-secondary" type="button" data-collapse-lessons hidden>Alle schließen</button>
+            </div>
+          </div>
+
+          <details class="lesson-disclosure" open>
+            <summary><span class="section-index">01 · Lernziel</span><h2 id="l21-section-1">Eine Formel für viele Zeilen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Am Ende kannst du erklären, was ein relativer Zellbezug ist, eine geprüfte Formel in weitere Zeilen kopieren und die angepassten Bezüge kontrollieren.</p>
+              <ul class="learning-goals">
+                <li><span>✓</span> Eingaben, Formel und Ergebnis voneinander unterscheiden</li>
+                <li><span>✓</span> Verdienst aus Stunden und Vergütung je Stunde berechnen</li>
+                <li><span>✓</span> Eine Formel bis zur letzten Datenzeile kopieren</li>
+                <li><span>✓</span> Erklären, warum die Bezugszeilen beim Kopieren mitwandern</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">02 · Informieren</span><h2 id="l21-section-2">Was „relativ“ bei Zelladressen bedeutet</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Eine Formel beginnt in Excel mit <code>=</code>. Für den Verdienst wird die <strong>Stundenvergütung</strong> mit der <strong>Stundenzahl</strong> multipliziert. Steht die Stundenvergütung in <code>D6</code> und die Stundenzahl in <code>E6</code>, lautet die Formel in <code>F6</code>:</p>
+              <div class="formula-principle"><strong>Erste Datenzeile</strong><code>=D6*E6</code><span>Euro je Stunde × Stunden = Euro. Die Teilnehmerzahl in Spalte C gehört nicht in diese Rechnung.</span></div>
+              <p><code>D6</code> und <code>E6</code> sind <strong>relative Bezüge</strong>: Ohne Dollarzeichen beziehen sie sich auf Zellen in einem bestimmten Abstand zur Formelzelle. Kopierst du die Formel von <code>F6</code> nach <code>F7</code>, wandern beide Bezugszeilen um eins mit. Excel schreibt dort <code>=D7*E7</code>. Beim Kopieren bis zur sechsten Kurszeile entstehen entsprechend Formeln bis <code>F11</code>.</p>
+              <p class="important-note"><strong>Wichtig:</strong> Kopiere die <em>Zelle mit der Formel</em>, nicht den Text aus der Bearbeitungsleiste. Nur dann passt Excel die relativen Bezüge automatisch an. Absolute Bezüge mit <code>$</code> lernst du erst in L2.2 kennen.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">03 · Informieren</span><h2 id="l21-section-3">So kopierst und kontrollierst du Formeln</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <ol class="instruction-list">
+                <li><span>1</span><div><strong>Formel prüfen</strong><p>Gib die Formel in <code>F6</code> ein und kontrolliere dort das Ergebnis. Achte auf <code>*</code> als Multiplikationszeichen.</p></div></li>
+                <li><span>2</span><div><strong>Formel kopieren</strong><p>Markiere <code>F6</code> und ziehe das kleine Ausfüllkästchen unten rechts am Zellrahmen bis <code>F11</code>. Alternativ: <code>F6</code> mit <kbd>Strg</kbd> + <kbd>C</kbd> kopieren, <code>F7:F11</code> markieren und mit <kbd>Strg</kbd> + <kbd>V</kbd> einfügen.</p></div></li>
+                <li><span>3</span><div><strong>Zellbezüge vergleichen</strong><p>Wähle <code>F7</code> und dann <code>F11</code>. In der Bearbeitungsleiste muss sich die Formel auf die jeweilige Datenzeile beziehen. Prüfe besonders, dass kein Kurs übersehen wurde.</p></div></li>
+              </ol>
+              <details><summary>Optionales Erklärvideo aus dem Materialpaket</summary><p>Die schriftliche Anleitung oben reicht aus. Das Video zeigt das Kopieren in Excel ergänzend.</p><video class="l14-video" controls preload="none" aria-label="Video zum Kopieren von Formeln" src="materialien/BPE1/Lernfortschritt_2/Informationsmaterial/L2_1.1.1 Video Formeln kopieren.m4v"></video><p class="download-note">Das Video liegt lokal im BPE1-Materialordner. Online führt ein Hinweis zur offiziellen Materialseite.</p></details>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure task-section">
+            <summary><span class="section-index">04 · Aufgabe</span><h2 id="l21-task-heading">Projektwoche „Sportarten kennenlernen“</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Die SMV bietet sechs Sportkurse an. Hakan, Laura, Dennis, Marie, Nikolai und Umut betreuen die Kurse. Jeder Kurs hat eine Teilnehmerzahl, eine Stundenzahl und eine Vergütung je Stunde. Entwickle eine Tabelle, die für jede Betreuungsperson den Verdienst berechnet.</p>
+              <div class="l21-table-scroll"><table class="l21-data-table"><caption>Vollständige Ausgangsdaten aus der Aufgabenstellung</caption><thead><tr><th scope="col">Kurs</th><th scope="col">Betreuer</th><th scope="col">Teilnehmer</th><th scope="col">Stunden</th><th scope="col">€/Stunde</th></tr></thead><tbody><tr><th scope="row">Tennis</th><td>Hakan</td><td>12</td><td>10</td><td>6,00</td></tr><tr><th scope="row">Badminton</th><td>Laura</td><td>18</td><td>10</td><td>4,00</td></tr><tr><th scope="row">Volleyball</th><td>Dennis</td><td>20</td><td>20</td><td>5,00</td></tr><tr><th scope="row">Basketball</th><td>Marie</td><td>14</td><td>18</td><td>4,00</td></tr><tr><th scope="row">Tischtennis</th><td>Nikolai</td><td>15</td><td>20</td><td>5,00</td></tr><tr><th scope="row">Handball</th><td>Umut</td><td>18</td><td>15</td><td>4,50</td></tr></tbody></table></div>
+              <p class="important-note"><strong>Hinweis zu den Originalunterlagen:</strong> In einer Abbildung des Informationsblatts stehen bei Badminton 16 Stunden; die eigentliche Aufgabenstellung nennt <strong>10 Stunden</strong>. Nutze für deine Tabelle die Aufgabenstellung. Die Abbildung zeigt außerdem nur fünf Datenzeilen; deine sechs Kurse reichen bis Zeile 11.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure task-section">
+            <summary><span class="section-index">05 · Arbeitsauftrag</span><h2 id="l21-section-5">Die Tabelle in Excel erstellen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <ol class="instruction-list">
+                <li><span>1</span><div><strong>Tabelle planen</strong><p>Lege in Zeile 5 die Spalten <strong>A Kurs</strong>, <strong>B Betreuer</strong>, <strong>C Teilnehmerzahl</strong>, <strong>D Vergütung je Stunde</strong>, <strong>E Stundenzahl</strong> und <strong>F Verdienst</strong> an. So passen die Zelladressen aus dem Informationsmaterial.</p></div></li>
+                <li><span>2</span><div><strong>Alle sechs Datensätze eingeben</strong><p>Erfasse die Angaben aus der Tabelle oben in Zeile 6 bis 11. Setze Vergütungen in Spalte D als echte Zahlen ein und formatiere sie als Euro; schreibe „€“ nicht in die Rechenzelle.</p></div></li>
+                <li><span>3</span><div><strong>Verdienst berechnen</strong><p>Gib in <code>F6</code> die Formel <code>=D6*E6</code> ein. Kontrolliere sie und kopiere die Formel dann bis <code>F11</code>. Formatiere die Ergebnisse als Euro.</p></div></li>
+                <li><span>4</span><div><strong>Prüfen und speichern</strong><p>Kontrolliere mindestens <code>F7</code> und <code>F11</code> in der Bearbeitungsleiste. Ändere testweise die Stundenzahl eines Kurses, prüfe das Ergebnis und stelle den Ausgangswert wieder her. Speichere die Arbeitsmappe im Ordner <strong>Ergebnisse</strong> als <code>L2_1.1.1 Projektwoche Teil 1.xlsx</code>.</p></div></li>
+              </ol>
+              <p>Die Teilnehmerzahl wird erfasst, aber nicht mit der Vergütung multipliziert. Gefragt ist der Verdienst der Betreuungsperson, nicht ein Betrag pro teilnehmender Person.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">06 · Kontrollieren</span><h2 id="l21-section-6">Ist deine Formel wirklich kopierfähig?</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <ul>
+                <li>In <code>F6:F11</code> stehen Formeln, keine eingetippten Endbeträge.</li>
+                <li>Die Formel in jeder Zeile verwendet die Vergütung und Stundenzahl <em>derselben</em> Zeile.</li>
+                <li>Alle sechs Kurse einschließlich Handball sind enthalten; die Teilnehmerzahlen stimmen mit der Aufgabenstellung überein.</li>
+                <li>Eine geänderte Stundenzahl verändert nur den zugehörigen Verdienst; nach dem Test sind die Originalwerte wiederhergestellt.</li>
+                <li>Die Datei lässt sich aus dem Ordner Ergebnisse wieder öffnen und ist klar beschriftet.</li>
+              </ul>
+              <details class="l16-source-check"><summary>Ein Kontrollwert aus dem Informationsmaterial</summary><p>Für Tennis zeigt die Originalabbildung <strong>60,00 €</strong> Verdienst. Prüfe zuerst selbst: 10 Stunden × 6,00 € je Stunde.</p></details>
+              <p>Besprich die Datei anschließend mit der Lehrkraft. Erst nach der gemeinsamen Kontrolle setzt du den Abschluss-Haken.</p>
+            </div>
+          </details>
+
+          <details class="lesson-disclosure">
+            <summary><span class="section-index">07 · Quellen</span><h2 id="l21-section-7">Originalmaterial zum Nachlesen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Alle nötigen Angaben stehen bereits oben. Wenn du das Ausgangsmaterial zusätzlich sehen möchtest, findest du es lokal hier:</p>
+              <div class="download-list">
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Informationsmaterial/L2_1.1.1 Informationsmaterial Kopieren von Formeln.docx" download><span class="file-type">DOCX</span><strong>Informationsmaterial: Formeln kopieren</strong><span class="arrow" aria-hidden="true">↓</span></a>
+                <a class="download-item" href="materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen/L2_1.1.1 Aufgabenstellung Tabellenentwurf-Relative Adressierung.docx" download><span class="file-type">DOCX</span><strong>Aufgabenstellung: Projektwoche Teil 1</strong><span class="arrow" aria-hidden="true">↓</span></a>
+              </div>
+              <p class="download-note">Die Originaldateien werden aus Lizenzgründen nicht mit der öffentlichen Website ausgeliefert.</p>
+            </div>
+          </details>
+        </article>
+
+        <aside class="lesson-page-sidebar">
+          <section class="lesson-check-panel">
+            <p class="eyebrow">Abschluss und Punkte</p>
+            <h2>L2.1 abschließen</h2>
+            <p>Setze die Haken erst nach der tatsächlichen Bearbeitung. Du kannst sie wieder entfernen; dadurch wird auch ein Abschluss zurückgenommen.</p>
+            <div class="completion-list">
+              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe alle sechs Kurse mit den vollständigen Ausgangsdaten erfasst und die Datei im Ordner Ergebnisse gespeichert.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Die Verdienste in F6:F11 entstehen durch kopierte Formeln; ich kann die relativen Zellbezüge erklären.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Ich habe die erste und letzte Formel sowie einen Änderungstest geprüft und die Ausgangswerte wiederhergestellt.</span></label>
+              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Die Lehrkraft hat meine Datei gesehen, mit mir besprochen und als richtig bestätigt.</span></label>
+            </div>
+            <button class="button button-primary button-full" type="button" id="page-complete-button">L2.1 abschließen</button>
+            <p class="check-note" id="page-completion-note">Erst nach allen eigenen Checks und der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
+            <p class="check-note">Die Bestätigung erfolgt lokal im Gespräch; Excel-Dateien werden hier nicht automatisch geprüft.</p>
+          </section>
+          <section class="next-lesson-panel">
+            <small>Danach</small><strong>L2.2 Absolute Adressierung</strong><p>Im nächsten Kapitel lernst du, welche Zelladresse beim Kopieren fest bleiben soll.</p>
+            <a class="button button-secondary button-full is-disabled" href="l2-2.html" id="next-lesson-link" aria-disabled="true">Zu L2.2 <span aria-hidden="true">›</span></a>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer lesson-page-footer">
+      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span></a>
+      <p>Inhaltlich aufgebaut nach dem lokalen BPE1-Materialpaket des Landesbildungsservers Baden-Württemberg.</p>
+    </footer>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
