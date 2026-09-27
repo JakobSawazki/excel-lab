@@ -2,7 +2,7 @@
 
 Stand: 27. September 2026, Europe/Berlin
 Projektversion: 0.9.0
-Status: Version 0.9.0 lokal getestet und zur Veröffentlichung vorbereitet
+Status: Version 0.9.0 über GitHub Pages veröffentlicht und online geprüft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
@@ -29,8 +29,9 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   geschützter Lehrerbereich, Verständnis-Checks für L1 und spätere Einheiten und
   Lernseiten ab L3.2. Videoauswahl und Erreichbarkeit mit schulischen
   Netzfiltern im Unterricht erproben.
-- **Veröffentlichung:** Version 0.9.0 ist für GitHub Pages vorbereitet.
-  Der öffentliche Stand bleibt bis zum erfolgreichen Deployment 0.8.0.
+- **Veröffentlichung:** Version 0.9.0 ist auf GitHub Pages verfügbar.
+  Startseite, `app.js`, L2.5 und L3.1 wurden online mit HTTP 200 und
+  passenden Inhaltsmarkern geprüft. Commit: `7dfcdb0`.
 
 ## 1. Vision
 
@@ -54,7 +55,7 @@ Leitidee:
 
 ## 2. Aktueller Meilenstein: Version 0.9.0
 
-Status: lokal getestet; Veröffentlichung in Vorbereitung
+Status: lokal getestet und über GitHub Pages veröffentlicht
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Repository: <https://github.com/JakobSawazki/excel-lab>
@@ -93,8 +94,8 @@ Enthalten sind:
 - Quellen- und Lizenzhinweise innerhalb der Anwendung.
 
 Die Originalmaterialien bleiben lokal und sind nicht Bestandteil des
-öffentlichen Repositorys. Die neue Version wird erst nach einem erfolgreichen
-GitHub-Pages-Build als veröffentlicht geführt.
+öffentlichen Repositorys. Der GitHub-Pages-Build wurde durch die erreichbaren
+neuen Seiten und die öffentliche Versionskennung 0.9.0 bestätigt.
 
 ## 3. Lernstruktur
 
@@ -522,6 +523,7 @@ sonst ist bewusst nur das dokumentierte Datum angegeben.
 | 27.09.2026, 11:55 Uhr | L3.1 zur WENN-Funktion mit Skiausfahrt lokal umgesetzt und Browser-Test bestanden | Übergabe H-25 |
 | 27.09.2026, 12:24 Uhr | Metallische Oberflächen und Rahmen auf Start-, Lernpfad- und Lernseiten sowie Dialogen verfeinert; Desktop und Mobil geprüft | Übergabe H-26 |
 | 27.09.2026 | Version 0.9.0 für die Veröffentlichung vorbereitet; BPE1-Originaldateien bleiben von Git ausgeschlossen | Release-Vorbereitung |
+| 27.09.2026, 16:20 Uhr | Version 0.9.0 auf `main` veröffentlicht; Startseite, App-Skript und neue Lernseiten online geprüft | Commit `7dfcdb0` |
 
 ### Version 0.9.0 – 27. September 2026
 
@@ -530,8 +532,8 @@ sonst ist bewusst nur das dokumentierte Datum angegeben.
 - Elf Lernseiten bieten optionale Video-Tutorials mit bewusstem Klick zum
   Laden; ohne Video bleiben alle Aufgaben nutzbar.
 - Navigation, Buttons, Karten und Dialoge metallisch-smaragdgrün verfeinert.
-- Browser-Smoke-Tests, Material- und Git-Ausschlüsse vor Veröffentlichung
-  erneut prüfen. Online-Status wird nach dem Deployment ergänzt.
+- Browser-Smoke-Tests, Material- und Git-Ausschlüsse wurden vor
+  Veröffentlichung erneut geprüft. Die neue Fassung ist online erreichbar.
 
 ### Lokaler Arbeitsstand nach Version 0.7.0 – 25. September 2026
 
