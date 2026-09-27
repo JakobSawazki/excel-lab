@@ -153,8 +153,40 @@
             </div>
           </details>
 
+          <details class="lesson-disclosure" id="l21-mastery-section">
+            <summary><span class="section-index">07 · Verstehen</span><h2>Prüfe dein Verständnis</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Bearbeite zunächst deine Excel-Datei. Prüfe dann mit drei kurzen Fragen, ob du die kopierten Formeln erklären kannst. Bei einem Fehler kannst du den Infoteil erneut lesen und den Check wiederholen. Deine Datei prüft zusätzlich die Lehrkraft.</p>
+              <form id="l21-mastery-form" class="mastery-form">
+                <fieldset class="mastery-question" data-mastery-question="copy">
+                  <legend>1. In F6 steht <code>=D6*E6</code>. Was steht nach dem Kopieren in F7?</legend>
+                  <label><input type="radio" name="copy" value="a"><code>=D6*E6</code></label>
+                  <label><input type="radio" name="copy" value="b"><code>=D7*E7</code></label>
+                  <label><input type="radio" name="copy" value="c"><code>=$D$6*$E$6</code></label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="basis">
+                  <legend>2. Welche Angaben brauchst du für den Verdienst einer Betreuungsperson?</legend>
+                  <label><input type="radio" name="basis" value="a">Teilnehmerzahl × Vergütung je Stunde</label>
+                  <label><input type="radio" name="basis" value="b">Vergütung je Stunde × Stundenzahl</label>
+                  <label><input type="radio" name="basis" value="c">Teilnehmerzahl + Stundenzahl</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="test">
+                  <legend>3. Du änderst nur die Stundenzahl eines Kurses. Was sollte passieren?</legend>
+                  <label><input type="radio" name="test" value="a">Alle sechs Verdienste werden gleich.</label>
+                  <label><input type="radio" name="test" value="b">Keine Verdienst-Zelle verändert sich.</label>
+                  <label><input type="radio" name="test" value="c">Nur der Verdienst dieses Kurses wird neu berechnet.</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <button class="button button-primary" type="submit">Antworten prüfen</button>
+                <p id="l21-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.</p>
+              </form>
+            </div>
+          </details>
+
           <details class="lesson-disclosure">
-            <summary><span class="section-index">07 · Quellen</span><h2 id="l21-section-7">Originalmaterial zum Nachlesen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="section-index">08 · Quellen</span><h2 id="l21-section-7">Originalmaterial zum Nachlesen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
             <div class="lesson-disclosure-body">
               <p>Alle nötigen Angaben stehen bereits oben. Wenn du das Ausgangsmaterial zusätzlich sehen möchtest, findest du es lokal hier:</p>
               <div class="download-list">
@@ -170,15 +202,15 @@
           <section class="lesson-check-panel">
             <p class="eyebrow">Abschluss und Punkte</p>
             <h2>L2.1 abschließen</h2>
-            <p>Setze die Haken erst nach der tatsächlichen Bearbeitung. Du kannst sie wieder entfernen; dadurch wird auch ein Abschluss zurückgenommen.</p>
+            <p>Setze die Haken erst nach der tatsächlichen Bearbeitung. Bestehe den Verständnis-Check und erkläre der Lehrkraft die kopierte Formel. Du kannst die Haken wieder entfernen.</p>
             <div class="completion-list">
               <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe alle sechs Kurse mit den vollständigen Ausgangsdaten erfasst und die Datei im Ordner Ergebnisse gespeichert.</span></label>
               <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Die Verdienste in F6:F11 entstehen durch kopierte Formeln; ich kann die relativen Zellbezüge erklären.</span></label>
               <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Ich habe die erste und letzte Formel sowie einen Änderungstest geprüft und die Ausgangswerte wiederhergestellt.</span></label>
-              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Die Lehrkraft hat meine Datei gesehen, mit mir besprochen und als richtig bestätigt.</span></label>
+              <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Ich habe der Lehrkraft an meiner Arbeitsmappe erklärt, warum sich D6 und E6 beim Kopieren anpassen. Sie hat die Datei geprüft und bestätigt.</span></label>
             </div>
             <button class="button button-primary button-full" type="button" id="page-complete-button">L2.1 abschließen</button>
-            <p class="check-note" id="page-completion-note">Erst nach allen eigenen Checks und der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
+            <p class="check-note" id="page-completion-note">Erst nach Verständnis-Check, allen eigenen Checks und der Bestätigung durch die Lehrkraft werden 100 Punkte gutgeschrieben.</p>
             <p class="check-note">Die Bestätigung erfolgt lokal im Gespräch; Excel-Dateien werden hier nicht automatisch geprüft.</p>
           </section>
           <section class="next-lesson-panel">

@@ -1,27 +1,36 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 26. September 2026, Europe/Berlin
-Projektversion: 0.8.0
-Status: Version 0.8.0 über GitHub Pages veröffentlicht
+Stand: 27. September 2026, Europe/Berlin
+Projektversion: 0.9.0
+Status: Version 0.9.0 lokal getestet und zur Veröffentlichung vorbereitet
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
-- **Abgeschlossen (lokal, 25.09.2026):** L1.1–L1.6 und L2.1–L2.4 als
+- **Abgeschlossen (lokal, 27.09.2026):** L1.1–L1.6, L2.1–L2.5 und L3.1 als
   eigenständige Lernseiten, gemeinsames Lernpfad-Menü, Bestandsvergleich der
   BPE1-Materialien und Zusammenführung der Projekt- und Materialdokumentation
-  in dieser Datei. L2.2 bis L2.4 besitzen verpflichtende
+  in dieser Datei. L2.1 bis L2.5 und L3.1 besitzen verpflichtende
   Verständnis-Checks vor dem Abschluss.
 - **Gerade in Bearbeitung:** kein weiteres Arbeitspaket aktiv. Der nächste
-  fachliche Ausbau ist L2.5.
+  fachliche Ausbau ist L3.2; die bestehende L1-Reihe benötigt noch eigene
+  Verständnis-Checks.
+- **Abgeschlossen (lokal, 27.09.2026):** Optionale deutschsprachige
+  YouTube-Tutorials sind den elf ausgearbeiteten Lernseiten zugeordnet.
+  Ein Player wird erst nach einem bewussten Klick geladen; die Aufgaben
+  funktionieren vollständig ohne Video.
+- **Abgeschlossen (lokal, 27.09.2026):** Smaragdgrüne Metalloberflächen für
+  Buttons, Navigation, Lernkarten, Inhalts- und Abschlussboxen sowie
+  Dialoge vereinheitlicht; Dunkel-/Hellmodus und mobile Ansicht geprüft.
 - **Blockiert:** Die 141 bytegleichen Ursprungsdateien konnten wegen einer
   Ausführungssperre nicht entfernt werden; das L1.1-PDF konnte deshalb noch
   nicht in den zentralen lokalen Materialordner verschoben werden.
 - **Weiter offen:** Unterrichtstest, Barrierefreiheit, Lizenzklärung,
-  geschützter Lehrerbereich, Verständnis-Checks für die übrigen Einheiten und
-  Lernseiten ab L2.5.
-- **Veröffentlichung:** Version 0.8.0 ist auf GitHub Pages verfügbar.
-  Startseite, L1.6 und L2.1–L2.4 wurden mit HTTP 200 geprüft.
+  geschützter Lehrerbereich, Verständnis-Checks für L1 und spätere Einheiten und
+  Lernseiten ab L3.2. Videoauswahl und Erreichbarkeit mit schulischen
+  Netzfiltern im Unterricht erproben.
+- **Veröffentlichung:** Version 0.9.0 ist für GitHub Pages vorbereitet.
+  Der öffentliche Stand bleibt bis zum erfolgreichen Deployment 0.8.0.
 
 ## 1. Vision
 
@@ -43,9 +52,9 @@ Leitidee:
 > Kurz informieren, direkt in Excel anwenden, Ergebnis prüfen und Fortschritt
 > sichtbar machen.
 
-## 2. Aktueller Meilenstein: Version 0.8.0
+## 2. Aktueller Meilenstein: Version 0.9.0
 
-Status: lokal getestet und über GitHub Pages veröffentlicht
+Status: lokal getestet; Veröffentlichung in Vorbereitung
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Repository: <https://github.com/JakobSawazki/excel-lab>
@@ -54,9 +63,11 @@ Enthalten sind:
 
 - vier Lernschritte entlang der Bildungsplaneinheit BPE 1;
 - 27 Lerneinheiten in einer schrittweise freischaltbaren Lernstruktur;
-- vollständig ausgearbeitete eigene Seiten für L1.1 bis L1.6 sowie L2.1 bis L2.4 mit Informationen
+- vollständig ausgearbeitete eigene Seiten für L1.1 bis L1.6, L2.1 bis L2.5 sowie L3.1 mit Informationen
   vor den Aufgaben, Abschluss-Check und Lehrkraftbestätigung;
-- verpflichtende Verständnisfragen in L2.2 bis L2.4 vor dem Abschluss;
+- verpflichtende Verständnisfragen in L2.1 bis L2.5 sowie L3.1 vor dem Abschluss;
+- optionale, erst nach Klick geladene Video-Tutorials in L1.1–L2.5;
+- einheitliche smaragdgrüne Metallgestaltung für Navigation, Karten und Dialoge;
 - neu gestaltete Startseite mit direktem Weiterlernen und einem interaktiven
   Formel-Lab zum Heftkauf (ohne Punkte und ohne Speicherung);
 - 20 Formelkarten mit deutschen Funktionsnamen und kaufmännischen Beispielen;
@@ -67,6 +78,7 @@ Enthalten sind:
 - Volltextsuche und Lernschrittfilter;
 - responsives Layout für Desktop, Tablet und Smartphone;
 - helles und dunkles Farbschema;
+
 - sichtbarer Drei-Schritte-Einstieg auf der Übersichtsseite;
 - fotorealistisches Startmotiv mit zwei Lernenden an einem modernen
   Tabellenkalkulations-Arbeitsplatz;
@@ -79,6 +91,10 @@ Enthalten sind:
 - Versionsübersicht und Impressum;
 - direkte Verknüpfung zu Sawazki Electronics;
 - Quellen- und Lizenzhinweise innerhalb der Anwendung.
+
+Die Originalmaterialien bleiben lokal und sind nicht Bestandteil des
+öffentlichen Repositorys. Die neue Version wird erst nach einem erfolgreichen
+GitHub-Pages-Build als veröffentlicht geführt.
 
 ## 3. Lernstruktur
 
@@ -149,9 +165,9 @@ Die eigenständige Seite L1.1 enthält:
 L1.2 erklärt Formeln und Zelladressen, führt durch die Getränkelisten-Aufgabe
 und prüft den Zugang anhand des Abschlusses von L1.1.
 
-L1.1 bis L1.6 sowie L2.1 bis L2.4 besitzen inzwischen eigene Inhaltsseiten. Auf allen bleibt die
+L1.1 bis L1.6, L2.1 bis L2.5 und L3.1 besitzen inzwischen eigene Inhaltsseiten. Auf allen bleibt die
 Hauptnavigation sichtbar; die darunterliegende Standortzeile zeigt zum Beispiel
-„Lernpfad › L1.1“. Noch nicht ausgearbeitete Einheiten ab L2.5 verwenden
+„Lernpfad › L1.1“. Noch nicht ausgearbeitete Einheiten ab L3.2 verwenden
 vorerst den kompakten Dialog und werden schrittweise zu eigenen Inhaltsseiten.
 
 ### Formelsammlung
@@ -388,8 +404,15 @@ Aktuell geprüft:
 - [x] L2.4 um einen verpflichtenden, wiederholbaren Verständnis-Check mit drei Anwendungsfragen und Lehrkraft-Erklärung ergänzen (25.09.2026, 18:56 Uhr).
 - [x] L2.3 um einen eigenen Verständnis-Check zu gemischten Bezügen und symbolischem Festgehalt ergänzen (26.09.2026, 11:46 Uhr).
 - [x] L2.2 um einen eigenen Verständnis-Check zu absoluten und relativen Bezügen ergänzen (26.09.2026, 13:37 Uhr).
+- [x] L2.1 um einen eigenen Verständnis-Check zur relativen Adressierung ergänzen (27.09.2026; lokal).
+- [x] L2.5 mit Klassenfahrt- und Provisionsaufgaben, Tabellen, Verständnis-Check und Lehrkraft-Gate als eigene Seite ausarbeiten (27.09.2026; lokal).
+- [x] L3.1 mit WENN-Funktion, Skiausfahrt, Grenzfall und Verständnis-Check als eigene Seite ausarbeiten (27.09.2026; lokal).
+- [x] Optionale, deutschsprachige Video-Tutorials mit Klick-zum-Laden für L1.1–L2.4 ergänzen (27.09.2026, 11:25 Uhr; lokal).
+- [x] Optionale Videokarte auch für L2.5 ergänzen (27.09.2026; lokal).
+- [x] Buttons, Navigation, Karten, Rahmen und Dialoge metallischer und konsistent in beiden Farbschemata gestalten (27.09.2026, 12:24 Uhr; lokal).
+- [ ] Videoauswahl fachlich und YouTube-Erreichbarkeit auf Schul-PCs prüfen; bei Bedarf je Einheit anpassen.
 - [ ] Punktelogik und Bearbeitungszeit mit einer Lerngruppe erproben.
-- [ ] Verständnis-Checks fachlich und didaktisch für L1.1–L2.1 und spätere
+- [ ] Verständnis-Checks fachlich und didaktisch für L1.1–L1.6 und spätere
   Einheiten ausarbeiten; nicht dieselben Fragen pauschal kopieren. Alte
   Abschlüsse bei der Einführung nicht rückwirkend löschen.
 
@@ -465,7 +488,7 @@ Aktuell geprüft:
 3. Inhalte und Navigation anhand dieser Beobachtungen überarbeiten.
 4. Lizenzfragen klären, bevor einzelne Originalmaterialien öffentlich
    bereitgestellt werden.
-5. L2.5 als nächste eigene Lernseite ausarbeiten; das neue L1.1-PDF nach
+5. L3.2 als nächste eigene Lernseite ausarbeiten; das neue L1.1-PDF nach
    fachlicher Freigabe direkt in die L1.1-Seite einbetten.
 
 ## 15. Änderungsprotokoll
@@ -486,14 +509,29 @@ sonst ist bewusst nur das dokumentierte Datum angegeben.
 | 20.09.2026 | L1.1-Informations- und Aufgabenblatt als PDF erstellt und geprüft | lokales Änderungsprotokoll |
 | 25.09.2026 | L1.6, gemeinsames Lernpfad-Menü, Navigation auf Lernseiten, L2.1 und L2.2 lokal umgesetzt und getestet | Übergaben H-10 bis H-14 |
 | 25.09.2026 | L2.3 mit beiden dreiteiligen Aufgabenreihen lokal umgesetzt und getestet | Übergabe H-16 |
+| 25.09.2026, 11:43 Uhr | Beide BPE1-Bäume nach SHA-256 geprüft: 141 identische Dateien und 67 zusätzliche Quelldateien | lokaler Bestandsabgleich |
+| 25.09.2026 | Projekt- und Materialdokumentation hier zusammengeführt; Materialbereinigung durch Umgebung blockiert | Übergabe H-15 |
 | 25.09.2026, 18:32 Uhr | L2.4 mit Grundfunktionen für die Projektwoche lokal umgesetzt und getestet; Lehrer-Lösungsidee zurückgestellt | Übergabe H-17 |
 | 25.09.2026, 18:56 Uhr | Verpflichtenden Verständnis-Check in L2.4 als Pilot ergänzt und lokal getestet | Übergabe H-18 |
 | 26.09.2026, 11:46 Uhr | Verständnis-Check in L2.3 ergänzt und lokal getestet; Codex-Projekte nach Update weiterhin im App-Datenbestand nachweisbar | Übergabe H-19 |
 | 26.09.2026, 13:37 Uhr | Verständnis-Check in L2.2 ergänzt und lokal getestet; Projekt „Lehramt“ in Codex angeheftet, Anzeige noch unbestätigt | Übergabe H-20 |
 | 26.09.2026, 18:04 Uhr | Version 0.8.0 für GitHub Pages vorbereitet; Lernseiten-, Navigations- und Syntaxprüfungen bestanden | Release-Vorbereitung |
 | 26.09.2026, 18:06 Uhr | Version 0.8.0 veröffentlicht; Pages-Build und Start-/Lernseiten online geprüft | Commit `069b505` |
-| 25.09.2026, 11:43 | Beide BPE1-Bäume nach SHA-256 geprüft: 141 identische Dateien und 67 zusätzliche Quelldateien | lokaler Bestandsabgleich |
-| 25.09.2026 | Projekt- und Materialdokumentation hier zusammengeführt; Materialbereinigung durch Umgebung blockiert | Übergabe H-15 |
+| 27.09.2026, 11:25 Uhr | Optionale YouTube-Videos in zehn Lernseiten lokal ergänzt; Klick-zum-Laden und mobile Darstellung getestet | Übergabe H-22 |
+| 27.09.2026, 11:43 Uhr | L2.1-Verständnis-Check und L2.5-Lernseite mit Klassenfahrt und Provision lokal umgesetzt und getestet | Übergaben H-23 und H-24 |
+| 27.09.2026, 11:55 Uhr | L3.1 zur WENN-Funktion mit Skiausfahrt lokal umgesetzt und Browser-Test bestanden | Übergabe H-25 |
+| 27.09.2026, 12:24 Uhr | Metallische Oberflächen und Rahmen auf Start-, Lernpfad- und Lernseiten sowie Dialogen verfeinert; Desktop und Mobil geprüft | Übergabe H-26 |
+| 27.09.2026 | Version 0.9.0 für die Veröffentlichung vorbereitet; BPE1-Originaldateien bleiben von Git ausgeschlossen | Release-Vorbereitung |
+
+### Version 0.9.0 – 27. September 2026
+
+- L2.5 und L3.1 als eigene Lernseiten ergänzt; L2.1 besitzt nun ebenfalls
+  einen verpflichtenden Verständnis-Check.
+- Elf Lernseiten bieten optionale Video-Tutorials mit bewusstem Klick zum
+  Laden; ohne Video bleiben alle Aufgaben nutzbar.
+- Navigation, Buttons, Karten und Dialoge metallisch-smaragdgrün verfeinert.
+- Browser-Smoke-Tests, Material- und Git-Ausschlüsse vor Veröffentlichung
+  erneut prüfen. Online-Status wird nach dem Deployment ergänzt.
 
 ### Lokaler Arbeitsstand nach Version 0.7.0 – 25. September 2026
 
@@ -1379,3 +1417,142 @@ Offene Punkte / nächste Übergabe:
 - **Nächster Schritt:** L2.1 fachlich mit einem Verständnis-Check ergänzen;
   anschließend die L1-Einheiten und L2.5 bearbeiten. Die Codex-Projekt-
   Seitenleiste bleibt ein separates Anzeigeproblem.
+
+### Übergabe H-2026-09-27-22 – Optionale Video-Tutorials
+
+- **Status:** Nur lokal ergänzt; kein Commit, Push oder Deployment. Der
+  öffentliche Stand bleibt Version 0.8.0 ohne diese Videokarten.
+- **Umsetzung:** `lesson-workspace.js` ordnet L1.1–L1.6 und L2.1–L2.4
+  sieben thematisch passende deutschsprachige Videos zu und fügt je einen
+  Hinweis vor der ersten Aufgabe ein. Autor und Titel wurden über YouTubes
+  oEmbed-Metadaten abgeglichen. Die fachlichen Texte und Aufgaben bleiben
+  vollständig auf den Lernseiten; Videos sind keine Musterlösungen und
+  keine Voraussetzung für Punkte oder Abschluss.
+- **Datenschutz:** Vor dem Klick gibt es kein iframe und keine Anfrage an
+  YouTube. Ein bewusster Klick erstellt den Player auf
+  `youtube-nocookie.com`; der Direktlink öffnet YouTube separat. Beide
+  Optionen können Daten an YouTube übertragen. „Video schließen“ entfernt
+  das iframe und beendet die Wiedergabe. Keine Videodatei oder fremdes
+  Vorschaubild wird lokal kopiert.
+- **Prüfung:** Browser-Test für alle zehn Seiten: genau ein Videoelement
+  vor der ersten Aufgabe, keine YouTube-Anfrage beim Aufruf, mobiler
+  Seitenrand ohne Überlauf. Laden und Entfernen des iframes in L2.2 sowie
+  Syntax und visuelle Mobilansicht geprüft. Externe Wiedergabe im
+  Schulnetz und didaktische Qualität jedes Videos bleiben zu erproben.
+- **Videoquellen (IDs):** L1.1/L1.5 `xGg6PxGJyLI`; L1.2/L1.6
+  `ZbWcoOrviaw`; L1.3 `-beNwsieTQc`; L1.4/L2.1 `82fEbFkxhbI`;
+  L2.2 `l2y7YEgMX-I`; L2.3 `aT53rybCKm4`; L2.4 `e27toYqrty8`.
+- **Nächster Schritt:** Mit Jakob und einer Lerngruppe prüfen, ob Länge,
+  Sprache und fachlicher Fokus passen; bei Bedarf Videos austauschen.
+  Danach entscheiden, ob die lokale Ergänzung veröffentlicht werden soll.
+
+### Übergabe H-2026-09-27-23 – Verständnis-Check in L2.1
+
+- **Status:** Lokal umgesetzt und mit Playwright geprüft; kein Commit, Push
+  oder Deployment. Der öffentliche Stand bleibt Version 0.8.0.
+- **Umsetzung:** `l2-1.html`/`l2-1.js` enthalten drei eigene
+  Anwendungsfragen zu kopierten relativen Bezügen, zur passenden
+  Verdienstformel und zur Wirkung einer geänderten Stundenzahl.
+  Falsche Antworten geben Hinweise und lassen sich wiederholen. Alle drei
+  Antworten müssen stimmen, bevor die bestehenden Arbeits-Checks und die
+  Lehrkraftbestätigung den 100-Punkte-Abschluss ermöglichen.
+- **Bestehende Lernstände:** `app.js` wertet einen bereits gespeicherten
+  L2.1-Abschluss zugleich als bestandenen Verständnis-Check; frühere
+  Abschlüsse werden nicht rückwirkend gelöscht.
+- **Prüfung:** `.tmp/l21-smoke.cjs` prüft Zugang, Fragen, falsche und
+  richtige Antworten, Abschluss-Gate, Punkte, Wiederöffnen und Mobilansicht.
+- **Offen:** Fragen und Bearbeitungsdauer mit Lernenden sowie die tatsächlichen
+  Excel-Dateien mit der Lehrkraft erproben. Das lokale Lehrkraft-Kontrollfeld
+  ist keine technisch gesicherte Autorisierung.
+
+### Übergabe H-2026-09-27-24 – L2.5 Klassenfahrt und Provisionsabrechnung
+
+- **Status:** Eigene Lernseite lokal umgesetzt und getestet; kein Commit,
+  Push oder Deployment. Dateien: `l2-5.html`, `l2-5.js`, Änderungen in
+  `content.js`, `l2-4.html`, `app.js`, `lesson-workspace.js` und
+  `lesson-workspace.css`.
+- **Quellen:** Die zwei Vertiefungsaufgaben und ihre Excel-Tabellenvorlagen
+  unter `materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen` wurden
+  fachlich ausgewertet. Die Vorlagen werden nicht geändert und bleiben
+  `.gitignore`-geschützt; die öffentliche Seite verweist stattdessen auf
+  den Landesbildungsserver. Keine Musterlösungen im Webroot.
+- **Lernfolge:** Information und benötigte Ausgangsdaten stehen vor den
+  Aufgaben. In der Klassenfahrt werden je Reiseziel drei Buspreise mit
+  `MIN`/`MAX` verglichen. In der Provisionsabrechnung werden Umsatz,
+  Provision und Gehalt von sechs Personen jeweils mit `SUMME`,
+  `MITTELWERT`, `MAX` und `MIN` ausgewertet. Beide Excel-Dateien werden am
+  Schüler-PC gespeichert und von der Lehrkraft besprochen.
+- **Abschluss:** Zugang erst nach L2.4; drei spezifische Verständnisfragen,
+  drei Arbeits-Checks und eine lokale Lehrkraftbestätigung sind vor 100
+  Punkten nötig. Haken und Abschluss sind rücknehmbar; eine Rücknahme
+  sperrt auch einen gespeicherten L3.1-Abschluss. Bestehende abgeschlossene
+  Profile bleiben gültig.
+- **Zusätze:** Weiter-Link von L2.4 führt zu L2.5. Eine freiwillige,
+  klickgesteuerte Videokarte behandelt die allgemeinen Grundfunktionen;
+  ohne Klick und ohne YouTube ist die Lernseite vollständig nutzbar.
+- **Prüfung:** `.tmp/l25-smoke.cjs` prüft Zugang, Daten, Reihenfolge,
+  Fehlversuche, Verständnis- und Lehrkraft-Gate, Punkte, Persistenz,
+  Rücknahme, öffentliche Material-Fallbacks und 390-Pixel-Ansicht.
+  Rücktests für L1.6 sowie L2.1–L2.4, Navigation und elf Videokarten
+  bestanden ebenfalls. Syntaxprüfung und `git diff --check` ohne
+  inhaltliche Fehler; nur Git-Zeilenendungswarnungen.
+- **Nächster fachlicher Schritt:** L3.1 anhand der Originalmaterialien als
+  eigene Seite ausarbeiten. Zusätzlich die L1-Einheiten mit jeweils
+  passenden Verständnisfragen ergänzen und L2.5 im Unterricht erproben.
+
+### Übergabe H-2026-09-27-25 – L3.1 Entscheidungen mit WENN
+
+- **Status:** Lokal umgesetzt und mit einem Browser-Smoke-Test geprüft;
+  kein Commit, Push oder Deployment. Der öffentliche Stand bleibt 0.8.0.
+- **Dateien:** `l3-1.html`, `l3-1.js`; Weiter-Link in `l2-5.html`, Route
+  in `content.js` und Legacy-Fortschritt in `app.js` ergänzt. `README.md`
+  und diese Übergabe aktualisiert.
+- **Quellen:** `L3_1.1.1 Informationsmaterial Wenn-Funktion.docx`,
+  `L3_1.1.1 Aufgabenstellung Wenn-Funktion.docx` und
+  `L3_1.1.1 Tabellenvorlage Skiausfahrt.xlsx` aus dem ignorierten lokalen
+  BPE1-Materialordner. Die Vorlage wurde nur gelesen. Keine Musterlösung
+  und keine Originaldatei wird in Git aufgenommen.
+- **Lernfolge:** WENN-Syntax, Wahr/Falsch-Zweige und Zellbezüge werden vor
+  der Aufgabe erläutert. Alle 13 Ausgangszeilen aus der Vorlage stehen
+  auf der Seite, sodass die Aufgabe auch ohne lokale XLSX bearbeitbar ist.
+  Die Lernenden entwerfen eine Wenn-dann-sonst-Regel, schreiben die Formel
+  in E8, kopieren bis E20 und prüfen die 18er-Grenze. Gespeichert wird
+  `L3_1.1.1 Skiausfahrt Teil 1.xlsx` auf dem Schüler-PC.
+- **Fachliche Klarstellung:** Die Quelle nutzt ausschließlich
+  `Reisejahr − Geburtsjahr < 18`. Das ist eine didaktische Jahresregel,
+  keine taggenaue Altersbestimmung; die Seite erläutert diesen Unterschied.
+- **Abschluss:** L2.5 ist Voraussetzung. Drei WENN-spezifische Fragen,
+  drei Arbeits-Checks und eine lokale Lehrkraftbestätigung sind für 100
+  Punkte nötig. Bestehende Abschlüsse bleiben gültig. Wird L3.1 wieder
+  geöffnet, wird ein gespeicherter L3.2-Abschluss zurückgenommen.
+- **Tests:** `.tmp/l31-smoke.cjs` bestand für Zugang, alle 13 Zeilen,
+  Lernpfad-Route, Fehlversuch und richtige Antworten, Lehrkraft-Gate,
+  Speicherung, Rücknahme, öffentliche Material-Fallbacks und mobile Breite.
+  Ein passendes Video wurde noch nicht ausgewählt; L3.1 ist ohne Video
+  vollständig nutzbar.
+- **Nächster Schritt:** L3.2 anhand der Datum- und geschachtelten
+  WENN-Materialien ausarbeiten. L3.1 mit der schulischen Excel-Version
+  und einer Lerngruppe fachlich erproben.
+
+### Übergabe H-2026-09-27-26 – Metallische Gestaltung verfeinert
+
+- **Status:** Ausschließlich lokal; kein Commit, Push oder Deployment.
+  Die bereits laufenden inhaltlichen Änderungen anderer Arbeitspakete
+  wurden erhalten.
+- **Änderungen:** `styles.css` bündelt smaragdgrüne Metallkanten,
+  Lichtreflexe und Tiefenwirkung für Haupt-/Nebenbuttons, Kopfbereich,
+  Lernpfad-Menü, Lernkarten, Fortschritts- und Abschlussboxen,
+  Downloads und Dialoge. `home.css` stimmt Startgrafik-Rahmen,
+  Einstiegs- und Kapitelkarten darauf ab. `lesson-workspace.css`
+  verfeinert Inhaltsabschnitte, Plus-/Minus-Symbole und Quizfelder.
+  Hover und Druckpunkt der Buttons bleiben zurückhaltend animiert;
+  Fokusmarkierungen und reduzierte Bewegung bleiben erhalten.
+- **Prüfung:** `.tmp/design-smoke.cjs` prüfte Startseite,
+  Lernpfad, Profil-Dialog und L3.1 im Dunkel- und Hellmodus sowie
+  Startseite und L3.1 bei 390 Pixel Breite. Alle Ansichten hatten
+  keinen horizontalen Überlauf oder JavaScript-Seitenfehler.
+  Die Screenshots liegen nur im ignorierten `.tmp`-Ordner.
+- **Nächster Schritt:** Mit Jakob die Gestaltung auf echten Schüler-PCs
+  im Schulbrowser ansehen; besonders Kontrast und Hover bei dortigen
+  Monitoren prüfen. Vor einer Veröffentlichung weiterhin die lokalen
+  Inhalte und Lizenzfragen gesondert freigeben.

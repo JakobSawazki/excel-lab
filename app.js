@@ -10,7 +10,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.8.0";
+  const APP_VERSION = "0.9.0";
   const POINTS_PER_LESSON = 100;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
@@ -72,7 +72,7 @@
         safeProgress[lesson.id] = {
           completed: Boolean(candidate.completed),
           teacherChecked: Boolean(candidate.teacherChecked),
-          masteryPassed: Boolean(candidate.masteryPassed || (["l2-2", "l2-3", "l2-4"].includes(lesson.id) && candidate.completed)),
+          masteryPassed: Boolean(candidate.masteryPassed || (["l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1"].includes(lesson.id) && candidate.completed)),
           checks: Array.isArray(candidate.checks)
             ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
             : lesson.checks.map(() => false)
@@ -136,7 +136,7 @@
     return {
       completed: Boolean(saved?.completed),
       teacherChecked: Boolean(saved?.teacherChecked),
-      masteryPassed: Boolean(saved?.masteryPassed || (["l2-2", "l2-3", "l2-4"].includes(lessonId) && saved?.completed)),
+      masteryPassed: Boolean(saved?.masteryPassed || (["l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1"].includes(lessonId) && saved?.completed)),
       checks: lesson.checks.map((_, index) => Boolean(saved?.checks?.[index]))
     };
   }

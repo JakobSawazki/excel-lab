@@ -42,18 +42,33 @@ Danach ist die Seite unter `http://localhost:4173` erreichbar.
 
 ## Direkt im Browser lernen
 
-L1.1 bis L1.6 sowie L2.1 bis L2.4 enthalten Informationen und Aufgaben vollständig als aufklappbare
+L1.1 bis L1.6, L2.1 bis L2.5 und L3.1 enthalten Informationen und Aufgaben vollständig als aufklappbare
 Abschnitte. Ein separates Informations- oder Aufgabenblatt wird dafür nicht
 benötigt. Browser und Excel lassen sich mit Windows-Taste + Pfeil links/rechts
 nebeneinander anordnen. Die Excel-Datei wird am Schüler-PC bearbeitet und gespeichert.
 Die Hauptnavigation bleibt auch auf diesen eigenen Lernseiten sichtbar. Direkt
-darunter zeigt „Lernpfad › L1.x“ beziehungsweise „Lernpfad › L2.x“ den aktuellen Standort.
+darunter zeigt „Lernpfad › L1.x“, „Lernpfad › L2.x“ oder „Lernpfad › L3.1“ den aktuellen Standort.
 
-L2.2 bis L2.4 erproben zusätzlich verpflichtende Verständnis-Checks mit je
+L2.1 bis L2.5 und L3.1 erproben zusätzlich verpflichtende Verständnis-Checks mit je
 drei Anwendungsfragen. Alle Antworten müssen stimmen, bevor der Abschluss
 möglich ist. Die Lehrkraft prüft weiterhin die tatsächlichen Excel-Dateien
 und lässt sich die Vorgehensweise erklären. Für die übrigen Einheiten wird
 dieses Prinzip erst nach fachlicher Ausarbeitung übernommen.
+
+## Optionale Video-Tutorials
+
+Die eigenen Lernseiten L1.1–L1.6 und L2.1–L2.5 zeigen vor der ersten Aufgabe
+jeweils ein thematisch passendes deutschsprachiges YouTube-Tutorial. Die
+Videos erläutern allgemeine Excel-Techniken; die konkreten Aufgaben und
+Prüfschritte bleiben vollständig auf der Lernseite. Einige Grundlagenvideos
+werden in mehreren passenden Einheiten als Wiederholung verwendet.
+
+Beim Öffnen der Lernseite wird keine Verbindung zu YouTube hergestellt.
+Erst ein Klick auf „Video laden“ erstellt den eingebetteten Player über
+`youtube-nocookie.com`; der alternative direkte YouTube-Link öffnet YouTube
+in einem neuen Tab. In beiden Fällen können Daten an YouTube fließen.
+„Video schließen“ entfernt den Player wieder. Wenn YouTube am Schul-PC
+gesperrt ist, sind alle Einheiten auch ohne Video bearbeitbar.
 
 Lokale Excel-Vorlagen bieten neben dem Download einen optionalen Direktaufruf
 in installiertem Excel. Dieser setzt HTTP(S) und einen funktionierenden
@@ -66,7 +81,9 @@ Verweise auf den Landesbildungsserver bestehen.
 Die erste Fassung verwendet lokale Browserprofile. Schulischer Account-Name,
 Klassenbezeichnung und Lernstand
 werden ausschließlich im `localStorage` des verwendeten Browsers gespeichert.
-Es gibt keine Datenübertragung und kein echtes Online-Konto. Der aktuelle
+Excel-Lab überträgt diese Lernprofildaten nicht an einen eigenen Server und
+besitzt kein echtes Online-Konto. Externe Videos sind separat und freiwillig
+(siehe oben). Der aktuelle
 Lernstand lässt sich als JSON exportieren und auf demselben oder einem anderen
 Gerät wieder importieren.
 
@@ -119,6 +136,9 @@ Excel-Lab/
 ├── l2-1.html                  eigene Lernseite: relative Adressierung
 ├── l2-2.html                  eigene Lernseite: absolute Adressierung
 ├── l2-3.html                  eigene Lernseite: gemischte und symbolische Bezüge
+├── l2-4.html                  eigene Lernseite: Grundfunktionen für die Projektwoche
+├── l2-5.html                  eigene Lernseite: Funktionen für Klassenfahrt und Provision
+├── l3-1.html                  eigene Lernseite: WENN-Funktion für die Skiausfahrt
 ├── home.css                   Gestaltung der Startseite
 ├── home.js                    interaktives Formel-Lab ohne Lernstandänderungen
 ├── lesson-workspace.css       aufklappbare Lernabschnitte
@@ -138,6 +158,8 @@ Excel-Lab/
 ├── l2-2.js                    Zugang, Abschluss und Punkte auf der L2.2-Seite
 ├── l2-3.js                    Zugang, Abschluss und Punkte auf der L2.3-Seite
 ├── l2-4.js                    Zugang, Abschluss und Punkte auf der L2.4-Seite
+├── l2-5.js                    Zugang, Verständnis-Check und Abschluss auf der L2.5-Seite
+├── l3-1.js                    Zugang, Verständnis-Check und Abschluss auf der L3.1-Seite
 ├── developer-mode.js          temporäre Entwicklervorschau
 ├── documentation/
 │   └── documentation.md       Projektstand, Aufgaben, Ideen und KI-Übergaben

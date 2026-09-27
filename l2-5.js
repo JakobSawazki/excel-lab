@@ -1,14 +1,14 @@
 (function () {
   "use strict";
   const KEY = "excelLab.state.v1";
-  const ID = "l2-1";
+  const ID = "l2-5";
   const $ = (selector) => document.querySelector(selector);
   const checks = Array.from(document.querySelectorAll("[data-page-check]"));
-  const masteryAnswers = { copy: "b", basis: "b", test: "c" };
+  const masteryAnswers = { bus: "b", cheap: "a", salary: "c" };
   const masteryHints = {
-    copy: "Beim Kopieren um eine Zeile nach unten wandern die relativen Zeilenbezüge mit.",
-    basis: "Gesucht ist der Verdienst der Betreuungsperson: Vergütung je Stunde mal geleistete Stunden.",
-    test: "Eine Änderung der Stunden in nur einer Kurszeile sollte nur den Verdienst dieser Zeile beeinflussen."
+    bus: "Vergleiche nur die drei Busanbieter für ein einziges Reiseziel. Die Entfernung in Zeile 4 ist kein Angebotspreis.",
+    cheap: "Gesucht ist der kleinste Wert in der Schwabenpark-Spalte.",
+    salary: "Gehälter stehen in Spalte G; D enthält Umsätze und F Provisionen."
   };
   let state, profile;
 
@@ -17,7 +17,7 @@
     profile = Array.isArray(state?.profiles) ? state.profiles.find((item) => item.id === state.currentProfileId) : null;
   }
   function unlocked() {
-    return Boolean(window.EXCEL_LAB_DEV?.enabled) || Boolean(profile?.progress?.["l1-6"]?.completed);
+    return Boolean(window.EXCEL_LAB_DEV?.enabled) || Boolean(profile?.progress?.["l2-4"]?.completed);
   }
   function progress() {
     const saved = profile?.progress?.[ID];
@@ -46,9 +46,9 @@
   function save(next) {
     if (window.EXCEL_LAB_DEV?.enabled || !profile) return false;
     profile.progress = profile.progress && typeof profile.progress === "object" ? profile.progress : {};
-    // A revoked L2.1 completion must also revoke the next lesson's completion.
-    if (!next.completed && profile.progress[ID]?.completed && profile.progress["l2-2"]) {
-      profile.progress["l2-2"].completed = false;
+    // Ein zurückgenommener L2.5-Abschluss entzieht auch L3.1 den Abschluss.
+    if (!next.completed && profile.progress[ID]?.completed && profile.progress["l3-1"]) {
+      profile.progress["l3-1"].completed = false;
     }
     profile.progress[ID] = next;
     profile.updatedAt = new Date().toISOString();
@@ -61,11 +61,11 @@
     const percent = open ? current.completed ? 100 : Math.round(checkedCount / (checks.length + 3) * 100) : 0;
     document.documentElement.dataset.theme = state?.theme === "light" ? "light" : "dark";
     $("meta[name='theme-color']").content = state?.theme === "light" ? "#f4f7f4" : "#0b1422";
-    $("#l21-content").hidden = !open;
-    $("#l21-access").hidden = open;
-    $("#l21-access-message").textContent = profile
-      ? "Schließe L1.6 mit allen eigenen Checks und der Lehrkraftbestätigung ab. Danach kannst du hier weiterlernen."
-      : "Lege auf der Startseite dein Lernprofil an und schließe L1.6 ab.";
+    $("#l25-content").hidden = !open;
+    $("#l25-access").hidden = open;
+    $("#l25-access-message").textContent = profile
+      ? "Schließe L2.4 mit Verständnis-Check, eigenen Arbeitsschritten und Lehrkraftbestätigung ab. Danach kannst du hier weiterlernen."
+      : "Lege auf der Startseite dein Lernprofil an und schließe L2.4 ab.";
     $("#lesson-profile-name").textContent = profile ? `${profile.name} · ${profile.className}` : "Profil anlegen";
     $("#lesson-profile-avatar").textContent = String(profile?.name || "?").split(/[.\s]+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
     $("#lesson-score-ring").style.setProperty("--progress", percent);
@@ -78,26 +78,26 @@
     });
     $("#page-teacher-check").checked = current.teacherChecked;
     $("#page-teacher-check").disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled);
-    $("#l21-mastery-form").querySelectorAll("input, button").forEach((element) => {
+    $("#l25-mastery-form").querySelectorAll("input, button").forEach((element) => {
       element.disabled = !open || current.masteryPassed || Boolean(window.EXCEL_LAB_DEV?.enabled);
     });
-    $("#l21-mastery-form").querySelectorAll(".mastery-question, button[type='submit']").forEach((element) => {
+    $("#l25-mastery-form").querySelectorAll(".mastery-question, button[type='submit']").forEach((element) => {
       element.hidden = current.masteryPassed;
     });
-    const masteryStatus = $("#l21-mastery-status");
+    const masteryStatus = $("#l25-mastery-status");
     if (current.masteryPassed) {
-      masteryStatus.textContent = "Verständnis-Check bestanden. Jetzt noch die eigene Excel-Datei prüfen und mit der Lehrkraft besprechen.";
+      masteryStatus.textContent = "Verständnis-Check bestanden. Prüfe beide Excel-Dateien und besprich sie mit der Lehrkraft.";
       masteryStatus.classList.add("is-passed");
     } else {
       masteryStatus.classList.remove("is-passed");
     }
     const button = $("#page-complete-button");
     button.disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled);
-    button.textContent = current.completed ? "✓ L2.1 wieder öffnen" : "L2.1 abschließen";
+    button.textContent = current.completed ? "✓ L2.5 wieder öffnen" : "L2.5 abschließen";
     button.classList.toggle("button-primary", !current.completed);
     button.classList.toggle("button-secondary", current.completed);
     $("#page-completion-note").textContent = current.completed
-      ? "100 Punkte wurden gutgeschrieben. Beim Wiederöffnen wird L2.2 erneut gesperrt; ein dortiger Abschluss wird zurückgenommen."
+      ? "100 Punkte wurden gutgeschrieben. Beim Wiederöffnen wird L3.1 erneut gesperrt; ein dortiger Abschluss wird zurückgenommen."
       : "Verständnis-Check, alle drei eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt 100 Punkte gut.";
     const next = $("#next-lesson-link");
     const ready = open && (current.completed || window.EXCEL_LAB_DEV?.enabled);
@@ -106,7 +106,7 @@
     next.tabIndex = ready ? 0 : -1;
   }
 
-  $("#l21-mastery-form").addEventListener("submit", (event) => {
+  $("#l25-mastery-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const previousProfileId = profile?.id;
     refresh();
@@ -124,7 +124,7 @@
       if (!correct) allCorrect = false;
     }
     if (!allCorrect) {
-      $("#l21-mastery-status").textContent = "Noch nicht bestanden. Lies die Hinweise und versuche es erneut.";
+      $("#l25-mastery-status").textContent = "Noch nicht bestanden. Lies die Hinweise und versuche es erneut.";
       document.querySelector('.mastery-question[data-result="incorrect"]')?.scrollIntoView({ block: "nearest" });
       return;
     }
@@ -132,10 +132,9 @@
     next.masteryPassed = true;
     if (save(next)) {
       render();
-      toast("Verständnis-Check bestanden. Zeige nun deine Excel-Datei der Lehrkraft.");
+      toast("Verständnis-Check bestanden. Zeige nun beide Excel-Dateien der Lehrkraft.");
     }
   });
-
   document.addEventListener("change", (event) => {
     if (!event.target.matches("[data-page-check], #page-teacher-check") || window.EXCEL_LAB_DEV?.enabled) return;
     const previousProfileId = profile?.id;
@@ -148,7 +147,7 @@
     if (revoked) next.completed = false;
     const saved = save(next);
     render();
-    if (saved && revoked) toast("Abschluss zurückgenommen. L2.2 ist wieder gesperrt.");
+    if (saved && revoked) toast("Abschluss zurückgenommen. L3.1 ist wieder gesperrt.");
   });
   $("#page-complete-button").addEventListener("click", () => {
     if (window.EXCEL_LAB_DEV?.enabled) return;
@@ -157,8 +156,8 @@
     if (!unlocked() || previousProfileId !== profile?.id) { render(); return; }
     const next = progress();
     if (!next.completed && !next.masteryPassed) {
-      $("#l21-mastery-section").open = true;
-      $("#l21-mastery-section").scrollIntoView({ block: "start", behavior: "smooth" });
+      $("#l25-mastery-section").open = true;
+      $("#l25-mastery-section").scrollIntoView({ block: "start", behavior: "smooth" });
       toast("Bestehe zuerst den Verständnis-Check mit allen drei Fragen.");
       return;
     }
@@ -167,14 +166,14 @@
     next.completed = !next.completed;
     const saved = save(next);
     render();
-    if (saved) toast(next.completed ? "L2.1 abgeschlossen: 100 Punkte. L2.2 ist freigeschaltet." : "L2.1 ist wieder offen. L2.2 ist wieder gesperrt.");
+    if (saved) toast(next.completed ? "L2.5 abgeschlossen: 100 Punkte. L3.1 ist freigeschaltet." : "L2.5 ist wieder offen. L3.1 ist wieder gesperrt.");
   });
   $("#next-lesson-link").addEventListener("click", (event) => {
     refresh();
     if (!window.EXCEL_LAB_DEV?.enabled && (!unlocked() || !progress().completed)) {
       event.preventDefault();
       render();
-      toast("Schließe zuerst L2.1 ab.");
+      toast("Schließe zuerst L2.5 ab.");
     }
   });
   $("#lesson-theme-toggle").addEventListener("click", () => {

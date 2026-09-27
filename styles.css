@@ -3701,3 +3701,71 @@ h3 {
 .l12-video video { display: block; width: 100%; margin-top: 1rem; }
 .l12-page :focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
 @media (max-width: 600px) { .l12-operators { grid-template-columns: 1fr; } }
+
+/* Emerald metal: shared light edges and depth for controls and panels. */
+:root {
+  --metal-edge: rgba(172, 245, 198, .48);
+  --metal-hairline: rgba(233, 255, 241, .15);
+  --metal-shadow: rgba(0, 0, 0, .32);
+  --metal-glow: rgba(24, 154, 89, .22);
+}
+[data-theme="light"] {
+  --metal-edge: rgba(11, 107, 60, .43);
+  --metal-hairline: rgba(255, 255, 255, .82);
+  --metal-shadow: rgba(31, 80, 54, .13);
+  --metal-glow: rgba(18, 137, 77, .15);
+}
+
+.button { border-radius:13px; transition:transform 180ms ease,filter 180ms ease,border-color 180ms ease,box-shadow 180ms ease; }
+.button::after { inset:3px; border-color:var(--metal-hairline); border-radius:9px; box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(0,17,9,.32); }
+.button-primary {
+  border-color:var(--metal-edge);
+  background:
+    linear-gradient(180deg,rgba(234,255,242,.38),rgba(245,255,248,.08) 9%,transparent 36%,rgba(1,36,18,.35) 100%),
+    repeating-linear-gradient(95deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px),
+    linear-gradient(100deg,#064a2d 0%,#178f57 18%,#21aa67 32%,#0c7547 52%,#20a967 75%,#075331 100%);
+  box-shadow:0 3px 0 #032c1b,0 12px 26px var(--metal-glow),inset 0 1px 0 rgba(249,255,251,.6),inset 0 0 0 2px rgba(3,59,35,.55),inset 0 -3px 5px rgba(0,26,14,.4);
+}
+.button-primary:hover { border-color:#d8ffe5; box-shadow:0 4px 0 #032c1b,0 16px 34px rgba(28,191,109,.3),inset 0 1px 0 rgba(255,255,255,.78),inset 0 0 0 2px rgba(4,72,41,.52); }
+.button-secondary {
+  border-color:color-mix(in srgb,var(--metal-edge) 80%,transparent);
+  background:
+    linear-gradient(180deg,rgba(216,255,230,.19),rgba(217,255,232,.03) 15%,transparent 48%,rgba(0,20,11,.33) 100%),
+    repeating-linear-gradient(95deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
+    linear-gradient(100deg,#071d15,#1b4d38 23%,#103925 50%,#1b533b 77%,#071d15);
+  box-shadow:0 3px 0 rgba(0,21,13,.85),0 10px 24px var(--metal-shadow),inset 0 1px 0 rgba(232,255,240,.25),inset 0 0 0 2px rgba(4,42,26,.56);
+}
+.button-secondary:hover { border-color:var(--metal-edge); box-shadow:0 4px 0 rgba(0,21,13,.85),0 16px 34px var(--metal-glow),inset 0 1px 0 rgba(233,255,241,.42),inset 0 0 0 2px rgba(4,42,26,.56); }
+.button-danger { box-shadow:0 3px 0 rgba(25,9,18,.8),0 10px 24px var(--metal-shadow),inset 0 1px 0 rgba(255,255,255,.13),inset 0 0 0 2px rgba(37,17,27,.62); }
+.button:active { transform:translateY(2px); box-shadow:inset 0 3px 7px rgba(0,0,0,.34),inset 0 0 0 2px rgba(0,26,14,.6); }
+.button:disabled,.button.is-disabled { box-shadow:none; }
+[data-theme="light"] .button-primary { box-shadow:0 3px 0 #075733,0 12px 24px var(--metal-glow),inset 0 1px 0 rgba(255,255,255,.72),inset 0 0 0 2px rgba(4,73,40,.42); }
+[data-theme="light"] .button-secondary { color:#f8fff9; }
+
+.main-nav { border-color:color-mix(in srgb,var(--metal-edge) 48%,var(--line)); background:linear-gradient(180deg,color-mix(in srgb,var(--surface-3) 80%,var(--surface)),var(--surface) 65%,var(--bg-elevated)); box-shadow:inset 0 1px 0 var(--metal-hairline),0 8px 28px var(--metal-shadow); }
+.nav-link:hover { background:color-mix(in srgb,var(--green) 10%,transparent); }
+.nav-link.is-active,.nav-dropdown.is-open .nav-learning-link { background:linear-gradient(180deg,color-mix(in srgb,var(--green) 19%,var(--surface-3)),var(--surface-2)); box-shadow:inset 0 1px 0 var(--metal-hairline),inset 0 0 0 1px color-mix(in srgb,var(--metal-edge) 53%,transparent),0 3px 9px var(--metal-shadow); color:var(--text); }
+.nav-dropdown-menu,.nav-chapter-flyout { border-color:var(--metal-edge); background:linear-gradient(155deg,color-mix(in srgb,var(--green) 10%,var(--surface-2)),var(--surface) 44%,var(--bg-elevated)); box-shadow:inset 0 1px 0 var(--metal-hairline),0 28px 60px var(--metal-shadow),0 0 0 3px color-mix(in srgb,var(--green) 7%,transparent); }
+.nav-stage-badge,.nav-chapter-link > span { box-shadow:inset 0 1px 0 rgba(242,255,247,.25),inset 0 -2px 5px rgba(0,28,15,.3),0 3px 9px var(--metal-shadow); }
+.icon-button,.profile-button { border-color:var(--metal-edge); background:linear-gradient(180deg,color-mix(in srgb,var(--green) 23%,var(--surface-2)),var(--surface) 64%,color-mix(in srgb,var(--green-deep) 16%,var(--surface))); box-shadow:inset 0 1px 0 var(--metal-hairline),inset 0 -2px 4px rgba(0,20,12,.25),0 5px 14px var(--metal-shadow); transition:transform 180ms ease,border-color 180ms ease,box-shadow 180ms ease; }
+.icon-button:hover,.profile-button:hover { transform:translateY(-2px); border-color:var(--green); box-shadow:inset 0 1px 0 var(--metal-hairline),0 10px 24px var(--metal-glow); }
+
+.lesson-card,.chapter-card,.workflow-card,.stat-card,.source-card,.sidebar-panel,.lesson-score-card,.lesson-check-panel,.next-lesson-panel,.dialog {
+  border-color:color-mix(in srgb,var(--metal-edge) 48%,var(--line));
+  background:linear-gradient(150deg,color-mix(in srgb,var(--green) 7%,var(--surface-2)),var(--surface) 43%,var(--bg-elevated));
+  box-shadow:inset 0 1px 0 var(--metal-hairline),0 12px 32px color-mix(in srgb,var(--metal-shadow) 55%,transparent);
+}
+.lesson-card:hover,.chapter-card:hover { border-color:var(--metal-edge); box-shadow:inset 0 1px 0 var(--metal-hairline),0 18px 38px var(--metal-shadow),0 0 24px var(--metal-glow); }
+.lesson-card.is-locked,.lesson-card.is-locked:hover { box-shadow:inset 0 1px 0 var(--metal-hairline); }
+.next-card,.starter-strip { border-color:var(--metal-edge); box-shadow:inset 0 1px 0 var(--metal-hairline),0 16px 42px var(--metal-shadow),0 0 30px color-mix(in srgb,var(--metal-glow) 56%,transparent); }
+.lesson-score-card { border-color:var(--metal-edge); }
+.lesson-stepper { border-color:var(--metal-edge); box-shadow:inset 0 1px 0 var(--metal-hairline),0 12px 32px var(--metal-shadow); }
+.lesson-stepper li { background:linear-gradient(160deg,color-mix(in srgb,var(--green) 5%,var(--surface-2)),var(--surface)); }
+.lesson-stepper li > span { box-shadow:inset 0 1px 0 var(--metal-hairline),0 3px 8px var(--metal-shadow); }
+.dialog { box-shadow:inset 0 1px 0 var(--metal-hairline),0 34px 100px rgba(0,0,0,.5),0 0 0 4px color-mix(in srgb,var(--green) 7%,transparent); }
+.dialog-close { border-color:var(--metal-edge); background:linear-gradient(150deg,var(--surface-3),var(--surface)); box-shadow:inset 0 1px 0 var(--metal-hairline),0 4px 12px var(--metal-shadow); }
+.download-item { border-color:color-mix(in srgb,var(--metal-edge) 40%,var(--line)); background:linear-gradient(145deg,color-mix(in srgb,var(--green) 5%,var(--surface-2)),var(--surface)); box-shadow:inset 0 1px 0 var(--metal-hairline); transition:transform 170ms ease,border-color 170ms ease,box-shadow 170ms ease; }
+.download-item:hover { transform:translateX(3px); border-color:var(--metal-edge); box-shadow:inset 0 1px 0 var(--metal-hairline),0 8px 20px var(--metal-glow); }
+.lesson-check-panel .completion-check { border-color:color-mix(in srgb,var(--metal-edge) 34%,var(--line)); }
+.lesson-check-panel .teacher-check { border-color:color-mix(in srgb,var(--amber) 36%,var(--metal-edge)); }
+@media(forced-colors:active) { .button,.main-nav,.icon-button,.profile-button,.lesson-card,.chapter-card,.dialog,.download-item { forced-color-adjust:auto; border-color:ButtonText; box-shadow:none; } }
