@@ -20,6 +20,9 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
+Aktueller Release: **0.10.0** – Themenlandkarte, vereinfachte Bedienung und
+eigene Lernseiten bis einschließlich L4.6.
+
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
 
@@ -42,18 +45,36 @@ Danach ist die Seite unter `http://localhost:4173` erreichbar.
 
 ## Direkt im Browser lernen
 
-L1.1 bis L1.6, L2.1 bis L2.5 und L3.1 enthalten Informationen und Aufgaben vollständig als aufklappbare
+L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.6 enthalten Informationen und Aufgaben vollständig als aufklappbare
 Abschnitte. Ein separates Informations- oder Aufgabenblatt wird dafür nicht
 benötigt. Browser und Excel lassen sich mit Windows-Taste + Pfeil links/rechts
 nebeneinander anordnen. Die Excel-Datei wird am Schüler-PC bearbeitet und gespeichert.
 Die Hauptnavigation bleibt auch auf diesen eigenen Lernseiten sichtbar. Direkt
-darunter zeigt „Lernpfad › L1.x“, „Lernpfad › L2.x“ oder „Lernpfad › L3.1“ den aktuellen Standort.
+darunter zeigt eine klickbare Standortzeile beispielsweise „BPE1 › L4 › L4.1“.
 
-L2.1 bis L2.5 und L3.1 erproben zusätzlich verpflichtende Verständnis-Checks mit je
-drei Anwendungsfragen. Alle Antworten müssen stimmen, bevor der Abschluss
+L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.6 erproben zusätzlich verpflichtende Verständnis-Checks mit je
+drei Anwendungsfragen; L1.6 prüft seine fünf Rechenmodelle mit fünf Fragen. Alle Antworten müssen stimmen, bevor der Abschluss
 möglich ist. Die Lehrkraft prüft weiterhin die tatsächlichen Excel-Dateien
 und lässt sich die Vorgehensweise erklären. Für die übrigen Einheiten wird
 dieses Prinzip erst nach fachlicher Ausarbeitung übernommen.
+
+## Interaktive Themenlandkarte
+
+Auf der Startseite gibt „Überblick BPE1 / Excel-Lab“ einen Überblick über die
+vier Themenbereiche. Mauszeiger und Tastaturfokus aktualisieren die Lernziele
+und Praxisbeispiele rechts. Bild und Themenkarte öffnen als direkte Links den
+passenden Lernfortschritt – mit Klick, Enter oder Antippen. Die Auswahl
+verändert weder Punkte noch Lernfortschritt.
+Jede Themenkarte zeigt zusätzlich die erledigten Einheiten und einen
+Fortschrittsbalken für das aktive Profil. Der doppelte Abschnitt „Vier
+Lernschritte“ entfällt; der Gesamtlernstand bleibt separat aufklappbar.
+Änderungen aus anderen Tabs werden übernommen. Auch beim Zurückkehren zur
+Startseite werden Profil, Fortschritt und Freischaltungen neu abgeglichen.
+Die Bereiche stehen zeilenweise als L1/L2 und L3/L4. Jeder besitzt ein eigenes
+fotorealistisches Motiv und einen Tooltip „Lernfortschritt 1“ bis
+„Lernfortschritt 4“. Die Grafiken werden bei Bedarf geladen und funktionieren
+in beiden Farbschemata. Dateien und Generierungsprompts stehen unter
+[`assets/images/organizer/`](assets/images/organizer/README.md).
 
 ## Optionale Video-Tutorials
 
@@ -78,17 +99,45 @@ Verweise auf den Landesbildungsserver bestehen.
 
 ## Lernprofile und Datenschutz
 
+Über das metallische Options-Icon lassen sich Hintergrund (Standard,
+Smaragd, Graphit, Violett, Sand), Schriftfarbe (Standard, warmer Leseton,
+hoher Kontrast, Mint, Lavendel)
+und Schriftgröße (normal, etwas größer, groß) einstellen. Die Einstellungen
+gelten auf allen Lernseiten, passen sich dem Hell-/Dunkelmodus an und bleiben
+unter `excelLab.appearance.v1` nur im Browser gespeichert. Sie verändern
+weder XP noch Lernstand und sind nicht Bestandteil der Lernstand-Speicherdatei.
+„Standard wiederherstellen“ setzt die drei Darstellungsoptionen zurück.
+Die Auswahl erfolgt über Farbkacheln und drei unterschiedlich große
+„A“-Symbole; aktive Werte sind mit Rahmen und Häkchen markiert.
+
+Das XP-Icon im Kopfbereich zeigt die Punkte des aktiven Profils an.
+100 XP entsprechen einer abgeschlossenen Einheit. Der Dialog zeigt Level,
+Fortschrittsbalken und die fehlenden XP; neue Level bei je 500 XP und das
+letzte Level beim Abschluss aller Einheiten. Es gibt keinen separaten
+XP-Speicher; zurückgenommene Abschlüsse korrigieren die Anzeige ebenfalls.
+
 Die erste Fassung verwendet lokale Browserprofile. Schulischer Account-Name,
 Klassenbezeichnung und Lernstand
 werden ausschließlich im `localStorage` des verwendeten Browsers gespeichert.
 Excel-Lab überträgt diese Lernprofildaten nicht an einen eigenen Server und
 besitzt kein echtes Online-Konto. Externe Videos sind separat und freiwillig
 (siehe oben). Der aktuelle
-Lernstand lässt sich als JSON exportieren und auf demselben oder einem anderen
-Gerät wieder importieren.
+Lernstand lässt sich mit „Speichern“ als Datei sichern und mit „Laden“ auf
+demselben oder einem anderen Gerät wieder öffnen. Das Format bleibt JSON;
+der Dateiname lautet `YYYY-MM-DD_Excel-Lab_abc.xyz_XL-Browserkennung.json`.
+Das Datum verwendet Europe/Berlin. Speichern nutzt den normalen Download
+(Zielordner und Rückfragen richten sich nach den Browsereinstellungen).
+Laden fordert bei unterstützter File-System-Access-API Downloads als
+Startordner an und filtert auf `.json`; andernfalls wird die normale
+Dateiauswahl geöffnet. Der Browser kann einen anderen Startordner wählen.
 
 Der Account-Name folgt dem schulischen Muster `abc.xyz`. Zusätzlich erzeugt
-die Anwendung eine anonyme lokale Geräte-ID. Browser können weder die
+die Anwendung eine anonyme lokale Geräte-ID. Kürzel und Klassenbezeichnung
+lassen sich im Speichern/Laden-Dialog korrigieren, ohne den Fortschritt zu
+verlieren. Beide Angaben sind bei der Profilanlage Pflicht; Klassen wie
+`WGW EK1` behalten ihre Leerzeichen. Neues Profil und Zurücksetzen stehen
+nur im Entwickler-Modus zur Verfügung; Zurücksetzen verlangt eine Bestätigung.
+Browser können weder die
 MAC-Adresse noch den Windows-Benutzernamen sicher auslesen; eine öffentliche
 IP-Adresse wird aus Datenschutz- und Zuordnungsgründen nicht abgefragt.
 
@@ -140,7 +189,8 @@ Excel-Lab/
 ├── l2-5.html                  eigene Lernseite: Funktionen für Klassenfahrt und Provision
 ├── l3-1.html                  eigene Lernseite: WENN-Funktion für die Skiausfahrt
 ├── home.css                   Gestaltung der Startseite
-├── home.js                    interaktives Formel-Lab ohne Lernstandänderungen
+├── formula-lab.js             interaktive Demo in L1.2 ohne Lernstandänderungen
+├── formula-lab.css            gekapselte Gestaltung der Formel-Demo
 ├── lesson-workspace.css       aufklappbare Lernabschnitte
 ├── lesson-workspace.js        Abschnittsbedienung und optionale Excel-Links
 ├── lesson-navigation.js       gemeinsame Navigation auf eigenen Lernseiten

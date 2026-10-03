@@ -1,0 +1,18 @@
+.l43-demo { border:1px solid var(--line-strong); border-radius:1rem; padding:1rem; margin:1rem 0; background:var(--surface); }
+.l43-gap-options { margin:0 0 1rem; border:0; padding:0; }
+.l43-gap-options legend { margin-bottom:.5rem; font-weight:750; }
+.l43-gap-options label { display:flex; align-items:center; gap:.6rem; padding:.5rem 0; cursor:pointer; }
+.l43-gap-options input { accent-color:var(--green); flex-shrink:0; }
+#l43-chart { display:block; width:100%; height:auto; }
+#l43-chart text { font:20px Arial,sans-serif; fill:var(--text); stroke:none; }
+#l43-chart .l43-heading { font-size:21px; font-weight:700; }
+#l43-chart text[transform] { font-size:17px; }
+.l43-grid { stroke:var(--line-strong); stroke-width:1; }
+.l43-axis { stroke:var(--text-soft); stroke-width:1.5; }
+.l43-line { stroke:var(--green); stroke-width:3; fill:none; }
+.l43-point { fill:var(--green); stroke:none; }
+#l43-chart .l43-false { fill:#e46565; }
+.l43-demo.is-false .l43-line { stroke:#e46565; }
+.l43-page .l25-data-table { min-width:0; }
+.l43-page .l25-data-table th,.l43-page .l25-data-table td { white-space:normal; overflow-wrap:anywhere; }
+@media(max-width:400px) { .l43-demo { padding:.6rem; } }

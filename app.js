@@ -10,7 +10,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.9.0";
+  const APP_VERSION = "0.10.0";
   const POINTS_PER_LESSON = 100;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
@@ -46,24 +46,55 @@
     };
   }
 
-  function loadState() {
+  function loadState(fallback) {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return defaultState();
       const parsed = JSON.parse(raw);
-      if (!parsed || parsed.version !== VERSION || !Array.isArray(parsed.profiles)) return defaultState();
+      if (!parsed || parsed.version !== VERSION || !Array.isArray(parsed.profiles)) return fallback || defaultState();
       return {
         ...defaultState(),
         ...parsed,
-        profiles: parsed.profiles.map(normalizeProfile)
+        profiles: parsed.profiles.map((profile) => normalizeProfile(profile,
+          fallback?.profiles.find((previous) => previous.id === profile?.id)))
       };
     } catch (error) {
       console.warn("Lokaler Lernstand konnte nicht gelesen werden.", error);
-      return defaultState();
+      return fallback || defaultState();
     }
   }
 
-  function normalizeProfile(profile) {
+  function syncStoredState() {
+    // Another lesson tab or a BFCache restore can leave this page's memory stale.
+    // Read only: never write a refreshed copy back over the authoritative storage.
+    const next = loadState(state);
+    if (JSON.stringify(next) === JSON.stringify(state)) return;
+    const previousProfile = currentProfile();
+    const nextProfile = next.profiles.find((profile) => profile.id === next.currentProfileId);
+    const sameProfile = previousProfile?.id === nextProfile?.id;
+    const manager = $("#manager-dialog");
+    const draft = manager.open && sameProfile ? [
+      [$("#profile-edit-name"), previousProfile?.name || ""],
+      [$("#profile-edit-class"), previousProfile?.className || ""]
+    ].filter(([input, saved]) => input.value !== saved).map(([input]) => ({
+      input, value: input.value, start: input.selectionStart, end: input.selectionEnd
+    })) : [];
+    state = next;
+    if (!sameProfile) {
+      manager.close();
+      $("#profile-dialog").close();
+    }
+    // Generic lesson checkboxes belong to the snapshot shown when it opened.
+    $("#lesson-dialog").close();
+    renderAll();
+    draft.forEach(({ input, value, start, end }) => {
+      input.value = value;
+      input.setSelectionRange(start, end);
+    });
+    window.dispatchEvent(new Event("excel-lab-progress-change"));
+  }
+
+  function normalizeProfile(profile, previous) {
     const safeProgress = {};
     if (profile && profile.progress && typeof profile.progress === "object") {
       lessons.forEach((lesson) => {
@@ -72,7 +103,7 @@
         safeProgress[lesson.id] = {
           completed: Boolean(candidate.completed),
           teacherChecked: Boolean(candidate.teacherChecked),
-          masteryPassed: Boolean(candidate.masteryPassed || (["l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1"].includes(lesson.id) && candidate.completed)),
+          masteryPassed: Boolean(candidate.masteryPassed || (["l1-1", "l1-2", "l1-3", "l1-4", "l1-5", "l1-6", "l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1", "l3-2", "l3-3", "l3-4", "l3-5", "l3-6", "l3-7", "l3-8", "l4-1", "l4-2", "l4-3", "l4-4", "l4-5", "l4-6"].includes(lesson.id) && candidate.completed)),
           checks: Array.isArray(candidate.checks)
             ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
             : lesson.checks.map(() => false)
@@ -82,9 +113,9 @@
     return {
       id: typeof profile?.id === "string" ? profile.id.slice(0, 80) : createId(),
       name: typeof profile?.name === "string" ? profile.name.trim().toLocaleLowerCase("de").slice(0, 40) || "lernprofil" : "lernprofil",
-      className: typeof profile?.className === "string" ? profile.className.trim().toLocaleUpperCase("de").slice(0, 16) : "",
-      createdAt: typeof profile?.createdAt === "string" ? profile.createdAt : new Date().toISOString(),
-      updatedAt: typeof profile?.updatedAt === "string" ? profile.updatedAt : new Date().toISOString(),
+      className: typeof profile?.className === "string" ? profile.className.trim().toLocaleUpperCase("de").slice(0, 32) : "",
+      createdAt: typeof profile?.createdAt === "string" ? profile.createdAt : previous?.createdAt || new Date().toISOString(),
+      updatedAt: typeof profile?.updatedAt === "string" ? profile.updatedAt : previous?.updatedAt || new Date().toISOString(),
       progress: safeProgress
     };
   }
@@ -109,6 +140,7 @@
   function saveState() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      window.dispatchEvent(new Event("excel-lab-progress-change"));
     } catch (error) {
       showToast("Der Lernstand konnte in diesem Browser nicht gespeichert werden.");
       console.warn(error);
@@ -136,7 +168,7 @@
     return {
       completed: Boolean(saved?.completed),
       teacherChecked: Boolean(saved?.teacherChecked),
-      masteryPassed: Boolean(saved?.masteryPassed || (["l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1"].includes(lessonId) && saved?.completed)),
+      masteryPassed: Boolean(saved?.masteryPassed || (["l1-1", "l1-2", "l1-3", "l1-4", "l1-5", "l1-6", "l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1", "l3-2", "l3-3", "l3-4", "l3-5", "l3-6", "l3-7", "l3-8", "l4-1", "l4-2", "l4-3", "l4-4", "l4-5", "l4-6"].includes(lessonId) && saved?.completed)),
       checks: lesson.checks.map((_, index) => Boolean(saved?.checks?.[index]))
     };
   }
@@ -206,7 +238,19 @@
     if (updateHash) history.replaceState(null, "", `#${routeMap[view]}`);
     if (view === "learning") renderLessons();
     if (view === "formulas") renderFormulas();
+    renderLocationPath();
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderLocationPath() {
+    const stage = stages.find(item => String(item.id) === String(activeStage));
+    let detail = "";
+    if (activeView === "learning") detail = stage
+      ? `<a href="#lernpfad/${stage.id}" aria-current="page" title="Lernfortschritt ${stage.id}">${escapeHtml(stage.code)}</a>`
+      : '<a href="#lernpfad" aria-current="page">Lernpfad</a>';
+    if (activeView === "formulas") detail = '<a href="#formeln" aria-current="page">Formelsammlung</a>';
+    if (activeView === "sources") detail = '<a href="#quellen" aria-current="page">Quellen</a>';
+    $("#location-path").innerHTML = `<a href="#uebersicht" data-brand-home${detail ? "" : ' aria-current="page"'}>BPE1</a>${detail ? `<span aria-hidden="true">›</span>${detail}` : ""}`;
   }
 
   function syncRouteFromHash() {
@@ -269,7 +313,6 @@
 
   function renderDashboard() {
     const stats = progressStats();
-    const profile = currentProfile();
     $("#total-ring").style.setProperty("--progress", stats.percent);
     $("#hero-ring").style.setProperty("--progress", stats.percent);
     $("#total-percent").textContent = `${stats.percent}%`;
@@ -285,39 +328,17 @@
     continueButton.innerHTML = `${continueLabel} <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>`;
     continueButton.dataset.lessonId = next.id;
 
-    $("#chapter-grid").innerHTML = stages.map((stage) => {
-      const stageProgress = stageStats(stage.id);
-      const stateText = stageProgress.completed === stageProgress.total
-        ? "Abgeschlossen"
-        : stageProgress.completed === 0 ? "Noch offen" : "In Arbeit";
-      return `
-        <button class="chapter-card" type="button" data-stage-open="${stage.id}" style="--chapter-color:${stage.color}">
-          <span>
-            <span class="chapter-top">
-              <span class="chapter-number">${escapeHtml(stage.code)}</span>
-              <span class="chapter-state">${stateText}</span>
-            </span>
-            <h3>${escapeHtml(stage.title)}</h3>
-            <p>${escapeHtml(stage.description)}</p>
-          </span>
-          <span class="chapter-footer">
-            <span class="progress-track"><span style="--width:${stageProgress.percent}%"></span></span>
-            <span class="chapter-progress-label"><span>${stageProgress.completed}/${stageProgress.total} erledigt</span><span>${stageProgress.percent}%</span></span>
-          </span>
-        </button>`;
-    }).join("");
-
-    const nextStage = stages.find((stage) => stage.id === next.stage);
-    const allComplete = stats.completed === stats.total;
-    $("#next-section").innerHTML = `
-      <div class="next-card">
-        <div>
-          <p class="eyebrow">${allComplete ? "Lernpfad abgeschlossen" : profile ? `Weiter für ${escapeHtml(profile.name)}` : "Dein nächster Schritt"}</p>
-          <h2 id="next-heading">${allComplete ? "Alle Einheiten sind erledigt" : `${escapeHtml(next.code)} ${escapeHtml(next.title)}`}</h2>
-          <p>${allComplete ? "Du kannst einzelne Themen wiederholen, deine Formelsammlung nutzen oder deinen Lernstand als JSON sichern." : escapeHtml(next.description)}</p>
-        </div>
-        <button class="button button-primary" type="button" data-open-lesson="${next.id}">${allComplete ? "Einheit wiederholen" : "Einheit öffnen"}</button>
-      </div>`;
+    // Use the same normalized statistics as the learning path.
+    stages.forEach((stage) => {
+      const stats = stageStats(stage.id);
+      const bar = document.querySelector(`#organizer-progress-${stage.id}`);
+      const label = document.querySelector(`#organizer-progress-label-${stage.id}`);
+      if (!bar || !label) return;
+      bar.max = stats.total;
+      bar.value = stats.completed;
+      label.querySelector("[data-organizer-completed]").textContent = `${stats.completed}/${stats.total} erledigt`;
+      label.querySelector("[data-organizer-percent]").textContent = `${stats.percent}%`;
+    });
 
     const formulaCount = $("#formula-count");
     if (formulaCount) formulaCount.textContent = `${formulas.length} Formeln`;
@@ -331,6 +352,7 @@
   }
 
   function renderLessons() {
+    renderLocationPath();
     const query = ($("#lesson-search")?.value || "").trim().toLocaleLowerCase("de");
     const filteredStages = stages.filter((stage) => activeStage === "all" || String(activeStage) === String(stage.id));
     let visibleCount = 0;
@@ -544,20 +566,47 @@
 
   function renderProfileManager() {
     const current = currentProfile();
-    $("#profile-list").innerHTML = state.profiles.length
-      ? state.profiles.map((profile) => {
+    $("#profile-list").innerHTML = current
+      ? [current].map((profile) => {
         const completed = lessons.filter((lesson) => Boolean(profile.progress?.[lesson.id]?.completed)).length;
         const points = completed * POINTS_PER_LESSON;
         return `
           <div class="profile-list-item ${profile.id === current?.id ? "is-current" : ""}">
             <span class="profile-avatar">${escapeHtml(initials(profile.name))}</span>
             <div><strong>${escapeHtml(profile.name)}</strong><small>${escapeHtml(profile.className || "ohne Klasse")} · ${points} Punkte · ${completed}/${lessons.length} erledigt</small><small>Browser-ID ${escapeHtml(deviceIdentity.id)}</small></div>
-            ${profile.id === current?.id ? "<small>Aktiv</small>" : `<button type="button" data-switch-profile="${escapeHtml(profile.id)}">Wechseln</button>`}
+            <small>Aktiv</small>
           </div>`;
       }).join("")
       : "<p>Noch kein lokales Profil vorhanden.</p>";
     $("#export-button").disabled = !current;
+    $("#profile-edit-form").hidden = !current;
+    $("#profile-edit-name").value = current?.name || "";
+    $("#profile-edit-class").value = current?.className || "";
+    $("#developer-profile-actions").hidden = !window.EXCEL_LAB_DEV?.enabled;
     $("#reset-button").disabled = !current;
+  }
+
+  function validateProfileFields(nameInput, classInput) {
+    nameInput.value = nameInput.value.trim().toLocaleLowerCase("de");
+    classInput.value = classInput.value.trim().replace(/\s+/g, " ").toLocaleUpperCase("de");
+    nameInput.setCustomValidity(ACCOUNT_PATTERN.test(nameInput.value) ? "" : "Bitte das Format abc.xyz verwenden.");
+    classInput.setCustomValidity(classInput.value.length >= 3 ? "" : "Bitte die vollständige Klassenbezeichnung eintragen.");
+    return nameInput.reportValidity() && classInput.reportValidity();
+  }
+
+  function editCurrentProfile() {
+    const profile = currentProfile();
+    if (!profile) return;
+    const nameInput = $("#profile-edit-name");
+    const classInput = $("#profile-edit-class");
+    if (!validateProfileFields(nameInput, classInput)) return;
+    if (profile.name === nameInput.value && profile.className === classInput.value) return;
+    profile.name = nameInput.value;
+    profile.className = classInput.value;
+    profile.updatedAt = new Date().toISOString();
+    saveState();
+    renderAll();
+    showToast("Profilangaben aktualisiert.");
   }
 
   function createProfile(name, className) {
@@ -599,24 +648,45 @@
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
-    const safeName = [
-      profile.name,
-      profile.className,
-      deviceIdentity.id,
-      payload.exportedAt.slice(0, 10)
-    ].join("-").toLocaleLowerCase("de").replace(/[^a-z0-9äöüß]+/gi, "-").replace(/^-|-$/g, "") || "lernprofil";
+    const dateParts = new Intl.DateTimeFormat("en", {
+      timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit"
+    }).formatToParts(new Date(payload.exportedAt));
+    const part = (type) => dateParts.find((item) => item.type === type).value;
+    const datePrefix = `${part("year")}-${part("month")}-${part("day")}`;
+    const safePart = (value) => String(value).replace(/[^a-z0-9äöüß._-]+/gi, "-").replace(/^-+|-+$/g, "") || "lernprofil";
     anchor.href = url;
-    anchor.download = `excel-lab-${safeName}.json`;
+    anchor.download = `${datePrefix}_Excel-Lab_${safePart(profile.name)}_${safePart(deviceIdentity.id)}.json`;
     document.body.append(anchor);
     anchor.click();
     anchor.remove();
     URL.revokeObjectURL(url);
-    showToast("Lernstand als JSON exportiert.");
+    showToast("Speicherdatei zum Download bereitgestellt.");
+  }
+
+  async function loadProgressFile() {
+    if (typeof window.showOpenFilePicker !== "function") {
+      $("#import-file").click();
+      return;
+    }
+    try {
+      const [handle] = await window.showOpenFilePicker({
+        startIn: "downloads",
+        multiple: false,
+        excludeAcceptAllOption: true,
+        types: [{ description: "Excel-Lab Speicherdatei", accept: { "application/json": [".json"] } }]
+      });
+      if (handle) await importProgress(await handle.getFile());
+    } catch (error) {
+      if (error.name === "AbortError") return;
+      // Browser ohne nutzbare File-System-Access-API behalten die normale Dateiauswahl.
+      $("#import-file").click();
+    }
   }
 
   async function importProgress(file) {
     if (!file) return;
     try {
+      if (file.size > 1_000_000) throw new Error("Datei ist zu groß.");
       const text = await file.text();
       if (text.length > 1_000_000) throw new Error("Datei ist zu groß.");
       const payload = JSON.parse(text);
@@ -630,22 +700,23 @@
       state.currentProfileId = imported.id;
       saveState();
       renderAll();
-      showToast("Lernstand erfolgreich importiert.");
+      showToast("Lernstand erfolgreich geladen.");
     } catch (error) {
-      showToast(error.message || "Die JSON-Datei konnte nicht importiert werden.");
+      showToast(error.message || "Die Speicherdatei konnte nicht geladen werden.");
     } finally {
       $("#import-file").value = "";
     }
   }
 
   function resetProgress() {
+    if (!window.EXCEL_LAB_DEV?.enabled) return;
     const profile = currentProfile();
-    if (!profile) return;
-    if (!window.confirm(`Soll der gesamte Lernfortschritt von „${profile.name}“ wirklich zurückgesetzt werden?`)) return;
+    if (!profile || !window.confirm(`Fortschritt von „${profile.name}“ wirklich zurücksetzen?`)) return;
     profile.progress = {};
+    profile.updatedAt = new Date().toISOString();
     saveState();
     renderAll();
-    showToast("Der Lernfortschritt wurde zurückgesetzt.");
+    showToast("Lernfortschritt zurückgesetzt.");
   }
 
   function applyTheme() {
@@ -730,8 +801,14 @@
       if (brandHome) {
         event.preventDefault();
         closeLearningMenu();
-        if (activeView === "dashboard") openAboutDialog();
-        else setView("dashboard");
+        setView("dashboard");
+        return;
+      }
+
+      if (event.target.closest("[data-about-info]")) {
+        event.preventDefault();
+        closeLearningMenu();
+        openAboutDialog();
         return;
       }
 
@@ -809,30 +886,29 @@
       renderProfileManager();
       $("#manager-dialog").showModal();
     });
-    $("#footer-data-button").addEventListener("click", () => {
-      renderProfileManager();
-      $("#manager-dialog").showModal();
+    $("#export-button").addEventListener("click", exportProgress);
+    $("#import-button").addEventListener("click", loadProgressFile);
+    $("#import-file").addEventListener("change", (event) => importProgress(event.target.files?.[0]));
+    $("#profile-edit-form").addEventListener("change", editCurrentProfile);
+    $("#profile-edit-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      editCurrentProfile();
     });
     $("#new-profile-button").addEventListener("click", () => {
+      if (!window.EXCEL_LAB_DEV?.enabled) return;
       $("#manager-dialog").close();
       $("#profile-form").reset();
       openProfileDialog();
     });
-    $("#export-button").addEventListener("click", exportProgress);
-    $("#import-button").addEventListener("click", () => $("#import-file").click());
-    $("#import-file").addEventListener("change", (event) => importProgress(event.target.files?.[0]));
     $("#reset-button").addEventListener("click", resetProgress);
     $("#continue-button").addEventListener("click", (event) => openLesson(event.currentTarget.dataset.lessonId));
 
     $("#profile-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      const form = new FormData(event.currentTarget);
-      const name = String(form.get("name") || "").trim().toLocaleLowerCase("de");
-      const className = String(form.get("className") || "").trim().toLocaleUpperCase("de");
       const accountInput = $("#profile-name-input");
-      accountInput.setCustomValidity(ACCOUNT_PATTERN.test(name) ? "" : "Bitte das Format abc.xyz verwenden.");
+      if (!validateProfileFields(accountInput, $("#profile-class-input"))) return;
       if (!event.currentTarget.reportValidity()) return;
-      createProfile(name, className);
+      createProfile(accountInput.value, $("#profile-class-input").value);
       $("#profile-dialog").close();
       event.currentTarget.reset();
     });
@@ -842,8 +918,10 @@
       event.target.setCustomValidity("");
     });
     $("#profile-class-input").addEventListener("input", (event) => {
-      event.target.value = event.target.value.toLocaleUpperCase("de").replace(/\s+/g, "");
+      event.target.value = event.target.value.toLocaleUpperCase("de");
+      event.target.setCustomValidity("");
     });
+    $$("#profile-edit-form input").forEach((input) => input.addEventListener("input", () => input.setCustomValidity("")));
     $$('dialog').forEach((dialog) => {
       dialog.addEventListener("click", (event) => {
         if (event.target === dialog) dialog.close();
@@ -888,6 +966,12 @@
       renderAll();
     });
     window.addEventListener("hashchange", syncRouteFromHash);
+    window.addEventListener("storage", (event) => {
+      if ((event.key === STORAGE_KEY || event.key === null) &&
+          (!event.storageArea || event.storageArea === localStorage)) syncStoredState();
+    });
+    window.addEventListener("pageshow", syncStoredState);
+    window.addEventListener("focus", syncStoredState);
   }
 
   function init() {

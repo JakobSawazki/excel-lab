@@ -1,0 +1,17 @@
+.l42-demo { margin:1rem 0; padding:1rem; border:1px solid var(--line-strong); border-radius:1rem; background:var(--surface); }
+.l42-order-options { border:0; padding:0; margin:0 0 1rem; }
+.l42-order-options legend { margin-bottom:.5rem; font-weight:750; }
+.l42-order-options label { display:flex; align-items:center; gap:.6rem; padding:.5rem 0; cursor:pointer; }
+.l42-order-options input { accent-color:var(--green); flex-shrink:0; }
+.l42-bar-chart { padding:1rem 0; }
+.l42-chart-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) 2.2em; align-items:center; gap:.6rem; margin:.8rem 0; }
+.l42-category { font-size:.9rem; overflow-wrap:anywhere; }
+.l42-bar-track { display:block; background:var(--surface-3); border-left:2px solid var(--text-soft); height:1.4rem; }
+.l42-bar { display:block; height:100%; background:var(--green); }
+.l42-value { font-weight:750; text-align:right; font-variant-numeric:tabular-nums; }
+.l42-axis-caption { margin-top:.6rem; font-size:.85rem; color:var(--text-soft); }
+.l42-page .l25-data-table { min-width:0; }
+.l42-page .l25-data-table td, .l42-page .l25-data-table th { white-space:normal; overflow-wrap:anywhere; }
+.l42-page .l25-data-table th:first-child { width:65%; }
+.l42-page .l25-data-table th:last-child { white-space:nowrap; }
+@media(max-width:400px) { .l42-demo { padding:.6rem; } .l42-chart-row { gap:.35rem; } .l42-page .l25-data-table th:first-child { width:55%; } }

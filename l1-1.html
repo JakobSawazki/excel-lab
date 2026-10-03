@@ -14,6 +14,8 @@
     <script src="developer-mode.js" defer></script>
     <script src="content.js" defer></script>
     <script src="lesson-navigation.js" defer></script>
+    <script src="xp.js" defer></script>
+    <script src="options.js" defer></script>
     <script src="lesson-workspace.js" defer></script>
     <script src="l1-1.js" defer></script>
   </head>
@@ -87,6 +89,7 @@
               <article><span>fx</span><h3>Berechnung klar benennen</h3><p>Der Gesamtpreis einer Position ergibt sich aus Einkaufspreis je Flasche mal Menge.</p></article>
               <article><span>Σ</span><h3>Summe am Tabellenende</h3><p>Unter den Einzelpositionen wird der gesamte Getränkeeinkauf zusammengefasst.</p></article>
             </div>
+            <p>Menge und Preis stehen als Zahlen in getrennten Zellen. Schreibe beispielsweise nicht „6 Flaschen zu 2,50 €“ in eine einzige Zelle: Mit getrennten Zahlenwerten kann Excel später rechnen.</p>
             <div class="formula-principle"><strong>Fachliche Regel</strong><code>Gesamtpreis = Einkaufspreis je Flasche × Menge</code><span>Die Umsetzung als Excel-Formel folgt im nächsten Kapitel L1.2.</span></div>
           </div></details>
 
@@ -138,6 +141,38 @@
             </ol>
             <p>Alle Informationen, Ausgangsdaten und Aufgaben stehen auf dieser Seite. Für L1.1 ist weder eine Vorlage noch ein separates Informations- oder Aufgabenblatt nötig.</p>
           </div></details>
+          <details class="lesson-disclosure" id="l11-mastery-section">
+            <summary><span class="section-index">07 · Verstehen</span><h2>Prüfe dein Verständnis</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Beantworte die drei Fragen. Zeige anschließend deine eigene Tabelle der Lehrkraft und erkläre ihren Aufbau.</p>
+              <form id="l11-mastery-form" class="mastery-form">
+                <fieldset class="mastery-question" data-mastery-question="structure">
+                  <legend>1. Du planst eine Liste für den Einkauf von Schulmaterial. Welcher Aufbau ist sinnvoll?</legend>
+                  <label><input type="radio" name="structure" value="a">Jeder Preis steht in einer beliebigen freien Zelle</label>
+                  <label><input type="radio" name="structure" value="b">Eine Zeile pro Artikel und beschriftete Spalten für Preis, Menge und Gesamtpreis</label>
+                  <label><input type="radio" name="structure" value="c">Alle Artikel und Zahlen stehen zusammen in einer einzigen Zelle</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="numbers">
+                  <legend>2. Wie erfasst du Preis und Menge, damit Excel später damit rechnen kann?</legend>
+                  <label><input type="radio" name="numbers" value="a">Als Satz, zum Beispiel „6 Hefte zu je 2,50 €“</label>
+                  <label><input type="radio" name="numbers" value="b">Als Bild eines handgeschriebenen Preisschilds</label>
+                  <label><input type="radio" name="numbers" value="c">Als Zahlen in getrennten Zellen unter passenden Überschriften</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="save">
+                  <legend>3. Du speicherst deinen Lernstand über das Profil in Excel-Lab. Ist damit auch deine bearbeitete Excel-Tabelle gespeichert?</legend>
+                  <label><input type="radio" name="save" value="a">Nein. Ich speichere die Arbeitsmappe zusätzlich in Excel und merke mir den Speicherort</label>
+                  <label><input type="radio" name="save" value="b">Ja. Excel-Lab speichert automatisch alle geöffneten Excel-Dateien</label>
+                  <label><input type="radio" name="save" value="c">Ja. Es reicht, den Browser offen zu lassen</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <button class="button button-primary" type="submit">Antworten prüfen</button>
+                <p id="l11-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.</p>
+              </form>
+              <p class="important-note">Die Speicherdatei im Profil sichert deinen Lernstand. Deine Excel-Arbeitsmappe speicherst du unabhängig davon selbst in Excel.</p>
+            </div>
+          </details>
         </article>
 
         <aside class="lesson-page-sidebar">
@@ -156,7 +191,7 @@
           </section>
           <section class="next-lesson-panel">
             <small>Danach</small><strong>L1.2 Rechnen mit Zelladressen</strong><p>Dieses Kapitel wird nach dem Abschluss von L1.1 freigeschaltet.</p>
-            <a class="button button-secondary button-full is-disabled" href="index.html#lernpfad" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
+            <a class="button button-secondary button-full is-disabled" href="l1-2.html" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
           </section>
         </aside>
       </div>

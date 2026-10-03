@@ -4,6 +4,12 @@
   const ID = "l1-2";
   const $ = (s) => document.querySelector(s);
   const checks = Array.from(document.querySelectorAll("[data-page-check]"));
+  const masteryAnswers = { refs: "b", recalc: "c", circle: "a" };
+  const masteryHints = {
+    refs: "Zellbezüge verwenden die aktuellen Werte der genannten Zellen. Fest eingetippte Zahlen ändern sich nicht mit der Tabelle.",
+    recalc: "D2 multipliziert weiterhin B2 mit C2: Rechne 2,50 € mal 8. Die Formel selbst bleibt unverändert.",
+    circle: "D2 darf nicht seine eigene Ergebniszelle als Eingabe verwenden. Preis und Menge stehen in B2 und C2."
+  };
   let state, profile;
   function refresh() {
     try { state = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { state = null; }
@@ -12,7 +18,7 @@
   function unlocked() { return Boolean(window.EXCEL_LAB_DEV?.enabled) || Boolean(profile?.progress?.["l1-1"]?.completed); }
   function progress() {
     const p = profile?.progress?.[ID];
-    return { completed: Boolean(p?.completed), teacherChecked: Boolean(p?.teacherChecked), checks: checks.map((_, i) => Boolean(p?.checks?.[i])) };
+    return { completed: Boolean(p?.completed), teacherChecked: Boolean(p?.teacherChecked), masteryPassed: Boolean(p?.masteryPassed || p?.completed), checks: checks.map((_, i) => Boolean(p?.checks?.[i])) };
   }
   function toast(message) {
     const el = document.createElement("div"); el.className = "toast"; el.textContent = message;
@@ -35,8 +41,8 @@
   }
   function render() {
     const open = unlocked(), p = progress();
-    const count = p.checks.filter(Boolean).length + Number(p.teacherChecked);
-    const percent = open ? p.completed ? 100 : Math.round(count / (checks.length + 2) * 100) : 0;
+    const count = p.checks.filter(Boolean).length + Number(p.teacherChecked) + Number(p.masteryPassed);
+    const percent = open ? p.completed ? 100 : Math.round(count / (checks.length + 3) * 100) : 0;
     document.documentElement.dataset.theme = state?.theme === "light" ? "light" : "dark";
     $("meta[name='theme-color']").content = state?.theme === "light" ? "#f4f7f4" : "#0b1422";
     $("#l12-content").hidden = !open; $("#l12-access").hidden = open;
@@ -49,14 +55,42 @@
     $("#lesson-points-status").textContent = open && p.completed ? "100 von 100 Punkten" : "0 von 100 Punkten";
     checks.forEach((el, i) => { el.checked = p.checks[i]; el.disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled); });
     $("#page-teacher-check").checked = p.teacherChecked; $("#page-teacher-check").disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled);
+    $("#l12-mastery-form").querySelectorAll("input, button").forEach(el => { el.disabled = !open || p.masteryPassed || Boolean(window.EXCEL_LAB_DEV?.enabled); });
+    $("#l12-mastery-form").querySelectorAll(".mastery-question, button[type='submit']").forEach(el => { el.hidden = p.masteryPassed; });
+    const status = $("#l12-mastery-status");
+    status.classList.toggle("is-passed", p.masteryPassed);
+    if (p.masteryPassed) status.textContent = "Verständnis-Check bestanden. Prüfe nun deine Excel-Datei und besprich sie mit der Lehrkraft.";
+    else status.textContent = "Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.";
     const button = $("#page-complete-button"); button.disabled = !open || Boolean(window.EXCEL_LAB_DEV?.enabled);
     button.textContent = p.completed ? "✓ L1.2 wieder öffnen" : "L1.2 abschließen";
     button.classList.toggle("button-primary", !p.completed); button.classList.toggle("button-secondary", p.completed);
-    $("#page-completion-note").textContent = p.completed ? "100 Punkte wurden gutgeschrieben. Beim Wiederöffnen wird L1.3 erneut gesperrt; ein dortiger Abschluss wird ebenfalls zurückgenommen." : "Alle drei eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt 100 Punkte gut.";
+    $("#page-completion-note").textContent = p.completed ? "100 Punkte wurden gutgeschrieben. Beim Wiederöffnen wird L1.3 erneut gesperrt; ein dortiger Abschluss wird ebenfalls zurückgenommen." : "Verständnis-Check, alle drei eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt 100 Punkte gut.";
     const next = $("#next-lesson-link"), ready = open && (p.completed || window.EXCEL_LAB_DEV?.enabled);
     next.classList.toggle("is-disabled", !ready); next.setAttribute("aria-disabled", String(!ready));
     next.tabIndex = ready ? 0 : -1;
   }
+  $("#l12-mastery-form").addEventListener("submit", event => {
+    event.preventDefault();
+    const oldProfileId = profile?.id;
+    refresh();
+    if (!unlocked() || !profile || oldProfileId !== profile.id || progress().masteryPassed || window.EXCEL_LAB_DEV?.enabled) { render(); return; }
+    let allCorrect = true;
+    for (const [name, answer] of Object.entries(masteryAnswers)) {
+      const question = document.querySelector(`[data-mastery-question="${name}"]`);
+      const selected = question.querySelector("input:checked")?.value;
+      const correct = selected === answer;
+      question.dataset.result = correct ? "correct" : "incorrect";
+      question.querySelector(".mastery-feedback").textContent = correct ? "Richtig." : selected ? masteryHints[name] : "Wähle eine Antwort.";
+      allCorrect = allCorrect && correct;
+    }
+    if (!allCorrect) {
+      $("#l12-mastery-status").textContent = "Noch nicht bestanden. Lies die Hinweise und versuche es erneut.";
+      document.querySelector('.mastery-question[data-result="incorrect"]')?.scrollIntoView({ block: "nearest" });
+      return;
+    }
+    const next = progress(); next.masteryPassed = true;
+    if (save(next)) { render(); toast("Verständnis-Check bestanden. Zeige nun die Excel-Datei der Lehrkraft."); }
+  });
   document.addEventListener("change", (event) => {
     if (!event.target.matches("[data-page-check], #page-teacher-check")) return;
     if (window.EXCEL_LAB_DEV?.enabled) return;
@@ -76,6 +110,11 @@
     const oldProfileId = profile?.id; refresh();
     if (!unlocked() || oldProfileId !== profile?.id) { render(); return; }
     const next = progress();
+    if (!next.completed && !next.masteryPassed) {
+      $("#l12-mastery-section").open = true;
+      $("#l12-mastery-section").scrollIntoView({ block: "start", behavior: "smooth" });
+      toast("Bestehe zuerst den Verständnis-Check."); return;
+    }
     if (!next.completed && !next.checks.every(Boolean)) { toast("Hake zuerst alle drei eigenen Arbeitsschritte ab."); return; }
     if (!next.completed && !next.teacherChecked) { toast("Die Bestätigung durch die Lehrkraft fehlt noch."); return; }
     next.completed = !next.completed;

@@ -21,7 +21,16 @@
   header.insertBefore(nav, header.querySelector(".header-actions"));
 
   const breadcrumb = header.querySelector(".lesson-breadcrumb");
-  if (breadcrumb) header.after(breadcrumb);
+  if (breadcrumb) {
+    const lesson = lessons.find(item => item.code === breadcrumb.querySelector("strong")?.textContent.trim());
+    const stage = stages.find(item => item.id === lesson?.stage);
+    if (lesson && stage) {
+      breadcrumb.innerHTML = `<a href="index.html#uebersicht">BPE1</a><span aria-hidden="true">›</span><a href="index.html#lernpfad/${stage.id}" title="Lernfortschritt ${stage.id}">${stage.code}</a><span aria-hidden="true">›</span><a href="${lesson.page}" aria-current="page">${lesson.code}</a>`;
+    }
+    breadcrumb.setAttribute("aria-label", "Aktueller Lernpfad");
+    breadcrumb.classList.add("location-path");
+    header.after(breadcrumb);
+  }
 
   const menu = nav.querySelector("#learning-menu");
   const menuBody = nav.querySelector("#nav-stage-menu");

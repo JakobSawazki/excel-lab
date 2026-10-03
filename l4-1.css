@@ -1,0 +1,20 @@
+.l41-demo { margin: 1rem 0; padding: 1rem; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); }
+.l41-axis-options { margin: 0; padding: 0; border: 0; }
+.l41-axis-options legend { font-weight: 750; margin-bottom: .75rem; }
+.l41-axis-options label { display: flex; align-items: center; gap: .6rem; min-height: 44px; cursor: pointer; }
+.l41-axis-options input { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; accent-color: var(--green); }
+.l41-chart-frame { margin-top: 1rem; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.l41-chart-frame:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+#l41-chart { display: block; width: 100%; height: auto; stroke: none; }
+#l41-chart text { fill: var(--text-soft); stroke: none; font: 20px Arial, sans-serif; }
+#l41-chart .l41-chart-heading { fill: var(--text); font-weight: 700; font-size: 21px; }
+#l41-chart .l41-value { fill: var(--text); font-weight: 700; }
+.l41-grid-line { stroke: var(--line-strong); stroke-width: 1; }
+.l41-axis-line { stroke: var(--text-soft); stroke-width: 1; }
+.l41-bar { fill: var(--green); stroke: none; }
+.l41-demo.is-truncated .l41-bar { fill: var(--orange, #c79937); }
+#l41-axis-status { min-height: 3em; margin: .8rem 0; }
+.l41-page .l25-data-table { min-width: 0; }
+.l41-page .l25-data-table th, .l41-page .l25-data-table td { white-space: normal; overflow-wrap: anywhere; }
+.l41-page .l25-data-table th:first-child { width: 40%; }
+@media (max-width: 400px) { .l41-demo { padding: .65rem; } }

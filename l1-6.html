@@ -14,6 +14,8 @@
     <script src="developer-mode.js" defer></script>
     <script src="content.js" defer></script>
     <script src="lesson-navigation.js" defer></script>
+    <script src="xp.js" defer></script>
+    <script src="options.js" defer></script>
     <script src="lesson-workspace.js" defer></script>
     <script src="l1-6.js" defer></script>
   </head>
@@ -183,6 +185,41 @@
                 <li>Weniger Verbrauch als inklusive darf keine negativen Zusatzkosten erzeugen.</li>
               </ul>
               <p>Stelle nach jedem Änderungstest die Originalwerte wieder her. Zeige der Lehrkraft die fünf Arbeitsmappen, erläutere exemplarisch eine Formel und bespreche offene Fehler vor dem Abschluss.</p>
+            </div>
+          </details>
+          <details class="lesson-disclosure" id="l16-mastery-section">
+            <summary><span class="section-index">09 · Verstehen</span><h2>Prüfe die fünf Rechenmodelle</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Beantworte alle fünf Fragen. Zeige anschließend deine fünf Arbeitsmappen der Lehrkraft und erkläre deine Formeln und Änderungstests.</p>
+              <form id="l16-mastery-form" class="mastery-form">
+                <fieldset class="mastery-question" data-mastery-question="revenue"><legend>1. Bei gleichem Eintrittspreis verdoppelt sich die Besucherzahl eines Saals. Was passiert mit dessen Einnahmen?</legend>
+                  <label><input type="radio" name="revenue" value="a">Die Einnahmen bleiben gleich, weil der Preis unverändert ist</label>
+                  <label><input type="radio" name="revenue" value="b">Die Einnahmen verdoppeln sich: Anzahl mal Einzelpreis</label>
+                  <label><input type="radio" name="revenue" value="c">Die Einnahmen halbieren sich</label><p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="time"><legend>2. Du bereitest mehr Brötchen vor; die vorgegebene Einkaufszeit bleibt unverändert. Welcher Teil der Gesamtzeit wächst?</legend>
+                  <label><input type="radio" name="time" value="a">Nur die Einkaufszeit</label>
+                  <label><input type="radio" name="time" value="b">Einkaufszeit und Bearbeitungszeit wachsen stets um denselben Faktor</label>
+                  <label><input type="radio" name="time" value="c">Die Bearbeitungszeit; die Einkaufszeit wird als fester Anteil einmal addiert</label><p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="volume"><legend>3. Du füllst dieselbe Gesamtmenge in Dosen mit halbem Volumen ab. Wie verändert sich die benötigte Dosenanzahl?</legend>
+                  <label><input type="radio" name="volume" value="a">Sie verdoppelt sich: Gesamtvolumen geteilt durch Volumen je Dose</label>
+                  <label><input type="radio" name="volume" value="b">Sie halbiert sich, weil die Dosen kleiner sind</label>
+                  <label><input type="radio" name="volume" value="c">Sie bleibt gleich, weil die Gesamtmenge gleich bleibt</label><p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="interest"><legend>4. Deine Zinsformel lautet Kapital × Tage × Zinssatz / 36.000. Welchen Zahlenwert gibst du für 10 % in die Zinssatzzelle ein?</legend>
+                  <label><input type="radio" name="interest" value="a">0,10, unverändert in dieser Formel</label>
+                  <label><input type="radio" name="interest" value="b">10, weil diese Formel eine ganze Prozentzahl erwartet</label>
+                  <label><input type="radio" name="interest" value="c">100, weil Prozent immer hundert bedeutet</label><p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="package"><legend>5. Ein anderes Tarifbeispiel: Bedarf 410 MB, inklusive 300 MB. Zusätzliche Daten werden nur in ganzen 100-MB-Paketen berechnet. Wie viele Zusatzpakete brauchst du?</legend>
+                  <label><input type="radio" name="package" value="a">1 Paket, weil nur 110 MB zusätzlich gebraucht werden</label>
+                  <label><input type="radio" name="package" value="b">1,1 Pakete, weil Teilpakete anteilig bezahlt werden</label>
+                  <label><input type="radio" name="package" value="c">2 Pakete, weil auch das angebrochene zweite Paket ganz berechnet wird</label><p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <button class="button button-primary" type="submit">Antworten prüfen</button>
+                <p id="l16-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle fünf Antworten stimmen.</p>
+              </form>
             </div>
           </details>
         </article>

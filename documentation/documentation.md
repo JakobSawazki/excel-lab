@@ -1,8 +1,8 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 27. September 2026, Europe/Berlin
-Projektversion: 0.9.0
-Status: Version 0.9.0 über GitHub Pages veröffentlicht und online geprüft
+Stand: 3. Oktober 2026, Europe/Berlin
+Projektversion: 0.10.0
+Status: Veröffentlichung von Version 0.10.0 vorbereitet; Deploymentprüfung läuft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
@@ -12,9 +12,81 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   BPE1-Materialien und Zusammenführung der Projekt- und Materialdokumentation
   in dieser Datei. L2.1 bis L2.5 und L3.1 besitzen verpflichtende
   Verständnis-Checks vor dem Abschluss.
-- **Gerade in Bearbeitung:** kein weiteres Arbeitspaket aktiv. Der nächste
-  fachliche Ausbau ist L3.2; die bestehende L1-Reihe benötigt noch eigene
-  Verständnis-Checks.
+- **Gerade in Bearbeitung:** Veröffentlichung und Online-Prüfung von 0.10.0. Der nächste
+  fachliche Ausbau ist L4.7. L1.1–L1.6 besitzen seit 02.10.2026 eigene
+  Verständnis-Checks; die gesamte L1-Reihe ist funktional geprüft.
+- **Abgeschlossen (lokal, 02.10.2026):** L3.2 als eigene Lernseite mit
+  JAHR, geschachtelter WENN-Funktion, Tarifpreisen, drei Aufgaben und
+  Verständnis-Check ergänzt. Die Startseite besitzt einen interaktiven
+  Advanced Organizer für L1–L4 mit Maus-, Tastatur- und Touchbedienung.
+- **Abgeschlossen (lokal, 02.10.2026, 12:14 Uhr):** L1.2 besitzt nun einen
+  verpflichtenden Verständnis-Check zu Zellbezügen, Neuberechnung und
+  Kreisbezügen. Alte Abschlüsse bleiben gültig (Übergabe H-43).
+- **Abgeschlossen (lokal, 02.10.2026, 12:21 Uhr):** Auch L1.1 besitzt einen
+  Verständnis-Check. Lernstand-/Excel-Datei-Unterscheidung erklärt und
+  Abschluss-Rücknahme sowie Profilwechsel verbessert (Übergabe H-44).
+- **Abgeschlossen (lokal, 02.10.2026, 12:26 Uhr):** Schmale Hauptnavigation
+  bis 600 px zweizeilig statt abgeschnitten; größere Ziele und Untermenü-Abstand
+  auf Startseite und allen 14 Lernseiten geprüft (Übergabe H-45).
+- **Abgeschlossen (lokal, 02.10.2026, 12:32 Uhr):** L1.3 besitzt einen
+  Verständnis-Check zu Zellwert/Anzeige, Einheitenformaten und Formelerhalt.
+  Direkter Weiter-Link führt zu L1.4 (Übergabe H-46).
+- **Abgeschlossen (lokal, 02.10.2026, 12:36 Uhr):** L1.4 besitzt einen
+  Verständnis-Check zu relativen Bezügen, festen Werten und Summenkontrolle.
+  Die Kopier-Demo bleibt erhalten; Weiter-Link zu L1.5 (Übergabe H-47).
+- **Abgeschlossen (lokal, 02.10.2026, 12:39 Uhr):** L1.5 besitzt einen
+  Verständnis-Check zu Datensatzstruktur, zentralen Eingaben und
+  Telefonnummern als Text. Speichermisserfolg gezielt getestet (Übergabe H-48).
+- **Abgeschlossen (lokal, 02.10.2026, 12:43 Uhr):** L1.6 prüft alle fünf
+  Rechenmodelle mit fünf Verständnisfragen. Gesamter Weg L1.1 bis L2.1 mit
+  direkten Weiter-Links und 600 XP getestet (Übergabe H-49).
+- **Abgeschlossen (lokal, 02.10.2026, 14:36 Uhr):** L3.4 Bedingte Formatierung
+  als eigene Seite mit zwei Toto-Aufgaben und Verständnis-Check ergänzt.
+  Zellbereiche gegen die tatsächliche Vorlage korrigiert (Übergabe H-50).
+- **Abgeschlossen (lokal, 02.10.2026, 14:43 Uhr):** Themenfortschritt direkt in
+  die vier Karten integriert; doppelten Abschnitt „Vier Lernschritte“ entfernt.
+  Gesamtlernstand bleibt aufklappbar (Übergabe H-51).
+- **Abgeschlossen (lokal, 02.10.2026, 14:49 Uhr):** Startseite gleicht
+  Lernstand aus anderen Tabs und nach Zurücknavigation ab; laufende
+  Profilkorrekturen bleiben beim selben Profil erhalten (Übergabe H-52).
+- **Abgeschlossen (lokal, 02.10.2026, 14:56 Uhr):** L3.5 SVERWEIS und
+  Fehlerbehandlung als eigene Lernseite mit zwei Aufgaben und Verständnis-Check
+  ergänzt. Vollständige Aufgabenformeln durch neutrale Beispiele ersetzt (H-53).
+- **Abgeschlossen (lokal, 02.10.2026, 15:10 Uhr):** L3.6 RUNDEN und
+  Verweistabellen als eigene Lernseite mit zwei Aufgaben und Verständnis-Check
+  ergänzt. Leere Note, Endrundung und Blattbezüge anhand der Vorlagen geprüft (H-54).
+- **Abgeschlossen (lokal, 02.10.2026, 15:18 Uhr):** L3.7 Zielwertsuche als
+  eigene Lernseite ergänzt: Urlaubsbudget sowie getrennte Kapitalversuche.
+  Kursrichtung, Zinssatzkonvention und Rückrechnungen erläutert (H-55).
+- **Abgeschlossen (lokal, 02.10.2026, 15:36 Uhr):** L3.8 als eigene Lernseite
+  mit allen sechs Vertiefungsfällen, Auswahl von zwei Fällen und Verständnis-Check.
+  Vorlagenabweichungen bei Bonus/Vereinsbeitrag ausdrücklich dokumentiert (H-56).
+- **Abgeschlossen (lokal, 02.10.2026, 15:47 Uhr):** L4.1 Säulendiagramm
+  mit Erstellungs- und Formatierungsaufgabe, interaktivem Achsenbeispiel und
+  Verständnis-Check ergänzt. Übergang L3.8 → L4.1 getestet (H-57).
+- **Abgeschlossen (lokal, 02.10.2026, 16:00 Uhr):** L4.2 Balkendiagramm
+  mit Winteraktionsaufgabe, Sortiererweiterung, neutralem Rangfolgenbeispiel
+  und Verständnis-Check ergänzt. Übergang L4.1 → L4.2 getestet (H-58).
+- **Abgeschlossen (lokal, 02.10.2026, 16:13 Uhr):** L4.3 Liniendiagramm
+  mit Schwimmen-Zeitreihe 2013–2017, Fehlwert-Demo und Verständnis-Check
+  ergänzt. Übergang L4.2 → L4.3 getestet (H-59).
+- **Abgeschlossen (lokal, 02.10.2026, 16:21 Uhr):** L4.4 Kreisdiagramm
+  mit eigener Verpflegungsbudget-Berechnung, neutraler Anteils-Demo und
+  Verständnis-Check ergänzt. Übergang L4.3 → L4.4 getestet (H-60).
+- **Abgeschlossen (lokal, 02.10.2026, 16:41 Uhr):** L4.5 mit allen drei
+  Säulenaufgaben, neutralem Untertypvergleich und Verständnis-Check ergänzt.
+  Übergang L4.4 → L4.5 und Navigation auf 25 Seiten getestet (H-61).
+- **Abgeschlossen (lokal, 03.10.2026, 10:59 Uhr):** L4.6 mit Länderaufgabe,
+  neutralem XY-/Regressionsbeispiel und Verständnis-Check abgeschlossen.
+  Übergang L4.5 → L4.6 und Navigation auf 26 Seiten geprüft (H-62).
+- **Abgeschlossen (lokal, 02.10.2026):** L3.3 mit ZÄHLENWENN/SUMMEWENN,
+  Fußball-Toto und Skiausfahrt als eigene Seite ergänzt. Die Themenlandkarte
+  zeigt jetzt vier eigene fotorealistische Bilder in der Reihenfolge
+  L1/L2, L3/L4 und Tooltips mit den ausgeschriebenen Lernfortschritten.
+- **Abgeschlossen (lokal, 02.10.2026, 11:01 Uhr):** Zusätzliche
+  Weiterlernen-Karte oberhalb der Themenlandkarte entfernt. Das Kopf-Logo
+  führt immer zur Übersicht und scrollt nach oben. Versionen und Impressum
+  bleiben über das Fuß-Logo erreichbar.
 - **Abgeschlossen (lokal, 27.09.2026):** Optionale deutschsprachige
   YouTube-Tutorials sind den elf ausgearbeiteten Lernseiten zugeordnet.
   Ein Player wird erst nach einem bewussten Klick geladen; die Aufgaben
@@ -26,8 +98,8 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Ausführungssperre nicht entfernt werden; das L1.1-PDF konnte deshalb noch
   nicht in den zentralen lokalen Materialordner verschoben werden.
 - **Weiter offen:** Unterrichtstest, Barrierefreiheit, Lizenzklärung,
-  geschützter Lehrerbereich, Verständnis-Checks für L1 und spätere Einheiten und
-  Lernseiten ab L3.2. Videoauswahl und Erreichbarkeit mit schulischen
+  geschützter Lehrerbereich, Verständnis-Checks für spätere Einheiten und
+  Lernseiten ab L4.7. Videoauswahl und Erreichbarkeit mit schulischen
   Netzfiltern im Unterricht erproben.
 - **Veröffentlichung:** Version 0.9.0 ist auf GitHub Pages verfügbar.
   Startseite, `app.js`, L2.5 und L3.1 wurden online mit HTTP 200 und
@@ -69,8 +141,8 @@ Enthalten sind:
 - verpflichtende Verständnisfragen in L2.1 bis L2.5 sowie L3.1 vor dem Abschluss;
 - optionale, erst nach Klick geladene Video-Tutorials in L1.1–L2.5;
 - einheitliche smaragdgrüne Metallgestaltung für Navigation, Karten und Dialoge;
-- neu gestaltete Startseite mit direktem Weiterlernen und einem interaktiven
-  Formel-Lab zum Heftkauf (ohne Punkte und ohne Speicherung);
+- neu gestaltete Startseite mit direktem Weiterlernen und Themenlandkarte;
+- interaktives Formel-Lab zum Heftkauf in L1.2 (ohne Punkte und ohne Speicherung);
 - 20 Formelkarten mit deutschen Funktionsnamen und kaufmännischen Beispielen;
 - 107 direkte Materialverweise auf 141 lokal bereitgestellte Schülerdateien;
 - lokale Lernprofile für mehrere Personen oder Kurse;
@@ -166,9 +238,9 @@ Die eigenständige Seite L1.1 enthält:
 L1.2 erklärt Formeln und Zelladressen, führt durch die Getränkelisten-Aufgabe
 und prüft den Zugang anhand des Abschlusses von L1.1.
 
-L1.1 bis L1.6, L2.1 bis L2.5 und L3.1 besitzen inzwischen eigene Inhaltsseiten. Auf allen bleibt die
+L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.4 besitzen inzwischen eigene Inhaltsseiten. Auf allen bleibt die
 Hauptnavigation sichtbar; die darunterliegende Standortzeile zeigt zum Beispiel
-„Lernpfad › L1.1“. Noch nicht ausgearbeitete Einheiten ab L3.2 verwenden
+„BPE1 › L1 › L1.1“. Noch nicht ausgearbeitete Einheiten ab L4.7 verwenden
 vorerst den kompakten Dialog und werden schrittweise zu eigenen Inhaltsseiten.
 
 ### Formelsammlung
@@ -408,6 +480,10 @@ Aktuell geprüft:
 - [x] L2.1 um einen eigenen Verständnis-Check zur relativen Adressierung ergänzen (27.09.2026; lokal).
 - [x] L2.5 mit Klassenfahrt- und Provisionsaufgaben, Tabellen, Verständnis-Check und Lehrkraft-Gate als eigene Seite ausarbeiten (27.09.2026; lokal).
 - [x] L3.1 mit WENN-Funktion, Skiausfahrt, Grenzfall und Verständnis-Check als eigene Seite ausarbeiten (27.09.2026; lokal).
+- [x] L3.2 mit JAHR, geschachtelter WENN-Funktion, Tarifpreisen und Verständnis-Check als eigene Seite ausarbeiten (02.10.2026; lokal).
+- [x] Interaktiven Advanced Organizer auf der Startseite für L1–L4 ergänzen (02.10.2026; lokal).
+- [x] L3.3 mit ZÄHLENWENN/SUMMEWENN, beiden Aufgaben und Verständnis-Check als eigene Seite ergänzen (02.10.2026; lokal).
+- [x] Themenlandkarte zeilenweise anordnen und mit vier fotorealistischen Motiven sowie Lernfortschritt-Tooltips ausstatten (02.10.2026; lokal).
 - [x] Optionale, deutschsprachige Video-Tutorials mit Klick-zum-Laden für L1.1–L2.4 ergänzen (27.09.2026, 11:25 Uhr; lokal).
 - [x] Optionale Videokarte auch für L2.5 ergänzen (27.09.2026; lokal).
 - [x] Buttons, Navigation, Karten, Rahmen und Dialoge metallischer und konsistent in beiden Farbschemata gestalten (27.09.2026, 12:24 Uhr; lokal).
@@ -489,7 +565,7 @@ Aktuell geprüft:
 3. Inhalte und Navigation anhand dieser Beobachtungen überarbeiten.
 4. Lizenzfragen klären, bevor einzelne Originalmaterialien öffentlich
    bereitgestellt werden.
-5. L3.2 als nächste eigene Lernseite ausarbeiten; das neue L1.1-PDF nach
+5. L4.7 als nächste eigene Lernseite ausarbeiten; das neue L1.1-PDF nach
    fachlicher Freigabe direkt in die L1.1-Seite einbetten.
 
 ## 15. Änderungsprotokoll
@@ -524,6 +600,31 @@ sonst ist bewusst nur das dokumentierte Datum angegeben.
 | 27.09.2026, 12:24 Uhr | Metallische Oberflächen und Rahmen auf Start-, Lernpfad- und Lernseiten sowie Dialogen verfeinert; Desktop und Mobil geprüft | Übergabe H-26 |
 | 27.09.2026 | Version 0.9.0 für die Veröffentlichung vorbereitet; BPE1-Originaldateien bleiben von Git ausgeschlossen | Release-Vorbereitung |
 | 27.09.2026, 16:20 Uhr | Version 0.9.0 auf `main` veröffentlicht; Startseite, App-Skript und neue Lernseiten online geprüft | Commit `7dfcdb0` |
+| 02.10.2026, 10:39 Uhr | L3.2 mit Datumsfunktionen, drei Tarifgruppen und Preiszuordnung lokal umgesetzt; interaktive Themenlandkarte auf der Startseite ergänzt und geprüft | Übergaben H-28 / H-29 |
+| 02.10.2026, 10:56 Uhr | L3.3 lokal umgesetzt; Themenlandkarte mit vier fotorealistischen Bildern, Reihenfolge und Tooltips erweitert | Übergaben H-30 / H-31 |
+| 02.10.2026, 11:01 Uhr | Doppelte Einstiegskarte entfernt; Kopf-Logo führt stets nach oben zur Startseite, Fuß-Logo öffnet Versionen/Impressum | Übergabe H-32 |
+| 02.10.2026, 11:06 Uhr | Lernpfad-Rahmen verbreitert und als gemeinsame Metallfläche für Text und Pfeil gestaltet | Übergabe H-33 |
+| 02.10.2026, 11:28 Uhr | Schülerdialog auf Speichern/Laden reduziert; Datums-Dateiname und Downloads-Dateiauswahl ergänzt | Übergabe H-34 |
+| 02.10.2026, 11:33 Uhr | Kürzel/Klasse direkt bearbeitbar; Klassen mit Leerzeichen zugelassen; Neues Profil/Zurücksetzen nur im Entwickler-Modus | Übergabe H-35 |
+| 02.10.2026, 11:37 Uhr | Metallisches XP-Icon und Level-Dialog auf Startseite und 14 Lernseiten ergänzt | Übergabe H-36 |
+| 02.10.2026 | Options-Icon mit Hintergrund-, Schriftfarben- und Schriftgrößen-Voreinstellungen lokal ergänzt | Übergabe H-37 |
+| 02.10.2026, 11:47 Uhr | Klickbare Pfadnavigation links unter dem Hauptmenü ergänzt; alte Startseiten-Infozeile entfernt | Übergabe H-38 |
+| 02.10.2026, 11:49 Uhr | Abstand unter der Themenlandkarte komprimiert; Formel-Lab über „Excel ausprobieren“ aufklappbar | Übergabe H-39 |
+| 02.10.2026, 11:55 Uhr | Themenkarten direkt mit L1–L4 verknüpft; zusätzliche Lernpfad-Buttons aus Detailanzeige entfernt | Übergabe H-40 |
+| 02.10.2026, 11:59 Uhr | Darstellungs-Dropdowns durch fünf Farboptionen je Gruppe und drei Schriftgrößen-Icons ersetzt | Übergabe H-41 |
+| 02.10.2026, 12:14 Uhr | L1.2 um verpflichtenden Verständnis-Check ergänzt; Bestandsschutz und Abschluss getestet | Übergabe H-43 |
+| 02.10.2026, 12:21 Uhr | L1.1 um Verständnis-Check ergänzt; Profilwechsel und Abschluss-Rücknahme verbessert | Übergabe H-44 |
+| 02.10.2026, 12:26 Uhr | Mobile Hauptnavigation zweizeilig und ohne abgeschnittene Menüpunkte | Übergabe H-45 |
+| 02.10.2026, 12:32 Uhr | L1.3 mit Verständnis-Check und direkter Verknüpfung zu L1.4 ergänzt | Übergabe H-46 |
+| 02.10.2026, 12:36 Uhr | L1.4 mit Verständnis-Check und direkter Verknüpfung zu L1.5 ergänzt | Übergabe H-47 |
+| 02.10.2026, 12:39 Uhr | L1.5 mit Verständnis-Check ergänzt; Speichermisserfolg und Entwickler-Vorschau geprüft | Übergabe H-48 |
+| 02.10.2026, 12:43 Uhr | L1.6 mit fünf Verständnisfragen ergänzt; gesamte L1-Reihe und Übergang zu L2.1 getestet | Übergabe H-49 |
+| 02.10.2026, 12:07 Uhr | Formel-Lab von der Startseite nach L1.2 verschoben, Transferauftrag nach Excel ergänzt | Übergabe H-42 |
+| 02.10.2026, 15:36 Uhr | L3.8 mit sechs Vertiefungsfällen und Verständnis-Check ergänzt; Quellenkonflikte dokumentiert | Übergabe H-56 |
+| 02.10.2026, 15:47 Uhr | L4.1 mit zwei Diagrammaufgaben und interaktivem Achsenbeispiel ergänzt | Übergabe H-57 |
+| 02.10.2026, 16:00 Uhr | L4.2 mit Balkendiagramm, Sortiererweiterung und Verständnis-Check ergänzt | Übergabe H-58 |
+| 02.10.2026, 16:13 Uhr | L4.3 mit Schwimmen-Zeitreihe, Fehlwert-Demo und Verständnis-Check ergänzt | Übergabe H-59 |
+| 02.10.2026, 16:21 Uhr | L4.4 mit Budgetberechnung, Anteils-Demo und Verständnis-Check ergänzt | Übergabe H-60 |
 
 ### Version 0.9.0 – 27. September 2026
 
@@ -1558,3 +1659,1173 @@ Offene Punkte / nächste Übergabe:
   im Schulbrowser ansehen; besonders Kontrast und Hover bei dortigen
   Monitoren prüfen. Vor einer Veröffentlichung weiterhin die lokalen
   Inhalte und Lizenzfragen gesondert freigeben.
+
+### Übergabe H-2026-10-02-28 – L3.2 Datum und geschachtelte WENN-Funktionen
+
+- **Status:** Lokal umgesetzt und geprüft. Der veröffentlichte Stand bleibt
+  Version 0.9.0; diese Ergänzung wurde noch nicht gepusht.
+- **Dateien:** Neue `l3-2.html` und `l3-2.js`; Seitenroute, Aufgaben und
+  Quellen in `content.js`, Bestandsfortschritt in `app.js` sowie
+  Weiter-Link in `l3-1.html` ergänzt. README und Dokumentation aktualisiert.
+- **Quellen:** Informationsblätter zur Datumsfunktion und geschachtelten
+  WENN-Funktion; Aufgaben Skiausfahrt Teil 2, Teil 3 und Teil 4 unter
+  `materialien/BPE1/Lernfortschritt_3`. Alle sieben Materialpfade geprüft.
+- **Inhalt:** JAHR versus Anzeigeformat JJJJ, echte Datumswerte, geordnete
+  WENN-Prüfungen, Grenze bis einschließlich 12 und Preislisten mit festen
+  Zellbezügen. Der Hinweis auf die vereinfachte Jahresregel bleibt erhalten.
+  Die Aufgaben erzeugen drei eigene Arbeitsmappen im Ordner Ergebnisse;
+  Grenz- und Preisänderungstests werden ausdrücklich verlangt.
+- **Abschluss:** Zugang nach L3.1. Drei Verständnisfragen, drei Arbeits-Checks
+  und Lehrkraftbestätigung ermöglichen 100 Punkte. Rücknahme sperrt L3.3
+  und nimmt einen dort gespeicherten Abschluss zurück. Bereits vorhandene
+  L3.2-Abschlüsse bleiben gültig.
+- **Prüfung:** `.tmp/l32-smoke.cjs` bestanden: Voraussetzung,
+  Lernpfad-Route, Fehlversuch, Quiz, Arbeits-/Lehrkraft-Gates, Punkte,
+  Persistenz, Rücknahme, öffentlicher Material-Fallback und mobile Breite.
+  JavaScript-Syntax und Git-Diff geprüft.
+- **Nächster Schritt:** L3.3 ZÄHLENWENN/SUMMEWENN ausarbeiten; L3.2 mit einer
+  Lerngruppe und der schulischen Excel-Version erproben.
+
+### Übergabe H-2026-10-02-29 – Interaktiver Advanced Organizer
+
+- **Auftrag:** Themengebiete als schöne interaktive Illustration auf der
+  ersten Übersichtsseite zeigen.
+- **Status:** Lokal umgesetzt und visuell geprüft.
+- **Dateien:** `index.html`, `home.css`, neue `organizer.js`.
+- **Gestaltung:** Vier farbige, illustrierte Bereiche um eine Excel-Arbeitsmappe,
+  passend zu den metallischen Rahmen der Homepage. Skalierbare Inline-SVGs
+  benötigen keine Bilddateien oder externen Dienste. Mobil stehen die Themen
+  als 2×2-Auswahl über der Detailanzeige.
+- **Bedienung:** Mauszeiger, Tastaturfokus und Antippen aktualisieren den
+  Detailbereich. Angezeigt werden Themenbeschreibung, Lernziel, ein
+  Praxisbeispiel und ein Link zum passenden Lernschritt. Die Auswahl bleibt
+  beim Verlassen des Feldes sichtbar; Punkte und Freischaltungen bleiben
+  unverändert. Ein ausgewählter Bereich ist mit `aria-pressed` gekennzeichnet.
+- **Prüfung:** `.tmp/organizer-smoke.cjs` bestanden: Hover, Tab/Enter,
+  Touch, passende Lernpfadfilter, unveränderter Lernstand, Dunkel-/Hellmodus,
+  390-Pixel-Ansicht und keine JavaScript-Seitenfehler. Screenshots
+  `.tmp/organizer-dark.png`, `.tmp/organizer-light.png`,
+  `.tmp/organizer-mobile.png` visuell geprüft.
+- **Nächster Schritt:** Lernende kurz erklären lassen, wie die vier Bereiche
+  zusammenhängen; Beschriftungen anhand ihrer Rückmeldungen verbessern.
+
+### Übergabe H-2026-10-02-30 – L3.3 Nach Kriterien auswerten
+
+- **Status:** Lokal umgesetzt und geprüft, noch nicht veröffentlicht.
+- **Dateien:** Neue `l3-3.html` und `l3-3.js`; `content.js`, `app.js` und
+  Weiter-Link in `l3-2.html` angepasst.
+- **Inhalt:** ZÄHLENWENN und SUMMEWENN mit neutralen Beispielen, anschließend
+  Fußball-Toto Teil 4 und Skiausfahrt Teil 5. Informationen stehen vor den
+  Aufgaben. Ausgangsdaten, Handkontrolle, Änderungstests und Speichern sind
+  beschrieben; Musterlösungen wurden nicht eingebunden.
+- **Quellenprüfung:** Die beiden Original-Arbeitsmappen wurden nur gelesen.
+  Toto: Spiele in Zeilen 5–17, Treffer in J, Auswertung J19/J20.
+  Ski: Tarifgruppen E10:E22, Preise F10:F22, Zusammenfassung D27:F29.
+  Bei Fortsetzung der selbst erstellten L3.2-Datei werden zwei zusätzliche
+  Zeilen oder bewusst angepasste Bereiche erläutert. Originale unverändert.
+- **Abschluss:** Voraussetzung L3.2; drei Verständnisfragen, drei
+  Arbeits-Checks und Lehrkraftbestätigung ermöglichen 100 Punkte.
+  Bestehende Abschlüsse bleiben gültig, Rücknahme sperrt L3.4 wieder.
+- **Prüfung:** `.tmp/l33-smoke.cjs` bestanden: Voraussetzung, Fehlversuch,
+  Quiz, Arbeits-/Lehrkraft-Gates, Punkte, Persistenz, Rücknahme, fünf
+  Material-Fallbacks, mobile Breite und keine JavaScript-Seitenfehler.
+  Desktop-Darstellung visuell geprüft; JavaScript-Syntax geprüft.
+- **Nächster fachlicher Schritt:** L3.4 anhand der vorhandenen Materialien
+  ausarbeiten. Vor Veröffentlichung lokale Ergänzungen gemeinsam prüfen.
+
+### Übergabe H-2026-10-02-31 – Fotorealistische Excel-Landkarte
+
+- **Auftrag:** Reihenfolge oben L1/L2, unten L3/L4 und je Lernfortschritt
+  eine eigene fotorealistische Grafik mit Tooltip „Lernfortschritt …“.
+- **Status:** Lokal umgesetzt und geprüft.
+- **Dateien:** `index.html`, `home.css`; vier PNG-Dateien unter
+  `assets/images/organizer/`. Dateinamen, vollständige Prompts und Herkunft
+  stehen in `assets/images/organizer/README.md`.
+- **Bilder:** Mit dem eingebauten Bildgenerator erstellt; vier eigenständige
+  moderne PC-Arbeitsplätze für Tabellenaufbau, Berechnungen, Entscheidungen
+  und Diagramme. Gerade ausgerichtet und mit metallischen Rahmen.
+  Die Bildschirminhalte sind dekorativ, keine fachlichen Musterlösungen.
+- **Bedienung:** Tooltips erscheinen bei Mauszeiger und Tastaturfokus.
+  Reihenfolge auf Desktop und Mobilgeräten identisch. Bisherige interaktive
+  Detailanzeige und Lernpfad-Verlinkung bleiben erhalten.
+- **Prüfung:** `.tmp/organizer-smoke.cjs` bestanden: räumliche Reihenfolge,
+  vier geladene Bilder, Tooltips, Maus, Tastatur, Touch, Lernpfadfilter und
+  unveränderter Lernstand. Dunkel-, Hell- und Mobilansicht visuell geprüft.
+- **Hinweis für weitere Agenten:** PNG-Originale erhalten; keine neuen
+  externen Bilddienste erforderlich. Noch kein Push dieser Änderungen.
+
+### Übergabe H-2026-10-02-32 – Klarere Startseite und Logo-Navigation
+
+- **Status:** Lokal umgesetzt, nicht veröffentlicht.
+- **Dateien:** `index.html`, `app.js`.
+- **Änderungen:** Die zusätzliche dynamische „Weiter für … / L1.1“-Karte
+  und ihre Rendering-Logik entfernt. Der Start-/Weiterlernen-Button im Hero
+  bleibt erhalten. Das Kopf-Logo ruft immer die Übersicht auf und scrollt
+  nach oben, auch wenn die Übersicht bereits aktiv ist.
+- **Versionen und Impressum:** Das Fuß-Logo besitzt separat `data-about-info`
+  und öffnet weiterhin den Informationsdialog, unabhängig von der Ansicht.
+- **Prüfung:** Erweiterter Organizer-Smoke-Test prüft fehlende Einstiegskarte,
+  Logo-Klick nach Scrollen und aus Quellen, Rückkehr aus L3.3 und
+  Informationsdialog im Fußbereich sowie die bisherige Landkartenbedienung.
+- **Vorschlag, noch nicht umgesetzt:** Fortschrittskarten in den Lernpfad
+  integrieren, Formel-Lab bei L1.1 einordnen und Arbeitshinweise als kompakte
+  Hilfe im Lernpfad zeigen. Jakob hat zunächst nach einer Einschätzung
+  gefragt; diese Abschnitte wurden deshalb noch nicht verschoben.
+
+### Übergabe H-2026-10-02-33 – Breiterer Lernpfad-Rahmen
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Datei:** `styles.css`; gilt für Startseite und gemeinsame Lernseiten-Navigation.
+- **Gestaltung:** Metallrahmen umfasst jetzt Text und Aufklapp-Pfeil als
+  gemeinsame abgerundete Fläche, mit mehr horizontalem Abstand.
+  Die zwei Bedienelemente behalten ihre getrennten Funktionen und Fokusmarkierungen.
+  Kleine Displays erhalten kompaktere Abstände.
+- **Prüfung:** Organizer-Smoke-Test inklusive Rahmengeometrie und gemeinsamer
+  Hervorhebung bestanden; Navigation, Maus, Tastatur, Touch und mobile Breite
+  weiterhin geprüft. `.tmp/learning-nav-frame.png` visuell geprüft.
+
+### Übergabe H-2026-10-02-34 – Einfaches Speichern und Laden
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `index.html`, `app.js`, README.
+- **Dialog:** Schüler sehen nur ihr aktives Profil sowie „Speichern“ und
+  „Laden“. Neues Profil, Profilwechsel und Zurücksetzen aus diesem Dialog
+  entfernt; gespeicherte Profile bleiben unverändert erhalten. Die erstmalige
+  Profilanlage bleibt bestehen. Versteckte Entwicklerfunktion bleibt erhalten.
+- **Speichern:** Normaler Browserdownload mit
+  `YYYY-MM-DD_Excel-Lab_abc.xyz_XL-Browserkennung.json`; Datum in Europe/Berlin,
+  bereinigte Namensbestandteile. Inhalt und Versionsformat bleiben kompatibel.
+  Account, Klasse, Zeitpunkt und Browser-ID sind weiter in der Datei enthalten.
+- **Zuordnungsgrenze:** Browser-ID bezeichnet eine lokale Browserinstallation,
+  nicht zuverlässig einen PC oder eine Person. Sie ist kein Echtheitsnachweis;
+  keine MAC-Adresse, Windows-Anmeldung oder IP-Ermittlung hinzugefügt.
+- **Laden:** `showOpenFilePicker` mit `startIn: "downloads"`, einer Datei und
+  JSON-Filter; Abbrechen verändert nichts. Ohne nutzbare API normale
+  Dateiauswahl mit bestehendem JSON-Filter. Browser-/Schulrichtlinien bestimmen
+  letztlich die Ordner; automatische Speicherung in Downloads kann nur bei
+  entsprechend eingestelltem Browser ohne Rückfrage erfolgen.
+- **Prüfung:** `.tmp/save-load-smoke.cjs` bestanden: Beschriftungen,
+  tatsächlicher Download und Dateiname/Inhalt, Wiederladen mit API-Mock,
+  Picker-Optionen, Abbruch, Dateiauswahl-Fallback, ungültige Datei und mobile
+  Breite. Dialog-Screenshot visuell geprüft. Organizer-Regressionsprüfung
+  und JavaScript-Syntax ebenfalls bestanden. Nativer Windows-Startordner
+  nicht automatisiert bestätigt; auf einem Schul-PC noch erproben.
+- **API-Referenz:** https://developer.mozilla.org/en-US/docs/Web/API/Window/showOpenFilePicker
+
+### Übergabe H-2026-10-02-35 – Profilkorrektur und Entwickleraktionen
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `index.html`, `app.js`, `styles.css`.
+- **Schüleransicht:** Kürzel und Klassenbezeichnung als direkt bearbeitbare
+  Felder im Speichern/Laden-Dialog. Gültige Änderungen werden beim Verlassen
+  des Feldes oder mit Enter lokal gespeichert. Profil-ID, Aufgabenhaken und
+  Punkte bleiben erhalten. Ungültige Kürzel werden nicht übernommen.
+- **Erster Start:** Beide Angaben Pflicht. Beispiel `WGW EK1`, Leerzeichen
+  bleiben erhalten, maximal 32 Zeichen. Klassen werden in Großbuchstaben
+  gespeichert; Kürzel weiter im Format `abc.xyz`.
+- **Entwickler-Modus:** Neues Profil und Fortschritt zurücksetzen nur bei
+  aktivem Modus sichtbar. Beide Handler prüfen den Modus ebenfalls;
+  Zurücksetzen verlangt zusätzlich eine Bestätigung und betrifft nur das
+  aktive Profil. Das sind ausdrücklich verändernde Verwaltungsaktionen,
+  im Gegensatz zur ansonsten nicht speichernden Einheiten-Vorschau.
+- **Vereinfachung:** Unterer Hinweistext entfernt. Speichern/Laden bleiben
+  unverändert, ebenso Browser-ID und Download-Dateiname.
+- **Prüfung:** Erweiterter `.tmp/save-load-smoke.cjs` bestanden:
+  Änderungen bei unverändertem Fortschritt und Profil-ID, ungültiges Kürzel,
+  Pflichtklasse beim Start, Leerzeichen, Entwickler-Sichtbarkeit,
+  Zurücksetzen abbrechen/bestätigen und Ausblenden beim Verlassen des Modus.
+  Speichern/Laden und Organizer-Regressionsprüfungen ebenfalls bestanden;
+  Mobilansicht visuell geprüft.
+
+### Ergänzung 02.10.2026 – Einfache Dialogüberschrift
+
+- Lokal umgesetzt: Der Profildialog trägt die Überschrift „Profil“ und
+  direkt darunter „Speicherdatei“. Die bisherige obere Zusatzüberschrift
+  entfernt; Funktionen und Profilfelder bleiben unverändert.
+- Weitere Vereinfachung: Die Kopfbereich-Beschriftung „Lokales Profil“
+  lautet jetzt nur „Profil“, mit zugänglicher Benennung „Profil öffnen“.
+- Fußbereich vereinfacht: doppelte Zugänge „Quellen“ und „Daten verwalten“
+  samt Ereignisbindung entfernt. Quellen bleiben im Hauptmenü, die
+  Speicherfunktionen im Profil-Icon. Der Designed-by-Link bleibt erhalten.
+- Fußbereich weiter reduziert: nur Icon und „Excel-Lab“, ohne Versionszeile
+  und Anbieter-Unterzeile. Anbieterhinweis in die Versionen-/Impressum-Ansicht
+  verschoben. Technischen Backend-Absatz dort durch „Dein Lernstand bleibt
+  in diesem Browser.“ ersetzt. Versionen bleiben über das Fuß-Logo erreichbar.
+- Einstieg weiter nach oben gesetzt: oberes Hero-Padding von 4,2 auf 2 rem
+  reduziert und Text-/Bildspalten oben ausgerichtet, statt vertikal zentriert.
+
+### Übergabe H-2026-10-02-36 – XP und Level
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** Neue `xp.js`, eingebunden in `index.html` und die 14 bestehenden
+  Lernseiten; `styles.css`, Fortschritts-Ereignis in `app.js` ergänzt.
+- **Anzeige:** Rundes metallisches Icon neben dem Farbschema-Schalter zeigt
+  direkt die XP-Zahl. Klick/Enter öffnet einen Dialog mit XP, Level,
+  fehlenden Punkten und Fortschrittsbalken. Schließen per X, Escape und
+  Hintergrundklick. Benennung für Screenreader vorhanden.
+- **Regel (angenommener Startwert):** 100 XP je abgeschlossenem Kapitel,
+  Level 1 bei null, nächste Level bei 500/1000/1500/2000/2500 XP.
+  Letztes Level 7 beim vollständigen Lernpfad (aktuell 2700 XP).
+  Die letzte kürzere Stufe verhindert ein unerreichbares nächstes Level.
+  Bei Erweiterung des Lernpfads werden die Grenzen aus dessen Umfang abgeleitet.
+- **Daten:** Kein neuer XP-Speicher und keine Änderungen am Exportformat;
+  Punkte stammen ausschließlich aus bekannten abgeschlossenen Einheiten
+  des aktiven Profils. Zurückgenommene Abschlüsse reduzieren XP und Level.
+  Entwickler-Vorschau allein vergibt keine XP. Import, Profilwechsel,
+  gespeicherte Änderungen und andere Tabs aktualisieren die Anzeige.
+- **Prüfung:** `.tmp/xp-smoke.cjs` bestanden: fehlendes Profil, null,
+  Level-Grenzen, 2700-XP-Endzustand, unbekannte Kapitel, keine
+  Fortschrittsmutation durch Anzeige, Tastatur/Escape, Rücknahme,
+  Lernseite und 390/320 Pixel Breite. Desktop/Mobil-Dialog visuell geprüft.
+  Speichern/Laden-Regressionsprüfung ebenfalls bestanden.
+- **Weiter möglich:** Level-Regel gemeinsam mit Jakob im Unterricht
+  erproben; keine verbindliche Kompetenzbewertung durch XP allein.
+
+### Übergabe H-2026-10-02-37 – Darstellungsoptionen
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** Neue `options.js`, in Startseite und 14 Lernseiten eingebunden;
+  `styles.css` und README ergänzt.
+- **Bedienung:** Rundes metallisches Regler-Icon neben XP und Profil öffnet
+  „Darstellung“. Drei native Auswahlfelder, direkte Vorschau, Standard-Reset;
+  Schließen über X, Escape oder Hintergrund. Tastaturbedienung möglich.
+- **Voreinstellungen:** Hintergrund Standard/Smaragd/Graphit;
+  Schrift Standard/warmer Leseton/hoher Kontrast;
+  Größe normal/etwas größer/groß (16/17/18 px Basis).
+  Farben haben jeweils Hell-/Dunkelvarianten; Farbschema-Schalter bleibt erhalten.
+- **Speicherung:** Eigener lokaler Schlüssel `excelLab.appearance.v1`, nur
+  erlaubte Auswahlwerte. Ungültige Daten werden durch Standards ersetzt.
+  Kein Eingriff in Profile, Lernstand, XP oder Lernstand-Exportformat.
+  Andere Tabs erhalten Änderungen über das Storage-Ereignis.
+- **Prüfung:** `.tmp/options-smoke.cjs` bestanden: alle 18 Farb-/Moduskombinationen
+  mit Kontrast mindestens 4,5:1 für Haupt- und Beschreibungstext auf den
+  drei Grundflächen; Schriftgröße, Speicherung, Lernseitenwechsel,
+  Profil unverändert, Reset, ungültige Einstellungen, Tastatur und
+  Layoutbreite 390/320 px. Mobile Darstellung visuell geprüft.
+  Das ist keine vollständige WCAG-Prüfung aller Elemente und Bildhintergründe.
+- **Regression:** XP-, Speichern/Laden- und Organizer-Smoke-Tests bestanden.
+- **Weiter möglich:** Lesbarkeit auf tatsächlichen Schulmonitoren testen;
+  Darstellungspräferenzen bewusst getrennt vom Schüler-Lernstand belassen.
+
+### Übergabe H-2026-10-02-38 – Klickbarer Lernort
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `index.html`, `app.js`, `lesson-navigation.js`, `styles.css`.
+- **Startseite:** Alte Zeile „Dein Raum zum Ausprobieren / BPE 1 / 4
+  Lernschritte / 27 Einheiten“ entfernt. Links unter dem Hauptmenü steht
+  jetzt „BPE1“. Im Lernpfad ergänzt sich der ausgewählte Lernfortschritt,
+  beispielsweise „BPE1 › L2“. Quellen/Formelsammlung haben eigene Pfadangaben.
+- **Lernseiten:** Gemeinsame Navigation zeigt auf allen 14 ausgearbeiteten
+  Seiten „BPE1 › Lx › Lx.y“. BPE1 führt zur Übersicht, Lx zum korrekten
+  Lernpfadfilter; die aktuelle Einheit ist mit `aria-current` markiert.
+  Menü und Freischaltungen bleiben unverändert.
+- **Prüfung:** `.tmp/breadcrumb-smoke.cjs` bestanden: Übersicht, Filterwechsel,
+  alle 14 Lernseiten, tatsächliche Rücknavigation zu L3 und BPE1, 320-px-Breite,
+  keine Seitenfehler. Organizer-Regressionsprüfung und JavaScript-Syntax bestanden.
+
+### Übergabe H-2026-10-02-39 – Kompaktes, aufklappbares Formel-Lab
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `index.html`, `home.css`.
+- **Änderung:** Abstand unter der Landkarte auf 1,5 rem reduziert.
+  Native, zunächst geschlossene `details`-Gruppe „Excel ausprobieren“ mit
+  metallischem Plus-/Minus-Symbol. Das vorhandene Formel-Lab ist unverändert
+  darin enthalten, mit kleineren Innenabständen. Kein zusätzlicher JS-Schalter
+  nötig; Tastatur, Maus und Touch werden nativ unterstützt.
+- **Prüfung:** Erweiterter Organizer-Smoke-Test bestanden: initial geschlossen,
+  per Enter und Klick öffnen/schließen, Mengenberechnung 20 Hefte = 50 Euro,
+  Reset auf 6 Hefte = 15 Euro und kompakter Abstand unter der Landkarte.
+  Bestehende Landkarte und mobile Breite weiterhin geprüft.
+- Ergänzung: Auch Arbeitshinweise als zunächst geschlossene native
+  `details`-Gruppe mit Teilüberschrift „Arbeiten mit Excel-Lab“ gestaltet.
+  „Einfach loslegen“ entfernt. Workflow und Erste-Einheit-Button bleiben
+  innerhalb des aufklappbaren Abschnitts erhalten; gemeinsame Symbolik.
+- Auch „Dein Lernstand“ und „Vier Lernschritte“ als zunächst geschlossene
+  Gruppen ergänzt. Inhalte und dynamische Fortschrittskarten unverändert.
+  Idee: Fortschrittsbalken je Lernfortschritt in die Landkarte integrieren,
+  anschließend doppelte Themenkarten entfernen. Noch nicht umgesetzt.
+- Themenübersicht vereinfacht: Teilüberschrift „Überblick BPE1“, Haupttitel
+  „Excel-Lab“. Sichtbaren Bedienhinweis rechts und dessen ARIA-Verweis entfernt;
+  zugängliche Benennung der Themenauswahl bleibt erhalten.
+
+### Übergabe H-2026-10-02-40 – Direktnavigation über Themenbilder
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `index.html`, `organizer.js`, `home.css`.
+- **Änderung:** Die vier Themenkarten sind echte Links auf `#lernpfad/1`
+  bis `#lernpfad/4`. Ein Klick auf Bild oder Karte, Enter oder Antippen
+  öffnet direkt den passenden Lernfortschritt. Separate Buttons
+  „Lx im Lernpfad ansehen“ aus dem rechten Detailbereich entfernt.
+- **Erklärungen:** Weiterhin per Mauszeiger und Tastaturfokus wechselnd;
+  Detailtexte und Beispiele bleiben. Auf Touch navigiert ein einzelnes
+  Antippen direkt, statt zunächst nur die Erklärung auszuwählen.
+  Die Auswahlmarkierung bleibt CSS-basiert; kein `aria-pressed` auf Links.
+- **Prüfung:** Organizer-Smoke-Test aktualisiert und bestanden: alle vier
+  Ziele, tatsächlicher Bildklick, Enter, Touch, fehlender Zusatzbutton,
+  unveränderter Lernstand, Tooltip, Farbmodi und mobile Breite.
+
+### Übergabe H-2026-10-02-41 – Visuelle Darstellungsoptionen
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `options.js`, `styles.css`, README.
+- **Auswahl:** Dropdowns durch native Radio-Gruppen mit visuellen Kacheln
+  ersetzt. Hintergrund: Standard/Smaragd/Graphit/Violett/Sand. Schriftfarbe:
+  Standard/warmer Leseton/hoher Kontrast/Mint/Lavendel. Größe: drei A-Symbole.
+  Gruppen haben Legenden, Optionen zugängliche Namen und Tooltip-Titel.
+  Auswahl durch Rahmen plus Häkchen sichtbar; Pfeiltasten funktionieren nativ.
+- **Vereinfachung:** Vorschautext „So liest sich dein Excel-Lab …“ entfernt.
+  Sofortige Anwendung, Standardschalter und bisheriger Speicher bleiben.
+  Alte Voreinstellungen bleiben kompatibel.
+- **Prüfung:** Options-Smoke-Test bestanden: 5/5/3 Optionen, keine Dropdowns
+  oder Vorschau, je eine Auswahl pro Gruppe, Pfeiltasten, Speicherung,
+  Reset, Lernseitenwechsel und 390/320 px. Haupt-/Beschreibungstextkontrast
+  mindestens 4,5:1 auf den drei geprüften Grundflächen in allen 50
+  Farb-/Moduskombinationen. Keine vollständige WCAG-Prüfung sämtlicher Elemente.
+  Mobile Kachelansicht visuell geprüft.
+
+### Übergabe H-2026-10-02-42 – Formel-Lab am fachlich passenden Ort
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `index.html`, `l1-2.html`; `home.js` in `formula-lab.js`
+  umbenannt, neue gekapselte `formula-lab.css`. Keine Originalmaterialien geändert.
+- **Didaktik:** Formel-Lab aus der Startseite entfernt und in L1.2 als
+  eigener Abschnitt 03 zwischen Grundlagen und Anwendung eingefügt.
+  Folgende Abschnittsnummern aktualisiert. Kurzer Transferauftrag:
+  selbst B2/C2/D2 in Excel verwenden und die Neuberechnung beobachten.
+  Die neutrale Heftkauf-Demo verrät keine Getränkelisten-Musterlösung.
+- **Unverändert:** Keine XP, kein Haken oder Profilzugriff durch die Demo.
+  Lernvoraussetzung L1.1 und Lehrkraftbestätigung bleiben bestehen.
+- **Prüfung:** `.tmp/formula-lab-smoke.cjs` bestanden: Zugangssperre,
+  didaktische Reihenfolge, 1/20/6 Hefte, Reset, unveränderter Lernstand,
+  Ein-/Ausklappen, Dunkel-/Hellmodus, Mobilbreite und Entfernung von der
+  Startseite. Screenshot der mobilen Ansicht visuell geprüft.
+  Organizer-Regressionsprüfung an den neuen Aufbau angepasst und bestanden.
+- **Weiter fachlich:** L3.4 ausarbeiten; L1-Verständnisfragen bleiben offen.
+
+### Übergabe H-2026-10-02-43 – Verständnis-Check in L1.2
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `l1-2.html`, `l1-2.js`, `app.js`, README und diese Dokumentation.
+- **Didaktik:** Drei Fragen zu dynamischen Zellbezügen, Wertänderungen bei
+  unveränderter Formel und Kreisbezügen. Fehlversuche liefern fachliche Hinweise;
+  die Fragen verwenden das neutrale Heftkauf-Beispiel, keine Musterlösung.
+- **Abschluss:** Alle drei Antworten müssen stimmen; eigene Arbeitsschritte
+  und Lehrkraftbestätigung bleiben zusätzlich nötig. Erst der Abschluss bringt
+  100 Punkte und öffnet L1.3. Das Quiz allein bringt keine XP.
+- **Kompatibilität:** Frühere Abschlüsse gelten weiterhin als bestanden.
+  `app.js` übernimmt diesen Bestandsschutz auch beim Laden von Speicherdateien.
+  Wiederöffnen zieht den Abschluss von L1.3 zurück, ohne übrige Daten zu löschen.
+- **Prüfung:** `.tmp/l12-mastery-smoke.cjs` bestanden: Zugang, leere/falsche/
+  richtige Antworten, persistierter Check, Abschluss und 100 Punkte, Altbestand,
+  Wiederöffnen, Profilwechsel während eines Quizversuchs und 320-px-Ansicht.
+  Mobile Ansicht visuell geprüft; Formel-Lab-Regressionsprüfung erneut bestanden.
+- **Offen:** L1.1 und L1.3–L1.6 ebenfalls fachlich geeignete Checks geben;
+  weitere Lernseiten ab L3.4 ausarbeiten. Quiz und lokale Lehrkraftbestätigung
+  sind weiterhin keine automatische Prüfung der tatsächlich bearbeiteten Datei.
+
+### Übergabe H-2026-10-02-44 – Einstieg L1.1 mit Verständnis-Check
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `l1-1.html`, `l1-1.js`, `app.js`, README und Dokumentation.
+- **Inhalt:** Drei Fragen zu Zeilen-/Spaltenstruktur, getrennten numerischen
+  Werten und eigenständigem Speichern der Excel-Datei. Hinweise bei Fehlversuchen,
+  alle drei Antworten vor Abschluss nötig. Keine Aufgaben-Musterlösung ergänzt.
+- **Praktische Sicherung:** Drei eigene Arbeitsschritte und Lehrkraftbestätigung
+  bleiben zusätzlich nötig. Das Quiz allein vergibt keine Punkte; Abschluss 100 XP.
+  Bereits gespeicherte Abschlüsse behalten Gültigkeit, auch nach Import.
+- **Robustheit:** Fortschritt vor Änderungen frisch laden, bei Profilwechsel
+  Quizauswahl löschen, Storage-/Pageshow-Ereignisse behandeln. Speichermisserfolg
+  wird angezeigt, ohne erfolgreichen Abschluss vorzutäuschen. Beim Wiederöffnen
+  oder Entfernen eines Pflichtchecks L1.2-Abschluss widerrufen; seine sonstigen
+  Arbeitsschritte erhalten. Die Prozentanzeige erreicht 100 erst beim Abschluss.
+- **Prüfung:** `.tmp/l11-mastery-smoke.cjs` bestanden: Profil erforderlich,
+  leere/falsche/richtige Quizversuche, Persistenz, Abschluss/100 Punkte,
+  Widerruf durch Pflichtcheck, Altbestand, Nachfolger-Rücknahme, Profilwechsel,
+  Entwickler-Vorschau ohne Schreibzugriff, Dunkel-/Hellmodus und 390/320 px.
+  Quizansicht visuell geprüft. L1.2-Regressionsprüfung erneut bestanden.
+- **Weiter:** L1.3–L1.6 ergänzen und L3.4 ausarbeiten. Bei 320 px ist die
+  bestehende schwebende Hauptnavigation am rechten Rand abgeschnitten;
+  responsiven Navigationsaufbau gezielt verbessern. Kein vollständiges
+  Barrierefreiheits-Audit oder Unterrichtstest erfolgt.
+
+### Übergabe H-2026-10-02-45 – Schmale Hauptnavigation
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Datei:** `styles.css`; gemeinsamer Aufbau für Startseite und Lernseiten.
+- **Änderung:** Bis 600 px zwei Spalten und zwei Reihen, mindestens 44 px
+  Schaltflächenhöhe statt sehr kleiner Schrift in einer überbreiten Zeile.
+  Lernpfad bleibt direkt anklickbar; sein eigener Pfeil öffnet das Untermenü.
+  Dieses erscheint oberhalb der Navigation, mit begrenzter Höhe und Scrollen.
+  Safe-Area-Abstand und zusätzlicher Fußbereich für die höhere Navigation.
+  Tablet-/Desktop-Aufbau oberhalb 600 px bleibt erhalten.
+- **Prüfung:** `.tmp/mobile-navigation-smoke.cjs` bestanden: alle 15 Seiten,
+  Breiten 320/390/600/760/1024/1440 px, normale/große Schrift; Grenzen und
+  Textbreiten aller Hauptmenüelemente, Touch-Öffnen von Lernpfad/Kapiteln,
+  Untermenü-Abstand und direkte Navigation von Lernseite zur Formelsammlung.
+  Dunkelansicht visuell geprüft. Kein vollständiges Barrierefreiheits-Audit.
+- **Weiter fachlich:** L1.3–L1.6 mit Verständnis-Checks und L3.4 ausarbeiten.
+
+### Übergabe H-2026-10-02-46 – Zahlenformate verstehen in L1.3
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `l1-3.html`, `l1-3.js`, `app.js`, README und Dokumentation.
+- **Didaktik:** Drei Fragen unterscheiden gerundete Anzeige vom gespeicherten
+  Wert, Einheiten im Zahlenformat von Text und Formatierung vom Überschreiben
+  einer Formel. Neutrales Heftbeispiel statt Getränkelisten-Musterlösung.
+- **Abschluss:** Check muss bestanden sein; drei Arbeitsschritte und
+  Lehrkraftbestätigung bleiben zusätzlich erforderlich. 100 Punkte nur beim
+  Abschluss, nicht beim Quiz. Altabschlüsse gelten weiterhin als bestanden;
+  Import-/Profilnormalisierung in `app.js` berücksichtigt L1.3.
+- **Robustheit:** Profilwechsel setzt Quizauswahl und Rückmeldungen zurück.
+  Wiederöffnen sperrt den direkten Nachfolger L1.4 durch Widerruf seines
+  Abschlusses, ohne dessen übrige Arbeitsschritte zu entfernen. Der Weiter-Link
+  führt direkt zur bestehenden Seite `l1-4.html`.
+- **Prüfung:** `.tmp/l13-mastery-smoke.cjs` bestanden: Voraussetzung L1.2,
+  leere/falsche/richtige Antworten, Persistenz, fehlende Arbeitsschritte/
+  Lehrkraftbestätigung blockieren, Abschluss/100 Punkte, Altbestand,
+  Wiederöffnen, unmittelbarer sowie gemeldeter Profilwechsel und 320-px-Ansicht.
+  Quizansicht visuell geprüft. Syntaxprüfung bestanden.
+- **Weiter:** Verständnis-Checks L1.4–L1.6; fachlicher Ausbau ab L3.4.
+
+### Übergabe H-2026-10-02-47 – Formelkopien kontrollieren in L1.4
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `l1-4.html`, `l1-4.js`, `app.js`, README und Dokumentation.
+- **Inhalt:** Drei Fragen zu relativen Bezügen beim Kopieren nach unten,
+  festen Werten statt Formeln und Aufnahme neuer Positionen in die Summe.
+  Fragen nutzen neutrale Materialkosten, keine Getränkelisten-Musterlösung.
+  Bestehende interaktive Kopier-Demo unverändert erhalten.
+- **Abschluss:** Verständnis-Check, drei eigene Arbeitsschritte und
+  Lehrkraftbestätigung erforderlich. 100 Punkte erst beim Abschluss.
+  Altabschlüsse bleiben gültig; Normalisierung in `app.js` ergänzt.
+  Profilwechsel leert die Quizauswahl. Wiederöffnen nimmt den direkten
+  Nachfolger-Abschluss zurück, ohne dessen übrigen Lernstand zu löschen.
+  Weiter-Link direkt zur vorhandenen Lernseite L1.5.
+- **Prüfung:** `.tmp/l14-mastery-smoke.cjs` bestanden: Zugangsvoraussetzung,
+  leere/falsche/richtige Antworten, persistierter Check, zusätzliche Arbeits-
+  und Lehrkraft-Gates, Abschluss/100 Punkte, Altbestand, Wiederöffnen,
+  Profilwechsel, mobile Ansicht. Kopier-Demo für vier Zeilen ergibt E6 und
+  `=C6*D6`, ohne Lernstandänderung. Syntax und Quizansicht visuell geprüft.
+- **Weiter:** Verständnis-Checks L1.5–L1.6; fachliche Lernseiten ab L3.4.
+
+### Übergabe H-2026-10-02-48 – Tabellenstruktur verstehen in L1.5
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `l1-5.html`, `l1-5.js`, `app.js`, README und Dokumentation.
+- **Didaktik:** Drei Fragen zu einer vollständigen Zeile je Person, einer
+  zentralen Eingabe für gemeinsame Werte und Textformat vor der Eingabe von
+  Telefonnummern. Fachliche Hinweise nach Fehlversuchen. Bestehende Aufgaben
+  und Ausgangsdaten unverändert; keine Musterlösung ergänzt.
+- **Abschluss:** Check, drei Arbeitsschritte und Lehrkraftbestätigung nötig;
+  100 Punkte erst beim Abschluss. Altabschlüsse bleiben gültig, auch bei
+  Profil-/Importnormalisierung. Profilwechsel leert Quizantworten.
+  Nachfolger-Rücknahme beim Wiederöffnen bleibt erhalten; direkter Link zu L1.6.
+- **Prüfung:** `.tmp/l15-mastery-smoke.cjs` bestanden: Voraussetzung L1.4,
+  leere/falsche/richtige Antworten, Persistenz, zusätzliche Arbeits-/Lehrkraft-
+  Gates, Abschluss/100 Punkte, Altbestand, Wiederöffnen und Profilwechsel.
+  Zusätzlich: absichtlich blockierter Browser-Speicher meldet einen Fehler und
+  zeigt den Check nicht als bestanden; Entwickler-Vorschau schreibt keine
+  Änderungen. 320-px-Quizansicht visuell und Syntax geprüft.
+- **Weiter:** Verständnis-Check L1.6; fachliche Lernseiten ab L3.4.
+
+### Übergabe H-2026-10-02-49 – Fünf Rechenmodelle und komplette L1-Reihe
+
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+- **Dateien:** `l1-6.html`, `l1-6.js`, `app.js`, Weiter-Links in
+  `l1-1.html`/`l1-2.html`, README und Dokumentation.
+- **Didaktik:** Je eine Frage zu Einnahmen, festem Zeitanteil, inverser
+  Beziehung zwischen Dosenvolumen/Stückzahl, Zinssatz-Eingabekonvention und
+  ganzen Zusatzpaketen. Fünf richtige Antworten sind erforderlich, passend
+  zum Umfang der fünf Aufgaben. Keine neue Aufgaben-Musterlösung ergänzt.
+- **Abschluss:** Quiz zusätzlich zu den drei Arbeitsschritten und der
+  Lehrkraftbestätigung. 100 Punkte erst beim Abschluss; Altabschlüsse bleiben
+  gültig. Profilwechsel leert die Quizauswahl. Widerruf sperrt den direkten
+  Nachfolger L2.1 erneut durch Rücknahme seines Abschlusses.
+- **Prüfung:** `.tmp/l16-mastery-smoke.cjs` bestanden: Voraussetzung,
+  leere/falsche/richtige Antworten, Speicherung, Arbeitsschritte/Lehrkraft,
+  Abschluss/100 Punkte, Altbestand, Widerruf, Profilwechsel, Speichermisserfolg,
+  Entwickler-Vorschau und 320-px-Quizansicht. Syntax und Darstellung geprüft.
+  Sämtliche fünf übrigen L1-Einzeltests erneut bestanden.
+  `.tmp/l1-path-smoke.cjs` prüft zusätzlich ohne Zwischensetzen von Abschlüssen
+  die komplette Folge L1.1 bis L1.6: sechs Quiz-Gates, praktische Checks,
+  Lehrkraftbestätigungen, direkte Weiter-Links, 600 XP und geöffnetes L2.1.
+- **Weiter:** Fachliche Lernseiten ab L3.4; Unterrichtstest und umfassendes
+  Barrierefreiheits-Audit bleiben offen. Lokale Quiz- und Bestätigungsdaten
+  sind kein manipulationssicherer Nachweis und ersetzen nicht das Lehrkraftgespräch.
+
+### Übergabe H-2026-10-02-50 – L3.4 Bedingte Formatierung
+
+- **Stand:** 02.10.2026, 14:36 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft,
+  nicht veröffentlicht. Nächste fachliche Einheit ist L3.5.
+- **Dateien:** Neue `l3-4.html`, `l3-4.js`; `content.js`, `app.js`, direkter
+  Weiter-Link in `l3-3.html`, README und diese Dokumentation aktualisiert.
+- **Materialabgleich:** Excel-Lab L3.4 entspricht im Materialpaket L3_2.1/2.2,
+  nicht L3_4 Zielwertsuche. Aufgaben aus den beiden Original-DOCX gelesen;
+  Zelllayout der XLSX-Vorlage strukturell geprüft, Originale unverändert.
+  Die aktuelle Vorlage hat Überschriften in Zeile 4 und 13 Spiele in 5–17.
+  Deshalb J5:J17 statt des älteren J4:J16 verwenden, Punktebereich F5:G17.
+- **Inhalt:** Automatische Regeln statt manueller Füllfarbe, Gleichheit statt
+  ungewollter Teiltexttreffer, Geltungsbereich und lesbare Werte erklärt.
+  Teil 5: Ja grün/Nein rosa. Teil 6: 0 rosa/1 gelb/3 hellblau. Tipp- und
+  Toränderungen testen, Formeln erhalten, Ausgangswerte wiederherstellen,
+  beide Dateien unter den Original-Aufgabennamen speichern. Eigene Toto-Datei
+  aus L3.3 kann verwendet werden; fehlende Punktberechnung selbst ergänzen.
+- **Abschluss:** L3.3 vorausgesetzt. Drei Verständnisfragen, drei praktische
+  Checks und Lehrkraftbestätigung vor 100 XP. Frühere Abschlüsse bleiben gültig.
+  Wiederöffnen nimmt einen direkten L3.5-Abschluss zurück; dessen übrige Daten
+  bleiben erhalten. Profilwechsel verwirft ungeprüfte Antworten, fehlgeschlagenes
+  Speichern täuscht keinen bestandenen Check vor. Entwickler-Vorschau ohne XP.
+- **Prüfung:** `.tmp/l34-mastery-smoke.cjs` bestanden: Zugang, leere/falsche/
+  richtige Antworten, Speicherung, Abschluss, Altbestand, Rücknahme, unmittelbarer
+  und gemeldeter Profilwechsel, Speicherausfall, Entwickler-Modus, vier Breiten,
+  vier lokale Materiallinks HTTP 200, öffentliche Linkanpassung, Navigation,
+  Brotkrümel und Weiterleitung aus dem Startseiten-Lernpfad.
+  Mobile Ansicht visuell geprüft. `.tmp/mobile-navigation-smoke.cjs` mit neuer
+  Seite bestanden: Startseite plus 15 Lernseiten, sechs Breiten, zwei Schriftgrößen,
+  Menügrenzen, lesbare Beschriftungen und Touch-Untermenüs.
+- **Grenzen:** Keine native Excel-Prüfung oder automatische Dateibewertung.
+  Die Lehrkraft muss die Regeln und gespeicherten Dateien praktisch prüfen.
+  Keine Musterlösungen eingebunden oder veröffentlicht. Unterrichtstest,
+  umfassendes Barrierefreiheits-Audit und fachliche Seiten ab L3.5 bleiben offen.
+
+### Übergabe H-2026-10-02-51 – Fortschritt in der Themenkarte
+
+- **Stand:** 02.10.2026, 14:43 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft,
+  nicht veröffentlicht.
+- **Dateien:** `index.html`, `app.js`, `home.css`, README und Dokumentation.
+- **Vereinfachung:** Doppelten Abschnitt „Vier Lernschritte“ und seine
+  Karten-Erzeugung entfernt. Die vier vorhandenen Themenkarten zeigen nun
+  erledigte Einheiten, Prozent und einen kleinen nativen Fortschrittsbalken.
+  Die Berechnung verwendet dieselbe Funktion `stageStats` wie der Lernpfad,
+  ausschließlich für das aktive Profil. Der Gesamtbereich „Dein Lernstand“
+  bleibt erhalten. Fotos, Erklärungen, Tooltips und direkte Themenlinks bleiben.
+- **Zugänglichkeit:** Balken haben Namen, Anzahl und Gesamtumfang. Sichtbare
+  Fortschrittsbeschriftungen sind den Karten als zugängliche Beschreibungen
+  zugeordnet; keine zusätzlichen interaktiven Ziele innerhalb der Links.
+  Farben allein sind nicht nötig, um den Stand zu lesen.
+- **Prüfung:** `.tmp/organizer-progress-smoke.cjs` bestanden: ohne Profil,
+  teilweiser und vollständiger Fortschritt, leerer Stand, unbekannte IDs und
+  unvollständige Checks, exakte Werte aller vier Gruppen, Übereinstimmung mit
+  dem Lernpfad, unveränderter Speicher beim Erkunden, Laden eines neuen Profils
+  ohne Übertragung des alten Fortschritts, beide Farbmodi, vier Breiten mit
+  großer Schrift. Mobile Darstellung visuell geprüft. Bestehender
+  `.tmp/organizer-smoke.cjs` aktualisiert und erneut bestanden: Maus, Tastatur,
+  Touch, direkte Bildlinks, Fotos, Tooltips und aufklappbare verbleibende Bereiche.
+- **Weiter:** L3.5 ausarbeiten. Die Startseite hat bisher keinen eigenen
+  Storage-/BFCache-Abgleich; beim nächsten Optimierungsschritt prüfen, ob ein
+  in einem anderen Tab geänderter Lernstand ohne Neuladen aktualisiert wird.
+  Keine Veröffentlichung und keine Änderung an vorhandenen Schülerprofilen.
+
+### Übergabe H-2026-10-02-52 – Startseite mit aktuellem Lernstand
+
+- **Stand:** 02.10.2026, 14:49 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft,
+  nicht veröffentlicht. Dateien: `app.js`, README und Dokumentation.
+- **Nachgewiesener Fehler:** Eine bereits offene Startseite übernahm zuvor
+  einen Abschluss aus einem zweiten Tab nicht. Der neue Zwei-Tab-Test schlug
+  vor der Änderung gezielt fehl, danach bestand er.
+- **Änderung:** `syncStoredState` liest bei passendem Storage-Ereignis,
+  `pageshow` und Fensterfokus den aktuellen lokalen Stand. Nur tatsächliche
+  Änderungen führen zum Neurendern von Profil, Themenfortschritt, Lernpfad,
+  Freischaltungen und Profildialog. Der Abgleich schreibt keine Daten zurück.
+  Anschließend informiert ein Fortschrittsereignis die XP-Anzeige.
+- **Profileingaben:** Noch nicht gespeicherte Kürzel-/Klassenkorrekturen bleiben
+  bei Fortschrittsänderung im selben Profil erhalten. Wechselt das aktive
+  Profil, werden alte Profil- und Anmeldedialoge geschlossen. Der generische
+  Lektionsdialog wird bei einer externen Änderung geschlossen, damit seine
+  alten Haken nicht für einen inzwischen anderen Stand verwendet werden.
+  Darstellungseinstellungen lösen diesen Lernstandsabgleich nicht aus.
+- **Fehlerfälle:** Beschädigte oder nicht lesbare Updates behalten den letzten
+  gültigen In-Memory-Stand; der Abgleich repariert oder überschreibt die Datei
+  nicht. Explizites Entfernen des Speicherschlüssels zeigt dagegen den leeren
+  Stand. Bei alten Profilen ohne Zeitstempel bleiben normalisierte Zeitstempel
+  während weiterer Abgleiche stabil, statt unnötige Änderungen zu erzeugen.
+- **Prüfung:** `.tmp/home-sync-smoke.cjs` bestanden: echte Storage-Ereignisse
+  aus zwei Seiten desselben Browserkontexts, Fortschrittszählung/Weiter-Link,
+  anschließender Theme-Schreibzugriff ohne Verlust des neuen Abschlusses,
+  laufende Klassenkorrektur, Profilwechsel, reale Zurücknavigation,
+  synthetisches persistiertes `pageshow` und Fokus, kein Schreiben beim Abgleich,
+  kaputtes JSON, sachfremdes Einstellungsereignis, Schließen alter Lektionsansicht
+  und gelöschter Speicher. `save-load-smoke`, `options-smoke` und
+  `organizer-progress-smoke` ebenfalls bestanden; keine JS-Seitenfehler.
+- **Grenzen:** Kein serverseitiger oder transaktionaler Mehrbenutzer-Abgleich.
+  Gleichzeitige Schreibzugriffe auf dasselbe localStorage-Objekt sind weiterhin
+  nicht atomar. Ein tatsächlicher BFCache-Treffer wurde nicht separat erzwungen;
+  Zurücknavigation und der zuständige Ereignishandler sind getestet.
+- **Weiter:** Fachliche Lernseite L3.5 ausarbeiten. Bestehende Schülerdaten
+  wurden für die Tests nicht verwendet; kein Push und keine Veröffentlichung.
+
+### Übergabe H-2026-10-02-53 – L3.5 SVERWEIS und Fehlerbehandlung
+
+- **Stand:** 02.10.2026, 14:56 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft,
+  nicht veröffentlicht. Nächste fachliche Einheit ist L3.6.
+- **Dateien:** Neue `l3-5.html`, `l3-5.js`; `content.js`, `app.js`, direkter
+  Weiter-Link in `l3-4.html`, README und diese Dokumentation aktualisiert.
+- **Materialprüfung:** Vier Original-DOCX gelesen und beide XLSX-Vorlagen
+  strukturell geprüft. Excel-Lab L3.5 entspricht L3_3.1.1/3_3.1.2 im Material.
+  J19 zählt richtige Tipps, J20 ist die Gewinnzelle; neue Gewinnliste B21:C27
+  enthält sieben Stufen von 7 bis 13 richtigen Tipps. Alle Originale unverändert.
+- **Didaktik:** Suchwert, Matrix, relativer Spaltenindex und ausdrücklich
+  gesetztes FALSCH erklärt; altes Informationsblatt lässt das vierte Argument
+  weg und nutzt dadurch ungefähre Suche. Unterschied anhand aktueller
+  Microsoft-Dokumentation geprüft und auf der Seite verlinkt. Neutrales
+  Artikelbeispiel mit eigenständiger Suche und separater ISTNV/WENN-Prüfung.
+  Erst danach entwickeln Lernende ihre gemeinsame Gewinnformel selbst.
+- **Arbeitsauftrag:** Neue Gewinnliste übernehmen, genaue Suche entwickeln,
+  absolute Matrix verwenden, in einer separaten Liste mit 0/6/7/8/13 testen,
+  #NV zunächst beobachten und anschließend gezielt behandeln. Zählformel und
+  Spieldaten nicht überschreiben. Beide Ergebnisdateien unter den im Material
+  vorgegebenen Namen speichern. Kein pauschales Verstecken anderer Fehler.
+- **Lösungsschutz:** Die alten Informations-DOCX enthalten Aufgabenlösungen;
+  deshalb keine Schülerlinks auf diese beiden Dateien in Seite oder
+  `content.js`. Aufgaben und zwei Vorlagen bleiben verlinkt. Die früheren
+  vollständigen Toto-Formelbeispiele in `content.js` durch neutrale Beispiele
+  ersetzt. Keine Lösungsdateien eingebunden oder veröffentlicht.
+- **Abschluss:** L3.4 vorausgesetzt. Drei Verständnisfragen, drei praktische
+  Checks und Lehrkraftbestätigung vor 100 XP. Altabschlüsse gelten weiterhin.
+  Rücknahme sperrt L3.6 und zieht dessen direkten Abschluss zurück, behält
+  übrige Daten. Profilwechsel, Schreibfehler und Entwickler-Vorschau wie L3.4.
+- **Prüfung:** `.tmp/l35-mastery-smoke.cjs` bestanden: Zugang, leere/falsche/
+  richtige Antworten, Bestandsschutz, 100 XP, Rücknahme, Profilwechsel,
+  Speicherausfall, Entwickler-Modus, vier Breiten, vier Materiallinks HTTP 200,
+  öffentliche Linkanpassung, Navigation/Brotkrümel und Startseiten-Weiterleitung.
+  Mobile Ansicht visuell geprüft. Mehrtab-Smoke-Test auf die nächste noch
+  generische Einheit L3.6 angepasst und bestanden. Mobile Hauptnavigation
+  mit neuer Seite geprüft: Startseite und 16 Lernseiten, sechs Breiten,
+  zwei Schriftgrößen, Touch-Untermenüs und lesbare Menübeschriftungen.
+- **Grenzen:** Keine native Excel-Ausführung der selbst zu entwickelnden
+  Schülerformeln. Die tatsächlichen Dateien prüft weiterhin die Lehrkraft.
+  Fachliche Seiten ab L3.6, Unterrichtstest und umfassendes A11y-Audit bleiben offen.
+
+### Übergabe H-2026-10-02-54 – L3.6 RUNDEN und Verweistabellen
+
+- **Stand:** 02.10.2026, 15:10 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft,
+  nicht veröffentlicht. Nächste fachliche Einheit: L3.7 Zielwertsuche.
+- **Dateien:** Neue `l3-6.html`, `l3-6.js`; `content.js`, beide
+  Mastery-Migrationslisten in `app.js`, direkter Weiter-Link in `l3-5.html`,
+  README und aktueller Taskstatus aktualisiert.
+- **Materialprüfung:** Beide Aufgaben-DOCX strukturell gelesen und beide
+  Excel-Vorlagen auf Blattnamen, Eingaben, Formelfelder und Verweistabelle
+  geprüft. Informations-DOCX auf vorhandene Texte geprüft; das RUNDEN-Blatt
+  enthält überwiegend eingebettete Bilder. Keine Originaldatei geändert.
+  Syntax und Leerzellenverhalten mit Microsoft-Hilfe abgeglichen.
+- **Ausgangsdaten:** Notenfelder C–E und G für Zeile 4–8 ohne Personennamen
+  übernommen. D5 bleibt leer. Der tatsächliche Blattname ist Tabelle1,
+  nicht Ergebnisansicht wie im älteren Aufgabenblatt. Verweistabelle!A3:C8
+  enthält die unsortierten Noten 4, 3, 2, 5, 1, 6, einschließlich Preis
+  für Note 1. C3 und C4 enthalten bewusst leeren Text mit `=""`.
+- **Didaktik:** MITTELWERT ignoriert leere Zellen, eine 0 zählt dagegen mit.
+  Gewichtung des schriftlichen Durchschnitts 2:1; erst die Endnote runden.
+  Zahlenformat und RUNDEN anhand neutraler Zahlen unterschieden; vorzeitige
+  Zwischenrundung kann das Endergebnis verändern. Neutrales Artikelbeispiel
+  erklärt Blattname, feste Matrix, Rückgabespalte und genaue Suche mit FALSCH.
+- **Arbeitsauftrag:** F, H und I selbst entwickeln und nach unten kopieren;
+  Teil 1 speichern. Auf zweitem Blatt Bewertungen und Bemerkungen bereitstellen,
+  eigene Suchformeln in J und K entwickeln. Separate Tests aller sechs Noten,
+  leerer Bemerkungen, Nichttreffer und Rundungsgrenzen; Originaleingaben nicht
+  überschreiben. Teil 2 speichern und beide Dateien wieder öffnen.
+- **Lösungsschutz:** Frühere vollständige Aufgabenformeln in `content.js`
+  durch neutrale Beispiele ersetzt. Informations-DOCX mit vollständiger
+  Suchlösung nicht mehr als Schülerdownload angeboten. Vier Links auf
+  Aufgaben und Vorlagen bleiben erhalten; öffentlich auf Materialseite
+  angepasst. Keine Musterlösungsdateien veröffentlicht.
+- **Abschluss:** L3.5 vorausgesetzt; drei Verständnisfragen, drei praktische
+  Checks und Lehrkraftbestätigung vor 100 XP. Alte Abschlüsse bleiben gültig.
+  Rücknahme sperrt L3.7 und nimmt dessen direkten Abschluss zurück, ohne die
+  übrigen Lernstände zu löschen. Entwickler-Vorschau schreibt keine XP.
+- **Prüfung:** `.tmp/l36-mastery-smoke.cjs` bestanden: Zugang, leere,
+  falsche und richtige Antworten, Bestandsschutz, Abschluss, Rücknahme,
+  Profilwechsel, Speicherausfall, Vorschau, vier Bildschirmbreiten,
+  vier Materiallinks mit HTTP 200, öffentliche Linkanpassung und
+  Weiterleitung aus dem Lernpfad. Mobile Quizansicht visuell geprüft.
+  Hauptnavigation auf Startseite und 17 Lernseiten bei sechs Breiten und
+  zwei Schriftgrößen geprüft. Mehrtab-Test auf nächste generische Einheit
+  L3.7 angepasst und bestanden. JS-Syntaxprüfung und Diff-Whitespaceprüfung
+  erfolgreich; keine JS-Seitenfehler.
+- **Grenzen:** Kein automatischer Nachweis der eigenen Excel-Arbeit und
+  keine native Excel-Ausführung der Schülerformeln. Lehrkraftprüfung bleibt
+  erforderlich. L3.7–L4.8, Unterrichtstest und umfassendes A11y-Audit offen.
+  Kein Push und keine Online-Veröffentlichung.
+
+### Übergabe H-2026-10-02-55 – L3.7 Zielwertsuche
+
+- **Stand:** 02.10.2026, 15:18 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft,
+  nicht veröffentlicht. Nächste fachliche Einheit: L3.8 komplexe Auswertungen.
+- **Dateien:** Neue `l3-7.html`, `l3-7.js`; `content.js`, beide
+  Migrationslisten in `app.js`, direkter Weiter-Link in `l3-6.html`,
+  README und aktueller Taskstatus aktualisiert.
+- **Materialprüfung:** Aufgaben L3_4.1 Urlaub und L3_4.2 Kapital sowie
+  Informationsmaterial strukturell gelesen. Beide eingebetteten Aufgabentabellen
+  extrahiert und visuell geprüft. Originale unverändert. Zwei Aufgabenlinks,
+  online weiterhin auf die Materialseite des Landesbildungsservers umgestellt.
+  Keine zusätzlichen Musterlösungsdateien oder Informationsbilder eingebunden.
+- **Urlaub:** 800 CHF Skipass, 720 CHF Ferienwohnung, Budget 1500 Euro.
+  C5 ist die CHF-Summe, C7 der Kurs 1,21 CHF je Euro und C8 das Euro-Ergebnis.
+  Früheres Beispiel in `content.js` mit B7 korrigiert und durch ein neutrales
+  Mengenbeispiel ersetzt. Gesucht ist der kleinste positive tragbare Kurs,
+  nicht der maximal tragbare Kurs. Beide Seiten der Budgetgrenze prüfen;
+  keine unkontrollierte Rundung des Grenzkurses.
+- **Kapital:** Ausgangswerte B4 = 5000, B5 = 3 als Zahl, fünf Jahreszeilen
+  7–11, Endkapital in D11. Jahreszinsen bleiben im Kapital; Zahlenformat
+  statt Zwischenrundung. B5 muss genau einmal durch 100 umgerechnet werden.
+  Formeln selbst entwickeln; B7 verweist auf Startkapital, spätere
+  Anfangskapitalzeilen auf das jeweilige Vorjahres-Endkapital.
+- **Versuche:** Erst Zinssatz bei festem Startkapital für 6000 Euro finden.
+  Dann den ursprünglichen Stand wiederherstellen und bei festem ursprünglichem
+  Zinssatz das Startkapital suchen. Ausgangswerte, Zielangaben, gefundene Werte,
+  tatsächliche Zielabweichung und unabhängige Rückrechnung getrennt dokumentieren.
+  Speicherdateinamen aus dem Original übernommen: `L3_3.4.1 Urlaub.xlsx`
+  und `L3_3.4.2 Kapitalverzinsung.xlsx`.
+- **Didaktik:** Drei Dialogangaben, Formelabhängigkeit, nur eine veränderbare
+  Eingabe, dauerhafte Änderung bei Übernahme, Abbruch, nicht erreichbare Ziele
+  und Grenzen gegenüber allgemeiner Optimierung erklärt. Microsoft-Anleitung
+  verlinkt. Desktop-Excel erforderlich; keine Zusage für native Zielwertsuche
+  in Excel im Browser.
+- **Abschluss:** L3.6 vorausgesetzt. Drei Verständnisfragen, drei Arbeits-Checks
+  und Lehrkraftbestätigung vor 100 XP. Altabschlüsse bleiben gültig; Rücknahme
+  sperrt L3.8 und nimmt dessen direkten Abschluss zurück. Übrige Daten erhalten.
+- **Fehler behoben:** Eine Quizgruppe hieß zunächst reset und überschattete
+  dadurch die native reset-Methode des Formulars. Profilwechseltest schlug an;
+  Gruppe in restore umbenannt und gesamten Test danach erfolgreich wiederholt.
+  Bei zukünftigen Formularen keine nativen Methoden durch Feldnamen überdecken.
+- **Prüfung:** `.tmp/l37-mastery-smoke.cjs` bestanden: Zugang, leere/falsche/
+  richtige Antworten, Freischaltung, 100 XP, Rücknahme, Altstände, Profilwechsel,
+  Speicherausfall, Vorschau, vier Breiten, zwei Materiallinks mit HTTP 200,
+  öffentliche Anpassung und Lernpfadweiterleitung. `l37-content-smoke`
+  prüft vollständige Eingabedaten, Kursrichtung, Prozentkonvention,
+  unabhängige Rechenmodelle und direkten Vorgänger-Link. Mobile Aufgabenansicht
+  in Hell- und Dunkelmodus visuell geprüft. Navigation auf 19 Seiten,
+  sechs Breiten und zwei Schriftgrößen bestanden. Mehrtab-Test auf nächste
+  generische Einheit L3.8 angepasst und bestanden; Syntax und Diff geprüft.
+- **Grenzen:** Keine native Excel-Zielwertsuche ausgeführt und keine Schülerdatei
+  automatisch bewertet. Browser-Funktionstests und unabhängige Mathematik
+  ersetzen die Lehrkraftprüfung nicht. L3.8–L4.8, Unterrichtstest und
+  umfassendes A11y-Audit weiter offen. Kein Push und keine Veröffentlichung.
+
+### Übergabe H-2026-10-02-56 – L3.8 Komplexe Auswertungen
+
+- **Stand:** 02.10.2026, 15:36 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft.
+  Nächster fachlicher Ausbau: L4.1 Säulendiagramm erstellen und gestalten.
+- **Dateien:** Neue `l3-8.html` und `l3-8.js`; Inhaltsregister und zwei
+  Altabschluss-Migrationslisten in `app.js` erweitert. L3.7 führt direkt
+  zu L3.8. README und aktueller Taskstatus angepasst.
+- **Umfang:** Zwölf aufklappbare Abschnitte mit sechs vollständigen Fällen:
+  Provision Teil 1/2, Bonus mit beiden Teilen, Umsatzauswertung,
+  Versicherung und Vereinsbeitrag. Zwei Fälle mit der Lehrkraft wählen.
+  Daten und Blatt-/Zellaufbau auch ohne Vorlage verfügbar; Namen neutralisiert,
+  Reihenfolge und Zahlen aus Originalvorlagen übernommen. Keine Lösungsformeln.
+- **Quellenprüfung:** Sechs Aufgaben-DOCX und sechs Vorlagen strukturell
+  gelesen; Versicherungsgrafik auf Steuer und Berechnungsfolge geprüft.
+  Private Materialien unverändert, keine Musterlösungen veröffentlicht.
+  Zwölf lokale Aufgaben-/Vorlagenlinks geprüft; öffentlich auf die offizielle
+  Materialseite umgeleitet. Sicherheits-, Dokumente- und Tabellen-Skill genutzt.
+- **Provision:** Ganze Umsätze zum gewählten Satz, keine marginale Staffel.
+  Grenze 200000 inklusive; Teil 2 zusätzlich unter 100000, genau 100000
+  gehört zur mittleren Stufe. Abweichende Umsatzdaten in Teil 2 berücksichtigt.
+- **Bonus:** Fester Grenzwert 100000. Sonderregel für neue Kunden zuerst;
+  Aufgabenblatt sagt seit 2010, Vorlage nach dem Jahr 2010. Auf dieser Seite
+  ausdrücklich seit 2010 einschließlich; Auslegung in Schülerdatei dokumentieren
+  und mit Lehrkraft abgleichen. Nicht durch das aktuelle Jahr ersetzen.
+- **Umsatz:** 26 Kundendatensätze A4:D29, keine sieben Produktspalten vorhanden.
+  Anzahl und Summen nach Ort und Kundenart getrennt; beide Gruppierungen mit
+  denselben Originaldaten abgleichen, nicht miteinander addieren. D30 nicht
+  als zusätzlichen Datensatz mitzählen. Unbekannte Gruppe darf echte 0 liefern.
+- **Versicherung:** Kundennummer exakt, Rabatt über aufsteigende Untergrenzen
+  0/2/4/6/8/10/12. Mehr als zwölf Jahre bleiben bei 10 %. Steuer 19 % aus der
+  Vorlage auf rabattierte Zwischensumme, Unterrichtsmodell, keine aktuelle
+  Tarif-/Rechtsberatung. Fehlende Treffer und ungültige Eingaben nicht als 0 kaschieren.
+- **Verein:** Vorlage verwendet 1980/1985/1990/1995 statt der Aufgabenblattgrenzen
+  1990/1995/2000/2005. Nur in eigener Kopie D2:D5 berichtigen. Datum 01.01.2005
+  im Text nicht zugeordnet; ausdrücklich einschließlich als lokale Auslegung
+  gekennzeichnet. Feste Geburtsjahrgänge, keine HEUTE-/Altersberechnung.
+  Erste Untergrenze ist Excel-Serienwert 1 (01.01.1900). Abteilung exakt suchen,
+  Geburtstage über aufsteigende Untergrenzen. E ist ein Satz, kein Zuschlagsbetrag.
+- **Abschluss:** L3.7 vorausgesetzt; drei Verständnisfragen zu Regelvorrang,
+  strikter Grenze und Suchart. Drei eigene Checks und Lehrkraftbestätigung
+  vor 100 XP. Altabschlüsse erhalten. Rücknahme sperrt L4.1 und nimmt einen
+  dortigen direkten Abschluss zurück, ohne übrige Daten zu entfernen.
+- **Prüfung:** `l38-mastery-smoke` bestanden: Zugang, leere/falsche/richtige
+  Antworten, Persistenz, Abschluss/100 XP, Profilwechsel, Speichermisserfolg,
+  Vorschau, vier Breiten, Altabschluss/Rücknahme, zwölf Links HTTP 200,
+  öffentliche Linkanpassung, Lernpfad-Weiterleitung sowie tatsächlicher Klick
+  zum generischen L4.1-Dialog. `l38-content-smoke` gleicht Daten aller sechs
+  XLSX-Quellen gegen die HTML-Tabellen ab; unabhängig Grenzen, Bonusvorrang,
+  Gruppenabgleich und Rabattstufen gerechnet. Quellkonflikt mobil in Hell- und
+  Dunkelmodus visuell geprüft. Navigation auf 20 Seiten mit sechs Breiten und
+  zwei Schriftgrößen bestanden; Mehrtab-Test auf nächste generische Einheit
+  L4.1 angepasst und bestanden. L3.7-Abschlussregression ebenfalls bestanden.
+- **Grenzen:** Keine Schülerdatei bewertet und keine native Excel-Berechnung
+  ausgeführt. Lehrkraftprüfung weiterhin erforderlich. L4.1–L4.8, Unterrichtstest,
+  Lizenzklärung und umfassendes A11y-Audit bleiben offen. Kein Push/Deployment.
+
+### Übergabe H-2026-10-02-57 – L4.1 Säulendiagramm
+
+- **Stand:** 02.10.2026, 15:47 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft.
+  Nächster fachlicher Ausbau: L4.2 Balkendiagramm für Rangfolgen.
+- **Dateien:** Neue `l4-1.html`, `l4-1.js`, `l4-1.css`; Inhaltsregister und
+  beide Altabschluss-Migrationslisten in `app.js` erweitert. L3.8 führt direkt
+  zu L4.1. README und aktueller Taskstatus angepasst.
+- **Quellen:** Zwei Aufgaben-DOCX und zwei Informations-DOCX strukturell gelesen;
+  Datenmarkierung und Formatierungsabbildung visuell geprüft. Sicherheits- und
+  Dokumente-Skill genutzt. Originale unverändert; keine Vorlage neu exportiert.
+- **Aufgaben:** Vier Winteraktionen mit 125/100/125/50 Anmeldungen, Gesamtsumme
+  400. Eigenaufbau A3:B7 einschließlich Überschriften, Summenformel separat
+  B8. Diese Zelladressen gelten ausdrücklich für den eigenen Aufbau, nicht
+  als ungeprüfte Behauptung über die Originalvorlagen. Genau vier Kategorien
+  und eine Datenreihe, kein Tabellentitel und keine Summe im Diagramm.
+- **Erstellen/Formatieren:** 2D-Säulen, Platzierung ohne verdeckte Zellen;
+  Titel, beide Achsentitel, vier Datenlabels ohne Dezimalstellen. Titel Arial,
+  fett, 16 pt gemäß Aufgabe. Originale Dateinamen für beide eigenen Arbeitsstände
+  übernommen. Teil 2 kann aus einer Kopie von Teil 1 oder der zweiten Vorlage
+  entstehen. Nullbasis, Datenquellenänderung und Wiederherstellung prüfen.
+- **Illustration:** Selbst erstelltes SVG mit neutralen Werten 45/60/75/90.
+  Radioauswahl für Achsenstart 0 oder 40; gleichbleibende Labels, dynamische
+  Beschreibung und Erklärung. D/A-Höhenverhältnis 2 bei Nullbasis, 10 bei
+  abgeschnittener Achse. Keine Lösungen des Winteraktionstags vorgegeben.
+  Keine Lernstand-/Punktewrites durch Demo. Radioauswahl tastaturbedienbar.
+- **Mobile Korrektur:** Erste Illustration hatte abgeschnittene rechte Säule
+  und geerbte SVG-Textkonturen. Nach visueller Prüfung auf kleinere Viewbox,
+  vollständigen Vier-Säulen-Blick und explizit konturfreie Texte umgestellt.
+  Tabellen umbrechen innerhalb der Lernseite statt unnötiger Horizontalbreite.
+- **Abschluss:** L3.8 vorausgesetzt. Drei Verständnisfragen zu Datenquelle,
+  Nullbasis und Verknüpfung, drei eigene Checks und Lehrkraftbestätigung vor
+  100 XP. Altabschlüsse erhalten; Wiederöffnung sperrt L4.2 und nimmt dessen
+  direkten Abschluss zurück, übrige Daten bleiben erhalten.
+- **Tests:** `l41-mastery-smoke` bestanden: Zugang, leere/falsche/richtige
+  Antworten, Speicherung, Arbeits-/Lehrkraftgates, 100 Punkte, Altabschluss,
+  Rücknahme, Profilwechsel, Schreibfehler, Entwickler-Vorschau, vier Breiten,
+  vier Downloads HTTP 200 und öffentliche Umleitung, Standort BPE1 > L4 > L4.1,
+  Lernpfadweiterleitung und Klick zum generischen L4.2-Dialog. `l41-content-smoke`
+  gleicht die Eingabetabelle mit dem Aufgaben-DOCX ab; prüft Dateinamen,
+  Titelvorgaben, Ausschluss der Summe, SVG-Verhältnisse, Tastatur und keine
+  Demo-Speicherwrites. Vier Breiten und zwei Themes; mobil/desktop visuell geprüft.
+  Navigation auf 21 Seiten mit sechs Breiten und zwei Schriftgrößen bestanden.
+  Mehrtab-Test auf L4.2 angepasst und bestanden; L3.8-Regressionsprüfung bestanden.
+- **Grenzen:** Keine native Excel-Ausführung und keine automatische Bewertung
+  der Schülerdateien. Vier XLSX/DOCX-Downloads auf Erreichbarkeit, nicht auf
+  native Excel-Diagrammfunktionen geprüft. L4.2–L4.8, Unterrichtstest,
+  Lizenzklärung und umfassendes A11y-Audit offen. Kein Push/Deployment.
+
+### Übergabe H-2026-10-02-58 – L4.2 Balkendiagramm für Rangfolgen
+
+- **Stand:** 02.10.2026, 16:00 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft.
+  Nächster fachlicher Ausbau: L4.3 Liniendiagramm für Entwicklungen.
+- **Dateien:** Neue `l4-2.html`, `l4-2.js`, `l4-2.css`; Inhaltsregister und
+  beide Altabschluss-Migrationslisten erweitert. L4.1 führt direkt zur neuen
+  Seite. README, Taskstatus und nächste Arbeitsschritte aktualisiert.
+- **Quellen:** Aufgaben- und Informations-DOCX strukturell gelesen, alle fünf
+  eingebetteten Abbildungen visuell geprüft. Sicherheits- und Dokumente-Skill
+  verwendet. Originale unverändert, keine Musterlösung eingebunden. Sortierung
+  ist eine Erweiterung; die Originalabbildung zeigt die Aktionen unsortiert.
+- **Aufgabe:** Winteraktionstag mit vier Aktionen, Anmeldungen 125/100/125/50,
+  Summe 400. Genau eine Datenreihe, Summe und separaten Tabellentitel ausschließen.
+  2D-Balken, lesbare Namen und Datenlabels, waagerechte Größenachse mit Nullbasis.
+  Eigene Datei `L4_1.2 Lösung Balkendiagramm.xlsx` im Ordner Ergebnisse speichern.
+  Zelladressen A3:B7/B8 beziehen sich ausdrücklich nur auf den eigenen Aufbau.
+- **Erweiterung:** Blattkopie mit absteigend sortierten ganzen Datensätzen;
+  niemals nur Zahlen sortieren. Sichtbare Reihenfolge im Diagramm kontrollieren,
+  gegebenenfalls Kategorienachse umkehren und Größenachsenposition prüfen.
+  Gleichstände beibehalten. Einmalige Sortierung ist keine automatische
+  Neuordnung nach Eingabeänderungen. Originalwerte wiederherstellen,
+  beide Blattfassungen speichern und erneut öffnen.
+- **Demo:** Neutrale Projektwoche mit vier langen Kategoriennamen und Zahlen
+  36/60/24/48. Ausgangs- und Rangfolgenreihenfolge per Radioauswahl. Ganze Paare
+  umgeordnet, gleiche Werte und Balkenlängen. Dynamische zugängliche Beschreibung
+  und Datentabelle; keine Punkte- oder Profilwrites. Mobile Tabellenüberschrift
+  nach visueller Prüfung gegen unnötigen Wortumbruch korrigiert.
+- **Abschluss:** L4.1 vorausgesetzt. Drei Verständnisfragen zu gemeinsamer
+  Sortierung, Achsen und Gleichständen. Drei eigene Checks plus Lehrkraftbestätigung
+  vor 100 XP. Altabschlüsse bleiben gültig. Rücknahme sperrt L4.3 und nimmt
+  dessen direkten Abschluss zurück; übrige Daten bleiben erhalten.
+- **Prüfung:** `l42-mastery-smoke` bestanden: Zugang, leere/falsche/richtige
+  Antworten, Speicherung, Arbeits-/Lehrkraftgates, 100 XP, Altabschluss,
+  Rücknahme, Profilwechsel, Schreibfehler, Entwicklervorschau, vier Breiten,
+  zwei Downloads HTTP 200, öffentliche Umleitung, Standort BPE1 > L4 > L4.2,
+  Lernpfadredirect und Klick zum generischen L4.3-Dialog.
+  `l42-content-smoke` bestanden: Eingaben/Dateiname, sortierte Paare,
+  gleiche Werte/Längenverhältnisse, lange Beschriftungen, Tastatur, keine
+  Demo-Lernstandwrites; vier Breiten in zwei Themes. Mobile und Desktop-Demo
+  visuell geprüft. Navigation auf allen 22 Seiten mit sechs Breiten und zwei
+  Schriftgrößen bestanden. L4.1-Abschlussregression mit tatsächlichem Weiterklick
+  zur neuen Seite sowie Mehrtab-Test mit nächster generischer Einheit L4.3
+  bestanden. JS-Syntaxprüfungen und Whitespaceprüfung bestanden.
+- **Grenzen:** Keine native Excel-Ausführung und keine Schülerdatei bewertet.
+  XLSX-Vorlage nur auf HTTP-Erreichbarkeit geprüft, keine Aussage über ihre
+  Zelladressen oder Diagrammfunktion. L4.3–L4.8, Unterrichtstest, Lizenzklärung
+  und umfassendes A11y-Audit bleiben offen. Kein Push und kein Deployment.
+
+### Übergabe H-2026-10-02-59 – L4.3 Liniendiagramm für Entwicklungen
+
+- **Stand:** 02.10.2026, 16:13 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft.
+  Nächster fachlicher Ausbau: L4.4 Kreisdiagramm für Anteile.
+- **Dateien:** Neue `l4-3.html`, `l4-3.js`, `l4-3.css`; Inhaltsregister,
+  beide Altabschluss-Migrationslisten und direkter Weiter-Link aus L4.2 ergänzt.
+  README, aktueller Taskstatus und nächste Arbeitsschritte aktualisiert.
+- **Quellenabgleich:** Aufgaben- und Informations-DOCX strukturell gelesen,
+  fünfzehn eingebettete Abbildungen visuell geprüft. Sicherheits- und
+  Dokumente-Skill genutzt; Originale unverändert. Aufgabe verlangt Schwimmen
+  2013–2017: 120/90/85/60/50. Fünf Jahreswerte und vier Zeitabstände.
+  Text nennt teilweise vier Jahre, ältere Vorschau 2011–2015; eine Menüabbildung
+  zeigt versehentlich Kreisdiagramme. Lernseite folgt der eigentlichen
+  Datentabelle und Liniendiagramm-Aufgabe, nicht diesen widersprüchlichen Bildern.
+- **Auftrag:** Eine Datenreihe Schwimmen, chronologische Jahre auf X-Achse.
+  Andere Aktionen und Summenzeile ausschließen. Strg-Auswahl getrennter Zeilen
+  für Windows erklärt; alternativ Datenquelle direkt einstellen oder eigene
+  Zweispaltentabelle erstellen. Adressen A3:B8 ausdrücklich nur für Eigenaufbau.
+  Fehlerbild zusätzliche Jahreslinie um 2000 und X-Achse 1–5 erklären; falsche
+  Jahresreihe entfernen und Jahreszellen als horizontale Beschriftungen setzen.
+  2D-Linie mit Markierungen, fünf Zahlenlabels und Aktion/Zeitraum im Titel.
+  Eigene Datei `L4_1.3 Lösung Liniendiagramm.xlsx` speichern, Eingabeänderung
+  testen, Originalwert wiederherstellen und Datei erneut öffnen.
+- **Didaktik:** Linie verbindet Messpunkte, erzeugt aber keine Zwischenmessungen.
+  Fehlend ist nicht null. Chronologie bleibt erhalten; keine Sortierung nach
+  Messwert. Gleichmäßige Jahresabstände hier passend, ungleiche Zeitabstände
+  brauchen geeignete Datumsachse bzw. XY-Darstellung. Keine Glättung,
+  unbelegte Ursache oder sichere Zukunftsprognose. Größenachse in dieser
+  Aufgabe ab null; für reine Linien nicht als allgemeine Pflicht behauptet.
+- **Demo:** Neutrale Monatsreihe 24/36/fehlend/48/60. Native Radioauswahl zwischen
+  korrekter Lücke und ausdrücklich falschem Nullwert. Zwei getrennte
+  Liniensegmente und vier echte Punkte versus eine Verbindung mit erfundenem
+  Nullpunkt. Echte Werte/Positionen und Datentabelle unverändert. Dynamische
+  zugängliche Beschreibung und Status; keine Punkte-/Profilwrites.
+  Rotierter Achsentitel nach Grenzprüfung verkleinert, damit er vollständig
+  in der SVG-Fläche bleibt.
+- **Abschluss:** L4.2 vorausgesetzt. Drei Verständnisfragen zu Zeit-/Wertzuordnung,
+  Fehlwert und Aussagegrenzen, drei eigene Checks sowie Lehrkraftbestätigung
+  vor 100 XP. Altabschlüsse gültig; Rücknahme sperrt L4.4 und nimmt dessen
+  direkten Abschluss zurück, übrige Daten bleiben erhalten.
+- **Prüfung:** `l43-mastery-smoke` bestanden: Zugang, leere/falsche/richtige
+  Antworten, Speicherung, Gates/100 XP, Altabschluss, Rücknahme, Profilwechsel,
+  Schreibfehler, Entwickler-Vorschau, vier Breiten, zwei Downloads HTTP 200,
+  öffentliche Umleitung, Standort BPE1 > L4 > L4.3, Lernpfadredirect und
+  tatsächlicher Klick zum generischen L4.4-Dialog.
+  `l43-content-smoke` liest das Aufgaben-DOCX unabhängig und vergleicht die
+  fünf Schwimmen-Paare mit der HTML-Tabelle. Dateiname, Lücke/falsche Null,
+  echte Punktpositionen, Tastatur, keine Profilwrites, vier Breiten in zwei
+  Themes und zwei Schriftgrößen sowie transformierte SVG-Textgrenzen geprüft.
+  Mobile und Desktop-Demo visuell geprüft. L4.2-Abschlussregression mit
+  tatsächlichem Weiterklick zur neuen Seite und Mehrtab-Test mit L4.4 bestanden.
+  Navigation auf allen 23 Seiten mit sechs Breiten und zwei Schriftgrößen,
+  JS-Syntaxprüfungen und Whitespaceprüfung bestanden.
+- **Offen:** L4.4–L4.8, Unterrichtstest, umfassendes A11y-Audit und Lizenzklärung.
+  Keine native Excel-Ausführung und keine Schülerdatei automatisch bewertet.
+  XLSX-Vorlage auf Erreichbarkeit, nicht auf native Diagrammfunktion geprüft.
+  Kein Push und kein Deployment.
+
+### Übergabe H-2026-10-02-60 – L4.4 Kreisdiagramm für Anteile
+
+- **Stand:** 02.10.2026, 16:21 Uhr, Europe/Berlin. Lokal umgesetzt und geprüft.
+  Nächster fachlicher Ausbau: L4.5 gruppierte und gestapelte Säulen.
+- **Dateien:** Neue `l4-4.html`, `l4-4.js`, `l4-4.css`; Inhaltsregister und
+  beide Altabschluss-Migrationslisten ergänzt. L4.3 führt direkt zur neuen Seite.
+  README, Taskstatus und nächste Arbeitsschritte aktualisiert.
+- **Quellen:** Aufgaben- und Informations-DOCX strukturell gelesen und fünf
+  eingebettete Abbildungen visuell geprüft. Sicherheits- und Dokumente-Skill
+  genutzt. Originale unverändert, keine Musterlösung veröffentlicht.
+  Originalblatt fordert 3D; Lernseite benennt diese Abweichung ausdrücklich,
+  bevorzugt unverzerrtes 2D und erlaubt zusätzliche Originalformat-Kopie, wenn
+  von der Lehrkraft verlangt. Kein stilles Umschreiben der Originalvorgabe.
+- **Berechnung:** Nur Originaleingaben übernommen: vier Aktionen mit
+  125/100/125/50 Personen, Grundsatz 3,50 Euro und zusätzlicher Euro je
+  Skifahrer. Fertige Kosten und vollständige Aufgabenformeln nicht vorgegeben.
+  Schüler berechnen Aktionssätze, Kosten, Summe und Prozentanteile selbst.
+  Zentrale Eingaben mit festen Bezügen, Summenbezug beim Kopieren fixieren,
+  gespeicherte Anteile nicht runden. Eigene Adressen ausdrücklich als
+  Eigenaufbau gekennzeichnet, nicht als Aussage über die ungeprüfte XLSX-Vorlage.
+- **Diagramm:** Vier Aktionsnamen plus genau ihre Gesamtkosten als eine Reihe;
+  kein Pro-Kopf-Satz, keine Teilnehmerzahl und keine Summenzeile als Segment.
+  Titel, Kategorienamen und Prozentlabels direkt und gut lesbar. Keine
+  herausgezogenen oder perspektivisch verzerrten Segmente. Eigene Datei
+  `L4_1.4 Lösung Kreisdiagramm.xlsx` speichern und erneut öffnen.
+- **Didaktik:** Gemeinsame Einheit/Zeitraum, keine überlappenden Bestandteile,
+  keine negativen Werte. Tatsächliche Null hat keinen sichtbaren Sektor;
+  fehlend ist nicht null, gesamtes Nullbudget ergibt keine Anteile.
+  Summenzeile würde das Ganze doppelt zählen. Kleine Abweichungen der gerundeten
+  Prozentanzeigen zulässig; nicht mit erfundenem Budgetposten korrigieren.
+  Zuschlagänderung: nur Skifahrer-Eurokosten direkt verändert, aber Gesamtsumme
+  und alle Prozentanteile neu berechnet. Originalwerte wiederherstellen.
+- **Demo:** Neutrales Projektbudget Bücher 100/Werkzeug 150/Material 250 Euro.
+  Material über Slider 0–400 in 25-Euro-Schritten. CSS-Kreis mit ungerundeten
+  Anteilen, dynamische Euro-/Prozenttabelle, zugängliche Beschreibung und Status,
+  tastaturbedienbare Auswahl und Reset. Kein Aufgabenlösungsdiagramm und
+  keine Lernstand-/Profilwrites. Null-Material explizit erklärt.
+- **Abschluss:** L4.3 vorausgesetzt. Drei Verständnisfragen zu passender
+  Kostenquelle, verändertem Nenner und zulässigen Kreisanteilen. Drei eigene
+  Checks plus Lehrkraftbestätigung vor 100 XP; Altabschlüsse bleiben gültig.
+  Rücknahme sperrt L4.5 und nimmt dessen direkten Abschluss zurück;
+  übrige Daten bleiben erhalten.
+- **Tests:** `l44-mastery-smoke` bestanden: Zugang, leere/falsche/richtige
+  Antworten, Persistenz, Arbeits-/Lehrkraftgates, 100 XP, Altabschluss/Rücknahme,
+  Profilwechsel, Schreibfehler, Entwickler-Vorschau, vier Breiten, zwei Downloads
+  HTTP 200, öffentliche Linkumleitung, Standort BPE1 > L4 > L4.4,
+  Lernpfadredirect und tatsächlicher Klick zum nächsten generischen L4.5-Dialog.
+  `l44-content-smoke` liest das Aufgaben-DOCX unabhängig: Eingaben,
+  Ausgangssätze und Kostenarithmetik geprüft, fertige Quellenkosten nicht in
+  der Lernseite enthalten. Eigener Dateiname, explizite 2D-Abweichung,
+  fünf Sliderstände einschließlich Nullsektor, Gesamtsummen, Anteile,
+  ungerundete Farbgrenzen, zugängliche Namen, Tastatur/Reset und keine
+  Profilwrites geprüft. Vier Breiten in zwei Themes und zwei Schriftgrößen,
+  runder Kreis ohne Horizontalüberlauf; Demo mobil/desktop visuell geprüft.
+  L4.3-Abschlussregression mit tatsächlichem Weiterklick zur neuen Seite sowie
+  Mehrtab-Test mit nächster generischer Einheit L4.5 bestanden.
+  Navigation auf allen 24 Seiten mit sechs Breiten und zwei Schriftgrößen
+  bestanden, einschließlich Touch-Untermenüs und vollständig sichtbarer Labels.
+  JS-Syntaxprüfungen und Whitespaceprüfung bestanden.
+- **Offen:** L4.5–L4.8, Unterrichtstest, umfassendes A11y-Audit und Lizenzklärung.
+  Keine native Excel-Ausführung und keine Schülerdatei automatisch bewertet.
+  XLSX-Vorlage nur auf Erreichbarkeit, nicht auf native Diagrammfunktion geprüft.
+  Kein Push und kein Deployment.
+
+
+### Übergabe H-2026-10-02-61 – L4.5 Gruppierte und gestapelte Säulen
+
+- **Zeit:** 02.10.2026, 16:41 Uhr (Europe/Berlin).
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+  Nächster Ausbau: L4.6 Punktdiagramm und Trendlinie.
+- **Dateien:** Neue `l4-5.html`, `l4-5.js`, `l4-5.css`; Registry
+  `content.js`, Abschlussmigration `app.js`, direkter Weiterlink in L4.4,
+  README und Dokumentation aktualisiert.
+- **Quellen:** Aufgaben-DOCX L4_1.5, L4_1.6, L4_1.7 und Informationen L4_1.5
+  strukturell gelesen; alle vier eingebetteten Abbildungen visuell geprüft.
+  Originale unverändert. Sechs lokale Aufgabe-/Vorlagendownloads vorhanden,
+  öffentlich weiterhin zur offiziellen Materialseite umgeleitet.
+  Keine Originaldateien oder Musterlösungen veröffentlicht.
+- **Aufgabe A:** Original-Anmeldungen der vier Aktionen 2016/2017 als
+  gruppierte Säulen; Aktionen sind Kategorien, Jahre sind Datenreihen.
+  Nullbasierte Personenachse, Legende, Datenlabels, Vergleich der Einzelwerte;
+  Summenzeile nur zur Kontrolle. Eigene Datei
+  `L4_1.5 Lösung gruppiertes Säulendiagramm.xlsx`.
+- **Aufgabe B:** Originalmatrix mit vier Aktionen und fünf Jahren 2013–2017.
+  Quellenüberschrift „sechs Jahre“ ausdrücklich gegen die Daten korrigiert.
+  Eine gestapelte Säule je Jahr, vier Aktionsreihen, Formel-Jahressummen
+  separat kontrollieren. Keine fünfte Summenreihe. Segmenthöhe und
+  kumulierte obere Kante unterscheiden; obere Einzelwerte mittels Tabelle
+  oder Datenlabels absichern. Eigene Datei
+  `L4_1.6 Lösung gestapeltes Säulendiagramm Teil 1.xlsx`.
+- **Aufgabe C:** Alle sieben Reihen einschließlich Sonstige und alle sieben
+  Wahljahre 1994–2017 übernommen. Ausdrücklich historische Unterrichtsdaten
+  mit damaligen/zusammengefassten Bezeichnungen, keine aktuellen Wahldaten.
+  Abweichende Textjahre 1990–2013 und weiterer Dateiname „1990_2013“ erklärt.
+  Erster Original-Arbeitsname
+  `L4_1.7 Lösung gestapeltes Säulendiagramm Teil 2.xlsx` verwendet.
+  Wirklichen Untertyp 100 % auswählen, nicht normale Stapel aus Prozentzahlen.
+  Prozentformat-Falle 41,4 vs. 41,4 %, einheitliche Skala, Jahressummen,
+  Vollständigkeit und Prozentpunkte vs. relative Veränderung erläutert.
+- **Didaktik:** Einzelwerte, absolute Summen und Zusammensetzung getrennt.
+  Nichtnegative Teile derselben Größe mit positiver Gesamtsumme.
+  Fehlend ist nicht null; tatsächliche Null bildet kein sichtbares Segment.
+  Gleich hohe 100-%-Säulen beweisen keine gleichen absoluten Summen und
+  keine vollständige Datenauswahl. Änderungstest, ursprüngliche Werte
+  wiederherstellen und drei eigene Dateien speichern/erneut öffnen.
+  Keine fertigen Aufgabenlösungsdiagramme oder vollständigen Aufgabenformeln.
+- **Demo:** Neutrale Bestellungen Hefte/Ordner: Gruppe 1 20/30, Gruppe 2 40/60.
+  Drei native Radio-Optionen schalten gruppiert/gestapelt/100 % um.
+  Absolute Achse 0–100, Anteilsachse 0–100 %, feste Legende und unveränderte
+  Ausgangstabelle. Segmentbeschriftungen A/B plus Werte sowie zugänglicher
+  Diagrammname einschließlich absoluten Summen; Erklärung ändert sich passend.
+  Tastaturbedienbar, keine Lernstand-/Profilwrites. Originaltabellen auf
+  kleinen Geräten in benanntem, fokussierbarem Bereich horizontal scrollbar.
+- **Abschluss:** L4.4 vorausgesetzt; drei Verständnisfragen zu Datenzuordnung,
+  verschobenen Stapelsegmenten und Normierungsgrenze. Drei praktische Checks
+  plus Lehrkraftbestätigung vor 100 XP. Altabschlüsse gültig; Rücknahme
+  sperrt L4.6 und widerruft dessen direkten Abschluss, ohne sonstige Daten
+  zu löschen. Entwickler-Vorschau schreibt keinen Abschluss.
+- **Prüfung:** `l45-mastery-smoke` bestanden: Zugang, leere/falsche/richtige
+  Antworten, Persistenz, Abschlussgates/100 XP, Altabschluss/Rücknahme,
+  Profilwechsel, Schreibfehler, Entwickler-Vorschau, sechs Downloads HTTP 200,
+  öffentliche Linkumleitung, Standort BPE1 > L4 > L4.5, Lernpfadredirect
+  und tatsächlicher Weiterklick zum generischen L4.6.
+  `l45-content-smoke` liest alle drei Aufgaben-DOCX unabhängig und prüft
+  sämtliche übernommenen Tabellenwerte. Neun aufklappbare Abschnitte,
+  richtige Säulen-/Segmentgeometrie in allen drei Modi, zugängliche Namen,
+  Tastaturwechsel und unveränderter Lernstand geprüft. Vier Breiten
+  (320/390/760/1440), zwei Themes und zwei Schriftgrößen; kein Seitenüberlauf
+  oder abgeschnittene Zahlenzellen. Demo mobil und desktop visuell geprüft.
+  L4.4-Regressionsprüfung mit Weiterklick zu neuer Seite und Mehrtab-
+  Startseitentest mit generischem L4.6 bestanden. Navigation auf 25 Seiten
+  in sechs Breiten und zwei Schriftgrößen inklusive Touch-Untermenüs bestanden.
+  JavaScript-Syntax und Whitespaceprüfung bestanden.
+- **Grenzen/offen:** L4.6–L4.8, Unterrichtstest, umfassendes A11y-Audit,
+  Lizenzklärung. XLSX-Vorlagen nur erreichbar, nicht nativ in Excel geprüft;
+  keine Aussage über konkrete Vorlagen-Zelladressen, keine automatische
+  Bewertung von Schülerdateien. Kein Push und kein Deployment.
+
+
+### Übergabe H-2026-10-03-62 – L4.6 Punktdiagramm und Trendlinie
+
+- **Zeit:** Umsetzung am 02.10.2026 begonnen; Abschlussprüfungen und
+  Dokumentation am 03.10.2026, 10:59 Uhr (Europe/Berlin).
+- **Status:** Lokal umgesetzt und geprüft, nicht veröffentlicht.
+  Nächste noch nicht ausgearbeitete Lernseiten: L4.7 und L4.8.
+- **Dateien:** Neue `l4-6.html`, `l4-6.js`, `l4-6.css`; Registry
+  `content.js`, Abschlussmigration `app.js`, direkter Weiterlink aus L4.5,
+  README und diese Dokumentation aktualisiert.
+- **Quellenabgleich:** Aufgaben-DOCX und Informations-DOCX L4_1.8
+  strukturell gelesen. Alle zehn eingebetteten Abbildungen visuell geprüft.
+  Die 14 Länder-/Einkommen-/Verbrauchspaare aus der vollständig lesbaren
+  Tabelle in Informationsabbildung 1 übernommen und gegen weitere
+  Tabellenabbildungen abgeglichen. Originaldateien unverändert.
+  Arbeitsmappe nicht nativ ausgeführt; keine behaupteten Vorlagen-Zelladressen.
+- **Quellenprobleme:** Eine Abbildung vertauscht die Achsenbeschriftungen,
+  obwohl das Punktmuster die ursprüngliche Zuordnung zeigt. Lernseite stellt
+  ausdrücklich Einkommen auf X und Energieverbrauch auf Y klar.
+  Aufgabentext spricht teils von Strom, Tabelle von Energieverbrauch; keine
+  unbelegte Aussage über die erfassten Energiearten. Bezugsjahr/Primärquelle
+  nicht ausreichend angegeben: als historische Unterrichtsdaten, nicht
+  aktuelle Länderstatistik verwendet. Quellenschreibweise „Kenja“ kenntlich.
+- **Arbeitsauftrag:** Alle 14 vollständigen numerischen Paare, nur XY-Punkte
+  ohne Verbindungslinien, X-/Y-Bereiche explizit kontrollieren, sachliche
+  Größen-/Einheitenbeschriftungen. Reihenfolge zusammenhalten; keine isolierte
+  Spaltensortierung, Ländernummern, Ländertexte oder Summen als X-Reihe.
+  Überlagerte Punkte über Quelldatensatzanzahl prüfen. Zwei Punkte erklären,
+  vorübergehende Y-Änderung testen, Originalwert wiederherstellen.
+  Eigene Datei `L4_1.8 Lösung Punktdiagramm.xlsx` in Ergebnisse speichern
+  und nach erneutem Öffnen prüfen.
+- **Regression:** Lineare Trendlinie, frei geschätzter Achsenschnittpunkt,
+  Gleichung und R² anzeigen; keine erzwungene Null und keine unkritische
+  Extrapolation. Steigung/Schnittpunkt mit Einheiten erklären.
+  R² als Passung relativ zur Y-Streuung in dieser Auswahl, nicht als
+  Ursache, Ursachenwahrscheinlichkeit, Trefferquote oder sichere Prognose.
+  Niedriges lineares R² schließt nichtlinearen Zusammenhang nicht aus.
+  Mindestens zwei verschiedene X-Werte nötig; bei konstantem Y ist das
+  übliche R² undefiniert. Messfehler, Auswahl, weitere Einflussgrößen und
+  auffällige Punkte besprechen; keine Punktlöschung nur für größeres R².
+  Keine fertige Aufgaben-Regressionsgleichung oder Aufgabenlösung veröffentlicht.
+- **Neutrale Demo:** Vier frei erfundene Übungsfälle mit X = 2/4/8/10 h,
+  Y = 5/9/17/21 Aufgaben. Fall C über Slider 5–25 veränderbar, Reset auf 17.
+  Numerische X-Abstände, vier benannte Punkte und gestrichelte lineare
+  Ausgleichsgerade im beobachteten X-Bereich. Gleichung/R² aus ungerundeten
+  Rechenergebnissen neu berechnet, Anzeige drei Dezimalstellen; Tabelle,
+  zugängliche Diagrammbeschreibung und Sliderwert synchron. Eigenständige
+  Beispiellösung y = 2x + 1 bei Startwert, keine Länderlösung. Kein
+  Lernstand-/Profilwrite oder XP durch Demo. Native Tastatursteuerung und
+  44-px-Sliderziel. SVG-Schrift ohne geerbten Icon-Stroke, nicht abgeschnitten.
+  Diagramm auf schmalen Geräten in fokussierbarer Region horizontal scrollbar;
+  Daten zusätzlich in lesbarer Tabelle.
+- **Abschluss:** L4.5 vorausgesetzt. Drei Verständnisfragen zu Zuordnung,
+  senkrechter Bewegung und R²-/Kausalitätsgrenze. Drei eigene praktische
+  Checks plus Lehrkraftbestätigung vor 100 XP. Altabschlüsse gültig.
+  Rücknahme sperrt L4.7 und widerruft dessen direkten Abschluss, ohne
+  sonstige Daten zu löschen; Entwickler-Vorschau ohne Abschlusswrites.
+- **Tests:** `l46-content-smoke` bestanden: 14 Tabellenpaare gegen manuell
+  geprüfte Quellenabbildungs-Baseline, acht aufklappbare Abschnitte.
+  Regressionsfunktion für alle 21 Sliderwerte gegen unabhängige
+  Summen-/Kovarianzformel geprüft, außerdem zu wenige/identische X-Werte,
+  konstantes Y und negative Steigung. Browser bei vier Sliderständen
+  (5/9/17/25), vier Breiten (320/390/760/1440), zwei Themes und zwei
+  Schriftgrößen: Gleichung, R², Punkt-/Trendgeometrie, numerische X-Abstände,
+  Tabelle, ARIA und vollständige SVG-Textgrenzen geprüft.
+  Tastatur/Reset und unveränderter gespeicherter Lernstand bestätigt.
+  Desktop-/Mobilbilder visuell geprüft, keine Behauptung einer vollständigen
+  WCAG-Prüfung. `l46-mastery-smoke` bestanden: Zugang, leere/falsche/richtige
+  Antworten, Persistenz, praktische/Lehrkraftgates, 100 XP, Altabschluss/
+  Rücknahme, Profilwechsel, Schreibfehler, Entwickler-Vorschau, zwei lokale
+  Downloads HTTP 200, öffentliche Linkumleitung, Standort, Lernpfadredirect,
+  tatsächlicher Weiterklick zum generischen L4.7. L4.5-Regressionsprüfung
+  mit tatsächlichem Weiterklick zur neuen Seite und Mehrtab-Startseitentest
+  mit generischem L4.7 bestanden. Gemeinsame Navigation auf 26 Seiten
+  in sechs Breiten und zwei Schriftgrößen inklusive Touch-Untermenüs geprüft.
+  JavaScript-Syntax und Whitespaceprüfung bestanden.
+- **Offen und Grenzen:** L4.7–L4.8, Unterrichtstest, umfassendes A11y-Audit,
+  Lizenzklärung. Original-XLSX nur auf Erreichbarkeit, nicht auf native
+  Diagrammfunktion geprüft. Keine automatische Bewertung von Schülerdateien.
+  Kein Push und kein Deployment.

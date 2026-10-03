@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-  // Independent demo: never reads or changes profiles, progress or lesson answers.
+  // L1.2-Demo: keine Profil-, Fortschritts- oder Lösungsmutation.
   const quantity = document.querySelector("#lab-quantity");
   if (!quantity) return;
   const reset = document.querySelector("#lab-reset");

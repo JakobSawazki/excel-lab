@@ -14,6 +14,8 @@
     <script src="developer-mode.js" defer></script>
     <script src="content.js" defer></script>
     <script src="lesson-navigation.js" defer></script>
+    <script src="xp.js" defer></script>
+    <script src="options.js" defer></script>
     <script src="lesson-workspace.js" defer></script>
     <script src="l1-4.js" defer></script>
   </head>
@@ -96,6 +98,24 @@
             <summary><span class="section-index">06 · Kontrollieren</span><h2 id="l14-section-6">Typische Fehler erkennen und erklären</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
             <div class="lesson-disclosure-body"><div class="concept-grid"><article><span>fx</span><h3>Nur eine Zahl zu sehen?</h3><p>Prüfe die Bearbeitungsleiste. Dort muss eine Formel mit = stehen. Ein richtig aussehender Betrag allein beweist nicht, dass kopiert wurde.</p></article><article><span>↘</span><h3>Falsche Zelladressen?</h3><p>Prüfe Ausgangsformel, Zielzelle und Abstand. Wenn du Formeltext statt der ganzen Zelle kopiert hast, können die alten Adressen stehen bleiben.</p></article><article><span>Σ</span><h3>Summe unverändert?</h3><p>Kontrolliere, ob der neue Positionspreis tatsächlich Teil der Summenformel ist. Der Änderungstest erkennt eine fehlende Position zuverlässig.</p></article><article><span>!</span><h3>Summe überschrieben?</h3><p>Mache den letzten Schritt mit Strg + Z rückgängig. Schaffe zuerst eine freie Zeile über der Summe. Ziehe das Ausfüllkästchen nur über Positionszeilen.</p></article></div><p><strong>Zusatz für Schnelle:</strong> Teste in einer separaten leeren Arbeitsmappe das Kopieren einer einfachen Formel um zwei Zeilen nach unten und anschließend um eine Spalte nach rechts. Sage die neuen Bezüge jeweils vorher voraus. Deine Abgabedatei bleibt auf die Getränkeliste beschränkt.</p><p>Fachlich nachlesen: <a href="https://support.microsoft.com/en-us/excel/fill-a-formula-down-into-adjacent-cells" target="_blank" rel="noopener noreferrer">Microsoft: Formeln nach unten ausfüllen</a> und <a href="https://support.microsoft.com/en-us/excel/switch-between-relative-absolute-and-mixed-references" target="_blank" rel="noopener noreferrer">relative Zellbezüge</a>.</p></div>
           </details>
+<details class="lesson-disclosure" id="l14-mastery-section">
+<summary><span class="section-index">07 · Verstehen</span><h2>Prüfe dein Verständnis</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+<p>Beantworte die drei Fragen und erkläre anschließend an deiner eigenen Datei, wie du die kopierte Formel kontrolliert hast.</p>
+<form id="l14-mastery-form" class="mastery-form">
+<fieldset class="mastery-question" data-mastery-question="shift"><legend>1. In E2 steht =C2*D2. Du kopierst die Zelle zwei Zeilen nach unten nach E4. Welche Formel entsteht?</legend>
+<label><input type="radio" name="shift" value="a">=C2*D2 – die Zelladressen bleiben immer gleich</label>
+<label><input type="radio" name="shift" value="b">=C4*D4 – beide relativen Zeilennummern steigen um zwei</label>
+<label><input type="radio" name="shift" value="c">=E2*F2 – die Spalten wandern nach rechts</label><p class="mastery-feedback" aria-live="polite"></p></fieldset>
+<fieldset class="mastery-question" data-mastery-question="dynamic"><legend>2. Ein kopierter Gesamtpreis sieht richtig aus. In der Bearbeitungsleiste steht aber nur 15 statt einer Formel. Was bedeutet das?</legend>
+<label><input type="radio" name="dynamic" value="a">Excel hat die Formel sicher im Hintergrund gespeichert</label>
+<label><input type="radio" name="dynamic" value="b">Die Zelle berechnet sich neu, sobald ich ein Euroformat wähle</label>
+<label><input type="radio" name="dynamic" value="c">Es ist ein fester Wert. Bei Änderungen von Preis oder Menge rechnet diese Zelle nicht mit</label><p class="mastery-feedback" aria-live="polite"></p></fieldset>
+<fieldset class="mastery-question" data-mastery-question="sum"><legend>3. Du hast eine neue Position über der Summe ergänzt und ihre Formel kopiert. Was prüfst du zusätzlich?</legend>
+<label><input type="radio" name="sum" value="a">Ob die Summenformel die neue Position berücksichtigt; ich teste eine Mengenänderung und stelle sie danach zurück</label>
+<label><input type="radio" name="sum" value="b">Nur die Schriftfarbe – jede neue Position ist automatisch immer in jeder Summe enthalten</label>
+<label><input type="radio" name="sum" value="c">Nichts – ein richtig aussehender Positionspreis beweist, dass auch die Summe stimmt</label><p class="mastery-feedback" aria-live="polite"></p></fieldset>
+<button class="button button-primary" type="submit">Antworten prüfen</button><p id="l14-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.</p>
+</form></div></details>
 </article>
         <aside class="lesson-page-sidebar">
           <section class="lesson-check-panel">
@@ -114,7 +134,7 @@
           </section>
           <section class="next-lesson-panel">
             <small>Danach</small><strong>L1.5 Tabellen logisch strukturieren</strong><p>Dieses Kapitel wird nach dem Abschluss von L1.4 freigeschaltet.</p>
-            <a class="button button-secondary button-full is-disabled" href="index.html#lernpfad" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
+            <a class="button button-secondary button-full is-disabled" href="l1-5.html" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
           </section>
         </aside>
       </div>

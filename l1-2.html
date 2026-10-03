@@ -10,12 +10,16 @@
     <title>L1.2 · Rechnen mit Zelladressen · Excel-Lab</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="lesson-workspace.css">
+    <link rel="stylesheet" href="formula-lab.css">
     <script src="deployment.js" defer></script>
     <script src="developer-mode.js" defer></script>
     <script src="content.js" defer></script>
     <script src="lesson-navigation.js" defer></script>
+    <script src="xp.js" defer></script>
+    <script src="options.js" defer></script>
     <script src="lesson-workspace.js" defer></script>
     <script src="l1-2.js" defer></script>
+    <script src="formula-lab.js" defer></script>
   </head>
   <body class="lesson-page-body l12-page">
     <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
@@ -101,7 +105,47 @@
             </dl>
             <p>Excel rechnet Punkt vor Strich. Klammern ändern die Reihenfolge: <code>=(B2+C2)*E2</code> addiert zuerst. Mehrere Ergebnisse kannst du mit <code>+</code> verbinden, zum Beispiel <code>=D2+D3+D4</code>.</p>
           </div></details>
-          <details class="lesson-disclosure"><summary><span class="section-index">03 · Anwenden und prüfen</span><h2 id="excel-heading">Formel eingeben, anzeigen und kontrollieren</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+          <details class="lesson-disclosure formula-lab-disclosure"><summary><span class="section-index">03 · Ausprobieren</span><h2>Ein Wert verändert – die Formel bleibt</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+          <section class="home-lab dashboard-section" aria-labelledby="home-lab-heading">
+            <div class="home-lab-copy">
+              <p class="eyebrow"><span>Zum Ausprobieren</span> Das kleine Formel-Lab</p>
+              <h2 id="home-lab-heading">Ein Wert verändert.<br>Alles rechnet mit.</h2>
+              <p>Du kaufst Hefte für ein Projekt. Verschiebe die Menge und beobachte, wie Excel mit Zelladressen rechnet.</p>
+              <p class="home-lab-prompt"><span aria-hidden="true">↗</span> Was passiert mit dem Gesamtpreis, wenn du die Menge verdoppelst?</p>
+              <div class="home-lab-control">
+                <label for="lab-quantity">Menge ändern <output id="lab-quantity-label" for="lab-quantity">6 Hefte</output></label>
+                <input id="lab-quantity" type="range" min="1" max="20" value="6" step="1" aria-describedby="lab-help" disabled>
+                <div class="home-range-scale" aria-hidden="true"><span>1 Heft</span><span>20 Hefte</span></div>
+                <small id="lab-help">Mit Maus, Touch oder den Pfeiltasten ausprobieren.</small>
+              </div>
+              <button type="button" class="text-button" id="lab-reset" disabled>Auf 6 Hefte zurücksetzen <span aria-hidden="true">↺</span></button>
+              <noscript><p>Mit JavaScript kannst du die Menge hier interaktiv verändern.</p></noscript>
+            </div>
+            <div class="home-sheet">
+              <div class="home-sheet-title"><span><i aria-hidden="true"></i> Projektbedarf.xlsx</span><span>Mini-Demo</span></div>
+              <div class="home-formula-bar"><span>D2</span><span aria-hidden="true">ƒx</span><code>=B2*C2</code></div>
+              <table class="home-sheet-table">
+                <caption class="sr-only">Heftkauf: Preis mal Menge ergibt den Gesamtpreis</caption>
+                <thead><tr><th scope="col" aria-label="Zeile"></th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">1</th><td>Artikel</td><td>Preis</td><td>Menge</td><td>Gesamt</td></tr>
+                  <tr><th scope="row">2</th><td>Hefte</td><td class="home-price-cell">2,50 €</td><td id="lab-cell-quantity" class="home-quantity-cell">6</td><td id="lab-cell-total" class="home-result-cell">15,00 €</td></tr>
+                  <tr aria-hidden="true"><th>3</th><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+              </table>
+              <div class="home-lab-result">
+                <span>Dein Gesamtpreis</span><output id="lab-total" for="lab-quantity" aria-live="off">15,00 €</output>
+                <div class="home-lab-meter" aria-hidden="true"><span id="lab-meter" style="--lab-fill:30%"></span></div>
+                <p id="lab-explanation">2,50 € × 6 Hefte = 15,00 €</p>
+                <p class="home-lab-insight">Die Werte ändern sich. Die Formel bleibt.</p>
+              </div>
+              <div class="home-sheet-footer"><span class="home-sheet-tab">Heftkauf</span><span>Beispiel zum Entdecken · ohne Punkte</span></div>
+              <p id="lab-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+            </div>
+          </section>
+            <p class="important-note"><strong>Übertrage die Beobachtung nach Excel:</strong> Schreibe in D2 <code>=B2*C2</code>. Ändere anschließend die Menge in C2. Welche Zellen ändern sich, welche Formel bleibt gleich? Die Demo vergibt keine Punkte und ersetzt nicht deine eigene Arbeitsdatei.</p>
+          </div></details>
+          <details class="lesson-disclosure"><summary><span class="section-index">04 · Anwenden und prüfen</span><h2 id="excel-heading">Formel eingeben, anzeigen und kontrollieren</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <ol class="instruction-list">
               <li><span>1</span><div><strong>Ergebniszelle auswählen</strong><p>Tippe =, klicke die erste Eingabezelle an, tippe das Rechenzeichen und klicke die zweite Eingabezelle an. Du kannst die Adressen auch eintippen.</p></div></li>
               <li><span>2</span><div><strong>Mit Enter bestätigen</strong><p>In der Zelle erscheint normalerweise das Ergebnis. Wähle sie erneut aus: Oben in der Bearbeitungsleiste siehst du die Formel.</p></div></li>
@@ -115,7 +159,7 @@
               <p>Falls dein Browser das Video nicht abspielt, öffne es über den Materiallink unten in einem Videoplayer.</p>
             </details>
           </div></details>
-          <details class="lesson-disclosure task-section"><summary><span class="section-index">04 · Deine Aufgabe</span><h2 id="aufgabe-heading">Die Getränkeliste rechnet mit</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+          <details class="lesson-disclosure task-section"><summary><span class="section-index">05 · Deine Aufgabe</span><h2 id="aufgabe-heading">Die Getränkeliste rechnet mit</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Das Organisationsteam der Eingangsklassen plant eine Party. Die Einkaufskosten sollen sich automatisch ändern, wenn Preise oder Mengen angepasst werden.</p>
             <p>Verwende die unten verlinkte <strong>Excel-Vorlage Getränkeliste</strong>. In Spalte A stehen die Getränke, in B der Einkaufspreis je Flasche und in C die Menge. Die Getränke stehen in den Zeilen 4 bis 8; Zeile 9 ist für die Summe vorgesehen.</p>
             <div class="task-list">
@@ -128,13 +172,44 @@
             </div>
             <p class="important-note"><strong>Hinweis zur Vorlage:</strong> In der bereitgestellten Vorlage sind die Ergebniszellen in Spalte D leer. Trage dort deine Formeln ein. Deine Datei aus L1.1 bleibt als vorheriger Arbeitsschritt erhalten.</p>
           </div></details>
-          <details class="lesson-disclosure material-section"><summary><span class="section-index">05 · In Excel arbeiten</span><h2 id="material-heading">Excel-Vorlage und optionales Video</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+          <details class="lesson-disclosure material-section"><summary><span class="section-index">06 · In Excel arbeiten</span><h2 id="material-heading">Excel-Vorlage und optionales Video</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Die komplette Anleitung steht oben. Du brauchst nur die Excel-Vorlage. Speichere nach dem Öffnen deine eigene Kopie unter dem angegebenen Namen. Ordne Browser und Excel nebeneinander an (Windows-Taste + Pfeil links/rechts).</p>
             <div class="download-list page-downloads">
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_2 Tabellenvorlage Formeln in Excel.xlsx" download><span class="file-type">XLSX</span><strong>Excel-Vorlage Getränkeliste</strong><span class="arrow" aria-hidden="true">↓</span></a>
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_2 Video Einführung in Formeln.m4v" download><span class="file-type">VIDEO</span><strong>Video Einführung in Formeln</strong><span class="arrow" aria-hidden="true">↓</span></a>
             </div>
           </div></details>
+          <details class="lesson-disclosure" id="l12-mastery-section">
+            <summary><span class="section-index">07 · Verstehen</span><h2>Prüfe dein Verständnis</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <div class="lesson-disclosure-body">
+              <p>Beantworte die drei Fragen. Erkläre anschließend an deiner eigenen Excel-Datei, wie deine Formeln rechnen.</p>
+              <form id="l12-mastery-form" class="mastery-form">
+                <fieldset class="mastery-question" data-mastery-question="refs">
+                  <legend>1. Warum ist =B2*C2 für den Gesamtpreis besser geeignet als =2,50*6?</legend>
+                  <label><input type="radio" name="refs" value="a">Weil Zelladressen immer größere Ergebnisse liefern</label>
+                  <label><input type="radio" name="refs" value="b">Weil die Formel Änderungen an Preis und Menge automatisch berücksichtigt</label>
+                  <label><input type="radio" name="refs" value="c">Weil Excel mit fest eingetippten Zahlen nicht rechnen kann</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="recalc">
+                  <legend>2. B2 enthält 2,50 €, C2 enthält 6 und D2 die Formel =B2*C2. Du änderst C2 auf 8. Was passiert?</legend>
+                  <label><input type="radio" name="recalc" value="a">D2 bleibt 15,00 €, bis du eine neue Formel eingibst</label>
+                  <label><input type="radio" name="recalc" value="b">D2 zeigt 20,00 € und die Formel wird automatisch zu =2,50*8</label>
+                  <label><input type="radio" name="recalc" value="c">D2 zeigt 20,00 € und die Formel bleibt =B2*C2</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="circle">
+                  <legend>3. Du hast in D2 versehentlich =B2*D2 eingegeben. Wie vermeidest du diesen Kreisbezug?</legend>
+                  <label><input type="radio" name="circle" value="a">Ich verwende =B2*C2, also Preis mal Menge</label>
+                  <label><input type="radio" name="circle" value="b">Ich ändere nur das Zahlenformat von D2 auf Euro</label>
+                  <label><input type="radio" name="circle" value="c">Ich verwende =D2*B2, also dieselben Zellen in anderer Reihenfolge</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <button class="button button-primary" type="submit">Antworten prüfen</button>
+                <p id="l12-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.</p>
+              </form>
+            </div>
+          </details>
         </article>
         <aside class="lesson-page-sidebar">
           <section class="lesson-check-panel">
@@ -153,7 +228,7 @@
           </section>
           <section class="next-lesson-panel">
             <small>Danach</small><strong>L1.3 Zahlen und Tabellen formatieren</strong><p>Dieses Kapitel wird nach dem Abschluss von L1.2 freigeschaltet.</p>
-            <a class="button button-secondary button-full is-disabled" href="index.html#lernpfad" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
+            <a class="button button-secondary button-full is-disabled" href="l1-3.html" id="next-lesson-link" aria-disabled="true">Zum nächsten Kapitel <span aria-hidden="true">›</span></a>
           </section>
         </aside>
       </div>

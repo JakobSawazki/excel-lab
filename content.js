@@ -454,10 +454,12 @@
       stage: 3,
       code: "L3.2",
       title: "Datum und geschachtelte WENN-Funktionen",
-      duration: "55 Min.",
+      duration: "75 Min.",
       level: "Aufbau",
+      points: 100,
+      page: "l3-2.html",
       tags: ["JAHR", "WENN verschachtelt"],
-      description: "Du leitest Jahreszahlen aus Datumswerten ab und unterscheidest Kinder, Jugendliche und Erwachsene.",
+      description: "Du berechnest Jahreszahlen, unterscheidest drei Tarifgruppen und ordnest veränderbare Kartenpreise zu.",
       goal: "Du kannst Datumsbestandteile mit JAHR auslesen und mehrere geordnete Bedingungen korrekt verschachteln.",
       keyPoints: [
         { title: "Datum ist eine Zahl", text: "Excel speichert ein Datum numerisch und zeigt es formatiert an." },
@@ -472,15 +474,20 @@
       steps: [
         "Ersetze manuell erfasste Jahreszahlen durch JAHR-Formeln.",
         "Erweitere die bisherige Altersregel um die Kategorie Kind bis einschließlich 12 Jahre.",
-        "Teste die Alterswerte 12, 13, 17 und 18."
+        "Teste die Jahresdifferenzen 12, 13, 17 und 18.",
+        "Ordne Tageskartenpreise über feste Zellbezüge auf eine Tarifliste zu und teste eine Preisänderung.",
+        "Speichere die Skiausfahrt als Teil 2, Teil 3 und Teil 4 im Ordner Ergebnisse."
       ],
-      checks: ["Jahreszahlen werden aus Datum berechnet", "<=12 korrekt umgesetzt", "Alle vier Grenztests bestanden"],
-      tip: "In älteren Lösungsmappen kann an der Grenze 12 ein abweichendes < vorkommen. Maßgeblich ist die Aufgabenregel „bis einschließlich 12“, also <=12.",
+      checks: ["JAHR-Formeln und Teil 2 gespeichert", "Drei Tarifgruppen und vier Grenztests geprüft", "Preisänderungstest und Teil 4 gespeichert"],
+      tip: "Prüfe zuerst die kleinste Altersgrenze. Bis einschließlich 12 bedeutet <=12. Die vereinfachte Jahresdifferenz ist kein taggenaues Alter.",
       downloads: [
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.1.2 Aufgabenstellung Datum-Funktion.docx", "Aufgabe Datumsfunktion", "DOCX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.1.2 Tabellenvorlage Datum-Funktion.xlsx", "Excel-Vorlage Datum", "XLSX"),
+        resource("Lernfortschritt_3/Informationsmaterial/L3_1.1.2 Informationsmaterial Datum-Funktion.docx", "Informationen zu Datumsfunktionen", "DOCX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.1.3 Aufgabenstellung Geschachtelte Wenn-Funktion.docx", "Aufgabe geschachtelte WENN", "DOCX"),
-        resource("Lernfortschritt_3/Informationsmaterial/L3_1.1.3 Informationsmaterial Geschachtelte Wenn-Funktion.docx", "Informationen geschachtelte WENN", "DOCX")
+        resource("Lernfortschritt_3/Informationsmaterial/L3_1.1.3 Informationsmaterial Geschachtelte Wenn-Funktion.docx", "Informationen geschachtelte WENN", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.1.3 Tabellenvorlage geschachtelte Wenn-Funktion.xlsx", "Excel-Vorlage geschachtelte WENN", "XLSX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.1.4 Aufgabenstellung Geschachtelte Wenn-Funktion Erweiterung.docx", "Aufgabe Tageskartenpreise", "DOCX")
       ]
     },
     {
@@ -490,6 +497,8 @@
       title: "ZÄHLENWENN und SUMMEWENN",
       duration: "50 Min.",
       level: "Aufbau",
+      points: 100,
+      page: "l3-3.html",
       tags: ["ZÄHLENWENN", "SUMMEWENN"],
       description: "Du ermittelst Häufigkeiten und Summen für bestimmte Kriterien, etwa richtige Tipps oder Tarifgruppen.",
       goal: "Du kannst Kriterienbereich, Suchkriterium und Summenbereich richtig zuordnen.",
@@ -506,7 +515,8 @@
       steps: [
         "Ermittle im Toto-Beispiel die Zahl der richtigen Tipps.",
         "Werte die Skiausfahrt nach Anzahl und Umsatz je Tarifgruppe aus.",
-        "Kopiere die Auswertungsformeln über alle Kategorien."
+        "Kopiere die Auswertungsformeln über alle Kategorien.",
+        "Prüfe Handzählung, Gewinnregeln und Gesamtvergleich; speichere beide eigenen Arbeitsmappen."
       ],
       checks: ["Kriterienbereich absolut gesetzt", "Summenbereich gleich groß", "Teilsummen ergeben Gesamtsumme"],
       tip: "Markiere Kriterien- und Summenbereich nacheinander. Die erste und letzte Zeile müssen identisch sein.",
@@ -514,11 +524,13 @@
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.3.1 Aufgabenstellung ZählenWenn-Funktion.docx", "Aufgabe ZÄHLENWENN", "DOCX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.3.1 Tabellenvorlage Totogewinn.xlsx", "Excel-Vorlage Totogewinn", "XLSX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.3.2 Aufgabenstellung SummeWenn-Funktion.docx", "Aufgabe SUMMEWENN", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_1.3.2 Tabellenvorlage Skiausfahrt.xlsx", "Excel-Vorlage Skiausfahrt Teil 5", "XLSX"),
         resource("Lernfortschritt_3/Informationsmaterial/L3_1.3.2 Informationsmaterial SummeWenn-Funktion.docx", "Informationen SUMMEWENN", "DOCX")
       ]
     },
     {
       id: "l3-4",
+      page: "l3-4.html",
       stage: 3,
       code: "L3.4",
       title: "Bedingte Formatierung",
@@ -535,11 +547,11 @@
       ],
       formulas: [{ code: "Zellwert = \"Ja\"  →  grüne Füllung", note: "Eine Regel kann Text, Zahlen oder Formeln prüfen." }],
       steps: [
-        "Markiere den Ergebnisbereich J4:J16.",
+        "Markiere die 13 Spielzeilen im Ergebnisbereich J5:J17.",
         "Lege je eine Regel für „Ja“ und „Nein“ an.",
-        "Erweitere die Auswertung um Regeln für 0, 1 und 3 Punkte."
+        "Erweitere F5:G17 um Regeln für 0, 1 und 3 Punkte und teste Eingabeänderungen."
       ],
-      checks: ["Alle Zielzellen im Geltungsbereich", "Regeln reagieren auf Eingabeänderung", "Farben eindeutig zugeordnet"],
+      checks: ["Bewertungsregeln und Teil 5 gespeichert", "Punktregeln und Teil 6 gespeichert", "Änderungstests stimmen, Ausgangswerte und Formeln erhalten"],
       tip: "Öffne „Regeln verwalten“, wenn mehrere Regeln unerwartet miteinander konkurrieren.",
       downloads: [
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_2.1 Aufgabenstellung Bedingte Formatierung.docx", "Aufgabe bedingte Formatierung", "DOCX"),
@@ -550,6 +562,7 @@
     },
     {
       id: "l3-5",
+      page: "l3-5.html",
       stage: 3,
       code: "L3.5",
       title: "SVERWEIS und Fehlerbehandlung",
@@ -565,26 +578,27 @@
         { title: "WAHR", text: "Nutzt Bereiche und setzt eine aufsteigend sortierte Suchspalte voraus." }
       ],
       formulas: [
-        { code: "=SVERWEIS(J19;$B$21:$C$27;2;FALSCH)", note: "Genaue Suche nach der Zahl richtiger Tipps." },
-        { code: "=WENN(ISTNV(SVERWEIS(J19;$B$21:$C$27;2;FALSCH));\"kein Gewinn\";SVERWEIS(J19;$B$21:$C$27;2;FALSCH))", note: "Erwarteten Nichttreffer verständlich anzeigen." }
+        { code: "=SVERWEIS(G2;$D$2:$E$4;2;FALSCH)", note: "Neutrales Artikelbeispiel: genaue Suche mit fester Matrix." },
+        { code: "=WENN(ISTNV(H2);\"Artikel fehlt\";H2)", note: "Im Beispiel enthält H2 das Suchergebnis; nur #NV wird behandelt." }
       ],
       steps: [
         "Ersetze die mehrfach verschachtelte Gewinnformel durch SVERWEIS.",
         "Teste einen Wert, der nicht in der Tabelle vorhanden ist.",
         "Gib bei einem erwarteten Nichttreffer „kein Gewinn“ aus."
       ],
-      checks: ["Matrix absolut gesetzt", "Suchmodus bewusst gewählt", "Kein ungeklärter #NV-Fehler"],
+      checks: ["Genaue Gewinnsuche und Teil 1 gespeichert", "Gezielte Fehlerbehandlung und Teil 2 gespeichert", "Treffer und Nichttreffer geprüft, Zählformel erhalten"],
       tip: "In aktuellen Excel-Versionen ist XVERWEIS oft verständlicher. SVERWEIS bleibt wichtig, weil er in vielen bestehenden Dateien vorkommt.",
       downloads: [
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.1.1 Aufgabenstellung SVerweis-Funktion.docx", "Aufgabe SVERWEIS", "DOCX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.1.1 Tabellenvorlage SVerweis-Funktion.xlsx", "Excel-Vorlage SVERWEIS", "XLSX"),
-        resource("Lernfortschritt_3/Informationsmaterial/L3_3.1.1 Informationsmaterial SVerweis-Funktion.docx", "Informationen SVERWEIS", "DOCX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.1.2 Aufgabenstellung ISTNV-Funktion.docx", "Aufgabe ISTNV", "DOCX"),
-        resource("Lernfortschritt_3/Informationsmaterial/L3_3.1.2 Informationsmaterial ISTNV-Funktion.docx", "Informationen ISTNV", "DOCX")
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.1.2 Tabellenvorlage ISTNV-Funktion.xlsx", "Excel-Vorlage ISTNV", "XLSX"),
+        // Original information sheets contain assignment solutions; use the neutral page examples.
       ]
     },
     {
       id: "l3-6",
+      page: "l3-6.html",
       stage: 3,
       code: "L3.6",
       title: "RUNDEN und Verweistabellen",
@@ -600,26 +614,26 @@
         { title: "Exakte Suche", text: "FALSCH verhindert falsche Zuordnungen bei unsortierten Schlüsseln." }
       ],
       formulas: [
-        { code: "=RUNDEN((F4*2+G4)/3;0)", note: "Gewichtete Gesamtnote auf ganze Zahl runden." },
-        { code: "=SVERWEIS(I4;Verweistabelle!$A$3:$C$8;2;FALSCH)", note: "Verbale Bewertung aus einem anderen Blatt." }
+        { code: "=RUNDEN(A2;2)", note: "Neutrales Beispiel: 12,346 auf zwei Nachkommastellen runden." },
+        { code: "=SVERWEIS(G2;'Artikelpreise'!$A$2:$C$4;2;FALSCH)", note: "Neutrales Beispiel: Artikelbezeichnung aus einem anderen Blatt." }
       ],
       steps: [
         "Berechne schriftlichen Durchschnitt und gewichtete Gesamtnote.",
         "Runde die Endnote auf eine ganze Zahl.",
         "Lies Bewertung und Bemerkung aus dem Blatt „Verweistabelle“ aus."
       ],
-      checks: ["Gewichtung 2:1 korrekt", "Endnote auf 0 Stellen gerundet", "Verweismatrix absolut und exakt"],
+      checks: ["Ich habe Durchschnitt, Gewichtung 2:1 und Endrundung entwickelt und Teil 1 gespeichert.", "Ich habe Bewertung und Bemerkung mit einer festen Matrix aus dem zweiten Blatt ermittelt und Teil 2 gespeichert.", "Leere Note, Rundungsgrenze und alle sechs Zuordnungen sind geprüft; Teständerungen sind zurückgesetzt."],
       tip: "RUNDEN verändert das Ergebnis der Formel. Ein Zahlenformat verändert nur die sichtbare Darstellung.",
       downloads: [
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.1 Aufgabenstellung Runden-Funktion.docx", "Aufgabe RUNDEN", "DOCX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.1 Tabellenvorlage Runden-Funktion.xlsx", "Excel-Vorlage Noten Teil 1", "XLSX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.2 Aufgabenstellung Verweistabelle.docx", "Aufgabe Verweistabelle", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.2 Tabellenvorlage Verweistabelle.xlsx", "Excel-Vorlage Noten Teil 2", "XLSX"),
-        resource("Lernfortschritt_3/Informationsmaterial/L3_3.2.2 Informationsmaterial Verweistabelle.docx", "Informationen Verweistabelle", "DOCX")
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.2 Tabellenvorlage Verweistabelle.xlsx", "Excel-Vorlage Noten Teil 2", "XLSX")
       ]
     },
     {
       id: "l3-7",
+      page: "l3-7.html",
       stage: 3,
       code: "L3.7",
       title: "Zielwertsuche",
@@ -634,22 +648,22 @@
         { title: "Veränderbare Zelle", text: "Ein einzelner Eingabewert, den Excel anpassen darf." },
         { title: "Plausibilität", text: "Das gefundene Ergebnis muss fachlich sinnvoll sein." }
       ],
-      formulas: [{ code: "Zielzelle C8 = 1500  ·  veränderbare Zelle B7", note: "Beispiel: Wechselkurs so bestimmen, dass das Budget eingehalten wird." }],
+      formulas: [{ code: "D2: =B2*C2 · Zielwert 120 · veränderbare Zelle C2", note: "Neutrales Beispiel: Bei festem Stückpreis die Menge für einen gewünschten Gesamtpreis finden." }],
       steps: [
         "Berechne zunächst Gesamtkosten in Franken und Euro.",
-        "Nutze die Zielwertsuche für den maximal tragbaren Wechselkurs.",
-        "Bestimme in der Kapitalaufgabe alternativ Zinssatz oder Startkapital für 6.000 €."
+        "Nutze die Zielwertsuche für den kleinsten tragbaren positiven Kurs in CHF je Euro.",
+        "Bestimme Zinssatz und Startkapital für 6.000 € in getrennten Versuchen mit wiederhergestellten Ausgangswerten."
       ],
-      checks: ["Zielzelle enthält Formel", "Nur eine Eingabezelle verändert", "Ergebnis mit Rückrechnung geprüft"],
+      checks: ["Ich habe den Urlaub kalkuliert, den Grenzkurs gesucht, beidseitig geprüft und die Datei gespeichert.", "Ich habe die fünfjährige Verzinsung mit kopierfähigen Formeln aufgebaut und beide unabhängigen Zielwertsuchen durchgeführt.", "Ich habe Ausgangswerte, Zielangaben und Rückrechnungen dokumentiert und die Kapitaldatei gespeichert."],
       tip: "Die Zielwertsuche verändert eine Eingabezelle dauerhaft. Notiere vorher den Ausgangswert oder arbeite in einer Kopie.",
       downloads: [
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_4.1 Aufgabenstellung Zielwertsuche Urlaub.docx", "Zielwertsuche Urlaub", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_4.2 Aufgabenstellung Zielwertsuche Kapital.docx", "Zielwertsuche Kapital", "DOCX"),
-        resource("Lernfortschritt_3/Informationsmaterial/L3_4.1 Informationsmaterial Zielwertsuche.docx", "Informationen Zielwertsuche", "DOCX")
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_4.2 Aufgabenstellung Zielwertsuche Kapital.docx", "Zielwertsuche Kapital", "DOCX")
       ]
     },
     {
       id: "l3-8",
+      page: "l3-8.html",
       stage: 3,
       code: "L3.8",
       title: "Vertiefung: komplexe Auswertungen",
@@ -665,28 +679,35 @@
         { title: "Nachvollziehbarkeit", text: "Zwischenergebnisse sichtbar und sinnvoll beschriften." }
       ],
       formulas: [
-        { code: "=WENN(Umsatz<=200000;3%;5%)", note: "Einfache Provisionsstaffel." },
-        { code: "=SVERWEIS(Abteilung;Verweistabelle;2;FALSCH)", note: "Grundbeitrag anhand der Abteilung ermitteln." }
+        { code: "=WENN(B2<50000;C2;D2)", note: "Neutrales Beispiel: unter einer Grenze einen von zwei Sätzen wählen." },
+        { code: "=SVERWEIS(B2;$F$2:$G$6;2;FALSCH)", note: "Exakte Zuordnung, etwa anhand einer eindeutigen Kundennummer." }
       ],
       steps: [
         "Wähle zwei Fälle: Provision, Bonus, Umsatz, Versicherung oder Vereinsbeitrag.",
         "Skizziere zuerst Eingaben, Regeln, Zwischenergebnisse und Ausgaben.",
         "Teste jede relevante Grenze und mindestens einen unbekannten Schlüssel."
       ],
-      checks: ["Zwei Vertiefungen vollständig", "Regelgrenzen geprüft", "Keine absoluten Werte unnötig in Formeln"],
+      checks: ["Zwei Fälle mit kopierfähigen Formeln bearbeitet", "Regelgrenzen und Änderungen mit Testprotokoll geprüft", "Beide XLSX-Dateien gespeichert und erneut geöffnet"],
       tip: "Wenn eine Formel kaum noch lesbar ist, teile die Berechnung in verständliche Zwischenspalten oder eine Verweistabelle auf.",
       downloads: [
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.1 Vertiefung 1 Mitarbeiterprovision Teil 1.docx", "Vertiefung Provision Teil 1", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.2 Vertiefung 2 Mitarbeiterprovision Teil 2.docx", "Vertiefung Provision Teil 2", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.3 Vertiefung 3 Bonusberechnung.docx", "Vertiefung Bonus", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.4 Vertiefung 4 Umsatzauswertung.docx", "Vertiefung Umsatz", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.5 Vertiefung 5 Versicherung.docx", "Vertiefung Versicherung", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.6 Vertiefung 6 Vereinsbeitrag.docx", "Vertiefung Vereinsbeitrag", "DOCX")
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.1 Vertiefung 1 Mitarbeiterprovision Teil 1.docx", "Aufgabe Provision Teil 1", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.1 Tabellenvorlage Mitarbeiterprovision Teil 1.xlsx", "Vorlage Provision Teil 1", "XLSX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.2 Vertiefung 2 Mitarbeiterprovision Teil 2.docx", "Aufgabe Provision Teil 2", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.2 Tabellenvorlage Mitarbeiterprovision Teil 2.xlsx", "Vorlage Provision Teil 2", "XLSX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.3 Vertiefung 3 Bonusberechnung.docx", "Aufgabe Bonusberechnung", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.3 Tabellenvorlage Bonusberechnung.xlsx", "Vorlage Bonusberechnung", "XLSX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.4 Vertiefung 4 Umsatzauswertung.docx", "Aufgabe Umsatzauswertung", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.4 Tabellenvorlage Umsatzauswertung.xlsx", "Vorlage Umsatzauswertung", "XLSX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.5 Vertiefung 5 Versicherung.docx", "Aufgabe Versicherung", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.5 Tabellenvorlage Versicherung.xlsx", "Vorlage Versicherung", "XLSX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.6 Vertiefung 6 Vereinsbeitrag.docx", "Aufgabe Vereinsbeitrag", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.6 Tabellenvorlage Vereinsbeitrag.xlsx", "Vorlage Vereinsbeitrag", "XLSX")
       ]
     },
 
     {
       id: "l4-1",
+      page: "l4-1.html",
       stage: 4,
       code: "L4.1",
       title: "Säulendiagramm erstellen und gestalten",
@@ -707,18 +728,18 @@
         "Füge ein Säulendiagramm ein.",
         "Ergänze Diagrammtitel, Achsentitel und eine zurückhaltende Formatvorlage."
       ],
-      checks: ["Datenbereich korrekt", "Titel und Achsen beschriftet", "Werte ohne Verzerrung vergleichbar"],
+      checks: ["Vier Aktionen ohne Summe als 2D-Säulen dargestellt", "Titel, Achsen, Datenlabels und Nullbasis geprüft", "Datenänderung getestet und beide XLSX-Dateien gespeichert"],
       tip: "Beginne die Größenachse bei null, wenn Balken- oder Säulenlängen verglichen werden. Sonst können Unterschiede übertrieben wirken.",
       downloads: [
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.1 Aufgabenstellung Säulendiagramm erstellen.docx", "Aufgabe Säulendiagramm", "DOCX"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.1 Tabellenvorlage Säulendiagramm Teil 1.xlsx", "Excel-Vorlage Teil 1", "XLSX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.1.1 Informationsmaterial Säulendiagramm erstellen.docx", "Informationen Erstellung", "DOCX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.1.1 Säulendiagramm erstellen.mp4", "Video Erstellung", "VIDEO"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.2 Aufgabenstellung Säulendiagramm formatieren.docx", "Aufgabe Formatierung", "DOCX")
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.1 Aufgabenstellung Säulendiagramm erstellen.docx", "Aufgabe Diagramm erstellen", "DOCX"),
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.1 Tabellenvorlage Säulendiagramm Teil 1.xlsx", "Vorlage Teil 1", "XLSX"),
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.2 Aufgabenstellung Säulendiagramm formatieren.docx", "Aufgabe Diagramm formatieren", "DOCX"),
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.2 Tabellenvorlage Säulendiagramm Teil 2.xlsx", "Vorlage Teil 2", "XLSX")
       ]
     },
     {
       id: "l4-2",
+      page: "l4-2.html",
       stage: 4,
       code: "L4.2",
       title: "Balkendiagramm für Rangfolgen",
@@ -739,17 +760,20 @@
         "Prüfe, ob eine Sortierung die Aussage verbessert.",
         "Wähle eine gut lesbare Darstellung ohne unnötige Effekte."
       ],
-      checks: ["Kategorien vollständig lesbar", "Rangfolge erkennbar", "Keine unnötige 3D-Verzerrung"],
+      checks: [
+        "Ich habe ein 2D-Balkendiagramm mit vier Aktionen, lesbaren Namen, Datenlabels und Nullbasis erstellt.",
+        "Ich habe auf einer Blattkopie ganze Datensätze sortiert, die sichtbare Rangfolge geprüft und Gleichstände erklärt.",
+        "Ich habe eine Eingabeänderung getestet, die Originalwerte wiederhergestellt und die eigene XLSX-Datei mit beiden Blättern gespeichert und erneut geöffnet."
+      ],
       tip: "3D-Effekte erschweren genaue Vergleiche. Für analytische Diagramme ist 2D fast immer klarer.",
       downloads: [
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.2 Aufgabenstellung Balkendiagramm erstellen.docx", "Aufgabe Balkendiagramm", "DOCX"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.2 Tabellenvorlage Balkendiagramm.xlsx", "Excel-Vorlage Balken", "XLSX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.2 Informationsmaterial Balkendiagramm erstellen.docx", "Informationen Balken", "DOCX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.2 Balkdendiagramm erstellen.mp4", "Video Balkendiagramm", "VIDEO")
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.2 Tabellenvorlage Balkendiagramm.xlsx", "Excel-Vorlage Balken", "XLSX")
       ]
     },
     {
       id: "l4-3",
+      page: "l4-3.html",
       stage: 4,
       code: "L4.3",
       title: "Liniendiagramm für Entwicklungen",
@@ -761,7 +785,7 @@
       keyPoints: [
         { title: "Zeit auf X-Achse", text: "Jahre oder Monate folgen chronologisch von links nach rechts." },
         { title: "Werte auf Y-Achse", text: "Die Messgröße erhält eine eindeutige Einheit." },
-        { title: "Linie verbindet Verlauf", text: "Zwischenpunkte zeigen Entwicklung, nicht einzelne Kategorien." },
+        { title: "Linie verbindet Messpunkte", text: "Verbindungen verdeutlichen den Verlauf, sind aber keine zusätzlichen Messungen." },
         { title: "Daten auswählen", text: "Nicht zusammenhängende Bereiche lassen sich mit Strg markieren." }
       ],
       formulas: [{ code: "Zeitreihe → Liniendiagramm", note: "Die Reihenfolge der Zeitwerte muss stimmen." }],
@@ -770,17 +794,20 @@
         "Erstelle ein Liniendiagramm und ordne die Jahre der horizontalen Achse zu.",
         "Entferne überflüssige Elemente und beschrifte den Verlauf."
       ],
-      checks: ["Zeitwerte chronologisch", "Nur relevante Datenreihe", "Trend klar erkennbar"],
+      checks: [
+        "Ich habe nur die Schwimmen-Werte als Datenreihe und die Jahre 2013 bis 2017 als X-Achsenbeschriftung verwendet.",
+        "Ich habe ein lesbares 2D-Liniendiagramm mit Markierungen, Zahlenlabels, Titel und erklärter Achsenskalierung erstellt.",
+        "Ich habe die Datenverknüpfung getestet, die Originalwerte wiederhergestellt und meine XLSX-Datei gespeichert und erneut geöffnet."
+      ],
       tip: "Ein Liniendiagramm eignet sich für fortlaufende Zeit. Für unabhängige Kategorien ist ein Säulen- oder Balkendiagramm besser.",
       downloads: [
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.3 Aufgabenstellung Liniendiagramm erstellen.docx", "Aufgabe Liniendiagramm", "DOCX"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.3 Tabellenvorlage Liniendiagramm.xlsx", "Excel-Vorlage Linie", "XLSX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.3 Informationsmaterial Liniendiagramm erstellen.docx", "Informationen Linie", "DOCX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.3 Liniendiagramm erstellen.mp4", "Video Liniendiagramm", "VIDEO")
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.3 Tabellenvorlage Liniendiagramm.xlsx", "Excel-Vorlage Linie", "XLSX")
       ]
     },
     {
       id: "l4-4",
+      page: "l4-4.html",
       stage: 4,
       code: "L4.4",
       title: "Kreisdiagramm für Anteile",
@@ -801,17 +828,20 @@
         "Erstelle ein Kreisdiagramm aus Aktionen und Gesamtkosten.",
         "Zeige verständliche Beschriftungen und prüfe die Summe aller Anteile."
       ],
-      checks: ["Segmente bilden ein Ganzes", "Nicht zu viele Kategorien", "Beschriftungen eindeutig"],
+      checks: [
+        "Ich habe die Verpflegungskosten je Aktion mit Formeln berechnet und den zusätzlichen Euro für Skifahrer berücksichtigt.",
+        "Ich habe nur Aktionen und ihre Gesamtkosten als Kreisdiagramm gewählt, die Summe ausgeschlossen und die Anteile eindeutig beschriftet.",
+        "Ich habe Gesamtsumme, Anteile und Neuberechnung geprüft, die Originalwerte wiederhergestellt und meine XLSX-Datei gespeichert und erneut geöffnet."
+      ],
       tip: "Auch wenn das Ausgangsmaterial eine 3D-Darstellung vorsieht, ist eine klare 2D-Darstellung für exakte Vergleiche meist besser.",
       downloads: [
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.4 Aufgabenstellung Kreisdiagramm erstellen.docx", "Aufgabe Kreisdiagramm", "DOCX"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.4 Tabellenvorlage Kreisdiagramm.xlsx", "Excel-Vorlage Kreis", "XLSX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.4 Informationsmaterial Kreisdiagramm erstellen.docx", "Informationen Kreis", "DOCX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.4 Kreisdiagramm erstellen.mp4", "Video Kreisdiagramm", "VIDEO")
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.4 Tabellenvorlage Kreisdiagramm.xlsx", "Excel-Vorlage Kreis", "XLSX")
       ]
     },
     {
       id: "l4-5",
+      page: "l4-5.html",
       stage: 4,
       code: "L4.5",
       title: "Gruppierte und gestapelte Säulen",
@@ -832,18 +862,24 @@
         "Stelle Aktionen mehrerer Jahre gestapelt dar und zeige die Jahressummen.",
         "Visualisiere Wahlergebnisse als 100-%-gestapelte Säulen."
       ],
-      checks: ["Untertyp zur Frage passend", "Datenreihen korrekt benannt", "Gesamthöhe oder Anteil richtig interpretiert"],
-      tip: "100-%-gestapelt zeigt keine absoluten Größenunterschiede. Es beantwortet nur die Frage nach der Zusammensetzung.",
+      checks: [
+        "Ich habe die vier Aktionen 2016 und 2017 als gruppierte Säulen verglichen und die Summenzeile ausgeschlossen.",
+        "Ich habe für 2013–2017 je eine gestapelte Säule mit vier Aktionen erstellt, Jahressummen kontrolliert und die Grenzen beim Segmentvergleich erklärt.",
+        "Ich habe die historischen Wahldaten 1994–2017 als 100-%-Säulen mit sieben Reihen dargestellt, Prozentwerte geprüft und alle drei Dateien gespeichert und erneut geöffnet."
+      ],
+      tip: "100-%-gestapelt zeigt die Zusammensetzung jeder Kategorie, nicht ihre absolute Gesamtsumme.",
       downloads: [
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.5 Aufgabenstellung gruppiertes Säulendiagramm erstellen.docx", "Aufgabe gruppierte Säulen", "DOCX"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.5 Tabellenvorlage gruppiertes Säulendiagramm.xlsx", "Excel-Vorlage gruppiert", "XLSX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.5 Informationsmaterial Säulen gruppieren.docx", "Informationen gruppiert", "DOCX"),
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.5 Aufgabenstellung gruppiertes Säulendiagramm erstellen.docx", "Aufgabe gruppiert", "DOCX"),
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.5 Tabellenvorlage gruppiertes Säulendiagramm.xlsx", "Vorlage gruppiert", "XLSX"),
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.6 Aufgabenstellung gestapeltes Säulendiagramm erstellen.docx", "Aufgabe gestapelt", "DOCX"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.7 Aufgabenstellung 100Prozent Säulendiagramm erstellen.docx", "Aufgabe 100 % gestapelt", "DOCX")
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.6 Tabellenvorlage gestapeltes Säulendiagramm.xlsx", "Vorlage gestapelt", "XLSX"),
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.7 Aufgabenstellung 100Prozent Säulendiagramm erstellen.docx", "Aufgabe 100 %", "DOCX"),
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.7 Tabellenvorlage 100Prozent Säulendiagramm.xlsx", "Vorlage 100 %", "XLSX")
       ]
     },
     {
       id: "l4-6",
+      page: "l4-6.html",
       stage: 4,
       code: "L4.6",
       title: "Punktdiagramm und Trendlinie",
@@ -864,13 +900,15 @@
         "Erstelle ein Punktdiagramm mit sinnvoll beschrifteten Achsen.",
         "Füge eine lineare Trendlinie, Gleichung und Bestimmtheitsmaß ein."
       ],
-      checks: ["X- und Y-Werte richtig zugeordnet", "Achsen enthalten Größen und Einheiten", "Trend nicht als Ursache missverstanden"],
-      tip: "Prüfe das Punktmuster, bevor du eine Trendlinie wählst. Nicht jeder Zusammenhang ist linear.",
+      checks: [
+        "Ich habe alle 14 vollständigen Länderpaare als XY-Punkte gewählt: Einkommen auf X und jährlicher Pro-Kopf-Energieverbrauch auf Y, mit richtigen Einheiten.",
+        "Ich habe eine lineare Trendlinie ohne erzwungenen Nullschnittpunkt eingefügt, Gleichung und R² angezeigt und die Modellgrenzen erläutert.",
+        "Ich habe Datenpaare, Punktpositionen und Neuberechnung geprüft, Originalwerte wiederhergestellt und meine XLSX-Datei gespeichert und erneut geöffnet."
+      ],
+      tip: "R² beschreibt die Modellpassung, keine Ursache. X und Y müssen aus denselben vollständigen Zeilen stammen.",
       downloads: [
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.8 Aufgabenstellung Punktdiagramm mit Trendlinie erstellen.docx", "Aufgabe Punktdiagramm", "DOCX"),
-        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.8 Tabellenvorlage Punktdiagramm.xlsx", "Excel-Vorlage Punktdiagramm", "XLSX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_1.8 Informationsmaterial Punktdiagramm.docx", "Informationen Punktdiagramm", "DOCX"),
-        resource("Lernfortschritt_4/Informationsmaterial/L4_2 Zusammenfassung zu Diagrammtypen.docx", "Übersicht Diagrammtypen", "DOCX")
+        resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.8 Tabellenvorlage Punktdiagramm.xlsx", "Vorlage Punktdiagramm", "XLSX")
       ]
     },
     {

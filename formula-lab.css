@@ -1,0 +1,46 @@
+.l12-page .home-topline i, .l12-page .home-sheet-title i { display:inline-block; width:7px; height:7px; margin-right:.5rem; border-radius:50%; background:var(--green); box-shadow:0 0 14px color-mix(in srgb, var(--green) 55%, transparent); }
+.l12-page .home-lab { display:grid; grid-template-columns:.9fr 1.1fr; align-items:center; gap:4rem; margin-bottom:5rem; padding:2.5rem; border:1px solid var(--line-strong); border-radius:24px; background:linear-gradient(130deg, var(--surface), var(--bg-elevated)); position:relative; }
+.l12-page .home-lab-copy { min-width:0; }
+.l12-page .home-lab h2 { font-size:clamp(1.9rem,3.1vw,2.7rem); line-height:1.13; }
+.l12-page .home-lab-copy > p:not(.eyebrow) { color:var(--text-soft); font-size:.92rem; }
+.l12-page .home-lab-prompt { padding-left:1rem; border-left:2px solid var(--green); }
+.l12-page .home-lab-prompt span { color:var(--green); }
+.l12-page .home-lab-control { margin:1.7rem 0 .75rem; }
+.l12-page .home-lab-control label { display:flex; align-items:center; justify-content:space-between; gap:.5rem; font-size:.85rem; font-weight:700; }
+.l12-page .home-lab-control output { padding:.25rem .65rem; border-radius:6px; color:var(--green); background:color-mix(in srgb, var(--green) 10%, transparent); font-variant-numeric:tabular-nums; }
+.l12-page .home-range-scale { display:flex; justify-content:space-between; font-size:.7rem; color:var(--text-soft); }
+.l12-page .home-sheet { min-width:0; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; background:var(--bg-elevated); box-shadow:0 18px 50px #0002; }
+.l12-page .home-sheet-title { display:flex; justify-content:space-between; gap:.5rem; padding:1rem; font-size:.73rem; background:var(--surface-2); }
+.l12-page .home-sheet-title > span:last-child { color:var(--text-soft); font-size:.64rem; }
+.l12-page .home-formula-bar { display:flex; align-items:center; gap:1rem; padding:.7rem 1rem; border-bottom:1px solid var(--line); font-size:.85rem; }
+.l12-page .home-formula-bar > span:first-child { padding-right:1rem; border-right:1px solid var(--line); color:var(--text-soft); }
+.l12-page .home-formula-bar > span:nth-child(2) { color:var(--text-faint); }
+.l12-page .home-formula-bar code { color:var(--green); font-weight:700; }
+.l12-page .home-sheet-table { border-collapse:collapse; width:100%; table-layout:fixed; font-size:.8rem; font-variant-numeric:tabular-nums; }
+.l12-page .home-sheet-table th, .l12-page .home-sheet-table td { height:39px; border:1px solid var(--line); padding:.35rem .4rem; text-align:center; }
+.l12-page .home-sheet-table th { background:var(--surface-2); color:var(--text-soft); font-size:.65rem; font-weight:500; }
+.l12-page .home-sheet-table th:first-child { width:28px; border-left:0; }
+.l12-page .home-sheet-table tr > :last-child { border-right:0; }
+.l12-page .home-sheet-table tbody tr:first-child { color:var(--text-soft); font-size:.7rem; }
+.l12-page .home-price-cell { color:var(--blue); background:color-mix(in srgb, var(--blue) 8%, transparent); }
+.l12-page .home-quantity-cell { color:var(--violet); background:color-mix(in srgb, var(--violet) 8%, transparent); }
+.l12-page .home-result-cell { outline:2px solid var(--green); outline-offset:-2px; color:var(--green); background:color-mix(in srgb, var(--green) 10%, transparent); font-weight:800; }
+.l12-page .home-lab-result { padding:1.6rem 1.4rem 1rem; }
+.l12-page .home-lab-result > span { display:block; font-size:.73rem; color:var(--text-soft); }
+.l12-page .home-lab-meter { height:9px; overflow:hidden; border-radius:5px; background:var(--surface-3); }
+.l12-page .home-lab-meter > span { display:block; height:100%; width:var(--lab-fill); background:linear-gradient(90deg,var(--green),var(--lime)); border-radius:inherit; transition:width 180ms ease; }
+.l12-page .home-lab-insight { font-size:.75rem; color:var(--green); margin:0; }
+.l12-page .home-sheet-footer { display:flex; gap:.6rem; align-items:center; justify-content:space-between; padding:.7rem 1rem; border-top:1px solid var(--line); color:var(--text-soft); font-size:.6rem; }
+.l12-page .home-sheet-tab { color:var(--green); border-bottom:2px solid var(--green); padding:.25rem .5rem; font-size:.7rem; font-weight:700; }
+.l12-page .home-lab { border-color:var(--metal-edge); background:linear-gradient(145deg,color-mix(in srgb,var(--green) 10%,var(--surface-2)),var(--surface) 62%,var(--bg-elevated)); box-shadow:inset 0 1px 0 var(--metal-hairline),0 20px 50px var(--metal-shadow); }
+.l12-page .home-sheet { border-color:var(--metal-edge); box-shadow:inset 0 1px 0 var(--metal-hairline),0 18px 44px var(--metal-shadow); }
+.l12-page .home-lab { grid-template-columns:minmax(0,1fr); margin:0; padding:1.2rem; gap:1.5rem; }
+.l12-page .home-lab h2 { font-size:1.5rem; }
+.l12-page #lab-quantity { display:block; width:100%; height:32px; margin:.8rem 0 .1rem; accent-color:var(--green); cursor:ew-resize; }
+.l12-page #lab-help { display:block; margin-top:.5rem; color:var(--text-soft); font-size:.72rem; }
+.l12-page #lab-reset { font-size:.76rem; min-height:44px; }
+.l12-page #lab-total { display:block; margin:.25rem 0 .8rem; font-size:2.8rem; line-height:1.2; font-weight:800; letter-spacing:-.05em; font-variant-numeric:tabular-nums; }
+.l12-page #lab-explanation { font-size:.8rem; color:var(--text-soft); margin:.7rem 0; }
+.l12-page .home-sheet { min-width:0; overflow-x:auto; }
+.l12-page .home-sheet-table { min-width:280px; }
+@media (max-width:480px) { .l12-page .home-lab { padding:0.75rem; } .l12-page .home-sheet-footer { flex-wrap:wrap; } }

@@ -20,14 +20,16 @@
     <script src="developer-mode.js" defer></script>
     <script src="content.js" defer></script>
     <script src="app.js" defer></script>
-    <script src="home.js" defer></script>
+    <script src="xp.js" defer></script>
+    <script src="options.js" defer></script>
+    <script src="organizer.js" defer></script>
     <script src="lesson-workspace.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
 
     <header class="site-header">
-      <a class="brand" href="#uebersicht" data-brand-home aria-label="Excel-Lab Startseite und Versionsinformationen">
+      <a class="brand" href="#uebersicht" data-brand-home aria-label="Zur Excel-Lab Startseite, nach oben">
         <span class="brand-mark" aria-hidden="true">
           <img src="assets/brand/excel-lab-mark.svg" alt="">
         </span>
@@ -52,10 +54,10 @@
         <button class="icon-button" id="theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
         </button>
-        <button class="profile-button" id="profile-button" type="button" aria-label="Lokales Profil verwalten">
+        <button class="profile-button" id="profile-button" type="button" aria-label="Profil öffnen">
           <span class="profile-avatar" id="profile-avatar">?</span>
           <span class="profile-copy">
-            <small>Lokales Profil</small>
+            <small>Profil</small>
             <strong id="profile-name">Anmelden</strong>
           </span>
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>
@@ -63,10 +65,10 @@
       </div>
     </header>
 
+    <nav class="lesson-breadcrumb location-path" id="location-path" aria-label="Aktueller Lernpfad"><a href="#uebersicht" data-brand-home aria-current="page">BPE1</a></nav>
     <main id="main-content">
       <section class="view is-active" id="view-dashboard" data-view-panel="dashboard">
         <div class="page-shell">
-          <div class="home-topline"><span><i aria-hidden="true"></i> Dein Raum zum Ausprobieren</span><span>BPE 1 <b aria-hidden="true">/</b> 4 Lernschritte <b aria-hidden="true">/</b> 27 Einheiten</span></div>
           <section class="hero">
             <div class="hero-copy">
               <p class="eyebrow"><span>Excel-Lab</span> Wissen wird Können</p>
@@ -101,50 +103,78 @@
             </div>
           </section>
 
-          <section class="next-section home-next" id="next-section" aria-labelledby="next-heading"></section>
-
-          <section class="home-lab dashboard-section" aria-labelledby="home-lab-heading">
-            <div class="home-lab-copy">
-              <p class="eyebrow"><span>Zum Ausprobieren</span> Das kleine Formel-Lab</p>
-              <h2 id="home-lab-heading">Ein Wert verändert.<br>Alles rechnet mit.</h2>
-              <p>Du kaufst Hefte für ein Projekt. Verschiebe die Menge und beobachte, wie Excel mit Zelladressen rechnet.</p>
-              <p class="home-lab-prompt"><span aria-hidden="true">↗</span> Was passiert mit dem Gesamtpreis, wenn du die Menge verdoppelst?</p>
-              <div class="home-lab-control">
-                <label for="lab-quantity">Menge ändern <output id="lab-quantity-label" for="lab-quantity">6 Hefte</output></label>
-                <input id="lab-quantity" type="range" min="1" max="20" value="6" step="1" aria-describedby="lab-help" disabled>
-                <div class="home-range-scale" aria-hidden="true"><span>1 Heft</span><span>20 Hefte</span></div>
-                <small id="lab-help">Mit Maus, Touch oder den Pfeiltasten ausprobieren.</small>
-              </div>
-              <button type="button" class="text-button" id="lab-reset" disabled>Auf 6 Hefte zurücksetzen <span aria-hidden="true">↺</span></button>
-              <noscript><p>Mit JavaScript kannst du die Menge hier interaktiv verändern.</p></noscript>
+          <section class="dashboard-section home-organizer" aria-labelledby="organizer-heading">
+            <div class="section-heading">
+              <div><p class="eyebrow">Überblick BPE1</p><h2 id="organizer-heading">Excel-Lab</h2></div>
             </div>
-            <div class="home-sheet">
-              <div class="home-sheet-title"><span><i aria-hidden="true"></i> Projektbedarf.xlsx</span><span>Mini-Demo</span></div>
-              <div class="home-formula-bar"><span>D2</span><span aria-hidden="true">ƒx</span><code>=B2*C2</code></div>
-              <table class="home-sheet-table">
-                <caption class="sr-only">Heftkauf: Preis mal Menge ergibt den Gesamtpreis</caption>
-                <thead><tr><th scope="col" aria-label="Zeile"></th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th></tr></thead>
-                <tbody>
-                  <tr><th scope="row">1</th><td>Artikel</td><td>Preis</td><td>Menge</td><td>Gesamt</td></tr>
-                  <tr><th scope="row">2</th><td>Hefte</td><td class="home-price-cell">2,50 €</td><td id="lab-cell-quantity" class="home-quantity-cell">6</td><td id="lab-cell-total" class="home-result-cell">15,00 €</td></tr>
-                  <tr aria-hidden="true"><th>3</th><td></td><td></td><td></td><td></td></tr>
-                </tbody>
-              </table>
-              <div class="home-lab-result">
-                <span>Dein Gesamtpreis</span><output id="lab-total" for="lab-quantity" aria-live="off">15,00 €</output>
-                <div class="home-lab-meter" aria-hidden="true"><span id="lab-meter" style="--lab-fill:30%"></span></div>
-                <p id="lab-explanation">2,50 € × 6 Hefte = 15,00 €</p>
-                <p class="home-lab-insight">Die Werte ändern sich. Die Formel bleibt.</p>
+            <div class="organizer-layout">
+              <div class="organizer-map" role="group" aria-label="Vier Themengebiete der Tabellenkalkulation">
+                <svg class="organizer-connections" viewBox="0 0 700 420" preserveAspectRatio="none" aria-hidden="true"><path d="M150 100 C245 100 250 210 350 210 M550 100 C455 100 450 210 350 210 M550 320 C455 320 450 210 350 210 M150 320 C245 320 250 210 350 210"/></svg>
+                <div class="organizer-center" aria-hidden="true">
+                  <span class="organizer-workbook">
+                    <svg viewBox="0 0 150 144"><rect x="12" y="12" width="126" height="108" rx="9" fill="var(--surface)" stroke="var(--green)"/><path d="M12 36h126" stroke="var(--green)"/><circle cx="23" cy="24" r="2.5" fill="var(--green)" stroke="none"/><circle cx="33" cy="24" r="2.5" fill="var(--green)" stroke="none"/><path d="M23 50h103M23 70h103M23 90h103M23 110h103M49 43v67M87 43v67" stroke="var(--line-strong)"/><rect x="51" y="72" width="34" height="16" rx="2" fill="var(--green)" opacity=".2" stroke="none"/><path d="m57 81 6 5 12-12" stroke="var(--green)"/><path d="M40 131h70" stroke="var(--green)"/></svg>
+                  </span><strong>Dein Werkzeug: Excel</strong><small>Aus Daten wird Wissen.</small>
+                </div>
+<a class="organizer-topic is-selected" href="#lernpfad/1" data-organizer-stage="1" aria-controls="organizer-detail" aria-label="Lernfortschritt 1: Tabellen aufbauen" aria-describedby="organizer-tooltip-1 organizer-progress-label-1">
+                  <span class="organizer-code">L1</span>
+                  <span class="organizer-tooltip" id="organizer-tooltip-1" role="tooltip">Lernfortschritt 1</span>
+                  <span class="organizer-photo-frame"><img src="assets/images/organizer/l1-foundations-v1.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>
+                  <strong>Tabellen aufbauen</strong><small>Daten · Formeln · Gestaltung</small>
+                  <span class="organizer-progress">
+                    <progress id="organizer-progress-1" value="0" max="6" aria-label="Fortschritt L1"></progress>
+                    <span class="organizer-progress-label" id="organizer-progress-label-1"><span data-organizer-completed>0/6 erledigt</span><span data-organizer-percent>0%</span></span>
+                  </span>
+                </a>
+<a class="organizer-topic" href="#lernpfad/2" data-organizer-stage="2" aria-controls="organizer-detail" aria-label="Lernfortschritt 2: Sicher rechnen" aria-describedby="organizer-tooltip-2 organizer-progress-label-2">
+                  <span class="organizer-code">L2</span>
+                  <span class="organizer-tooltip" id="organizer-tooltip-2" role="tooltip">Lernfortschritt 2</span>
+                  <span class="organizer-photo-frame"><img src="assets/images/organizer/l2-calculations-v1.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>
+                  <strong>Sicher rechnen</strong><small>Zellbezüge · Grundfunktionen</small>
+                  <span class="organizer-progress">
+                    <progress id="organizer-progress-2" value="0" max="5" aria-label="Fortschritt L2"></progress>
+                    <span class="organizer-progress-label" id="organizer-progress-label-2"><span data-organizer-completed>0/5 erledigt</span><span data-organizer-percent>0%</span></span>
+                  </span>
+                </a>
+<a class="organizer-topic" href="#lernpfad/3" data-organizer-stage="3" aria-controls="organizer-detail" aria-label="Lernfortschritt 3: Entscheidungen treffen" aria-describedby="organizer-tooltip-3 organizer-progress-label-3">
+                  <span class="organizer-code">L3</span>
+                  <span class="organizer-tooltip" id="organizer-tooltip-3" role="tooltip">Lernfortschritt 3</span>
+                  <span class="organizer-photo-frame"><img src="assets/images/organizer/l3-decisions-v1.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>
+                  <strong>Entscheidungen treffen</strong><small>WENN · Kriterien · Verweise</small>
+                  <span class="organizer-progress">
+                    <progress id="organizer-progress-3" value="0" max="8" aria-label="Fortschritt L3"></progress>
+                    <span class="organizer-progress-label" id="organizer-progress-label-3"><span data-organizer-completed>0/8 erledigt</span><span data-organizer-percent>0%</span></span>
+                  </span>
+                </a>
+<a class="organizer-topic" href="#lernpfad/4" data-organizer-stage="4" aria-controls="organizer-detail" aria-label="Lernfortschritt 4: Daten sichtbar machen" aria-describedby="organizer-tooltip-4 organizer-progress-label-4">
+                  <span class="organizer-code">L4</span>
+                  <span class="organizer-tooltip" id="organizer-tooltip-4" role="tooltip">Lernfortschritt 4</span>
+                  <span class="organizer-photo-frame"><img src="assets/images/organizer/l4-charts-v1.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></span>
+                  <strong>Daten sichtbar machen</strong><small>Diagramme · Trends · Auswertung</small>
+                  <span class="organizer-progress">
+                    <progress id="organizer-progress-4" value="0" max="8" aria-label="Fortschritt L4"></progress>
+                    <span class="organizer-progress-label" id="organizer-progress-label-4"><span data-organizer-completed>0/8 erledigt</span><span data-organizer-percent>0%</span></span>
+                  </span>
+                </a>
               </div>
-              <div class="home-sheet-footer"><span class="home-sheet-tab">Heftkauf</span><span>Beispiel zum Entdecken · ohne Punkte</span></div>
-              <p id="lab-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+              <div class="organizer-detail" id="organizer-detail" aria-live="polite" aria-atomic="true">
+                <p class="organizer-detail-kicker"><span id="organizer-stage-code">L1</span><span id="organizer-stage-count">6 Einheiten · Einstieg</span></p>
+                <h3 id="organizer-stage-title">Grundlagen und Tabellenaufbau</h3>
+                <p id="organizer-stage-description">Daten erfassen, einfache Formeln schreiben, Zellen formatieren und übersichtliche Tabellen entwerfen.</p>
+                <p class="organizer-label">Danach kannst du …</p>
+                <p id="organizer-stage-outcome">eine eigene Tabelle planen, mit Zelladressen rechnen und sie verständlich gestalten.</p>
+                <div class="organizer-example"><span id="organizer-example-label">Zum Beispiel</span><strong id="organizer-example-title">Eine Getränkeliste fürs Schulfest</strong><code id="organizer-example-code">Menge × Einzelpreis = Gesamtpreis</code></div>
+                <p class="organizer-sequence">Deine Lernfolge: L1 → L2 → L3 → L4.<br>Den Überblick kannst du jederzeit erkunden.</p>
+              </div>
             </div>
+            <noscript><p>Die vier Themenbereiche findest du im <a href="#lernpfad">Lernpfad</a>. Aktiviere JavaScript für die interaktive Themenlandkarte.</p></noscript>
           </section>
 
+
+          <details class="home-lab-disclosure home-workflow-disclosure">
+            <summary><strong>Arbeiten mit Excel-Lab</strong><span class="home-disclosure-symbol" aria-hidden="true"></span></summary>
           <section class="dashboard-section onboarding-section" aria-labelledby="onboarding-heading">
             <div class="section-heading onboarding-heading">
               <div>
-                <p class="eyebrow">Einfach loslegen</p>
                 <h2 id="onboarding-heading">So arbeitest du mit Excel-Lab</h2>
               </div>
               <p class="section-note">Arbeite die Einheiten am besten in der Reihenfolge L1 bis L4 durch.</p>
@@ -184,10 +214,13 @@
             </div>
           </section>
 
+          </details>
+
+          <details class="home-lab-disclosure home-progress-disclosure">
+            <summary><strong>Dein Lernstand</strong><span class="home-disclosure-symbol" aria-hidden="true"></span></summary>
           <section class="dashboard-section" aria-labelledby="overview-heading">
             <div class="section-heading">
               <div>
-                <p class="eyebrow">Dein Lernstand</p>
                 <h2 id="overview-heading">Weiterlernen, wo du aufgehört hast</h2>
               </div>
               <button class="text-button" type="button" data-go-view="learning">Alle Lerneinheiten ansehen <span aria-hidden="true">→</span></button>
@@ -209,15 +242,8 @@
             </div>
           </section>
 
-          <section class="dashboard-section" aria-labelledby="stages-heading">
-            <div class="section-heading compact">
-              <div>
-                <p class="eyebrow">Vier Lernschritte</p>
-                <h2 id="stages-heading">Vom Tabellenentwurf zur Datenanalyse</h2>
-              </div>
-            </div>
-            <div class="chapter-grid" id="chapter-grid"></div>
-          </section>
+          </details>
+
 
         </div>
       </section>
@@ -326,16 +352,13 @@
 
     <footer class="site-footer">
       <div>
-        <a class="brand footer-brand" href="#uebersicht" data-brand-home aria-label="Excel-Lab Startseite und Versionsinformationen">
+        <a class="brand footer-brand" href="#uebersicht" data-about-info aria-label="Excel-Lab Versionen und Impressum">
           <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
-          <span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span>
+          <span class="brand-copy"><strong>Excel-Lab</strong></span>
         </a>
-        <p>Version 0.9.0 · Lernstand bleibt lokal im Browser</p>
       </div>
       <div class="footer-links">
         <a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Designed by Sawazki Electronics</a>
-        <button type="button" data-go-view="sources">Quellen</button>
-        <button type="button" id="footer-data-button">Daten verwalten</button>
       </div>
     </footer>
 
@@ -347,35 +370,40 @@
         <h2 id="profile-dialog-title">Lokales Lernprofil anlegen</h2>
         <p>Verwende deinen schulischen Account-Namen und die vollständige WebUntis-Klassenbezeichnung. Dein Fortschritt bleibt ausschließlich in diesem Browser.</p>
         <label>
-          <span>Account-Name</span>
+          <span>Kürzel</span>
           <input id="profile-name-input" name="name" type="text" maxlength="7" placeholder="z. B. jak.saw" pattern="[a-zäöüß]{3}\.[a-zäöüß]{3}" required autocapitalize="none" autocomplete="username" spellcheck="false" aria-describedby="account-hint">
           <small class="field-hint" id="account-hint">Je drei Anfangsbuchstaben von Vor- und Nachname, getrennt durch einen Punkt.</small>
         </label>
         <label>
           <span>Klassenbezeichnung</span>
-          <input id="profile-class-input" name="className" type="text" maxlength="16" placeholder="z. B. WGWEK1" pattern="[A-Za-z0-9\-]{3,16}" required autocapitalize="characters" spellcheck="false" aria-describedby="class-hint">
+          <input id="profile-class-input" name="className" type="text" minlength="3" maxlength="32" placeholder="z. B. WGW EK1" required autocapitalize="characters" spellcheck="false" aria-describedby="class-hint">
           <small class="field-hint" id="class-hint">Bitte vollständig wie in WebUntis eintragen.</small>
         </label>
         <button class="button button-primary button-full" type="submit">Lernprofil starten</button>
-        <p class="privacy-note"><span aria-hidden="true">●</span> Lokal mit anonymer Browser-ID gespeichert · jederzeit als JSON exportierbar</p>
+        <p class="privacy-note"><span aria-hidden="true">●</span> Lokal gespeichert · jederzeit als Datei sichern und laden</p>
       </form>
     </dialog>
 
     <dialog class="dialog manager-dialog" id="manager-dialog" aria-labelledby="manager-dialog-title">
       <div class="dialog-content">
         <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
-        <p class="eyebrow">Profile und Lernstand</p>
-        <h2 id="manager-dialog-title">Lokale Daten verwalten</h2>
+        <h2 id="manager-dialog-title">Profil</h2>
+        <p>Speicherdatei</p>
         <div class="profile-list" id="profile-list"></div>
+        <form id="profile-edit-form" class="profile-edit-form" hidden>
+          <label><span>Kürzel</span><input id="profile-edit-name" type="text" maxlength="7" pattern="[a-zäöüß]{3}\.[a-zäöüß]{3}" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="z. B. jak.saw"></label>
+          <label><span>Klassenbezeichnung</span><input id="profile-edit-class" type="text" minlength="3" maxlength="32" required autocapitalize="characters" spellcheck="false" placeholder="z. B. WGW EK1"></label>
+        </form>
         <button class="button button-secondary" id="developer-mode-button" type="button" hidden aria-pressed="false">Entwickler-Modus</button>
         <div class="manager-actions">
-          <button class="button button-secondary" type="button" id="new-profile-button">Neues Profil</button>
-          <button class="button button-secondary" type="button" id="export-button">JSON exportieren</button>
-          <button class="button button-secondary" type="button" id="import-button">JSON importieren</button>
-          <button class="button button-danger" type="button" id="reset-button">Fortschritt zurücksetzen</button>
+          <button class="button button-secondary" type="button" id="export-button">Speichern</button>
+          <button class="button button-secondary" type="button" id="import-button">Laden</button>
         </div>
         <input id="import-file" type="file" accept="application/json,.json" hidden>
-        <p class="dialog-hint">Lernstand lokal speichern oder als JSON sichern.</p>
+        <div class="manager-actions" id="developer-profile-actions" hidden>
+          <button class="button button-secondary" type="button" id="new-profile-button">Neues Profil</button>
+          <button class="button button-danger" type="button" id="reset-button">Fortschritt zurücksetzen</button>
+        </div>
       </div>
     </dialog>
 
@@ -392,11 +420,12 @@
         <span class="dialog-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
         <p class="eyebrow">Excel-Lab</p>
         <h2 id="about-dialog-title">Versionen und Impressum</h2>
-        <p>Lernplattform zur Tabellenkalkulation für berufliche Schulen.</p>
+        <p>Lernplattform zur Tabellenkalkulation für berufliche Schulen.<br>Ein Lernangebot von Sawazki Electronics.</p>
 
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.10.0</span><div><strong>Themenlandkarte und neue Lernseiten</strong><small>Eigene Lernseiten L3.2 bis L4.6, Verständnis-Checks, interaktive Diagrammbeispiele sowie vereinfachte Profile, Speichern/Laden und Darstellungsoptionen.</small></div></li>
             <li><span>0.9.0</span><div><strong>Neue Lernseiten und edlere Oberfläche</strong><small>L2.5 und L3.1 als eigene Lernseiten, Verständnis-Check in L2.1, optionale Video-Tutorials sowie smaragdgrüne Metallgestaltung.</small></div></li>
             <li><span>0.8.0</span><div><strong>Mehr Lernseiten und Verständnis-Checks</strong><small>L1.6 und L2.1 bis L2.4 als eigene Lernseiten; gemeinsames Lernpfad-Menü und verpflichtende Verständnisfragen in L2.2 bis L2.4.</small></div></li>
             <li><span>0.7.0</span><div><strong>Direkt auf der Lernseite lernen</strong><small>Eigene Lernseiten bis L1.5 mit aufklappbaren Informationen und Aufgaben, metallischen Plus-/Minus-Symbolen und temporärer Entwicklervorschau.</small></div></li>
@@ -414,7 +443,7 @@
           <h3 id="imprint-heading">Impressum</h3>
           <p><strong>Verantwortlich für dieses Lernangebot</strong><br>Jakob Sawazki · Sawazki Electronics<br>Mörikestraße 15 · 72250 Freudenstadt</p>
           <p>Mobil: <a href="tel:+4915202967632">0152 02967632</a><br><a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Sawazki Electronics</a></p>
-          <small>Excel-Lab verwendet kein eigenes Backend. Lernprofile und Fortschritt werden ausschließlich lokal im Browser gespeichert.</small>
+          <small>Dein Lernstand bleibt in diesem Browser.</small>
         </section>
       </div>
     </dialog>

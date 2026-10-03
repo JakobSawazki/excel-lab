@@ -1,0 +1,27 @@
+.l46-demo { border:1px solid var(--line-strong); border-radius:1rem; padding:1rem; margin:1rem 0; background:var(--surface); }
+.l46-slider-label { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.6rem; font-weight:750; }
+#l46-c-value { width:100%; min-height:44px; margin:1rem 0; accent-color:var(--green); }
+.l46-chart-scroll { overflow-x:auto; max-width:100%; }
+.l46-chart-scroll:focus-visible { outline:3px solid var(--lime); outline-offset:3px; }
+#l46-chart { display:block; width:100%; min-width:460px; height:auto; color:var(--text); }
+#l46-chart text { fill:currentColor; stroke:none; font:20px Arial,sans-serif; }
+#l46-chart .l46-axis-label { font-size:21px; font-weight:700; }
+.l46-axis { stroke:var(--text-soft); stroke-width:2; }
+.l46-grid-line { stroke:var(--line-strong); stroke-width:1; }
+.l46-point { fill:var(--green); stroke:var(--text); stroke-width:1.5; }
+.l46-trend { stroke:var(--text); stroke-width:3; stroke-dasharray:8 5; }
+.l46-point-label { font-weight:800; }
+.l46-legend { display:flex; flex-wrap:wrap; gap:.6rem 1.2rem; font-size:.8rem; }
+.l46-legend span { display:inline-flex; align-items:center; gap:.4rem; }
+.l46-point-key { width:.85rem; height:.85rem; border-radius:50%; background:var(--green); border:1px solid var(--text); }
+.l46-trend-key { width:1.3rem; border-top:3px dashed var(--text); }
+.l46-results { display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; font-variant-numeric:tabular-nums; }
+.l46-results p { margin:.35rem 0; }
+.l46-results output { font-weight:750; }
+.l46-page .l25-data-table { min-width:0; font-variant-numeric:tabular-nums; }
+.l46-page .l25-data-table th,.l46-page .l25-data-table td { white-space:normal; overflow-wrap:anywhere; }
+.l46-page code { overflow-wrap:anywhere; }
+@media(max-width:600px) {
+ .l46-page .l25-data-table th,.l46-page .l25-data-table td { padding:.65rem .35rem; font-size:.8rem; }
+ .l46-demo { padding:.6rem; }
+}
