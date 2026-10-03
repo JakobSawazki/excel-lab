@@ -2,7 +2,7 @@
 
 Stand: 3. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.0
-Status: Veröffentlichung von Version 0.10.0 vorbereitet; Deploymentprüfung läuft
+Status: Version 0.10.0 online; GitHub Pages und öffentliche Seiten erfolgreich geprüft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
@@ -12,7 +12,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   BPE1-Materialien und Zusammenführung der Projekt- und Materialdokumentation
   in dieser Datei. L2.1 bis L2.5 und L3.1 besitzen verpflichtende
   Verständnis-Checks vor dem Abschluss.
-- **Gerade in Bearbeitung:** Veröffentlichung und Online-Prüfung von 0.10.0. Der nächste
+- **Gerade in Bearbeitung:** kein weiteres Arbeitspaket aktiv. Der nächste
   fachliche Ausbau ist L4.7. L1.1–L1.6 besitzen seit 02.10.2026 eigene
   Verständnis-Checks; die gesamte L1-Reihe ist funktional geprüft.
 - **Abgeschlossen (lokal, 02.10.2026):** L3.2 als eigene Lernseite mit
@@ -2610,6 +2610,31 @@ Offene Punkte / nächste Übergabe:
   Keine native Excel-Ausführung und keine Schülerdatei automatisch bewertet.
   XLSX-Vorlage auf Erreichbarkeit, nicht auf native Diagrammfunktion geprüft.
   Kein Push und kein Deployment.
+
+## Übergabe H-63 – Veröffentlichung 0.10.0 (03.10.2026, 11:11 Uhr)
+
+- Auf ausdrücklichen Benutzerauftrag den gesamten aktuellen Projektstand auf
+  `main` veröffentlicht. Release-Commit:
+  `bbcded8e9fe15a704b35d22c1fc1f7da0a696fb9`.
+- GitHub Pages meldete für diesen Commit am 03.10.2026 um 11:09:05 Uhr
+  (Europe/Berlin) `built`, ohne Fehler. Website:
+  <https://jakobsawazki.github.io/excel-lab/>.
+- Veröffentlichung umfasst die fotorealistische Themenlandkarte, vereinfachte
+  Profile und Speichern/Laden, XP-Anzeige und Darstellungsoptionen sowie
+  eigene Lernseiten und Verständnis-Checks bis L4.6. App-Version 0.10.0;
+  das Lernstand-Speicherformat bleibt unverändert bei Version 1.
+- Geprüft: JavaScript-Syntax, Themenlandkarte, Optionen, Speichern/Laden, XP,
+  Mehrtab-Synchronisierung und L4.6-Abschluss. Zusätzlich lokal und öffentlich
+  alle 26 HTML-Seiten und 51 referenzierten Assets mit HTTP 200 geprüft;
+  keine JavaScript-Laufzeitfehler. Öffentliche Materiallinks führen zur
+  offiziellen Materialseite, nicht zu den lokalen Originaldateien.
+- Originalmaterialien, Musterlösungen, lokale Tests und Sicherungen bleiben
+  ausgeschlossen. Fünf störende Google-Drive-`desktop.ini`-Metadateien aus
+  `.git/refs` wurden vor dem Fetch in einen ignorierten lokalen Sicherungsordner
+  `.tmp/git-metadata-backup-20261003-1101` verschoben; keine echten Git-Refs
+  und keine Projektinhalte entfernt.
+- Nächster fachlicher Ausbau: L4.7, anschließend L4.8. Unterrichtstest,
+  umfassendes A11y-Audit und Material-Lizenzklärung bleiben offen.
 
 ### Übergabe H-2026-10-02-60 – L4.4 Kreisdiagramm für Anteile
 
