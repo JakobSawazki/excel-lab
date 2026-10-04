@@ -2,13 +2,30 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten lokal geprüft, Profilwechsel-Korrektur zur Veröffentlichung bereit; fachlicher BPE1-Abschlussabgleich offen
+Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten lokal geprüft, Profilwechsel-Korrektur online bestätigt; fachlicher BPE1-Abschlussabgleich offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
-- **Abgeschlossen (lokal, 04.10.2026, gegen 16:02 Uhr; begonnen gegen
-  15:50 Uhr):** Abschlusswege aller 27 Einheiten mit insgesamt 83 Fragen
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 16:06 Uhr):**
+  Profilwechsel-Korrektur in neun Einheiten und bereinigte Übergabedokumentation
+  unter Commit `cbaaacc8d3baf76e6c88f487b4ba308d39fd474e` veröffentlicht.
+  Pages-Lauf `37207794667` erfolgreich. Auf der öffentlichen Website besteht
+  derselbe gezielte Test mit neun Einheiten/27 Fragen: echter Profilwechsel
+  zwischen zwei Browser-Tabs entfernt Auswahl, Bewertungsmarkierungen und
+  Rückmeldungen; Benachrichtigungen zum gleichen Profil erhalten Antworten.
+  Keine falsche Quizfreigabe für das andere Profil, externe Anfragen oder
+  JavaScript-Laufzeitfehler. Online-Release-Test: 28 Seiten/54 Assets, Version
+  0.10.1, keine privaten Materiallinks oder Browserfehler. Originaldateien,
+  Musterlösungen und temporäre Tests nicht mitveröffentlicht. Der folgende
+  lokale Eintrag ist damit veröffentlicht. Nächster erforderlicher Schritt:
+  abschließender fachlicher Abgleich der 27 Lernseiten und Aufgaben mit BPE1;
+  die Browser-Abschlusslogik ist geprüft, der Gesamtauftrag noch nicht als
+  abgeschlossen nachgewiesen. Der ausschließlich für diese Prüfung gestartete
+  lokale Audit-Server wurde beendet; bestehende Vorschau-Server blieben erhalten.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 16:02 Uhr):** Abschlusswege
+  aller 27 Einheiten mit insgesamt 83 Fragen
   bestehen den gemeinsamen Browser-Test: fehlende Vorgängereinheit, leere/
   falsche/richtige Quizantworten, Quiz allein ohne Abschluss, fehlende eigene
   Checks, fehlende Lehrkraftbestätigung, Abschluss mit 100 Punkten, erneutes
