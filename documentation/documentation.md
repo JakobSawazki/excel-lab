@@ -2,10 +2,49 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 mit allen 27 Lernseiten online und geprüft
+Status: Version 0.10.1; didaktische Überarbeitung von L1.2–L1.6 und L2.1–L2.5 geprüft, Veröffentlichung beauftragt
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlichung beauftragt (04.10.2026):** Der Benutzer hat ausdrücklich
+  den Push des gesamten aktuellen Projektstands und die Online-Veröffentlichung
+  beauftragt. Die folgenden lokalen Abschlussvermerke beschreiben den jeweiligen
+  historischen Zeitpunkt; nach dem Deployment werden auch diese Änderungen online
+  verfügbar sein. Private Materialien, Musterlösungen und lokale Testdateien bleiben
+  von Git ausgeschlossen. Bestehendes Speicherformat und XP-Regeln bleiben unverändert.
+
+- **Abgeschlossen (04.10.2026):** L2.3–L2.5 didaktisch ergänzt:
+  Änderungstests für gemischte/benannte Bezüge, L2.4-Neuaufbau mit sechs bekannten
+  Kursdatensätzen ohne Download, Kennzahlen- und Null/Leer-Tests sowie unabhängige
+  Angebotsauswertung mit Wechsel und Gleichstand. Abschluss-/XP-/Persistenztests
+  aller drei Seiten sowie der Release-Test mit 28 Seiten und 54 Assets bestanden.
+  Die didaktische Gesamtprüfung von L3/L4 und die Unterrichtserprobung bleiben offen.
+
+- **Abgeschlossen (lokal, 04.10.2026, 10:29 Uhr):** L2.1/L2.2 mit getrennten
+  Eingabetests für kopierte Kursbezüge und gemeinsame Pauschale. L2.2 kann
+  ohne Vorlagen-Download fortgeführt oder neu aufgebaut werden; Zeilen nur
+  bei Bedarf einfügen. Datentabellen an Excel-Spaltenfolge angepasst,
+  Abschluss-Haken entsprechend präzisiert. Noch nicht veröffentlicht.
+
+- **Abgeschlossen (lokal, 04.10.2026, 10:16 Uhr):** L1.5 ergänzt konkrete
+  Erweiterungs-/Kontrollsummen-Tests in einer separaten Testkopie. L1.6
+  erläutert Mehrbedarf und ganze Pakete schrittweise an einem unabhängigen
+  Beispiel; Paketgrenzen und gezielte Änderungen aller fünf Rechenmodelle
+  lassen sich mit Vorhersage, Beobachtung und Rückstellung prüfen.
+  Darstellung und Abschlusslogik geprüft, noch nicht veröffentlicht.
+
+- **Abgeschlossen (lokal, 04.10.2026, 10:05 Uhr):** L1.3 folgt dem Zellplan
+  von L1.2 auch ohne Vorlage; Druckkosten-Transfer erklärt gespeicherten Wert
+  gegenüber gerundeter Anzeige. L1.4 ergänzt Fehlerdiagnose, Änderungstest und
+  Reparatur einer durch einen festen Wert ersetzten Formel. Bestehende
+  Abschlussregeln unverändert, Darstellung und Abschlusslogik geprüft.
+  Noch nicht veröffentlicht.
+
+- **Abgeschlossen (lokal, 04.10.2026, 09:56 Uhr):** L1.2 ohne verpflichtenden
+  Vorlagen-Download: fünf bekannte Eingabedatensätze aus L1.1 mit exakten
+  Zielzellen und leeren Ergebniszellen auf der Seite. Vorhersage-/Änderungstest
+  und selbstständige Eintrittskarten-Aufgabe ergänzt. Noch nicht veröffentlicht.
 
 - **Veröffentlicht und online geprüft (04.10.2026, 09:51 Uhr):** Version 0.10.1
   enthält alle 27 eigenen Lernseiten einschließlich L4.7 und L4.8.
@@ -35,8 +74,11 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   BPE1-Materialien und Zusammenführung der Projekt- und Materialdokumentation
   in dieser Datei. L2.1 bis L2.5 und L3.1 besitzen verpflichtende
   Verständnis-Checks vor dem Abschluss.
-- **Gerade in Bearbeitung:** kein weiteres Arbeitspaket aktiv. Als Nächstes
-  folgt die einheitenübergreifende Prüfung der Lernführung. L1.1–L1.6 besitzen seit 02.10.2026 eigene
+- **Gerade in Bearbeitung:** einheitenübergreifende Prüfung der Lernführung,
+  insbesondere externe Vorlagenabhängigkeiten und selbstständige Transfers.
+  L1.2–L1.6 und L2.1/L2.2 sind überarbeitet; als Nächstes folgen L2.3–L2.5.
+  Die einheitenübergreifende Prüfung der übrigen Lernstrecke bleibt offen.
+  L1.1–L1.6 besitzen seit 02.10.2026 eigene
   Verständnis-Checks; die gesamte L1-Reihe ist funktional geprüft.
 - **Abgeschlossen (lokal, 02.10.2026):** L3.2 als eigene Lernseite mit
   JAHR, geschachtelter WENN-Funktion, Tarifpreisen, drei Aufgaben und
@@ -2970,3 +3012,185 @@ Offene Punkte / nächste Übergabe:
   prüfen. Unterrichtstest, umfassendes A11y-Audit und Material-Lizenzklärung
   bleiben offen. Originaldateien und Musterlösungen bleiben lokal. Kein Push
   und kein Deployment; öffentlich weiterhin Version 0.10.0.
+
+### H-66 · Release 0.10.1 (04.10.2026, 09:51 Uhr)
+
+- Auf ausdrücklichen Benutzerauftrag alle veröffentlichbaren Änderungen
+  nach `origin/main` gepusht: Release `4f269c0`, anschließend überprüftes
+  Deployment in `ebfe5c9` dokumentiert. Pages-Lauf `37187008006` erfolgreich.
+- Online geprüft: 28 HTML-Seiten, 54 Assets, Version 0.10.1,
+  Materialumleitung und keine JavaScript-Laufzeitfehler.
+- Private Originaldateien, Musterlösungen und lokale Testartefakte ausgeschlossen.
+
+### H-67 · L1.2 ohne Download und mit selbstständigem Transfer (04.10.2026, 09:56 Uhr)
+
+- **Befund:** L1.2 verlangte bislang eine lokal vorhandene XLSX-Vorlage, obwohl
+  die öffentliche Website nur zur offiziellen Materialseite weiterleitet.
+  Ohne Vorlage fehlten die konkreten Eingabedaten und der Zellplan.
+- **Umsetzung:** fünf bekannte Getränke-/Preis-/Mengen-Datensätze aus der
+  vorhandenen Seite L1.1 eingebunden. Das sind ausdrücklich Eingaben aus L1.1,
+  keine Behauptung über den Inhalt der Original-XLSX. Titel A1, Überschriften
+  A3:D3, Eingaben A4:C8, Summenbezeichnung A9 und leere Ergebniszellen D4:D9
+  erklärt. Preise als Zahlen, nicht als Texte mit Eurozeichen eingeben.
+  Die vorhandene Vorlage bleibt optional; ihre abweichenden Werte sind zulässig.
+- **Lernführung:** vor Änderung von C4 um zwei Flaschen die Änderung in D4/D9
+  vorhersagen, unveränderte D5:D8 kontrollieren, Originalmenge wiederherstellen.
+  Lehrkraftgespräch verfolgt den Abhängigkeitsweg C4 → D4 → D9.
+- **Transfer:** neues Blatt „Karten“, Budget 20 €, Kartenpreis 1,80 €, zuerst
+  sieben, dann zehn Karten. Eigene Zellplanung, Formeln für Gesamtkosten und
+  Restbudget, Vorhersage beider Änderungen, unabhängige Kontrolle und Erklärung.
+  Rückstellung, Speichern/Schließen/erneutes Öffnen. Optionaler Denkanstoß gibt
+  keine fertige Zellformel und keine numerische Lösung vor. Keine zusätzlichen XP
+  oder Pflicht-Checks; bestehende Abschlüsse bleiben unverändert.
+- **Verifiziert:** Eingabedaten gegen die gerenderte L1.1-Seite verglichen;
+  16 Kombinationen aus vier Breiten, zwei Themen und zwei tatsächlichen
+  Schriftgrößen, Tastaturbedienung und horizontaler Tabellenzugriff geprüft.
+  Kein Seitenüberlauf, kein zusätzlicher Netzwerkaufruf, keine Lernstandschreibvorgänge
+  durch das Erkunden. Desktop-Aufgabe und mobile Transferdarstellung visuell geprüft.
+  Bestehender L1.2-Abschlusstest und Formel-Lab-Test erneut bestanden:
+  Voraussetzungen, Fehlversuche, Persistenz, 100 XP, Altabschluss, Rücknahme,
+  Profilwechsel, Mengenänderung/Reset und öffentliche Materialumleitung.
+- **Weiterarbeit:** übrige Einheiten auf externe Vorlagenabhängigkeiten und
+  verständliche, selbstständig lösbare Anwendungsfälle prüfen. Einheitenübergreifender
+  Audit, Unterrichtstest und umfassendes A11y-Audit bleiben offen. Diese Überarbeitung
+  ist nur lokal; öffentlich bleibt Version 0.10.1 ohne H-67-Änderungen.
+
+### H-68 · L1.3/L1.4: Zellwert verstehen und Fehler durch Tests finden (04.10.2026, 10:05 Uhr)
+
+- **Befund und Anschluss:** L1.3 erwartete die Summenbeschriftung nur in C9.
+  Der neue Weg ohne Vorlage in L1.2 nutzt A9. L1.3 nennt nun den dortigen
+  Zellplan und lässt für bereitgestellte Vorlagen die tatsächlich beschriftete
+  Zelle zu. Preise, Mengen und Ergebnisformeln bleiben in denselben Bereichen.
+- **L1.3-Transfer:** eigenes Blatt „Druckkosten“, Modellpreis 0,035 € je Seite,
+  100 Seiten. Eigene Zellen und Formel wählen, drei Preis-Nachkommastellen
+  auf zwei umstellen, vorher die Auswirkung auf den Gesamtpreis vorhersagen.
+  Bearbeitungsleiste und Formel kontrollieren, unabhängig mit gespeichertem
+  und nur angezeigtem Preis rechnen und den Unterschied erklären. Seitenzahl
+  auf 200 ändern, zurückstellen und sichern. Die Sonderoption „Genauigkeit
+  wie angezeigt“ ausdrücklich nicht aktivieren. Kein numerisches Ergebnis
+  und keine fertige Transferformel auf der Seite.
+- **L1.4-Transfer:** eigenes Blatt „Materialtest“ mit drei Materialpositionen.
+  D2 aus den Eingabezellen entwickeln und nach D3:D4 kopieren; Summe D6 mit
+  Pluszeichen bilden. Nur D3 absichtlich durch „Inhalte einfügen → Werte“
+  ersetzen. Preis C3 um 0,50 € erhöhen, vorab die erwarteten Änderungen
+  von D3 und D6 notieren. So wird sichtbar, dass eine richtige Summenformel
+  dennoch einen veralteten Positionsbetrag verwenden kann. D3 durch Kopieren
+  von D2 reparieren, Bezüge und Neuberechnung prüfen, Originalpreis zurückstellen.
+  Getränke-Blatt bleibt unberührt. Widersprüchliche Beschränkung der gesamten
+  Abgabedatei auf das Getränke-Blatt im vorherigen Zusatzversuch entfernt.
+- **Didaktik:** beide Transfers vor dem jeweiligen Verständnis-Check,
+  aufklappbare Denkanstöße ohne Musterformel, keine zusätzlichen XP oder
+  Pflicht-Checks. Bereits gespeicherte Abschlüsse bleiben erhalten.
+- **Verifiziert:** Lerntext und Reihenfolge im Browser, Zellplan-Anschluss,
+  Tastaturbedienung der Abschnitte und Hinweise, 32 Kombinationen aus vier
+  Breiten, zwei Themen und zwei tatsächlichen Schriftgrößen. Kein horizontaler
+  Seitenüberlauf, keine zusätzlichen externen Anfragen, keine Lernstandänderungen
+  beim Erkunden. Mobile L1.3- und Desktop-L1.4-Darstellung visuell geprüft.
+  Unabhängige Arithmetik bestätigt die Unterschiede der Druckkosten-Rechnungen
+  und die erwartete Änderung im Materialtest; keine Behauptung einer realen
+  Excel-Ausführung. L1.3-/L1.4-Abschlusstests erneut bestanden: Voraussetzungen,
+  Leer-/Fehl-/richtige Versuche, Persistenz, 100 XP, Altabschluss, Rücknahme,
+  Profilwechsel und mobile Ansicht. Ein paralleler L1.4-Test hatte einen
+  Seitenlade-Timeout; der einzelne Wiederholungslauf war erfolgreich.
+  Abschließend alle 28 Seiten und 54 Assets lokal im öffentlichen Vorschau-Modus
+  erreichbar, Materialumleitung korrekt und keine JavaScript-Laufzeitfehler.
+- **Weiterarbeit:** L1.5/L1.6 wurden hinsichtlich der vorhandenen Aufgaben
+  gesichtet, aber noch nicht abschließend didaktisch geprüft. Weitere Transfers,
+  ausreichende Hilfe bei komplexeren Modellen und die gesamte Lernstrecke
+  bleiben im Audit. Originalmaterialien und Musterlösungen wurden nicht verändert.
+  Diese Überarbeitung ist lokal; kein Push und kein neues Deployment.
+
+### H-69 · L1.5/L1.6: Erweiterungsprüfung und nachvollziehbare Rechenmodelle (04.10.2026, 10:16 Uhr)
+
+- **L1.5:** vorhandene freiwillige Erweiterung konkretisiert. Separate Datei
+  `L1_5 Sommerfest Testkopie.xlsx`, sechste erfundene Testperson mit Zahlung
+  4 €, ohne zusätzliche echte Kontaktdaten. Formeln übernehmen und gemeinsame
+  Kopfzelle gegenüber individueller Zahlung prüfen. Beitrag 10 → 12 € und
+  einzelne Testzahlung 4 → 5 € getrennt vorhersagen, testen und zurückstellen.
+  Drei Kontrollsummen bilden und Beitrags-/Zahlungssumme gegen offene Beträge
+  abgleichen. Die sechste Zeile muss überall enthalten sein. Passende Summen
+  ersetzen ausdrücklich keine Einzelzeilen-/Bezugsprüfung. Original-Abgabedatei
+  mit fünf Personen bleibt unverändert; nur die Testkopie erweitern und sichern.
+- **Befund L1.6:** Tarifaufgabe verlangt bereits Begrenzung auf null und ganze
+  Zusatzpakete, obwohl entsprechende Funktionen erst später behandelt werden.
+  Vorher fehlte eine nachvollziehbare Umsetzungshilfe.
+- **Schrittweise Hilfe:** unabhängiges Archivhüllen-Beispiel mit Bedarf 36,
+  vorhanden 10, Paketgröße 10 und Paketpreis 2 €. Beschriftete Hilfszellen
+  für Mehrbedarf, Paketanzahl und Kosten. MAX mit null verhindert negative
+  Mehrbedarfswerte; AUFRUNDEN mit null Dezimalstellen macht aus dem
+  nichtnegativen Paketquotienten ganze Pakete. Semikolon und positive Paketgröße
+  erläutert. Beispieladressen gelten nicht für den Tarifvergleich; Schüler
+  übertragen die Bausteine auf ihre eigenen Eingabezellen. Minuten und SMS
+  bleiben einzeln berechnet, Grundtarif nur einmal. Keine fertigen Tariflösungen
+  oder neuen Musterlösungsdateien eingebunden.
+- **Paketgrenzen:** beide Anbieter bei Datenbedarf 0/200, 300/301 und 400/401 MB
+  prüfen, jeweils vorher Paketanzahl/Kostenänderung vorhersagen. Minuten und SMS
+  zusätzlich einzeln auf null testen; alle Originalwerte wiederherstellen.
+  Nachträgliche Formelkorrekturen auch in der kopierten Formelansicht übernehmen.
+- **Vier weitere Modelle:** Kino Saal 1 Montag 45 → 46 Besucher; Brötchen
+  50 → 60 bei unveränderter Einkaufszeit; Farbmenge 20.000 → 10.000 Liter;
+  Kapital im ersten Zinsfall 2.500 → 5.000 €. Jeweils vorher Eingabe, erwartete
+  Ergebnisänderung und unveränderte Bereiche notieren, testen und zurückstellen.
+  Fehler nicht durch Überschreiben des Ergebnisses kaschieren.
+- **Quellenprüfung:** offizielle Microsoft-Syntax am 04.10.2026 geprüft:
+  https://support.microsoft.com/de-de/excel/functions/max-function und
+  https://support.microsoft.com/de-de/excel/functions/roundup-function .
+  Links stehen unmittelbar bei der Hilfe; keine externen Inhalte automatisch laden.
+- **Verifiziert:** Text/Arbeitsreihenfolge, Tastaturbedienung der drei Hilfsbereiche,
+  32 Kombinationen aus vier Breiten, zwei Themen und zwei tatsächlichen
+  Schriftgrößen. Keine Seitenüberbreite, externen Anfragen oder Lernstandänderungen
+  durch das Erkunden. Desktop-L1.5 und mobile L1.6 visuell geprüft. Unabhängige
+  Arithmetik prüft Archivhüllen, 14 Paketgrenzfälle, Kontrollsummen und getrennte
+  Auswirkungen der Beitrags-/Zahlungsänderungen. Kein tatsächlicher Excel-Lauf
+  behauptet. L1.5-/L1.6-Abschlusstests erneut bestanden, einschließlich
+  Voraussetzungen, Fehlversuchen, Persistenz, 100 XP, Altabschluss, Rücknahme,
+  Profilwechsel und mobiler Ansicht. Abschlussregeln/State-Schema unverändert.
+  Abschließender lokaler Release-Test: alle 28 HTML-Seiten und 54 Assets erreichbar,
+  öffentliche Materialumleitung korrekt, keine JavaScript-Laufzeitfehler.
+- **Weiterarbeit:** L2-Reihe auf verständliche Lernführung, selbstständige
+  Anwendungen und externe Vorlagenabhängigkeiten prüfen. Gesamt-Audit und
+  Unterrichtserprobung bleiben offen. Private Originaldateien und Musterlösungen
+  unverändert; Änderungen nur lokal, kein Push/Deployment.
+
+### H-70 · L2.1/L2.2: Startwege und getrennte Eingabetests (04.10.2026, 10:29 Uhr)
+
+- **Befund:** L2.2 verlangte die lokale Original-XLSX und pauschal zwei neue
+  Zeilen. Die eigene L2.1-Datei hat jedoch bereits Überschriften in Zeile 5 und
+  Kurse in Zeile 6–11. Ein erneutes Einfügen würde diesen Aufbau verschieben.
+- **Startwege:** L2.1-Datei als neue Teil-2-Kopie speichern, Teil 1 unverändert
+  lassen. Dort keine zusätzlichen Zeilen einfügen; A3:B3 vorher auf belegte
+  Inhalte prüfen. Optional die bereitgestellte Originalvorlage mit Überschriften
+  in Zeile 3 verwenden und nur dort zwei Zeilen einfügen. Bei fehlender alter
+  Datei leere Arbeitsmappe mit den vollständigen Datensätzen auf der Seite
+  anlegen. Alle Wege führen zu denselben Zielbereichen B3 und F6:F11.
+- **Datenvarianten:** eigene L2.1-Kopie behält Badminton mit 10 Stunden.
+  Originalvorlage bzw. Neuaufbau aus der L2.2-Seitentabelle nutzt 16 Stunden.
+  Startweg ausdrücklich notieren, Werte nicht unbemerkt vermischen. Keine
+  Änderung an den tatsächlichen Quellen-/Vorlagendateien vorgenommen.
+- **Darstellung:** beide Datentabellen zeigen jetzt Teilnehmerzahl, Stundenlohn,
+  Stunden in derselben Reihenfolge wie Excel-Spalten C, D, E. Alle sechs
+  Kurse und alle Werte unverändert; nur die letzten beiden Spalten umgeordnet.
+- **L2.1-Tests:** Handball C11 Teilnehmerzahl 18 → 19, E11 Stunden 15 → 16,
+  D11 Stundenlohn 4,50 → 5,00 € getrennt prüfen. Vorhersage, betroffene und
+  unveränderte Ergebnisse begründen, jeden Originalwert wiederherstellen.
+  So lässt sich eine falsche Multiplikation mit Teilnehmerzahl ebenso finden
+  wie ein falscher kopierter Zeilenbezug.
+- **L2.2-Tests:** B3 Pauschale 20 → 23 € muss alle sechs Ergebnisse gleich
+  verändern. E11 Stunden 15 → 16 betrifft nur Handball. B3 vorübergehend null
+  prüft die reine Stundenvergütung; Pauschale nicht als feste Zahl eintippen.
+  Originalwerte wiederherstellen. Abschluss-Check 0 verlangt nun Aufbauprüfung
+  und Einfügen nur bei Bedarf, keine unnötige Zeilenoperation. Schema/XP unverändert.
+- **Verifiziert:** alle sechs Datensätze beider Tabellen und neue Spaltenfolge,
+  Startweg-/Rückstellanweisungen, Tastaturöffnung und Reihenfolge vor dem
+  Verständnis-Check. 32 Layoutkombinationen aus vier Breiten, zwei Themen
+  und zwei Schriftgrößen ohne Seitenüberbreite. Keine externen Anfragen
+  oder Lernstandänderungen beim Erkunden. Mobile L2.1- und Desktop-L2.2-Darstellung
+  visuell geprüft; veraltete Abschluss-Formulierung dabei erkannt und korrigiert.
+  Unabhängige Arithmetik für beide Datenvarianten und Änderungsszenarien geprüft,
+  kein tatsächlicher Excel-Lauf behauptet. Bestehende L2.1-/L2.2-Tests bestanden:
+  Voraussetzungen, Quellenwerte, Weiterleitung, Verständnis-Check, Lehrkraftgate,
+  100 XP, Persistenz, Rücknahme, öffentliche Materialumleitung und mobile Ansicht.
+- **Weiterarbeit:** L2.3–L2.5 auf selbstständige Aufgaben, Einstieg ohne Vorlage
+  und klare Funktions-/Bezugserklärungen prüfen. Gesamt-Audit/Unterrichtserprobung
+  bleiben offen. Private Originaldateien/Musterlösungen unverändert. Nur lokal,
+  kein Push und kein Deployment.

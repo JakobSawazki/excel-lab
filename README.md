@@ -23,6 +23,25 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 Aktueller Release: **0.10.1** – Themenlandkarte, vereinfachte Bedienung und
 eigene Lernseiten für alle 27 Einheiten bis einschließlich L4.8.
 
+Didaktisch überarbeitet (4. Oktober 2026): L1.2 kann mit den auf der
+Lernseite angegebenen Eingabedaten ohne Vorlagen-Download bearbeitet werden.
+Ein Vorhersage-/Änderungstest und eine unabhängige Eintrittskarten-Aufgabe
+vertiefen die Arbeit mit Zellbezügen.
+L1.3 ergänzt einen Druckkosten-Transfer zu Zellwert und gerundeter Anzeige;
+L1.4 ergänzt eine Fehlerdiagnose mit absichtlich festgesetztem Ergebniswert,
+Änderungstest und Reparatur. Die Zellzuordnung zwischen L1.2 und L1.3 ist
+für den Aufbau ohne Vorlage abgestimmt.
+L1.5 konkretisiert die Testkopie mit einer sechsten Person und Kontrollsummen;
+L1.6 ergänzt schrittweise Hilfe zu Mehrbedarf/Paketanzahl, Paketgrenztests
+und gezielte Änderungstests für die weiteren vier Rechenmodelle.
+L2.1/L2.2 ergänzen getrennte Eingabetests für relative/absolute Bezüge.
+L2.2 lässt sich ohne Vorlagen-Download mit der L2.1-Datei oder einer leeren
+Arbeitsmappe bearbeiten; Zeilen werden nur beim passenden Startaufbau eingefügt.
+L2.3 ergänzt gezielte Änderungstests für gemischte und benannte Bezüge.
+L2.4 bietet einen vollständigen Einstieg ohne Vorlagen-Download sowie Tests
+zu unveränderten Extremwerten und dem Unterschied zwischen null und leer.
+L2.5 ergänzt eine selbstständige Angebotsauswertung mit Anbieterwechsel und Gleichstand.
+
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
 

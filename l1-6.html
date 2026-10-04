@@ -170,6 +170,28 @@
                 <li>Erstelle <strong>Ergebnisansicht</strong> und <strong>Formelansicht</strong>. Ändere probeweise eine Bedarfszahl und prüfe die neue Summe; stelle danach 500 MB, 200 Minuten und 120 SMS wieder her.</li>
               </ol>
               <p>Speichere deine eigene Arbeitsmappe als <code>L1_6.5 Vertiefungsaufgabe5_Tarifvergleich.xlsx</code> im Ordner Ergebnisse.</p>
+              <details id="l16-package-help"><summary>Hilfe: Mehrbedarf und ganze Pakete in Excel berechnen</summary>
+                <p>Funktionen werden in den nächsten Lernfortschritten ausführlicher behandelt. Für diesen Tarifvergleich kannst du diese zwei kleinen Bausteine schon jetzt nutzen. Entwickle zuerst die Rechenregel in Worten; arbeite dann mit beschrifteten Hilfszellen statt einer langen Gesamtformel.</p>
+                <h3>Anderes Beispiel: Archivhüllen bestellen</h3>
+                <p>Das Beispiel ist keine Lösung des Tarifvergleichs. Auf einem freien Testblatt stehen <strong>C2 Bedarf: 36 Hüllen</strong>, <strong>C3 vorhanden: 10 Hüllen</strong>, <strong>C4 Paketgröße: 10 Hüllen</strong> und <strong>C5 Preis je Paket: 2 €</strong>. Gib nur die Zahlen in die Zellen ein; Einheiten stehen in den Beschriftungen. Die Paketgröße muss größer als null sein.</p>
+                <ol class="instruction-list">
+                  <li><span>1</span><div><strong>Mehrbedarf nicht unter null</strong><p>In C7 kannst du <code>=MAX(0;C2-C3)</code> verwenden. MAX nimmt den größeren der beiden Werte: null oder die Differenz. Reichen die vorhandenen Hüllen, gibt es keinen zusätzlichen Bedarf. Beschrifte C7 mit „Zusätzlich benötigte Hüllen“.</p></div></li>
+                  <li><span>2</span><div><strong>Nur ganze Pakete</strong><p>In C8 steht <code>=AUFRUNDEN(C7/C4;0)</code>. Zuerst wird Mehrbedarf durch Paketgröße geteilt. AUFRUNDEN mit der letzten Angabe 0 rundet diese nichtnegative Zahl auf eine ganze Paketanzahl auf. Ein angebrochenes Paket zählt vollständig; bei Mehrbedarf null bleibt die Paketanzahl null.</p></div></li>
+                  <li><span>3</span><div><strong>Kosten der Pakete</strong><p>Berechne in C9 Paketanzahl mal Paketpreis mit Zellbezügen. Prüfe die drei Zwischenergebnisse unabhängig. Das Semikolon trennt die Angaben innerhalb der Funktionen; es ist kein Rechenzeichen.</p></div></li>
+                </ol>
+                <p><strong>Übertragen statt abschreiben:</strong> Wähle im Tarifblatt deine eigenen Eingabezellen und Hilfszellen. Wende die Begrenzung auf null auf Daten, Minuten und SMS jeweils getrennt an. Nur Daten werden in ganzen 100-MB-Paketen abgerechnet; Minuten und SMS haben ihre jeweiligen Einzelpreise. Der Grundtarif kommt genau einmal dazu. Die Beispieladressen C2 bis C9 gehören nicht zur Tarifvorlage.</p>
+                <p class="important-note">Weniger angezeigte Nachkommastellen kaufen kein zusätzliches Paket: Hier brauchst du eine rechnerisch ganze Paketanzahl. Nichtnegative Bedarfszahlen sind Voraussetzung des Modells; negative Eingaben wären fehlerhaft.</p>
+                <p>Fachliche Grundlage: <a href="https://support.microsoft.com/de-de/excel/functions/max-function" target="_blank" rel="noopener noreferrer">Microsoft: MAX</a> und <a href="https://support.microsoft.com/de-de/excel/functions/roundup-function" target="_blank" rel="noopener noreferrer">Microsoft: AUFRUNDEN</a>.</p>
+              </details>
+              <details id="l16-package-tests"><summary>Selbstständig prüfen: genau an der Paketgrenze</summary>
+                <p>Verändere im Tarifvergleich nur den Datenbedarf; Gesprächsminuten und SMS bleiben unverändert. Notiere für beide Anbieter vor jedem Test, wie viele Zusatzpakete nötig wären und wie sich die Datenkosten ändern müssten. Vergleiche danach mit Excel.</p>
+                <ol>
+                  <li>Setze den Datenbedarf auf 0 MB und anschließend auf 200 MB. Kein Anbieter darf negative Daten-Zusatzkosten berechnen.</li>
+                  <li>Teste 300 MB und danach 301 MB. Erkläre für jeden Anbieter, weshalb genau dieses zusätzliche MB ein neues Paket erforderlich machen kann.</li>
+                  <li>Teste 400 MB und danach 401 MB. Prüfe erneut beide Anbieter – nicht nur den aktuell günstigeren.</li>
+                </ol>
+                <p>Prüfe zusätzlich den Mengenpreis-Teil: Setze nur die Gesprächsminuten vorübergehend auf 0, dann nur die SMS auf 0. Zusatzkosten dieser Nutzungsart dürfen nicht negativ werden; der Grundtarif bleibt bestehen. Stelle danach <strong>500 MB, 200 Minuten und 120 SMS</strong> wieder her und speichere beide Ansichtsblätter. Falls du die Formelansicht vorher als Blattkopie erstellt hast, übernimm dort auch nachträgliche Formelkorrekturen.</p>
+              </details>
             </div>
           </details>
 
@@ -184,6 +206,16 @@
                 <li>Bei unveränderten übrigen Größen steigen Zinsen mit Kapital und Laufzeit.</li>
                 <li>Weniger Verbrauch als inklusive darf keine negativen Zusatzkosten erzeugen.</li>
               </ul>
+              <details id="l16-model-tests"><summary>Gezielt testen: eine Änderung pro Rechenmodell</summary>
+                <p>Notiere für jeden Versuch drei Dinge: <strong>geänderte Eingabe</strong>, <strong>Vorhersage mit Begründung</strong> und <strong>Beobachtung in Excel</strong>. Schreibe die Vorhersage auf, bevor du den Wert änderst. Stelle nach jedem Versuch die ursprüngliche Eingabe wieder her.</p>
+                <ol class="instruction-list">
+                  <li><span>1</span><div><strong>Kino: genau eine Zelle ändern</strong><p>Erhöhe die Besucherzahl für Saal 1 am Montag von 45 auf 46. Welche Tageseinnahme und welche Gesamt- bzw. Saalsumme müssen reagieren? Um welchen Betrag? Die anderen Tage und Säle müssen unverändert bleiben. Prüfe anschließend wieder mit 45 Besuchern.</p></div></li>
+                  <li><span>2</span><div><strong>Brötchen: fester und veränderlicher Zeitanteil</strong><p>Ändere nur die Stückzahl von 50 auf 60. Überlege, wie viele zusätzliche Zehnergruppen entstehen und welche zusätzliche Bearbeitungszeit nötig ist. Die Einkaufszeit bleibt 30 Minuten; die Gesamtzeit darf deshalb nicht einfach im Verhältnis 60 zu 50 hochgerechnet werden. Stelle wieder 50 ein.</p></div></li>
+                  <li><span>3</span><div><strong>Dosen: eine gemeinsame Eingabe</strong><p>Halbiere nur die tägliche Farbmenge von 20.000 auf 10.000 Liter. Wie müssen sich die drei Dosenanzahlen bei unveränderten Dosenvolumen ändern? Prüfe besonders die als Bruch eingegebene Variante. Stelle anschließend 20.000 Liter wieder her.</p></div></li>
+                  <li><span>4</span><div><strong>Zinsen: einen Fall gezielt prüfen</strong><p>Ändere im ersten Fall „Zinsen gesucht“ nur das Kapital von 2.500 auf 5.000 €. Sage die Veränderung der Zinsen voraus; Tage und Zinssatz bleiben gleich. Die drei anderen, unabhängigen Fälle dürfen sich nicht ändern. Stelle das Kapital wieder auf 2.500 €.</p></div></li>
+                </ol>
+                <p>Für den Tarifvergleich verwendest du die Paketgrenztests in Aufgabe 5. Stimmen Vorhersage und Ergebnis nicht überein, kontrolliere zuerst Eingabezellen, Bezüge, feste Zahlen in Formeln und Einheiten. Überschreibe nicht einfach den Ergebniswert, damit er „passt“.</p>
+              </details>
               <p>Stelle nach jedem Änderungstest die Originalwerte wieder her. Zeige der Lehrkraft die fünf Arbeitsmappen, erläutere exemplarisch eine Formel und bespreche offene Fehler vor dem Abschluss.</p>
             </div>
           </details>

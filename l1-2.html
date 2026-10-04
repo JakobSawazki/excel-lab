@@ -161,19 +161,43 @@
           </div></details>
           <details class="lesson-disclosure task-section"><summary><span class="section-index">05 · Deine Aufgabe</span><h2 id="aufgabe-heading">Die Getränkeliste rechnet mit</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Das Organisationsteam der Eingangsklassen plant eine Party. Die Einkaufskosten sollen sich automatisch ändern, wenn Preise oder Mengen angepasst werden.</p>
-            <p>Verwende die unten verlinkte <strong>Excel-Vorlage Getränkeliste</strong>. In Spalte A stehen die Getränke, in B der Einkaufspreis je Flasche und in C die Menge. Die Getränke stehen in den Zeilen 4 bis 8; Zeile 9 ist für die Summe vorgesehen.</p>
+            <p>Du kannst <strong>ohne Download</strong> in einer leeren Excel-Arbeitsmappe starten. Übernimm dafür die bekannten Eingaben aus L1.1 in die unten angegebenen Zellen. Wenn dir die Lehrkraft bereits die Excel-Vorlage Getränkeliste bereitgestellt hat, kannst du stattdessen diese verwenden. Die Zahlen in der Vorlage können abweichen; gerechnet wird immer mit deinen tatsächlichen Eingabezellen.</p>
+            <p>Schreibe den Titel <strong>Getränkeeinkauf</strong> in A1. Lege die Überschriften in Zeile 3 an: <strong>A3 Getränkeart</strong>, <strong>B3 Preis je Flasche (€)</strong>, <strong>C3 Menge (Flaschen)</strong> und <strong>D3 Gesamtpreis (€)</strong>. Gib Preise als Zahlen mit Dezimalkomma ein, etwa <code>1,40</code>, nicht als Text mit angehängtem Eurozeichen. Mengen sind ebenfalls Zahlen.</p>
+            <div class="l25-table-scroll" role="region" aria-label="Eingabedaten für die Getränkeliste" tabindex="0">
+              <table class="l25-data-table" id="l12-input-data">
+                <caption>Eingaben aus L1.1 · Ergebniszellen D4 bis D9 zunächst leer lassen</caption>
+                <thead><tr><th scope="col">Excel-Zeile</th><th scope="col">A · Getränkeart</th><th scope="col">B · Preis (€)</th><th scope="col">C · Menge</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">4</th><td>Cola</td><td>1,40</td><td>30</td></tr>
+                  <tr><th scope="row">5</th><td>Apfelsaft</td><td>1,59</td><td>10</td></tr>
+                  <tr><th scope="row">6</th><td>Limonade</td><td>1,00</td><td>15</td></tr>
+                  <tr><th scope="row">7</th><td>Mineralwasser</td><td>0,79</td><td>8</td></tr>
+                  <tr><th scope="row">8</th><td>Orangensaft</td><td>1,74</td><td>15</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Schreibe <strong>Summe</strong> in A9; B9 und C9 bleiben leer. Die Formeln kommen anschließend in D4 bis D9. Passe die Spaltenbreiten an, damit alle Überschriften lesbar sind. Für diese Rechnung brauchst du noch keine Farben oder besondere Zahlenformate.</p>
             <div class="task-list">
-              <div><span>1</span><p>Lade <code>L1_2 Tabellenvorlage Formeln in Excel.xlsx</code> herunter und öffne sie in Excel. Speichere deine eigene Kopie mit <strong>Speichern unter</strong> im Ordner <strong>Ergebnisse</strong> als <code>L1_2 Getränkeliste.xlsx</code>.</p></div>
+              <div><span>1</span><p>Erstelle die Tabelle mit den Eingaben oben oder öffne die bereitgestellte Vorlage. Speichere deine eigene Arbeitsmappe im Ordner <strong>Ergebnisse</strong> als <code>L1_2 Getränkeliste.xlsx</code>. Deine Datei aus L1.1 bleibt unverändert erhalten.</p></div>
               <div><span>2</span><p>Berechne in <strong>D4 bis D8</strong> für jedes Getränk den Gesamtpreis mit einer Formel: Einkaufspreis je Flasche mal Menge. Verwende die Zelladressen derselben Zeile und beginne mit =.</p></div>
               <div><span>3</span><p>Berechne in <strong>D9</strong> die Summe der fünf Gesamtpreise. Verbinde dafür die Ergebniszellen mit dem Pluszeichen. Gib keinen fertig ausgerechneten Gesamtbetrag ein.</p></div>
               <div><span>4</span><p>Prüfe in der Formelanzeige alle sechs Ergebniszellen. Stimmen Zeilen, Rechenzeichen und die fünf Summanden? Die Summenzelle selbst darf kein Summand sein.</p></div>
-              <div><span>5</span><p>Prüfe die Größenordnung durch Überschlagen. Ändere eine Menge probeweise: Ändern sich der zugehörige Gesamtpreis und die Summe? Stelle die ursprüngliche Menge wieder her, schalte zurück zur Ergebnisanzeige und speichere erneut.</p></div>
+              <div><span>5</span><p>Prüfe die Größenordnung durch Überschlagen. Notiere dann <strong>vor der Änderung</strong>, um welchen Betrag der Gesamtpreis und die Summe steigen müssten, wenn du zwei zusätzliche Flaschen Cola kaufst. Erhöhe nur C4 um 2. Vergleiche die Vorhersage mit D4 und D9; D5 bis D8 müssen unverändert bleiben. Stelle die ursprüngliche Menge wieder her, schalte zurück zur Ergebnisanzeige und speichere erneut.</p></div>
               <div><span>6</span><p>Zeige der Lehrkraft deine gespeicherte Datei und erkläre an einer Formel, welche Zellwerte verwendet werden. Schließe anschließend den Check ab.</p></div>
             </div>
-            <p class="important-note"><strong>Hinweis zur Vorlage:</strong> In der bereitgestellten Vorlage sind die Ergebniszellen in Spalte D leer. Trage dort deine Formeln ein. Deine Datei aus L1.1 bleibt als vorheriger Arbeitsschritt erhalten.</p>
+            <p class="important-note"><strong>Warum der Änderungstest?</strong> Ein richtiger Betrag allein beweist noch keine funktionierende Formel. Ändert sich die Eingabe, müssen die abhängigen Ergebnisse mitrechnen. Erkläre der Lehrkraft den Weg von C4 über D4 zu D9 und zeige die Formeln in der Bearbeitungsleiste.</p>
+          </div></details>
+          <details class="lesson-disclosure task-section" id="l12-transfer-section"><summary><span class="section-index">Transfer · Selbstständig anwenden</span><h2>Eintrittskarten statt Getränke</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+            <p>Vertiefung ohne zusätzliche XP: Lege in derselben Arbeitsmappe ein neues Blatt <strong>Karten</strong> an. Das Organisationsteam hat <strong>20 €</strong> Budget. Eine Eintrittskarte kostet <strong>1,80 €</strong>; zuerst werden <strong>7 Karten</strong> benötigt.</p>
+            <ol class="instruction-list">
+              <li><span>1</span><div><strong>Selbst planen</strong><p>Wähle eigene beschriftete Zellen für Budget, Kartenpreis und Anzahl. Berechne in zwei weiteren Zellen die Gesamtkosten und das Restbudget mit Zellbezügen. Nutze die passenden Rechenzeichen; gib keine fertig ausgerechneten Ergebnisse ein.</p></div></li>
+              <li><span>2</span><div><strong>Vorhersagen und prüfen</strong><p>Notiere, wie sich Gesamtkosten und Restbudget ändern müssten, wenn statt 7 nun 10 Karten benötigt werden. Ändere nur die Anzahl. Kontrolliere beide Ergebnisse mit einer unabhängigen Rechnung auf Papier oder im Taschenrechner. Stimmen nur die Endbeträge oder auch die vorhergesagten Änderungen?</p></div></li>
+              <li><span>3</span><div><strong>Erklären und sichern</strong><p>Erkläre, warum sich der Kartenpreis nicht mitändert und warum das Restbudget sinkt. Stelle wieder 7 Karten ein, speichere die Arbeitsmappe, schließe sie und öffne sie erneut. Sind beide Formeln noch vorhanden?</p></div></li>
+            </ol>
+            <details><summary>Ein Denkanstoß, falls du festhängst</summary><p>Schreibe zuerst in Worten auf: Wie entstehen die Gesamtkosten aus Kartenpreis und Anzahl? Was bleibt vom Budget nach dem Kauf übrig? Ersetze die Eingabewerte in diesen Rechnungen durch die Adressen deiner selbst gewählten Zellen. Die Ergebniszelle darf sich nicht selbst als Eingabe verwenden.</p></details>
           </div></details>
           <details class="lesson-disclosure material-section"><summary><span class="section-index">06 · In Excel arbeiten</span><h2 id="material-heading">Excel-Vorlage und optionales Video</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-            <p>Die komplette Anleitung steht oben. Du brauchst nur die Excel-Vorlage. Speichere nach dem Öffnen deine eigene Kopie unter dem angegebenen Namen. Ordne Browser und Excel nebeneinander an (Windows-Taste + Pfeil links/rechts).</p>
+            <p>Alle Eingaben und Arbeitsaufträge stehen oben. Vorlage und Video sind <strong>optional</strong>; auch ohne sie kannst du die Aufgabe vollständig bearbeiten. Ordne Browser und Excel nebeneinander an (Windows-Taste + Pfeil links/rechts). Öffentlich führen die Materiallinks zur offiziellen Materialseite; lokale Originaldateien werden nicht mit veröffentlicht.</p>
             <div class="download-list page-downloads">
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_2 Tabellenvorlage Formeln in Excel.xlsx" download><span class="file-type">XLSX</span><strong>Excel-Vorlage Getränkeliste</strong><span class="arrow" aria-hidden="true">↓</span></a>
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_2 Video Einführung in Formeln.m4v" download><span class="file-type">VIDEO</span><strong>Video Einführung in Formeln</strong><span class="arrow" aria-hidden="true">↓</span></a>

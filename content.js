@@ -99,7 +99,7 @@
         { code: "=D2+D3+D4", note: "Beispiel: drei Ergebniszellen mit + addieren." }
       ],
       steps: [
-        "Öffne die Tabellenvorlage und fülle die leeren Ergebniszellen D4 bis D9 mit Formeln.",
+        "Erstelle die Getränkeliste mit den Eingabedaten auf der Lernseite oder nutze die optionale Vorlage; fülle D4 bis D9 mit Formeln.",
         "Berechne jede Position aus Preis und Menge.",
         "Ermittle die Gesamtsumme und prüfe das Ergebnis mit einer Überschlagsrechnung."
       ],

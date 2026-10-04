@@ -57,7 +57,7 @@
           </div>
           <ol class="lesson-stepper" aria-label="Arbeitsreihenfolge">
             <li class="is-active"><span>1</span><div><strong>Informieren</strong><small>Funktionen verstehen</small></div></li>
-            <li><span>2</span><div><strong>Vorlage öffnen</strong><small>Bereiche prüfen</small></div></li>
+            <li><span>2</span><div><strong>Datei vorbereiten</strong><small>Bereiche prüfen</small></div></li>
             <li><span>3</span><div><strong>Auswerten</strong><small>Drei Spalten</small></div></li>
             <li><span>4</span><div><strong>Besprechen</strong><small>Lehrkraft bestätigt</small></div></li>
           </ol>
@@ -108,9 +108,12 @@
           </details>
 
           <details class="lesson-disclosure">
-            <summary><span class="section-index">03 · Vorlage verstehen</span><h2>Drei Spalten, sechs Kurse</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="section-index">03 · Ausgangsdaten verstehen</span><h2>Drei Spalten, sechs Kurse</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
             <div class="lesson-disclosure-body">
-              <p>Die Arbeitsmappe <code>L2_2.1 Tabellenvorlage Projektwoche Funktionen.xlsx</code> enthält im Blatt <strong>Ergebnisansicht</strong> bereits sechs Sportkurse in Zeile 6 bis 11. Die Verdienste in Spalte F sind schon durch Formeln berechnet.</p>
+              <p>Du kannst <strong>ohne Download</strong> eine Kopie deiner fertigen Datei aus L2.2 verwenden. Sie enthält sechs Sportkurse in Zeile 6 bis 11 und die berechneten Verdienste in Spalte F. Auch die bereitgestellte Vorlage ist als Alternative möglich. Benenne das Arbeitsblatt für diese Aufgabe <strong>Ergebnisansicht</strong>.</p>
+              <details id="l24-rebuild"><summary>Falls deine vorige Datei fehlt: vollständig neu aufbauen</summary><p>Lege eine leere Arbeitsmappe an. Schreibe „Aufwandspauschale“ in A3 und die Zahl 20 in B3. Die Überschriften in A5:F5 lauten Kurs, Betreuer, Teilnehmerzahl, Vergütung je Stunde, Stundenzahl und Verdienst. Übernimm die folgenden Eingaben in Zeile 6 bis 11; Preise und Stunden sind Zahlen.</p>
+              <div class="l21-table-scroll" tabindex="0" role="region" aria-label="Eingaben für den Neuaufbau der Projektwoche"><table class="l21-data-table" id="l24-rebuild-data"><caption>Neuaufbau · bekannte Eingaben aus L2.2</caption><thead><tr><th scope="col">Kurs</th><th scope="col">Betreuer</th><th scope="col">Teilnehmer</th><th scope="col">€/Stunde</th><th scope="col">Stunden</th></tr></thead><tbody><tr><th scope="row">Tennis</th><td>Hakan</td><td>12</td><td>6,00</td><td>10</td></tr><tr><th scope="row">Badminton</th><td>Laura</td><td>18</td><td>4,00</td><td>16</td></tr><tr><th scope="row">Volleyball</th><td>Dennis</td><td>20</td><td>5,00</td><td>20</td></tr><tr><th scope="row">Basketball</th><td>Marie</td><td>14</td><td>4,00</td><td>18</td></tr><tr><th scope="row">Tischtennis</th><td>Nikolai</td><td>15</td><td>5,00</td><td>20</td></tr><tr><th scope="row">Handball</th><td>Umut</td><td>18</td><td>4,50</td><td>15</td></tr></tbody></table></div>
+              <p>Berechne F6 mit <code>=D6*E6+$B$3</code> und kopiere bis F11. Kontrolliere die Bezüge wie in L2.2. Das sind Eingabedaten und eine bereits bekannte Berechnungsregel, keine fertige statistische Auswertung. Wenn du stattdessen deine L2.2-Datei aus dem L2.1-Startweg fortführst, bleiben deren 10 Stunden für Badminton erhalten. Die Kennzahlen beziehen sich immer auf deine tatsächlich verwendeten sechs Kurszeilen.</p></details>
               <div class="l21-table-scroll"><table class="l21-data-table"><caption>Bereiche für die statistische Auswertung</caption><thead><tr><th scope="col">Kennzahl</th><th scope="col">Spalte</th><th scope="col">Datenbereich</th><th scope="col">Einheit</th></tr></thead><tbody><tr><th scope="row">Teilnehmerzahl</th><td>C</td><td><code>C6:C11</code></td><td>Personen</td></tr><tr><th scope="row">Stundenzahl</th><td>E</td><td><code>E6:E11</code></td><td>Stunden</td></tr><tr><th scope="row">Verdienst</th><td>F</td><td><code>F6:F11</code></td><td>Euro</td></tr></tbody></table></div>
               <p>Spalte D enthält dagegen die <strong>Vergütung je Stunde</strong>. Sie gehört nicht zu den drei im Aufgabenblatt verlangten Auswertungsgrößen. Beziehe in die Funktionen auch keine Überschriften oder später hinzugefügten Ergebniszeilen ein.</p>
             </div>
@@ -120,12 +123,12 @@
             <summary><span class="section-index">04 · Aufgabe</span><h2 id="l24-task-heading">Projektwoche statistisch auswerten</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
             <div class="lesson-disclosure-body">
               <ol class="instruction-list">
-                <li><span>1</span><div><strong>Arbeitsmappe öffnen</strong><p>Öffne die unten verlinkte Vorlage in Excel. Prüfe im Blatt „Ergebnisansicht“, dass die sechs Kurse von Tennis bis Handball vollständig vorhanden sind. Speichere sofort eine eigene Kopie im Ordner <strong>Ergebnisse</strong>.</p></div></li>
+                <li><span>1</span><div><strong>Eigene Arbeitsmappe vorbereiten</strong><p>Öffne deine Datei aus L2.2, nutze den Neuaufbau oben oder eine bereitgestellte Vorlage. Prüfe im Blatt „Ergebnisansicht“, dass die sechs Kurse von Tennis bis Handball vollständig vorhanden sind. Speichere sofort eine eigene Kopie als <code>L2_2.1 Projektwoche Funktionen.xlsx</code> im Ordner <strong>Ergebnisse</strong>; die vorige Datei bleibt unverändert.</p></div></li>
                 <li><span>2</span><div><strong>Auswertung anlegen</strong><p>Setze unterhalb der Kursdaten vier beschriftete Zeilen für <strong>Summe, Durchschnitt, Maximum und Minimum</strong>. Lasse bei Bedarf eine Leerzeile zwischen Daten und Auswertung. Trage die Ergebnisse in den Spalten C, E und F ein.</p></div></li>
                 <li><span>3</span><div><strong>Vier Funktionen anwenden</strong><p>Beginne für die Teilnehmerzahl mit <code>=SUMME(C6:C11)</code>. Verwende für dieselben sechs Zellen die drei weiteren Funktionen. Übertrage die Formeln anschließend passend auf die Stundenzahl in E und den Verdienst in F. Falls du kopierst, überspringe Spalte D bewusst oder passe den Bezug an.</p></div></li>
                 <li><span>4</span><div><strong>Formatieren und speichern</strong><p>Stelle Teilnehmerzahlen und Stunden als gut lesbare Zahlen, Verdienst als Euro-Beträge dar. Für Durchschnittswerte darf eine Dezimalstelle sinnvoll sein. Speichere unter <code>L2_2.1 Projektwoche Funktionen.xlsx</code> im Ordner Ergebnisse.</p></div></li>
               </ol>
-              <p class="important-note"><strong>Selbstständig arbeiten:</strong> Die Vorlage ist der Startpunkt, keine fertige Lösung. Trage die Funktionsformeln selbst ein und lass die fertige Datei anschließend von der Lehrkraft ansehen.</p>
+              <p class="important-note"><strong>Selbstständig arbeiten:</strong> Deine Kursdaten sind der Startpunkt, keine fertige Auswertung. Trage die Funktionsformeln selbst ein und lass die fertige Datei anschließend von der Lehrkraft ansehen. Ein Vorlagen-Download ist nicht erforderlich.</p>
             </div>
           </details>
 
@@ -139,6 +142,14 @@
                 <li>Ändere testweise <em>einen</em> Kurswert in deiner Kopie: Die passenden Kennzahlen müssen sich neu berechnen. Stelle danach den ursprünglichen Wert wieder her.</li>
                 <li>Die gespeicherte Datei lässt sich erneut öffnen und enthält deine Formeln, nicht nur eingetippte Ergebniszahlen.</li>
               </ul>
+              <details id="l24-function-tests"><summary>Welche Kennzahlen ändern sich – und welche nicht?</summary><p>Sage vor jedem Test die Wirkung auf Summe, Mittelwert, Minimum und Maximum voraus. Ändere nur die angegebene Teilnehmerzahl; Stunden und Verdienste müssen unverändert bleiben.</p><ol class="instruction-list">
+                <li><span>1</span><div><strong>Wert zwischen den Extremen</strong><p>Erhöhe C11 für Handball von 18 auf 19. Vergleiche Summe und Durchschnitt mit deiner Vorhersage. Kontrolliere Minimum und Maximum: Muss eine neu berechnete Funktion unbedingt einen anderen Ergebniswert zeigen? Stelle C11 wieder auf 18.</p></div></li>
+                <li><span>2</span><div><strong>Ein neues Maximum</strong><p>Setze C11 auf 25. Ermittle vorab, welcher Kurs dann die größte Teilnehmerzahl hat. Kontrolliere alle vier Kennzahlen, auch das unveränderte Minimum. Stelle anschließend wieder 18 ein.</p></div></li>
+              </ol><p>Eine Funktion kann korrekt neu rechnen und trotzdem denselben Wert liefern. Prüfe daher nicht nur, ob „irgendetwas“ anders aussieht, sondern ob genau die vorhergesagte Änderung eintritt.</p></details>
+              <details id="l24-zero-transfer"><summary>Selbstständig anwenden: null ist nicht leer</summary><p>Vertiefung ohne zusätzliche XP: Lege ein neues Testblatt <strong>Messwerte</strong> an. Beschrifte drei Werte und gib in B2:B4 die Zahlen <strong>0, 8 und 10</strong> ein. Berechne darunter Summe und Mittelwert mit passenden Funktionen.</p><ol class="instruction-list">
+                <li><span>1</span><div><strong>Vorhersagen</strong><p>Berechne unabhängig, durch wie viele Zahlen die Summe beim Mittelwert geteilt werden muss. Notiere deine Vorhersage, bevor du B2 mit der Entf-Taste leerst. Lösche nur den Zellinhalt, nicht die ganze Zeile.</p></div></li>
+                <li><span>2</span><div><strong>Vergleichen</strong><p>Prüfe Summe und Mittelwert nach dem Leeren von B2. Welche Ergebnisse ändern sich, welche nicht? Begründe mit der Anzahl vorhandener Zahlenwerte. Gib danach wieder die Zahl 0 in B2 ein und prüfe erneut.</p></div></li>
+              </ol><p class="important-note">In einem referenzierten Bereich berücksichtigt MITTELWERT die Zahl 0, ignoriert aber tatsächlich leere Zellen. „Nichts gemessen“ und „gemessen: null“ sind deshalb unterschiedliche Angaben. Eine fehlende Kursangabe darfst du nicht einfach als 0 erfinden.</p><p>Fachliche Grundlage: <a href="https://support.microsoft.com/de-de/excel/functions/average-function" target="_blank" rel="noopener noreferrer">Microsoft: MITTELWERT</a>. Speichere das Testblatt zusammen mit deiner Arbeitsmappe.</p></details>
               <p>Erkläre der Lehrkraft an deiner Datei, warum der Bereich bis Zeile 11 reicht und warum du beim Kopieren von C nach E die Spalte D überspringst. Den Abschluss setzt du erst nach ihrer Prüfung und Bestätigung.</p>
             </div>
           </details>
