@@ -2,10 +2,23 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert, neue L2-Kontrollhilfen lokal geprüft; Quellenabgleich L3–L4 offen
+Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert, neue L2-Kontrollhilfen online geprüft; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 16:47 Uhr):**
+  L2.4/L2.5-Kontrollhilfen und direkte L2-Quellenzuordnung unter Commit
+  `3ebaa9351943f919cd1809f61fa2ab83ed80f07d` veröffentlicht;
+  Pages-Lauf `37210376085` erfolgreich. Öffentlicher Übungstest über alle
+  fünf L2-Seiten besteht: sieben Tastatur-Hilfen, 80 Layoutzustände,
+  beide Badminton-Datenstände, unabhängige Kennzahl-/Rückrechnungsprüfungen,
+  unveränderter Lernstand, keine externen Anfragen oder Browserfehler.
+  Öffentlicher Release-Test: 28 Seiten/54 Assets, Version 0.10.1, keine
+  privaten Materiallinks oder JavaScript-Laufzeitfehler. Der folgende lokale
+  Eintrag ist damit veröffentlicht. Originale, extrahierte Bilder und
+  temporäre Tests nicht mitveröffentlicht. Direkter Quellenabgleich L3–L4
+  bleibt der nächste erforderliche Schritt; Gesamtauftrag noch offen.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 16:42 Uhr):** Direkter fachlicher
   Quellenabgleich L2.1–L2.5: elf Aufgaben-DOCX, fünf Informations-DOCX und
