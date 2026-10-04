@@ -7,6 +7,30 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Abgeschlossen (lokal, 04.10.2026, gegen 14:58 Uhr):** L2.1–L2.5 auf
+  vollständige Startdaten, Kopierrichtung, Einheiten, Änderungstests und
+  Rückstellung fachlich geprüft. L2.1/L2.2/L2.3 ersetzen vier verbliebene
+  aufklappbare Ergebnisbeträge durch unabhängige Rückrechnungen für Verdienst,
+  Pauschale, Buspreis und Provision/Gehalt. Positive Divisoren und passende
+  Person/Anbieter/Ziel-Zuordnung ausdrücklich prüfen; Änderungstests ergänzen
+  den Ausgangswertvergleich. L2.3 erklärt das Speichern unter neuem Namen
+  vor jedem Folgeteil: sechs getrennte Zwischenstandsdateien erhalten,
+  Blattkopie nicht mit neuer Datei verwechseln. L2.4-Einstieg nennt nun
+  L2.2-Kopie/Neuaufbau gleichberechtigt statt Vorlage als Pflicht. L2.5-Tabelle
+  zeigt ganze Prozentzahlen 2/3/4 passend zur Division durch 100; Hinweis
+  erklärt die Abgrenzung zu echten Prozentwerten wie 0,02. Originaldaten und
+  Datenschema bleiben unverändert, keine Hauptaufgabenlösungen neu eingebunden.
+  Verifiziert: fünf Seiten, fünf neue per Tastatur bedienbare Hilfen,
+  sechs passende Prozent-Eingaben, 80 Layoutkombinationen, unveränderter
+  Lernstand, öffentliche Materialumleitung, keine externen Anfragen/JS-Fehler.
+  Bestehende L2.1/L2.2-Eingabetests und L2.3–L2.5-Übungstests erneut bestanden;
+  unabhängige Arithmetik prüft Rückrechnungen, Anteilsdarstellung und Testwirkung,
+  kein tatsächlicher Excel-Lauf. Dateiablauf Desktop und Prozent-Hinweis mobil
+  visuell geprüft. Release-Test lokal: 28 Seiten/54 Assets erfolgreich.
+  Veröffentlichung des geprüften Nachtrags folgt. Nächster fachlicher
+  Gesamt-Audit: L3/L4, insbesondere Dateiübergänge und noch offene Ergebnis-
+  Vorwegnahmen. Unterrichtserprobung weiterhin offen.
+
 - **Veröffentlicht (04.10.2026, gegen 14:51 Uhr):** Geprüften L1-Nachtrag
   autark auf GitHub veröffentlicht. Inhaltscommit
   `db36339c19e1623817964bf11c2ce78e1f1ba624`, Pages-Lauf `37203444197`
