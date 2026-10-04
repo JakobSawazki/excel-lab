@@ -7,6 +7,28 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Abgeschlossen (lokal, 04.10.2026, gegen 15:20 Uhr):** L4.1–L4.8 anhand
+  der aktuellen Lernseiten auf Eingaben, Diagrammquelle, Achsen/Einheiten,
+  Änderungstests, Rückstellung und Aussagegrenzen geprüft. Drei Unklarheiten
+  korrigiert: L4.2 prüft vor der Hauptaufgaben-Sortierung ausdrücklich die
+  Blattquelle des kopierten Diagramms mit Änderung/Rückstellung; L4.5 prüft
+  fünf Jahressummen unabhängig aus den vier auf der Seite vorhandenen Werten
+  statt einen online nicht mitgelieferten Originalbogen vorauszusetzen;
+  L4.7-Verständnisfrage nennt Umsatz pro Kunde ohne unbelegten Jahresbezug.
+  Fragenschlüssel, Antworten, XP und Speicherschema bleiben unverändert.
+  Bestehende Übungstests aller acht L4-Seiten bestanden: 128 Layoutkombinationen,
+  Eingabepaare, Tastaturhilfen, Browser-Demos, unabhängige Berechnungen für
+  Sortierung/Zuordnung, Lücke/Null, Anteile/Normierung, Regression, gewichtete
+  Mittelwerte und kumulierte Fahrt mit Pause. Neue Hinweise separat in 48
+  Layoutkombinationen geprüft; Lernstand unverändert, keine externen Anfragen
+  oder Browserfehler. Ein erster paralleler Zusatztest meldete noch sechs
+  lokale Materiallinks; isolierter Wiederholungslauf bestand. Der Test wartet
+  nun ausdrücklich auf die initialisierte öffentliche Materialanpassung;
+  zwei weitere Läufe bestanden ohne private Links. Kein tatsächlicher Excel-
+  Diagrammlauf. Neuer L4.2-Hinweis am Desktop visuell geprüft. Nächster Schritt:
+  Veröffentlichung/Online-Prüfung und abschließender Anforderungsabgleich
+  über alle 27 Einheiten; Unterrichtserprobung bleibt als zukünftige Idee offen.
+
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 15:14 Uhr):**
   L3.3/L3.4-Aufbau- und Dateiübergabehilfen unter
   `1d88031f73fe59f5364d89e1509cbb2d90f16bcd` veröffentlicht. Pages-Lauf
