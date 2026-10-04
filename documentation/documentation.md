@@ -2,10 +2,22 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 mit didaktischen Ergänzungen und geprüftem L1-/L2-Arbeitsweg veröffentlicht; L2.1–L2.5-Nachtrag online bestätigt
+Status: Version 0.10.1 mit didaktischen Ergänzungen veröffentlicht; L1–L4-Arbeitswege überarbeitet, zuletzt L4-Nachtrag online bestätigt; abschließender Anforderungsabgleich offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 15:22 Uhr):**
+  L4.2/L4.5/L4.7-Korrekturen unter
+  `669808edc738dc46727a3ce41710c876c682a45d` veröffentlicht; Pages-Lauf
+  `37205300556` erfolgreich. Online bestehen die 48 Layoutprüfungen der
+  geänderten Hinweise, Quellen-/Summenprüfung und unveränderte Quizstruktur.
+  Release-Test: 28 Seiten/54 Assets, Version 0.10.1, keine JavaScript-
+  Laufzeitfehler oder privaten Materiallinks. Der folgende lokale Eintrag ist
+  damit veröffentlicht. Originale, Musterlösungen und temporäre Tests bleiben
+  ausgeschlossen. Nächster Schritt: Abschlussabgleich aller 27 Einheiten mit
+  dem Benutzerziel, insbesondere Lernziele → Erklärung → eigene Anwendung →
+  unabhängiger Änderungstest → Verständnis/Lehrkraftkontrolle → Veröffentlichung.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 15:20 Uhr):** L4.1–L4.8 anhand
   der aktuellen Lernseiten auf Eingaben, Diagrammquelle, Achsen/Einheiten,
