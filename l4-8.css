@@ -1,0 +1,18 @@
+.l48-demo {display:grid;gap:1rem;}
+.l48-model-buttons {display:flex;flex-wrap:wrap;gap:.75rem;}
+.l48-model-buttons [aria-pressed="true"] {outline:2px solid var(--green);outline-offset:3px;}
+.l48-demo input[type="range"] {width:100%;min-height:44px;accent-color:var(--green);}
+.l48-chart-scroll {overflow-x:auto;}
+.l48-chart-scroll svg {display:block;width:100%;min-width:460px;height:auto;stroke:none;}
+.l48-chart-scroll svg text {font:18px Arial,sans-serif;fill:var(--text);stroke:none;}
+.l48-axis {stroke:var(--text-soft);stroke-width:2;}
+.l48-grid-line {stroke:var(--line-strong);stroke-width:1;}
+.l48-measured {fill:var(--green);opacity:.12;}
+.l48-model {fill:none;stroke:var(--green);stroke-width:3;}
+.l48-forecast {stroke-dasharray:7 5;}
+.l48-point {fill:var(--text);stroke:var(--bg);stroke-width:2;}
+.l48-prediction {fill:#ffa63d;stroke:var(--bg);stroke-width:2;}
+.l48-page .l25-data-table {min-width:0;font-variant-numeric:tabular-nums;}
+.l48-page .l25-data-table th,.l48-page .l25-data-table td {white-space:normal;overflow-wrap:anywhere;}
+.l48-page code {overflow-wrap:anywhere;}
+.l48-chart-scroll:focus-visible {outline:3px solid var(--lime);outline-offset:3px;}

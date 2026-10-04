@@ -1,19 +1,37 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 3. Oktober 2026, Europe/Berlin
-Projektversion: 0.10.0
-Status: Version 0.10.0 online; GitHub Pages und öffentliche Seiten erfolgreich geprüft
+Stand: 4. Oktober 2026, Europe/Berlin
+Projektversion: 0.10.1
+Status: Veröffentlichung von Version 0.10.1 mit allen 27 Lernseiten vorbereitet; Online-Prüfung folgt
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlichung vorbereitet (04.10.2026, 09:49 Uhr):** Version 0.10.1
+  enthält alle 27 eigenen Lernseiten einschließlich L4.7 und L4.8.
+  Lokaler Release-Test: 28 Seiten und 54 Assets erreichbar, keine
+  JavaScript-Laufzeitfehler. Abschluss-/Persistenztests beider neuen Seiten
+  sowie Navigation in sechs Breiten und zwei Schriftgrößen bestanden.
+  Originalmaterialien und Musterlösungen bleiben von Git ausgeschlossen.
+  Push und anschließende GitHub-Pages-Prüfung erfolgen auf ausdrücklichen Auftrag.
+
+- **Abgeschlossen (lokal, 04.10.2026, 09:41 Uhr):** L4.8 als eigene Lernseite
+  mit drei Messdatenaufgaben, Modellvergleich, Prognosegrenzen und Verständnis-Check.
+  Damit besitzen alle 27 Einheiten eigene Lernseiten. Eine abschließende
+  einheitenübergreifende Prüfung von Lernführung und Aufgaben bleibt offen.
+
+- **Abgeschlossen (lokal, 04.10.2026, 09:27 Uhr):** L4.7 als eigene Lernseite
+  mit sechs Diagrammaufgaben, Daten aus den beiden Original-DOCX-Dateien,
+  Transfer zum Umsatz pro Kunde, zwei Änderungstests und Verständnis-Check.
+  L4.6 führt direkt zur neuen Seite; L4.8 bleibt als letzte Lernseite offen.
 
 - **Abgeschlossen (lokal, 27.09.2026):** L1.1–L1.6, L2.1–L2.5 und L3.1 als
   eigenständige Lernseiten, gemeinsames Lernpfad-Menü, Bestandsvergleich der
   BPE1-Materialien und Zusammenführung der Projekt- und Materialdokumentation
   in dieser Datei. L2.1 bis L2.5 und L3.1 besitzen verpflichtende
   Verständnis-Checks vor dem Abschluss.
-- **Gerade in Bearbeitung:** kein weiteres Arbeitspaket aktiv. Der nächste
-  fachliche Ausbau ist L4.7. L1.1–L1.6 besitzen seit 02.10.2026 eigene
+- **Gerade in Bearbeitung:** kein weiteres Arbeitspaket aktiv. Als Nächstes
+  folgt die einheitenübergreifende Prüfung der Lernführung. L1.1–L1.6 besitzen seit 02.10.2026 eigene
   Verständnis-Checks; die gesamte L1-Reihe ist funktional geprüft.
 - **Abgeschlossen (lokal, 02.10.2026):** L3.2 als eigene Lernseite mit
   JAHR, geschachtelter WENN-Funktion, Tarifpreisen, drei Aufgaben und
@@ -2854,3 +2872,96 @@ Offene Punkte / nächste Übergabe:
   Lizenzklärung. Original-XLSX nur auf Erreichbarkeit, nicht auf native
   Diagrammfunktion geprüft. Keine automatische Bewertung von Schülerdateien.
   Kein Push und kein Deployment.
+
+## Übergabe H-64 – L4.7 betriebliche Diagramme (04.10.2026, 09:29 Uhr)
+
+- **Umgesetzt:** `l4-7.html` und `l4-7.js`, Registrierung und direkte
+  Weiterleitung aus L4.6. Sieben aufklappbare Abschnitte mit Lernzielen,
+  Diagrammwahl, zwei Aufgabenpaketen, Tests, Verständnis-Check und Quellen.
+- **Fachliche Grundlage:** beide Originalaufgaben L4_2.1 und L4_2.2
+  strukturell mit python-docx gelesen. 20 Quartals-/Filialwerte sowie acht
+  Zahlen aus der Standortauswertung übernommen. Summen der ersten Quelle
+  unabhängig gegen Zeilen-/Spaltenaggregation geprüft. Originaldateien
+  unverändert; keine Musterlösungen geöffnet oder eingebunden. Keine
+  DOCX-Layoutprüfung nötig für die reine Datenübernahme; kein DOCX ausgeliefert.
+- **Praktisches Lernen:** vier Filialdiagramme und zwei Standortdiagramme,
+  explizite Datenbereiche, eigene Summen/Anteile und verknüpfte Ergebnisblätter.
+  Jede Grafik erhält eine begründete Auswahl und eine Beobachtung. Transfer:
+  Umsatz pro Kunde und gewichteter Unternehmensdurchschnitt. Kundenart- und
+  Standortauswertung nicht als unterschiedliche Umsätze addieren.
+- **Prüfen:** Eingabewert vorhersagen, ändern, beobachten, erklären und
+  wiederherstellen. Filialumsatzänderung beeinflusst auch die Anteilnenner;
+  reine Kundenanzahländerung beeinflusst keinen Umsatzanteil. Abschließend
+  beide eigene Dateien speichern, erneut öffnen und der Lehrkraft erklären.
+- **Lernstand:** Abschluss erst mit allen drei richtigen Verständnisantworten,
+  drei eigenen Arbeits-Checks und Lehrkraftbestätigung. Voraussetzung L4.6;
+  Abschluss vergibt 100 XP und öffnet L4.8. Alte Abschlüsse bleiben gültig.
+  Rücknahme sperrt L4.8 und nimmt einen dortigen Abschluss ebenfalls zurück.
+  Entwickler-Vorschau schreibt keinen Lernfortschritt.
+- **Verifiziert:** richtige/falsche/leere Quizversuche, Speicherung und Reload,
+  praktische/Lehrkraftgates, Profilwechsel, fehlgeschlagene Speicherung,
+  Altabschluss, Rücknahme, Entwickler-Vorschau, vier lokale Downloadziele,
+  öffentliche Materiallink-Umleitung, Lernpfadredirect und tatsächlicher
+  Weiterklick zu L4.8. L4.6-Regressionsprüfung mit Weiterklick auf L4.7 bestanden.
+  28 Eingabewerte gegen Original-DOCX geprüft; 16 Kombinationen aus vier
+  Breiten, zwei Themen und zwei Schriftgrößen ohne Seitenüberlauf. Desktop
+  und Mobile visuell kontrolliert; Tabellen auf schmalen Geräten separat
+  scrollbar und mit Tastatur fokussierbar. Alle 27 Seiten und 52 Assets lokal
+  mit HTTP 200 und ohne JavaScript-Laufzeitfehler geprüft. Syntax und Diff sauber.
+- **Übergabe:** L4.8 bleibt als nächste eigene Lernseite offen. Unterrichtstest,
+  umfassendes A11y-Audit und Lizenzklärung stehen aus. Online bleibt 0.10.0;
+  diese Erweiterung wurde nicht gepusht oder veröffentlicht. Der bisherige
+  lokale Server auf 4325 lieferte eine leere Antwort; für isolierte Tests einen
+  separaten Server auf 127.0.0.1:4326 gestartet, bestehenden Prozess unverändert
+  gelassen. Lokale Tests und Sicherungen bleiben unter `.tmp` ausgeschlossen.
+
+## Übergabe H-65 – L4.8 Messdaten und Prognosen (04.10.2026, 09:41 Uhr)
+
+- **Umgesetzt:** `l4-8.html`, `l4-8.js`, `l4-8.css`; Registrierung und direkter
+  Weiter-Link aus L4.7. Neun aufklappbare Abschnitte, drei vollständige
+  praktische Aufgaben, Browser-Modellvergleich und Verständnis-Check.
+  Die letzte Einheit endet mit dem Rückweg zur Übersicht und dem Hinweis,
+  Excel-Dateien und Lernstand getrennt zu sichern. Kein erfundener Nachfolger.
+- **Quellen:** drei Original-DOCX-Aufgaben L4_2.3 bis L4_2.5 mit python-docx
+  gelesen, unverändert gelassen. 44 Zahlen aus ihren Tabellen übernommen und
+  automatisiert gegen die Quellen abgeglichen. Keine Musterlösung geöffnet.
+  Reine Daten-/Textübernahme, keine DOCX-Layoutänderung oder DOCX-Auslieferung.
+- **Lernführung:** alle drei Reihen verwenden Zeit auf X und Weg auf Y.
+  Gleichförmige Bewegung: mittlere Geschwindigkeit aus Weg-/Zeitänderung
+  zwischen tatsächlichen Messpunkten; kein ungemessener Nullstart unterstellt.
+  Trendsteigung berücksichtigt alle Werte und wird vom Endpunktvergleich
+  unterschieden. Freier Fall: quadratisches Modell fachlich begründen, keine
+  hohen Polynomgrade wegen R²; Modellwert von Messwert unterscheiden. Keine
+  gefährlichen eigenen Fallversuche, nur vorgegebene Daten.
+- **Urlaubsfahrt:** beide Abschnittsgrößen kumulieren, X-/Y-Bereiche ausdrücklich
+  zuordnen, lineare Regression mit frei geschätztem Schnittpunkt. STEIGUNG und
+  ACHSENABSCHNITT erlauben ungerundete Weiterrechnung. Zeit bei 950 km mit
+  `(s-b)/m` berechnen, Minuten von Dezimalstunden unterscheiden. Weitreichende
+  Extrapolation mit Verkehrs-/Pausenannahmen kennzeichnen. Gesamtgeschwindigkeit
+  aus Gesamtdistanz/Gesamtdauer, nicht ungewichtet aus Teilgeschwindigkeiten.
+- **Browser-Beispiel:** unabhängige erfundene Punkte (1,1), (2,4), (3,9),
+  lineare OLS-Gerade und quadratisches Modell per Buttons vergleichen.
+  Slider 1–8, Datenbereich markiert, außerhalb gestrichelte Modellkurve.
+  Wert/Koordinaten/ARIA-Text aktualisieren sich; Tastatur und Reset möglich.
+  Hohe Anpassungsgüte ist ausdrücklich keine Prognosegarantie. Keine XP
+  oder Lernstandänderung durch das Beispiel.
+- **Verifiziert:** alle 44 Quellenwerte, Formeln/Einheiten im Arbeitsauftrag,
+  16 Slider-/Modellzustände gegen unabhängig berechnete OLS-Koeffizienten,
+  R² der Demonstration, Tastatur/Reset, unveränderter Lernstand. 16 Kombinationen
+  aus vier Breiten, zwei Themen und zwei Schriftgrößen, SVG-Textgrenzen und
+  tatsächliches Diagrammseitenverhältnis geprüft. Eine geerbte Icon-Höhe
+  am Diagramm nach visueller Prüfung durch `height:auto` korrigiert und
+  mit einem Regressionstest abgesichert. Desktop-Demo und mobile Aufgabe geprüft.
+- **Abschlussprüfung:** Voraussetzungen L4.7, leer/falsch/richtig, Persistenz,
+  eigene Checks/Lehrkraft, 100 XP, Altabschluss, Rücknahme ohne Änderungen
+  an anderen Einheiten, Profilwechsel, Speichermisserfolg, Entwickler-Vorschau,
+  drei Downloadziele, öffentliche Umleitung, Lernpfadredirect und Rückweg
+  zur Übersicht. L4.7 mit tatsächlichem Weiterklick auf L4.8 erneut geprüft.
+  Hauptnavigation in sechs Breiten/zwei Schriftgrößen inklusive Touch-Menüs
+  bestanden. Alle 28 Seiten/54 Assets lokal HTTP 200, keine JS-Laufzeitfehler.
+- **Weiterarbeit:** alle 27 Einheiten haben nun eigene Seiten. Das beweist
+  noch nicht die Verständlichkeit der gesamten Lernstrecke: als Nächstes
+  Lernführung, Aufgabenprogression und Abschlusslogik einheitenübergreifend
+  prüfen. Unterrichtstest, umfassendes A11y-Audit und Material-Lizenzklärung
+  bleiben offen. Originaldateien und Musterlösungen bleiben lokal. Kein Push
+  und kein Deployment; öffentlich weiterhin Version 0.10.0.

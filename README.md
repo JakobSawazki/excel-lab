@@ -20,8 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.10.0** – Themenlandkarte, vereinfachte Bedienung und
-eigene Lernseiten bis einschließlich L4.6.
+Aktueller Release: **0.10.1** – Themenlandkarte, vereinfachte Bedienung und
+eigene Lernseiten für alle 27 Einheiten bis einschließlich L4.8.
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
@@ -45,18 +45,18 @@ Danach ist die Seite unter `http://localhost:4173` erreichbar.
 
 ## Direkt im Browser lernen
 
-L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.6 enthalten Informationen und Aufgaben vollständig als aufklappbare
+L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.8 enthalten Informationen und Aufgaben vollständig als aufklappbare
 Abschnitte. Ein separates Informations- oder Aufgabenblatt wird dafür nicht
 benötigt. Browser und Excel lassen sich mit Windows-Taste + Pfeil links/rechts
 nebeneinander anordnen. Die Excel-Datei wird am Schüler-PC bearbeitet und gespeichert.
 Die Hauptnavigation bleibt auch auf diesen eigenen Lernseiten sichtbar. Direkt
 darunter zeigt eine klickbare Standortzeile beispielsweise „BPE1 › L4 › L4.1“.
 
-L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.6 erproben zusätzlich verpflichtende Verständnis-Checks mit je
+L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.8 erproben zusätzlich verpflichtende Verständnis-Checks mit je
 drei Anwendungsfragen; L1.6 prüft seine fünf Rechenmodelle mit fünf Fragen. Alle Antworten müssen stimmen, bevor der Abschluss
 möglich ist. Die Lehrkraft prüft weiterhin die tatsächlichen Excel-Dateien
-und lässt sich die Vorgehensweise erklären. Für die übrigen Einheiten wird
-dieses Prinzip erst nach fachlicher Ausarbeitung übernommen.
+und lässt sich die Vorgehensweise erklären. Ein Browser-Quiz allein ersetzt
+keine Prüfung der praktischen Arbeit.
 
 ## Interaktive Themenlandkarte
 

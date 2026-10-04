@@ -913,6 +913,7 @@
     },
     {
       id: "l4-7",
+      page: "l4-7.html",
       stage: 4,
       code: "L4.7",
       title: "Vertiefung: betriebliche Diagramme",
@@ -933,7 +934,11 @@
         "Visualisiere Kundenanzahl und Umsatzanteile nach Standort.",
         "Begründe für jedes Diagramm die Auswahl in einem kurzen Satz."
       ],
-      checks: ["Vier unterschiedliche Fragestellungen beantwortet", "Keine Summen doppelt dargestellt", "Auswahl jeweils begründet"],
+      checks: [
+        "Ich habe vier Filialdiagramme aus passenden Summen bzw. Quartalswerten erstellt und jede Auswahl schriftlich begründet.",
+        "Ich habe Kundenanzahl und Umsatzanteile der vier Standorte getrennt dargestellt und unterschiedliche Bezugsgrößen erklärt.",
+        "Ich habe beide Änderungstests durchgeführt, die Eingaben wiederhergestellt und beide XLSX-Dateien gespeichert und erneut geöffnet."
+      ],
       tip: "Markiere nicht gleichzeitig Detailwerte und ihre Summe. Sonst wird derselbe Umsatz im Diagramm doppelt dargestellt.",
       downloads: [
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_2.1 Vertiefungsaufgabe 1 Filialumsätze.docx", "Vertiefung Filialumsätze", "DOCX"),
@@ -944,6 +949,7 @@
     },
     {
       id: "l4-8",
+      page: "l4-8.html",
       stage: 4,
       code: "L4.8",
       title: "Vertiefung: Messdaten und Prognosen",
@@ -967,7 +973,11 @@
         "Füge eine fachlich passende Trendlinie mit Gleichung und R² ein.",
         "Nutze die Gleichung für eine Prognose und erläutere ihre Unsicherheit."
       ],
-      checks: ["Einheiten korrekt", "Trendmodell fachlich passend", "Prognose nicht überinterpretiert"],
+      checks: [
+        "Ich habe Bewegung und freien Fall als XY-Diagramme ausgewertet, passende Modelle begründet und Durchschnittsgeschwindigkeit von Trendsteigung unterschieden.",
+        "Ich habe Strecken und Zeiten der Fahrt kumuliert, eine lineare Regression erstellt und die Fahrtdauer für 950 km mit Einheiten und Annahmen berechnet.",
+        "Ich habe Änderungstests durchgeführt, Prognosegrenzen erläutert, Originalwerte wiederhergestellt und alle drei XLSX-Dateien gespeichert und erneut geöffnet."
+      ],
       tip: "Ein hohes R² allein beweist kein korrektes Modell. Die Funktionsform muss auch zur Physik oder zur Fachlogik passen.",
       downloads: [
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_2.3 Vertiefungsaufgabe 3 gleichförmige Bewegung.docx", "Messreihe gleichförmige Bewegung", "DOCX"),
