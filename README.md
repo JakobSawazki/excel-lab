@@ -42,6 +42,19 @@ L2.4 bietet einen vollständigen Einstieg ohne Vorlagen-Download sowie Tests
 zu unveränderten Extremwerten und dem Unterschied zwischen null und leer.
 L2.5 ergänzt eine selbstständige Angebotsauswertung mit Anbieterwechsel und Gleichstand.
 
+L3.1 präzisiert den Zellplan ohne Vorlage
+und ergänzt Grenz-/Jahrestests sowie einen selbstständigen Versandkosten-Transfer.
+L3.2 ergänzt Tests der Kette Datum → Jahr → Tarif → Preis sowie eine unabhängige
+Mengenpreis-Aufgabe mit Grenzfällen, Parameteränderungen und Gesamtpreisvergleich.
+L3.3 ergänzt einen konkreten Toto-Zellplan, Einzeländerungstests und eine
+Projektkassen-Aufgabe mit bewusster Fehlzuordnung trotz passender Gesamtsumme.
+L3.4 ergänzt letzte-Zeile-/Punktetests und eine Vorratsliste mit lesbaren Hinweisen,
+Grenzfällen und Prüfung des erweiterten Formatierungsbereichs.
+L3.5 ergänzt vollständige Treffer-/Fehlertests und eine Artikelbestellung mit
+fehlendem Preis, Preisänderung und bewusster Erweiterung der Suchmatrix.
+L3.6 ergänzt gezielte Änderungen der Noten-Rechenkette und eine unabhängige
+Zeitplanung zum Vergleich von Einzelrundung und Rundung der Gesamtsumme.
+
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
 

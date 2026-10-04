@@ -2,10 +2,86 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1; didaktische Überarbeitung von L1.2–L1.6 und L2.1–L2.5 veröffentlicht und online geprüft
+Status: Version 0.10.1; Veröffentlichung der didaktischen Ergänzungen L3.1–L3.6 beauftragt
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlichung beauftragt (04.10.2026, gegen 11:31 Uhr):** Der Benutzer
+  hat den Push des gesamten aktuellen Projektstands und die Online-Veröffentlichung
+  ausdrücklich beauftragt. Die Ergänzungen in L3.1–L3.6 werden auf dem bestehenden
+  GitHub-Pages-Ziel veröffentlicht. Lokaler Release-Test: alle 28 HTML-Seiten und
+  54 Assets erreichbar, öffentliche Materialumleitung aktiv, keine JavaScript-Fehler.
+  Private Materialien, Musterlösungen und lokale Testdateien bleiben ausgeschlossen.
+  Schema, XP-Regeln und Version 0.10.1 bleiben unverändert. Die historischen
+  Vermerke „nur lokal“ unten beschreiben den damaligen Stand. Die didaktische
+  Weiterprüfung von L3.7/L3.8 und L4 sowie die Unterrichtserprobung bleiben offen.
+  Deployment-Ergebnis und Online-Prüfung werden nach erfolgreicher Veröffentlichung ergänzt.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 11:23 Uhr):** L3.5 um vollständige
+  Testliste 0–13, verkürzte Matrix, ungültigen Suchwert 14 und falschen
+  Rückgabeindex ergänzt. Erwarteter Nichttreffer, fehlerhafter Bereich und
+  anderer Formelfehler werden bewusst unterschieden. Eigenständiger Artikeltest
+  mit drei unsortierten Artikelzeilen und vier Bestellungen; ein fehlender Preis
+  ist nicht kostenlos. Preisänderung und Ergänzung einer vierten Matrixzeile
+  werden vorab vorhergesagt und gezielt geprüft. Einstieg verweist bei fehlender
+  Datei auf vollständige Toto-Daten aus L3.3; die bisherige Datei bleibt als Kopie erhalten.
+  L3.6 ergänzt drei gezielte Änderungen von mündlicher Note und leerer Klassenarbeit,
+  jeweils mit Vorhersage der Rechenkette bis Bewertung/Bemerkung und Rückstellung.
+  Unabhängige Zeitplanung vergleicht Summe gerundeter Schritte mit Rundung der
+  ungerundeten Summe; Rundungsgrenzen werden trotz gekürzter Anzeige geprüft.
+  Vier ausklappbare Abschnitte vor dem Verständnis-Check, keine Schema-/XP-Änderung.
+  Verifiziert: Tastaturbedienung, 32 Layoutkombinationen, unveränderter Lernstand
+  beim Erkunden, öffentliche Materialumleitung, keine externen Anfragen oder
+  Browserfehler. Artikeltest auf Desktop und Zeitplanung mobil visuell geprüft.
+  Unabhängige Modelle prüfen Treffer/Fehler, Notenänderungen und Rundungsfälle;
+  kein tatsächlicher Excel-Lauf behauptet. Bestehende L3.5-/L3.6-Tests bestanden:
+  Voraussetzungen, leere/falsche/richtige Quizversuche, Persistenz, Lehrkraftgate,
+  100 XP, Rücknahme, Profilwechsel, Navigation, alte Abschlüsse und öffentliche Links.
+  SVERWEIS-/ISTNV-Fehlerfälle mit den bereits verlinkten Microsoft-Hilfeseiten
+  abgeglichen. Sieben Gewinnstufen und fünf Noteneingabezeilen im Browser gegen
+  die erwarteten Werte geprüft. Lokaler Release-Test über alle 28 HTML-Seiten
+  und 54 Assets bestanden, keine JavaScript-Laufzeitfehler.
+  Nächster Audit: L3.7/L3.8, anschließend L4. Unterrichtserprobung
+  bleibt offen. Private Originaldateien/Musterlösungen unverändert; kein neuer Push.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 11:15 Uhr):** L3.3 mit konkretem
+  Toto-Zellplan ohne Vorlage, letzte-Zeile-Test und getrenntem Preis-/Anzahltest.
+  Projektkassen-Transfer mit fünf Eingaben, kostenloser Position und getrennten
+  Änderungen von Betrag und Kategorie. Bewusster Versatz beider Summenbereiche
+  zeigt durch Handrechnung: Eine gleiche Gesamtsumme kann falsche Gruppen verdecken.
+  L3.4 ergänzt konkrete letzte-Zeile-/Heim-/Gasttests sowie eine Vorratsliste mit
+  fünf Grenzfalleingaben, Zahlen plus Text für die Bedeutung und Prüfung einer
+  sechsten Zeile im Regelmanager. Regelwerte werden ausdrücklich in der Bedingung
+  eingetragen, nicht über die vorhandenen Punktformeln geschrieben.
+  Fünf neue ausklappbare Abschnitte vor dem Verständnis-Check; Schema und XP unverändert.
+  Verifiziert: 13 ursprüngliche Spiele samt Tor-/Tippwerten, fünf Projektkosten,
+  unabhängige Arithmetik für Gruppierung/Fehlpaarung und Punkte-/Bestandsfälle,
+  Tastaturbedienung, 32 Layoutkombinationen, unveränderter Lernstand beim Erkunden,
+  öffentliche Materialumleitung, keine externen Anfragen oder Browserfehler.
+  Desktop-Projektkasse und mobile Vorratsliste visuell geprüft. Bestehende Tests
+  für L3.3 und L3.4 bestanden: Voraussetzungen, Verständnis-Gate, 100 XP,
+  Persistenz, Rücknahme und öffentliche Links; L3.4 zusätzlich Profilwechsel
+  und alte gültige Abschlüsse. Kein tatsächlicher Excel-Lauf behauptet.
+  Nächster Audit: L3.5/L3.6. Die übrige didaktische Prüfung und Unterrichtserprobung
+  bleiben offen. Änderungen nur lokal; kein erneuter Push oder Deployment.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 11:00 Uhr):** L3.1 mit vollständigem
+  Zellplan ohne Vorlage, drei Grenzfällen und Jahresänderungstest; selbstständige
+  Versandkosten-Aufgabe mit Zahlen statt Textausgabe und fixierten Parametern.
+  L3.2 ergänzt gezielte Datum-/Jahr-/Tarif-/Preis-Tests und eine unabhängige
+  Mengenpreis-Aufgabe mit vier Grenzfällen, Preis-/Grenzänderungen und Erklärung
+  des Stückpreises für die gesamte Bestellung. Fünf neue ausklappbare Abschnitte
+  vor dem Verständnis-Check, keine zusätzlichen XP oder geänderten Abschlussregeln.
+  Tests: 32 Layoutkombinationen, Tastaturbedienung, 13 ursprüngliche Personendatensätze,
+  unveränderter Lernstand beim Erkunden, unabhängige Arithmetik der Testszenarien,
+  öffentliche Materialumleitung, keine externen Anfragen oder Browserfehler.
+  Versandkosten-Transfer auf Desktop und Mengenpreis-Transfer auf Smartphone
+  anhand aktueller Browser-Screenshots visuell geprüft.
+  Bestehende L3.1-/L3.2-Abschluss-, XP-, Persistenz- und Rücknahmetests bestanden.
+  Kein tatsächlicher Excel-Lauf behauptet. Nächster Audit: L3.3/L3.4; die weitere
+  didaktische Prüfung von L3/L4 und Unterrichtserprobung bleiben offen.
+  Nur lokal; kein erneuter Push oder Deployment nach diesen Ergänzungen.
 
 - **Veröffentlicht und online geprüft (04.10.2026):** Der Benutzer hat ausdrücklich
   den Push des gesamten aktuellen Projektstands und die Online-Veröffentlichung
