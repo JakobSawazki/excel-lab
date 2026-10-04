@@ -7,6 +7,16 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 15:14 Uhr):**
+  L3.3/L3.4-Aufbau- und Dateiübergabehilfen unter
+  `1d88031f73fe59f5364d89e1509cbb2d90f16bcd` veröffentlicht. Pages-Lauf
+  `37204841959` erfolgreich. Online-Test der beiden Hilfen mit 32
+  Layoutkombinationen, Tastaturbedienung, Zeilenabbildung und unverändertem
+  Lernstand bestanden. Online-Release-Test: 28 Seiten/54 Assets, Version
+  0.10.1, keine privaten Materiallinks oder Browserfehler. Private Originale,
+  Musterlösungen und temporäre Tests bleiben ausgeschlossen. Der folgende
+  lokale Eintrag ist damit veröffentlicht. Nächster Audit: L4-Arbeitswege.
+
 - **Abgeschlossen (lokal, 04.10.2026, gegen 15:12 Uhr):** L3.3/L3.4-
   Dateiübergänge und Neuaufbau geprüft und ergänzt. L3.3 erklärt die zuvor
   beim Neuaufbau nicht ausdrücklich angelegte Gesamtsumme F23 aus F10:F22,
