@@ -2,17 +2,27 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1; didaktische Überarbeitung von L1.2–L1.6 und L2.1–L2.5 geprüft, Veröffentlichung beauftragt
+Status: Version 0.10.1; didaktische Überarbeitung von L1.2–L1.6 und L2.1–L2.5 veröffentlicht und online geprüft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
-- **Veröffentlichung beauftragt (04.10.2026):** Der Benutzer hat ausdrücklich
+- **Veröffentlicht und online geprüft (04.10.2026):** Der Benutzer hat ausdrücklich
   den Push des gesamten aktuellen Projektstands und die Online-Veröffentlichung
   beauftragt. Die folgenden lokalen Abschlussvermerke beschreiben den jeweiligen
-  historischen Zeitpunkt; nach dem Deployment werden auch diese Änderungen online
-  verfügbar sein. Private Materialien, Musterlösungen und lokale Testdateien bleiben
+  historischen Zeitpunkt; die Änderungen sind jetzt ebenfalls online verfügbar.
+  Private Materialien, Musterlösungen und lokale Testdateien bleiben
   von Git ausgeschlossen. Bestehendes Speicherformat und XP-Regeln bleiben unverändert.
+  Commit: `55f3340899d8e29418d8a7eb9894a49eb55f4254`.
+  GitHub-Pages-Lauf `37189996249` erfolgreich abgeschlossen am 04.10.2026,
+  gegen 10:47 Uhr (Europe/Berlin).
+  Online-Release-Test bestanden: 28 HTML-Seiten, 54 Assets, öffentliche
+  Materialumleitung und keine JavaScript-Laufzeitfehler. Die neuen Abschnitte
+  in L2.3, L2.4 und L2.5 zusätzlich anhand ihrer Kennungen online nachgewiesen.
+  Zusätzlicher lokaler Veröffentlichungstest: sechs neue ausklappbare Abschnitte,
+  Tastaturbedienung, 48 Layoutkombinationen, sechs Kursdatensätze,
+  keine Lernstandänderungen beim Erkunden und keine Browser-Laufzeitfehler.
+  Kein tatsächlicher Excel-Lauf oder abgeschlossener Gesamt-Audit behauptet.
 
 - **Abgeschlossen (04.10.2026):** L2.3–L2.5 didaktisch ergänzt:
   Änderungstests für gemischte/benannte Bezüge, L2.4-Neuaufbau mit sechs bekannten
