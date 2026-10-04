@@ -90,7 +90,7 @@ Online veröffentlicht und geprüft am 04.10.2026: L1.3/L1.4 erklären die Zuord
 bei eigenen Tabellenaufbauten und die sichere Weiterverwendung des Getränke-Blatts.
 L1.6 unterstützt mit Rückrechnungen statt aufklappbaren fertigen Ergebnislisten.
 
-Lokal geprüft, zur Veröffentlichung vorbereitet: L2.1–L2.3 bieten Rückrechnungs-
+Online veröffentlicht und geprüft am 04.10.2026: L2.1–L2.3 bieten Rückrechnungs-
 Hilfen statt fertiger Kontrollbeträge. L2.3 erklärt das Erhalten aller sechs
 Zwischenstandsdateien, L2.4 den Start ohne Vorlage und L2.5 die eindeutige
 Prozent-Eingabe als ganze Zahl passend zur verwendeten Berechnungsregel.

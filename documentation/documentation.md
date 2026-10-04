@@ -2,10 +2,21 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 mit didaktischen Ergänzungen und geprüftem L1-Arbeitsweg veröffentlicht; L1.3/L1.4-Aufbauhilfen und L1.6-Rückrechnungen online bestätigt
+Status: Version 0.10.1 mit didaktischen Ergänzungen und geprüftem L1-/L2-Arbeitsweg veröffentlicht; L2.1–L2.5-Nachtrag online bestätigt
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 15:03 Uhr):**
+  L2.1–L2.5-Nachtrag auf GitHub unter
+  `366c48e26eec8d471ed13cb4eb3541422572840a`; Pages-Lauf `37203975718`
+  erfolgreich abgeschlossen. Öffentliche Seite besteht den L2-Audit mit fünf
+  Seiten, fünf Tastatur-Hilfen, sechs Prozent-Eingaben und 80 Layoutkombinationen.
+  Online-Release-Test: 28 Seiten und 54 Assets erreichbar, Version 0.10.1,
+  keine JavaScript-Laufzeitfehler oder privaten Materiallinks. GitHub-main und
+  lokaler Inhaltscommit stimmen überein; private Materialien und temporäre
+  Testdateien bleiben ausgeschlossen. Der folgende lokale L2-Eintrag ist damit
+  veröffentlicht. Nächster fachlicher Audit: L3/L4; Unterrichtserprobung offen.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 14:58 Uhr):** L2.1–L2.5 auf
   vollständige Startdaten, Kopierrichtung, Einheiten, Änderungstests und
