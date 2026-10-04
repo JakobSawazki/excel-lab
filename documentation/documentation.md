@@ -2,10 +2,52 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter L1-Quellenabgleich dokumentiert, L1.6-Kontrollhilfen online geprüft; Quellenabgleich L2–L4 offen
+Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert, neue L2-Kontrollhilfen lokal geprüft; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 16:42 Uhr):** Direkter fachlicher
+  Quellenabgleich L2.1–L2.5: elf Aufgaben-DOCX, fünf Informations-DOCX und
+  vier XLSX-Vorlagen schreibgeschützt untersucht; alle neun eingebetteten
+  Aufgabenbilder lokal extrahiert und angesehen. Die Lernseiten berücksichtigen
+  bereits die unterschiedlichen Badminton-Stundenzahlen und den sechsten Kurs
+  Handball. Ausgangsdaten, gemischte Bezüge, Provisionssätze als ganze
+  Prozentzahlen, Festgehalt und geforderte Auswertungsbereiche passen zur
+  Umsetzung. L2.4 ergänzt eine unabhängige Kontrolle aller vier Kennzahlen
+  aus den sechs tatsächlich verwendeten Eingaben. L2.5 ergänzt die Kontrolle
+  der Gehaltskennzahlen gegenüber den Provisionen, einen getrennten
+  Festgehalts-Änderungstest und die Zuordnung von Maximalwerten zu Personen.
+  Keine neuen XP, Änderungen an Quizauswertung oder Speicherschema.
+  Übungstest bestanden: fünf Seiten, sieben mit Tastatur geöffnete Hilfen,
+  80 Layoutzustände, beide Badminton-Datenstände, unabhängige Rückrechnungen
+  und vier Kennzahlen, unveränderter Lernstand, keine externen Anfragen oder
+  Browserfehler. Neue Hilfen mobil visuell geprüft. Abschluss-Test für alle
+  fünf L2-Seiten mit 15 Fragen bestanden: Zugang, Quiz, eigene Checks,
+  Lehrkraftbestätigung, 100 XP, Rücknahme, ältere Abschlüsse, echter
+  Profilwechsel, Speicherfehler und Entwickler-Vorschau. Der erste Zusatztest
+  schloss eine zuvor bereits geöffnete Hilfe; der Test setzt vor dem
+  Tastaturversuch nun explizit den geschlossenen Zustand. Kein Produktfehler.
+  Veröffentlichung/Online-Nachprüfung folgen.
+
+  **Quellenzuordnung L2 für die Übergabe:** Dateien im Ordner
+  `materialien/BPE1/Lernfortschritt_2/Aufgabenstellungen`, Informationsblätter
+  im benachbarten Ordner `Informationsmaterial`.
+
+  | Lernseite | Direkt geprüfte Originale | Geprüfter Zusammenhang und bewusste Anpassung |
+  | --- | --- | --- |
+  | L2.1 | `L2_1.1.1 Aufgabenstellung Tabellenentwurf-Relative Adressierung.docx`, Informationsmaterial L2_1.1.1 | Sechs Kurse mit Teilnehmern, Stundenlöhnen und Stunden; Badminton laut Arbeitsauftrag 10 Stunden. Die unvollständige Kopiergrenze F10 im Informationsblatt wird ausdrücklich auf den sechsten Kurs bis F11 erweitert. |
+  | L2.2 | `L2_1.1.2 Aufgabenstellung Tabellenentwurf-Absolute Adressierung.docx`, `L2_1.1.2 Tabellenvorlage Projektwoche absolute Adressierung.xlsx`, Informationsmaterial L2_1.1.2a/b | Gemeinsame Pauschale 20 € in B3, absoluter Bezug. Originalvorlage mit sechs Kursen und Badminton 16 Stunden, ohne Ergebnisformeln; zwei Zeilen nur bei ihrem ursprünglichen Aufbau einfügen. Eigene L2.1-Kopie behält 10 Stunden und braucht kein erneutes Verschieben. |
+  | L2.3 | `L2_1.2.1/2/3 Vertiefungsaufgabe Klassenfahrt Teil 1/2/3.docx`, `L2_1.3.1/2/3 Vertiefungsaufgabe Provisionsabrechnung Teil 1/2/3.docx`, Informationsmaterial L2_1.2.3 | Drei Angebote 400/1,20; 500/1,05; 300/1,50 und drei Entfernungen 410/40/126. Korrekte gemischte Formel D$4*$C7+$B7. Sechs Umsatz-/Satz-Paare 290000/2, 265000/2, 189000/3, 106000/4, 199000/3, 98000/4; Festgehalt 1000 und benannte Zelle. Sechs getrennte Zwischenstandsdateien erhalten. Die falsche Verschiebungsdarstellung im Infoblatt wird nicht übernommen. |
+  | L2.4 | `L2_2.1 Aufgabenstellung Funktionen.docx`, `L2_2.1 Tabellenvorlage Projektwoche Funktionen.xlsx`, Informationsmaterial L2_2.1 | Vorlage enthält sechs Kurse in Zeilen 6–11, Badminton 16 Stunden und berechnete Einzelverdienste mit Pauschale; Abbildung/Infobeispiel zeigen dagegen nur fünf Kurse. Eigene L2.2-Kopie darf ihren 10-Stunden-Stand behalten. Summe/Mittelwert/Maximum/Minimum für Teilnehmer, Stunden und Verdienst mit vollständigen sechs Zeilen statt alter Fünf-Zeilen-Ergebnisse. |
+  | L2.5 | `L2_2.2 Vertiefungsaufgabe Funktionen Teil 1.docx`, `L2_2.2 Tabellenvorlage Klassenfahrt Funktionen.xlsx`, `L2_2.3 Vertiefungsaufgabe Funktionen Teil 2.docx`, `L2_2.3 Tabellenvorlage Provisionsabrechnung Funktionen.xlsx` | Vorlagen enthalten die Einzelpreis-/Provisions-/Gehaltsformeln, noch keine Kennzahlen. Busvergleich je Ziel aus drei Angeboten; vier Kennzahlen für Umsatz, Provision und Gehalt aus sechs Personen. Schreibweise „Tripstrill“ in der Vorlage erklärt. Kontrollhilfe unterscheidet gemeinsames Festgehalt und individuelle Provision; höchste Umsätze und Gehälter müssen nicht derselben Person gehören. |
+
+  **Prüfgrenzen:** DOCX-Text/Tabellen, eingebettete Aufgabenbilder und
+  XLSX-Zellinhalte einschließlich gemeinsamer Formeldefinitionen geprüft.
+  Kein vollständiger DOCX-Seitenrender, kein tatsächlicher Excel-Rechenlauf,
+  keine vollständige Sichtung der lokalen Originalvideos. Private Originale,
+  extrahierte Bilder und temporäre Tests bleiben ausgeschlossen. Direkter
+  Quellenabgleich L3–L4 bleibt erforderlich; kein Gesamtabschluss behauptet.
 
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 16:28 Uhr):**
   L1.6-Kontrollhilfen und L1-Quellenzuordnung unter Commit
