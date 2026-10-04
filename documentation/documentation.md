@@ -2,18 +2,23 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Veröffentlichung von Version 0.10.1 mit allen 27 Lernseiten vorbereitet; Online-Prüfung folgt
+Status: Version 0.10.1 mit allen 27 Lernseiten online und geprüft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
-- **Veröffentlichung vorbereitet (04.10.2026, 09:49 Uhr):** Version 0.10.1
+- **Veröffentlicht und online geprüft (04.10.2026, 09:51 Uhr):** Version 0.10.1
   enthält alle 27 eigenen Lernseiten einschließlich L4.7 und L4.8.
   Lokaler Release-Test: 28 Seiten und 54 Assets erreichbar, keine
   JavaScript-Laufzeitfehler. Abschluss-/Persistenztests beider neuen Seiten
   sowie Navigation in sechs Breiten und zwei Schriftgrößen bestanden.
   Originalmaterialien und Musterlösungen bleiben von Git ausgeschlossen.
-  Push und anschließende GitHub-Pages-Prüfung erfolgen auf ausdrücklichen Auftrag.
+  Auf ausdrücklichen Auftrag nach GitHub gepusht; Release-Commit
+  `4f269c0382a97426fd44d7d50c66e827970933ce`. GitHub-Pages-Deployment erfolgreich
+  (Actions-Lauf `37187008006`). Derselbe Release-Test direkt auf
+  https://jakobsawazki.github.io/excel-lab/ bestanden: 28 HTML-Seiten,
+  54 Assets, Version 0.10.1, öffentliche Materialumleitung und keine
+  JavaScript-Laufzeitfehler. Bestehende Lernstände bleiben erhalten.
 
 - **Abgeschlossen (lokal, 04.10.2026, 09:41 Uhr):** L4.8 als eigene Lernseite
   mit drei Messdatenaufgaben, Modellvergleich, Prognosegrenzen und Verständnis-Check.
