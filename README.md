@@ -86,6 +86,10 @@ berichtigen die Ergebnisse von Hand und erklären, wozu L1.2 Formeln einführt.
 L1.2 erklärt nun die Weiterverwendung der eigenen Arbeitsmappe unter neuem
 Namen und das getrennte Blatt Heftkauf mit vollständigen Eingaben und Mengentest.
 
+Lokal geprüft, zur Veröffentlichung vorbereitet: L1.3/L1.4 erklären die Zuordnung
+bei eigenen Tabellenaufbauten und die sichere Weiterverwendung des Getränke-Blatts.
+L1.6 unterstützt mit Rückrechnungen statt aufklappbaren fertigen Ergebnislisten.
+
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
 

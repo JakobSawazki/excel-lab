@@ -7,6 +7,31 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Abgeschlossen (lokal, 04.10.2026, gegen 14:49 Uhr):** Fachlichen Arbeitsweg
+  L1.3–L1.6 geprüft. L1.3/L1.4 ergänzen ausklappbare Aufbauhilfen: tatsächliche
+  Zellbereiche eigener Entwürfe zuordnen, ursprüngliches Getränke-Blatt wählen,
+  andere Übungsblätter getrennt halten und beim Einfügen einer ganzen Blattzeile
+  auch übrige Spalten berücksichtigen. Fehlende eigene Dateien lassen sich über
+  die vollständigen vorherigen Arbeitsaufträge wieder erstellen. L1.5 enthält
+  bereits die vollständigen fünf Ausgangsdatensätze, eigenständigen Entwurf,
+  getrennte gemeinsame/individuelle Änderungstests und geschützte Testkopie;
+  kein weiterer Ausbau notwendig. L1.6 ersetzt drei aufklappbare fertige
+  Ergebnislisten durch Rückrechnungs-Hilfen: Zeitanteile zurück in Stückzahl,
+  Dosenanzahl mal Volumen zurück in Tagesmenge, gesuchte Zinsgrößen in die
+  ursprüngliche Beziehung einsetzen. Ausgangsdaten/Arbeitsaufträge unverändert;
+  Schüler erhalten Unterstützung statt vorweggenommener Hauptaufgabenlösungen.
+  Verifiziert: neue Hilfen per Tastatur, Verweise, 64 Layoutkombinationen über
+  vier Einheiten, ursprüngliche Transfer-/Pakettests, kein Lernstandschreiben,
+  keine externen Anfragen/Browserfehler. Unabhängige Arithmetik prüft die
+  Rückrechnungen und Verdopplungswirkung; kein tatsächlicher Excel-Lauf.
+  L1.3 Desktop, L1.4 und L1.6 mobil visuell geprüft. Bestehender L1.6-Abschlusstest
+  einschließlich fünf Fragen, Voraussetzungen, Persistenz, 100 XP, Rücknahme,
+  Profilwechsel, Speicherfehler und Entwicklermodus bestanden.
+  Lokaler Release-Test: 28 Seiten/54 Assets erfolgreich. Schema/XP unverändert.
+  Geprüfter Nachtrag wird veröffentlicht; Online-Nachweis folgt. Nächster
+  fachlicher Audit: L2.1–L2.5, danach L3/L4. Gesamtziel noch nicht abgeschlossen;
+  Unterrichtserprobung bleibt offen.
+
 - **Veröffentlicht (04.10.2026, gegen 14:42 Uhr):** Geeigneten geprüften
   L1.1/L1.2-Nachtrag gemäß Auftrag autark auf `main` veröffentlicht.
   Inhaltscommit `64b2a58348876dc7d1e9ffb88e73e2d7d6dcc891`, Pages-Lauf
