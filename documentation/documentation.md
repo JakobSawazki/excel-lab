@@ -7,6 +7,15 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 15:08 Uhr):**
+  L3.2-Dateiübergabe unter Commit `6dc753f89ac473152a1a2b74f8d684edb0d50188`
+  veröffentlicht, Pages-Lauf `37204497466` erfolgreich. Online bestehen
+  Tastatur-, Dateiablauf- und 16 Layoutprüfungen ohne Lernstandänderung,
+  externe Anfragen oder Browserfehler. Release-Test: 28 Seiten/54 Assets,
+  Version 0.10.1, keine privaten Materiallinks. Neue Hilfe am Desktop visuell
+  geprüft. Der folgende lokale Eintrag ist damit veröffentlicht. Nächster
+  Audit bleibt L3.3–L3.8 und L4; kein vollständiger Gesamtabschluss behauptet.
+
 - **Abgeschlossen (lokal, 04.10.2026, gegen 15:06 Uhr):** Arbeitsweg L3.1/L3.2
   anhand der aktuellen Lernseiten geprüft: vollständiger Zellplan und 13
   Eingabedatensätze, Jahresregel statt tatsächlicher Geburtstagsprüfung,
