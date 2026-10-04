@@ -7,6 +7,23 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Abgeschlossen (lokal, 04.10.2026, gegen 15:06 Uhr):** Arbeitsweg L3.1/L3.2
+  anhand der aktuellen Lernseiten geprüft: vollständiger Zellplan und 13
+  Eingabedatensätze, Jahresregel statt tatsächlicher Geburtstagsprüfung,
+  feste/relative Bezüge, Tarifgrenzen und getrennte Änderungstests vorhanden.
+  L3.2 ergänzt eine ausklappbare Dateiübergabe: vor der Bearbeitung unter dem
+  nächsten Teilnamen speichern, keine leere Folgedatei oder bloße Blattkopie,
+  frühere Stände auch bei automatischem Speichern erhalten. Erneutes Öffnen
+  prüft die unterscheidbaren Stände: Teil 2 JAHR plus zwei Tarifgruppen,
+  Teil 3 drei Gruppen, Teil 4 Preisformeln; Originaldaten zurückstellen.
+  Verifiziert: Tastaturbedienung, 16 Layoutkombinationen der neuen Hilfe,
+  unveränderter Lernstand, keine privaten Materiallinks/externen Anfragen oder
+  Browserfehler. Bestehender L3.1/L3.2-Test mit 32 Layoutkombinationen und
+  unabhängigen Grenz-/Änderungsrechnungen erneut bestanden. Kein tatsächlicher
+  Excel-Lauf. Nächste Prüfung: L3.3–L3.8 und L4-Arbeitswege; Gesamt-Audit und
+  Unterrichtserprobung bleiben offen. Veröffentlichung nach Online-Prüfung
+  separat dokumentieren.
+
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 15:03 Uhr):**
   L2.1–L2.5-Nachtrag auf GitHub unter
   `366c48e26eec8d471ed13cb4eb3541422572840a`; Pages-Lauf `37203975718`
