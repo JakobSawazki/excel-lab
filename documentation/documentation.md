@@ -2,10 +2,57 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 einschließlich der didaktischen Ergänzungen L3.7/L3.8 und L4.1–L4.8 veröffentlicht; alle 16 neuen Übungsabschnitte online bestätigt
+Status: Version 0.10.1 einschließlich der didaktischen Ergänzungen L3.7/L3.8 und L4.1–L4.8 veröffentlicht; L1.1-Einstieg anschließend lokal ergänzt und geprüft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 14:39 Uhr):** Übergang L1.1 → L1.2
+  ergänzt: vorhandene eigene Arbeitsmappe unter neuem Namen sichern,
+  ursprüngliches Getränke-Blatt statt Änderungstest auswählen, Eingabewerte
+  unverändert lassen und eingetippte Ergebnisse durch Formeln ersetzen.
+  Abweichender eigener Aufbau nutzt die tatsächlichen Zelladressen.
+  Heftkauf-Demo erhält ein separates Blatt, vollständige Eingaben/Überschriften
+  und einen vorhergesagten Mengentest 6 → 12 → 6, ohne Getränkeliste zu überschreiben.
+  Verifiziert: Tastatur, Demo-Ergebnis und unveränderte Formel, vollständige
+  Eingaben, 16 Layoutkombinationen, Lernstand unverändert, keine externen
+  Anfragen/JS-Fehler. Desktop-Übergang und mobile Heftkauf-Anleitung visuell geprüft.
+  L1.1-Ergänzung erneut getestet. Technischer Gesamtpfad-Audit: 28 Seiten,
+  365 lokale Hash-Verweise einschließlich acht tatsächlich geöffneten App-Routen,
+  eindeutige IDs, Verständnisfragen vollständig wie im Quelltext, Arbeitschecks
+  und Lehrkraftbestätigung in allen 27 Einheiten; 108 Layoutkombinationen mit
+  großer Schrift ohne Seitenüberlauf. App-Routen wurden als Ansichtswechsel
+  geprüft, nicht fälschlich als fehlende Element-IDs behandelt; L1.6 hat fünf
+  statt drei Verständnisfragen. Release-Test: 28 Seiten/54 Assets erfolgreich.
+  Diese Prüfung belegt Navigation und Darstellung, nicht sämtliche fachlichen
+  Aufgabenrechnungen oder Unterrichtswirksamkeit. L1.1/L1.2 bilden jetzt einen
+  geeigneten getesteten Veröffentlichungsnachtrag; Deployment-Prüfung folgt.
+  Weiter offen: fachlicher Gesamt-Audit der weiteren Aufgabenübergänge und
+  Unterrichtserprobung. Keine Musterlösungen oder privaten Dateien ergänzen.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 14:34 Uhr):** L1.1 ergänzt eine
+  ausklappbare Aufbauhilfe mit Titel, vier beschrifteten Spalten, fünf Getränkezeilen
+  und Summenzeile. Zellplan A1/A3:D9 passt zu den Ausgangsdaten in L1.2;
+  andere sinnvolle eigene Anordnungen bleiben erlaubt. Zahlen und Einheiten
+  werden getrennt, Dezimaltrennzeichen und Zelladresse erklärt. Ein praktischer
+  Änderungstest auf einer Blattkopie erklärt das Kopieren in Desktop-Excel:
+  erst vorhersagen, ausschließlich Cola-Menge 30 → 32 ändern, unveränderte
+  eingetippte Ergebnisse erkennen, Einzelbetrag und Summe manuell berichtigen,
+  andere Getränke unverändert lassen und alle Ausgangswerte wiederherstellen.
+  Speichern/erneutes Öffnen und Abgrenzung zur Lernstand-Speicherdatei bleiben
+  ausdrücklich enthalten. Keine Ergebnislösung, Formelvorwegnahme, neue
+  XP-Bedingung oder Änderung an Profil-/Fortschrittsschema.
+  Verifiziert: zwei Abschnitte per Tastatur, fünf Ausgangsdatensätze, unabhängige
+  Cent-Arithmetik für Einzeländerung/Gesamtsumme und unveränderte übrige Zeilen,
+  16 Layoutkombinationen, keine externen Anfragen/JS-Fehler/Lernstandänderungen.
+  Desktop-Aufbauhilfe und mobiler Änderungstest visuell geprüft. Bestehender
+  L1.1-Abschlusstest und L1.2-Übergangstest erfolgreich; letzter lokaler
+  Release-Test: 28 HTML-Seiten und 54 Assets ohne Browserfehler.
+  Kein tatsächlicher Excel-Lauf behauptet. Nur dieser Nachtrag ist noch lokal;
+  bisherige Veröffentlichung bleibt unverändert. Nächster Schritt: Gesamtprüfung
+  der Aufgabenübergänge, Hilfen und Voraussetzungen über L1–L4, danach einen
+  geeigneten geprüften Stand gemäß neuem Auftrag autark veröffentlichen.
+  Unterrichtserprobung weiterhin offen.
 
 - **Veröffentlicht (04.10.2026, gegen 12:10 Uhr):** Auf ausdrücklichen Auftrag
   den gesamten aktuellen Projektstand auf `main` gepusht. Inhaltscommit

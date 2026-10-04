@@ -79,6 +79,13 @@ L4.8 ergänzt einen Fahrtvergleich mit ungleichen Abschnittsdauern, kumulierten
 Werten und einer echten Pause; Gesamtgeschwindigkeit und einfacher Mittelwert
 der Abschnittsgeschwindigkeiten werden bewusst getrennt.
 
+Lokal ergänzt, noch nicht veröffentlicht: L1.1 bietet eine ausklappbare
+Zellplan-Hilfe sowie einen Änderungstest mit eingetippten Ergebniszahlen.
+Die Schüler sagen die Auswirkung zweier zusätzlicher Flaschen voraus,
+berichtigen die Ergebnisse von Hand und erklären, wozu L1.2 Formeln einführt.
+L1.2 erklärt nun die Weiterverwendung der eigenen Arbeitsmappe unter neuem
+Namen und das getrennte Blatt Heftkauf mit vollständigen Eingaben und Mengentest.
+
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
 
