@@ -2,10 +2,42 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 mit didaktischen Ergänzungen veröffentlicht; L1–L4-Arbeitswege überarbeitet, zuletzt L4-Nachtrag online bestätigt; abschließender Anforderungsabgleich offen
+Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten lokal geprüft, Profilwechsel-Korrektur zur Veröffentlichung bereit; fachlicher BPE1-Abschlussabgleich offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 16:02 Uhr; begonnen gegen
+  15:50 Uhr):** Abschlusswege aller 27 Einheiten mit insgesamt 83 Fragen
+  bestehen den gemeinsamen Browser-Test: fehlende Vorgängereinheit, leere/
+  falsche/richtige Quizantworten, Quiz allein ohne Abschluss, fehlende eigene
+  Checks, fehlende Lehrkraftbestätigung, Abschluss mit 100 Punkten, erneutes
+  Öffnen, zurückgenommene Checks/Lehrkraftbestätigung, bestehende ältere
+  Abschlüsse, echter Tab-übergreifender Profilwechsel, fehlgeschlagene
+  Speicherung und unveränderter Lernstand in der Entwickler-Vorschau.
+  Keine externen Anfragen oder JavaScript-Laufzeitfehler. Der unveränderte
+  Online-Stand besteht bereits den Navigations-/Layout-Audit: 28 Seiten,
+  365 interne Hash-Links, acht tatsächlich geöffnete App-Routen, eindeutige
+  IDs und 108 Layoutkombinationen mit großer Schrift. Der Vergleich mit
+  echten Profilwechseln zwischen zwei isolierten Browser-Tabs zeigt eine
+  Lücke in L1.2, L2.1–L2.5 und L3.1–L3.3: Ausgewählte Quizantworten bleiben
+  beim Profilwechsel stehen. Diese neun Seiten setzen nun Quizauswahl und
+  Rückmeldungen nur bei einer geänderten Profil-ID zurück, wie die späteren
+  Einheiten. Keine Änderungen an Aufgaben, Antwortschlüsseln, XP,
+  Speicherschema oder bisherigen Abschlüssen. Zusätzlich bestehen alle neun
+  korrigierten Einheiten den gezielten Profilwechsel-Test mit 27 Fragen:
+  Auswahl, Bewertungsmarkierungen und Rückmeldungen verschwinden; eine
+  Benachrichtigung zum gleichen Profil erhält die aktuellen Antworten.
+  Syntaxprüfung aller neun geänderten JavaScript-Dateien und `git diff --check`
+  erfolgreich. Veröffentlichung und Online-Nachprüfung folgen. Temporäre Tests
+  und synthetische Profile bleiben lokal. Der neue Test liest die vorhandenen
+  Antwortschlüssel zur Prüfung der Abschlusslogik; er beweist weder die
+  fachliche Richtigkeit der Fragen noch tatsächliches Verständnis. Der
+  erste Volltest verwendete irrtümlich sichtbaren Text für den Status in
+  geschlossenen Abschnitten; die Prüfung liest jetzt den Textinhalt und
+  wartet vor Checkboxaktionen auf die initialisierte Anzeige. Der fachliche
+  Abschlussabgleich mit den BPE1-Originalen bleibt separat offen, ebenso die
+  spätere Unterrichtserprobung. Kein Gesamtabschluss behauptet.
 
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 15:22 Uhr):**
   L4.2/L4.5/L4.7-Korrekturen unter
@@ -668,7 +700,11 @@ Leitidee:
 > Kurz informieren, direkt in Excel anwenden, Ergebnis prüfen und Fortschritt
 > sichtbar machen.
 
-## 2. Aktueller Meilenstein: Version 0.9.0
+## 2. Historischer Meilenstein: Version 0.9.0
+
+Dieser Abschnitt beschreibt den damaligen Stand. Aktuell ist Version 0.10.1
+mit eigenen Lernseiten und Verständnis-Checks für alle 27 Einheiten bis L4.8
+veröffentlicht; aktuelle Nachträge und Prüfergebnisse stehen im Taskstatus oben.
 
 Status: lokal getestet und über GitHub Pages veröffentlicht
 
@@ -992,8 +1028,8 @@ Aktuell geprüft:
 
 ### Hohe Priorität
 
-- [ ] 141 geprüfte Doppeldateien aus `../BPE1` entfernen, sobald die
-  Ausführungsumgebung die Aktion zulässt. Vorher Prüfsummen erneut verifizieren;
+- [ ] Die früher gefundenen 141 Doppeldateien aus `../BPE1` nach einem
+  aktuellen Bestandsvergleich bereinigen. Vorher Prüfsummen erneut verifizieren;
   die Kopien in `materialien/BPE1` erhalten.
 - [ ] Das einzigartige L1.1-Informations- und Aufgaben-PDF aus `../BPE1` nach
   `materialien/BPE1/Lernfortschritt_1/L1.1` verschieben und den Website-Einsatz
@@ -1032,9 +1068,13 @@ Aktuell geprüft:
 - [x] Buttons, Navigation, Karten, Rahmen und Dialoge metallischer und konsistent in beiden Farbschemata gestalten (27.09.2026, 12:24 Uhr; lokal).
 - [ ] Videoauswahl fachlich und YouTube-Erreichbarkeit auf Schul-PCs prüfen; bei Bedarf je Einheit anpassen.
 - [ ] Punktelogik und Bearbeitungszeit mit einer Lerngruppe erproben.
-- [ ] Verständnis-Checks fachlich und didaktisch für L1.1–L1.6 und spätere
-  Einheiten ausarbeiten; nicht dieselben Fragen pauschal kopieren. Alte
-  Abschlüsse bei der Einführung nicht rückwirkend löschen.
+- [x] Eigene Verständnis-Checks in allen 27 Lernseiten implementieren; L1.6
+  umfasst fünf Fragen, die übrigen Einheiten jeweils drei. Alte Abschlüsse
+  werden bei der Einführung nicht rückwirkend gelöscht. Der abschließende
+  fachliche BPE1-Abgleich und die Unterrichtserprobung sind davon getrennt.
+- [x] Eigene Lernseiten L3.4–L3.8 und L4.1–L4.8 ergänzen und veröffentlichen;
+  die zugehörigen Inhalts- und Veröffentlichungstests sind im aktuellen
+  Taskstatus und in den Übergaben dokumentiert.
 
 ### Mittlere Priorität
 
@@ -1047,8 +1087,13 @@ Aktuell geprüft:
   unnötig zu sammeln.
 - [ ] Zusätzliche Übungsaufgaben für Berufskolleg und Berufsschule ergänzen.
 - [ ] Druckansicht beziehungsweise kompakte Merkblätter anbieten.
-- [ ] Inhaltsversion in JSON-Exporten aufnehmen und Migrationen vorbereiten.
-- [ ] Automatisierte Browser-Smoke-Tests ergänzen.
+- [x] Inhaltsversion als `appVersion` in JSON-Exporten aufnehmen; Schema bleibt
+  derzeit Version 1 (`app.js`, Funktion `exportProgress`).
+- [ ] Migrationen bei einer zukünftigen Änderung des Speicherschemas ausarbeiten.
+- [x] Lokale automatisierte Browser-Smoke-Tests ergänzen und ausführen.
+- [ ] Eine bereinigte, dauerhaft im Repository verfügbare Regressionstestsuite
+  aus den derzeit lokalen `.tmp`-Tests ableiten, ohne private Materialien
+  oder synthetische Lernprofile zu veröffentlichen.
 - [ ] Barrierefreiheitsprüfung nach WCAG durchführen.
 
 ### Betrieb und nächste Veröffentlichungsschritte
@@ -1108,8 +1153,9 @@ Aktuell geprüft:
 3. Inhalte und Navigation anhand dieser Beobachtungen überarbeiten.
 4. Lizenzfragen klären, bevor einzelne Originalmaterialien öffentlich
    bereitgestellt werden.
-5. L4.7 als nächste eigene Lernseite ausarbeiten; das neue L1.1-PDF nach
-   fachlicher Freigabe direkt in die L1.1-Seite einbetten.
+5. Den Abschlussabgleich der vorhandenen 27 Einheiten mit BPE1 abschließen;
+   L4.7 und L4.8 sind bereits veröffentlicht. Das zusätzliche L1.1-PDF nur
+   nach fachlicher und rechtlicher Freigabe in die Lernseite einbetten.
 
 ## 15. Änderungsprotokoll
 

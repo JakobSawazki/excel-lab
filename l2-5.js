@@ -13,8 +13,16 @@
   let state, profile;
 
   function refresh() {
+    const oldId = profile?.id;
     try { state = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { state = null; }
     profile = Array.isArray(state?.profiles) ? state.profiles.find((item) => item.id === state.currentProfileId) : null;
+    if (oldId !== profile?.id) {
+      $("#l25-mastery-form").reset();
+      document.querySelectorAll("#l25-mastery-form .mastery-question").forEach(el => {
+        delete el.dataset.result;
+        el.querySelector(".mastery-feedback").textContent = "";
+      });
+    }
   }
   function unlocked() {
     return Boolean(window.EXCEL_LAB_DEV?.enabled) || Boolean(profile?.progress?.["l2-4"]?.completed);

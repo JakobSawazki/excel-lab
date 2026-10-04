@@ -12,8 +12,16 @@
   };
   let state, profile;
   function refresh() {
+    const oldId = profile?.id;
     try { state = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { state = null; }
     profile = Array.isArray(state?.profiles) ? state.profiles.find((p) => p.id === state.currentProfileId) : null;
+    if (oldId !== profile?.id) {
+      $("#l12-mastery-form").reset();
+      document.querySelectorAll("#l12-mastery-form .mastery-question").forEach(el => {
+        delete el.dataset.result;
+        el.querySelector(".mastery-feedback").textContent = "";
+      });
+    }
   }
   function unlocked() { return Boolean(window.EXCEL_LAB_DEV?.enabled) || Boolean(profile?.progress?.["l1-1"]?.completed); }
   function progress() {

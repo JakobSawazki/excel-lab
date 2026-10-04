@@ -23,6 +23,10 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 Aktueller Release: **0.10.1** – Themenlandkarte, vereinfachte Bedienung und
 eigene Lernseiten für alle 27 Einheiten bis einschließlich L4.8.
 
+Bei einem Profilwechsel werden noch ausgewählte Antworten und Rückmeldungen
+im Verständnis-Check entfernt. Die Antworten gehören damit ausschließlich
+zum jeweiligen Profil; bereits gespeicherte Abschlüsse bleiben erhalten.
+
 Didaktisch überarbeitet (4. Oktober 2026): L1.2 kann mit den auf der
 Lernseite angegebenen Eingabedaten ohne Vorlagen-Download bearbeitet werden.
 Ein Vorhersage-/Änderungstest und eine unabhängige Eintrittskarten-Aufgabe
