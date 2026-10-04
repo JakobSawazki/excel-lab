@@ -7,6 +7,26 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Abgeschlossen (lokal, 04.10.2026, gegen 15:12 Uhr):** L3.3/L3.4-
+  Dateiübergänge und Neuaufbau geprüft und ergänzt. L3.3 erklärt die zuvor
+  beim Neuaufbau nicht ausdrücklich angelegte Gesamtsumme F23 aus F10:F22,
+  getrennte Gruppenüberschriften und Datenbereiche, passende Person/Preis-
+  Zuordnung sowie mitverschobene Tarifliste H10:I12 nach zwei eingefügten
+  Blattzeilen. Kein erneutes Einfügen bei bereits passendem Layout. Vor der
+  Bearbeitung Teil 5 als neue Datei sichern, ursprüngliches Teilnehmerblatt
+  statt Testblatt verwenden und Teil 4 erhalten. L3.4 ergänzt den sicheren
+  Übergang Toto Teil 4 → Teil 5 → Teil 6, Punktüberschriften beim Neuaufbau,
+  getrennte Regelkontrolle nach erneutem Öffnen und Rückstellung der Eingaben.
+  Keine fertigen Ergebnisbeträge oder Musterlösungen ergänzt; Lernstandslogik
+  und Datenschema unverändert. Zwei neue Hilfen per Tastatur und in 32
+  Layoutkombinationen geprüft, am Desktop visuell kontrolliert. Bestehende
+  Übungstests L3.3–L3.8 erneut erfolgreich: weitere 96 Layoutkombinationen,
+  Eingaben, Grenzen, Fehlzuordnung bei gleicher Gesamtsumme, Suche/Fehler,
+  Noten-/Rundungsrechnung, Zielwert- und Regeländerungsszenarien. Lernstand
+  unverändert, keine externen Anfragen/Browserfehler oder privaten Materiallinks.
+  Arithmetik und Zeilenabbildung unabhängig geprüft, kein tatsächlicher
+  Excel-Lauf. Nächster Audit: L4-Arbeitswege; Gesamt-Audit offen.
+
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 15:08 Uhr):**
   L3.2-Dateiübergabe unter Commit `6dc753f89ac473152a1a2b74f8d684edb0d50188`
   veröffentlicht, Pages-Lauf `37204497466` erfolgreich. Online bestehen
