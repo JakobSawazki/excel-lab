@@ -2,10 +2,23 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 einschließlich der didaktischen Ergänzungen L3.7/L3.8, L4.1–L4.8 und des verbesserten Einstiegs L1.1 → L1.2 veröffentlicht und online geprüft
+Status: Version 0.10.1 mit didaktischen Ergänzungen und geprüftem L1-Arbeitsweg veröffentlicht; L1.3/L1.4-Aufbauhilfen und L1.6-Rückrechnungen online bestätigt
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht (04.10.2026, gegen 14:51 Uhr):** Geprüften L1-Nachtrag
+  autark auf GitHub veröffentlicht. Inhaltscommit
+  `db36339c19e1623817964bf11c2ce78e1f1ba624`, Pages-Lauf `37203444197`
+  erfolgreich. Online bestehen beide erweiterten Übungstests L1.3/L1.4 und
+  L1.5/L1.6 einschließlich der neuen Aufbauhilfen und Rückrechnungen. Die
+  drei fertigen Ergebnislisten sind in diesen Hilfen nicht mehr enthalten.
+  Online-Release-Test: 28 Seiten/54 Assets, keine JavaScript-Laufzeitfehler oder
+  privaten Materiallinks. Private Originale/Musterlösungen/Testdateien bleiben
+  ausgeschlossen. Versions-/Speicherschema unverändert. Folgende lokale
+  Historieneinträge sind damit veröffentlicht. Nächster fachlicher Audit:
+  L2.1–L2.5 auf Startwege, Eingaben, Änderungstests und Rückstellung;
+  anschließend Übergänge L3/L4. Gesamt-Audit weiterhin offen.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 14:49 Uhr):** Fachlichen Arbeitsweg
   L1.3–L1.6 geprüft. L1.3/L1.4 ergänzen ausklappbare Aufbauhilfen: tatsächliche
