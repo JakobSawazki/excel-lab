@@ -2,12 +2,12 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1; Veröffentlichung der didaktischen Ergänzungen L3.1–L3.6 beauftragt
+Status: Version 0.10.1 einschließlich didaktischer Ergänzungen L3.1–L3.6 veröffentlicht und online geprüft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
-- **Veröffentlichung beauftragt (04.10.2026, gegen 11:31 Uhr):** Der Benutzer
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 11:33 Uhr):** Der Benutzer
   hat den Push des gesamten aktuellen Projektstands und die Online-Veröffentlichung
   ausdrücklich beauftragt. Die Ergänzungen in L3.1–L3.6 werden auf dem bestehenden
   GitHub-Pages-Ziel veröffentlicht. Lokaler Release-Test: alle 28 HTML-Seiten und
@@ -16,7 +16,14 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Schema, XP-Regeln und Version 0.10.1 bleiben unverändert. Die historischen
   Vermerke „nur lokal“ unten beschreiben den damaligen Stand. Die didaktische
   Weiterprüfung von L3.7/L3.8 und L4 sowie die Unterrichtserprobung bleiben offen.
-  Deployment-Ergebnis und Online-Prüfung werden nach erfolgreicher Veröffentlichung ergänzt.
+  Inhalts-Commit: `cc71f160777e9f5a5b88342147ee72fa37f575e3`.
+  GitHub-Pages-Lauf `37192484534` erfolgreich abgeschlossen um 11:32:54 Uhr
+  (Europe/Berlin). Online-Release-Test: 28 Seiten und 54 Assets erreichbar,
+  öffentliche Materialumleitung und Version 0.10.1 bestätigt, keine Browserfehler.
+  Alle 14 neuen ausklappbaren Abschnitte in L3.1–L3.6 online nachgewiesen.
+  Zusätzlich vor dem Push alle drei lokalen Übungstests erneut bestanden:
+  Tastaturbedienung, insgesamt 96 Layoutkombinationen, unveränderter Lernstand,
+  unabhängige Rechenmodelle, keine externen Anfragen oder Browserfehler.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 11:23 Uhr):** L3.5 um vollständige
   Testliste 0–13, verkürzte Matrix, ungültigen Suchwert 14 und falschen
