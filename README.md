@@ -55,6 +55,30 @@ fehlendem Preis, Preisänderung und bewusster Erweiterung der Suchmatrix.
 L3.6 ergänzt gezielte Änderungen der Noten-Rechenkette und eine unabhängige
 Zeitplanung zum Vergleich von Einzelrundung und Rundung der Gesamtsumme.
 
+Lokal ergänzt, noch nicht veröffentlicht: L3.7 ergänzt Modelltests und eine
+eigenständige Schulfest-Kalkulation mit Zielwertsuche, ganzen Gästezahlen und
+einem unerreichbaren Ziel. L3.8 ergänzt eine Empfehlung für komplementäre
+Fallauswahl sowie ein Testprotokoll und konkrete Änderungstests für alle sechs Fälle.
+L4.1 ergänzt Datenlesen ohne unbelegte Ursachenbehauptung und eine AG-Tabelle
+mit bekannter Null, neuer Kategorie und expliziter Prüfung von Summen-/Diagrammquelle.
+L4.2 ergänzt erneutes Sortieren nach einer Änderung sowie einen isolierten
+Fehlzuordnungstest: Eine unveränderte Summe beweist keine richtigen Namen-Wert-Paare.
+Beide Einheiten unterscheiden Datenänderung von optischer Änderung durch automatische Skalen.
+L4.3 ergänzt belegte Zeitreihen-Aussagen, absolute/relative Änderungen und eine
+Bibliotheks-Aufgabe mit unbekanntem Wert, echter Null und unvollständiger Gesamtsumme.
+L4.4 ergänzt einen Zuschlagstest zum Vergleich von Teilnehmer- und Kostenanteilen
+sowie einen Budgetfaktor-Transfer: gleiche Verteilung bei anderer Gesamtsumme,
+aber keine berechenbaren Kreisanteile bei Gesamtsumme 0.
+L4.5 ergänzt einen Drei-Team-Transfer mit Einzelwert-, Summen- und Anteilsfragen
+sowie einem absichtlich unvollständigen 100-%-Diagramm und Wiederherstellung.
+L4.6 ergänzt eine künstliche Fertigungsreihe mit ungleichen X-Abständen,
+Modellprüfung, Einzelpunktänderung, Abweichungen und ausdrücklich unsicherer Extrapolation.
+L4.7 ergänzt einen Standortvergleich zum gewichteten Umsatz je Kunde; ein
+unbelegter Jahresbezug der Standortkennzahl wurde entfernt.
+L4.8 ergänzt einen Fahrtvergleich mit ungleichen Abschnittsdauern, kumulierten
+Werten und einer echten Pause; Gesamtgeschwindigkeit und einfacher Mittelwert
+der Abschnittsgeschwindigkeiten werden bewusst getrennt.
+
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
 

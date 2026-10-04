@@ -2,10 +2,154 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 einschließlich didaktischer Ergänzungen L3.1–L3.6 veröffentlicht und online geprüft
+Status: Version 0.10.1 einschließlich L3.1–L3.6 online geprüft; L3.7/L3.8 und L4.1–L4.8 didaktisch lokal ergänzt, noch nicht veröffentlicht
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 12:02 Uhr):** L4.7 ergänzt
+  eigenständigen Zwei-Standort-Transfer mit vollständigen Eingaben/Zellplan,
+  Gesamtumsatz je Kunde statt ungewichtetem Mittelwert der Standortdurchschnitte,
+  Einzeltest Kundenanzahl 3 → 4 → 3, unveränderten Umsatzanteilen und
+  Diagrammvergleich in € je Kunde. Durchschnitt ist kein identischer Einzelkauf.
+  Unbelegtes „Jahresumsatz“ in der Kennzahl der ursprünglichen Standorttabelle
+  entfernt; fehlender Zeitraum ausdrücklich benannt, Filialjahresaufgabe unverändert.
+  L4.8 ergänzt eigenständigen Fahrtvergleich: zwei unterschiedlich lange
+  Fahrtabschnitte, konkrete Eingaben/Zellplan, km/min von km/h unterscheiden,
+  Gesamtstrecke/Gesamtzeit gegenüber einfachem Geschwindigkeitsmittel prüfen.
+  Dritter Abschnitt mit 0 km und 10 min Pause bleibt als bekannter Datensatz.
+  Summen-/Diagrammbereiche bis zur neuen letzten Zeile erweitern; Gesamtzeit auf X,
+  Gesamtstrecke auf Y. Pausentest 10 → 20 → 10 min, unveränderte Strecke und
+  ursprüngliche Fahrtteilgeschwindigkeiten erklären. Bezugszeit einschließlich
+  Pause benennen; keine sichere Ankunftsprognose oder echter Versuch vorgesehen.
+  Zwei ausklappbare Abschnitte vor Verständnis-Checks; XP/Schema unverändert.
+  Verifiziert: Eingaben, Tastatur, 32 Layoutkombinationen, unveränderter Lernstand,
+  öffentliche Materialumleitung, keine externen Anfragen/Browserfehler.
+  Standortvergleich Desktop und Fahrtvergleich mobil visuell geprüft.
+  Unabhängige Arithmetik bestätigt Gewichtung, Einheiten, kumulierte Paare und
+  Pausenwirkung; kein tatsächlicher Excel-Lauf behauptet. Bestehende L4.7-/L4.8-
+  Tests bestanden: Voraussetzungen, Quizversuche, Persistenz, Lehrkraftgate,
+  100 XP, Rücknahme, Profilwechsel, alte Abschlüsse und Navigation.
+  Lokaler Release-Test: 28 HTML-Seiten und 54 Assets, keine JS-Laufzeitfehler.
+  Private Originale/Musterlösungen unverändert; kein Push oder Deployment.
+  Nächster Schritt: Gesamtprüfung der didaktischen Ergänzungen – konsistente
+  Begriffe, Dateinamen, Voraussetzungen, Hilfen und Testaufträge über L1–L4;
+  anschließend verbleibende Lücken gezielt beheben. Unterrichtserprobung offen.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 11:57 Uhr):** L4.5 ergänzt
+  eigenständigen Projektteam-Transfer mit drei vollständigen Datensätzen und
+  konkretem Zellplan: gruppiert, gestapelt und 100 % aus denselben Zahlen;
+  passende Fragen zu Einzelwert, Teamgröße und Zusammensetzung begründen.
+  Einzeländerung Alpha-Technik 6 → 10 → 6 mit Prüfung unveränderter Werte,
+  Summen und Anteile. Auf einer Blattkopie eine Reihe ausschließlich im
+  100-%-Diagramm entfernen: Volle Säulen beweisen keine vollständige Auswahl.
+  Anschließend ursprüngliche Quelle und beide Reihen wiederherstellen.
+  L4.6 ergänzt eine künstliche Vier-Paar-Fertigungsreihe mit vollständigem
+  Zellplan, ungleichen X-Abständen und unabhängiger Ausgangsmodellprüfung.
+  Blattkopie mit Y-Änderung 9 → 18 → 9, gemeinsamen Achsengrenzen und
+  Modellabweichungen beobachteter Y-Wert minus Geradenwert. Geänderte
+  Modellwerte sind von unveränderten Messwerten getrennt. Weit außerhalb
+  liegenden Modellwert kennzeichnen, nicht als fünften Messpunkt übernehmen.
+  Eingetippte Koeffizienten werden nach Rückstellung aktualisiert oder entfernt;
+  keine automatische Neuberechnung dieser Eingaben behauptet.
+  In Hauptaufgaben Datenänderung von optischen Änderungen durch automatische
+  Skalierung getrennt. Zwei ausklappbare Zusatzabschnitte vor den Verständnis-Checks;
+  kein Schema-/XP-Wechsel, keine vollständigen ursprünglichen Musterlösungen.
+  Verifiziert: komplette Eingaben, Tastatur, 32 Layoutkombinationen, unveränderter
+  Lernstand, öffentliche Materialumleitung, keine externen Anfragen/Browserfehler.
+  Projektteams Desktop und Fertigungstest mobil visuell geprüft. Unabhängige
+  Modelle prüfen Normierung, Summen, unvollständige Auswahl, Regressionsänderung,
+  R² und Abweichungsvorzeichen; kein tatsächlicher Excel-Lauf behauptet.
+  Bestehende L4.5-/L4.6-Tests bestanden: Voraussetzungen, Quizversuche,
+  Persistenz, Lehrkraftgate, 100 XP, Rücknahme, Profilwechsel, alte Abschlüsse
+  und Navigation. Lokaler Release-Test: 28 Seiten und 54 Assets, keine JS-Fehler.
+  Private Originale/Musterlösungen unverändert. Nur lokal; kein Push/Deployment.
+  Nächster Audit: L4.7/L4.8; danach Gesamtprüfung der didaktischen Ergänzungen.
+  Unterrichtserprobung bleibt offen.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 11:51 Uhr):** L4.3 ergänzt
+  Protokoll und Erklärung absoluter/relativer Änderungen mit jeweiligem Startwert,
+  vier statt fünf Jahresabständen und gezieltem letzten-Wert-Test 50 → 80 → 50.
+  Veränderungen von Punkten, angrenzenden Linien und automatischer Skala getrennt.
+  Eigenständige Bibliotheks-Zeitreihe mit vollständigem Zellplan, fehlender Woche
+  und tatsächlich gemessener Null; Testkopie mit erfundenem Wert und Rückstellung.
+  Grenzen der Aussage: Startwert 0 erlaubt keine übliche relative Veränderung,
+  bekannte Teilsumme ersetzt keine vollständige Summe bei fehlender Messung.
+  L4.4 ergänzt optionalen konkreten Zellplan und Zuschlagstests 1 → 0 → 1,5 → 1:
+  Teilnehmer- und Kostenanteile bei gleichem bzw. unterschiedlichem Satz vergleichen.
+  Eigenständiger Budgetfaktor-Transfer mit drei vollständigen Eingaben, zentralem
+  Faktor, ungerundeten Anteilen, Gesamtsumme und Kreis. Faktor 2 ändert Eurobeträge,
+  aber nicht die Zusammensetzung; Faktor 0 hat kein positives Ganzes und keine
+  gültigen Prozentanteile. Keine erfundenen 0-%-Ersatzwerte; gültigen Endstand herstellen.
+  Vier ausklappbare Abschnitte vor dem Verständnis-Check, keine Schema-/XP-Änderung.
+  Verifiziert: vollständige Eingaben, Tastatur, 32 Layoutkombinationen, unveränderter
+  Lernstand, öffentliche Materialumleitung, keine externen Anfragen/Browserfehler.
+  Bibliotheksaufgabe Desktop und Budgetvergleich mobil visuell geprüft.
+  Unabhängige Modelle prüfen Änderungen, Lücke/Null, Kosten-/Teilnehmeranteile,
+  Skalierungsinvarianz und ungültige Nullsumme; kein Excel-Lauf behauptet.
+  Bestehende L4.3-/L4.4-Tests bestanden: Voraussetzungen, leere/falsche/richtige
+  Quizversuche, Persistenz, Lehrkraftgate, 100 XP, Rücknahme, Profilwechsel,
+  alte Abschlüsse und Navigation. Lokaler Release-Test: 28 Seiten, 54 Assets,
+  keine JavaScript-Laufzeitfehler. Private Originale/Musterlösungen unverändert.
+  Nur lokal, kein Push oder Deployment. Nächster Audit: L4.5/L4.6, dann L4.7/L4.8.
+  Unterrichtserprobung bleibt offen.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 11:45 Uhr):** L4.1 ergänzt
+  gezieltes Datenlesen und den Einzeltest Schwimmen 50 → 150 → 50.
+  Aussagen über Anmeldungen werden von nicht erhobenen Ursachen getrennt.
+  Eigenständige AG-Aufgabe mit vollständigem Zellplan: vier bekannte Zahlen
+  einschließlich 0, fünfte Kategorie vor der Summe einfügen, Summenbereich und
+  Diagrammquelle separat prüfen, neuen Datenwert ändern und zurückstellen.
+  L4.2 ergänzt den Rangfolgetest mit Suche nach Namen statt alter Zelladresse,
+  erneutem Sortieren vor und nach Rückstellung und Prüfung der sichtbaren Reihenfolge.
+  AG-Transfer mit fünf vollständigen Paaren und langen Namen; eine isolierte
+  Blattkopie wird absichtlich nur nach Zahlen sortiert. Unveränderte Summe bei
+  vier falschen Zuordnungen zeigt die Grenze der Summenkontrolle. Reparatur
+  durch Wiederherstellen der Originalpaare, nicht durch bloßes Nachsortieren.
+  Kopierte Diagrammquellen auf das beabsichtigte Blatt prüfen.
+  In beiden Hauptaufgaben missverständliches „nur diese Säule/dieser Balken“
+  präzisiert: Nur ein Datenwert ändert sich; automatische Skalierung kann
+  trotzdem mehrere sichtbare Höhen/Längen beeinflussen.
+  Vier ausklappbare Abschnitte vor den Verständnis-Checks, XP/Schema unverändert.
+  Verifiziert: vollständige Eingaben, Tastatur, 32 Layoutkombinationen,
+  unveränderter Lernstand, öffentliche Materialumleitung, keine externen Anfragen
+  oder Browserfehler. AG-Säulenaufgabe Desktop und Balken-Transfer mobil visuell geprüft.
+  Browser-Beispiele für Achsenwechsel und Rangsortierung weiterhin korrekt.
+  Unabhängige Arithmetik prüft Summen, neue Datenzeile, Gleichstand und Fehlzuordnung;
+  kein tatsächlicher Excel-/Diagrammlauf behauptet. Bestehende L4.1-/L4.2-Tests
+  bestanden: Voraussetzungen, leere/falsche/richtige Quizversuche, Persistenz,
+  Lehrkraftgate, 100 XP, Rücknahme, Profilwechsel, alte Abschlüsse und Navigation.
+  Private Originale/Musterlösungen unverändert; kein Push oder Deployment.
+  Zusätzlicher L4.2-Inhaltstest bestanden: Daten-/Balkenverhältnisse, lange Namen,
+  Tastatur und keine Lernstandänderung in zwei Themen und vier Breiten.
+  Lokaler Release-Test über alle 28 HTML-Seiten und 54 Assets bestanden,
+  keine JavaScript-Laufzeitfehler.
+  Nächster Audit: L4.3/L4.4, anschließend L4.5–L4.8. Unterrichtserprobung bleibt offen.
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 11:39 Uhr):** L3.7 ergänzt
+  drei einfache Modelltests: Kurs 1, Zinssatz 0 und doppeltes Startkapital.
+  Eine eigenständige Schulfest-Kalkulation mit vollständigem Zellplan trainiert
+  Vorwärtsprüfung, Zielwertsuche, Prüfung benachbarter ganzer Gästezahlen und
+  die Erklärung eines unerreichbaren Nullpunkts bei fehlendem Deckungsbeitrag.
+  Eigene Formeln, Vorhersagen, Testprotokoll und Rückstellung statt Musterlösung.
+  L3.8 ergänzt Empfehlungen für komplementäre Fallauswahl, ohne die freie
+  Wahl von zwei Fällen oder Abschlussbedingungen zu verändern. Testwerkstatt
+  mit Protokollspalten und konkreten Änderungen für Grundgehalt, Grenzjahr,
+  Umsatz/Ort, Kundenschlüssel und Abteilungsbeitrag; unveränderte Ergebnisse
+  werden ebenso geprüft wie veränderte. Nur gewählte Fälle bearbeiten.
+  Vier ausklappbare Abschnitte vor den Verständnis-Checks; keine XP-/Schemaänderung.
+  Verifiziert: Tastaturbedienung, 32 Layoutkombinationen, unveränderter Lernstand,
+  öffentliche Materialumleitung, keine externen Anfragen oder Browserfehler.
+  Schulfest auf Desktop und Testwerkstatt mobil visuell geprüft. Unabhängige
+  Rechenmodelle bestätigen Ganzzahlgrenze, unerreichbares Ziel, Nullzins-/Skalierung
+  sowie ausgewählte Regel-/Gruppenänderungen; kein tatsächlicher Excel-Lauf behauptet.
+  Bestehende L3.7-/L3.8-Tests bestanden: Voraussetzungen, leere/falsche/richtige
+  Quizversuche, Persistenz, Lehrkraftgate, 100 XP, Rücknahme, Profilwechsel,
+  Navigation und alte gültige Abschlüsse. Private Originale/Musterlösungen unverändert.
+  Lokaler Release-Test über alle 28 HTML-Seiten und 54 Assets bestanden,
+  keine JavaScript-Laufzeitfehler.
+  Nächster Audit: L4.1/L4.2, anschließend übrige L4-Einheiten; Unterrichtserprobung offen.
+  Diese Ergänzungen sind nur lokal, kein weiterer Push oder Deployment.
 
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 11:33 Uhr):** Der Benutzer
   hat den Push des gesamten aktuellen Projektstands und die Online-Veröffentlichung
