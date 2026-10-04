@@ -2,10 +2,51 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten lokal geprüft, Profilwechsel-Korrektur online bestätigt; fachlicher BPE1-Abschlussabgleich offen
+Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter L1-Quellenabgleich dokumentiert, L1.6-Kontrollhilfen lokal geprüft; Quellenabgleich L2–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Abgeschlossen (lokal, 04.10.2026, gegen 16:23 Uhr):** Direkter fachlicher
+  Quellenabgleich für L1.1–L1.6 durchgeführt: elf Aufgaben-DOCX, vier
+  Informations-DOCX und die beiden XLSX-Vorlagen aus
+  `materialien/BPE1/Lernfortschritt_1` schreibgeschützt untersucht. Zusätzlich
+  alle neun eingebetteten Bilder der Aufgaben L1_1.1, L1_2, L1_3, L1_6.2
+  und L1_6.3 lokal extrahiert und visuell angesehen. Ergebnis: Preise/Mengen,
+  Formatvorgaben, neue Getränkeart, Sommerfest-Zahlungen sowie die fünf
+  Vertiefungsmodelle passen zur Umsetzung. Die Originalvorlage von L1_2
+  enthält Eingaben, aber noch keine Ergebnisformeln; die Tarifvorlage enthält
+  Beschriftungen, aber keine Tarifwerte oder Berechnungen. Keine Originale
+  oder Musterlösungen geändert. Zwei Kontrollhilfen in L1.6 ergänzt:
+  unabhängige Kino-Wochenrechnung und Abgleich der getrennten Ergebnis-/
+  Formelblattkopien. Übungstest mit 32 Layoutzuständen, Tastaturbedienung,
+  unverändertem Lernstand und unabhängigen Modellrechnungen bestanden;
+  Desktop-/Mobilansicht der Ergänzungen angesehen. Erneuter Abschluss-Test
+  der sechs L1-Seiten mit 20 Fragen bestanden: Zugang, richtige/falsche/leere
+  Antworten, eigene Checks, Lehrkraftbestätigung, 100 XP, Rücknahme, ältere
+  Abschlüsse, Profilwechsel, Speicherfehler und Entwickler-Vorschau.
+  Veröffentlichung/Online-Prüfung folgen.
+
+  **Quellenzuordnung für die Übergabe:** Alle folgenden Dateien liegen in
+  `materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen`, die genannten
+  Informationsmaterialien im benachbarten Ordner `Informationsmaterial`.
+
+  | Lernseite | Direkt geprüfte Originale | Geprüfter Zusammenhang und bewusste Anpassung |
+  | --- | --- | --- |
+  | L1.1 | `L1_1.1 Aufgabenstellung Entwurf einer Tabelle.docx`, `L1_1.2 Aufgabenstellung Erstellen einer Tabelle in Excel.docx`, Informationsmaterial L1_1 | Fünf Getränke mit den Preisen aus dem Bild und den Mengen aus dem Text; Planung und Eingabe jetzt direkt in Excel statt verpflichtender handschriftlicher Tabelle. Gesamtpreise bleiben zunächst selbst berechnete Eingabewerte. |
+  | L1.2 | `L1_2 Aufgabenstellung Formeln in Excel.docx`, `L1_2 Tabellenvorlage Formeln in Excel.xlsx` | Fünf Positionsformeln und Summe; eigene L1.1-Datei oder leere Mappe funktionieren ohne öffentlichen Vorlagendownload. Eigener Zellplan vertauscht Limonade/Mineralwasser gegenüber der Originalvorlage und setzt die Summenbeschriftung in A9 statt C9; Preis/Menge bleiben beim richtigen Getränk. Hinweise berücksichtigen den tatsächlichen eigenen Aufbau. |
+  | L1.3 | `L1_3 Aufgabenstellung Formatieren von Texten und Zahlen.docx`, Informationsmaterial L1_3 | Text blau, Eingabezahlen grün, Formeln rot; Arial 20 beim Titel, Calibri 14/11, zweizeiliges B3, Ausrichtung, Euro/Flaschen und Summenlinie. Die Erklärung unterscheidet bereits gespeicherten Prozentwert und Anzeige, statt die missverständliche Prozentbeschreibung des alten Infoblatts zu übernehmen. |
+  | L1.4 | `L1_4 Aufgabenstellung Formeln kopieren.docx`, Informationsmaterial L1_4 | Apfelsaftschorle: 12 Flaschen zu 1,25 €. Positionsformel wird kopiert; eigene neue Zeile und Gesamtsumme werden getrennt geprüft. Die alte Kopierempfehlung bis D9 wird nicht blind auf die dort stehende Summenzeile übertragen. |
+  | L1.5 | `L1_5 Aufgabenstellung Tabellenstruktur entwerfen.docx`, Informationsmaterial L1_5 | Fünf Datensätze, acht Merkmale, Beitrag 10 € und Zahlungen 10/0/5/10/3; zentrale Vorgabe und individuelle Eingaben getrennt. Textformat für Telefon, Gestaltung und Druckbild erklärt. Zusatzperson der Transferübung bewusst ohne echte Kontaktdaten. |
+  | L1.6 | `L1_6.1 Vertiefungsaufgabe1 Tabellen entwerfen.docx`, `L1_6.2 Vertiefungsaufgabe2 Brötchen.docx`, `L1_6.3 Vertiefungsaufgabe3 Dosen.docx`, `L1_6.4 Vertiefungsaufgabe4 Zinsen.docx`, `L1_6.5 Vertiefungsaufgabe5 Tarifvergleich.docx`, `L1_6.5 Vorlage Vertiefungsaufgabe5 Tarifvergleich.xlsx` | Kino: 3 × 7 Besucherwerte und Preise 8/12/10. Brötchen: 50 Stück, 30 Minuten fest plus 15 Minuten je 10. Dosen: 20.000 Liter, 0,5/1⁄3/0,125 Liter. Vier Zinsfälle und beide Tarife vollständig übernommen; fertig berechnete Originalwerte bewusst nicht als Hauptaufgabenlösung angezeigt. Aufgaben 2–5 behalten Ergebnis-/Formelansicht. Paketgrenzen und eigenständige Kontrollrechnungen ergänzen die Originalaufträge. |
+
+  **Prüfgrenzen und nächste Arbeit:** DOCX-Text/Tabellen und eingebettete
+  Aufgabenbilder sowie XLSX-Zellinhalte untersucht, kein vollständiger
+  DOCX-Seitenrender und kein Excel-Rechenlauf. Lokale Originalvideos nicht
+  vollständig angesehen. Browserprüfungen beweisen Bedienung/Abschlusslogik,
+  nicht den Lernerfolg. Die fachliche Prüfung von L2–L4 anhand der tatsächlichen
+  Originaldateien bleibt der nächste erforderliche Teil des Gesamtauftrags;
+  ältere reine Lernseiten-/Rechentests ersetzen diesen Quellenabgleich nicht.
 
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 16:06 Uhr):**
   Profilwechsel-Korrektur in neun Einheiten und bereinigte Übergabedokumentation
