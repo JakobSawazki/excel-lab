@@ -79,7 +79,7 @@ L4.8 ergänzt einen Fahrtvergleich mit ungleichen Abschnittsdauern, kumulierten
 Werten und einer echten Pause; Gesamtgeschwindigkeit und einfacher Mittelwert
 der Abschnittsgeschwindigkeiten werden bewusst getrennt.
 
-Lokal ergänzt, noch nicht veröffentlicht: L1.1 bietet eine ausklappbare
+Online veröffentlicht und geprüft am 04.10.2026: L1.1 bietet eine ausklappbare
 Zellplan-Hilfe sowie einen Änderungstest mit eingetippten Ergebniszahlen.
 Die Schüler sagen die Auswirkung zweier zusätzlicher Flaschen voraus,
 berichtigen die Ergebnisse von Hand und erklären, wozu L1.2 Formeln einführt.

@@ -2,10 +2,27 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 einschließlich der didaktischen Ergänzungen L3.7/L3.8 und L4.1–L4.8 veröffentlicht; L1.1-Einstieg anschließend lokal ergänzt und geprüft
+Status: Version 0.10.1 einschließlich der didaktischen Ergänzungen L3.7/L3.8, L4.1–L4.8 und des verbesserten Einstiegs L1.1 → L1.2 veröffentlicht und online geprüft
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht (04.10.2026, gegen 14:42 Uhr):** Geeigneten geprüften
+  L1.1/L1.2-Nachtrag gemäß Auftrag autark auf `main` veröffentlicht.
+  Inhaltscommit `64b2a58348876dc7d1e9ffb88e73e2d7d6dcc891`, Pages-Lauf
+  `37202930617` erfolgreich. Online bestehen der L1.1-Einstiegstest, der
+  erweiterte L1.2-Übergangs-/Demo-Test und der Release-Test für 28 Seiten/54 Assets.
+  Keine JavaScript-Fehler, keine privaten Materiallinks, Lernstand bei den
+  Übungstests unverändert. Lokaler L1.2-Abschlusstest bestätigt Voraussetzungen,
+  leere/falsche/richtige Quizversuche, Persistenz, 100 Punkte, Rücknahme,
+  alte Abschlüsse und Profilwechsel. Version 0.10.1/Schema 1 unverändert;
+  keine privaten Originale, Musterlösungen oder lokalen Testdateien gepusht.
+  Die folgenden lokalen Einträge beschreiben die Entstehung; diese Ergänzungen
+  sind jetzt online. Nächster fachlicher Audit: L1.3–L1.6 und L2.1–L2.5 auf
+  verwendete Startdateien, vollständige Eingaben, klare Änderungstests und
+  Wiederherstellung prüfen. Danach die Übergänge L3/L4 fachlich abschließend
+  prüfen. Technischer Pfad-Audit ist abgeschlossen, didaktischer Gesamt-Audit
+  und Unterrichtserprobung sind dadurch noch nicht bewiesen.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 14:39 Uhr):** Übergang L1.1 → L1.2
   ergänzt: vorhandene eigene Arbeitsmappe unter neuem Namen sichern,
