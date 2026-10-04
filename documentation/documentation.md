@@ -2,10 +2,23 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter L1-Quellenabgleich dokumentiert, L1.6-Kontrollhilfen lokal geprüft; Quellenabgleich L2–L4 offen
+Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter L1-Quellenabgleich dokumentiert, L1.6-Kontrollhilfen online geprüft; Quellenabgleich L2–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht und online geprüft (04.10.2026, gegen 16:28 Uhr):**
+  L1.6-Kontrollhilfen und L1-Quellenzuordnung unter Commit
+  `fdbbc19a6c2b3fb24a4462cf420d3a23cd4b5852` veröffentlicht;
+  Pages-Lauf `37209233308` erfolgreich. Der öffentliche Übungstest für
+  L1.5/L1.6 besteht dieselben 32 Layoutzustände, Tastatur-/Inhaltsprüfungen
+  und unabhängigen Rechenkontrollen; Lernstand unverändert, keine externen
+  Anfragen oder JavaScript-Laufzeitfehler. Öffentlicher Release-Test:
+  28 Seiten/54 Assets, Version 0.10.1, keine privaten Materiallinks oder
+  Browserfehler. Der folgende lokale Eintrag ist damit veröffentlicht.
+  Originale, extrahierte Bilder und temporäre Tests bleiben lokal. Nächster
+  erforderlicher Schritt ist der direkte Quellenabgleich L2–L4; die bereits
+  bestandenen Browsertests ersetzen diesen nicht.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 16:23 Uhr):** Direkter fachlicher
   Quellenabgleich für L1.1–L1.6 durchgeführt: elf Aufgaben-DOCX, vier
