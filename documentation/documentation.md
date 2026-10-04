@@ -2,10 +2,24 @@
 
 Stand: 4. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 einschließlich L3.1–L3.6 online geprüft; L3.7/L3.8 und L4.1–L4.8 didaktisch lokal ergänzt, noch nicht veröffentlicht
+Status: Version 0.10.1 einschließlich der didaktischen Ergänzungen L3.7/L3.8 und L4.1–L4.8 veröffentlicht; alle 16 neuen Übungsabschnitte online bestätigt
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht (04.10.2026, gegen 12:10 Uhr):** Auf ausdrücklichen Auftrag
+  den gesamten aktuellen Projektstand auf `main` gepusht. Inhaltscommit
+  `105ce3ab30ac58b4a58069e3981b5f4876bf3f7b`; GitHub-Pages-Lauf
+  `37194443734` erfolgreich abgeschlossen. Alle 16 neuen Übungsabschnitte
+  in L3.7/L3.8 und L4.1–L4.8 auf der öffentlichen Website bestätigt.
+  Lokaler Release-Test vor Veröffentlichung: 28 HTML-Seiten, 54 Assets,
+  öffentliche Materialumleitung und keine JavaScript-Laufzeitfehler.
+  Derselbe Release-Test anschließend auch auf GitHub Pages erfolgreich:
+  28 HTML-Seiten, 54 Assets, keine privaten Materiallinks oder Browserfehler.
+  Private Originaldateien, Musterlösungen und lokale Testdateien bleiben
+  ausgeschlossen. Die folgenden historischen Einträge „nur lokal“ beschreiben
+  den damaligen Bearbeitungsstand; die genannten Ergänzungen sind jetzt online.
+  Gesamtprüfung der Didaktik und Unterrichtserprobung bleiben offen.
 
 - **Abgeschlossen (lokal, 04.10.2026, gegen 12:02 Uhr):** L4.7 ergänzt
   eigenständigen Zwei-Standort-Transfer mit vollständigen Eingaben/Zellplan,

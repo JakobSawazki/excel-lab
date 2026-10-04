@@ -55,7 +55,7 @@ fehlendem Preis, Preisänderung und bewusster Erweiterung der Suchmatrix.
 L3.6 ergänzt gezielte Änderungen der Noten-Rechenkette und eine unabhängige
 Zeitplanung zum Vergleich von Einzelrundung und Rundung der Gesamtsumme.
 
-Lokal ergänzt, noch nicht veröffentlicht: L3.7 ergänzt Modelltests und eine
+Online veröffentlicht und geprüft am 04.10.2026: L3.7 ergänzt Modelltests und eine
 eigenständige Schulfest-Kalkulation mit Zielwertsuche, ganzen Gästezahlen und
 einem unerreichbaren Ziel. L3.8 ergänzt eine Empfehlung für komplementäre
 Fallauswahl sowie ein Testprotokoll und konkrete Änderungstests für alle sechs Fälle.
