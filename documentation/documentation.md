@@ -1,11 +1,41 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 4. Oktober 2026, Europe/Berlin
+Stand: 7. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
 Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert, neue L2-Kontrollhilfen online geprüft; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Didaktische Vorgabe bestätigt (07.10.2026):** Neue Lernsituationen
+  erhalten künftig wie L1.1 ein passendes motivierendes Bild, eine kurze
+  Situationsbeschreibung und einen konkreten Auftrag mit Verantwortung für
+  die Lernenden. Bestehende Situationen müssen nicht in jeder Folgeeinheit
+  wiederholt werden. Jakob hat die Veröffentlichung des aktuellen Standes
+  ausdrücklich beauftragt.
+
+- **Abgeschlossen (lokal, 07.10.2026, gegen 11:51 Uhr):** L1.1 erhält auf
+  ausdrücklichen Wunsch eine fiktive Firmenveranstaltung als Einstieg mit
+  fotorealistischem, KI-generiertem Bild. Die Lernenden übernehmen den
+  Getränkeeinkauf, erstellen vier Spalten und berechnen die fünf Positionen
+  bereits mit `=B4*C4` bis `=B8*C8`, danach `=SUMME(D4:D8)` in D9.
+  Die bisherige Trennung „in L1.1 nur Ergebniszahlen, Formeln erst in L1.2“
+  ist damit bewusst geändert. L1.2 vertieft nun den Einstieg und berücksichtigt
+  weiterhin ältere Schülerdateien mit festen Ergebniszahlen. Originale,
+  Getränkenamen, Preise, Mengen, Dateinamen und Zellzuordnung bleiben erhalten.
+  Ein einfacher Mengen-Änderungstest ersetzt den längeren Blattkopie-Test;
+  die Ausgangsmenge wird vor dem Speichern wiederhergestellt. Keine zusätzlichen
+  XP oder Änderungen an Quiz, Speicherschema und bisherigen Abschlüssen.
+  Tests bestanden: 16 Layoutzustände, Tastatur-Aufklappen, vollständiger Zellplan,
+  unabhängige Rechenprüfung und beide Abschlusswege L1.1/L1.2 (sechs Fragen).
+  Dies prüft Browser und Anleitung, nicht die tatsächliche Arbeit in Excel.
+  Neue Änderungen noch nicht auf GitHub veröffentlicht.
+
+  Bild: `assets/lessons/l1-1-firmenveranstaltung.png` (1536 × 1024 Pixel),
+  erstellt mit dem eingebauten Imagegen-Werkzeug, ohne reale Personen als Vorlage.
+  Verwendeter Prompt:
+
+  > Use case: photorealistic-natural. Asset type: wide landscape introductory photo for the German beginner lesson Excel-Lab L1.1. Primary request: students take responsibility for planning the drinks for a company event. Scene: a modern small company meeting room being prepared for an informal company gathering, daylight through windows, tables and a few simple decorations in the background. Subject: two young adult trainees collaboratively planning the beverage purchase at a table; a laptop showing a generic spreadsheet grid, a notebook, a small assortment of glass bottles of orange lemonade, cola, mineral water and fruit juice on the table, beverage crates nearby. They are looking thoughtfully at the list, not at the camera. Style: convincingly photorealistic editorial photograph, natural skin and fabric texture, realistic glass reflections, welcoming practical atmosphere, restrained natural colors. Composition: landscape 3:2, medium wide shot; keep people and bottles clearly visible, not a collage or graphic. Constraints: no alcohol, no readable text, no logos, no watermark, no identifiable real people, no numerical answers or formulas in the picture. The image illustrates a fictional teaching situation.
 
 - **Veröffentlicht und online geprüft (04.10.2026, gegen 16:47 Uhr):**
   L2.4/L2.5-Kontrollhilfen und direkte L2-Quellenzuordnung unter Commit

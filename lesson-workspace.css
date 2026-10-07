@@ -103,6 +103,17 @@
 .l16-source-check > summary:focus-visible { outline:3px solid var(--green); outline-offset:3px; }
 .l16-source-check > p { margin:.8rem 0 0; color:var(--text-soft); }
 
+/* L1.1 introduces the fictional assignment before the collapsible instructions. */
+.l11-situation { overflow:hidden; border:1px solid var(--metal-edge); border-radius:18px; background:var(--surface); box-shadow:inset 0 1px 0 var(--metal-hairline),0 12px 30px var(--metal-shadow); }
+.l11-situation figure { margin:0; }
+.l11-situation img { display:block; width:100%; height:auto; }
+.l11-situation figcaption { padding:.5rem 1.2rem; font-size:.75rem; color:var(--text-soft); }
+.l11-situation-copy { padding:1.2rem clamp(1rem,3vw,2rem) 1.6rem; }
+.l11-situation-copy h2 { margin:.5rem 0 1rem; font-size:clamp(1.45rem,3vw,2rem); line-height:1.2; }
+.l11-situation-copy p { line-height:1.65; }
+.l11-situation-note { color:var(--text-soft); font-size:.85rem; }
+.l11-situation code { overflow-wrap:anywhere; }
+
 /* L2.1 shares the compact data-table pattern for its six-course assignment. */
 .l21-access { padding-top:3rem; padding-bottom:4rem; }
 .l21-access .button { margin:.5rem .5rem .5rem 0; }

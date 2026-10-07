@@ -54,15 +54,15 @@
       points: 100,
       page: "l1-1.html",
       tags: ["Tabellenentwurf", "Daten"],
-      description: "Du planst eine Getränkeliste direkt in Excel, erfasst die Daten und berechnest die Einkaufskosten.",
-      goal: "Du kannst aus einem Sachverhalt einen sinnvollen Tabellenkopf entwickeln, Daten in Zellen eingeben und die Spaltenbreite passend einstellen.",
+      description: "Du planst den Getränkeeinkauf für eine Firmenveranstaltung und berechnest die Kosten mit einfachen Excel-Formeln.",
+      goal: "Du kannst eine Getränkeliste mit passenden Überschriften erstellen, Preis mal Menge berechnen und die Gesamtpreise mit SUMME addieren.",
       keyPoints: [
         { title: "Ein Datensatz pro Zeile", text: "Zusammengehörende Angaben stehen in derselben Zeile." },
         { title: "Ein Merkmal pro Spalte", text: "Überschriften benennen Inhalt und Einheit eindeutig." },
         { title: "Zelle auswählen und eingeben", text: "Zelle anklicken, Daten eingeben und mit Enter übernehmen." },
         { title: "Spaltenbreite anpassen", text: "Am Rand des Spaltenkopfs ziehen oder für optimale Breite doppelklicken." }
       ],
-      formulas: [{ code: "Gesamtpreis = Einkaufspreis je Flasche × Menge", note: "In L1.1 wird zuerst fachlich geplant. Excel-Formeln folgen in L1.2." }],
+      formulas: [{ code: "=B4*C4", note: "Preis je Flasche in B4 mal Menge in C4." }, { code: "=SUMME(D4:D8)", note: "Die fünf Gesamtpreise von D4 bis D8 addieren." }],
       steps: [
         "Lies zuerst alle Informationen auf der L1.1-Seite.",
         "Entwirf die Getränkeliste mit Getränkeart, Einkaufspreis je Flasche, Menge und Gesamtpreis.",
@@ -86,7 +86,7 @@
       points: 100,
       page: "l1-2.html",
       tags: ["Formeln", "Grundrechenarten"],
-      description: "Du ersetzt ausgerechnete Werte durch Formeln, damit Excel Ergebnisse automatisch aktualisiert.",
+      description: "Du vertiefst die Formeln aus deiner Getränkeliste und prüfst, wie Excel bei Änderungen automatisch mitrechnet.",
       goal: "Du kannst Formeln mit = beginnen, Zelladressen einsetzen und Rechenoperatoren korrekt verwenden.",
       keyPoints: [
         { title: "Gleichheitszeichen", text: "Jede Excel-Formel beginnt mit =." },
