@@ -2,10 +2,20 @@
 
 Stand: 7. Oktober 2026, Europe/Berlin
 Projektversion: 0.10.1
-Status: Version 0.10.1 veröffentlicht; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert, neue L2-Kontrollhilfen online geprüft; Quellenabgleich L3–L4 offen
+Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht und online geprüft (07.10.2026):** Neuer L1.1-Einstieg
+  einschließlich Bild, Formel-Anleitung und konsistentem Anschluss in L1.2
+  unter Commit `31c9e128d1a04e73e880801042f7ef67cc6fdb5a` veröffentlicht.
+  GitHub-Pages-Lauf `37603961213` erfolgreich. Öffentlicher L1.1-Test besteht:
+  Bild geladen, Aufgabenlink öffnet den richtigen Abschnitt, zwei Tastatur-Hilfen,
+  vollständiger Zellplan, unabhängige Rechnungen, 16 Layoutzustände und
+  unveränderter Lernstand. Öffentlicher Release-Test besteht mit 28 Seiten,
+  55 Assets und ohne private Materiallinks oder JavaScript-Laufzeitfehler.
+  Lokale Originalmaterialien und temporäre Tests bleiben unveröffentlicht.
 
 - **Didaktische Vorgabe bestätigt (07.10.2026):** Neue Lernsituationen
   erhalten künftig wie L1.1 ein passendes motivierendes Bild, eine kurze
@@ -29,7 +39,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Tests bestanden: 16 Layoutzustände, Tastatur-Aufklappen, vollständiger Zellplan,
   unabhängige Rechenprüfung und beide Abschlusswege L1.1/L1.2 (sechs Fragen).
   Dies prüft Browser und Anleitung, nicht die tatsächliche Arbeit in Excel.
-  Neue Änderungen noch nicht auf GitHub veröffentlicht.
+  Veröffentlichung und Online-Prüfung sind im Eintrag oben bestätigt.
 
   Bild: `assets/lessons/l1-1-firmenveranstaltung.png` (1536 × 1024 Pixel),
   erstellt mit dem eingebauten Imagegen-Werkzeug, ohne reale Personen als Vorlage.
