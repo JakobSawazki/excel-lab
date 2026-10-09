@@ -31,3 +31,7 @@ Use case: photorealistic-natural. Asset type: separate website topic-card photog
 ### L4
 
 Use case: photorealistic-natural. Asset type: separate website topic-card photograph for Excel-Lab, a learning platform for spreadsheet lessons. Make a premium, believable photographic close-up of a real modern brushed-aluminium laptop on a dark clean desk, straight and level, landscape 3:2 composition. Realistic metal grain, glass reflections, restrained studio daylight, dark navy surroundings, crisp screen and a little depth of field. The laptop screen must be the clear main subject, easy to recognize in a small card. No people, no logos, no watermarks, no captions, no large text over the photo, no floating holograms, no cartoon/vector illustration. Screen content is illustrative and doesn't need tiny readable text. Consistent camera angle and framing across a series of four images. Theme L4, charts and visualization. The laptop display shows a professional spreadsheet chart dashboard: prominent clean column chart and one simple line chart, small source-data grid beside them. Restrained amber and emerald colors, amber accent light.
+
+Seit dem 9. Oktober 2026 liegt jedes Bild zusätzlich als verlustfreies WebP
+in gleicher Auflösung vor (pixelgleich geprüft); die Startseite lädt das WebP.
+Die PNG-Dateien bleiben die Quelle.

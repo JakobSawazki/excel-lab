@@ -286,7 +286,11 @@ Excel-Lab/
 ├── l2-4.js                    Zugang, Abschluss und Punkte auf der L2.4-Seite
 ├── l2-5.js                    Zugang, Verständnis-Check und Abschluss auf der L2.5-Seite
 ├── l3-1.js                    Zugang, Verständnis-Check und Abschluss auf der L3.1-Seite
+├── l1-1.js … l4-8.js          Antworten, Hinweise und Demo je Lernseite
+├── lesson-core.js             gemeinsamer Ablauf aller Lernseiten (Zugang, Check, Abschluss)
+├── theme-boot.js              Farbschema und Darstellung vor dem ersten Zeichnen
 ├── developer-mode.js          temporäre Entwicklervorschau
+├── tests/                     Node-Tests und Browsertests (siehe „Tests“)
 ├── documentation/
 │   └── documentation.md       Projektstand, Aufgaben, Ideen und KI-Übergaben
 ├── .nojekyll                  direkte statische Bereitstellung über GitHub Pages
@@ -297,6 +301,32 @@ Excel-Lab/
 └── scripts/
     └── sync-materials.ps1
 ```
+
+## Tests
+
+Die Node-Tests brauchen keine Pakete und prüfen Inhaltsliste, Lernseiten,
+Verständnis-Checks, Verweise, Bildmaße, Versionsgleichstand und die
+Veröffentlichungsgrenzen:
+
+```powershell
+node --test
+```
+
+Die Browsertests laufen mit Edge über Playwright gegen eine lokale Vorschau.
+Playwright wird nicht installiert; der Pfad steht in `EXCEL_LAB_PLAYWRIGHT`.
+
+```powershell
+python -m http.server 4273 --bind 127.0.0.1
+node tests/browser/site.browser.cjs http://127.0.0.1:4273/
+node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all
+```
+
+Die Tests prüfen Browser und Anleitung, nicht die Arbeit in Excel. Übergaben
+zwischen den KI-Agenten stehen in
+[`documentation/claude2codex.md`](documentation/claude2codex.md).
+
+Die Fotos liegen als PNG-Original und als verlustfreies, pixelgleiches WebP in
+gleicher Auflösung vor; die Seiten laden das WebP.
 
 ## Fachliche Quellen
 

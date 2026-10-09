@@ -7,6 +7,21 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Lokal auf Branch `claude/optimierung-2026-10-09`, nicht veröffentlicht
+  (Claude, 09.10.2026):** Technische Optimierung im Auftrag von Jakob.
+  Gemeinsamer Ablauf aller 27 Lernseiten in `lesson-core.js` (Seitenskripte
+  4670 → 598 Zeilen), sechs Fotos zusätzlich als verlustfreies, pixelgleiches
+  WebP in Originalauflösung (10,9 → 7,1 MB), Rettungskopie bei nicht lesbarem
+  Lernstand, `theme-boot.js` gegen das Aufblitzen des dunklen Schemas,
+  gemischte Antwortmöglichkeiten im Verständnis-Check und eine Testsuite im
+  Repository (`node --test`, 255 Prüfungen; zwei Browsertests unter
+  `tests/browser/`). Keine Inhalte der Lernseiten, keine Originalmaterialien
+  und kein Speicherschema geändert; Version weiter 0.10.1. Abschluss-Audit
+  27 Einheiten / 83 Fragen und Seitentest 28 Seiten bei zwei Breiten bestanden.
+  Jakobs Vorgabe: Bildqualität und Gestaltung dürfen bei Optimierungen nicht
+  leiden. Einzelheiten, offene Punkte und Fragen an Jakob:
+  [`claude2codex.md`](claude2codex.md).
+
 - **Veröffentlicht und online geprüft (07.10.2026):** Neuer L1.1-Einstieg
   einschließlich Bild, Formel-Anleitung und konsistentem Anschluss in L1.2
   unter Commit `31c9e128d1a04e73e880801042f7ef67cc6fdb5a` veröffentlicht.
