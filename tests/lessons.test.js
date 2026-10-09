@@ -32,7 +32,9 @@ for (const { lesson, previous, following, prefix, html, script } of pages) {
   test(`${lesson.code}: Seite und Skript vorhanden und eingebunden`, () => {
     const sources = tags(html, "script").map((tag) => attribute(tag, "src"));
     for (const source of sources) assert.ok(exists(source), `${source} fehlt`);
-    for (const tag of tags(html, "script")) assert.match(tag, /\sdefer\b/, `${tag} ohne defer`);
+    assert.equal(sources[0], "theme-boot.js", "theme-boot.js zuerst");
+    assert.ok(html.indexOf("theme-boot.js") < html.indexOf('rel="stylesheet"'), "theme-boot.js vor den Stylesheets");
+    for (const tag of tags(html, "script").slice(1)) assert.match(tag, /\sdefer\b/, `${tag} ohne defer`);
     const order = (name) => sources.indexOf(name);
     assert.ok(order("content.js") >= 0 && order("lesson-core.js") > order("content.js"), "content.js vor lesson-core.js");
     assert.ok(order(`${lesson.id}.js`) > order("lesson-core.js"), "lesson-core.js vor dem Seitenskript");

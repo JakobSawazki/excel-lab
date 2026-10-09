@@ -97,7 +97,8 @@
       const editable = open && Boolean(profile) && !dev();
       const count = current.checks.filter(Boolean).length + Number(current.teacherChecked) + Number(current.masteryPassed);
       const percent = open ? current.completed ? 100 : Math.round(count / (checks.length + 3) * 100) : 0;
-      const light = state?.theme === "light";
+      // Ohne gespeicherten Lernstand gilt wie auf der Startseite die Vorgabe des Geräts.
+      const light = state ? state.theme === "light" : window.matchMedia("(prefers-color-scheme: light)").matches;
       document.documentElement.dataset.theme = light ? "light" : "dark";
       $("meta[name='theme-color']").content = light ? "#f4f7f4" : "#0b1422";
 
@@ -241,7 +242,7 @@
         let stored = null;
         try { stored = localStorage.getItem(KEY); } catch { /* gesperrter Speicher */ }
         if (stored) { toast("Der Lernstand ist nicht lesbar. Öffne die Startseite und lade deine Speicherdatei."); return; }
-        state = { version: 1, theme: "dark", currentProfileId: null, profiles: [] };
+        state = { version: 1, theme: document.documentElement.dataset.theme === "light" ? "light" : "dark", currentProfileId: null, profiles: [] };
       }
       state.theme = state.theme === "light" ? "dark" : "light";
       persist();
