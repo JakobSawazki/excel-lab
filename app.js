@@ -11,7 +11,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.10.1";
+  const APP_VERSION = "0.11.0";
   const POINTS_PER_LESSON = 100;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
@@ -333,7 +333,7 @@
               return `<button class="nav-chapter-link ${access.unlocked ? "" : "is-locked"}" type="button" data-open-lesson="${lesson.id}">
                 <span>${access.unlocked ? progress.completed ? "✓" : escapeHtml(lesson.code) : "▣"}</span>
                 <strong>${escapeHtml(lesson.title)}</strong>
-                <small>${access.unlocked ? `${access.points} Punkte` : `${access.requiredPoints} Punkte nötig`}</small>
+                <small>${access.unlocked ? `${access.points} XP` : `${access.requiredPoints} XP nötig`}</small>
               </button>`;
             }).join("")}
           </div>
@@ -416,8 +416,8 @@
 
     const stats = progressStats();
     $("#learning-summary").innerHTML = `
-      <span class="summary-icon">${stats.points}<small>Punkte</small></span>
-      <p><strong>${stats.completed} von ${stats.total} ${stats.total === 1 ? "Einheit" : "Einheiten"} erledigt.</strong> Arbeite der Reihe nach. Jede bestätigte Einheit bringt ${POINTS_PER_LESSON} Punkte und schaltet das nächste Kapitel frei.</p>
+      <span class="summary-icon">${stats.points}<small>XP</small></span>
+      <p><strong>${stats.completed} von ${stats.total} ${stats.total === 1 ? "Einheit" : "Einheiten"} erledigt.</strong> Arbeite der Reihe nach. Jede bestätigte Einheit bringt ${POINTS_PER_LESSON} XP und schaltet das nächste Kapitel frei.</p>
       <span class="mini-progress"><span class="progress-track"><span style="--width:${stats.percent}%;--chapter-color:var(--green)"></span></span><small>${stats.percent}% Gesamtfortschritt</small></span>`;
   }
 
@@ -432,9 +432,9 @@
     return `
       <button class="lesson-card ${progress.completed ? "is-complete" : ""} ${access.unlocked ? "" : "is-locked"}" type="button" data-open-lesson="${lesson.id}" style="--stage-color:${stage.color}" ${access.unlocked ? "" : 'aria-disabled="true"'}>
         <span>
-          <span class="lesson-meta"><span class="lesson-code">${escapeHtml(lesson.code)}</span><span>${escapeHtml(lesson.duration)}</span><span>·</span><span>${access.points} Punkte</span></span>
+          <span class="lesson-meta"><span class="lesson-code">${escapeHtml(lesson.code)}</span><span>${escapeHtml(lesson.duration)}</span><span>·</span><span>${access.points} XP</span></span>
           <h3>${escapeHtml(lesson.title)}</h3>
-          <p>${access.unlocked ? escapeHtml(lesson.description) : `Noch gesperrt. Schließe zuerst das vorherige Kapitel ab und sammle ${access.requiredPoints} Punkte.`}</p>
+          <p>${access.unlocked ? escapeHtml(lesson.description) : `Noch gesperrt. Schließe zuerst das vorherige Kapitel ab und sammle ${access.requiredPoints} XP.`}</p>
           <span class="lesson-tags">${lesson.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</span>
         </span>
         <span class="lesson-status" aria-label="${progress.completed ? "Erledigt" : access.unlocked ? "Einheit öffnen" : "Gesperrt"}">${statusIcon}</span>
@@ -477,7 +477,7 @@
     if (!window.EXCEL_LAB_DEV?.enabled && !ensureProfile()) return;
     const access = lessonAccess(lesson);
     if (!access.unlocked) {
-      showToast(`Dieses Kapitel wird mit ${access.requiredPoints} Punkten freigeschaltet.`);
+      showToast(`Dieses Kapitel wird mit ${access.requiredPoints} XP freigeschaltet.`);
       return;
     }
     closeLearningMenu();
@@ -603,7 +603,7 @@
         return `
           <div class="profile-list-item ${profile.id === current?.id ? "is-current" : ""}">
             <span class="profile-avatar">${escapeHtml(initials(profile.name))}</span>
-            <div><strong>${escapeHtml(profile.name)}</strong><small>${escapeHtml(profile.className || "ohne Klasse")} · ${points} Punkte · ${completed}/${lessons.length} erledigt</small><small>Browser-ID ${escapeHtml(deviceIdentity.id)}</small></div>
+            <div><strong>${escapeHtml(profile.name)}</strong><small>${escapeHtml(profile.className || "ohne Klasse")} · ${points} XP · ${completed}/${lessons.length} erledigt</small><small>Browser-ID ${escapeHtml(deviceIdentity.id)}</small></div>
             <small>Aktiv</small>
           </div>`;
       }).join("")

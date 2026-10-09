@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-09 · Grundlage: Release 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-09 · Release 0.11.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -11,17 +11,24 @@ einen Eintrag im Taskstatus ergänzt.
 
 ## Teil A – Das Wichtigste
 
+### A0 Jakobs Entscheidungen vom 9. Oktober 2026
+
+| Frage | Entscheidung | Folge |
+| --- | --- | --- |
+| Branch übernehmen und veröffentlichen? | Ja. Grafiken und Fotos bleiben im Original, Qualität nie verschlechtern | Release 0.11.0 auf `main`, veröffentlicht (OPT-07) |
+| Geräte | An der Kaufmännischen Schule Nagold hat jede Person eine eigene Windows-Anmeldung (Windows 11) mit eigenen Dateien und sitzt möglichst am selben PC; sonst lädt sie ihre JSON-Datei | OPT-11 ist kein dringendes Problem mehr |
+| Nur App-Dateien veröffentlichen? | Claude überlassen; wichtig ist, dass der aktuelle Stand immer online ist | Bereitstellung bleibt „aus `main`“, einfach und ohne zusätzlichen Schritt (OPT-14) |
+| „Punkte“ oder „XP“? | XP | umgesetzt in 0.11.0 (OPT-20) |
+| `.tmp/` leeren? | Ja | Freigabe erteilt; erst nachdem deine Tests übernommen sind (OPT-08) |
+| Rücknahme eines Abschlusses (OPT-10) | Jakob hat nachgefragt, was gemeint ist | noch offen |
+
 ### A1 Wo der Stand liegt
 
-- Claudes Arbeit liegt **lokal auf dem Branch `claude/optimierung-2026-10-09`**,
-  sechs Commits auf `5e1a758`. `main` ist unverändert, **nichts ist gepusht oder
-  veröffentlicht** (Übergaberegel: nur mit Jakobs ausdrücklichem Auftrag).
-- Der Arbeitsordner in Google Drive steht auf diesem Branch. Vor deiner Arbeit
-  `git status --short --branch` und `git log --oneline -8` lesen.
-- Übernehmen: `git checkout main` und `git merge --ff-only claude/optimierung-2026-10-09`.
-  Einzelnes zurücknehmen: `git revert <commit>`; jeder Punkt ist ein eigener Commit.
-- Die Versionsnummer ist weiter 0.10.1. Ein Release mit diesen Änderungen wäre 0.11.0
-  (siehe OPT-07).
+- Claudes Arbeit ist auf `main` übernommen und als **Release 0.11.0**
+  veröffentlicht (Jakobs Auftrag vom 9. Oktober). Der Branch
+  `claude/optimierung-2026-10-09` zeigt auf denselben Stand und kann gelöscht werden.
+- Vor deiner Arbeit `git status --short --branch` und `git log --oneline -10` lesen.
+- Einzelnes zurücknehmen: `git revert <commit>`; jeder Punkt ist ein eigener Commit.
 
 ### A2 Jakobs Vorgabe zum Design (9. Oktober 2026)
 
@@ -43,7 +50,10 @@ verlustbehaftet umgewandelt; Jakob hat das gestoppt. Daraus folgt für uns beide
 | OPT-03 | `0dd5641` | Rettungskopie bei nicht lesbarem Lernstand | `app.js`, `lesson-core.js` |
 | OPT-04 | `1a29fb6` | Tests im Repository | `tests/` (neu) |
 | OPT-05 | `cba52e5` | Farbschema vor dem ersten Zeichnen | `theme-boot.js` (neu), alle 28 HTML-Seiten, `lesson-core.js` |
-| OPT-06 | siehe `git log` | Antwortmöglichkeiten im Verständnis-Check mischen | `lesson-core.js` |
+| OPT-06 | `da0cc4c` | Antwortmöglichkeiten im Verständnis-Check mischen | `lesson-core.js` |
+| OPT-20 | Release-Commit | „XP“ statt „Punkte“ in allen Texten für Lernende | 27 `l*.html`, `index.html`, `app.js`, `lesson-core.js`, `lesson-navigation.js` |
+| OPT-15 | Release-Commit | `?v=0.11.0` an allen Skript- und Style-Verweisen | alle 28 HTML-Seiten, `tests/` |
+| OPT-07 | Release-Commit | Version 0.11.0 | `app.js`, `index.html`, `README.md`, Kopf der Dokumentation |
 
 **OPT-01 – `lesson-core.js`.** Zugang, Verständnis-Check, eigene Checks,
 Lehrkraftbestätigung, Abschluss und Punkte standen 27-mal fast gleich in den
@@ -104,16 +114,26 @@ Antwortmöglichkeiten jeder Frage bei jedem Seitenaufruf. HTML, `value`-Werte
 und Hinweise sind unverändert. Keine Antwort bezieht sich auf die Position einer
 anderen (geprüft per Suche).
 
+**OPT-20 – XP.** Ersetzt wurden nur Angaben zum Lernstand („100 Punkte“,
+„0 von 100 Punkten“, „Abschluss und Punkte“, „… Punkte nötig“, „vergibt keine
+Punkte“). Fachliche Punkte bleiben: Toto-Punkte, Datenpunkte, Punktdiagramm.
+Der ältere Versionsverlauf in `index.html` ist unverändert. **Falls deine
+`.tmp`-Tests auf das Wort „Punkte“ prüfen, schlagen sie jetzt fehl** und
+brauchen „XP“; Claude hat sie nicht angefasst.
+
+**OPT-15 – Versionsparameter.** Jeder lokale Skript- und Style-Verweis endet auf
+`?v=<APP_VERSION>`; zwei Node-Tests erzwingen das. Bei jedem Release den
+Parameter in allen 28 Seiten mit anheben.
+
 ### A4 Prüfstand
 
-- `node --test`: 255 Prüfungen bestanden.
+- `node --test`: 257 Prüfungen bestanden (Stand 0.11.0).
 - `tests/browser/lesson-gates.browser.cjs`: 27 Einheiten, 83 Fragen bestanden
-  (vor dem Umbau als Ausgangsmessung und nach OPT-01). Nach OPT-06 lief der
-  vollständige Lauf beim Schreiben dieser Datei noch; bitte einmal wiederholen.
+  (Ausgangsmessung vor dem Umbau, danach nach OPT-01, nach OPT-06 und am Stand 0.11.0).
 - `tests/browser/site.browser.cjs`: 28 Seiten bei 1440 und 390 Pixeln, dazu
   fünf Einzelprüfungen bestanden.
 - Startseite und L1.2 im Browser angesehen (dunkles Schema).
-- **Nicht geprüft:** veröffentlichte Fassung (nichts veröffentlicht), deine
+- **Nicht geprüft:** deine
   übrigen 76 `.tmp`-Tests, Schul-PCs, andere Browser als Edge, Bildschirmleser,
   helles Schema und Darstellungsoptionen nur automatisch (kein Sichtvergleich),
   die Arbeit in Excel selbst.
@@ -151,7 +171,7 @@ Speicherschlüssel: `excelLab.state.v1` (Lernstand), `excelLab.state.rescue.v1`
 ### B2 Befehle
 
 ```powershell
-node --test                                   # 255 Prüfungen, ohne Pakete
+node --test                                   # 257 Prüfungen, ohne Pakete
 python -m http.server 4273 --bind 127.0.0.1
 node tests/browser/site.browser.cjs http://127.0.0.1:4273/
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all          # rund 5 Minuten
@@ -181,7 +201,8 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 6. `#next-lesson-link` zeigt auf die nächste Einheit, der Zugangshinweis auf die vorige.
 7. Bilder: `width`/`height` wie die Datei, `alt` vorhanden.
 8. `APP_VERSION` in `app.js`, oberster Eintrag im Versionsverlauf, „Aktueller
-   Release“ in der README und „Projektversion“ in der Dokumentation stimmen überein.
+   Release“ in der README und „Projektversion“ in der Dokumentation stimmen überein;
+   alle Skript- und Style-Verweise tragen `?v=<Version>`.
 9. Keine Originalmaterialien, Office-Dateien, `.tmp/` oder `desktop.ini` im Git-Index.
 
 ## Teil C – Offene Punkte für Codex
@@ -196,20 +217,20 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-04 | Tests im Repository | erster Schritt erledigt (Claude); Rest OPT-08 |
 | OPT-05 | Farbschema vor dem Zeichnen | erledigt (Claude) |
 | OPT-06 | Antworten mischen | erledigt (Claude); bitte fachlich gegenlesen |
-| OPT-07 | Release 0.11.0 und Veröffentlichung | offen; braucht Jakobs Auftrag |
-| OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex) |
+| OPT-07 | Release 0.11.0 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
+| OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex); Jakobs Freigabe zum Leeren liegt vor |
 | OPT-09 | Quellenabgleich L3–L4 | offen (Codex, laut Dokumentation dein nächster Schritt) |
-| OPT-10 | Rücknahme eines Abschlusses wirkt nur eine Einheit weit | Befund; Entscheidung Jakob |
-| OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; Entscheidung Jakob |
+| OPT-10 | Rücknahme eines Abschlusses wirkt nur eine Einheit weit | Befund; Jakob hat nachgefragt, Entscheidung offen |
+| OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; nicht dringend (eigene Windows-Anmeldung je Person) |
 | OPT-12 | Navigation doppelt vorhanden | offen (Codex) |
 | OPT-13 | Ungenutzter Code und ungenutzte Styles | offen (Codex); Liste in C2 |
-| OPT-14 | Veröffentlicht wird das ganze Repository | Vorschlag; Entscheidung Jakob |
-| OPT-15 | Versionsparameter an Skripten und Styles | Vorschlag |
+| OPT-14 | Veröffentlicht wird das ganze Repository | entschieden (Claude, von Jakob überlassen): bleibt so |
+| OPT-15 | Versionsparameter an Skripten und Styles | erledigt (Claude, 0.11.0) |
 | OPT-16 | Rettungskopie herunterladbar machen | Vorschlag |
 | OPT-17 | Dokumentation gliedern | Vorschlag; deine Dateien |
 | OPT-18 | Lernsituationsbilder für weitere Einheiten | offen (Vorgabe Jakob vom 07.10.) |
 | OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | offen |
-| OPT-20 | „Punkte“ und „XP“ | Befund; Entscheidung Jakob |
+| OPT-20 | „Punkte“ und „XP“ | erledigt (Claude, 0.11.0): XP |
 | OPT-21 | Lehrkraftbestätigung und Klassenübersicht | Idee; Entscheidung Jakob |
 | OPT-22 | `.git/refs/desktop.ini` | Hinweis |
 
@@ -315,7 +336,10 @@ HTML-Text, einmal über DOM-Knoten, mit eigener Freischaltlogik. Vorschlag:
 - **Vorschlag:** wie in WorkbenchLab (`tools/build-site.cjs`) nur eine Liste von
   App-Dateien veröffentlichen. Braucht eine GitHub-Action statt „aus Branch
   bereitstellen“. Die Bildoriginale bleiben im Repository.
-- **Entscheidung Jakob**, weil es die Veröffentlichung umstellt.
+- **Entschieden (9. Oktober):** Jakob hat es Claude überlassen; ihm ist wichtig,
+  dass der aktuelle Stand immer online steht. Es bleibt bei der Bereitstellung
+  aus `main`: Ein Push genügt, es gibt keinen Bauschritt, der ausfallen kann.
+  Die zusätzlich abrufbaren Dateien enthalten nichts Vertrauliches.
 
 #### OPT-15 Versionsparameter
 
@@ -385,12 +409,12 @@ Google Drive legt `desktop.ini` in `.git/refs/` ab; jeder Git-Befehl warnt
 
 ### C3 Was bei Jakob liegt
 
-1. Durchsicht des Branches und Auftrag zur Veröffentlichung (OPT-07).
-2. OPT-10: Rücknahme – a, b oder c?
-3. OPT-11: eigene Windows-Anmeldung je Person oder gemeinsame Konten?
-4. OPT-14: nur App-Dateien veröffentlichen?
-5. OPT-20: „Punkte“ oder „XP“?
-6. Freigabe zum Leeren von `.tmp/` (OPT-08).
+1. OPT-10: Rücknahme eines Abschlusses – a, b oder c? Claude hat die Frage
+   am 9. Oktober noch einmal in einfachen Worten gestellt.
+2. Durchsicht der veröffentlichten Fassung 0.11.0 im Unterricht.
+
+Erledigt oder entschieden: Veröffentlichung, Geräte, Umfang der
+Veröffentlichung, XP, Freigabe für `.tmp/` (siehe A0).
 
 ### C4 Bekannte Schwächen in Claudes Teilen
 

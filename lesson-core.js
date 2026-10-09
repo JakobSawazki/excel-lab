@@ -2,7 +2,7 @@
   "use strict";
 
   // Gemeinsamer Ablauf aller eigenen Lernseiten: Zugang, Verständnis-Check,
-  // eigene Checks, Lehrkraftbestätigung, Abschluss und Punkte. Die Seiten
+  // eigene Checks, Lehrkraftbestätigung, Abschluss und XP. Die Seiten
   // l1-1.js bis l4-8.js übergeben nur noch ihre Antworten und Hinweise.
   const KEY = "excelLab.state.v1";
   const NUMBER_WORDS = { 1: "eine", 2: "zwei", 3: "drei", 4: "vier", 5: "fünf", 6: "sechs" };
@@ -131,7 +131,7 @@
       $("#lesson-score-ring").style.setProperty("--progress", percent);
       $("#lesson-page-percent").textContent = `${percent}%`;
       $("#lesson-page-status").textContent = !open ? "Noch gesperrt" : current.completed ? "Abgeschlossen" : count ? "In Arbeit" : "Noch nicht begonnen";
-      $("#lesson-points-status").textContent = `${open && current.completed ? points : 0} von ${points} Punkten`;
+      $("#lesson-points-status").textContent = `${open && current.completed ? points : 0} von ${points} XP`;
 
       checks.forEach((element, i) => { element.checked = current.checks[i]; element.disabled = !editable; });
       $("#page-teacher-check").checked = current.teacherChecked;
@@ -154,9 +154,9 @@
         ? "Lege auf der Startseite zuerst dein Lernprofil mit Account und Klassenbezeichnung an."
         : current.completed
           ? following
-            ? `${points} Punkte wurden gutgeschrieben. Beim Wiederöffnen wird ${following.code} erneut gesperrt; ein dortiger Abschluss wird ebenfalls zurückgenommen.`
-            : `${points} Punkte wurden gutgeschrieben. Du hast die letzte Einheit bearbeitet. Sichere deinen Lernstand über das Profilmenü.`
-          : `Verständnis-Check, alle ${checkWord} eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt ${points} Punkte gut.`;
+            ? `${points} XP wurden gutgeschrieben. Beim Wiederöffnen wird ${following.code} erneut gesperrt; ein dortiger Abschluss wird ebenfalls zurückgenommen.`
+            : `${points} XP wurden gutgeschrieben. Du hast die letzte Einheit bearbeitet. Sichere deinen Lernstand über das Profilmenü.`
+          : `Verständnis-Check, alle ${checkWord} eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt ${points} XP gut.`;
 
       const nextLink = $("#next-lesson-link");
       const ready = open && (current.completed || dev());
@@ -231,8 +231,8 @@
       if (!saved) return;
       if (next.completed) {
         toast(following
-          ? `${code} abgeschlossen: ${points} Punkte. ${following.code} ist freigeschaltet.`
-          : `${code} abgeschlossen: ${points} Punkte. Sichere nun deinen Lernstand.`);
+          ? `${code} abgeschlossen: ${points} XP. ${following.code} ist freigeschaltet.`
+          : `${code} abgeschlossen: ${points} XP. Sichere nun deinen Lernstand.`);
       } else {
         toast(following ? `${code} ist wieder offen. ${following.code} ist wieder gesperrt.` : `${code} ist wieder offen.`);
       }

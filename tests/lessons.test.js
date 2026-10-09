@@ -3,7 +3,7 @@
 // Prüft, dass Inhaltsliste, Lernseiten und Lernseiten-Skripte zusammenpassen.
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { exists, loadContent, lessonPages, masteryConfig, attribute, tags, ids } = require("./helpers.cjs");
+const { exists, read, loadContent, lessonPages, masteryConfig, attribute, tags, ids } = require("./helpers.cjs");
 
 const content = loadContent();
 const pages = lessonPages();
@@ -30,7 +30,11 @@ test("Einheiten stehen in Lernreihenfolge", () => {
 
 for (const { lesson, previous, following, prefix, html, script } of pages) {
   test(`${lesson.code}: Seite und Skript vorhanden und eingebunden`, () => {
-    const sources = tags(html, "script").map((tag) => attribute(tag, "src"));
+    const version = read("app.js").match(/const APP_VERSION = "([^"]+)";/)[1];
+    const references = [...tags(html, "script").map((tag) => attribute(tag, "src")), ...tags(html, "link").filter((tag) => /rel="stylesheet"/.test(tag)).map((tag) => attribute(tag, "href"))];
+    // Jeder Verweis trägt die Version, damit Seite und Skripte nach einem Release zusammenpassen.
+    for (const reference of references) assert.ok(reference.endsWith(`?v=${version}`), `${reference} ohne ?v=${version}`);
+    const sources = tags(html, "script").map((tag) => attribute(tag, "src").split("?")[0]);
     for (const source of sources) assert.ok(exists(source), `${source} fehlt`);
     assert.equal(sources[0], "theme-boot.js", "theme-boot.js zuerst");
     assert.ok(html.indexOf("theme-boot.js") < html.indexOf('rel="stylesheet"'), "theme-boot.js vor den Stylesheets");

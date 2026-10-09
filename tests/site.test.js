@@ -35,7 +35,7 @@ for (const file of htmlFiles) {
     const own = ids(html);
     for (const target of targets) {
       if (/^(https?:|mailto:|tel:)/.test(target) || target.startsWith(MATERIALS)) continue;
-      const [file2, anchor] = target.split("#");
+      const [file2, anchor] = target.replace(/\?v=[\d.]+/, "").split("#");
       if (file2) assert.ok(exists(decodeURI(file2)), `${target}: Datei fehlt`);
       // Sprungziele der Startseite (#lernpfad/2 …) wertet app.js aus.
       if (!file2 && anchor && file !== "index.html") assert.ok(own.includes(anchor), `${target}: Sprungziel fehlt`);
@@ -75,6 +75,19 @@ test("Versionsgleichstand in App, Versionsverlauf, README und Dokumentation", ()
   assert.equal(read("index.html").match(/<ol class="version-timeline">\s*<li><span>([^<]+)<\/span>/)[1], version, "index.html");
   assert.equal(read("README.md").match(/Aktueller Release: \*\*([^*]+)\*\*/)[1], version, "README.md");
   assert.equal(read("documentation/documentation.md").match(/^Projektversion: (.+)$/m)[1].trim(), version, "documentation.md");
+});
+
+test("Startseite: Skripte und Styles tragen die Version", () => {
+  const version = read("app.js").match(/const APP_VERSION = "([^"]+)";/)[1];
+  const index = read("index.html");
+  const references = [...tags(index, "script").map((tag) => attribute(tag, "src")), ...tags(index, "link").filter((tag) => /rel="stylesheet"/.test(tag)).map((tag) => attribute(tag, "href"))];
+  assert.ok(references.length >= 10);
+  for (const reference of references) assert.ok(reference.endsWith(`?v=${version}`), `${reference} ohne ?v=${version}`);
+});
+
+test("Lernstand heißt für Lernende XP, nicht Punkte", () => {
+  for (const file of htmlFiles) assert.doesNotMatch(read(file).replace(/<ol class="version-timeline">[\s\S]*?<\/ol>/, ""), /100 Punkten?|Abschluss und Punkte/, file);
+  for (const file of ["app.js", "lesson-core.js", "lesson-navigation.js"]) assert.doesNotMatch(read(file), /\} Punkten?/, file);
 });
 
 test("Startseite nennt die tatsächlichen Stückzahlen", () => {

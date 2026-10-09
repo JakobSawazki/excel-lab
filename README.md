@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.10.1** – Themenlandkarte, vereinfachte Bedienung und
+Aktueller Release: **0.11.0** – schnellere, einheitliche Lernseiten, XP statt Punkte,
+gemischte Antworten im Verständnis-Check; zuvor Themenlandkarte, vereinfachte Bedienung und
 eigene Lernseiten für alle 27 Einheiten bis einschließlich L4.8.
 
 Bei einem Profilwechsel werden noch ausgewählte Antworten und Rückmeldungen
