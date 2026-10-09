@@ -32,6 +32,19 @@
     const dev = () => Boolean(window.EXCEL_LAB_DEV?.enabled);
     let state, profile;
 
+    // Antwortmöglichkeiten bei jedem Seitenaufruf neu mischen. In den Seiten
+    // steht die richtige Antwort sonst meist an derselben Stelle (b, c, a).
+    form.querySelectorAll(".mastery-question").forEach((question) => {
+      const options = Array.from(question.querySelectorAll("label"));
+      const feedback = question.querySelector(".mastery-feedback");
+      if (options.length < 2 || options.some((option) => option.parentElement !== feedback?.parentElement)) return;
+      for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+      }
+      options.forEach((option) => feedback.before(option));
+    });
+
     function refresh() {
       const oldId = profile?.id;
       try { state = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { state = null; }
