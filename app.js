@@ -11,7 +11,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.11.0";
+  const APP_VERSION = "0.11.1";
   const POINTS_PER_LESSON = 100;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
@@ -165,7 +165,7 @@
 
   function saveState() {
     if (!keepUnreadableState()) {
-      showToast("Nicht gespeichert: Der bisherige Lernstand ist nicht lesbar und konnte nicht gesichert werden. Bitte die Lehrkraft informieren.");
+      showToast("Nicht gespeichert: Der bisherige Lernstand ist nicht lesbar und konnte nicht gesichert werden. Bitte die Lehrkraft informieren.", 20000);
       return;
     }
     try {
@@ -799,12 +799,12 @@
     showToast("Formel kopiert.");
   }
 
-  function showToast(message) {
+  function showToast(message, duration = 3200) {
     const toast = document.createElement("div");
     toast.className = "toast";
     toast.textContent = message;
     $("#toast-region").append(toast);
-    window.setTimeout(() => toast.remove(), 3200);
+    window.setTimeout(() => toast.remove(), duration);
   }
 
   function bindEvents() {
@@ -1009,7 +1009,7 @@
     renderAll();
     syncRouteFromHash();
     if (unreadableState !== null) {
-      showToast("Der gespeicherte Lernstand war nicht lesbar und bleibt als Rettungskopie im Browser erhalten. Lade deine letzte Speicherdatei über Profil › Laden.");
+      showToast("Der gespeicherte Lernstand war nicht lesbar und bleibt als Rettungskopie im Browser erhalten. Lade deine letzte Speicherdatei über Profil › Laden.", 20000);
     }
     if (!currentProfile() && !window.EXCEL_LAB_DEV?.enabled) window.setTimeout(openProfileDialog, 250);
   }

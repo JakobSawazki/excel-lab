@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-09 · Release 0.11.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-09 · Release 0.11.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -15,7 +15,7 @@ einen Eintrag im Taskstatus ergänzt.
 
 | Frage | Entscheidung | Folge |
 | --- | --- | --- |
-| Branch übernehmen und veröffentlichen? | Ja. Grafiken und Fotos bleiben im Original, Qualität nie verschlechtern | Release 0.11.0 auf `main`, veröffentlicht (OPT-07) |
+| Branch übernehmen und veröffentlichen? | Ja. Grafiken und Fotos bleiben im Original, Qualität nie verschlechtern | Release 0.11.0 und 0.11.1 auf `main`, veröffentlicht (OPT-07) |
 | Geräte | An der Kaufmännischen Schule Nagold hat jede Person eine eigene Windows-Anmeldung (Windows 11) mit eigenen Dateien und sitzt möglichst am selben PC; sonst lädt sie ihre JSON-Datei | OPT-11 ist kein dringendes Problem mehr |
 | Nur App-Dateien veröffentlichen? | Claude überlassen; wichtig ist, dass der aktuelle Stand immer online ist | Bereitstellung bleibt „aus `main`“, einfach und ohne zusätzlichen Schritt (OPT-14) |
 | „Punkte“ oder „XP“? | XP | umgesetzt in 0.11.0 (OPT-20) |
@@ -24,8 +24,12 @@ einen Eintrag im Taskstatus ergänzt.
 
 ### A1 Wo der Stand liegt
 
-- Claudes Arbeit ist auf `main` übernommen und als **Release 0.11.0**
-  veröffentlicht (Jakobs Auftrag vom 9. Oktober). Der Branch
+- Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
+  vom 9. Oktober): **0.11.0** (`ae06c23`, Pages-Lauf 37983993229) und kurz darauf
+  **0.11.1**. Der Online-Test von 0.11.0 zeigte, dass die Meldung zum nicht
+  lesbaren Lernstand nach 3,2 Sekunden verschwand, bevor die Seite über das Netz
+  fertig geladen war; in 0.11.1 bleibt sie 20 Sekunden stehen (`showToast` in
+  `app.js` hat dafür eine optionale Dauer). Der Branch
   `claude/optimierung-2026-10-09` zeigt auf denselben Stand und kann gelöscht werden.
 - Vor deiner Arbeit `git status --short --branch` und `git log --oneline -10` lesen.
 - Einzelnes zurücknehmen: `git revert <commit>`; jeder Punkt ist ein eigener Commit.
@@ -127,7 +131,10 @@ Parameter in allen 28 Seiten mit anheben.
 
 ### A4 Prüfstand
 
-- `node --test`: 257 Prüfungen bestanden (Stand 0.11.0).
+- `node --test`: 257 Prüfungen bestanden (Stand 0.11.1).
+- Online gegen <https://jakobsawazki.github.io/excel-lab/>: Abschluss-Audit
+  27 Einheiten / 83 Fragen an 0.11.0 bestanden; Seitentest an 0.11.0 mit dem
+  oben genannten einen Befund, an 0.11.1 siehe Taskstatus der Dokumentation.
 - `tests/browser/lesson-gates.browser.cjs`: 27 Einheiten, 83 Fragen bestanden
   (Ausgangsmessung vor dem Umbau, danach nach OPT-01, nach OPT-06 und am Stand 0.11.0).
 - `tests/browser/site.browser.cjs`: 28 Seiten bei 1440 und 390 Pixeln, dazu
@@ -217,7 +224,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-04 | Tests im Repository | erster Schritt erledigt (Claude); Rest OPT-08 |
 | OPT-05 | Farbschema vor dem Zeichnen | erledigt (Claude) |
 | OPT-06 | Antworten mischen | erledigt (Claude); bitte fachlich gegenlesen |
-| OPT-07 | Release 0.11.0 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
+| OPT-07 | Release 0.11.0/0.11.1 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
 | OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex); Jakobs Freigabe zum Leeren liegt vor |
 | OPT-09 | Quellenabgleich L3–L4 | offen (Codex, laut Dokumentation dein nächster Schritt) |
 | OPT-10 | Rücknahme eines Abschlusses wirkt nur eine Einheit weit | Befund; Jakob hat nachgefragt, Entscheidung offen |
@@ -411,7 +418,7 @@ Google Drive legt `desktop.ini` in `.git/refs/` ab; jeder Git-Befehl warnt
 
 1. OPT-10: Rücknahme eines Abschlusses – a, b oder c? Claude hat die Frage
    am 9. Oktober noch einmal in einfachen Worten gestellt.
-2. Durchsicht der veröffentlichten Fassung 0.11.0 im Unterricht.
+2. Durchsicht der veröffentlichten Fassung 0.11.1 im Unterricht.
 
 Erledigt oder entschieden: Veröffentlichung, Geräte, Umfang der
 Veröffentlichung, XP, Freigabe für `.tmp/` (siehe A0).
