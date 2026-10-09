@@ -8,6 +8,7 @@
 
   const { stages, lessons, formulas } = content;
   const STORAGE_KEY = "excelLab.state.v1";
+  const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
   const APP_VERSION = "0.10.1";
@@ -30,6 +31,8 @@
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
+  // Rohtext eines nicht lesbaren Lernstands. Muss vor loadState() stehen.
+  let unreadableState = null;
   let state = loadState();
   const deviceIdentity = loadDeviceIdentity();
   let activeView = "dashboard";
@@ -47,11 +50,15 @@
   }
 
   function loadState(fallback) {
+    let raw = null;
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return defaultState();
       const parsed = JSON.parse(raw);
-      if (!parsed || parsed.version !== VERSION || !Array.isArray(parsed.profiles)) return fallback || defaultState();
+      if (!parsed || parsed.version !== VERSION || !Array.isArray(parsed.profiles)) {
+        if (!fallback) unreadableState = raw;
+        return fallback || defaultState();
+      }
       return {
         ...defaultState(),
         ...parsed,
@@ -60,6 +67,7 @@
       };
     } catch (error) {
       console.warn("Lokaler Lernstand konnte nicht gelesen werden.", error);
+      if (!fallback && raw) unreadableState = raw;
       return fallback || defaultState();
     }
   }
@@ -103,7 +111,8 @@
         safeProgress[lesson.id] = {
           completed: Boolean(candidate.completed),
           teacherChecked: Boolean(candidate.teacherChecked),
-          masteryPassed: Boolean(candidate.masteryPassed || (["l1-1", "l1-2", "l1-3", "l1-4", "l1-5", "l1-6", "l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1", "l3-2", "l3-3", "l3-4", "l3-5", "l3-6", "l3-7", "l3-8", "l4-1", "l4-2", "l4-3", "l4-4", "l4-5", "l4-6", "l4-7", "l4-8"].includes(lesson.id) && candidate.completed)),
+          // Abschlüsse aus der Zeit vor den Verständnis-Checks gelten als bestanden.
+          masteryPassed: Boolean(candidate.masteryPassed || candidate.completed),
           checks: Array.isArray(candidate.checks)
             ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
             : lesson.checks.map(() => false)
@@ -137,7 +146,28 @@
     return identity;
   }
 
+  // Ein nicht lesbarer Lernstand wird vor dem ersten Überschreiben als
+  // Rettungskopie abgelegt. Gelingt das nicht, bleibt das Original unberührt.
+  function keepUnreadableState() {
+    if (unreadableState === null) return true;
+    try {
+      const existing = localStorage.getItem(RESCUE_KEY);
+      if (existing !== unreadableState) {
+        localStorage.setItem(existing === null ? RESCUE_KEY : `${RESCUE_KEY}.${Date.now()}`, unreadableState);
+      }
+      unreadableState = null;
+      return true;
+    } catch (error) {
+      console.warn(error);
+      return false;
+    }
+  }
+
   function saveState() {
+    if (!keepUnreadableState()) {
+      showToast("Nicht gespeichert: Der bisherige Lernstand ist nicht lesbar und konnte nicht gesichert werden. Bitte die Lehrkraft informieren.");
+      return;
+    }
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       window.dispatchEvent(new Event("excel-lab-progress-change"));
@@ -168,7 +198,7 @@
     return {
       completed: Boolean(saved?.completed),
       teacherChecked: Boolean(saved?.teacherChecked),
-      masteryPassed: Boolean(saved?.masteryPassed || (["l1-1", "l1-2", "l1-3", "l1-4", "l1-5", "l1-6", "l2-1", "l2-2", "l2-3", "l2-4", "l2-5", "l3-1", "l3-2", "l3-3", "l3-4", "l3-5", "l3-6", "l3-7", "l3-8", "l4-1", "l4-2", "l4-3", "l4-4", "l4-5", "l4-6", "l4-7", "l4-8"].includes(lessonId) && saved?.completed)),
+      masteryPassed: Boolean(saved?.masteryPassed || saved?.completed),
       checks: lesson.checks.map((_, index) => Boolean(saved?.checks?.[index]))
     };
   }
@@ -978,6 +1008,9 @@
     bindEvents();
     renderAll();
     syncRouteFromHash();
+    if (unreadableState !== null) {
+      showToast("Der gespeicherte Lernstand war nicht lesbar und bleibt als Rettungskopie im Browser erhalten. Lade deine letzte Speicherdatei über Profil › Laden.");
+    }
     if (!currentProfile() && !window.EXCEL_LAB_DEV?.enabled) window.setTimeout(openProfileDialog, 250);
   }
 
