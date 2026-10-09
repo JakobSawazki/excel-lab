@@ -11,7 +11,8 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Technische Optimierung. 0.11.0 unter Commit `ae06c23`, Pages-Lauf
   `37983993229` erfolgreich; online Abschluss-Audit 27 Einheiten / 83 Fragen
   bestanden. 0.11.1 verlängert die Meldung zum nicht lesbaren Lernstand auf
-  20 Sekunden (Befund des Online-Seitentests). Zusätzlich auf Jakobs
+  20 Sekunden (Befund des Online-Seitentests); Commit `548012e`, Pages-Lauf
+  `37985437922`, online 28 Seiten bei zwei Breiten bestanden. Zusätzlich auf Jakobs
   Entscheidung: „XP“ statt „Punkte“ in allen Texten für Lernende und
   Versionsparameter `?v=` an allen Skript- und Style-Verweisen.
   Gemeinsamer Ablauf aller 27 Lernseiten in `lesson-core.js` (Seitenskripte

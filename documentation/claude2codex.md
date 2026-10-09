@@ -134,7 +134,9 @@ Parameter in allen 28 Seiten mit anheben.
 - `node --test`: 257 Prüfungen bestanden (Stand 0.11.1).
 - Online gegen <https://jakobsawazki.github.io/excel-lab/>: Abschluss-Audit
   27 Einheiten / 83 Fragen an 0.11.0 bestanden; Seitentest an 0.11.0 mit dem
-  oben genannten einen Befund, an 0.11.1 siehe Taskstatus der Dokumentation.
+  oben genannten einen Befund; an 0.11.1 (`548012e`, Pages-Lauf 37985437922)
+  Seitentest vollständig bestanden, dazu der Abschluss-Audit für L1.1, L2.5,
+  L3.4 und L4.8.
 - `tests/browser/lesson-gates.browser.cjs`: 27 Einheiten, 83 Fragen bestanden
   (Ausgangsmessung vor dem Umbau, danach nach OPT-01, nach OPT-06 und am Stand 0.11.0).
 - `tests/browser/site.browser.cjs`: 28 Seiten bei 1440 und 390 Pixeln, dazu
