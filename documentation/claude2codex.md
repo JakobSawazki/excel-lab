@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.5 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.6 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -493,6 +493,49 @@ bestanden beide. `tests/browser/run-all.cjs` deshalb angepasst:
 - Neuer Node-Test in `tests/site.test.js` (jetzt 298 Tests): Die Regeln für
   den mehrschichtigen Seitenhintergrund müssen nach `background:` ein
   `background-color` setzen (Fehler aus 0.20.0, siehe A0zc).
+
+### A0zf Release 0.20.6: Informationsblätter L3/L4 Aussage für Aussage
+
+Schließt den in OPT-09 offenen Punkt „nicht einzeln geprüft“. Gelesen (nur
+lesend) wurden die elf Informationsblätter aus `Lernfortschritt_3`, die
+sieben aus `Lernfortschritt_4` und `L4_2 Zusammenfassung zu Diagrammtypen`.
+Bilder und Bildschirmfotos in den Blättern wurden nicht ausgewertet, nur der
+Text.
+
+- **Fachlich vorhanden:** WENN mit Bedingung/Dann/Sonst und Struktogramm
+  (L3.1), geschachtelte WENN mit der Grenze 12 (L3.2), SUMMEWENN mit Bereich,
+  Suchkriterium, Summe_Bereich und festen Bezügen (L3.3), bedingte
+  Formatierung über „Regeln verwalten“ (L3.4), SVERWEIS mit Suchkriterium,
+  erster Spalte und Spaltenindex, ISTNV mit WENN (L3.5), RUNDEN,
+  unsortierte Verweistabelle, Bereich_Verweis WAHR/FALSCH mit nächstkleinerem
+  Wert (L3.6), Zielwertsuche über die Was-wäre-wenn-Analyse (L3.7);
+  Diagrammbestandteile, Kategorien- und Größenachse, Formatvorlagen (L4.1),
+  Balken (L4.2), Linie mit „Daten auswählen“ und horizontalen
+  Achsenbeschriftungen, getrennte Bereiche mit Strg (L4.3), Kreis mit
+  Anteilen am Ganzen (L4.4), gruppierte Säulen (L4.5), Punktdiagramm,
+  Trendlinie, Gleichung und Bestimmtheitsmaß (L4.6).
+- **Ergänzt (nur Bezeichnungen, je ein bis zwei Sätze):**
+  `l3-2.html`: Funktionsassistent „Funktion einfügen“ (fx), Kategorie
+  „Datum & Zeit“; `l4-1.html`: „Empfohlene Diagramme“, „Alle Diagramme“,
+  die drei Schaltflächen Plus, Pinsel, Trichter; `l4-6.html`: „Punktwolke“,
+  „Regressionsgerade“, die Häkchen „Formel im Diagramm anzeigen“ und
+  „Bestimmtheitsmaß im Diagramm darstellen“.
+- **L1 und L2 ebenfalls gelesen** (neun Informationsblätter und dein PDF
+  `L1.1_Informations_und_Aufgabenblatt_Tabellenentwurf.pdf`; dessen fünf
+  Getränke, Preise und Mengen stehen unverändert auf `l1-1.html`). Dein
+  Abgleich vom 4. Oktober hält: fachlich vollständig. Ergänzt:
+  `l1-3.html` „An Zellengröße anpassen“; `l1-5.html` Eingabeteil,
+  Ausgabeteil und „Tabellenrumpf“ als zweites Wort für Tabellenkörper;
+  `l2-2.html` Spalten und einzelne Zellen einfügen (Rückfrage nach unten/nach
+  rechts, Formatübernahme) und der Fehlerwert `#WERT!`, wenn ein
+  mitgewanderter Bezug auf Text trifft.
+- **Bewusst nicht übernommen:** der Hinweis der Zusammenfassung, Kreisdiagramme
+  wirkten in 3-D ansprechender. Deine Seiten raten begründet von 3-D ab
+  (verzerrte Anteile); das bleibt so. Bitte mit Jakob klären, falls die
+  Quelle hier Vorrang haben soll.
+- **Nicht geprüft:** die Kategoriebezeichnung im Funktionsassistenten der an
+  der Schule installierten Excel-Version; der Text nennt deshalb beide
+  üblichen Schreibweisen.
 
 ### A1 Wo der Stand liegt
 

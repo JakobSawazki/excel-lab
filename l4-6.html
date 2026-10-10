@@ -8,21 +8,21 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l4-6.html">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>L4.6 · Punktdiagramm und Trendlinie · Excel-Lab</title>
-    <script src="theme-boot.js?v=0.20.5"></script>
-    <link rel="stylesheet" href="styles.css?v=0.20.5">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.20.5">
-    <link rel="stylesheet" href="l4-6.css?v=0.20.5">
-    <script src="deployment.js?v=0.20.5" defer></script>
-    <script src="developer-mode.js?v=0.20.5" defer></script>
-    <script src="content.js?v=0.20.5" defer></script>
-    <script src="bonus-tasks.js?v=0.20.5" defer></script>
-    <script src="nav-menu.js?v=0.20.5" defer></script>
-    <script src="lesson-navigation.js?v=0.20.5" defer></script>
-    <script src="xp.js?v=0.20.5" defer></script>
-    <script src="options.js?v=0.20.5" defer></script>
-    <script src="lesson-workspace.js?v=0.20.5" defer></script>
-    <script src="lesson-core.js?v=0.20.5" defer></script>
-    <script src="l4-6.js?v=0.20.5" defer></script>
+    <script src="theme-boot.js?v=0.20.6"></script>
+    <link rel="stylesheet" href="styles.css?v=0.20.6">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.20.6">
+    <link rel="stylesheet" href="l4-6.css?v=0.20.6">
+    <script src="deployment.js?v=0.20.6" defer></script>
+    <script src="developer-mode.js?v=0.20.6" defer></script>
+    <script src="content.js?v=0.20.6" defer></script>
+    <script src="bonus-tasks.js?v=0.20.6" defer></script>
+    <script src="nav-menu.js?v=0.20.6" defer></script>
+    <script src="lesson-navigation.js?v=0.20.6" defer></script>
+    <script src="xp.js?v=0.20.6" defer></script>
+    <script src="options.js?v=0.20.6" defer></script>
+    <script src="lesson-workspace.js?v=0.20.6" defer></script>
+    <script src="lesson-core.js?v=0.20.6" defer></script>
+    <script src="l4-6.js?v=0.20.6" defer></script>
   </head>
   <body class="lesson-page-body l46-page">
     <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
@@ -45,7 +45,7 @@
 <ul class="learning-goals"><li><span>✓</span> X- und Y-Wert desselben Datensatzes zusammenhalten</li><li><span>✓</span> Ein XY-Diagramm ohne Verbindungslinien erstellen</li><li><span>✓</span> Trendlinie, Gleichung und R² anzeigen und deuten</li><li><span>✓</span> Modellpassung, Ausreißer und Ursache unterscheiden</li></ul>
 </div></details>
 <details class="lesson-disclosure"><summary><span class="section-index">02 · Informieren</span><h2>Beide Achsen zeigen Zahlen</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-<p>Jeder Punkt steht für <strong>ein vollständiges Zahlenpaar (x, y)</strong>. Seine waagrechte Lage ergibt sich aus X, seine senkrechte Lage aus Y. Im Länderbeispiel ist X das jährliche Pro-Kopf-Einkommen in US-Dollar und Y der jährliche Pro-Kopf-Energieverbrauch in kWh. Länderbezeichnungen dienen zur Identifikation, nicht als numerische X-Werte.</p>
+<p>Jeder Punkt steht für <strong>ein vollständiges Zahlenpaar (x, y)</strong>. Seine waagrechte Lage ergibt sich aus X, seine senkrechte Lage aus Y. Alle Punkte zusammen bilden eine <strong>Punktwolke</strong>; an ihrer Form erkennst du, ob ein Zusammenhang zwischen den beiden Merkmalen denkbar ist. Im Länderbeispiel ist X das jährliche Pro-Kopf-Einkommen in US-Dollar und Y der jährliche Pro-Kopf-Energieverbrauch in kWh. Länderbezeichnungen dienen zur Identifikation, nicht als numerische X-Werte.</p>
 <p>Die Abstände auf beiden Achsen richten sich nach den Zahlenwerten. X-Werte 2, 4 und 8 haben deshalb unterschiedliche Abstände. Ein normales Liniendiagramm würde diese Einträge als Kategorien häufig gleichmäßig verteilen. Wähle <strong>Punkt (XY), nur Punkte</strong>; Verbindungslinien zwischen beliebig angeordneten Ländern suggerieren einen Verlauf, den die Daten nicht liefern.</p>
 <p>Markiere zwei gleich lange numerische Wertebereiche. In der Datenreihe müssen X- und Y-Werte jeweils aus denselben Zeilen stammen. Sortiere niemals nur eine der beiden Spalten. Bei fehlenden Messwerten verwende für die Auswertung nur vollständige Paare und dokumentiere den Ausschluss. Ein fehlender Wert ist nicht die Zahl null.</p>
 <p>Achsen brauchen eindeutige Größen und Einheiten. Verwende hier lineare Skalen und zeige den gesamten Wertebereich. Ein Punktdiagramm muss nicht grundsätzlich bei null beginnen; eine eingeschränkte Achse muss aber transparent beschriftet sein und darf das Muster nicht irreführend zuschneiden.</p>
@@ -80,7 +80,7 @@
 <ol><li>Prüfe, dass beide Wertespalten echte Zahlen enthalten und jedes Land genau ein vollständiges Paar hat. Bei eigenem Aufbau kannst du Land, Einkommen und Verbrauch in drei nebeneinanderliegenden Spalten anlegen.</li><li>Markiere nur die 14 Einkommen-/Verbrauchspaare ohne Überschriften, Ländertexte oder eine zusätzliche Summenzeile. Füge <strong>Einfügen → Punkt (XY) → Nur Punkte</strong> ein. Menübezeichnungen können je nach Excel-Version abweichen.</li><li>Öffne <strong>Daten auswählen → Datenreihe bearbeiten</strong>. X-Werte müssen die Einkommenswerte sein, Y-Werte die Verbrauchswerte. Prüfe die Reihenfolge ausdrücklich; ändere keine der ursprünglichen Zahlen.</li><li>Kontrolliere 14 Datenpaare. Gleiche oder nahe Koordinaten können sich überlagern; zähle deshalb auch die Quelldatensätze, nicht nur sichtbare Markierungen. Verwende bei Bedarf Ländernamen als Punktbeschriftung, keine zusätzliche Länder-Datenreihe.</li><li>Vergib einen sachlichen Diagrammtitel und beschrifte X mit „Jährliches Pro-Kopf-Einkommen (US$)“, Y mit „Jährlicher Pro-Kopf-Energieverbrauch (kWh)“. Prüfe die Skala gegen die tatsächlichen Werte.</li><li>Beschreibe zunächst das Punktmuster ohne Trendlinie: Gibt es eine Richtung, erkennbare Streuung oder auffällige Punkte? Eine Quelle-Abbildung vertauscht die Achsentitel; übernimm diese Beschriftung nicht.</li></ol>
 </div></details>
 <details class="lesson-disclosure"><summary><span class="section-index">05 · Anwenden</span><h2>Trendlinie und R² vorsichtig interpretieren</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-<ol><li>Markiere die Zahlenreihe im Diagramm und wähle <strong>Trendlinie hinzufügen → Linear</strong>. Die Gerade ist ein Modell für den mittleren Verlauf. Sie muss nicht durch jeden Punkt laufen.</li><li>Aktiviere in „Trendlinie formatieren“ die Anzeige von <strong>Gleichung</strong> und <strong>Bestimmtheitsmaß (R²)</strong>. Erzwinge den Achsenschnittpunkt nicht bei null und füge keine Prognose außerhalb der Daten hinzu.</li><li>Stelle die Gleichungsbeschriftung auf genügend Dezimalstellen ein, damit Rundung ihre Aussage nicht verfälscht. Wenn du mit den Koeffizienten weiterrechnest, verwende die ungerundeten Rechenergebnisse, nicht nur die verkürzte Diagrammanzeige.</li><li>Erkläre die Steigung und den Achsenschnittpunkt in den Einheiten der Aufgabe. Eine positive Steigung beschreibt eine zunehmende Modell-Tendenz, keinen nachgewiesenen ursächlichen Effekt. Der Achsenschnittpunkt bei X = 0 kann außerhalb der beobachteten Daten liegen und muss dort keine reale Bedeutung haben.</li><li>Erkläre R² gemeinsam mit dem Punktmuster. Prüfe, ob eine Gerade sinnvoll ist und ob einzelne Punkte den Verlauf stark beeinflussen. Lösche auffällige Länder nicht bloß, um ein größeres R² zu erhalten.</li></ol>
+<ol><li>Markiere die Zahlenreihe im Diagramm und wähle <strong>Trendlinie hinzufügen → Linear</strong>. Die Gerade ist ein Modell für den mittleren Verlauf. Sie muss nicht durch jeden Punkt laufen.</li><li>Aktiviere in „Trendlinie formatieren“ die Anzeige von <strong>Gleichung</strong> und <strong>Bestimmtheitsmaß (R²)</strong>. In Excel heißen die beiden Häkchen „Formel im Diagramm anzeigen“ und „Bestimmtheitsmaß im Diagramm darstellen“. Die lineare Trendlinie wird auch Regressionsgerade genannt, ihre Gleichung Regressionsgleichung. Erzwinge den Achsenschnittpunkt nicht bei null und füge keine Prognose außerhalb der Daten hinzu.</li><li>Stelle die Gleichungsbeschriftung auf genügend Dezimalstellen ein, damit Rundung ihre Aussage nicht verfälscht. Wenn du mit den Koeffizienten weiterrechnest, verwende die ungerundeten Rechenergebnisse, nicht nur die verkürzte Diagrammanzeige.</li><li>Erkläre die Steigung und den Achsenschnittpunkt in den Einheiten der Aufgabe. Eine positive Steigung beschreibt eine zunehmende Modell-Tendenz, keinen nachgewiesenen ursächlichen Effekt. Der Achsenschnittpunkt bei X = 0 kann außerhalb der beobachteten Daten liegen und muss dort keine reale Bedeutung haben.</li><li>Erkläre R² gemeinsam mit dem Punktmuster. Prüfe, ob eine Gerade sinnvoll ist und ob einzelne Punkte den Verlauf stark beeinflussen. Lösche auffällige Länder nicht bloß, um ein größeres R² zu erhalten.</li></ol>
 <div class="formula-principle"><strong>Lineares Modell mit frei geschätztem Schnittpunkt</strong><code>ŷ = m · x + b</code><span>ŷ ist der Modellwert, m die Steigung und b der Achsenschnittpunkt. Die Gerade minimiert die Summe der quadrierten senkrechten Abweichungen der beobachteten Y-Werte.</span></div>
 <p><strong>R² beschreibt die Passung in diesen Daten.</strong> Für die hier verwendete lineare Ausgleichsgerade mit frei geschätztem Schnittpunkt liegt es zwischen 0 und 1. R² nahe 1 bedeutet kleine Abweichungen relativ zur gesamten Y-Streuung; R² nahe 0 bedeutet wenig erklärte Y-Streuung durch diese Gerade. Es ist weder eine Ursachenwahrscheinlichkeit noch eine Trefferquote für einzelne Länder. Auch ein niedriger Wert schließt einen nichtlinearen Zusammenhang nicht aus.</p>
 <p>Für eine Steigung braucht das Modell mindestens zwei verschiedene X-Werte. Wenn Y überhaupt nicht streut, ist das übliche R² nicht definiert. Fehlende Daten, Messfehler und eine kleine Auswahl begrenzen jede Interpretation. Vergleiche keine unterschiedlichen Modelle oder Datenauswahlen allein anhand des größten R².</p>

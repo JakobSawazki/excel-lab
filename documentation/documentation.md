@@ -1,11 +1,17 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.20.5
+Projektversion: 0.20.6
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.20.6 (Claude, 10.10.2026, Auftrag Jakob: Inhalte
+  gegen BPE1 prüfen):** die 28 Informationsblätter zu L1 bis L4 Aussage für
+  Aussage mit den Lernseiten verglichen. Fachlich vollständig; fehlende
+  Bezeichnungen in L1.3, L1.5, L2.2, L3.2, L4.1 und L4.6 mit je ein bis zwei Sätzen
+  ergänzt. Einzelheiten in [`claude2codex.md`](claude2codex.md), A0zf.
 
 - **Veröffentlicht als 0.20.5 (Claude, 10.10.2026):** die 14 verbliebenen
   Kleinschrift-Stellen aus dem Kontrastbericht angehoben; der Bericht meldet

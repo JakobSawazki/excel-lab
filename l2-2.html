@@ -8,20 +8,20 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/l2-2.html">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>L2.2 · Absolute Adressierung · Excel-Lab</title>
-    <script src="theme-boot.js?v=0.20.5"></script>
-    <link rel="stylesheet" href="styles.css?v=0.20.5">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.20.5">
-    <script src="deployment.js?v=0.20.5" defer></script>
-    <script src="developer-mode.js?v=0.20.5" defer></script>
-    <script src="content.js?v=0.20.5" defer></script>
-    <script src="bonus-tasks.js?v=0.20.5" defer></script>
-    <script src="nav-menu.js?v=0.20.5" defer></script>
-    <script src="lesson-navigation.js?v=0.20.5" defer></script>
-    <script src="xp.js?v=0.20.5" defer></script>
-    <script src="options.js?v=0.20.5" defer></script>
-    <script src="lesson-workspace.js?v=0.20.5" defer></script>
-    <script src="lesson-core.js?v=0.20.5" defer></script>
-    <script src="l2-2.js?v=0.20.5" defer></script>
+    <script src="theme-boot.js?v=0.20.6"></script>
+    <link rel="stylesheet" href="styles.css?v=0.20.6">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.20.6">
+    <script src="deployment.js?v=0.20.6" defer></script>
+    <script src="developer-mode.js?v=0.20.6" defer></script>
+    <script src="content.js?v=0.20.6" defer></script>
+    <script src="bonus-tasks.js?v=0.20.6" defer></script>
+    <script src="nav-menu.js?v=0.20.6" defer></script>
+    <script src="lesson-navigation.js?v=0.20.6" defer></script>
+    <script src="xp.js?v=0.20.6" defer></script>
+    <script src="options.js?v=0.20.6" defer></script>
+    <script src="lesson-workspace.js?v=0.20.6" defer></script>
+    <script src="lesson-core.js?v=0.20.6" defer></script>
+    <script src="l2-2.js?v=0.20.6" defer></script>
   </head>
   <body class="lesson-page-body l22-page">
     <a class="skip-link" href="#lesson-main">Direkt zum Inhalt</a>
@@ -104,7 +104,7 @@
             <summary><span class="section-index">02 · Informieren</span><h2 id="l22-section-2">Was beim Kopieren fest bleiben muss</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
             <div class="lesson-disclosure-body">
               <p>Aus L2.1 kennst du <strong>relative Bezüge</strong>: Beim Kopieren von <code>F6</code> nach <code>F7</code> wird aus <code>D6*E6</code> automatisch <code>D7*E7</code>. Das ist richtig, weil jede Kurszeile ihre eigenen Stunden und ihren eigenen Stundensatz hat.</p>
-              <p>Die neue Pauschale steht dagegen für <em>alle</em> Kurse in <code>B3</code>. Würde die Formel nur <code>B3</code> enthalten, würde Excel beim Kopieren daraus <code>B4</code>, dann <code>B5</code> machen. Der Wert wandert fälschlich mit.</p>
+              <p>Die neue Pauschale steht dagegen für <em>alle</em> Kurse in <code>B3</code>. Würde die Formel nur <code>B3</code> enthalten, würde Excel beim Kopieren daraus <code>B4</code>, dann <code>B5</code> machen. Der Wert wandert fälschlich mit. Trifft der mitgewanderte Bezug auf einen Text, etwa eine Überschrift, zeigt Excel den Fehlerwert <code>#WERT!</code>.</p>
               <div class="formula-principle"><strong>Kopierfähige Formel in F6</strong><code>=D6*E6+$B$3</code><span><code>D6</code> und <code>E6</code> wandern beim Kopieren mit. <code>$B$3</code> bleibt immer dieselbe Zelle.</span></div>
               <p>Das Dollarzeichen vor <code>B</code> fixiert die Spalte, das vor <code>3</code> die Zeile. Zusammen entsteht ein <strong>absoluter Bezug</strong>. Eine Formel darf relative und absolute Bezüge kombinieren.</p>
               <p class="important-note"><strong>F4-Taste:</strong> Setze den Cursor beim Bearbeiten der Formel auf den Zellbezug <code>B3</code> und drücke <kbd>F4</kbd>, bis <code>$B$3</code> erscheint. Auf manchen Schul-PCs ist zusätzlich <kbd>Fn</kbd> nötig. Du kannst die Dollarzeichen auch direkt tippen.</p>
@@ -118,7 +118,7 @@
               <p><strong>Nur mit der bereitgestellten Originalvorlage:</strong> Dort steht die Überschrift <strong>Betreuer</strong> zunächst in <code>B3</code>. Du darfst dort die 20,00 € nicht einfach hineinschreiben: Die Überschrift ginge verloren. Füge in diesem Fall zuerst <strong>zwei ganze Zeilen vor der bisherigen Zeile 3</strong> ein. Danach stehen die Spaltenüberschriften in Zeile 5 und die sechs Kurse in Zeile 6 bis 11. Jetzt ist <code>B3</code> frei.</p>
               <ol class="instruction-list">
                 <li><span>1</span><div><strong>Zeilen markieren</strong><p>Klicke links auf den Zeilenkopf <code>3</code> und markiere zwei ganze Zeilen, also 3 und 4.</p></div></li>
-                <li><span>2</span><div><strong>Einfügen</strong><p>Öffne per rechter Maustaste das Kontextmenü und wähle <strong>Zellen einfügen</strong> beziehungsweise <strong>Blattzeilen einfügen</strong>. Prüfe, dass die vorhandenen Überschriften und Kursdaten nach unten gerückt sind.</p></div></li>
+                <li><span>2</span><div><strong>Einfügen</strong><p>Öffne per rechter Maustaste das Kontextmenü und wähle <strong>Zellen einfügen</strong> beziehungsweise <strong>Blattzeilen einfügen</strong>. Prüfe, dass die vorhandenen Überschriften und Kursdaten nach unten gerückt sind. Spalten fügst du genauso über den Spaltenkopf ein. Markierst du nur einzelne Zellen, fragt Excel, ob die vorhandenen Zellen nach unten oder nach rechts verschoben werden sollen. Eingefügte Zeilen übernehmen das Format der Zeile darüber, eingefügte Spalten das Format der Spalte links daneben.</p></div></li>
                 <li><span>3</span><div><strong>Pauschale eintragen</strong><p>Schreibe in <code>A3</code> „Aufwandspauschale“ und in <code>B3</code> den numerischen Wert <code>20</code>. Formatiere <code>B3</code> als Euro-Betrag.</p></div></li>
               </ol>
               <p>Die drei Schritte oben gelten für die noch nicht verschobene Originalvorlage. Bei der eigenen L2.1-Datei brauchst du nur den dritten Schritt. Kontrolliere den tatsächlichen Tabellenaufbau statt Zeilen pauschal zweimal einzufügen.</p>
