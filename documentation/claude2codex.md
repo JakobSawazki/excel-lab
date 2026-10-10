@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.17.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.18.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -253,6 +253,23 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
   Dabei angepasst: „Kategorienachse“ statt „Rubrikenachse“ (so heißen die
   Seiten L4.1–L4.3 die Achse; auch in der Bonusaufgabe zu L4.3 berichtigt) und
   „Argument“ bei L3.5 statt L2.4.
+
+### A0o Release 0.18.0: zweite Bonusaufgabe je Einheit
+
+- `bonus-tasks.js`: neue Liste `extra` mit 27 Transferaufgaben, exportiert als
+  `EXCEL_LAB_BONUS.extra`. Jede Aufgabe trägt zusätzlich `calc`, einen
+  Rechenausdruck, mit dem `tests/bonus.test.js` den Kontrollwert nachrechnet.
+- `lesson-core.js`: Die Bonusabschnitte entstehen jetzt aus der Liste
+  `bonusItems` (erste Aufgabe: Feld `bonus`, Kennungen `#lXY-bonus-…`; zweite:
+  Feld `bonus2`, Kennungen `#lXY-bonus-2-…`, Beschriftung „Bonus · Transfer“).
+- `app.js` (`solvedBonus`, `normalizeProfile`, `getLessonProgress`), `xp.js`
+  und `lehrkraft.js` zählen beide Felder. Höchstwert jetzt 27 × 100 + 54 × 50
+  = 5400 XP. Ältere Sicherungen ohne `bonus2` laden unverändert.
+- In Excel nachgerechnet: `tests/excel/verify-transfer-in-excel.ps1` prüft 13
+  der Transferaufgaben mit Excel-Funktionen (unter anderem `SVERWEIS … WAHR`,
+  `RUNDEN`, Zielwertsuche, `STEIGUNG`), 14 von 14 Prüfungen bestanden.
+- **Bitte fachlich gegenlesen:** Auch diese 27 Aufgaben stammen von Claude und
+  sind nicht im Unterricht erprobt.
 
 ### A1 Wo der Stand liegt
 

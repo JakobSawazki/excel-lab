@@ -167,6 +167,14 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "50");
         await page.locator("#theme-toggle").click();
         assert.equal((await stored()).bonus, true, "Bonus nach Speichern der Startseite");
+        // Die zweite Aufgabe derselben Einheit zählt eigenständig.
+        await page.goto(base + "l1-1.html");
+        await page.evaluate(() => { document.querySelector("#l11-bonus-2-section").open = true; });
+        await page.fill("#l11-bonus-2-input", "80,30");
+        await page.locator("#l11-bonus-2-section button[type=submit]").click();
+        assert.equal((await stored()).bonus2, true);
+        assert.match(await page.locator("#lesson-points-status").innerText(), /Bonus \+100 XP/);
+        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "100");
         // Eine zweite Lösung derselben Aufgabe zählt nicht doppelt.
         await page.goto(base + "l1-1.html");
         assert.equal(await page.locator("#l11-bonus-section button[type=submit]").isHidden(), true);
@@ -180,8 +188,10 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         for (const file of lessonFiles) {
           await page.goto(base + file);
           const prefix = file.slice(0, -5).replace("-", "");
-          assert.equal(await page.evaluate((id) => document.querySelector(`#${id}-bonus-section`)?.nextElementSibling?.id, prefix), `${prefix}-mastery-section`, file);
+          assert.equal(await page.evaluate((id) => document.querySelector(`#${id}-bonus-section`)?.nextElementSibling?.id, prefix), `${prefix}-bonus-2-section`, file);
+          assert.equal(await page.evaluate((id) => document.querySelector(`#${id}-bonus-2-section`)?.nextElementSibling?.id, prefix), `${prefix}-mastery-section`, file);
           assert.ok((await page.locator(`#${prefix}-bonus-section .instruction-list li`).count()) >= 3, file);
+          assert.ok((await page.locator(`#${prefix}-bonus-2-section .instruction-list li`).count()) >= 2, file);
         }
       } finally { await context.close(); }
     });

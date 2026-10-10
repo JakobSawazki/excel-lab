@@ -51,7 +51,12 @@
       profile = Array.isArray(state?.profiles) ? state.profiles.find((item) => item.id === state.currentProfileId) : null;
       if (oldId !== profile?.id) {
         // Antworten gehören zum Profil, mit dem sie ausgewählt wurden.
-        if (bonusUi) { bonusUi.input.value = ""; bonusUi.feedback.textContent = ""; delete bonusUi.feedback.dataset.result; }
+        for (const item of bonusItems) {
+          if (!item.ui) continue;
+          item.ui.input.value = "";
+          item.ui.feedback.textContent = "";
+          delete item.ui.feedback.dataset.result;
+        }
         form.reset();
         form.querySelectorAll(".mastery-question").forEach((question) => {
           delete question.dataset.result;
@@ -71,15 +76,19 @@
         teacherChecked: Boolean(saved?.teacherChecked),
         masteryPassed: Boolean(saved?.masteryPassed || saved?.completed),
         bonus: Boolean(saved?.bonus),
+        bonus2: Boolean(saved?.bonus2),
         checks: checks.map((_, i) => Boolean(saved?.checks?.[i]))
       };
     }
 
-    // Freiwillige Vertiefungsaufgabe aus bonus-tasks.js: eigener Abschnitt vor
-    // dem Verständnis-Check, Prüfung über einen Kontrollwert, einmalig Bonus-XP.
-    const bonusTask = window.EXCEL_LAB_BONUS?.tasks?.[ID] || null;
+    // Freiwillige Vertiefungsaufgaben aus bonus-tasks.js: je Aufgabe ein eigener
+    // Abschnitt vor dem Verständnis-Check, Prüfung über einen Kontrollwert,
+    // einmalig Bonus-XP. Die erste Aufgabe speichert `bonus`, die zweite `bonus2`.
     const bonusXp = window.EXCEL_LAB_BONUS?.xp || 0;
-    let bonusUi = null;
+    const bonusItems = [
+      ["bonus", window.EXCEL_LAB_BONUS?.tasks?.[ID], "Bonus · Vertiefung"],
+      ["bonus2", window.EXCEL_LAB_BONUS?.extra?.[ID], "Bonus · Transfer"]
+    ].filter((item) => item[1]).map(([key, task, label], i) => ({ key, task, label, suffix: i ? `-${i + 1}` : "", ui: null }));
 
     function richText(target, text) {
       String(text).split("`").forEach((part, i) => {
@@ -116,7 +125,7 @@
 
     function parseNumber(value) {
       // Deutsche Schreibweise: 1.234,56 €; auch 1234.56 wird angenommen.
-      let text = String(value).trim().replace(/[€%\s]|km\/h|Stück/gi, "");
+      let text = String(value).trim().replace(/[€%\s]|km\/h|l\/100\s*km|Stück/gi, "");
       if (!text) return NaN;
       if (text.includes(",")) text = text.replace(/\./g, "").replace(",", ".");
       else if (/^-?\d{1,3}(\.\d{3})+$/.test(text)) text = text.replace(/\./g, "");
@@ -124,16 +133,22 @@
     }
 
     function buildBonus() {
-      if (!bonusTask || !masterySection) return;
+      if (!masterySection) return;
+      bonusItems.forEach(buildBonusItem);
+    }
+
+    function buildBonusItem(item) {
+      const bonusTask = item.task;
+      const base = `${prefix}-bonus${item.suffix}`;
       const section = make("details", "lesson-disclosure task-section bonus-section");
-      section.id = `${prefix}-bonus-section`;
+      section.id = `${base}-section`;
       const summary = document.createElement("summary");
       const heading = make("h2", "", bonusTask.title);
-      heading.id = `${prefix}-bonus-heading`;
+      heading.id = `${base}-heading`;
       const badge = make("span", "bonus-badge", `+${bonusXp} XP`);
       const icon = make("span", "lesson-disclosure-icon", "+");
       icon.setAttribute("aria-hidden", "true");
-      const index = make("span", "section-index", "Bonus · Vertiefung");
+      const index = make("span", "section-index", item.label);
       index.append(badge);
       summary.append(index, heading, icon);
       const body = make("div", "lesson-disclosure-body");
@@ -143,45 +158,45 @@
       if (bonusTask.table2) body.append(bonusTable(bonusTask.table2));
       const steps = make("ol", "instruction-list");
       bonusTask.steps.forEach((step, i) => {
-        const item = document.createElement("li");
+        const entry = document.createElement("li");
         const text = document.createElement("div");
         text.append(make("p", "", step));
-        item.append(make("span", "", String(i + 1)), text);
-        steps.append(item);
+        entry.append(make("span", "", String(i + 1)), text);
+        steps.append(entry);
       });
       body.append(steps);
       const bonusForm = make("form", "bonus-form");
       bonusForm.noValidate = true;
       const label = make("label", "bonus-label");
-      label.htmlFor = `${prefix}-bonus-input`;
+      label.htmlFor = `${base}-input`;
       label.append(make("strong", "", "Dein Kontrollwert"), make("span", "", bonusTask.question));
       const row = make("div", "bonus-row");
       const input = document.createElement("input");
-      input.id = `${prefix}-bonus-input`;
+      input.id = `${base}-input`;
       input.type = "text";
       input.inputMode = "decimal";
       input.autocomplete = "off";
       input.placeholder = "z. B. 12,50";
-      input.setAttribute("aria-describedby", `${prefix}-bonus-feedback`);
+      input.setAttribute("aria-describedby", `${base}-feedback`);
       const button = make("button", "button button-primary", "Kontrollwert prüfen");
       button.type = "submit";
       row.append(input);
       if (bonusTask.unit) row.append(make("span", "bonus-unit", bonusTask.unit));
       row.append(button);
       const feedback = make("p", "bonus-feedback");
-      feedback.id = `${prefix}-bonus-feedback`;
+      feedback.id = `${base}-feedback`;
       feedback.setAttribute("role", "status");
       bonusForm.append(label, row, feedback);
       body.append(bonusForm);
       section.append(summary, body);
       masterySection.before(section);
-      bonusUi = { section, input, button, feedback, badge };
+      item.ui = { section, input, button, feedback, badge };
 
       bonusForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const oldProfileId = profile?.id;
         refresh();
-        if (!unlocked() || !profile || oldProfileId !== profile.id || dev() || progress().bonus) { render(); return; }
+        if (!unlocked() || !profile || oldProfileId !== profile.id || dev() || progress()[item.key]) { render(); return; }
         const value = parseNumber(input.value);
         if (Number.isNaN(value)) {
           feedback.dataset.result = "incorrect";
@@ -194,7 +209,7 @@
           return;
         }
         const next = progress();
-        next.bonus = true;
+        next[item.key] = true;
         const saved = save(next);
         render();
         if (saved) toast(`Bonusaufgabe gelöst: +${bonusXp} XP.`);
@@ -255,21 +270,24 @@
       $("#lesson-score-ring").style.setProperty("--progress", percent);
       $("#lesson-page-percent").textContent = `${percent}%`;
       $("#lesson-page-status").textContent = !open ? "Noch gesperrt" : current.completed ? "Abgeschlossen" : count ? "In Arbeit" : "Noch nicht begonnen";
-      $("#lesson-points-status").textContent = `${open && current.completed ? points : 0} von ${points} XP${current.bonus ? ` · Bonus +${bonusXp} XP` : ""}`;
-      if (bonusUi) {
-        bonusUi.input.disabled = !editable || current.bonus;
-        bonusUi.button.disabled = !editable || current.bonus;
-        bonusUi.button.hidden = current.bonus;
-        bonusUi.section.classList.toggle("is-solved", current.bonus);
-        bonusUi.badge.textContent = current.bonus ? `✓ +${bonusXp} XP` : `+${bonusXp} XP`;
-        if (current.bonus) {
-          bonusUi.feedback.dataset.result = "correct";
-          bonusUi.feedback.textContent = `Richtig – ${bonusXp} Bonus-XP wurden gutgeschrieben.`;
-          bonusUi.input.value = String(bonusTask.answer).replace(".", ",");
-        } else if (bonusUi.feedback.dataset.result === "correct") {
-          delete bonusUi.feedback.dataset.result;
-          bonusUi.feedback.textContent = "";
-          bonusUi.input.value = "";
+      const bonusSolved = bonusItems.filter((item) => current[item.key]).length;
+      $("#lesson-points-status").textContent = `${open && current.completed ? points : 0} von ${points} XP${bonusSolved ? ` · Bonus +${bonusSolved * bonusXp} XP` : ""}`;
+      for (const item of bonusItems) {
+        if (!item.ui) continue;
+        const solved = current[item.key];
+        item.ui.input.disabled = !editable || solved;
+        item.ui.button.disabled = !editable || solved;
+        item.ui.button.hidden = solved;
+        item.ui.section.classList.toggle("is-solved", solved);
+        item.ui.badge.textContent = solved ? `✓ +${bonusXp} XP` : `+${bonusXp} XP`;
+        if (solved) {
+          item.ui.feedback.dataset.result = "correct";
+          item.ui.feedback.textContent = `Richtig – ${bonusXp} Bonus-XP wurden gutgeschrieben.`;
+          item.ui.input.value = String(item.task.answer).replace(".", ",");
+        } else if (item.ui.feedback.dataset.result === "correct") {
+          delete item.ui.feedback.dataset.result;
+          item.ui.feedback.textContent = "";
+          item.ui.input.value = "";
         }
       }
 

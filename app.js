@@ -13,11 +13,13 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.17.0";
+  const APP_VERSION = "0.18.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
-  const hasBonusTask = (lessonId) => Boolean(window.EXCEL_LAB_BONUS?.tasks?.[lessonId]);
+  // Gelöste Bonusaufgaben einer Einheit: `bonus` zählt für die erste, `bonus2` für die zweite Aufgabe.
+  const solvedBonus = (lessonId, progress) => Number(Boolean(window.EXCEL_LAB_BONUS?.tasks?.[lessonId] && progress.bonus))
+    + Number(Boolean(window.EXCEL_LAB_BONUS?.extra?.[lessonId] && progress.bonus2));
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
     dashboard: "uebersicht",
@@ -116,6 +118,7 @@
           // Abschlüsse aus der Zeit vor den Verständnis-Checks gelten als bestanden.
           masteryPassed: Boolean(candidate.masteryPassed || candidate.completed),
           bonus: Boolean(candidate.bonus),
+          bonus2: Boolean(candidate.bonus2),
           checks: Array.isArray(candidate.checks)
             ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
             : lesson.checks.map(() => false)
@@ -203,6 +206,7 @@
       teacherChecked: Boolean(saved?.teacherChecked),
       masteryPassed: Boolean(saved?.masteryPassed || saved?.completed),
       bonus: Boolean(saved?.bonus),
+      bonus2: Boolean(saved?.bonus2),
       checks: lesson.checks.map((_, index) => Boolean(saved?.checks?.[index]))
     };
   }
@@ -217,7 +221,7 @@
   function progressStats() {
     const completed = lessons.filter((lesson) => getLessonProgress(lesson.id).completed).length;
     const percent = lessons.length ? Math.round((completed / lessons.length) * 100) : 0;
-    const bonus = lessons.filter((lesson) => hasBonusTask(lesson.id) && getLessonProgress(lesson.id).bonus).length;
+    const bonus = lessons.reduce((sum, lesson) => sum + solvedBonus(lesson.id, getLessonProgress(lesson.id)), 0);
     return { completed, total: lessons.length, percent, bonus, points: completed * POINTS_PER_LESSON + bonus * BONUS_XP };
   }
 

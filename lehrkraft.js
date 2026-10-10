@@ -8,6 +8,7 @@
   if (!content) return;
   const { stages, lessons } = content;
   const bonusTasks = window.EXCEL_LAB_BONUS?.tasks || {};
+  const extraTasks = window.EXCEL_LAB_BONUS?.extra || {};
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
   const LESSON_XP = 100;
   const MAX_FILE_SIZE = 1_000_000;
@@ -44,11 +45,12 @@
         || (Array.isArray(entry.checks) && entry.checks.some(Boolean));
       progress[lesson.id] = {
         status: completed ? "done" : started ? "progress" : "open",
-        bonus: Boolean(entry.bonus) && Boolean(bonusTasks[lesson.id])
+        // Zahl der gelösten Bonusaufgaben dieser Einheit (0 bis 2)
+        bonus: Number(Boolean(entry.bonus) && Boolean(bonusTasks[lesson.id])) + Number(Boolean(entry.bonus2) && Boolean(extraTasks[lesson.id]))
       };
     }
     const completedCount = lessons.filter((lesson) => progress[lesson.id].status === "done").length;
-    const bonusCount = lessons.filter((lesson) => progress[lesson.id].bonus).length;
+    const bonusCount = lessons.reduce((sum, lesson) => sum + progress[lesson.id].bonus, 0);
     return {
       name,
       className,
@@ -141,8 +143,9 @@
         const cell = node("td", "teacher-status-cell");
         const badge = node("span", `teacher-cell is-${entry.status}${entry.bonus ? " has-bonus" : ""}`, status.symbol);
         badge.setAttribute("aria-hidden", "true");
-        cell.append(badge, node("span", "sr-only", `${lesson.code} ${status.label}${entry.bonus ? ", Bonus gelöst" : ""}`));
-        cell.title = `${lesson.code} ${lesson.title}: ${status.label}${entry.bonus ? ", Bonus gelöst" : ""}`;
+        const bonusText = entry.bonus ? `, ${entry.bonus === 1 ? "eine Bonusaufgabe" : `${entry.bonus} Bonusaufgaben`} gelöst` : "";
+        cell.append(badge, node("span", "sr-only", `${lesson.code} ${status.label}${bonusText}`));
+        cell.title = `${lesson.code} ${lesson.title}: ${status.label}${bonusText}`;
         row.append(cell);
       }
       body.append(row);
@@ -199,7 +202,7 @@
       student.name, student.className, formatDate(student.exportedAt), student.completedCount, student.bonusCount, student.xp,
       ...lessons.map((lesson) => {
         const entry = student.progress[lesson.id];
-        return `${STATUS[entry.status].label}${entry.bonus ? " + Bonus" : ""}`;
+        return `${STATUS[entry.status].label}${entry.bonus === 1 ? " + Bonus" : entry.bonus > 1 ? ` + ${entry.bonus} Bonus` : ""}`;
       })
     ]);
     const csv = "﻿" + [header, ...rows].map((row) => row.map(cell).join(";")).join("\r\n");

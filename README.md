@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.17.0** – Glossar mit 26 Fachbegriffen in der Formelsammlung,
+Aktueller Release: **0.18.0** – zweite Bonusaufgabe („Transfer“) in allen 27 Einheiten,
+Glossar mit 26 Fachbegriffen in der Formelsammlung,
 Fehlerwerkstatt mit sieben Excel-Fehlermeldungen in der Formelsammlung,
 Klassenübersicht für Lehrkräfte und Druckansicht der Lernseiten,
 Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
@@ -145,7 +146,8 @@ keine Prüfung der praktischen Arbeit.
 
 Jede Lernseite enthält vor dem Verständnis-Check den Abschnitt „Bonus ·
 Vertiefung“: eine freiwillige zusätzliche Aufgabe für Excel mit eigenen Daten.
-Wer den Kontrollwert richtig einträgt, erhält einmalig 50 Bonus-XP. Für den
+Seit 0.18.0 folgt darauf „Bonus · Transfer“ mit einer zweiten Aufgabe.
+Wer einen Kontrollwert richtig einträgt, erhält je Aufgabe einmalig 50 Bonus-XP. Für den
 Abschluss der Einheit ist die Aufgabe nicht nötig. Die Aufgaben stehen in
 `bonus-tasks.js`.
 

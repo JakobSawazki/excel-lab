@@ -33,10 +33,14 @@
     // Nur bekannte, abgeschlossene Einheiten zählen; kein eigener XP-Speicher.
     const bonusXp = window.EXCEL_LAB_BONUS?.xp || 0;
     const bonusTasks = window.EXCEL_LAB_BONUS?.tasks || {};
-    const withBonus = lessons.filter(lesson => bonusTasks[lesson.id]);
-    const xp = lessons.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.completed)).length * 100
-      + withBonus.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.bonus)).length * bonusXp;
-    const maximum = lessons.length * 100 + withBonus.length * bonusXp;
+    const extraTasks = window.EXCEL_LAB_BONUS?.extra || {};
+    // Je Einheit bis zu zwei Bonusaufgaben: `bonus` und `bonus2` im Lernstand.
+    const available = lessons.reduce((sum, lesson) => sum + Number(Boolean(bonusTasks[lesson.id])) + Number(Boolean(extraTasks[lesson.id])), 0);
+    const solved = lessons.reduce((sum, lesson) => sum
+      + Number(Boolean(bonusTasks[lesson.id] && profile?.progress?.[lesson.id]?.bonus))
+      + Number(Boolean(extraTasks[lesson.id] && profile?.progress?.[lesson.id]?.bonus2)), 0);
+    const xp = lessons.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.completed)).length * 100 + solved * bonusXp;
+    const maximum = lessons.length * 100 + available * bonusXp;
     const thresholds = [0];
     for (let value = 500; value < maximum; value += 500) thresholds.push(value);
     if (maximum > 0) thresholds.push(maximum);

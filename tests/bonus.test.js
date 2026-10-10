@@ -89,3 +89,25 @@ test("Tabellen der Aufgaben enthalten die Zahlen der Nachrechnung", () => {
   const total = rows.reduce((value, row) => value + Number(row[1]) * Number(row[2].replace(" €", "").replace(",", ".")), 0);
   assert.ok(Math.abs(total - bonus.tasks["l1-1"].answer) < 1e-6);
 });
+
+test("Zweite Bonusaufgabe je Einheit: vollständig, Kontrollwert aus calc nachgerechnet", () => {
+  assert.deepEqual(Object.keys(bonus.extra).sort(), lessons.map((lesson) => lesson.id).sort());
+  for (const lesson of lessons) {
+    const task = bonus.extra[lesson.id];
+    for (const field of ["title", "situation", "question", "hint", "calc"]) {
+      assert.equal(typeof task[field], "string", `${lesson.code} ${field}`);
+      assert.ok(task[field].length >= 3, `${lesson.code} ${field}`);
+    }
+    assert.notEqual(task.title, bonus.tasks[lesson.id].title, `${lesson.code}: eigener Titel`);
+    assert.ok(Array.isArray(task.steps) && task.steps.length >= 2, lesson.code);
+    assert.equal(typeof task.answer, "number");
+    for (const table of [task.table, task.table2].filter(Boolean)) {
+      for (const row of table.rows) assert.equal(row.length, table.head.length, `${lesson.code}: Spaltenzahl`);
+    }
+    for (const part of [task.situation, task.question, task.hint, ...task.steps]) assert.equal(part.split("`").length % 2, 1, part);
+    // calc enthält nur Zahlen, Rechenzeichen und einfache Listenfunktionen.
+    assert.match(task.calc, /^[\d\s.,+\-*/()[\]<>=?:&|a-zA-Z]+$/, `${lesson.code}: calc`);
+    const value = vm.runInNewContext(task.calc, { Math });
+    assert.ok(Math.abs(value - task.answer) < 1e-6, `${lesson.code}: ${task.answer} statt ${value}`);
+  }
+});

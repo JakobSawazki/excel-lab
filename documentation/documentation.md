@@ -1,11 +1,17 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.17.0
+Projektversion: 0.18.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.18.0 (Claude, 10.10.2026, Jakobs Wunsch nach weiteren
+  vertiefenden Aufgaben):** zweite Bonusaufgabe je Einheit („Bonus ·
+  Transfer“), zusammen 54. Neues Feld `bonus2` im Lernstand, Schema weiter
+  Version 1; XP höchstens 5400. Klassenübersicht zählt beide Aufgaben.
+  Einzelheiten: [`claude2codex.md`](claude2codex.md), A0o.
 
 - **Veröffentlicht als 0.17.0 (Claude, 10.10.2026):** Glossar aus der
   Ideenliste (Abschnitt 12). 26 Fachbegriffe in `content.js` (`glossary`),
