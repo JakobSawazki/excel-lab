@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.3 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -440,6 +440,12 @@ Block „Feinschliff 0.20.1“ am Ende von `styles.css`:
 „Speichern“/„Laden“ (vorher schmal und linksbündig). Die Dialoge Profil, XP
 und Darstellung wurden in beiden Schemata angesehen; die Perlmetall-Buttons
 aus 0.20.0 passen auch dort.
+
+### A0zb Release 0.20.3: Lernseiten auf dem Handy
+
+`.lesson-workspace-actions` ist bei schmaler Breite ein zweispaltiges Raster
+statt vier gestapelter Knöpfe (`lesson-workspace.css`). Handy-Ansicht (390 px)
+von Startseite und Lernseite in beiden Schemata angesehen; sonst unauffällig.
 
 ### A1 Wo der Stand liegt
 

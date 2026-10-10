@@ -46,7 +46,10 @@
  .lesson-disclosure-body { padding:1rem; }
  .lesson-disclosure > summary { padding-left:1rem; }
  .lesson-disclosure > summary h2 { font-size:1.1rem; }
- .lesson-workspace-actions { flex-direction:column; }
+ /* Handy: Hauptknopf über die ganze Breite, „Alle öffnen“ und „Alle schließen“ nebeneinander. */
+ .lesson-workspace-actions { display:grid; grid-template-columns:1fr 1fr; }
+ .lesson-workspace-actions .button { min-width:0; padding-inline:.6rem; }
+ .lesson-workspace-actions .button-primary, .lesson-workspace-actions [data-print-lesson] { grid-column:1 / -1; }
  .lesson-video-tutorial { padding:1rem; }
  .lesson-video-controls { align-items:stretch; flex-direction:column; }
  .lesson-video-link { white-space:normal; }

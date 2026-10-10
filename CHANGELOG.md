@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.3 – 2026-10-10
+
+**Lernseiten auf dem Handy.** Die Knöpfe am Seitenanfang stehen kompakter: „Zur Aufgabe“ über die ganze Breite, „Alle öffnen“ und „Alle schließen“ nebeneinander, darunter „Drucken“. Handy-Ansicht von Startseite und Lernseite in beiden Schemata angesehen.
+
 ## 0.20.2 – 2026-10-10
 
 **Profildialog aufgeräumt.** Die Knöpfe „Lernnachweis“ und „Rettungskopie herunterladen“ nehmen die volle Breite ein und schließen bündig an „Speichern“ und „Laden“ an. Dialoge für Profil, XP und Darstellung in beiden Schemata angesehen.
