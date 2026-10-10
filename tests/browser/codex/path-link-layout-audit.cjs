@@ -15,8 +15,8 @@ const base=(__BASE + '/');
   page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/*',r=>{if(!r.request().url().startsWith(base)){external.push(r.request().url());return r.abort();}return r.continue();});
   // Claude, 10.10.2026: lehrkraft.html (Klassenübersicht, 0.15.0) gehört zu den Seiten.
-  const files=fs.readdirSync('.').filter(f=>/^(index|lehrkraft|l\d-\d)\.html$/.test(f));
-  assert.equal(files.length,29);
+  const files=fs.readdirSync('.').filter(f=>/^(index|lehrkraft|nachweis|l\d-\d)\.html$/.test(f));
+  assert.equal(files.length,30);
   const inventories={};
   for(const file of files){
    assert.equal((await page.goto(base+file+'?public-preview=1')).status(),200,file);
@@ -58,6 +58,6 @@ const base=(__BASE + '/');
    if(route.includes('/'))assert.ok((await page.locator('#location-path').innerText()).includes('L'+route.split('/')[1]),route+': wrong stage');
   }
   assert.deepEqual(errors,[]);assert.deepEqual(external,[]);assert.deepEqual(broken,[]);
-  console.log(`Path audit passed: 29 pages, ${anchors} local hash links including ${routes.size} tested app routes, unique IDs, 27 source-matched understanding/work/teacher gates, 108 large-text layouts, no external requests or browser errors. This does not verify every exercise's mathematics or classroom effectiveness.`);
+  console.log(`Path audit passed: 30 pages, ${anchors} local hash links including ${routes.size} tested app routes, unique IDs, 27 source-matched understanding/work/teacher gates, 108 large-text layouts, no external requests or browser errors. This does not verify every exercise's mathematics or classroom effectiveness.`);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

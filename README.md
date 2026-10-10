@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.18.1** – zweite Bonusaufgabe („Transfer“) in allen 27 Einheiten,
+Aktueller Release: **0.19.0** – druckbarer Lernnachweis;
+zuvor **0.18.1** – zweite Bonusaufgabe („Transfer“) in allen 27 Einheiten,
 Glossar mit 26 Fachbegriffen in der Formelsammlung,
 Fehlerwerkstatt mit sieben Excel-Fehlermeldungen in der Formelsammlung,
 Klassenübersicht für Lehrkräfte und Druckansicht der Lernseiten,
@@ -160,6 +161,13 @@ Dateien werden nur im Browserfenster ausgewertet, nicht hochgeladen und nicht
 gespeichert. Die Tabelle lässt sich als CSV sichern und drucken. Die Übersicht
 zeigt, was die Lernenden selbst gespeichert haben; sie ersetzt keine Kontrolle
 der Excel-Dateien.
+
+## Lernnachweis
+
+Im Profildialog führt „Lernnachweis“ zu [`nachweis.html`](nachweis.html): eine
+druckbare Übersicht des aktuellen Profils mit abgeschlossenen Einheiten je
+Lernfortschritt, gelösten Bonusaufgaben, XP und einer Unterschriftszeile für
+die Lehrkraft. Die Seite liest nur den Lernstand im Browser und speichert nichts.
 
 ## Druckansicht
 

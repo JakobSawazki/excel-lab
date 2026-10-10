@@ -1,6 +1,6 @@
 "use strict";
 
-// Alle 29 Seiten im echten Browser (Edge über Playwright): keine Skriptfehler,
+// Alle 30 Seiten im echten Browser (Edge über Playwright): keine Skriptfehler,
 // keine externen Anfragen, alle Bilder geladen, kein seitliches Überlaufen.
 // Dazu der Umgang mit einem nicht lesbaren Lernstand (Rettungskopie).
 //
@@ -396,6 +396,36 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Lernnachweis: Werte des Profils, Hinweis ohne Profil, Druckdarstellung, kein Schreiben", async () => {
+      const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+      const state = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "test", profiles: [{ id: "test", name: "tes.pro", className: "WGW EK1", progress: { "l1-1": { ...done, bonus: true, bonus2: true }, "l1-2": { ...done, bonus: true }, "l2-1": done, "l1-3": { checks: [true, false, false] } } }] });
+      const { context, page, errors } = await open(browser, "index.html", { state });
+      try {
+        await page.locator("#profile-button").click();
+        await Promise.all([page.waitForURL(/nachweis\.html/), page.locator("#certificate-link").click()]);
+        assert.equal(await page.locator("#certificate-name").innerText(), "tes.pro");
+        assert.equal(await page.locator("#certificate-class").innerText(), "WGW EK1");
+        assert.equal(await page.locator("#certificate-lessons").innerText(), "3 von 27");
+        assert.equal(await page.locator("#certificate-bonus").innerText(), "3 von 54");
+        assert.equal(await page.locator("#certificate-xp").innerText(), "450");
+        assert.equal(await page.locator(".certificate-stage").count(), 4);
+        assert.equal(await page.locator(".certificate-lessons li").count(), 27);
+        assert.equal(await page.locator(".certificate-lessons li.is-done").count(), 3);
+        assert.match(await page.locator(".certificate-lessons li").first().innerText(), /L1\.1[\s\S]*abgeschlossen · 2 Bonus/);
+        assert.equal(await page.evaluate((key) => localStorage.getItem(key), KEY), state, "Lernstand unverändert");
+        await page.emulateMedia({ media: "print" });
+        assert.equal(await page.locator(".site-header").isVisible(), false);
+        assert.equal(await page.evaluate(() => getComputedStyle(document.body).backgroundColor), "rgb(255, 255, 255)");
+        await page.emulateMedia({ media: "screen" });
+        await page.evaluate((key) => localStorage.removeItem(key), KEY);
+        await page.reload();
+        assert.equal(await page.locator("#certificate").isHidden(), true);
+        assert.equal(await page.locator("#certificate-empty").isVisible(), true);
+        assert.equal(await page.locator("#certificate-print").isDisabled(), true);
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -408,5 +438,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und fünfzehn Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und sechzehn Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

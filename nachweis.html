@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab Lernnachweis: abgeschlossene Einheiten, Bonusaufgaben und XP des aktuellen Lernprofils zum Ausdrucken.">
+    <meta name="theme-color" content="#0b1422">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/nachweis.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>Lernnachweis · Excel-Lab</title>
+    <script src="theme-boot.js?v=0.19.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.19.0">
+    <link rel="stylesheet" href="nachweis.css?v=0.19.0">
+    <script src="content.js?v=0.19.0" defer></script>
+    <script src="bonus-tasks.js?v=0.19.0" defer></script>
+    <script src="nachweis.js?v=0.19.0" defer></script>
+  </head>
+  <body class="certificate-page">
+    <a class="skip-link" href="#certificate-main">Direkt zum Inhalt</a>
+    <header class="site-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>Lernnachweis</small></span>
+      </a>
+      <div class="header-actions">
+        <button class="button button-primary" type="button" id="certificate-print" disabled>Drucken</button>
+        <a class="button button-secondary" href="index.html#uebersicht">Zur Lernseite</a>
+      </div>
+    </header>
+
+    <main id="certificate-main">
+      <div class="page-shell page-shell-narrow">
+        <p class="certificate-empty" id="certificate-empty" hidden>In diesem Browser ist kein Lernprofil vorhanden. Lege auf der <a href="index.html#uebersicht">Startseite</a> ein Profil an oder lade dort deine Speicherdatei.</p>
+
+        <article class="certificate" id="certificate" hidden>
+          <header class="certificate-head">
+            <span class="certificate-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+            <div>
+              <p class="eyebrow">Excel-Lab · Bildungsplaneinheit 1 Tabellenkalkulation</p>
+              <h1>Lernnachweis</h1>
+            </div>
+          </header>
+
+          <dl class="certificate-person">
+            <div><dt>Kürzel</dt><dd id="certificate-name"></dd></div>
+            <div><dt>Klasse</dt><dd id="certificate-class"></dd></div>
+            <div><dt>Stand</dt><dd id="certificate-date"></dd></div>
+          </dl>
+
+          <section class="certificate-numbers" aria-label="Zusammenfassung">
+            <div><small>Einheiten abgeschlossen</small><strong id="certificate-lessons"></strong></div>
+            <div><small>Bonusaufgaben gelöst</small><strong id="certificate-bonus"></strong></div>
+            <div><small>XP</small><strong id="certificate-xp"></strong></div>
+          </section>
+
+          <section aria-labelledby="certificate-stages-heading">
+            <h2 id="certificate-stages-heading">Lernfortschritte</h2>
+            <div class="certificate-stages" id="certificate-stages"></div>
+          </section>
+
+          <footer class="certificate-foot">
+            <p>Dieser Nachweis gibt wieder, was im Browser gespeichert ist. Haken und Abschlüsse setzen die Lernenden selbst; gültig wird der Nachweis erst mit der Bestätigung der Lehrkraft.</p>
+            <div class="certificate-signatures">
+              <span>Datum</span>
+              <span>Unterschrift Lehrkraft</span>
+            </div>
+          </footer>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

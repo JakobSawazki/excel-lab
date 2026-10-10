@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.18.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.19.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -298,6 +298,18 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
 - Ergebnis gegen die lokale Kopie: 293 Node-Prüfungen, 3 von 3 eigenen und 27
   von 28 übernommenen Browsertestdateien in einem Lauf; die 28. bestand danach
   zweimal einzeln, nachdem `materialien/` in der Kopie lag.
+
+### A0r Release 0.19.0: Lernnachweis
+
+- Neue Seite `nachweis.html` mit `nachweis.js` und `nachweis.css`; Link
+  `#certificate-link` im Profildialog der Startseite. Die Seite liest
+  `excelLab.state.v1` nur, schreibt nichts und setzt alle Werte über
+  `textContent`. Ohne Profil zeigt sie einen Hinweis statt des Nachweises.
+- Der Nachweis ist eine Selbstauskunft aus dem Browser (wie die
+  Klassenübersicht) und sagt das auch; gültig wird er laut Text erst mit der
+  Unterschrift der Lehrkraft.
+- Es gibt jetzt 30 HTML-Seiten: Startseite, 27 Lernseiten, Klassenübersicht,
+  Lernnachweis. `tests/site.test.js` und der übernommene Link-Audit zählen so.
 
 ### A1 Wo der Stand liegt
 

@@ -2334,6 +2334,7 @@ h3 {
 
 #developer-profile-actions[hidden], .profile-edit-form[hidden], #rescue-button[hidden] { display: none; }
 #rescue-button { margin-top: 1rem; }
+#certificate-link { margin-top: 1rem; justify-content: center; }
 #developer-profile-actions:not([hidden]) { margin-top: 1rem; }
 .profile-edit-form { margin: 1.2rem 0; }
 .xp-button { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; gap: 0; line-height: 1; padding: 0.25rem; }

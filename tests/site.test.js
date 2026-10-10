@@ -11,8 +11,9 @@ const htmlFiles = fs.readdirSync(root).filter((file) => file.endsWith(".html")).
 const scriptFiles = fs.readdirSync(root).filter((file) => file.endsWith(".js")).sort();
 const MATERIALS = "materialien/BPE1/";
 
-test("29 Seiten: Startseite, 27 Lernseiten und Klassenübersicht", () => {
-  assert.equal(htmlFiles.length, 29);
+test("30 Seiten: Startseite, 27 Lernseiten, Klassenübersicht und Lernnachweis", () => {
+  assert.equal(htmlFiles.length, 30);
+  assert.ok(htmlFiles.includes("nachweis.html"));
   assert.equal(htmlFiles.filter((file) => /^l\d-\d\.html$/.test(file)).length, 27);
   assert.ok(htmlFiles.includes("lehrkraft.html"));
   assert.ok(htmlFiles.includes("index.html"));
@@ -81,7 +82,7 @@ test("Versionsgleichstand in App, Versionsverlauf, README und Dokumentation", ()
 
 test("Startseite und Klassenübersicht: Skripte und Styles tragen die Version", () => {
   const version = read("app.js").match(/const APP_VERSION = "([^"]+)";/)[1];
-  const index = read("index.html") + read("lehrkraft.html");
+  const index = read("index.html") + read("lehrkraft.html") + read("nachweis.html");
   const references = [...tags(index, "script").map((tag) => attribute(tag, "src")), ...tags(index, "link").filter((tag) => /rel="stylesheet"/.test(tag)).map((tag) => attribute(tag, "href"))];
   assert.ok(references.length >= 10);
   for (const reference of references) assert.ok(reference.endsWith(`?v=${version}`), `${reference} ohne ?v=${version}`);
