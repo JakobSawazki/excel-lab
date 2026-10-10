@@ -20,6 +20,7 @@
     <h2 id="xp-title">Deine XP</h2>
     <div class="xp-summary"><strong id="xp-total">0 XP</strong><span id="xp-level">Level 1</span></div>
     <p id="xp-next"></p>
+    <p class="xp-breakdown" id="xp-breakdown"></p>
     <progress id="xp-progress" max="500" value="0" aria-label="Fortschritt zum nächsten Level"></progress>
     <p class="xp-rule">Eine abgeschlossene Einheit bringt 100 XP, jede gelöste Bonusaufgabe zusätzlich 50 XP. Ein neues Level erreichst du nach je 500 XP; das letzte Level mit allen Einheiten und allen Bonusaufgaben.</p>
   </div>`;
@@ -39,7 +40,8 @@
     const solved = lessons.reduce((sum, lesson) => sum
       + Number(Boolean(bonusTasks[lesson.id] && profile?.progress?.[lesson.id]?.bonus))
       + Number(Boolean(extraTasks[lesson.id] && profile?.progress?.[lesson.id]?.bonus2)), 0);
-    const xp = lessons.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.completed)).length * 100 + solved * bonusXp;
+    const completed = lessons.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.completed)).length;
+    const xp = completed * 100 + solved * bonusXp;
     const maximum = lessons.length * 100 + available * bonusXp;
     const thresholds = [0];
     for (let value = 500; value < maximum; value += 500) thresholds.push(value);
@@ -57,6 +59,10 @@
       ? "Lege ein Profil an oder lade deine Speicherdatei, um XP zu sammeln."
       : next === undefined ? "Höchstes Level erreicht – alle Einheiten und Bonusaufgaben geschafft!"
         : `Noch ${next - xp} XP bis Level ${levelIndex + 2} (${next} XP insgesamt).`;
+    // Woher die XP kommen: Einheiten und Bonusaufgaben getrennt.
+    dialog.querySelector("#xp-breakdown").textContent = profile
+      ? `${completed} von ${lessons.length} Einheiten: ${completed * 100} XP · ${solved} von ${available} Bonusaufgaben: ${solved * bonusXp} XP`
+      : "";
     const progress = dialog.querySelector("#xp-progress");
     progress.max = next === undefined ? 1 : next - base;
     progress.value = next === undefined ? 1 : xp - base;

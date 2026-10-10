@@ -173,6 +173,9 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.fill("#l11-bonus-2-input", "80,30");
         await page.locator("#l11-bonus-2-section button[type=submit]").click();
         assert.equal((await stored()).bonus2, true);
+        await page.locator("#xp-button").click();
+        assert.equal(await page.locator("#xp-breakdown").innerText(), "0 von 27 Einheiten: 0 XP · 2 von 54 Bonusaufgaben: 100 XP");
+        await page.locator("#xp-dialog .dialog-close").click();
         assert.match(await page.locator("#lesson-points-status").innerText(), /Bonus \+100 XP/);
         await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "100");
         // Eine zweite Lösung derselben Aufgabe zählt nicht doppelt.

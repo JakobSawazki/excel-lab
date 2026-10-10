@@ -3520,3 +3520,7 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
   }
   .site-footer { padding-bottom: calc(9rem + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* XP-Dialog: Aufschlüsselung nach Einheiten und Bonusaufgaben (xp.js). */
+.xp-breakdown { margin: .2rem 0 .8rem; color: var(--text-soft); font-size: .86rem; line-height: 1.5; }
+.xp-breakdown:empty { display: none; }

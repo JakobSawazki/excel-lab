@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.19.2 – 2026-10-10
+
+**XP-Dialog mit Aufschlüsselung.** Der Dialog zeigt, wie viele XP aus abgeschlossenen Einheiten und wie viele aus Bonusaufgaben stammen. Außerdem ohne App-Änderung: Node-Tests laufen bei jedem Push auf GitHub, `tools/build-loesungen.cjs` erzeugt ein Lösungsheft für die Lehrkraft, Abschnitte 6, 7 und 9 der Projektdokumentation aktualisiert.
+
 ## 0.19.1 – 2026-10-10
 
 **Ungenutzte Styles entfernt.** 66 Regeln und 80 einzelne Selektoren aus `styles.css` und `home.css`, die nur Klassen ohne Verwendung in HTML und JavaScript nannten (rund 9 KB). Vorher-Nachher-Vergleich von 132 Bildschirmfotos ohne sichtbaren Unterschied.

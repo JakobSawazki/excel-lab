@@ -1,11 +1,16 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.19.1
+Projektversion: 0.19.2
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.19.2 (Claude, 10.10.2026):** Der XP-Dialog schlüsselt
+  die XP nach Einheiten und Bonusaufgaben auf. Davor ohne App-Änderung:
+  Node-Tests als GitHub-Workflow, Lösungsheft-Werkzeug
+  `tools/build-loesungen.cjs`, Abschnitte 6, 7 und 9 dieser Datei aktualisiert.
 
 - **Veröffentlicht als 0.19.1 (Claude, 10.10.2026):** ungenutzte Styles
   entfernt (OPT-13): 66 Regeln und 80 einzelne Selektoren in `styles.css` und

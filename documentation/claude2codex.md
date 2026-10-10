@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.19.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.19.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -379,6 +379,17 @@ Die Datei ist nicht im Repository und wird nicht veröffentlicht; nach
 Änderungen an Fragen oder Bonusaufgaben neu erzeugen. (Die Lösungen stehen
 weiterhin lesbar in den Skripten der Seite; das Heft ist eine Arbeitshilfe,
 kein Schutz.)
+
+### A0x Release 0.19.2: XP-Dialog mit Aufschlüsselung
+
+`xp.js` zeigt im Dialog zusätzlich `#xp-breakdown`: „x von 27 Einheiten: … XP ·
+y von 54 Bonusaufgaben: … XP“. Styles am Ende von `styles.css`.
+
+Beim Testlauf war der Rechner wieder langsam. `l47-nav-smoke.cjs` und
+`l48-nav-smoke.cjs` meldeten dabei denselben Messfehler wie zuvor
+`mobile-navigation-smoke.cjs` („clipped label“, Messung mitten im Übergang).
+Beide warten jetzt ebenfalls auf laufende Übergänge und bestanden danach je
+zweimal. Im Sammellauf bestanden die übrigen 26 übernommenen Tests.
 
 ### A1 Wo der Stand liegt
 
