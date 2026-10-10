@@ -476,6 +476,21 @@ abgedunkelt. `contrast.browser.cjs`: 450 Ansichten, keine messbare Stelle
 unter dem Mindestkontrast; 24 Stellen auf Verlaufsflächen kann das Werkzeug
 nicht messen (weiße Schrift auf Metall-Grün, Profil-Kürzel, Quellennummern).
 
+### A0ze Testläufer: Wiederholung und Zeitlimit (ohne Versionssprung)
+
+Am 10. Oktober war der Rechner zeitweise so langsam, dass
+`lesson-gates.browser.cjs` in das Zeitlimit lief und `release-smoke.cjs` einmal
+`ERR_CONNECTION_TIMED_OUT` vom lokalen Server bekam; einzeln wiederholt
+bestanden beide. `tests/browser/run-all.cjs` deshalb angepasst:
+
+- Zeitlimit je Testdatei 900 s statt 600 s, änderbar mit
+  `EXCEL_LAB_TEST_TIMEOUT` (Sekunden).
+- Scheitert eine Datei an Zeitlimit oder Verbindungsfehler, wird sie einmal
+  wiederholt; die Zeile trägt dann „(zweiter Versuch)“, am Ende steht die
+  Anzahl der Wiederholungen. Andere Fehler werden nicht wiederholt.
+- Besteht eine Datei regelmäßig erst im zweiten Versuch, bitte als echten
+  Fehler behandeln, nicht als Umgebung.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag

@@ -3,6 +3,7 @@
 // Startet alle Browsertests nacheinander und fasst das Ergebnis zusammen.
 // Aufruf aus dem Projektordner:
 //   node tests/browser/run-all.cjs http://127.0.0.1:4273/ [codex|eigene]
+// Zeitlimit je Testdatei: 900 s, änderbar mit EXCEL_LAB_TEST_TIMEOUT (Sekunden).
 // Bildschirmfotos der übernommenen Codex-Tests landen unter %TEMP%\excel-lab-tests.
 const { spawnSync } = require("node:child_process");
 const fs = require("node:fs");
@@ -18,15 +19,33 @@ const codex = fs.existsSync(codexDir) ? fs.readdirSync(codexDir).filter((file) =
   .map((file) => ({ file: path.join("tests", "browser", "codex", file), args: [base] })) : [];
 const selected = only === "codex" ? codex : only === "eigene" ? own : [...own, ...codex];
 
+// Zeitlimit je Testdatei; auf einem ausgelasteten Rechner über die Umgebung anhebbar.
+const timeout = Number(process.env.EXCEL_LAB_TEST_TIMEOUT) > 0 ? Number(process.env.EXCEL_LAB_TEST_TIMEOUT) * 1000 : 900000;
+// Ausfälle, die nach Umgebung aussehen (Zeitlimit, keine Verbindung), werden einmal
+// wiederholt und in der Ausgabe als „zweiter Versuch“ gekennzeichnet. Besteht eine
+// Datei regelmäßig erst im zweiten Versuch, ist das ein Hinweis auf einen echten Fehler.
+const environmental = (run) => Boolean(run.error) || run.signal !== null
+  || /net::ERR_|ECONNREFUSED|ECONNRESET|Timeout \d+ms exceeded/.test((run.stdout || "") + (run.stderr || ""));
+const start = (file, args) => spawnSync(process.execPath, [file, ...args], { cwd: root, encoding: "utf8", timeout, env: { ...process.env, EXCEL_LAB_BASE: base } });
+
 let failed = 0;
+let repeated = 0;
 for (const { file, args } of selected) {
   const started = Date.now();
-  const run = spawnSync(process.execPath, [file, ...args], { cwd: root, encoding: "utf8", timeout: 600000, env: { ...process.env, EXCEL_LAB_BASE: base } });
-  const ok = run.status === 0 && !run.error;
+  let run = start(file, args);
+  let ok = run.status === 0 && !run.error;
+  let retried = false;
+  if (!ok && environmental(run)) {
+    retried = true;
+    repeated++;
+    run = start(file, args);
+    ok = run.status === 0 && !run.error;
+  }
   if (!ok) failed++;
   const seconds = Math.round((Date.now() - started) / 1000);
-  console.log(`${ok ? "ok    " : "FEHLER"} ${String(seconds).padStart(4)} s  ${file}`);
+  console.log(`${ok ? "ok    " : "FEHLER"} ${String(seconds).padStart(4)} s  ${file}${retried ? "  (zweiter Versuch)" : ""}`);
   if (!ok) console.log(((run.stdout || "") + (run.stderr || "")).trim().split("\n").slice(-12).map((line) => "         " + line).join("\n"));
 }
+if (repeated) console.log(`${repeated} Testdatei(en) nach Zeitlimit oder Verbindungsfehler wiederholt.`);
 console.log(`${selected.length - failed} von ${selected.length} Testdateien bestanden.`);
 process.exitCode = failed ? 1 : 0;
