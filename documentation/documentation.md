@@ -1,11 +1,19 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.15.0
+Projektversion: 0.16.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.16.0 (Claude, 10.10.2026):** „Fehlerwerkstatt“ aus der
+  Ideenliste (Abschnitt 12) als neue Kategorie „Fehlermeldungen“ in der
+  Formelsammlung: sieben Karten zu #NV, #DIV/0!, #WERT!, #NAME?, #BEZUG!,
+  #ZAHL! und #####. Jedes Beispiel wurde in echtem Excel 16 (deutsch)
+  ausgelöst (`tests/excel/verify-errors-in-excel.ps1`, 9 von 9). Dabei zeigte
+  sich: „12 €“ als Text rechnet Excel als 12 – als Beispiel für #WERT! steht
+  deshalb „12 Stück“. Die Formelsammlung hat jetzt 27 Karten.
 
 - **Veröffentlicht als 0.15.0 (Claude, 10.10.2026):** Zwei seit Langem offene
   Punkte aus Abschnitt 11 umgesetzt. (1) Klassenübersicht `lehrkraft.html`:

@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.15.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.16.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -225,6 +225,20 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
   Kopf, Navigation, Seitenleiste, Videos, Eingabefelder).
 - Erledigt damit aus Abschnitt 11 der Dokumentation: „Lernstandübersicht für
   Lehrkräfte konzipieren“ und „Druckansicht anbieten“.
+
+### A0m Release 0.16.0: Fehlerwerkstatt
+
+- `content.js`, Liste `formulas`: sieben neue Einträge der Kategorie
+  „Fehlermeldungen“ (#NV, #DIV/0!, #WERT!, #NAME?, #BEZUG!, #ZAHL!, #####) mit
+  Ursache, Abhilfe und einem Beispiel. Kein neuer Code: Filter, Suche und
+  Kopierknopf der Formelsammlung greifen automatisch. `index.html` nennt
+  jetzt 27 Formeln (der Node-Test vergleicht die Zahl mit `content.js`).
+- In Excel geprüft: `tests/excel/verify-errors-in-excel.ps1` löst jede Meldung
+  mit dem Beispiel der Karte aus und prüft zwei Abhilfen; 9 von 9.
+  **Befund für deine Seiten:** Text wie „12 €“ rechnet deutsches Excel
+  stillschweigend als Zahl (12 × 12 = 144), „12 Stück“ ergibt #WERT!. Die
+  Lernseiten nennen #WERT! nur einmal (Geldbeträge müssen als Zahlen
+  vorliegen) und behaupten nichts Falsches; durchsucht am 10. Oktober.
 
 ### A1 Wo der Stand liegt
 

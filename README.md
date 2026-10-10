@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.15.0** – Klassenübersicht für Lehrkräfte und Druckansicht der Lernseiten,
+Aktueller Release: **0.16.0** – Fehlerwerkstatt mit sieben Excel-Fehlermeldungen in der Formelsammlung,
+Klassenübersicht für Lehrkräfte und Druckansicht der Lernseiten,
 Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
 L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
 Bonusaufgaben mit Extra-XP in allen 27 Einheiten,

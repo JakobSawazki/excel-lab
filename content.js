@@ -1012,7 +1012,14 @@
     { name: "RUNDEN", category: "Mathematik", syntax: "=RUNDEN(H4;0)", description: "Rundet einen Wert auf die angegebene Zahl an Nachkommastellen.", example: "Endnote auf ganze Zahl" },
     { name: "Relativer Bezug", category: "Bezüge", syntax: "=D6*E6", description: "Zeile und Spalte passen sich beim Kopieren an.", example: "Berechnung pro Datenzeile" },
     { name: "Absoluter Bezug", category: "Bezüge", syntax: "=D6*E6+$B$3", description: "Mit $ fixierte Spalte und Zeile bleiben unverändert.", example: "Gemeinsame Aufwandspauschale" },
-    { name: "Gemischter Bezug", category: "Bezüge", syntax: "=D$4*$C7+$B7", description: "Fixiert gezielt nur Zeile oder Spalte für zweidimensionales Kopieren.", example: "Preismatrix für Ziele und Anbieter" }
+    { name: "Gemischter Bezug", category: "Bezüge", syntax: "=D$4*$C7+$B7", description: "Fixiert gezielt nur Zeile oder Spalte für zweidimensionales Kopieren.", example: "Preismatrix für Ziele und Anbieter" },
+    { name: "#NV", category: "Fehlermeldungen", syntax: "=SVERWEIS(\"A250\";$A$2:$C$5;3;FALSCH)", description: "Nicht verfügbar: Ein Verweis findet das Suchkriterium nicht. Prüfe Schreibweise, Text statt Zahl und den Suchbereich. Erwartete Fälle fängst du mit WENN(ISTNV(…);…;…) ab.", example: "Artikelnummer fehlt in der Preisliste" },
+    { name: "#DIV/0!", category: "Fehlermeldungen", syntax: "=E2/F2", description: "Division durch null oder durch eine leere Zelle. Prüfe den Nenner. Mit =WENN(F2=0;\"\";E2/F2) bleibt die Zelle leer, bis ein Wert vorliegt.", example: "Anteil berechnen, obwohl die Gesamtsumme noch 0 ist" },
+    { name: "#WERT!", category: "Fehlermeldungen", syntax: "=G2*E2", description: "Eine Rechnung trifft auf Text, den Excel nicht als Zahl lesen kann, zum Beispiel „12 Stück“. Gib nur die Zahl ein und zeige die Einheit über das Zahlenformat.", example: "Menge mit getippter Einheit in der Zelle" },
+    { name: "#NAME?", category: "Fehlermeldungen", syntax: "=SUMM(E2:E6)", description: "Excel kennt einen Namen nicht: Funktionsname vertippt, Text ohne Anführungszeichen oder ein Bereichsname, den es nicht gibt.", example: "SUMM statt SUMME" },
+    { name: "#BEZUG!", category: "Fehlermeldungen", syntax: "=SVERWEIS(10;$H$2:$I$8;3;FALSCH)", description: "Ein Bezug ist ungültig: Die Zelle wurde gelöscht, oder der Spaltenindex ist größer als die Matrix. Mache das Löschen rückgängig oder korrigiere Bezug und Spaltenindex.", example: "Spaltenindex 3 in einer Matrix mit zwei Spalten" },
+    { name: "#ZAHL!", category: "Fehlermeldungen", syntax: "=WURZEL(-9)", description: "Eine Zahl passt nicht zur Funktion, oder das Ergebnis ist zu groß oder zu klein. Prüfe die Eingabewerte.", example: "Wurzel aus einer negativen Zahl" },
+    { name: "#####", category: "Fehlermeldungen", syntax: "#####", description: "Kein Rechenfehler: Die Spalte ist zu schmal für die Zahl oder das Datum. Ziehe die Spalte breiter oder doppelklicke auf den rechten Rand des Spaltenkopfs.", example: "Großer Betrag mit Währungsformat in schmaler Spalte" }
   ];
 
   window.EXCEL_LAB_CONTENT = { stages, lessons, formulas };
