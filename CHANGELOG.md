@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.0 – 2026-10-10
+
+**Feinschliff am Design.** Hintergrund aus weichen Lichtflächen, kaum sichtbarem Zellraster und Tiefenverlauf (beide Schemata, alle Darstellungsoptionen); Nebenbuttons im hellen Schema als gebürstetes Perlmetall statt dunkler Blöcke; einheitlicher Fokusrahmen; Kleinstschriften angehoben. Keine Bilddatei geändert.
+
 ## 0.19.2 – 2026-10-10
 
 **XP-Dialog mit Aufschlüsselung.** Der Dialog zeigt, wie viele XP aus abgeschlossenen Einheiten und wie viele aus Bonusaufgaben stammen. Außerdem ohne App-Änderung: Node-Tests laufen bei jedem Push auf GitHub, `tools/build-loesungen.cjs` erzeugt ein Lösungsheft für die Lehrkraft, Abschnitte 6, 7 und 9 der Projektdokumentation aktualisiert.

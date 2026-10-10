@@ -3524,3 +3524,86 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
 /* XP-Dialog: Aufschlüsselung nach Einheiten und Bonusaufgaben (xp.js). */
 .xp-breakdown { margin: .2rem 0 .8rem; color: var(--text-soft); font-size: .86rem; line-height: 1.5; }
 .xp-breakdown:empty { display: none; }
+
+/* ==========================================================================
+   Feinschliff 0.20.0 (Claude, 10.10.2026, Auftrag Jakob: edles Design,
+   hochwertige Buttons und Hintergründe). Nur Flächen, Buttons und Schrift;
+   keine Bilddatei wurde angefasst. Alles baut auf den vorhandenen Farbwerten
+   auf und folgt deshalb beiden Schemata und allen Darstellungsoptionen.
+   ========================================================================== */
+
+/* Hintergrund: drei weiche Lichtflächen, darüber ein kaum sichtbares
+   Zellraster als Tabellenmotiv, darunter ein ruhiger Tiefenverlauf. */
+body,
+.lesson-page-body {
+  background:
+    radial-gradient(72rem 44rem at 8% -14%, color-mix(in srgb, var(--green) 21%, transparent), transparent 62%),
+    radial-gradient(62rem 40rem at 104% -4%, color-mix(in srgb, var(--blue) 15%, transparent), transparent 60%),
+    radial-gradient(58rem 36rem at 50% 122%, color-mix(in srgb, var(--green) 12%, transparent), transparent 62%),
+    linear-gradient(color-mix(in srgb, var(--text) 3%, transparent) 1px, transparent 1px) 0 0 / 100% 46px,
+    linear-gradient(90deg, color-mix(in srgb, var(--text) 3%, transparent) 1px, transparent 1px) 0 0 / 92px 100%,
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 62%, var(--bg)) 0%, var(--bg) 36%, color-mix(in srgb, #000 16%, var(--bg)) 100%);
+  background-attachment: fixed;
+}
+[data-theme="light"] body,
+[data-theme="light"] .lesson-page-body {
+  background:
+    radial-gradient(72rem 44rem at 8% -14%, color-mix(in srgb, var(--green) 11%, transparent), transparent 62%),
+    radial-gradient(62rem 40rem at 104% -4%, color-mix(in srgb, var(--blue) 7%, transparent), transparent 60%),
+    radial-gradient(58rem 36rem at 50% 122%, color-mix(in srgb, var(--green) 7%, transparent), transparent 62%),
+    linear-gradient(color-mix(in srgb, var(--text) 3.2%, transparent) 1px, transparent 1px) 0 0 / 100% 46px,
+    linear-gradient(90deg, color-mix(in srgb, var(--text) 3.2%, transparent) 1px, transparent 1px) 0 0 / 92px 100%,
+    linear-gradient(180deg, #fff 0%, var(--bg) 34%, color-mix(in srgb, var(--green) 5%, var(--bg)) 100%);
+  background-attachment: fixed;
+}
+
+/* Nebenbuttons im hellen Schema: gebürstetes Perlmetall statt dunkler Blöcke. */
+[data-theme="light"] .button-secondary {
+  border-color: color-mix(in srgb, var(--green) 34%, #a9bbb1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(255, 255, 255, .42) 20%, transparent 54%, rgba(13, 58, 38, .11) 100%),
+    repeating-linear-gradient(95deg, rgba(13, 58, 38, .024) 0 1px, transparent 1px 4px),
+    linear-gradient(100deg, #dbe6df 0%, #f7faf8 22%, #e3ece6 50%, #fbfdfc 76%, #d7e3dc 100%);
+  box-shadow: 0 3px 0 #b1c2b8, 0 10px 22px rgba(31, 80, 54, .15), inset 0 1px 0 #fff, inset 0 0 0 2px rgba(255, 255, 255, .58);
+  color: #0c3a25;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .75);
+}
+[data-theme="light"] .button-secondary:hover {
+  border-color: var(--green);
+  box-shadow: 0 4px 0 #a6b9ae, 0 15px 30px rgba(18, 137, 77, .2), inset 0 1px 0 #fff, inset 0 0 0 2px rgba(255, 255, 255, .7);
+}
+[data-theme="light"] .button-secondary:active {
+  box-shadow: inset 0 3px 7px rgba(13, 58, 38, .22), inset 0 0 0 2px rgba(13, 58, 38, .12);
+}
+[data-theme="light"] .button-secondary::after { border-color: rgba(13, 58, 38, .12); }
+[data-theme="light"] .button-secondary:disabled,
+[data-theme="light"] .button-secondary.is-disabled { color: #1c3327; text-shadow: none; opacity: .62; }
+
+/* Alle Buttons: ruhigerer Tastendruck und ein klarer, edler Fokusrahmen. */
+.button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--green) 78%, #fff);
+  outline-offset: 3px;
+}
+
+/* Kleinstschriften: was Lernende lesen müssen, ist mindestens rund 11 Pixel groß. */
+.check-note { font-size: .76rem !important; line-height: 1.55; }
+.download-note { font-size: .76rem; line-height: 1.55; }
+.lesson-score-card small,
+.lesson-score-card span,
+.lesson-meta,
+#view-dashboard .organizer-topic > small { font-size: .74rem; }
+.section-index,
+.lesson-disclosure .section-index { font-size: .7rem; }
+.lesson-stepper small,
+.next-lesson-panel small,
+.profile-copy small,
+.tag,
+.formula-card .category,
+.learning-summary .mini-progress > small { font-size: .7rem; }
+.formula-principle strong,
+.source-data-grid small,
+.source-data-grid span,
+.floating-progress small,
+#view-dashboard .organizer-progress-label { font-size: .72rem; }
+.hero-outcomes small,
+.nav-chapter-link small { font-size: .66rem; }

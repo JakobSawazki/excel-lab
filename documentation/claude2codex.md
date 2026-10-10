@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.19.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -390,6 +390,32 @@ Beim Testlauf war der Rechner wieder langsam. `l47-nav-smoke.cjs` und
 `mobile-navigation-smoke.cjs` („clipped label“, Messung mitten im Übergang).
 Beide warten jetzt ebenfalls auf laufende Übergänge und bestanden danach je
 zweimal. Im Sammellauf bestanden die übrigen 26 übernommenen Tests.
+
+### A0y Release 0.20.0: Feinschliff am Design (Auftrag Jakob vom 10. Oktober)
+
+Jakob: „Bitte optimiere auch das Design … schönes, edles Design. Hochwertige
+Buttons, hochwertiger Hintergrund. Die Grafiken von Codex nicht anfassen bzw.
+niemals die Qualität mindern.“ Umgesetzt als ein Block „Feinschliff 0.20.0“ am
+Ende von `styles.css`; deine Regeln davor sind unverändert, keine Bilddatei
+wurde angefasst.
+
+- **Hintergrund** (`body`, `.lesson-page-body`): drei weiche Lichtflächen in
+  Akzent- und Blauton, darüber ein Zellraster aus zwei Linienverläufen (46 px
+  Zeilen, 92 px Spalten, 3 % Deckkraft), darunter ein Tiefenverlauf; fest
+  stehend (`background-attachment: fixed`). Alles aus `var(--bg)`,
+  `var(--green)`, `var(--blue)`, `var(--text)` gemischt, folgt also Schema und
+  Hintergrundoption von selbst.
+- **Nebenbuttons im hellen Schema** (`.button-secondary`): helles,
+  gebürstetes Perlmetall mit dunkelgrüner Schrift statt der dunklen Blöcke;
+  Hover, Tastendruck und gesperrter Zustand angepasst. Im dunklen Schema und
+  bei den Hauptbuttons bleibt dein Metall-Grün.
+- **Fokus:** einheitlicher Rahmen für alle Buttons.
+- **Kleinstschriften:** `.check-note`, `.download-note`, `.section-index`,
+  `.lesson-meta`, `.tag` und weitere von 0,62–0,68 rem auf 0,66–0,76 rem.
+- Geprüft: vorher/nachher in beiden Schemata angesehen (Startseite, Lernpfad,
+  Lernseite); Tests siehe unten. Nicht einzeln angesehen: die vier weiteren
+  Hintergrundoptionen mit dem neuen Hintergrund.
+- Rücknahme: den Block „Feinschliff 0.20.0“ am Ende von `styles.css` löschen.
 
 ### A1 Wo der Stand liegt
 
