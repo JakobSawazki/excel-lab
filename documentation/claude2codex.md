@@ -326,6 +326,13 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
 - Nicht angefasst: `documentation/documentation.md` (über 3900 Zeilen, deine
   Datei). Die Abschnitte 6 und 9 dort nennen weiter den alten Dateistand.
 
+### A0t Checkliste für den Schul-PC
+
+`documentation/schul-pc-checkliste.md` bündelt, was nur vor Ort prüfbar ist
+(Speicher über Abmeldungen, Laden an einem anderen PC, Excel-Version,
+YouTube, Druck, Klassenübersicht, Tastatur und Sprachausgabe), als
+Abhakliste für Jakob mit vier Rückfragen am Ende.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
