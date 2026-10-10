@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.19.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.19.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -333,6 +333,31 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
 YouTube, Druck, Klassenübersicht, Tastatur und Sprachausgabe), als
 Abhakliste für Jakob mit vier Rückfragen am Ende.
 
+### A0u Release 0.19.1: ungenutzte Styles entfernt, Bildvergleich als Werkzeug
+
+- Entfernt aus `styles.css` (84,9 → 77,9 KB) und `home.css` (24,5 → 22,8 KB):
+  alle Regeln, deren Selektoren nur Klassen nennen, die in keiner HTML- oder
+  JS-Datei vorkommen. Betroffen sind 24 Klassen: `chapter-card`,
+  `chapter-footer`, `chapter-grid`, `chapter-number`, `chapter-progress-label`,
+  `chapter-state`, `chapter-top`, `compact`, `complete-button`,
+  `content-section`, `corner`, `key-point`, `key-points`, `mini-sheet`,
+  `monitor-camera`, `monitor-shell`, `monitor-stand`, `next-card`,
+  `next-section`, `sheet-tabs`, `sidebar-panel`, `tip-box`, `workbook-bar`,
+  `workbook-window`. Klassen, die Skripte aus Teilen zusammensetzen
+  (`option-…`, `is-…`, `lNN-…` und weitere Präfixe), blieben unangetastet.
+  Die übrigen Stylesheets wurden nicht bereinigt.
+- **Neues Werkzeug für Gestaltungsänderungen:**
+  `tests/browser/visual-snapshots.cjs` fotografiert alle 33 Ansichten in
+  beiden Schemata bei 1280 und 390 Pixeln in voller Länge (Zufall und Datum
+  festgelegt, Videos ausgeblendet); `tests/browser/visual-compare.py`
+  vergleicht zwei solche Ordner mit kleiner Toleranz (braucht Pillow).
+  Zwei Läufe desselben Stands stimmen überein. Vereinzelt meldet ein Lauf
+  wenige Pixel Abweichung, die ein zweiter Lauf nicht zeigt; im Zweifel den
+  Nachher-Lauf wiederholen. Empfohlen vor jeder CSS-Änderung (A2).
+- Ergebnis für 0.19.1: Vorher gegen Nachher 132 von 132 Bildern ohne
+  sichtbaren Unterschied (ein erster Nachher-Lauf zeigte zwei Bilder mit 80
+  und 7 Pixeln Abweichung, die Wiederholung keines).
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
@@ -584,7 +609,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-10 | Rücknahme eines Abschlusses | erledigt (Claude, 0.13.0): Weg c, siehe A0c |
 | OPT-11 | Profile sammeln sich an; kein Profilwechsel | teilweise erledigt (Claude, 0.18.1): Laden ersetzt dieselbe Person; Aufräumen alter Profile offen |
 | OPT-12 | Navigation doppelt vorhanden | erledigt (Claude, 0.14.0): `nav-menu.js` |
-| OPT-13 | Ungenutzter Code und ungenutzte Styles | Lektionsdialog entfernt (Claude, 0.13.1); Styles und `content.js`-Felder offen |
+| OPT-13 | Ungenutzter Code und ungenutzte Styles | erledigt (Claude, 0.13.1 und 0.19.1); nur die Felder `keyPoints`, `steps`, `tip` in `content.js` sind geblieben |
 | OPT-14 | Veröffentlicht wird das ganze Repository | entschieden (Claude, von Jakob überlassen): bleibt so |
 | OPT-15 | Versionsparameter an Skripten und Styles | erledigt (Claude, 0.11.0) |
 | OPT-16 | Rettungskopie herunterladbar machen | erledigt (Claude, 0.13.0) |
