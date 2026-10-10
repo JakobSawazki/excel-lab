@@ -127,6 +127,16 @@ eigene, kleine Änderung:
   willst einzelne der 47 Skripte noch retten. Claude löscht den Ordner nicht
   selbst; das Leeren liegt bei Jakob oder dir.
 
+### A0g Abschlussprüfung am 10. Oktober (Stand `main`, App 0.14.0)
+
+- `node --test`: 287 bestanden. `run-all.cjs`: 3 eigene und 28 übernommene
+  Browsertestdateien bestanden (lokal, Port 4273).
+- Sichtprüfung: alle 28 Seiten und drei weitere Ansichten der Startseite
+  (Lernpfad, Formelsammlung, Quellen) in dunklem und hellem Schema als
+  Bildschirmfotos bei 1280 Pixeln angesehen; einheitlich, kein verrutschtes
+  Layout, kein fehlendes Bild. Nicht einzeln angesehen: Mobilbreite (dort
+  prüfen die Tests nur das Überlaufen) und jeder aufgeklappte Abschnitt.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
