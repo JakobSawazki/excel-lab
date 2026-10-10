@@ -268,6 +268,16 @@ zwischen den KI-Agenten stehen in
 Die Fotos liegen als PNG-Original und als verlustfreies, pixelgleiches WebP in
 gleicher Auflösung vor; die Seiten laden das WebP.
 
+## Lösungsheft für die Lehrkraft
+
+```powershell
+node tools/build-loesungen.cjs
+```
+
+schreibt die richtigen Antworten aller Verständnis-Checks und die Kontrollwerte
+aller Bonusaufgaben nach `../Lehrkraft/Excel-Lab-Loesungen.md`, außerhalb des
+Projektordners. Die Datei wird nicht veröffentlicht.
+
 ## Fachliche Quellen
 
 - Bildungsplan Informatik für nichtgewerbliche Berufliche Gymnasien,

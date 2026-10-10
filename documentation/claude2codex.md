@@ -369,6 +369,17 @@ Veröffentlichung über GitHub Pages bleibt davon unabhängig: Ein roter Lauf
 verhindert sie nicht, zeigt aber sofort an, dass ein Test nicht besteht.
 Die Browsertests laufen dort nicht; sie brauchen Edge und lokal Playwright.
 
+### A0w Lösungsheft für die Lehrkraft
+
+`node tools/build-loesungen.cjs` schreibt die richtigen Antworten aller 83
+Fragen der Verständnis-Checks und die Kontrollwerte aller 54 Bonusaufgaben
+nach `../Lehrkraft/Excel-Lab-Loesungen.md`, also außerhalb des Projekt- und
+Web-Ordners. Das Werkzeug weigert sich, in den Projektordner zu schreiben.
+Die Datei ist nicht im Repository und wird nicht veröffentlicht; nach
+Änderungen an Fragen oder Bonusaufgaben neu erzeugen. (Die Lösungen stehen
+weiterhin lesbar in den Skripten der Seite; das Heft ist eine Arbeitshilfe,
+kein Schutz.)
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
