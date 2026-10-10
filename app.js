@@ -11,7 +11,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.13.0";
+  const APP_VERSION = "0.13.1";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -41,7 +41,6 @@
   let activeView = "dashboard";
   let activeStage = "1";
   let activeFormulaCategory = "all";
-  let openLessonId = null;
 
   function defaultState() {
     return {
@@ -95,8 +94,6 @@
       manager.close();
       $("#profile-dialog").close();
     }
-    // Generic lesson checkboxes belong to the snapshot shown when it opened.
-    $("#lesson-dialog").close();
     renderAll();
     draft.forEach(({ input, value, start, end }) => {
       input.value = value;
@@ -206,21 +203,6 @@
       bonus: Boolean(saved?.bonus),
       checks: lesson.checks.map((_, index) => Boolean(saved?.checks?.[index]))
     };
-  }
-
-  function writeLessonProgress(lessonId, progress) {
-    const profile = currentProfile();
-    if (!profile) return false;
-    profile.progress[lessonId] = {
-      completed: Boolean(progress.completed),
-      teacherChecked: Boolean(progress.teacherChecked),
-      masteryPassed: Boolean(progress.masteryPassed),
-      bonus: Boolean(progress.bonus),
-      checks: Array.isArray(progress.checks) ? progress.checks.map(Boolean) : []
-    };
-    profile.updatedAt = new Date().toISOString();
-    saveState();
-    return true;
   }
 
   function ensureProfile() {
@@ -489,111 +471,8 @@
       return;
     }
     closeLearningMenu();
-    if (lesson.page) {
-      window.location.href = lesson.page;
-      return;
-    }
-    const stage = stages.find((item) => item.id === lesson.stage);
-    const progress = getLessonProgress(lesson.id);
-    openLessonId = lesson.id;
-    $("#lesson-dialog-content").innerHTML = `
-      <header class="lesson-detail-head" style="--lesson-color:${stage.color}">
-        <div class="lesson-detail-meta"><span>${escapeHtml(lesson.code)}</span><span>${escapeHtml(stage.curriculum)}</span><span>${escapeHtml(lesson.duration)}</span><span>${escapeHtml(lesson.level)}</span></div>
-        <h2 id="lesson-dialog-title">${escapeHtml(lesson.title)}</h2>
-        <p>${escapeHtml(lesson.goal)}</p>
-        <ol class="lesson-workflow" aria-label="Arbeitsablauf dieser Lerneinheit">
-          <li><span>1</span><strong>Informieren</strong></li>
-          <li><span>2</span><strong>In Excel arbeiten</strong></li>
-          <li><span>3</span><strong>Ergebnis prüfen</strong></li>
-        </ol>
-      </header>
-      <div class="lesson-detail-body">
-        <div class="lesson-content">
-          <details class="lesson-disclosure" open><summary><h3>Das musst du wissen</h3><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-            <div class="key-points">${lesson.keyPoints.map((point) => `<div class="key-point"><strong>${escapeHtml(point.title)}</strong><span>${escapeHtml(point.text)}</span></div>`).join("")}</div>
-          </div></details>
-          <details class="lesson-disclosure"><summary><h3>Formeln und Merksätze</h3><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-            ${lesson.formulas.map((formula) => `<div class="lesson-formula"><code>${escapeHtml(formula.code)}</code><span>${escapeHtml(formula.note)}</span></div>`).join("")}
-          </div></details>
-          <details class="lesson-disclosure"><summary><h3>Dein Arbeitsauftrag</h3><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-            <ol>${lesson.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>
-          </div></details>
-          <section class="lesson-section">
-            <div class="tip-box"><strong>Praxis-Tipp:</strong> ${escapeHtml(lesson.tip)}</div>
-          </section>
-        </div>
-        <aside class="lesson-sidebar">
-          <section class="sidebar-panel">
-            <h3>Materialien</h3>
-            <div class="download-list">
-              ${lesson.downloads.map((file) => `
-                <a class="download-item" href="${encodeURI(file.path)}" download>
-                  <span class="file-type ${file.type.toLowerCase() === "xlsx" ? "xlsx" : file.type === "VIDEO" ? "video" : ""}">${escapeHtml(file.type)}</span>
-                  <strong>${escapeHtml(file.label)}</strong>
-                  <span class="arrow" aria-hidden="true">↓</span>
-                </a>`).join("")}
-            </div>
-            <p class="download-note">Die Dateien werden lokal aus dem BPE1-Materialordner bereitgestellt.</p>
-          </section>
-          <section class="sidebar-panel">
-            <h3>Abschluss-Check</h3>
-            <div class="completion-list">
-              ${lesson.checks.map((check, index) => `
-                <label class="completion-check">
-                  <input type="checkbox" data-check-index="${index}" ${progress.checks[index] ? "checked" : ""}>
-                  <span>${escapeHtml(check)}</span>
-                </label>`).join("")}
-              <label class="completion-check teacher-check">
-                <input type="checkbox" data-teacher-check ${progress.teacherChecked ? "checked" : ""}>
-                <span>Die Aufgabe wurde mit der Lehrkraft besprochen und als richtig bestätigt.</span>
-              </label>
-            </div>
-            <button class="button button-full ${progress.completed ? "button-secondary is-complete complete-button" : "button-primary complete-button"}" type="button" data-toggle-complete>
-              ${progress.completed ? "✓ Als erledigt markiert" : "Lerneinheit abschließen"}
-            </button>
-          </section>
-        </aside>
-      </div>`;
-    const dialog = $("#lesson-dialog");
-    if (window.EXCEL_LAB_DEV?.enabled) {
-      dialog.querySelectorAll("[data-check-index], [data-teacher-check], [data-toggle-complete]").forEach((el) => { el.disabled = true; });
-    }
-    if (!dialog.open) dialog.showModal();
-  }
-
-  function updateOpenLessonCheck(index, checked) {
-    if (window.EXCEL_LAB_DEV?.enabled || !openLessonId || !ensureProfile()) return false;
-    const progress = getLessonProgress(openLessonId);
-    progress.checks[index] = Boolean(checked);
-    writeLessonProgress(openLessonId, progress);
-    return true;
-  }
-
-  function updateOpenLessonTeacherCheck(checked) {
-    if (window.EXCEL_LAB_DEV?.enabled || !openLessonId || !ensureProfile()) return false;
-    const progress = getLessonProgress(openLessonId);
-    progress.teacherChecked = Boolean(checked);
-    writeLessonProgress(openLessonId, progress);
-    return true;
-  }
-
-  function toggleOpenLessonComplete() {
-    if (window.EXCEL_LAB_DEV?.enabled || !openLessonId || !ensureProfile()) return;
-    const lesson = lessons.find((item) => item.id === openLessonId);
-    const progress = getLessonProgress(openLessonId);
-    if (!progress.completed && progress.checks.some((checked) => !checked)) {
-      showToast("Hake zuerst alle Punkte im Abschluss-Check ab.");
-      return;
-    }
-    if (!progress.completed && !progress.teacherChecked) {
-      showToast("Bestätige zuerst, dass die Lehrkraft die Aufgabe geprüft hat.");
-      return;
-    }
-    progress.completed = !progress.completed;
-    writeLessonProgress(openLessonId, progress);
-    renderAll();
-    openLesson(openLessonId);
-    showToast(progress.completed ? "Lerneinheit als erledigt gespeichert." : "Lerneinheit wieder als offen markiert.");
+    // Jede Einheit hat eine eigene Lernseite (tests/lessons.test.js erzwingt das).
+    if (lesson.page) window.location.href = lesson.page;
   }
 
   function openProfileDialog() {
@@ -909,9 +788,6 @@
       const copyButton = event.target.closest("[data-copy-formula]");
       if (copyButton) copyFormula(copyButton.dataset.copyFormula);
 
-      const completeButton = event.target.closest("[data-toggle-complete]");
-      if (completeButton) toggleOpenLessonComplete();
-
       const closeButton = event.target.closest("[data-close-dialog]");
       if (closeButton) closeButton.closest("dialog")?.close();
 
@@ -925,17 +801,6 @@
       }
 
       if (!event.target.closest("#learning-menu")) closeLearningMenu();
-    });
-
-    document.addEventListener("change", (event) => {
-      if (event.target.matches("[data-check-index]")) {
-        const success = updateOpenLessonCheck(Number(event.target.dataset.checkIndex), event.target.checked);
-        if (!success) event.target.checked = false;
-      }
-      if (event.target.matches("[data-teacher-check]")) {
-        const success = updateOpenLessonTeacherCheck(event.target.checked);
-        if (!success) event.target.checked = false;
-      }
     });
 
     $("#lesson-search").addEventListener("input", renderLessons);
@@ -986,9 +851,6 @@
       dialog.addEventListener("click", (event) => {
         if (event.target === dialog) dialog.close();
       });
-      dialog.addEventListener("close", () => {
-        if (dialog.id === "lesson-dialog") openLessonId = null;
-      });
     });
 
     document.addEventListener("keydown", (event) => {
@@ -1021,10 +883,7 @@
       if (!learningMenu.contains(event.relatedTarget)) closeLearningMenu();
     });
 
-    window.addEventListener("excel-lab-dev-change", () => {
-      $("#lesson-dialog").close();
-      renderAll();
-    });
+    window.addEventListener("excel-lab-dev-change", renderAll);
     window.addEventListener("hashchange", syncRouteFromHash);
     window.addEventListener("storage", (event) => {
       if ((event.key === STORAGE_KEY || event.key === null) &&

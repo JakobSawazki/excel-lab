@@ -1,11 +1,19 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.13.0
+Projektversion: 0.13.1
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.13.1 (Claude, 10.10.2026):** Zugänglichkeitsprüfung
+  `tests/browser/a11y.browser.cjs` über 31 Ansichten (vorlesbare Namen,
+  Überschriftenebenen, ARIA-Verweise, Erreichbarkeit mit Tab): ein Befund,
+  behoben. Er hing am Lektionsdialog der Startseite, der seit den eigenen
+  Lernseiten nie mehr geöffnet wurde; Dialog und zugehöriger Code in `app.js`
+  (rund 130 Zeilen) sind entfernt. Vier weitere helle Farbkombinationen
+  angesehen. Keine Änderung an Inhalten, Lernstand oder Gestaltung.
 
 - **Veröffentlicht als 0.13.0 (Claude, 10.10.2026, Auftrag Jakob: selbstständig
   weiterarbeiten):** (1) Wird eine Einheit wieder geöffnet, ändert das nur noch

@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.13.0** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
+Aktueller Release: **0.13.1** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
 L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
 Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
 schnellere, einheitliche Lernseiten, XP statt Punkte,
@@ -331,6 +331,7 @@ Playwright wird nicht installiert; der Pfad steht in `EXCEL_LAB_PLAYWRIGHT`.
 python -m http.server 4273 --bind 127.0.0.1
 node tests/browser/site.browser.cjs http://127.0.0.1:4273/
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all
+node tests/browser/a11y.browser.cjs http://127.0.0.1:4273/
 ```
 
 Die Tests prüfen Browser und Anleitung, nicht die Arbeit in Excel. Übergaben

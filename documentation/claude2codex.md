@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.13.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.13.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -50,6 +50,27 @@ eigene, kleine Änderung:
   Startseite und Lernpfad im hellen Schema angesehen. Nicht angesehen: die
   übrigen vier Hintergründe und vier Schriftfarben im hellen Schema.
 - **OPT-16:** Knopf `#rescue-button` im Profildialog (`index.html`, `app.js`).
+
+### A0d Nachtrag 0.13.1
+
+- `tests/browser/a11y.browser.cjs` prüft 31 Ansichten: jedes Bedienelement hat
+  einen vorlesbaren Namen, genau eine sichtbare `h1`, keine übersprungene
+  Überschriftenebene, keine doppelten IDs, alle ARIA-Verweise zeigen auf
+  vorhandene Elemente, und jedes Bedienelement ist mit Tab erreichbar. Neue
+  Seiten und Bedienelemente müssen das bestehen.
+- Entfernt aus `app.js`: der Dialogteil von `openLesson`,
+  `updateOpenLessonCheck`, `updateOpenLessonTeacherCheck`,
+  `toggleOpenLessonComplete`, `writeLessonProgress`, `openLessonId` und die
+  zugehörigen Ereignisse; aus `index.html` der `<dialog id="lesson-dialog">`.
+  Der Code war unerreichbar, weil jede Einheit eine eigene Seite hat. Die
+  Felder `keyPoints`, `steps`, `tip` in `content.js` und die Styles
+  `.lesson-dialog*` sind geblieben; `downloads` nutzt Claudes Abgleichskript
+  als Zuordnung Einheit → Originaldatei.
+- Sichtprüfung helles Schema: Smaragd/warm, Graphit/hoher Kontrast,
+  Violett/Lavendel, Sand/Mint auf L1.2 angesehen, ohne Auffälligkeit.
+- **`.tmp/` hat Claude nicht geleert.** Jakobs Freigabe liegt vor (A0), aber
+  dort liegen deine einzigen Testskripte, und Claude löscht keine Dateien
+  endgültig. Bitte nach der Übernahme deiner Tests selbst leeren.
 
 ### A1 Wo der Stand liegt
 
@@ -298,13 +319,13 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-10 | Rücknahme eines Abschlusses | erledigt (Claude, 0.13.0): Weg c, siehe A0c |
 | OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; nicht dringend (eigene Windows-Anmeldung je Person) |
 | OPT-12 | Navigation doppelt vorhanden | offen (Codex) |
-| OPT-13 | Ungenutzter Code und ungenutzte Styles | offen (Codex); Liste in C2 |
+| OPT-13 | Ungenutzter Code und ungenutzte Styles | Lektionsdialog entfernt (Claude, 0.13.1); Styles und `content.js`-Felder offen |
 | OPT-14 | Veröffentlicht wird das ganze Repository | entschieden (Claude, von Jakob überlassen): bleibt so |
 | OPT-15 | Versionsparameter an Skripten und Styles | erledigt (Claude, 0.11.0) |
 | OPT-16 | Rettungskopie herunterladbar machen | erledigt (Claude, 0.13.0) |
 | OPT-17 | Dokumentation gliedern | Vorschlag; deine Dateien |
 | OPT-18 | Lernsituationsbilder für weitere Einheiten | offen (Vorgabe Jakob vom 07.10.) |
-| OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | Kontrast im hellen Schema verbessert (78 → 16 messbare Stellen, 0.13.0); Tastatur und Bildschirmleser offen |
+| OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | Kontrast im hellen Schema verbessert (0.13.0); Namen, Überschriften, ARIA und Tab-Reihenfolge als Test ohne Befund (0.13.1); echter Bildschirmleser offen |
 | OPT-20 | „Punkte“ und „XP“ | erledigt (Claude, 0.11.0): XP |
 | OPT-21 | Lehrkraftbestätigung und Klassenübersicht | Idee; Entscheidung Jakob |
 | OPT-22 | `.git/refs/desktop.ini` | Hinweis |
