@@ -3543,6 +3543,7 @@ body,
     linear-gradient(color-mix(in srgb, var(--text) 3%, transparent) 1px, transparent 1px) 0 0 / 100% 46px,
     linear-gradient(90deg, color-mix(in srgb, var(--text) 3%, transparent) 1px, transparent 1px) 0 0 / 92px 100%,
     linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 62%, var(--bg)) 0%, var(--bg) 36%, color-mix(in srgb, #000 16%, var(--bg)) 100%);
+  background-color: var(--bg);
   background-attachment: fixed;
 }
 [data-theme="light"] body,
@@ -3554,6 +3555,7 @@ body,
     linear-gradient(color-mix(in srgb, var(--text) 3.2%, transparent) 1px, transparent 1px) 0 0 / 100% 46px,
     linear-gradient(90deg, color-mix(in srgb, var(--text) 3.2%, transparent) 1px, transparent 1px) 0 0 / 92px 100%,
     linear-gradient(180deg, #fff 0%, var(--bg) 34%, color-mix(in srgb, var(--green) 5%, var(--bg)) 100%);
+  background-color: var(--bg);
   background-attachment: fixed;
 }
 
@@ -3678,4 +3680,12 @@ html {
 }
 @media print {
   body, .lesson-page-body { background-attachment: scroll; }
+}
+
+/* Feinschliff 0.20.4: Die Stufenfarben sind für dunkle Flächen gewählt. Im
+   hellen Schema werden Abzeichen und Einheiten-Kürzel deshalb abgedunkelt,
+   damit sie lesbar bleiben (vorher Kontrast unter 2 : 1). */
+[data-theme="light"] .stage-badge,
+[data-theme="light"] .lesson-code {
+  color: color-mix(in srgb, var(--stage-color) 46%, #08170f);
 }

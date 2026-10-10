@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.3 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.4 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -446,6 +446,24 @@ aus 0.20.0 passen auch dort.
 `.lesson-workspace-actions` ist bei schmaler Breite ein zweispaltiges Raster
 statt vier gestapelter Knöpfe (`lesson-workspace.css`). Handy-Ansicht (390 px)
 von Startseite und Lernseite in beiden Schemata angesehen; sonst unauffällig.
+
+### A0zc Release 0.20.4: Kontrast nach den Design-Releases
+
+`node tests/browser/contrast.browser.cjs` nach 0.20.0 bis 0.20.3 ausgewertet:
+
+- **Nebenwirkung von 0.20.0 behoben:** Die Kurzschreibweise `background:` hatte
+  `background-color` von `body` auf durchsichtig gesetzt. Sichtbar war das
+  nicht, der Bericht maß aber gegen Weiß (184 Meldungen). Jetzt steht
+  `background-color: var(--bg)` in beiden Regeln; der Bericht ist wieder
+  aussagekräftig.
+- **Echte Schwäche behoben:** `.stage-badge` und `.lesson-code` nutzen die
+  Stufenfarbe aus `content.js`, die für dunkle Flächen gewählt ist. Im hellen
+  Schema lag der Kontrast bei 1,9 : 1; jetzt wird die Farbe dort mit einem
+  dunklen Ton gemischt (Block „Feinschliff 0.20.4“ am Ende von `styles.css`).
+- **Offen (14 Stellen, 3,8 bis 4,5 : 1):** `.starter-copy code` bei hellem
+  Violett, `.tag` und `.formula-principle span` bei dunklem Graphit,
+  Stepper-`small` bei dunklem Sand, `.eyebrow span` und Listenziffern bei
+  hellem Graphit. Alles Kleinschrift knapp unter der Schwelle.
 
 ### A1 Wo der Stand liegt
 

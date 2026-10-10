@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.4 – 2026-10-10
+
+**Kontrast nachgebessert.** Stufen-Abzeichen und Einheiten-Kürzel im Lernpfad sind im hellen Schema dunkler und damit lesbar (vorher unter 2 : 1). Die Seite hat unter dem mehrschichtigen Hintergrund wieder eine feste Grundfarbe.
+
 ## 0.20.3 – 2026-10-10
 
 **Lernseiten auf dem Handy.** Die Knöpfe am Seitenanfang stehen kompakter: „Zur Aufgabe“ über die ganze Breite, „Alle öffnen“ und „Alle schließen“ nebeneinander, darunter „Drucken“. Handy-Ansicht von Startseite und Lernseite in beiden Schemata angesehen.

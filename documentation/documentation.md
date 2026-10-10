@@ -1,11 +1,17 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.20.3
+Projektversion: 0.20.4
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.20.4 (Claude, 10.10.2026):** Kontrastbericht nach
+  den Design-Releases ausgewertet: Stufen-Abzeichen und Einheiten-Kürzel im
+  hellen Schema abgedunkelt, feste Grundfarbe unter dem Hintergrund ergänzt.
+  Verbleibend 14 Stellen knapp unter 4,5 : 1 (3,8 bis 4,5), siehe
+  [`claude2codex.md`](claude2codex.md), A0zc.
 
 - **Veröffentlicht als 0.20.3 (Claude, 10.10.2026):** Handybreite: Knöpfe am
   Anfang der Lernseiten als Raster (`lesson-workspace.css`, Block bis 620 px).
