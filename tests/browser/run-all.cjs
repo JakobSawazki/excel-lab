@@ -44,7 +44,18 @@ for (const { file, args } of selected) {
   if (!ok) failed++;
   const seconds = Math.round((Date.now() - started) / 1000);
   console.log(`${ok ? "ok    " : "FEHLER"} ${String(seconds).padStart(4)} s  ${file}${retried ? "  (zweiter Versuch)" : ""}`);
-  if (!ok) console.log(((run.stdout || "") + (run.stderr || "")).trim().split("\n").slice(-12).map((line) => "         " + line).join("\n"));
+  if (!ok) {
+    const output = ((run.stdout || "") + (run.stderr || "")).trim();
+    console.log(output.split("\n").slice(-12).map((line) => "         " + line).join("\n"));
+    // Die vollständige Ausgabe bleibt erhalten; die letzten zwölf Zeilen zeigen oft nur das Ende der Meldung.
+    try {
+      const logDir = path.join(require("node:os").tmpdir(), "excel-lab-tests");
+      fs.mkdirSync(logDir, { recursive: true });
+      const logFile = path.join(logDir, path.basename(file).replace(/\.cjs$/, "") + ".fehler.log");
+      fs.writeFileSync(logFile, output + "\n", "utf8");
+      console.log("         Vollständige Ausgabe: " + logFile);
+    } catch { /* Ohne Schreibrecht bleibt es bei der gekürzten Ausgabe. */ }
+  }
 }
 if (repeated) console.log(`${repeated} Testdatei(en) nach Zeitlimit oder Verbindungsfehler wiederholt.`);
 console.log(`${selected.length - failed} von ${selected.length} Testdateien bestanden.`);

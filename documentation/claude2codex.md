@@ -490,6 +490,15 @@ bestanden beide. `tests/browser/run-all.cjs` deshalb angepasst:
   Anzahl der Wiederholungen. Andere Fehler werden nicht wiederholt.
 - Besteht eine Datei regelmäßig erst im zweiten Versuch, bitte als echten
   Fehler behandeln, nicht als Umgebung.
+- Bei einem Fehlschlag schreibt der Läufer die vollständige Ausgabe nach
+  `%TEMP%\excel-lab-tests\<Testdatei>.fehler.log` und nennt den Pfad. Anlass:
+  Im Sammellauf für 0.20.7 schlug `site.browser.cjs` einmal mit einer
+  Browser-Fehlermeldung fehl, von der nur das Ende sichtbar war; direkt davor
+  und danach bestand die Datei allein. **Ursache ungeklärt.** Ebenso offen:
+  `l47-content-smoke.cjs` meldete im Lauf für 0.20.6 einmal „unbekannte
+  Lerneinheit l4-7“ und bestand danach dreimal. Beides trat nur auf dem stark
+  ausgelasteten Rechner auf; falls es wiederkommt, steht die Meldung jetzt im
+  Protokoll.
 - Neuer Node-Test in `tests/site.test.js` (jetzt 298 Tests): Die Regeln für
   den mehrschichtigen Seitenhintergrund müssen nach `background:` ein
   `background-color` setzen (Fehler aus 0.20.0, siehe A0zc).
