@@ -1,0 +1,35 @@
+Gesamtlauf am Commit 965d49c, Beginn 2026-10-10 10:28:09
+Node: ℹ tests 287 ℹ pass 287 ℹ fail 0 
+ok      265 s  tests\browser\lesson-gates.browser.cjs
+ok       43 s  tests\browser\site.browser.cjs
+ok       15 s  tests\browser\a11y.browser.cjs
+ok        3 s  tests\browser\codex\formula-lab-smoke.cjs
+ok        5 s  tests\browser\codex\l1-path-smoke.cjs
+ok        4 s  tests\browser\codex\l11-entry-practice-smoke.cjs
+ok        5 s  tests\browser\codex\l13-l14-transfer-smoke.cjs
+ok        5 s  tests\browser\codex\l15-l16-practice-smoke.cjs
+ok        8 s  tests\browser\codex\l2-audit-guidance-smoke.cjs
+ok        6 s  tests\browser\codex\l21-l22-input-tests.cjs
+ok        4 s  tests\browser\codex\l31-l32-practice-smoke.cjs
+ok        3 s  tests\browser\codex\l32-file-plan-smoke.cjs
+ok        3 s  tests\browser\codex\l33-l34-practice-smoke.cjs
+ok        5 s  tests\browser\codex\l33-l34-workflow-smoke.cjs
+ok        4 s  tests\browser\codex\l35-l36-practice-smoke.cjs
+ok        4 s  tests\browser\codex\l37-l38-practice-smoke.cjs
+ok        4 s  tests\browser\codex\l4-guidance-audit-smoke.cjs
+ok        4 s  tests\browser\codex\l43-l44-practice-smoke.cjs
+ok        4 s  tests\browser\codex\l45-l46-practice-smoke.cjs
+ok        3 s  tests\browser\codex\l47-content-smoke.cjs
+ok        4 s  tests\browser\codex\l47-l48-practice-smoke.cjs
+ok        5 s  tests\browser\codex\l47-nav-smoke.cjs
+ok        4 s  tests\browser\codex\l48-content-smoke.cjs
+ok        8 s  tests\browser\codex\l48-mastery-smoke.cjs
+ok        5 s  tests\browser\codex\l48-nav-smoke.cjs
+ok       76 s  tests\browser\codex\mobile-navigation-smoke.cjs
+ok        6 s  tests\browser\codex\options-smoke.cjs
+ok        8 s  tests\browser\codex\organizer-progress-smoke.cjs
+ok        7 s  tests\browser\codex\path-link-layout-audit.cjs
+ok        4 s  tests\browser\codex\release-smoke.cjs
+ok        4 s  tests\browser\codex\save-load-smoke.cjs
+31 von 31 Testdateien bestanden.
+Ende 10:37:03

@@ -196,6 +196,13 @@ Nach der Korrektur von `l11-entry-practice-smoke.cjs`, alles zweimal:
 - **Weiter nicht möglich:** Prüfung mit einem echten Bildschirmleser (kein
   solches Programm steuerbar), Schul-PCs, Unterrichtserprobung.
 
+### A0k Gesamtlauf als Nachweis (10. Oktober)
+
+Ein einzelner, ungestörter Lauf am Commit `965d49c` (App 0.14.1, danach nur
+Dokumentation): 287 von 287 Node-Prüfungen und 31 von 31 Browsertestdateien
+(3 eigene, 28 übernommene) bestanden. Das vollständige Protokoll mit Zeiten je
+Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
