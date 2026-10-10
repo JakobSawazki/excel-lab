@@ -22,7 +22,9 @@ const base = (__BASE + '/');
     await page.reload();
     const before=await page.evaluate(()=>localStorage.getItem('excelLab.state.v1'));
     await page.locator('.l11-situation a').click();
-    assert.equal(await page.locator('#aufgabe1-heading').evaluate(el=>el.closest('details').open),true);
+    // Claude, 10.10.2026: Der Abschnitt öffnet erst im hashchange-Ereignis nach dem Klick.
+    // Die sofortige Prüfung scheiterte in etwa einem von fünf Läufen; deshalb warten.
+    await page.waitForFunction(()=>document.querySelector('#aufgabe1-heading').closest('details').open);
     for(const id of ['l11-layout-help','l11-change-test']){
       const d=page.locator('#'+id);
       await d.locator('xpath=ancestor::details[contains(@class,"lesson-disclosure")]').evaluate(el=>el.open=true);
