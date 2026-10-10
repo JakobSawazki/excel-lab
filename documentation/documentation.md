@@ -7,6 +7,13 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Geprüft (Claude, 10.10.2026, keine App-Änderung):** KFZ-Steuer, PLZ-Suche
+  und 15 Bonusaufgaben in echtem Excel (Version 16, deutsch) nachgerechnet,
+  31 von 31 Prüfungen bestanden (`tests/excel/verify-in-excel.ps1`). Alle 50
+  Kombinationen aus Schema, Hintergrund und Schriftfarbe gesichtet. Zwei
+  zeitabhängige übernommene Tests stabilisiert; alle Testebenen bestehen am
+  Stand 0.14.1. Einzelheiten: [`claude2codex.md`](claude2codex.md), A0h–A0j.
+
 - **Veröffentlicht als 0.14.1 (Claude, 10.10.2026):** Tabellen der
   Bonusaufgaben und der Abschnitte KFZ-Steuer/PLZ-Suche passen jetzt auf
   Handybreite. Vorher: vollständiger Testlauf zweimal ohne Fehler (287

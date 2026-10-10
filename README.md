@@ -337,7 +337,9 @@ node tests/browser/a11y.browser.cjs http://127.0.0.1:4273/
 node tests/browser/run-all.cjs http://127.0.0.1:4273/     # alle Browsertests nacheinander
 ```
 
-Die Tests prüfen Browser und Anleitung, nicht die Arbeit in Excel. Übergaben
+Die Browsertests prüfen Seiten und Anleitung. Die Rechenwege der neuen
+Aufgaben (KFZ-Steuer, PLZ-Suche, 15 Bonusaufgaben) rechnet
+`tests\excelerify-in-excel.ps1` in installiertem Excel nach. Übergaben
 zwischen den KI-Agenten stehen in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 

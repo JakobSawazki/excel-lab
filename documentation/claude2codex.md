@@ -176,6 +176,26 @@ Nach der Korrektur von `l11-entry-practice-smoke.cjs`, alles zweimal:
   Einzelläufen und der Gesamtlauf bestanden.
 - Hinweis: Unter Last brauchen die übernommenen Tests rund 20 statt 4 Minuten.
 
+### A0j In Excel nachgerechnet und alle Farbkombinationen gesichtet (10. Oktober)
+
+- **Excel:** `tests/excel/verify-in-excel.ps1` rechnet per COM in echtem Excel
+  (hier Version 16, deutsch) mit deutschen Funktionsnamen nach: die
+  KFZ-Steuer (drei Verweistabellen, `SVERWEIS … WAHR` an den Grenzen 1799,
+  2099, 2100 ccm, `#NV` mit `FALSCH`, Kennzeichen A gegen AA), die PLZ-Suche
+  (Text mit führender Null, `WENN(ISTNV(…))`, Zahl findet Text nicht) und 15
+  Bonusaufgaben einschließlich der Zielwertsuche. Ergebnis: 31 von 31. Das
+  Skript legt nur eine unbenannte Mappe an und schließt sie ohne Speichern.
+  Aufruf: `powershell -File tests\excelerify-in-excel.ps1`.
+  Damit entfällt die Einschränkung „nicht in Excel durchgerechnet“ aus OPT-09
+  und OPT-23. Nicht in Excel geprüft: die zwölf Bonusaufgaben ohne eigene
+  Excel-Funktion (reine Grundrechenarten und Diagramme) und das Erstellen der
+  Diagramme selbst.
+- **Farben:** alle 50 Kombinationen (2 Schemata × 5 Hintergründe × 5
+  Schriftfarben) als Bildschirmfotos von L1.2 angesehen; einheitlich und
+  lesbar, keine Auffälligkeit.
+- **Weiter nicht möglich:** Prüfung mit einem echten Bildschirmleser (kein
+  solches Programm steuerbar), Schul-PCs, Unterrichtserprobung.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
@@ -504,8 +524,8 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 - **Grenzen:** Der Vergleich ist maschinell und prüft Vorhandensein, nicht
   didaktische Gleichwertigkeit. L1 und L2 hast du am 4. Oktober direkt
   abgeglichen; Claude hat sie nicht erneut geprüft. Die neuen Abschnitte in
-  L3.6 sind nicht im Unterricht erprobt und nicht in Excel durchgerechnet;
-  die Staffelwerte stammen aus der Vorlage.
+  L3.6 sind nicht im Unterricht erprobt; in Excel nachgerechnet am
+  10. Oktober (A0j). Die Staffelwerte stammen aus der Vorlage.
 
 #### OPT-10 Rücknahme wirkt nur eine Einheit weit
 
