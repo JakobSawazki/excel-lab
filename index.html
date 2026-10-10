@@ -13,20 +13,20 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.16.0"></script>
-    <link rel="stylesheet" href="styles.css?v=0.16.0">
-    <link rel="stylesheet" href="home.css?v=0.16.0">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.16.0">
-    <script src="deployment.js?v=0.16.0" defer></script>
-    <script src="developer-mode.js?v=0.16.0" defer></script>
-    <script src="content.js?v=0.16.0" defer></script>
-    <script src="bonus-tasks.js?v=0.16.0" defer></script>
-    <script src="nav-menu.js?v=0.16.0" defer></script>
-    <script src="app.js?v=0.16.0" defer></script>
-    <script src="xp.js?v=0.16.0" defer></script>
-    <script src="options.js?v=0.16.0" defer></script>
-    <script src="organizer.js?v=0.16.0" defer></script>
-    <script src="lesson-workspace.js?v=0.16.0" defer></script>
+    <script src="theme-boot.js?v=0.17.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.17.0">
+    <link rel="stylesheet" href="home.css?v=0.17.0">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.17.0">
+    <script src="deployment.js?v=0.17.0" defer></script>
+    <script src="developer-mode.js?v=0.17.0" defer></script>
+    <script src="content.js?v=0.17.0" defer></script>
+    <script src="bonus-tasks.js?v=0.17.0" defer></script>
+    <script src="nav-menu.js?v=0.17.0" defer></script>
+    <script src="app.js?v=0.17.0" defer></script>
+    <script src="xp.js?v=0.17.0" defer></script>
+    <script src="options.js?v=0.17.0" defer></script>
+    <script src="organizer.js?v=0.17.0" defer></script>
+    <script src="lesson-workspace.js?v=0.17.0" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -288,14 +288,21 @@
           <div class="toolbar formula-toolbar" role="search">
             <label class="search-field">
               <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
-              <span class="sr-only">Formeln durchsuchen</span>
+              <span class="sr-only">Formeln und Glossar durchsuchen</span>
               <input id="formula-search" type="search" placeholder="z. B. Mittelwert, SVERWEIS, #NV …" autocomplete="off">
             </label>
             <div class="filter-chips" id="formula-filters" aria-label="Formelkategorie filtern"></div>
           </div>
 
           <div class="formula-grid" id="formula-grid"></div>
-          <p class="empty-state" id="formula-empty" hidden>Keine passende Formel gefunden.</p>
+          <section class="glossary" id="glossary" aria-labelledby="glossary-heading" hidden>
+            <header class="glossary-head">
+              <p class="eyebrow">Fachbegriffe</p>
+              <h2 id="glossary-heading">Glossar</h2>
+            </header>
+            <dl class="glossary-list" id="glossary-list"></dl>
+          </section>
+          <p class="empty-state" id="formula-empty" hidden>Keine passende Formel und kein passender Begriff gefunden.</p>
         </div>
       </section>
 
@@ -423,6 +430,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.17.0</span><div><strong>Glossar</strong><small>26 Fachbegriffe von Arbeitsmappe bis Trendlinie, kurz erklärt und mit der Einheit, in der sie eingeführt werden. Zu finden in der Formelsammlung; die Suche durchsucht Formeln und Glossar.</small></div></li>
             <li><span>0.16.0</span><div><strong>Fehlerwerkstatt in der Formelsammlung</strong><small>Sieben Karten erklären die Excel-Fehlermeldungen #NV, #DIV/0!, #WERT!, #NAME?, #BEZUG!, #ZAHL! und #####, jeweils mit Ursache, Abhilfe und einem Beispiel zum Ausprobieren.</small></div></li>
             <li><span>0.15.0</span><div><strong>Klassenübersicht und Druckansicht</strong><small>Lehrkräfte lesen die Speicherdateien ihrer Klasse ein und sehen Abschlüsse, Bonusaufgaben und XP je Person. Lernseiten lassen sich vollständig ausdrucken.</small></div></li>
             <li><span>0.14.1</span><div><strong>Sicheres Wiederöffnen und bessere Lesbarkeit</strong><small>Gemeinsames Lernpfad-Menü für Startseite und Lernseiten. Das Wiederöffnen einer Einheit nimmt keine anderen Abschlüsse mehr zurück. Kleine Texte im hellen Farbschema sind kontrastreicher; eine Rettungskopie lässt sich im Profil herunterladen.</small></div></li>

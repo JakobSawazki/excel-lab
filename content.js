@@ -1022,5 +1022,35 @@
     { name: "#####", category: "Fehlermeldungen", syntax: "#####", description: "Kein Rechenfehler: Die Spalte ist zu schmal für die Zahl oder das Datum. Ziehe die Spalte breiter oder doppelklicke auf den rechten Rand des Spaltenkopfs.", example: "Großer Betrag mit Währungsformat in schmaler Spalte" }
   ];
 
-  window.EXCEL_LAB_CONTENT = { stages, lessons, formulas };
+  // Glossar der Fachbegriffe; lesson nennt die Einheit, in der der Begriff eingeführt wird.
+  const glossary = [
+    { term: "Arbeitsmappe", text: "Die Excel-Datei (.xlsx). Sie enthält ein oder mehrere Tabellenblätter.", lesson: "L1.1" },
+    { term: "Tabellenblatt", text: "Ein einzelnes Blatt der Arbeitsmappe mit eigenem Namen auf dem Register unten.", lesson: "L1.2" },
+    { term: "Zelle", text: "Das Feld, in dem sich eine Spalte und eine Zeile kreuzen. Eine Zelle enthält einen Wert oder eine Formel.", lesson: "L1.1" },
+    { term: "Zelladresse", text: "Der Name einer Zelle aus Spaltenbuchstabe und Zeilennummer, zum Beispiel B4.", lesson: "L1.2" },
+    { term: "Bereich", text: "Mehrere zusammenhängende Zellen, angegeben mit Doppelpunkt: C6:C11 reicht von C6 bis C11.", lesson: "L2.4" },
+    { term: "Formel", text: "Eine Rechenanweisung in einer Zelle. Sie beginnt mit = und rechnet bei jeder Änderung neu.", lesson: "L1.2" },
+    { term: "Funktion", text: "Eine fertige Rechenvorschrift mit Namen, zum Beispiel SUMME oder WENN.", lesson: "L2.4" },
+    { term: "Argument", text: "Eine Angabe, die eine Funktion zum Rechnen braucht. Argumente stehen in der Klammer und werden mit Semikolon getrennt.", lesson: "L3.5" },
+    { term: "Relativer Bezug", text: "Eine Zelladresse ohne Dollarzeichen. Beim Kopieren der Formel wandert sie mit.", lesson: "L2.1" },
+    { term: "Absoluter Bezug", text: "Eine Zelladresse mit Dollarzeichen vor Spalte und Zeile, zum Beispiel $B$3. Sie bleibt beim Kopieren fest.", lesson: "L2.2" },
+    { term: "Gemischter Bezug", text: "Nur Spalte oder nur Zeile ist mit einem Dollarzeichen fixiert, zum Beispiel $A5 oder B$4.", lesson: "L2.3" },
+    { term: "Name", text: "Eine selbst vergebene Bezeichnung für eine Zelle oder einen Bereich, zum Beispiel Festgehalt.", lesson: "L2.3" },
+    { term: "Zahlenformat", text: "Legt fest, wie ein Wert angezeigt wird, etwa als Währung oder Prozent. Der gespeicherte Wert ändert sich dadurch nicht.", lesson: "L1.3" },
+    { term: "Bedingung", text: "Eine Prüfung, die wahr oder falsch ergibt, zum Beispiel B2<18. WENN entscheidet damit zwischen zwei Ergebnissen.", lesson: "L3.1" },
+    { term: "Kriterium", text: "Die Angabe, welche Zellen gezählt oder summiert werden sollen, zum Beispiel \"Vertrieb\" bei ZÄHLENWENN.", lesson: "L3.3" },
+    { term: "Bedingte Formatierung", text: "Eine Regel, die Zellen automatisch hervorhebt, sobald ihr Wert eine Bedingung erfüllt.", lesson: "L3.4" },
+    { term: "Suchkriterium", text: "Der Wert, den SVERWEIS in der ersten Spalte der Matrix sucht.", lesson: "L3.5" },
+    { term: "Matrix", text: "Der Bereich, in dem SVERWEIS sucht. Die erste Spalte enthält die Suchwerte, weiter rechts stehen die Ergebnisse.", lesson: "L3.5" },
+    { term: "Spaltenindex", text: "Die Nummer der Spalte innerhalb der Matrix, aus der SVERWEIS das Ergebnis holt.", lesson: "L3.5" },
+    { term: "Zielwertsuche", text: "Ein Werkzeug, das einen Eingabewert so lange verändert, bis eine Formel das gewünschte Ergebnis liefert.", lesson: "L3.7" },
+    { term: "Datenreihe", text: "Zusammengehörende Werte, die ein Diagramm als Säulen, Linie oder Segmente darstellt.", lesson: "L4.1" },
+    { term: "Kategorienachse", text: "Die Achse mit den Kategorien eines Diagramms, zum Beispiel die Namen der Kurse. Excel nennt sie auch Rubrikenachse.", lesson: "L4.1" },
+    { term: "Größenachse", text: "Die Achse mit den Zahlenwerten. Beginnt sie nicht bei null, wirken Unterschiede größer, als sie sind.", lesson: "L4.1" },
+    { term: "Legende", text: "Erklärt, welche Farbe im Diagramm zu welcher Datenreihe gehört.", lesson: "L4.5" },
+    { term: "Trendlinie", text: "Eine berechnete Linie, die den Verlauf von Datenpunkten annähert. Sie ist eine Schätzung, keine Garantie.", lesson: "L4.6" },
+    { term: "Bestimmtheitsmaß", text: "R² zwischen 0 und 1: Je näher an 1, desto besser passt die Trendlinie zu den Datenpunkten.", lesson: "L4.6" }
+  ];
+
+  window.EXCEL_LAB_CONTENT = { stages, lessons, formulas, glossary };
 })();

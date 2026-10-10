@@ -124,3 +124,18 @@ test("Keine Originalmaterialien, Lösungen oder Arbeitsordner im Git-Index", (t)
     assert.doesNotMatch(file, /\.(xlsx|docx|m4v|mp4|pdf)$/i, file);
   }
 });
+
+test("Glossar: vollständige Einträge, sortierbar, Begriff steht auf der genannten Lernseite", () => {
+  const content = loadContent();
+  assert.ok(content.glossary.length >= 20);
+  assert.equal(new Set(content.glossary.map((entry) => entry.term)).size, content.glossary.length, "Begriffe eindeutig");
+  for (const entry of content.glossary) {
+    assert.ok(entry.term.length >= 3 && entry.text.length >= 30, entry.term);
+    const lesson = content.lessons.find((item) => item.code === entry.lesson);
+    assert.ok(lesson, `${entry.term}: unbekannte Einheit ${entry.lesson}`);
+    const page = read(lesson.page).replace(/<[^>]+>/g, " ").toLowerCase();
+    const stem = entry.term.toLowerCase().split(" ").pop().slice(0, 7);
+    assert.ok(page.includes(stem), `${entry.term}: kommt auf ${lesson.page} nicht vor`);
+  }
+  assert.match(read("index.html"), /id="glossary-list"/);
+});

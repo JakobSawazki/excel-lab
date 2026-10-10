@@ -7,11 +7,13 @@
   }
 
   const { stages, lessons, formulas } = content;
+  const glossary = Array.isArray(content.glossary) ? content.glossary : [];
+  const GLOSSARY_FILTER = "Glossar";
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.16.0";
+  const APP_VERSION = "0.17.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -418,7 +420,8 @@
     const categories = [...new Set(formulas.map((formula) => formula.category))];
     $("#formula-filters").innerHTML = [
       `<button class="filter-chip ${activeFormulaCategory === "all" ? "is-active" : ""}" type="button" data-formula-filter="all">Alle</button>`,
-      ...categories.map((category) => `<button class="filter-chip ${activeFormulaCategory === category ? "is-active" : ""}" type="button" data-formula-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`)
+      ...categories.map((category) => `<button class="filter-chip ${activeFormulaCategory === category ? "is-active" : ""}" type="button" data-formula-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`),
+      ...(glossary.length ? [`<button class="filter-chip ${activeFormulaCategory === GLOSSARY_FILTER ? "is-active" : ""}" type="button" data-formula-filter="${GLOSSARY_FILTER}">${GLOSSARY_FILTER}</button>`] : [])
     ].join("");
   }
 
@@ -441,7 +444,16 @@
         <code class="formula-code">${escapeHtml(formula.syntax)}</code>
         <div class="formula-example"><strong>Beispiel</strong><span>${escapeHtml(formula.example)}</span></div>
       </article>`).join("");
-    $("#formula-empty").hidden = visible.length > 0;
+    // Glossar: unter „Alle“ nach den Formeln, unter „Glossar“ allein; die Suche gilt für beides.
+    const showGlossary = activeFormulaCategory === "all" || activeFormulaCategory === GLOSSARY_FILTER;
+    const terms = showGlossary ? glossary.filter((entry) => !query || [entry.term, entry.text, entry.lesson].join(" ").toLocaleLowerCase("de").includes(query)) : [];
+    $("#glossary-list").innerHTML = terms.map((entry) => `
+      <div class="glossary-entry">
+        <dt>${escapeHtml(entry.term)}</dt>
+        <dd>${escapeHtml(entry.text)} <span class="glossary-lesson">${escapeHtml(entry.lesson)}</span></dd>
+      </div>`).join("");
+    $("#glossary").hidden = terms.length === 0;
+    $("#formula-empty").hidden = visible.length > 0 || terms.length > 0;
   }
 
   function openLesson(lessonId) {

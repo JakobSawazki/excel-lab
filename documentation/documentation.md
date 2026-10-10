@@ -1,11 +1,17 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.16.0
+Projektversion: 0.17.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.17.0 (Claude, 10.10.2026):** Glossar aus der
+  Ideenliste (Abschnitt 12). 26 Fachbegriffe in `content.js` (`glossary`),
+  angezeigt in der Formelsammlung unter „Alle“ und unter dem neuen Filter
+  „Glossar“; die Suche durchsucht Formeln und Begriffe. Jeder Begriff nennt
+  die Einheit, in der er eingeführt wird.
 
 - **Veröffentlicht als 0.16.0 (Claude, 10.10.2026):** „Fehlerwerkstatt“ aus der
   Ideenliste (Abschnitt 12) als neue Kategorie „Fehlermeldungen“ in der

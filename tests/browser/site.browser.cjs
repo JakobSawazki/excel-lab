@@ -327,6 +327,30 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Formelsammlung: Fehlermeldungen und Glossar, Suche über beides", async () => {
+      const { context, page, errors } = await open(browser, "index.html#formeln", { state: profileState });
+      try {
+        await page.locator("#formula-grid .formula-card").first().waitFor();
+        assert.equal(await page.locator("#formula-grid .formula-card").count(), 27);
+        assert.equal(await page.locator("#glossary-list .glossary-entry").count(), 26);
+        await page.locator('[data-formula-filter="Fehlermeldungen"]').click();
+        assert.equal(await page.locator("#formula-grid .formula-card").count(), 7);
+        assert.equal(await page.locator("#glossary").isHidden(), true);
+        await page.locator('[data-formula-filter="Glossar"]').click();
+        assert.equal(await page.locator("#formula-grid .formula-card").count(), 0);
+        assert.equal(await page.locator("#glossary-list .glossary-entry").count(), 26);
+        assert.equal(await page.locator("#formula-empty").isHidden(), true);
+        await page.locator('[data-formula-filter="all"]').click();
+        await page.fill("#formula-search", "absolut");
+        assert.ok((await page.locator("#formula-grid .formula-card").count()) >= 1);
+        assert.equal(await page.locator("#glossary-list .glossary-entry").count(), 1);
+        await page.fill("#formula-search", "gibtesnicht");
+        assert.equal(await page.locator("#formula-empty").isVisible(), true);
+        assert.equal(await page.locator("#glossary").isHidden(), true);
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -339,5 +363,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und dreizehn Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und vierzehn Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

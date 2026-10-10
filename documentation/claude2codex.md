@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.16.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.17.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -239,6 +239,20 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
   stillschweigend als Zahl (12 × 12 = 144), „12 Stück“ ergibt #WERT!. Die
   Lernseiten nennen #WERT! nur einmal (Geldbeträge müssen als Zahlen
   vorliegen) und behaupten nichts Falsches; durchsucht am 10. Oktober.
+
+### A0n Release 0.17.0: Glossar
+
+- `content.js`: neue Liste `glossary` mit 26 Einträgen `{ term, text, lesson }`,
+  exportiert über `EXCEL_LAB_CONTENT.glossary`.
+- `app.js`: `renderFormulaFilters` ergänzt den Filter „Glossar“;
+  `renderFormulas` füllt `#glossary-list` (unter „Alle“ nach den Formeln, unter
+  „Glossar“ allein) und wendet die Suche auf beide an. Styles am Ende von
+  `home.css`.
+- **Bitte fachlich gegenlesen:** Die Erklärungen stammen von Claude; ein
+  Node-Test prüft, dass jeder Begriff auf der genannten Lernseite vorkommt.
+  Dabei angepasst: „Kategorienachse“ statt „Rubrikenachse“ (so heißen die
+  Seiten L4.1–L4.3 die Achse; auch in der Bonusaufgabe zu L4.3 berichtigt) und
+  „Argument“ bei L3.5 statt L2.4.
 
 ### A1 Wo der Stand liegt
 

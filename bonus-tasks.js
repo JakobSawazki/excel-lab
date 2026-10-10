@@ -181,7 +181,7 @@
       title: "Besucherzahlen der Schulbibliothek",
       situation: "Die Bibliothek zählt jedes Jahr ihre Ausleihen und möchte die Entwicklung zeigen.",
       table: { head: ["Jahr", "Ausleihen"], rows: [["2020", "1.850"], ["2021", "1.420"], ["2022", "1.980"], ["2023", "2.310"], ["2024", "2.540"], ["2025", "2.890"]] },
-      steps: ["Erstelle ein Liniendiagramm; die Jahre sind die Beschriftung der Rubrikenachse, keine eigene Linie.", "Berechne die absolute Veränderung von 2020 bis 2025.", "Berechne die relative Veränderung bezogen auf 2020 und formatiere sie als Prozent mit einer Nachkommastelle."],
+      steps: ["Erstelle ein Liniendiagramm; die Jahre sind die Beschriftung der Kategorienachse, keine eigene Linie.", "Berechne die absolute Veränderung von 2020 bis 2025.", "Berechne die relative Veränderung bezogen auf 2020 und formatiere sie als Prozent mit einer Nachkommastelle."],
       question: "Um wie viel Prozent sind die Ausleihen von 2020 bis 2025 gestiegen?", unit: "%", answer: 56.2, tolerance: 0.05,
       hint: "(Wert 2025 − Wert 2020) geteilt durch Wert 2020."
     },

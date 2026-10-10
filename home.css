@@ -194,3 +194,16 @@
   #view-dashboard .organizer-detail { padding:1.3rem; }
 }
 #view-dashboard .stat-card { border-color:color-mix(in srgb,var(--metal-edge) 48%,var(--line)); background:linear-gradient(150deg,color-mix(in srgb,var(--green) 7%,var(--surface-2)),var(--surface)); box-shadow:inset 0 1px 0 var(--metal-hairline),0 10px 26px color-mix(in srgb,var(--metal-shadow) 45%,transparent); }
+
+/* Glossar in der Formelsammlung (app.js, content.js). */
+#view-formulas .glossary { margin-top: 2.6rem; }
+#view-formulas .glossary[hidden] { display: none; }
+#view-formulas .glossary-head h2 { margin: .2rem 0 1rem; font-size: 1.5rem; }
+#view-formulas .glossary-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin: 0; }
+#view-formulas .glossary-entry { padding: 1rem 1.15rem; border: 1px solid var(--line-strong); border-radius: 14px; background: linear-gradient(150deg, var(--surface-2), var(--surface)); box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent); }
+#view-formulas .glossary-entry dt { font-weight: 800; font-size: 1rem; }
+#view-formulas .glossary-entry dd { margin: .3rem 0 0; color: var(--text-soft); font-size: .9rem; line-height: 1.55; }
+#view-formulas .glossary-lesson { display: inline-block; margin-left: .3rem; padding: .08rem .5rem; border: 1px solid color-mix(in srgb, var(--green) 45%, transparent); border-radius: 999px; color: var(--green); font-size: .7rem; font-weight: 800; letter-spacing: .04em; white-space: nowrap; vertical-align: middle; }
+@media (max-width: 760px) { #view-formulas .glossary-list { grid-template-columns: minmax(0, 1fr); } }
+#view-formulas .formula-grid:empty { display: none; }
+#view-formulas .formula-grid:empty + .glossary { margin-top: .4rem; }
