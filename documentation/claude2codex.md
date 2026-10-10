@@ -587,6 +587,15 @@ Lernende erfahren, warum.
   und ohne Schriftzeichen, Kartennummern berühren keinen Text, Link zur
   Klassenübersicht nur unter „Quellen“; jeweils bei 1536, 1100 und 390 px.
   Sammellauf für 0.20.8 danach: 31 von 31 Testdateien bestanden.
+- **Neuer Browsertest `tests/browser/overlap.browser.cjs`:** sucht auf 33
+  Ansichten (vier Ansichten der Startseite, Klassenübersicht, Lernnachweis,
+  27 Lernseiten, alle Abschnitte geöffnet) bei 1536, 1024 und 390 px nach
+  absolut platzierten Elementen mit eigenem Text, die fremde Textzeilen
+  überdecken. Stand 0.20.8: 0 Überschneidungen. Gegenprobe: Mit dem alten CSS
+  der Kartennummer meldet er „03“ über dem Absatz. Er läuft im Sammellauf mit
+  (jetzt 32 Testdateien). Grenzen: nur dunkles Schema, nur absolut platzierte
+  Elemente mit Text; Überläufe, abgeschnittener Text und reine
+  Schmuckelemente (`::before`/`::after`) erkennt er nicht.
 - **Aufklapp-Symbole (Hinweis Jakob, mit Bildschirmfotos):** „+“ und „−“ in
   `.home-disclosure-symbol` waren Schriftzeichen und saßen nicht mittig;
   Jakob wünscht außerdem schönere Zeichen. Jetzt zwei gezeichnete Balken
