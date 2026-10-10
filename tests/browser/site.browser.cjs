@@ -361,6 +361,41 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Laden ersetzt dieselbe Person, fragt bei weniger Abschlüssen nach, legt andere neu an", async () => {
+      const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+      const start = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "p1", profiles: [{ id: "p1", name: "tes.pro", className: "WGW EK1", createdAt: "2026-09-01T00:00:00.000Z", progress: { "l1-1": done, "l1-2": done } }] });
+      const { context, page, errors } = await open(browser, "index.html", { state: start });
+      try {
+        await page.evaluate(() => { window.showOpenFilePicker = undefined; });
+        const stateNow = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
+        const file = (name, className, progress) => ({ name: "stand.json", mimeType: "application/json",
+          buffer: Buffer.from(JSON.stringify({ app: "Excel-Lab", version: 1, exportedAt: "2026-10-10T08:00:00.000Z", profile: { name, className, progress } })) });
+        const load = async (payload, accept) => {
+          page.once("dialog", (dialog) => (accept ? dialog.accept() : dialog.dismiss()));
+          await page.setInputFiles("#import-file", payload);
+          await page.waitForTimeout(300);
+        };
+        await page.setInputFiles("#import-file", file("tes.pro", "WGW EK1", { "l1-1": done, "l1-2": done, "l1-3": done }));
+        await page.waitForFunction((key) => Boolean(JSON.parse(localStorage.getItem(key)).profiles[0].progress["l1-3"]?.completed), KEY);
+        let now = await stateNow();
+        assert.equal(now.profiles.length, 1, "kein zweites Profil");
+        assert.equal(now.profiles[0].id, "p1");
+        assert.equal(now.profiles[0].createdAt, "2026-09-01T00:00:00.000Z");
+        await load(file("tes.pro", "WGW EK1", { "l1-1": done }), false);
+        now = await stateNow();
+        assert.equal(Boolean(now.profiles[0].progress["l1-3"]?.completed), true, "Abbrechen lässt den Stand unverändert");
+        await load(file("tes.pro", "WGW EK1", { "l1-1": done }), true);
+        now = await stateNow();
+        assert.equal(now.profiles.length, 1);
+        assert.equal(Boolean(now.profiles[0].progress["l1-3"]?.completed), false, "nach Bestätigung ersetzt");
+        await page.setInputFiles("#import-file", file("and.ere", "WGW EK2", { "l1-1": done }));
+        await page.waitForFunction((key) => JSON.parse(localStorage.getItem(key)).profiles.length === 2, KEY);
+        now = await stateNow();
+        assert.equal(now.profiles.find((profile) => profile.id === now.currentProfileId).name, "and.ere");
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -373,5 +408,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und vierzehn Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und fünfzehn Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

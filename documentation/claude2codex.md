@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.18.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.18.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -271,6 +271,34 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
 - **Bitte fachlich gegenlesen:** Auch diese 27 Aufgaben stammen von Claude und
   sind nicht im Unterricht erprobt.
 
+### A0p Release 0.18.1: Laden ersetzt dieselbe Person (OPT-11)
+
+- `importProgress` in `app.js`: Gibt es schon ein Profil mit gleichem Kürzel
+  und gleicher Klasse, übernimmt die geladene Datei dessen `id` und
+  `createdAt` und ersetzt es. Hat die Datei weniger abgeschlossene Einheiten,
+  fragt `window.confirm` nach; bei „Abbrechen“ bleibt alles unverändert.
+- Nicht geändert: Profile, die sich früher angesammelt haben, bleiben im
+  Speicher; einen Profilwechsel außerhalb des Entwickler-Modus gibt es weiter
+  nicht. Verglichen wird nur die Zahl der Abschlüsse, nicht Bonus oder Checks.
+
+### A0q Testlauf zu 0.18.1 und ein Hinweis zu Google Drive
+
+- `tests/browser/codex/save-load-smoke.cjs` erwartete, dass jedes Laden ein
+  weiteres Profil anlegt (2, dann 3 Profile). Angepasst an das neue Verhalten
+  (ein Profil, geänderter Zeitstempel); im Test kommentiert.
+- **Drive bremst die Browsertests:** Am 10. Oktober dauerte das Laden einer
+  Seite über `python -m http.server` aus dem Drive-Ordner zeitweise fast 30
+  Sekunden, Tests liefen in Zeitüberschreitungen und ein Browser stürzte ab
+  („Target crashed“). Ursache war nicht der Code, sondern der Dateizugriff
+  auf `G:` während der Synchronisierung. Abhilfe: den Ordner ohne `.git` und
+  `.tmp` nach `%TEMP%\excel-lab-serve` spiegeln (`robocopy … /MIR`) und den
+  Vorschauserver dort starten; die Tests selbst weiter aus dem Projektordner
+  aufrufen. `l48-mastery-smoke` ruft die lokalen Downloads ab und braucht
+  dafür `materialien/` auch in der Kopie.
+- Ergebnis gegen die lokale Kopie: 293 Node-Prüfungen, 3 von 3 eigenen und 27
+  von 28 übernommenen Browsertestdateien in einem Lauf; die 28. bestand danach
+  zweimal einzeln, nachdem `materialien/` in der Kopie lag.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
@@ -520,7 +548,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | 28 gültige Skripte übernommen (Claude, 10.10.); Leeren von `.tmp/` bei Jakob oder Codex |
 | OPT-09 | Quellenabgleich L3–L4 | maschineller Abgleich erledigt (Claude, 0.12.1): zwei fehlende Aufgaben ergänzt; Feinabgleich je Aufgabe offen |
 | OPT-10 | Rücknahme eines Abschlusses | erledigt (Claude, 0.13.0): Weg c, siehe A0c |
-| OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; nicht dringend (eigene Windows-Anmeldung je Person) |
+| OPT-11 | Profile sammeln sich an; kein Profilwechsel | teilweise erledigt (Claude, 0.18.1): Laden ersetzt dieselbe Person; Aufräumen alter Profile offen |
 | OPT-12 | Navigation doppelt vorhanden | erledigt (Claude, 0.14.0): `nav-menu.js` |
 | OPT-13 | Ungenutzter Code und ungenutzte Styles | Lektionsdialog entfernt (Claude, 0.13.1); Styles und `content.js`-Felder offen |
 | OPT-14 | Veröffentlicht wird das ganze Repository | entschieden (Claude, von Jakob überlassen): bleibt so |

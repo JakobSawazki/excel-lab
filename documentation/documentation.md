@@ -1,11 +1,18 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.18.0
+Projektversion: 0.18.1
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.18.1 (Claude, 10.10.2026):** „Laden“ ersetzt den
+  vorhandenen Stand derselben Person (gleiches Kürzel und gleiche Klasse),
+  statt jedes Mal ein weiteres, unsichtbares Profil anzulegen. Enthält die
+  Datei weniger abgeschlossene Einheiten als der Stand im Browser, fragt die
+  Seite vorher nach. Andere Personen werden wie bisher als neues Profil
+  angelegt. Bereits angesammelte Profile bleiben unberührt.
 
 - **Veröffentlicht als 0.18.0 (Claude, 10.10.2026, Jakobs Wunsch nach weiteren
   vertiefenden Aufgaben):** zweite Bonusaufgabe je Einheit („Bonus ·

@@ -39,8 +39,11 @@ const { chromium } = require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.c
         return [{ getFile: async () => new File([JSON.stringify(payload)], 'saved.json', { type: 'application/json' }) }];
       };
     }, payload);
+    // Claude, 10.10.2026 (0.18.1): Laden ersetzt dieselbe Person, statt ein weiteres Profil anzulegen.
+    const loadedStamp = () => page.evaluate(() => { const state = JSON.parse(localStorage.getItem('excelLab.state.v1')); return state.profiles.find(p => p.id === state.currentProfileId).updatedAt; });
+    const stampBeforeFirstLoad = await loadedStamp();
     await page.locator('#import-button').click();
-    await page.waitForFunction(() => JSON.parse(localStorage.getItem('excelLab.state.v1')).profiles.length === 2);
+    await page.waitForFunction(stamp => { const state = JSON.parse(localStorage.getItem('excelLab.state.v1')); return state.profiles.length === 1 && state.profiles[0].updatedAt !== stamp; }, stampBeforeFirstLoad);
     const options = await page.evaluate(() => window.testPickerOptions);
     assert.equal(options.startIn, 'downloads');
     assert.equal(options.multiple, false);
@@ -60,7 +63,7 @@ const { chromium } = require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.c
     const chooser2Promise = page.waitForEvent('filechooser');
     await page.locator('#import-button').click();
     await (await chooser2Promise).setFiles({ name: 'saved.json', mimeType: 'application/json', buffer: Buffer.from(text) });
-    await page.waitForFunction(() => JSON.parse(localStorage.getItem('excelLab.state.v1')).profiles.length === 3);
+    await page.waitForFunction(old => { const state = JSON.parse(localStorage.getItem('excelLab.state.v1')); return state.profiles.length === 1 && JSON.stringify(state) !== old; }, before);
     const original = await page.evaluate(() => { const state = JSON.parse(localStorage.getItem('excelLab.state.v1')); return state.profiles.find(p => p.id === state.currentProfileId); });
     await page.locator('#profile-edit-name').fill('max.mus');
     await page.locator('#profile-edit-class').focus();

@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.18.0** – zweite Bonusaufgabe („Transfer“) in allen 27 Einheiten,
+Aktueller Release: **0.18.1** – zweite Bonusaufgabe („Transfer“) in allen 27 Einheiten,
 Glossar mit 26 Fachbegriffen in der Formelsammlung,
 Fehlerwerkstatt mit sieben Excel-Fehlermeldungen in der Formelsammlung,
 Klassenübersicht für Lehrkräfte und Druckansicht der Lernseiten,

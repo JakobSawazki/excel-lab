@@ -13,7 +13,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.18.0";
+  const APP_VERSION = "0.18.1";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -611,9 +611,24 @@
         throw new Error("Keine gültige Excel-Lab-Exportdatei.");
       }
       const imported = normalizeProfile(payload.profile);
-      imported.id = createId();
       imported.updatedAt = new Date().toISOString();
-      state.profiles.push(imported);
+      // Dieselbe Person (Kürzel und Klasse) wird ersetzt statt als weiteres,
+      // unsichtbares Profil angelegt. Weniger Abschlüsse nur nach Rückfrage.
+      const completedIn = (profile) => lessons.filter((lesson) => profile.progress?.[lesson.id]?.completed).length;
+      const existing = state.profiles.find((profile) => profile.name === imported.name && profile.className === imported.className);
+      if (existing) {
+        if (completedIn(imported) < completedIn(existing)
+          && !window.confirm(`Die Datei enthält weniger abgeschlossene Einheiten (${completedIn(imported)}) als dein Stand in diesem Browser (${completedIn(existing)}). Trotzdem laden?`)) {
+          showToast("Laden abgebrochen. Dein Lernstand ist unverändert.");
+          return;
+        }
+        imported.id = existing.id;
+        imported.createdAt = existing.createdAt;
+        state.profiles[state.profiles.indexOf(existing)] = imported;
+      } else {
+        imported.id = createId();
+        state.profiles.push(imported);
+      }
       state.currentProfileId = imported.id;
       saveState();
       renderAll();
