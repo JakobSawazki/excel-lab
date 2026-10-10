@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.20.0**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.20.1**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>

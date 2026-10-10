@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -416,6 +416,23 @@ wurde angefasst.
   Lernseite); Tests siehe unten. Nicht einzeln angesehen: die vier weiteren
   Hintergrundoptionen mit dem neuen Hintergrund.
 - Rücknahme: den Block „Feinschliff 0.20.0“ am Ende von `styles.css` löschen.
+
+### A0z Release 0.20.1: Feinschliff, zweiter Teil
+
+Block „Feinschliff 0.20.1“ am Ende von `styles.css`:
+
+- `.formula-card`, Glossareinträge, `.learning-summary`, `.stat-card`,
+  `.source-card`: Rand, leichter Verlauf und Schatten wie bei deinen
+  Lernseiten-Karten (`--metal-hairline`, `--metal-shadow`); Formelkarten heben
+  sich beim Zeigen leicht an; `.formula-code` als eingelassenes Feld.
+- `.toolbar` (Suche und Filter in Lernpfad und Formelsammlung): abgerundete
+  Glasfläche statt eines deckenden Balkens, der auf dem neuen Hintergrund als
+  harter Block wirkte.
+- `::selection` und Bildlaufleiste in den Farben der Seite.
+- Die in A0y offene Sichtprüfung ist nachgeholt: Smaragd, Graphit, Violett
+  und Sand in beiden Schemata angesehen, ohne Auffälligkeit.
+- Der Bildvergleich (`visual-snapshots.cjs`) zeigt nach diesen beiden
+  Releases gewollt Unterschiede; neue Vergleichsbasis ist der Stand 0.20.1.
 
 ### A1 Wo der Stand liegt
 
