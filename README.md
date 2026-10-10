@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.12.0** – Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
+Aktueller Release: **0.12.1** – L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
+Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
 schnellere, einheitliche Lernseiten, XP statt Punkte,
 gemischte Antworten im Verständnis-Check; zuvor Themenlandkarte, vereinfachte Bedienung und
 eigene Lernseiten für alle 27 Einheiten bis einschließlich L4.8.

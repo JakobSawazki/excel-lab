@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.12.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.12.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -272,7 +272,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-06 | Antworten mischen | erledigt (Claude); bitte fachlich gegenlesen |
 | OPT-07 | Release 0.11.0/0.11.1 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
 | OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex); Jakobs Freigabe zum Leeren liegt vor |
-| OPT-09 | Quellenabgleich L3–L4 | offen (Codex, laut Dokumentation dein nächster Schritt) |
+| OPT-09 | Quellenabgleich L3–L4 | maschineller Abgleich erledigt (Claude, 0.12.1): zwei fehlende Aufgaben ergänzt; Feinabgleich je Aufgabe offen |
 | OPT-10 | Rücknahme eines Abschlusses wirkt nur eine Einheit weit | Befund; Jakob hat nachgefragt, Entscheidung offen |
 | OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; nicht dringend (eigene Windows-Anmeldung je Person) |
 | OPT-12 | Navigation doppelt vorhanden | offen (Codex) |
@@ -316,10 +316,46 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 - **Nicht übernommen von Claude:** alles außer dem Abschluss-Audit, weil Claude
   die übrigen Tests nicht gelesen hat.
 
-#### OPT-09 Quellenabgleich L3–L4
+#### OPT-09 Quellenabgleich L3–L4 (Auftrag Jakob vom 10. Oktober)
 
-Unverändert dein offener Schritt laut Taskstatus. Claude hat keine Inhalte der
-Lernseiten geändert und keine Originalmaterialien geöffnet.
+- **Vorgehen:** Alle 90 DOCX- und XLSX-Dateien aus `Lernfortschritt_3` und
+  `Lernfortschritt_4` als Text ausgelesen (nur gelesen, nichts verändert, nichts
+  veröffentlicht). Je Einheit die in `content.js` zugeordneten Dateien mit
+  Seite und Skript verglichen: Welche Zahlen und Begriffe der Aufgabe stehen
+  auf der Lernseite? Dazu die Aktivitätsverfolgungen L3 und L4 gegen die
+  Zuordnung geprüft. Die Videos (`.mp4`) wurden nicht gesichtet.
+- **Ergebnis – fehlte ganz, jetzt ergänzt (0.12.1):**
+  `L3_3.3 Vertiefungsaufgabe SVerweis-Funktion Teil 1` (KFZ-Steuer; in der
+  Aktivitätsverfolgung als PA geführt) und `L3_3.4 … Teil 2` (PLZ-Suche, WA).
+  Sie waren weder einer Einheit zugeordnet noch auf einer Seite erwähnt. Jetzt
+  in `l3-6.html` als Abschnitte `#l36-kfz-section` und `#l36-plz-section` vor
+  dem Verständnis-Check, mit Zellplan, Länderfaktoren, Hubraumstaffel und einem
+  Auszug der Kennzeichenliste aus der Vorlage. Für die PLZ-Suche steht ein
+  eigener Auszug mit sechs Orten auf der Seite, weil das vollständige
+  Verzeichnis nur in der lokalen Vorlage liegt. Die Aufgaben geben das Muster
+  der ersten Formel vor und lassen die übrigen entwickeln; Kontrollbeträge
+  werden nicht genannt (Rückrechnung wie in deinen Seiten). Die fünf Dateien
+  sind in `content.js` und im Quellenabschnitt von L3.6 eingetragen.
+- **Vorhanden:** alle übrigen Aufgaben. Toto Teil 1 (Tabellenpunkte) steht in
+  L3.4, Teil 2 und 3 in L3.3; L4.3 verwendet wie die Aufgabe nur die Reihe
+  Schwimmen; L4.4 nennt die Eingaben, bewusst nicht die Ergebnisbeträge; L4.7
+  verwendet aus der Umsatzauswertung die Orte, die Kundenart wird erklärt.
+- **Nicht zugeordnet, aber inhaltlich abgedeckt (nicht einzeln geprüft):** die
+  Informationsblätter zu SVERWEIS, ISTNV, RUNDEN, Verweistabelle,
+  Zielwertsuche, zu allen Diagrammen und `L4_2 Zusammenfassung zu
+  Diagrammtypen`. Sie fehlen in `content.js` als Download; ob jede Aussage
+  daraus auf den Seiten steht, ist nicht Satz für Satz verglichen.
+- **Auffällig:** In der Aktivitätsverfolgung L3 steht
+  `L3_4.1 Tabellenvorlage Urlaubsplanung.xlsx`; die Datei gibt es im
+  Materialordner nicht. Die Teilnehmerliste der Skiausfahrt meldete der
+  maschinelle Vergleich als fehlend; sie steht aber als Tabelle in L3.1
+  (nachgesehen), L3.2 und L3.3 bauen auf derselben Datei auf. Solche
+  Fehlmeldungen des Vergleichs sind möglich; Treffer wurden einzeln geprüft.
+- **Grenzen:** Der Vergleich ist maschinell und prüft Vorhandensein, nicht
+  didaktische Gleichwertigkeit. L1 und L2 hast du am 4. Oktober direkt
+  abgeglichen; Claude hat sie nicht erneut geprüft. Die neuen Abschnitte in
+  L3.6 sind nicht im Unterricht erprobt und nicht in Excel durchgerechnet;
+  die Staffelwerte stammen aus der Vorlage.
 
 #### OPT-10 Rücknahme wirkt nur eine Einheit weit
 
@@ -465,7 +501,8 @@ Google Drive legt `desktop.ini` in `.git/refs/` ab; jeder Git-Befehl warnt
 
 1. OPT-10: Rücknahme eines Abschlusses – a, b oder c? Claude hat die Frage
    am 9. Oktober noch einmal in einfachen Worten gestellt.
-2. Durchsicht der veröffentlichten Fassung 0.12.0 und der 27 Bonusaufgaben.
+2. Durchsicht der veröffentlichten Fassung 0.12.1: die 27 Bonusaufgaben und die
+   beiden neuen Abschnitte KFZ-Steuer und PLZ-Suche in L3.6.
 3. OPT-19: Dürfen im hellen Schema die grüne Akzentschrift und die graue
    Nebenschrift etwas dunkler werden, damit kleine Texte besser lesbar sind?
 

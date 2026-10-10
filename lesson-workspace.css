@@ -197,3 +197,7 @@
 .bonus-feedback { min-height:1.4em; margin:0; color:var(--text-soft); font-size:.88rem; }
 .bonus-feedback[data-result="incorrect"] { color:var(--amber); }
 .bonus-feedback[data-result="correct"] { color:var(--green); font-weight:700; }
+
+/* Lange Formeln in Aufgabenschritten dürfen umbrechen, statt die Seite zu verbreitern. */
+.instruction-list code, .formula-principle code, .lesson-disclosure-body > p code { overflow-wrap:anywhere; }
+.formula-principle code { white-space:normal; }

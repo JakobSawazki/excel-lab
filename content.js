@@ -628,7 +628,12 @@
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.1 Aufgabenstellung Runden-Funktion.docx", "Aufgabe RUNDEN", "DOCX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.1 Tabellenvorlage Runden-Funktion.xlsx", "Excel-Vorlage Noten Teil 1", "XLSX"),
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.2 Aufgabenstellung Verweistabelle.docx", "Aufgabe Verweistabelle", "DOCX"),
-        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.2 Tabellenvorlage Verweistabelle.xlsx", "Excel-Vorlage Noten Teil 2", "XLSX")
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.2.2 Tabellenvorlage Verweistabelle.xlsx", "Excel-Vorlage Noten Teil 2", "XLSX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.3 Vertiefungsaufgabe SVerweis-Funktion Teil 1.docx", "Vertiefung KFZ-Steuer", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.3 Tabellenvorlage KFZ-Steuer.xlsx", "Excel-Vorlage KFZ-Steuer", "XLSX"),
+        resource("Lernfortschritt_3/Informationsmaterial/L3_3.3 Informationsmaterial SVerweis-Funktion Erweiterung.docx", "Information SVERWEIS mit Bereich_Verweis", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.4 Vertiefungsaufgabe SVerweis-Funktion Teil 2.docx", "Vertiefung PLZ-Suche", "DOCX"),
+        resource("Lernfortschritt_3/Aufgabenstellungen/L3_3.4 Tabellenvorlage PLZ-Suche.xlsx", "Excel-Vorlage PLZ-Suche", "XLSX")
       ]
     },
     {

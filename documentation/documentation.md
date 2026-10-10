@@ -1,11 +1,25 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.12.0
+Projektversion: 0.12.1
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.12.1 (Claude, 10.10.2026, Auftrag Jakob):** Abgleich
+  der Lernseiten L3.1–L4.8 mit den Originalunterlagen und Ergänzung von L3.6.
+  Alle Aufgaben- und Vorlagendateien aus `Lernfortschritt_3` und
+  `Lernfortschritt_4` wurden als Text ausgelesen und je Einheit mit Seite und
+  Skript verglichen (Zahlen, Begriffe, Zuordnung in `content.js`). Ergebnis:
+  Zwei Aufgaben der Aktivitätsverfolgung L3 fehlten vollständig –
+  `L3_3.3 KFZ-Steuer` (dort Pflichtaufgabe) und `L3_3.4 PLZ-Suche`
+  (Wahlaufgabe). Beide stehen jetzt als eigene Abschnitte in L3.6, mit allen
+  nötigen Daten auf der Seite; neu ist dort auch der vierte SVERWEIS-Parameter
+  `Bereich_Verweis` (WAHR/FALSCH). Abschlussbedingungen, Checks und XP von
+  L3.6 sind unverändert. Alle übrigen Aufgaben aus L3 und L4 sind mit ihren
+  Ausgangsdaten vorhanden. Grenzen und Einzelbefunde:
+  [`claude2codex.md`](claude2codex.md), OPT-09.
 
 - **Veröffentlicht als 0.12.0 (Claude, 10.10.2026, Auftrag Jakob):**
   Bonusaufgaben. Jede der 27 Einheiten hat eine freiwillige Vertiefungsaufgabe
