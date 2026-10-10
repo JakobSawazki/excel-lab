@@ -35,7 +35,6 @@
   const menu = nav.querySelector("#learning-menu");
   const menuBody = nav.querySelector("#nav-stage-menu");
   const learningLink = nav.querySelector("#learning-path-button");
-  let suppressFocusOpen = false;
 
   function profile() {
     let state;
@@ -54,115 +53,30 @@
     };
   }
 
-  function node(tag, className, textContent) {
-    const element = document.createElement(tag);
-    element.className = className;
-    if (textContent !== undefined) element.textContent = textContent;
-    return element;
-  }
-
   function renderMenu() {
     const activeProfile = profile();
-    menuBody.replaceChildren();
-    for (const stage of stages) {
-      const entry = node("div", "nav-stage-entry");
-      const button = node("button", "nav-stage-button");
-      button.type = "button";
-      button.dataset.stageOpen = String(stage.id);
-      button.append(node("span", "nav-stage-badge", stage.code));
-      const stageText = node("span", "");
-      stageText.append(node("strong", "", stage.shortTitle), node("small", "", `${lessons.filter((lesson) => lesson.stage === stage.id).length} Kapitel`));
-      button.append(stageText);
-
-      const toggle = node("button", "nav-stage-toggle");
-      toggle.type = "button";
-      toggle.dataset.stageToggle = String(stage.id);
-      toggle.setAttribute("aria-label", `Kapitel von ${stage.code} anzeigen`);
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-controls", `nav-chapters-${stage.id}`);
-      toggle.innerHTML = '<svg aria-hidden="true" viewBox="0 0 20 20"><path d="m7.5 5.5 4.5 4.5-4.5 4.5"/></svg>';
-
-      const flyout = node("div", "nav-chapter-flyout");
-      flyout.id = `nav-chapters-${stage.id}`;
-      flyout.setAttribute("role", "group");
-      flyout.setAttribute("aria-label", `Kapitel ${stage.code}`);
-      const heading = node("p", "");
-      heading.append(node("span", "", stage.code), document.createTextNode(` ${stage.title}`));
-      flyout.append(heading);
-
-      for (const lesson of lessons.filter((item) => item.stage === stage.id)) {
-        const status = access(lesson, activeProfile);
-        const chapter = node("button", `nav-chapter-link${status.unlocked ? "" : " is-locked"}`);
-        chapter.type = "button";
-        chapter.dataset.lessonOpen = lesson.id;
-        chapter.append(
-          node("span", "", status.unlocked ? status.completed ? "✓" : lesson.code : "▣"),
-          node("strong", "", lesson.title),
-          node("small", "", status.unlocked ? `${lesson.points || 100} XP` : "noch gesperrt")
-        );
-        flyout.append(chapter);
-      }
-      entry.append(button, toggle, flyout);
-      menuBody.append(entry);
-    }
+    window.ExcelLabNav.renderStageMenu(menuBody, {
+      stages,
+      lessons,
+      lessonAttribute: "lessonOpen",
+      status: (lesson) => access(lesson, activeProfile)
+    });
   }
 
-  function closeMenu() {
-    menu.classList.remove("is-open");
-    menu.querySelectorAll("[aria-expanded]").forEach((button) => button.setAttribute("aria-expanded", "false"));
-    menu.querySelectorAll(".nav-stage-entry.is-open").forEach((entry) => entry.classList.remove("is-open"));
-  }
-
-  function setMenuOpen(open) {
-    if (!open) { closeMenu(); return; }
-    menu.classList.add("is-open");
-    learningLink.setAttribute("aria-expanded", "true");
-    menu.querySelector("[data-learning-toggle]").setAttribute("aria-expanded", "true");
-  }
+  const menuControl = window.ExcelLabNav.bindMenu(menu, learningLink);
+  const closeMenu = menuControl.close;
 
   function showToast(message) {
     const region = document.querySelector("#toast-region");
     if (!region) return;
-    const toast = node("div", "toast", message);
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = message;
     region.append(toast);
     setTimeout(() => toast.remove(), 4500);
   }
 
-  menu.addEventListener("pointerenter", (event) => {
-    if (event.pointerType === "mouse" || event.pointerType === "pen") setMenuOpen(true);
-  });
-  menu.addEventListener("pointerleave", (event) => {
-    if (event.pointerType === "mouse" || event.pointerType === "pen") closeMenu();
-  });
-  menu.addEventListener("focusin", (event) => {
-    if (event.target === learningLink && !suppressFocusOpen) setMenuOpen(true);
-    const stageButton = event.target.closest(".nav-stage-button");
-    if (stageButton) {
-      menu.querySelectorAll(".nav-stage-entry.is-open").forEach((entry) => entry.classList.remove("is-open"));
-      menu.querySelectorAll("[data-stage-toggle]").forEach((button) => button.setAttribute("aria-expanded", "false"));
-      stageButton.closest(".nav-stage-entry").classList.add("is-open");
-      stageButton.nextElementSibling?.setAttribute("aria-expanded", "true");
-    }
-  });
-  menu.addEventListener("focusout", (event) => {
-    if (!menu.contains(event.relatedTarget)) closeMenu();
-  });
-
   nav.addEventListener("click", (event) => {
-    const topToggle = event.target.closest("[data-learning-toggle]");
-    if (topToggle) { setMenuOpen(!menu.classList.contains("is-open")); return; }
-
-    const stageToggle = event.target.closest("[data-stage-toggle]");
-    if (stageToggle) {
-      const entry = stageToggle.closest(".nav-stage-entry");
-      const open = !entry.classList.contains("is-open");
-      menu.querySelectorAll(".nav-stage-entry.is-open").forEach((item) => item.classList.remove("is-open"));
-      menu.querySelectorAll("[data-stage-toggle]").forEach((button) => button.setAttribute("aria-expanded", "false"));
-      entry.classList.toggle("is-open", open);
-      stageToggle.setAttribute("aria-expanded", String(open));
-      return;
-    }
-
     const stageButton = event.target.closest("[data-stage-open]");
     if (stageButton) {
       location.href = `index.html#lernpfad/${stageButton.dataset.stageOpen}`;
@@ -188,16 +102,6 @@
     }
 
     if (event.target.closest("a.nav-link")) closeMenu();
-  });
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest("#learning-menu")) closeMenu();
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape" || !menu.classList.contains("is-open")) return;
-    closeMenu();
-    suppressFocusOpen = true;
-    learningLink.focus();
-    suppressFocusOpen = false;
   });
   window.addEventListener("storage", (event) => {
     if (event.key === "excelLab.state.v1" || event.key === null) renderMenu();

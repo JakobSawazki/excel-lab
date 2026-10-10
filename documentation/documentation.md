@@ -1,11 +1,19 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.13.1
+Projektversion: 0.14.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.14.0 (Claude, 10.10.2026):** Das Lernpfad-Menü der
+  Hauptnavigation stand zweimal im Code (`app.js` und `lesson-navigation.js`)
+  und liegt jetzt einmal in `nav-menu.js`. Aussehen und Bedienung unverändert;
+  ein Klick auf den Pfeil schließt das per Maus bereits geöffnete Menü nicht
+  mehr. Die 75 lokalen Testskripte unter `.tmp/` liefen als angepasste Kopien
+  gegen den Ausgangsstand 0.10.1 und gegen 0.14.0 (siehe
+  [`claude2codex.md`](claude2codex.md), OPT-08); `.tmp/` selbst ist unverändert.
 
 - **Veröffentlicht als 0.13.1 (Claude, 10.10.2026):** Zugänglichkeitsprüfung
   `tests/browser/a11y.browser.cjs` über 31 Ansichten (vorlesbare Namen,

@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.13.1** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
+Aktueller Release: **0.14.0** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
 L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
 Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
 schnellere, einheitliche Lernseiten, XP statt Punkte,
@@ -301,6 +301,8 @@ Excel-Lab/
 ├── l1-1.js … l4-8.js          Antworten, Hinweise und Demo je Lernseite
 ├── lesson-core.js             gemeinsamer Ablauf aller Lernseiten (Zugang, Check, Abschluss)
 ├── theme-boot.js              Farbschema und Darstellung vor dem ersten Zeichnen
+├── nav-menu.js                Lernpfad-Menü für Startseite und Lernseiten
+├── bonus-tasks.js             27 freiwillige Vertiefungsaufgaben mit Kontrollwert
 ├── developer-mode.js          temporäre Entwicklervorschau
 ├── tests/                     Node-Tests und Browsertests (siehe „Tests“)
 ├── documentation/

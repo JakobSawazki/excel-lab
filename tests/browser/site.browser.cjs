@@ -232,6 +232,39 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await normal.context.close(); }
     });
 
+    for (const file of ["index.html", "l1-2.html"]) {
+      await check(`Lernpfad-Menü auf ${file}: öffnen, Kapitel zeigen, Escape, gesperrtes und offenes Kapitel`, async () => {
+        const one = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+        const state = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "test", profiles: [{ id: "test", name: "tes.pro", className: "WGW EK1", progress: { "l1-1": one } }] });
+        const { context, page, errors } = await open(browser, file, { state });
+        try {
+          const menu = page.locator("#learning-menu");
+          const isOpen = () => menu.evaluate((element) => element.classList.contains("is-open"));
+          assert.equal(await page.locator("#nav-stage-menu .nav-stage-entry").count(), 4);
+          assert.equal(await page.locator("#nav-stage-menu .nav-chapter-link").count(), 27);
+          assert.equal(await page.locator("#nav-stage-menu .nav-chapter-link.is-locked").count(), 25, "nur L1.1 und L1.2 offen");
+          await page.locator("[data-learning-toggle]").click();
+          assert.equal(await isOpen(), true);
+          assert.equal(await page.locator("#learning-path-button").getAttribute("aria-expanded"), "true");
+          await page.locator('[data-stage-toggle="1"]').click();
+          assert.equal(await page.locator('[data-stage-toggle="1"]').getAttribute("aria-expanded"), "true");
+          assert.equal(await page.locator("#nav-chapters-1").isVisible(), true);
+          await page.locator("#nav-chapters-1 .nav-chapter-link").nth(2).click();
+          await page.locator("#toast-region .toast").filter({ hasText: "L1.2 abgeschlossen ist" }).waitFor();
+          await page.keyboard.press("Escape");
+          assert.equal(await isOpen(), false);
+          assert.equal(await page.evaluate(() => document.activeElement.id), "learning-path-button");
+          await page.locator("[data-learning-toggle]").click();
+          await page.locator("main").click({ position: { x: 5, y: 300 } });
+          assert.equal(await isOpen(), false, "Klick außerhalb schließt");
+          await page.locator("[data-learning-toggle]").click();
+          await page.locator('[data-stage-toggle="1"]').click();
+          await Promise.all([page.waitForURL(/l1-1\.html/), page.locator("#nav-chapters-1 .nav-chapter-link").first().click()]);
+          assert.deepEqual(errors, []);
+        } finally { await context.close(); }
+      });
+    }
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -244,5 +277,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und neun Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und elf Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

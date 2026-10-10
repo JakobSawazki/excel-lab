@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.13.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.14.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -71,6 +71,39 @@ eigene, kleine Änderung:
 - **`.tmp/` hat Claude nicht geleert.** Jakobs Freigabe liegt vor (A0), aber
   dort liegen deine einzigen Testskripte, und Claude löscht keine Dateien
   endgültig. Bitte nach der Übernahme deiner Tests selbst leeren.
+
+### A0e Nachtrag 0.14.0
+
+- **OPT-12:** `nav-menu.js` stellt `window.ExcelLabNav.renderStageMenu` und
+  `bindMenu` bereit. `app.js` (`renderNavMenu`, `closeLearningMenu`) und
+  `lesson-navigation.js` (`renderMenu`) nutzen beide. Die Kapitelknöpfe heißen
+  weiter `data-open-lesson` (Startseite) und `data-lesson-open` (Lernseiten).
+  Neu: Bei Mausbedienung schließt ein Klick auf den Pfeil das durch Zeigen
+  geöffnete Menü nicht mehr. `tests/browser/site.browser.cjs` prüft das Menü
+  auf beiden Seitentypen.
+- **OPT-08, Bestandsaufnahme deiner `.tmp`-Skripte:** 75 Skripte (ohne
+  `audit-memory-server.cjs` und das bereits übernommene Abschluss-Audit) liefen
+  als Kopien außerhalb des Projekts mit angepasstem Port und Ausgabeordner;
+  `.tmp/` wurde nicht verändert. Port 4325, den 68 Skripte fest eingetragen
+  haben, war von einem fremden Prozess belegt.
+  - Gegen den Ausgangsstand 0.10.1 (`5e1a758`): 35 bestanden, 40 nicht. Diese
+    40 passten also schon vor Claudes Arbeit nicht mehr zum Stand (unter
+    anderem `l16-smoke` bis `l33-smoke`, `navigation-smoke`, `organizer-smoke`,
+    `video-smoke`, `design-smoke`, viele `*-mastery-smoke`).
+  - Gegen 0.14.0: 28 bestanden. Zwölf bestanden vorher und jetzt nicht mehr,
+    alle wegen gewollter Änderungen:
+    `l11`–`l16-mastery-smoke` erwarten, dass das Wiederöffnen den Abschluss der
+    Folgeeinheit löscht (OPT-10 geändert); `l37-`, `l42-`, `l46-content-smoke`
+    und `l41-l42-practice-smoke` zählen acht aufklappbare Abschnitte, jetzt
+    sind es mit dem Bonusabschnitt neun; `xp-smoke` erwartet die alten
+    Levelgrenzen; `publish-practice-smoke` besteht bei einzelner Wiederholung.
+  - Fünf bestehen jetzt, die am Ausgangsstand scheiterten
+    (`l11-entry-practice-smoke`, `l47-`/`l48-content-smoke`,
+    `l48-mastery-smoke`, `mobile-navigation-smoke`) – vermutlich Zeitverhalten.
+  - **Empfehlung:** Nur die 28 bestehenden und die zwölf leicht anzupassenden
+    Skripte übernehmen; Port und Playwright-Pfad wie in
+    `tests/browser/site.browser.cjs` als Parameter. Die übrigen erst prüfen,
+    ob sie noch etwas absichern, das die neuen Tests nicht abdecken.
 
 ### A1 Wo der Stand liegt
 
@@ -253,6 +286,7 @@ Farben geändert**, weil das die Gestaltung berührt (A2); siehe OPT-19.
 | `lesson-core.js` | Ablauf aller Lernseiten | Claude, aus deinem Code zusammengeführt |
 | `l1-1.js` … `l4-8.js` | Antworten, Hinweise, Demo der Seite | Codex, gekürzt von Claude |
 | `theme-boot.js` | Farbschema und Darstellung vor dem Zeichnen | Claude |
+| `nav-menu.js` | Lernpfad-Menü: Aufbau und Bedienung für alle Seiten | Claude, aus deinem Code zusammengeführt |
 | `bonus-tasks.js` | 27 freiwillige Vertiefungsaufgaben mit Kontrollwert | Claude |
 | `lesson-navigation.js`, `lesson-workspace.js`, `xp.js`, `options.js`, `developer-mode.js`, `deployment.js`, `formula-lab.js` | Navigation, Abschnitte, XP, Darstellung, Vorschau, Materialverweise, Formel-Demo | Codex |
 | `styles.css`, `lesson-workspace.css`, `formula-lab.css`, `l4-*.css` | Gestaltung | Codex |
@@ -314,11 +348,11 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-05 | Farbschema vor dem Zeichnen | erledigt (Claude) |
 | OPT-06 | Antworten mischen | erledigt (Claude); bitte fachlich gegenlesen |
 | OPT-07 | Release 0.11.0/0.11.1 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
-| OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex); Jakobs Freigabe zum Leeren liegt vor |
+| OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex); Bestandsaufnahme von Claude unten; Jakobs Freigabe zum Leeren liegt vor |
 | OPT-09 | Quellenabgleich L3–L4 | maschineller Abgleich erledigt (Claude, 0.12.1): zwei fehlende Aufgaben ergänzt; Feinabgleich je Aufgabe offen |
 | OPT-10 | Rücknahme eines Abschlusses | erledigt (Claude, 0.13.0): Weg c, siehe A0c |
 | OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; nicht dringend (eigene Windows-Anmeldung je Person) |
-| OPT-12 | Navigation doppelt vorhanden | offen (Codex) |
+| OPT-12 | Navigation doppelt vorhanden | erledigt (Claude, 0.14.0): `nav-menu.js` |
 | OPT-13 | Ungenutzter Code und ungenutzte Styles | Lektionsdialog entfernt (Claude, 0.13.1); Styles und `content.js`-Felder offen |
 | OPT-14 | Veröffentlicht wird das ganze Repository | entschieden (Claude, von Jakob überlassen): bleibt so |
 | OPT-15 | Versionsparameter an Skripten und Styles | erledigt (Claude, 0.11.0) |
@@ -434,11 +468,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 
 #### OPT-12 Navigation doppelt
 
-`app.js` (`renderNavMenu`, Menüereignisse in `bindEvents`) und
-`lesson-navigation.js` bauen dasselbe Lernpfad-Menü zweimal, einmal als
-HTML-Text, einmal über DOM-Knoten, mit eigener Freischaltlogik. Vorschlag:
-`lesson-navigation.js` auch auf der Startseite verwenden. Abnahme: deine
-`navigation-smoke`- und `breadcrumb-smoke`-Tests.
+Erledigt in 0.14.0, siehe A0e.
 
 #### OPT-13 Ungenutzter Code und ungenutzte Styles
 

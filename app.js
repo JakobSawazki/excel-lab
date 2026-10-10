@@ -11,7 +11,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.13.1";
+  const APP_VERSION = "0.14.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -306,29 +306,12 @@
   function renderNavMenu() {
     const menu = $("#nav-stage-menu");
     if (!menu) return;
-    menu.innerHTML = stages.map((stage) => {
-      const stageLessons = lessons.filter((lesson) => lesson.stage === stage.id);
-      return `
-        <div class="nav-stage-entry">
-          <button class="nav-stage-button" type="button" data-stage-open="${stage.id}">
-            <span class="nav-stage-badge">${escapeHtml(stage.code)}</span>
-            <span><strong>${escapeHtml(stage.shortTitle)}</strong><small>${stageLessons.length} Kapitel</small></span>
-          </button>
-          <button class="nav-stage-toggle" type="button" data-stage-toggle="${stage.id}" aria-label="Kapitel von ${escapeHtml(stage.code)} anzeigen" aria-expanded="false" aria-controls="nav-chapters-${stage.id}"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="m7.5 5.5 4.5 4.5-4.5 4.5"/></svg></button>
-          <div class="nav-chapter-flyout" id="nav-chapters-${stage.id}" role="group" aria-label="Kapitel ${escapeHtml(stage.code)}">
-            <p><span>${escapeHtml(stage.code)}</span> ${escapeHtml(stage.title)}</p>
-            ${stageLessons.map((lesson) => {
-              const progress = getLessonProgress(lesson.id);
-              const access = lessonAccess(lesson);
-              return `<button class="nav-chapter-link ${access.unlocked ? "" : "is-locked"}" type="button" data-open-lesson="${lesson.id}">
-                <span>${access.unlocked ? progress.completed ? "✓" : escapeHtml(lesson.code) : "▣"}</span>
-                <strong>${escapeHtml(lesson.title)}</strong>
-                <small>${access.unlocked ? `${access.points} XP` : "noch gesperrt"}</small>
-              </button>`;
-            }).join("")}
-          </div>
-        </div>`;
-    }).join("");
+    window.ExcelLabNav.renderStageMenu(menu, {
+      stages,
+      lessons,
+      lessonAttribute: "openLesson",
+      status: (lesson) => ({ unlocked: lessonAccess(lesson).unlocked, completed: getLessonProgress(lesson.id).completed })
+    });
   }
 
   function renderDashboard() {
@@ -674,21 +657,10 @@
     if (dialog && !dialog.open) dialog.showModal();
   }
 
+  // Bedienung des Lernpfad-Menüs liegt in nav-menu.js.
+  let learningMenu = null;
   function closeLearningMenu() {
-    const menu = $("#learning-menu");
-    if (!menu) return;
-    menu.classList.remove("is-open");
-    menu.querySelectorAll("[aria-expanded]").forEach((button) => button.setAttribute("aria-expanded", "false"));
-    menu.querySelectorAll(".nav-stage-entry.is-open").forEach((entry) => entry.classList.remove("is-open"));
-  }
-
-  function setLearningMenuOpen(open) {
-    const menu = $("#learning-menu");
-    if (!menu) return;
-    if (!open) { closeLearningMenu(); return; }
-    menu.classList.toggle("is-open", open);
-    menu.querySelector("#learning-path-button").setAttribute("aria-expanded", String(open));
-    menu.querySelector("[data-learning-toggle]").setAttribute("aria-expanded", String(open));
+    learningMenu?.close();
   }
 
   async function copyFormula(value) {
@@ -716,25 +688,8 @@
   }
 
   function bindEvents() {
-    let suppressLearningFocusOpen = false;
+    learningMenu = window.ExcelLabNav.bindMenu($("#learning-menu"), $("#learning-path-button"));
     document.addEventListener("click", (event) => {
-      const menuToggle = event.target.closest("[data-learning-toggle]");
-      if (menuToggle) {
-        setLearningMenuOpen(!$("#learning-menu").classList.contains("is-open"));
-        return;
-      }
-
-      const stageToggle = event.target.closest("[data-stage-toggle]");
-      if (stageToggle) {
-        const entry = stageToggle.closest(".nav-stage-entry");
-        const open = !entry.classList.contains("is-open");
-        $("#learning-menu").querySelectorAll(".nav-stage-entry.is-open").forEach((item) => item.classList.remove("is-open"));
-        $("#learning-menu").querySelectorAll("[data-stage-toggle]").forEach((button) => button.setAttribute("aria-expanded", "false"));
-        entry.classList.toggle("is-open", open);
-        stageToggle.setAttribute("aria-expanded", String(open));
-        return;
-      }
-
       const brandHome = event.target.closest("[data-brand-home]");
       if (brandHome) {
         event.preventDefault();
@@ -799,8 +754,6 @@
         $("#manager-dialog").close();
         showToast("Profil gewechselt.");
       }
-
-      if (!event.target.closest("#learning-menu")) closeLearningMenu();
     });
 
     $("#lesson-search").addEventListener("input", renderLessons);
@@ -851,36 +804,6 @@
       dialog.addEventListener("click", (event) => {
         if (event.target === dialog) dialog.close();
       });
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && $("#learning-menu").classList.contains("is-open")) {
-        closeLearningMenu();
-        suppressLearningFocusOpen = true;
-        $("#learning-path-button").focus();
-        suppressLearningFocusOpen = false;
-      }
-    });
-
-    const learningMenu = $("#learning-menu");
-    learningMenu.addEventListener("pointerenter", (event) => {
-      if (event.pointerType === "mouse" || event.pointerType === "pen") setLearningMenuOpen(true);
-    });
-    learningMenu.addEventListener("pointerleave", (event) => {
-      if (event.pointerType === "mouse" || event.pointerType === "pen") closeLearningMenu();
-    });
-    learningMenu.addEventListener("focusin", (event) => {
-      if (event.target.id === "learning-path-button" && !suppressLearningFocusOpen) setLearningMenuOpen(true);
-      const stageButton = event.target.closest(".nav-stage-button");
-      if (stageButton) {
-        learningMenu.querySelectorAll(".nav-stage-entry.is-open").forEach((entry) => entry.classList.remove("is-open"));
-        learningMenu.querySelectorAll("[data-stage-toggle]").forEach((button) => button.setAttribute("aria-expanded", "false"));
-        stageButton.closest(".nav-stage-entry").classList.add("is-open");
-        stageButton.nextElementSibling?.setAttribute("aria-expanded", "true");
-      }
-    });
-    learningMenu.addEventListener("focusout", (event) => {
-      if (!learningMenu.contains(event.relatedTarget)) closeLearningMenu();
     });
 
     window.addEventListener("excel-lab-dev-change", renderAll);
