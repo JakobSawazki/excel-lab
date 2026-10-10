@@ -64,3 +64,12 @@
 .teacher-page .site-header { grid-template-columns: minmax(0, 1fr) auto; }
 .teacher-page .site-header .header-actions { margin-left: auto; justify-self: end; }
 .teacher-page .page-intro { padding-top: 2.2rem; }
+
+/* 0.20.10: Der Seitenfuß stand bei leerer Übersicht mitten auf dem Bildschirm
+   und klebte direkt unter der Statuszeile. Die Seite füllt jetzt mindestens
+   die Fensterhöhe, der Fuß sitzt unten, der Inhalt hält Abstand. */
+@media screen {
+  .teacher-page { display: flex; min-height: 100vh; flex-direction: column; }
+  .teacher-page > main { flex: 1 0 auto; padding-bottom: 4rem; }
+  .teacher-page > .site-footer { flex-shrink: 0; }
+}

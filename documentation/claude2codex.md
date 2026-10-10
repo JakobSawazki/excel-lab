@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.9 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.10 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -627,6 +627,17 @@ am Ende von `home.css`; nachgemessen: Unterkante der Ansicht = Oberkante des
 Seitenfußes. Lernpfad, Formelsammlung und Quellen haben keine eigene Fläche
 und waren nicht betroffen. Die 14 Arten kleiner Felder mit Zeichen (Häkchen,
 Nummern, Kürzel, Abzeichen) wurden vergrößert angesehen: alle mittig.
+
+### A0zj Release 0.20.10: Klassenübersicht, Seitenfuß
+
+Bei 1830 px auch `l1-2.html`, `lehrkraft.html` und `nachweis.html` angesehen.
+Lernseite und Lernnachweis unauffällig. `lehrkraft.html` (Seite von Claude
+aus 0.15.0): Ohne eingelesene Dateien ist der Inhalt kürzer als das Fenster;
+der Seitenfuß stand deshalb mitten auf dem Bildschirm, ohne Abstand zur
+Statuszeile. Jetzt `.teacher-page` als Spalten-Flex mit `min-height: 100vh`,
+`main` wächst und hält 4 rem Abstand nach unten (nur `@media screen`, der
+Druck bleibt unverändert). Versionsnummern sind ab hier zweistellig in der
+letzten Stelle (0.20.10); die Node-Tests kommen damit zurecht.
 
 ### A1 Wo der Stand liegt
 

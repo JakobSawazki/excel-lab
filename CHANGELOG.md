@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.10 – 2026-10-10
+
+**Klassenübersicht: Seitenfuß am unteren Rand.** Bei leerer Übersicht stand der Fuß mitten auf dem Bildschirm und klebte direkt unter der Statuszeile.
+
 ## 0.20.9 – 2026-10-10
 
 **Übersicht schließt sauber am Seitenfuß an.** Unter dem letzten Aufklapp-Bereich schien ein schmaler Streifen des Seitenhintergrunds mit Zellraster durch; die Fläche der Übersicht reicht jetzt bis zum Fuß. Neuer Browsertest gegen überdeckten Text auf allen Ansichten.
