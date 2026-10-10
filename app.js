@@ -3,7 +3,19 @@
 
   const content = window.EXCEL_LAB_CONTENT;
   if (!content) {
-    throw new Error("Excel-Lab-Inhalte konnten nicht geladen werden.");
+    // content.js wurde nicht geladen (Verbindung abgebrochen): Hinweis statt halb leerer Seite.
+    const box = document.createElement("section");
+    box.className = "page-shell page-shell-narrow";
+    box.setAttribute("role", "alert");
+    box.dataset.loadProblem = "";
+    box.innerHTML = '<h2>Seite nicht vollständig geladen</h2>'
+      + '<p>Ein Teil dieser Seite konnte nicht geladen werden, vermutlich wegen der Verbindung. '
+      + 'Dein Lernstand ist davon nicht betroffen.</p>'
+      + '<button class="button button-primary" type="button">Seite neu laden</button>';
+    box.querySelector("button").addEventListener("click", () => window.location.reload());
+    (document.querySelector("#main-content") || document.body).prepend(box);
+    console.error("Excel-Lab: Inhaltsdaten fehlen (content.js nicht geladen).");
+    return;
   }
 
   const { stages, lessons, formulas } = content;
@@ -13,7 +25,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.20.7";
+  const APP_VERSION = "0.20.8";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;

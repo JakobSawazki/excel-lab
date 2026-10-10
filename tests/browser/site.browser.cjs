@@ -429,6 +429,29 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Startseite und Lernseite ohne content.js zeigen einen Hinweis mit „Seite neu laden“", async () => {
+      for (const file of ["index.html", "l1-1.html", "l4-7.html"]) {
+        const context = await browser.newContext({ reducedMotion: "reduce" });
+        const page = await context.newPage();
+        const errors = [];
+        page.on("pageerror", (error) => errors.push(error.message));
+        await page.route("**/content.js*", (route) => route.abort());
+        try {
+          await page.goto(base + file);
+          const box = page.locator("[data-load-problem]");
+          await box.waitFor();
+          assert.equal(await box.isVisible(), true, file);
+          assert.match(await box.innerText(), /nicht vollständig geladen[\s\S]*Lernstand ist davon nicht betroffen/);
+          assert.equal(await box.getByRole("button", { name: "Seite neu laden" }).isVisible(), true);
+          assert.deepEqual(errors, [], `${file}: kein unbehandelter Fehler`);
+          await page.unroute("**/content.js*");
+          await box.getByRole("button", { name: "Seite neu laden" }).click();
+          await page.waitForLoadState("load");
+          assert.equal(await page.locator("[data-load-problem]").count(), 0, `${file}: nach dem Neuladen ohne Hinweis`);
+        } finally { await context.close(); }
+      }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -441,5 +464,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und sechzehn Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und siebzehn Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

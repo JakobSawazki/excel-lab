@@ -4,6 +4,16 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.8 – 2026-10-10
+
+**Quellen: Kartennummer überdeckt den Text nicht mehr** (Hinweis Jakob). Die große „03“ ragte in die erste Textzeile von „Lizenz und Veröffentlichung“.
+
+**Aufklapp-Symbole der Übersicht neu gezeichnet** (Hinweis Jakob). Plus und Minus sind jetzt gezeichnete, exakt mittige Balken in einem größeren Knopf statt Schriftzeichen; beim Öffnen dreht sich das Plus zum Minus.
+
+**Klassenübersicht umgezogen** (Wunsch Jakob). Der Link „Für Lehrkräfte: Klassenübersicht“ steht nicht mehr im Seitenfuß, sondern als eigener Bereich „Für Lehrkräfte“ am Ende der Ansicht „Quellen“.
+
+**Hinweis bei unvollständig geladener Seite.** Kann der Browser die Inhaltsdaten nicht laden (abgebrochene Verbindung), blieben Lernseite und Startseite bisher kommentarlos gesperrt oder halb leer. Jetzt erscheint „Seite nicht vollständig geladen“ mit dem Knopf „Seite neu laden“ und dem Hinweis, dass der Lernstand nicht betroffen ist. L4.1: Schritt 3 in zwei Absätzen.
+
 ## 0.20.7 – 2026-10-10
 
 **Glossar erweitert.** Sieben weitere Fachbegriffe aus den Informationsblättern: Funktionsassistent, Fehlerwert, Tabellenkopf, Tabellenrumpf, Bereich_Verweis, Punktwolke und Regressionsgerade (jetzt 33 Einträge).

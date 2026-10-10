@@ -201,3 +201,60 @@
 @media (max-width: 760px) { #view-formulas .glossary-list { grid-template-columns: minmax(0, 1fr); } }
 #view-formulas .formula-grid:empty { display: none; }
 #view-formulas .formula-grid:empty + .glossary { margin-top: .4rem; }
+
+/* Aufklapp-Symbol der Übersicht (0.20.8, Wunsch Jakob): gezeichnete Balken
+   statt der Schriftzeichen „+“ und „−“, die je nach Schrift nicht mittig
+   saßen. Beim Öffnen dreht sich der senkrechte Balken zum Minus. */
+#view-dashboard .home-disclosure-symbol {
+  position: relative;
+  display: block;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--metal-edge);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in srgb, #fff 22%, transparent), transparent 46%),
+    linear-gradient(160deg, color-mix(in srgb, var(--green) 30%, var(--surface-3)), color-mix(in srgb, var(--green) 9%, var(--surface)) 62%);
+  box-shadow: inset 0 1px 0 var(--metal-hairline), inset 0 -3px 6px color-mix(in srgb, #000 22%, transparent), 0 6px 16px var(--metal-shadow);
+  color: var(--green);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+#view-dashboard .home-disclosure-symbol::before,
+#view-dashboard .home-disclosure-symbol::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  font-weight: 400;
+  transform: translate(-50%, -50%);
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+#view-dashboard .home-disclosure-symbol::after { transform: translate(-50%, -50%) rotate(90deg); }
+#view-dashboard .home-lab-disclosure[open] .home-disclosure-symbol::before { content: ""; }
+#view-dashboard .home-lab-disclosure[open] .home-disclosure-symbol::after { opacity: 0; transform: translate(-50%, -50%) rotate(180deg); }
+#view-dashboard .home-lab-disclosure > summary:hover .home-disclosure-symbol {
+  border-color: var(--green);
+  box-shadow: inset 0 1px 0 var(--metal-hairline), inset 0 -3px 6px color-mix(in srgb, #000 22%, transparent), 0 8px 20px var(--metal-shadow), 0 0 18px var(--metal-glow);
+  transform: translateY(-1px);
+}
+[data-theme="light"] #view-dashboard .home-disclosure-symbol {
+  background:
+    radial-gradient(circle at 32% 26%, #fff, transparent 52%),
+    linear-gradient(160deg, #f7faf8, color-mix(in srgb, var(--green) 14%, #e3ece6) 70%);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -3px 6px rgba(13, 58, 38, .1), 0 6px 14px rgba(31, 80, 54, .14);
+}
+@media (prefers-reduced-motion: reduce) {
+  #view-dashboard .home-disclosure-symbol,
+  #view-dashboard .home-disclosure-symbol::before,
+  #view-dashboard .home-disclosure-symbol::after { transition: none; }
+  #view-dashboard .home-lab-disclosure > summary:hover .home-disclosure-symbol { transform: none; }
+}
+@media (forced-colors: active) {
+  #view-dashboard .home-disclosure-symbol { background: ButtonFace; border-color: ButtonText; color: ButtonText; box-shadow: none; }
+  #view-dashboard .home-disclosure-symbol::before,
+  #view-dashboard .home-disclosure-symbol::after { background: ButtonText; }
+}

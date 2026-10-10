@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.7 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.8 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -556,6 +556,49 @@ auf seiner Einheit vorkommt; `tests/browser/site.browser.cjs` erwartet 33
 statt 26 Einträge. Vor der Veröffentlichung liefen wegen des langsamen
 Rechners nur `site.browser.cjs` und `release-smoke.cjs` lokal, nicht der
 ganze Sammellauf; geändert wurden nur `content.js` und dieser Test.
+
+### A0zh Release 0.20.8: Hinweis bei fehlenden Inhaltsdaten
+
+Nachgegangen: die Meldung „unbekannte Lerneinheit l4-7“ aus dem Testlauf für
+0.20.6. Die Skripte laufen mit `defer` in fester Reihenfolge; die Meldung kann
+nur entstehen, wenn `content.js` gar nicht geladen wurde. Auf dem überlasteten
+Rechner hat der lokale Server offenbar eine Anfrage fallen lassen. Dasselbe
+kann im Schulnetz passieren, und dann blieb die Lernseite gesperrt, ohne dass
+Lernende erfahren, warum.
+
+- `lesson-core.js`: `start()` prüft zuerst, ob Inhaltsdaten da sind. Fehlen
+  sie, füllt `showLoadProblem()` den Zugangskasten (`#lXY-access`, auf L1.1
+  ein neuer Abschnitt) mit Überschrift, Erklärung und „Seite neu laden“,
+  setzt `role="alert"` und `data-load-problem` und schreibt eine Zeile in die
+  Konsole. Eine unbekannte Kennung bei vorhandenen Daten wirft weiter.
+- `tests/browser/site.browser.cjs`: neue Einzelprüfung blockiert `content.js`
+  auf L1.1 und L4.7, erwartet den Hinweis ohne unbehandelten Fehler und nach
+  „Seite neu laden“ die normale Seite.
+- `app.js`: derselbe Hinweis auf der Startseite (vorher `throw`, die Seite
+  blieb halb leer); die Einzelprüfung deckt `index.html` mit ab.
+- **Quellenkarten (Hinweis Jakob vom 10. Oktober, mit Bildschirmfoto):**
+  `.source-number` war absolut positioniert und ragte mit normaler
+  Zeilenhöhe in die erste Textzeile der Karte „03“. Jetzt `line-height: 1`,
+  in `.source-stack` 2,5 rem groß, und die Überschriften der beiden kleinen
+  Karten halten rechts 4,4 rem Abstand. Bei 1536, 1100 und 390 px in beiden
+  Schemata nachgemessen: keine Überschneidung von Nummer und Text mehr.
+  Ein Test dafür fehlt noch.
+- **Aufklapp-Symbole (Hinweis Jakob, mit Bildschirmfotos):** „+“ und „−“ in
+  `.home-disclosure-symbol` waren Schriftzeichen und saßen nicht mittig;
+  Jakob wünscht außerdem schönere Zeichen. Jetzt zwei gezeichnete Balken
+  (`::before`, `::after`, je 14 × 2 px, absolut auf 50 %/50 %) in einem
+  38-px-Knopf mit Verlauf und Schatten; geöffnet blendet der senkrechte
+  Balken aus. Block am Ende von `home.css`, deine Regeln davor unverändert.
+- **Klassenübersicht (Wunsch Jakob):** Link aus `.footer-links` entfernt;
+  neuer Abschnitt `.teacher-section` am Ende von `#view-sources` in
+  `index.html` mit Knopf „Klassenübersicht öffnen“ (Styles am Ende von
+  `styles.css`). Jakob fand die Idee gut, den Platz im Fuß aber unpassend;
+  die Wahl „Quellen“ stammt von Claude und ist nicht mit ihm abgestimmt.
+- **Weiter ungeklärt:** der einmalige Fehlschlag von `site.browser.cjs` im
+  Sammellauf für 0.20.7 (Meldung nicht erhalten). Der Läufer schreibt seither
+  ein vollständiges Protokoll (A0ze).
+- **Nicht abgedeckt:** Klassenübersicht und Lernnachweis ohne
+  `content.js`; andere fehlende Skripte.
 
 ### A1 Wo der Stand liegt
 

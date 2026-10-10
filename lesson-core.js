@@ -8,8 +8,32 @@
   const NUMBER_WORDS = { 1: "eine", 2: "zwei", 3: "drei", 4: "vier", 5: "fünf", 6: "sechs" };
   const $ = (selector) => document.querySelector(selector);
 
+  // Fehlen die Inhaltsdaten ganz, wurde content.js nicht geladen (Verbindung
+  // abgebrochen). Statt einer kommentarlos gesperrten Seite erscheint ein Hinweis.
+  function showLoadProblem(id) {
+    const prefix = id.replace("-", "");
+    let box = $(`#${prefix}-access`);
+    if (!box) {
+      box = document.createElement("section");
+      box.className = "page-shell page-shell-narrow";
+      ($("#lesson-main") || document.body).prepend(box);
+    }
+    box.id = box.id || "lesson-load-problem";
+    box.hidden = false;
+    box.removeAttribute("aria-labelledby");
+    box.setAttribute("role", "alert");
+    box.dataset.loadProblem = "";
+    box.innerHTML = '<h2>Seite nicht vollständig geladen</h2>'
+      + '<p>Ein Teil dieser Seite konnte nicht geladen werden, vermutlich wegen der Verbindung. '
+      + 'Dein Lernstand ist davon nicht betroffen.</p>'
+      + '<button class="button button-primary" type="button">Seite neu laden</button>';
+    box.querySelector("button").addEventListener("click", () => window.location.reload());
+    console.error("Excel-Lab: Inhaltsdaten fehlen (content.js nicht geladen).");
+  }
+
   function start(config) {
     const lessons = window.EXCEL_LAB_CONTENT?.lessons || [];
+    if (!lessons.length) { showLoadProblem(config.id); return; }
     const index = lessons.findIndex((item) => item.id === config.id);
     if (index < 0) throw new Error(`Excel-Lab: unbekannte Lerneinheit ${config.id}.`);
     const lesson = lessons[index];
