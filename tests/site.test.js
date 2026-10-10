@@ -140,3 +140,18 @@ test("Glossar: vollständige Einträge, sortierbar, Begriff steht auf der genann
   }
   assert.match(read("index.html"), /id="glossary-list"/);
 });
+
+test("Seitenhintergrund: mehrschichtige Regeln behalten eine feste Grundfarbe", () => {
+  // Die Kurzschreibweise background: setzt background-color zurück. Ohne feste
+  // Grundfarbe misst der Kontrastbericht gegen Weiß (Fehler aus 0.20.0). Geprüft
+  // werden die wirksamen Regeln aus dem Block „Feinschliff 0.20.0“.
+  const css = read("styles.css");
+  const rules = [...css.matchAll(/(?<=^|\})\s*([^{}]*\bbody\b[^{}]*)\{([^{}]*)\}/g)]
+    .filter((match) => /\bbackground\s*:[^;]*gradient/.test(match[2]) && /background-attachment/.test(match[2]));
+  assert.ok(rules.length >= 2, "Regeln für den Seitenhintergrund gefunden");
+  for (const [, selector, body] of rules) {
+    const shorthand = body.search(/\bbackground\s*:/);
+    const color = body.search(/\bbackground-color\s*:/);
+    assert.ok(color > shorthand, `${selector.trim().split("\n")[0]}: background-color fehlt nach background`);
+  }
+});

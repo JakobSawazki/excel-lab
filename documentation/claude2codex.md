@@ -490,6 +490,9 @@ bestanden beide. `tests/browser/run-all.cjs` deshalb angepasst:
   Anzahl der Wiederholungen. Andere Fehler werden nicht wiederholt.
 - Besteht eine Datei regelmäßig erst im zweiten Versuch, bitte als echten
   Fehler behandeln, nicht als Umgebung.
+- Neuer Node-Test in `tests/site.test.js` (jetzt 298 Tests): Die Regeln für
+  den mehrschichtigen Seitenhintergrund müssen nach `background:` ein
+  `background-color` setzen (Fehler aus 0.20.0, siehe A0zc).
 
 ### A1 Wo der Stand liegt
 
