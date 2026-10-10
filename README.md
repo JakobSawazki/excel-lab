@@ -20,93 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.19.0** – druckbarer Lernnachweis;
-zuvor **0.18.1** – zweite Bonusaufgabe („Transfer“) in allen 27 Einheiten,
-Glossar mit 26 Fachbegriffen in der Formelsammlung,
-Fehlerwerkstatt mit sieben Excel-Fehlermeldungen in der Formelsammlung,
-Klassenübersicht für Lehrkräfte und Druckansicht der Lernseiten,
-Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
-L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
-Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
-schnellere, einheitliche Lernseiten, XP statt Punkte,
-gemischte Antworten im Verständnis-Check; zuvor Themenlandkarte, vereinfachte Bedienung und
-eigene Lernseiten für alle 27 Einheiten bis einschließlich L4.8.
-
-Bei einem Profilwechsel werden noch ausgewählte Antworten und Rückmeldungen
-im Verständnis-Check entfernt. Die Antworten gehören damit ausschließlich
-zum jeweiligen Profil; bereits gespeicherte Abschlüsse bleiben erhalten.
-
-Didaktisch überarbeitet (4. Oktober 2026): L1.2 kann mit den auf der
-Lernseite angegebenen Eingabedaten ohne Vorlagen-Download bearbeitet werden.
-Ein Vorhersage-/Änderungstest und eine unabhängige Eintrittskarten-Aufgabe
-vertiefen die Arbeit mit Zellbezügen.
-L1.3 ergänzt einen Druckkosten-Transfer zu Zellwert und gerundeter Anzeige;
-L1.4 ergänzt eine Fehlerdiagnose mit absichtlich festgesetztem Ergebniswert,
-Änderungstest und Reparatur. Die Zellzuordnung zwischen L1.2 und L1.3 ist
-für den Aufbau ohne Vorlage abgestimmt.
-L1.5 konkretisiert die Testkopie mit einer sechsten Person und Kontrollsummen;
-L1.6 ergänzt schrittweise Hilfe zu Mehrbedarf/Paketanzahl, Paketgrenztests
-und gezielte Änderungstests für die weiteren vier Rechenmodelle.
-L2.1/L2.2 ergänzen getrennte Eingabetests für relative/absolute Bezüge.
-L2.2 lässt sich ohne Vorlagen-Download mit der L2.1-Datei oder einer leeren
-Arbeitsmappe bearbeiten; Zeilen werden nur beim passenden Startaufbau eingefügt.
-L2.3 ergänzt gezielte Änderungstests für gemischte und benannte Bezüge.
-L2.4 bietet einen vollständigen Einstieg ohne Vorlagen-Download sowie Tests
-zu unveränderten Extremwerten und dem Unterschied zwischen null und leer.
-L2.5 ergänzt eine selbstständige Angebotsauswertung mit Anbieterwechsel und Gleichstand.
-
-L3.1 präzisiert den Zellplan ohne Vorlage
-und ergänzt Grenz-/Jahrestests sowie einen selbstständigen Versandkosten-Transfer.
-L3.2 ergänzt Tests der Kette Datum → Jahr → Tarif → Preis sowie eine unabhängige
-Mengenpreis-Aufgabe mit Grenzfällen, Parameteränderungen und Gesamtpreisvergleich.
-L3.3 ergänzt einen konkreten Toto-Zellplan, Einzeländerungstests und eine
-Projektkassen-Aufgabe mit bewusster Fehlzuordnung trotz passender Gesamtsumme.
-L3.4 ergänzt letzte-Zeile-/Punktetests und eine Vorratsliste mit lesbaren Hinweisen,
-Grenzfällen und Prüfung des erweiterten Formatierungsbereichs.
-L3.5 ergänzt vollständige Treffer-/Fehlertests und eine Artikelbestellung mit
-fehlendem Preis, Preisänderung und bewusster Erweiterung der Suchmatrix.
-L3.6 ergänzt gezielte Änderungen der Noten-Rechenkette und eine unabhängige
-Zeitplanung zum Vergleich von Einzelrundung und Rundung der Gesamtsumme.
-
-Online veröffentlicht und geprüft am 04.10.2026: L3.7 ergänzt Modelltests und eine
-eigenständige Schulfest-Kalkulation mit Zielwertsuche, ganzen Gästezahlen und
-einem unerreichbaren Ziel. L3.8 ergänzt eine Empfehlung für komplementäre
-Fallauswahl sowie ein Testprotokoll und konkrete Änderungstests für alle sechs Fälle.
-L4.1 ergänzt Datenlesen ohne unbelegte Ursachenbehauptung und eine AG-Tabelle
-mit bekannter Null, neuer Kategorie und expliziter Prüfung von Summen-/Diagrammquelle.
-L4.2 ergänzt erneutes Sortieren nach einer Änderung sowie einen isolierten
-Fehlzuordnungstest: Eine unveränderte Summe beweist keine richtigen Namen-Wert-Paare.
-Beide Einheiten unterscheiden Datenänderung von optischer Änderung durch automatische Skalen.
-L4.3 ergänzt belegte Zeitreihen-Aussagen, absolute/relative Änderungen und eine
-Bibliotheks-Aufgabe mit unbekanntem Wert, echter Null und unvollständiger Gesamtsumme.
-L4.4 ergänzt einen Zuschlagstest zum Vergleich von Teilnehmer- und Kostenanteilen
-sowie einen Budgetfaktor-Transfer: gleiche Verteilung bei anderer Gesamtsumme,
-aber keine berechenbaren Kreisanteile bei Gesamtsumme 0.
-L4.5 ergänzt einen Drei-Team-Transfer mit Einzelwert-, Summen- und Anteilsfragen
-sowie einem absichtlich unvollständigen 100-%-Diagramm und Wiederherstellung.
-L4.6 ergänzt eine künstliche Fertigungsreihe mit ungleichen X-Abständen,
-Modellprüfung, Einzelpunktänderung, Abweichungen und ausdrücklich unsicherer Extrapolation.
-L4.7 ergänzt einen Standortvergleich zum gewichteten Umsatz je Kunde; ein
-unbelegter Jahresbezug der Standortkennzahl wurde entfernt.
-L4.8 ergänzt einen Fahrtvergleich mit ungleichen Abschnittsdauern, kumulierten
-Werten und einer echten Pause; Gesamtgeschwindigkeit und einfacher Mittelwert
-der Abschnittsgeschwindigkeiten werden bewusst getrennt.
-
-Online veröffentlicht und geprüft am 04.10.2026: L1.1 bietet eine ausklappbare
-Zellplan-Hilfe sowie einen Änderungstest mit eingetippten Ergebniszahlen.
-Die Schüler sagen die Auswirkung zweier zusätzlicher Flaschen voraus,
-berichtigen die Ergebnisse von Hand und erklären, wozu L1.2 Formeln einführt.
-L1.2 erklärt nun die Weiterverwendung der eigenen Arbeitsmappe unter neuem
-Namen und das getrennte Blatt Heftkauf mit vollständigen Eingaben und Mengentest.
-
-Online veröffentlicht und geprüft am 04.10.2026: L1.3/L1.4 erklären die Zuordnung
-bei eigenen Tabellenaufbauten und die sichere Weiterverwendung des Getränke-Blatts.
-L1.6 unterstützt mit Rückrechnungen statt aufklappbaren fertigen Ergebnislisten.
-
-Online veröffentlicht und geprüft am 04.10.2026: L2.1–L2.3 bieten Rückrechnungs-
-Hilfen statt fertiger Kontrollbeträge. L2.3 erklärt das Erhalten aller sechs
-Zwischenstandsdateien, L2.4 den Start ohne Vorlage und L2.5 die eindeutige
-Prozent-Eingabe als ganze Zahl passend zur verwendeten Berechnungsregel.
+Aktueller Release: **0.19.0**. Was sich von Version zu Version geändert hat, steht in
+[`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
 - Quellcode: <https://github.com/JakobSawazki/excel-lab>
@@ -291,57 +206,33 @@ Nutzungsbedingungen geklärt werden.
 
 ```text
 Excel-Lab/
-├── index.html                 App-Shell und semantische Seitenstruktur
-├── l1-1.html                  eigene Informations- und Aufgabenseite für L1.1
-├── l1-2.html                  eigene Lernseite: Rechnen mit Zelladressen
-├── l1-3.html                  eigene Lernseite: Zahlen und Tabellen formatieren
-├── l1-4.html                  eigene Lernseite: Formeln kopieren
-├── l1-5.html                  eigene Lernseite: Tabellenstruktur und Sommerfest
-├── l1-6.html                  eigene Lernseite: fünf kaufmännische Rechenmodelle
-├── l2-1.html                  eigene Lernseite: relative Adressierung
-├── l2-2.html                  eigene Lernseite: absolute Adressierung
-├── l2-3.html                  eigene Lernseite: gemischte und symbolische Bezüge
-├── l2-4.html                  eigene Lernseite: Grundfunktionen für die Projektwoche
-├── l2-5.html                  eigene Lernseite: Funktionen für Klassenfahrt und Provision
-├── l3-1.html                  eigene Lernseite: WENN-Funktion für die Skiausfahrt
-├── home.css                   Gestaltung der Startseite
-├── formula-lab.js             interaktive Demo in L1.2 ohne Lernstandänderungen
-├── formula-lab.css            gekapselte Gestaltung der Formel-Demo
-├── lesson-workspace.css       aufklappbare Lernabschnitte
-├── lesson-workspace.js        Abschnittsbedienung und optionale Excel-Links
-├── lesson-navigation.js       gemeinsame Navigation auf eigenen Lernseiten
-├── deployment.js              lokale/öffentliche Materialverweise
-├── styles.css                 responsives Design und Farbschemata
-├── content.js                 vier Lernschritte, 27 Einheiten, Formelsammlung
-├── app.js                     Navigation, lokale Profile, Fortschritt, JSON
-├── l1-1.js                    Fortschritt und Freischaltung auf der L1.1-Seite
-├── l1-2.js                    Zugang, Abschluss und Punkte auf der L1.2-Seite
-├── l1-3.js                    Zugang, Abschluss und Punkte auf der L1.3-Seite
-├── l1-4.js                    Lernfortschritt und interaktive Kopier-Demo
-├── l1-5.js                    Zugang, Abschluss und Punkte auf der L1.5-Seite
-├── l1-6.js                    Zugang, Abschluss und Punkte auf der L1.6-Seite
-├── l2-1.js                    Zugang, Abschluss und Punkte auf der L2.1-Seite
-├── l2-2.js                    Zugang, Abschluss und Punkte auf der L2.2-Seite
-├── l2-3.js                    Zugang, Abschluss und Punkte auf der L2.3-Seite
-├── l2-4.js                    Zugang, Abschluss und Punkte auf der L2.4-Seite
-├── l2-5.js                    Zugang, Verständnis-Check und Abschluss auf der L2.5-Seite
-├── l3-1.js                    Zugang, Verständnis-Check und Abschluss auf der L3.1-Seite
+├── index.html                 Startseite: Übersicht, Lernpfad, Formelsammlung mit Glossar, Quellen
+├── l1-1.html … l4-8.html      27 Lernseiten mit Informationen, Aufgaben und Verständnis-Check
+├── lehrkraft.html             Klassenübersicht für Lehrkräfte
+├── nachweis.html              druckbarer Lernnachweis
+├── content.js                 Lernschritte, Einheiten, Formeln, Fehlermeldungen, Glossar
+├── bonus-tasks.js             54 freiwillige Bonusaufgaben mit Kontrollwert
+├── app.js                     Startseite: Navigation, Profile, Fortschritt, Speichern und Laden
+├── lesson-core.js             gemeinsamer Ablauf aller Lernseiten (Zugang, Check, Bonus, Abschluss)
 ├── l1-1.js … l4-8.js          Antworten, Hinweise und Demo je Lernseite
-├── lesson-core.js             gemeinsamer Ablauf aller Lernseiten (Zugang, Check, Abschluss)
-├── theme-boot.js              Farbschema und Darstellung vor dem ersten Zeichnen
 ├── nav-menu.js                Lernpfad-Menü für Startseite und Lernseiten
-├── bonus-tasks.js             27 freiwillige Vertiefungsaufgaben mit Kontrollwert
+├── lesson-navigation.js       Hauptnavigation und Standortzeile der Lernseiten
+├── lesson-workspace.js        Abschnitte, Videos, Excel-Links, Druckansicht
+├── theme-boot.js              Farbschema und Darstellung vor dem ersten Zeichnen
+├── xp.js, options.js          XP-Anzeige und Darstellungsoptionen
+├── organizer.js               Themenlandkarte der Startseite
+├── formula-lab.js             Formel-Demo in L1.2
+├── lehrkraft.js, nachweis.js  Logik der beiden Zusatzseiten
 ├── developer-mode.js          temporäre Entwicklervorschau
-├── tests/                     Node-Tests und Browsertests (siehe „Tests“)
-├── documentation/
-│   └── documentation.md       Projektstand, Aufgaben, Ideen und KI-Übergaben
-├── .nojekyll                  direkte statische Bereitstellung über GitHub Pages
-├── assets/images/             fotorealistisches Startmotiv
-├── assets/brand/              metallisches Excel-Lab-Symbol
-├── materialien/
-│   └── BPE1/                  lokal synchronisiert, nicht in Git
-└── scripts/
-    └── sync-materials.ps1
+├── deployment.js              lokale und öffentliche Materialverweise
+├── styles.css, home.css, lesson-workspace.css, formula-lab.css,
+│   l4-*.css, lehrkraft.css, nachweis.css      Gestaltung
+├── assets/                    Fotos (PNG-Original und verlustfreies WebP), Symbol
+├── tests/                     Node-Tests, Browsertests, Nachrechnung in Excel
+├── documentation/             Projektdokumentation, Übergabe, Testprotokoll
+├── CHANGELOG.md               Änderungen je Version
+├── materialien/BPE1/          lokal synchronisiert, nicht in Git
+└── scripts/sync-materials.ps1
 ```
 
 ## Tests

@@ -311,6 +311,21 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
 - Es gibt jetzt 30 HTML-Seiten: Startseite, 27 Lernseiten, Klassenübersicht,
   Lernnachweis. `tests/site.test.js` und der übernommene Link-Audit zählen so.
 
+### A0s Dokumentation gestrafft (10. Oktober, keine App-Änderung)
+
+- Neu: `CHANGELOG.md` mit einem Absatz je Version von 0.1 bis 0.19.0. Die 75
+  Zeilen Änderungsbericht vom 4. bis 7. Oktober standen in der README und
+  liegen jetzt wörtlich unter 0.10.1 im Changelog.
+- README: Kopf nennt nur noch den aktuellen Release und verweist auf den
+  Changelog; die Projektstruktur beschreibt den heutigen Stand statt einzelner
+  Seiten bis L3.1. Der Node-Test liest weiter „Aktueller Release: **x**“.
+- **Neue Regel je Release:** einen Absatz oben in `CHANGELOG.md` ergänzen und
+  die Versionsnummer in der README anheben. Der Versionsverlauf im Dialog
+  „Versionen und Impressum“ fasst mehrere Zwischenversionen unter einer Nummer
+  zusammen; maßgeblich für die Geschichte ist der Changelog.
+- Nicht angefasst: `documentation/documentation.md` (über 3900 Zeilen, deine
+  Datei). Die Abschnitte 6 und 9 dort nennen weiter den alten Dateistand.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
@@ -566,7 +581,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-14 | Veröffentlicht wird das ganze Repository | entschieden (Claude, von Jakob überlassen): bleibt so |
 | OPT-15 | Versionsparameter an Skripten und Styles | erledigt (Claude, 0.11.0) |
 | OPT-16 | Rettungskopie herunterladbar machen | erledigt (Claude, 0.13.0) |
-| OPT-17 | Dokumentation gliedern | Vorschlag; deine Dateien |
+| OPT-17 | Dokumentation gliedern | README gestrafft, `CHANGELOG.md` angelegt (Claude, 10.10.); `documentation.md` weiter ungeteilt |
 | OPT-18 | Lernsituationsbilder für weitere Einheiten | offen (Vorgabe Jakob vom 07.10.) |
 | OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | Kontrast im hellen Schema verbessert (0.13.0); Namen, Überschriften, ARIA und Tab-Reihenfolge als Test ohne Befund (0.13.1); echter Bildschirmleser offen |
 | OPT-20 | „Punkte“ und „XP“ | erledigt (Claude, 0.11.0): XP |
