@@ -452,6 +452,41 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       }
     });
 
+    await check("Übersicht und Quellen: Symbole mittig, Kartennummern frei, Lehrkräfte-Bereich", async () => {
+      for (const viewport of [{ width: 1536, height: 900 }, { width: 1100, height: 900 }, { width: 390, height: 844 }]) {
+        const { context, page, errors } = await open(browser, "index.html", { state: profileState, viewport });
+        try {
+          // Plus und Minus sind gezeichnete Balken und sitzen in der Mitte des Knopfs.
+          const symbols = await page.evaluate(() => [...document.querySelectorAll(".home-disclosure-symbol")].map((element) => {
+            const before = getComputedStyle(element, "::before");
+            return { inner: element.clientWidth, left: parseFloat(before.left), top: parseFloat(before.top), content: before.content, width: parseFloat(before.width) };
+          }));
+          assert.ok(symbols.length >= 2, "Aufklapp-Symbole vorhanden");
+          for (const symbol of symbols) {
+            assert.equal(symbol.content, '""', "kein Schriftzeichen als Symbol");
+            assert.ok(Math.abs(symbol.left - symbol.inner / 2) <= 0.5 && Math.abs(symbol.top - symbol.inner / 2) <= 0.5, `Symbol mittig bei ${viewport.width} px`);
+            assert.ok(symbol.width >= 12, "Balken sichtbar");
+          }
+          assert.equal(await page.locator('.site-footer a[href="lehrkraft.html"]').count(), 0, "kein Lehrkräfte-Link im Seitenfuß");
+          await page.goto(base + "index.html#quellen");
+          await page.locator(".source-card").first().waitFor();
+          // Die große Kartennummer darf keine Textzeile der Karte berühren.
+          const hits = await page.evaluate(() => [...document.querySelectorAll(".source-card")].flatMap((card) => {
+            const number = card.querySelector(".source-number").getBoundingClientRect();
+            return [...card.querySelectorAll("h2, p, a, li")].filter((element) => {
+              const range = document.createRange();
+              range.selectNodeContents(element);
+              return [...range.getClientRects()].some((rect) => rect.right > number.left && rect.left < number.right && rect.bottom > number.top && rect.top < number.bottom);
+            }).map((element) => element.textContent.trim().slice(0, 30));
+          }));
+          assert.deepEqual(hits, [], `Kartennummer überdeckt Text bei ${viewport.width} px`);
+          const teacher = page.locator('.teacher-section a[href="lehrkraft.html"]');
+          assert.equal(await teacher.isVisible(), true, "Klassenübersicht unter Quellen");
+          assert.deepEqual(errors, []);
+        } finally { await context.close(); }
+      }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -464,5 +499,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und siebzehn Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und achtzehn Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

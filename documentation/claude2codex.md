@@ -582,7 +582,11 @@ Lernende erfahren, warum.
   in `.source-stack` 2,5 rem groß, und die Überschriften der beiden kleinen
   Karten halten rechts 4,4 rem Abstand. Bei 1536, 1100 und 390 px in beiden
   Schemata nachgemessen: keine Überschneidung von Nummer und Text mehr.
-  Ein Test dafür fehlt noch.
+  Abgesichert durch die achtzehnte Einzelprüfung in
+  `tests/browser/site.browser.cjs` („Übersicht und Quellen“): Symbole mittig
+  und ohne Schriftzeichen, Kartennummern berühren keinen Text, Link zur
+  Klassenübersicht nur unter „Quellen“; jeweils bei 1536, 1100 und 390 px.
+  Sammellauf für 0.20.8 danach: 31 von 31 Testdateien bestanden.
 - **Aufklapp-Symbole (Hinweis Jakob, mit Bildschirmfotos):** „+“ und „−“ in
   `.home-disclosure-symbol` waren Schriftzeichen und saßen nicht mittig;
   Jakob wünscht außerdem schönere Zeichen. Jetzt zwei gezeichnete Balken
