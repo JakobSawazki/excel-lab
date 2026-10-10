@@ -105,6 +105,28 @@ eigene, kleine Änderung:
     `tests/browser/site.browser.cjs` als Parameter. Die übrigen erst prüfen,
     ob sie noch etwas absichern, das die neuen Tests nicht abdecken.
 
+### A0f Deine Tests im Repository (10. Oktober, nach 0.14.0)
+
+- Die 28 Skripte aus `.tmp/`, die gegen 0.14.0 bestehen, liegen jetzt unter
+  `tests/browser/codex/`. Geändert sind nur drei Dinge: Adresse
+  (`process.argv[2]`, sonst `EXCEL_LAB_BASE`, sonst Port 4273 statt fest
+  4325/4326), Playwright-Pfad (`EXCEL_LAB_PLAYWRIGHT`) und Ausgabeordner
+  (`%TEMP%\excel-lab-tests` statt `.tmp/`). Jede Datei nennt das im Kopf. Die
+  Prüflogik ist unverändert; alle 28 bestehen am neuen Ort.
+- Vor der Übernahme durchsucht: Die Skripte enthalten keine Inhalte aus den
+  Originalunterlagen und keine Lösungen. `l47-content-smoke` und
+  `l48-content-smoke` lesen die lokalen DOCX-Dateien zur Laufzeit und brauchen
+  deshalb `materialien/BPE1`.
+- `node tests/browser/run-all.cjs http://127.0.0.1:4273/` startet alle
+  Browsertests nacheinander (`codex` oder `eigene` als zweiter Parameter
+  schränkt ein); das Kontrast-Messwerkzeug läuft dabei nicht mit.
+- Nicht übernommen: die 47 Skripte, die am aktuellen Stand scheitern (40 davon
+  schon am Ausgangsstand), `audit-memory-server.cjs`, die 6 Python-Dateien und
+  alle Bilder. Sie liegen weiter nur in `.tmp/`.
+- **`.tmp/` leeren:** Aus Claudes Sicht steht dem nichts mehr im Weg, außer du
+  willst einzelne der 47 Skripte noch retten. Claude löscht den Ordner nicht
+  selbst; das Leeren liegt bei Jakob oder dir.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
@@ -306,6 +328,8 @@ node tests/browser/site.browser.cjs http://127.0.0.1:4273/
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all          # rund 5 Minuten
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all l1-1,l2-3
 node tests/browser/contrast.browser.cjs http://127.0.0.1:4273/                  # Messwerkzeug, rund 2 Minuten
+node tests/browser/a11y.browser.cjs http://127.0.0.1:4273/
+node tests/browser/run-all.cjs http://127.0.0.1:4273/                           # alle Browsertests, rund 15 Minuten
 ```
 
 Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
@@ -348,7 +372,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-05 | Farbschema vor dem Zeichnen | erledigt (Claude) |
 | OPT-06 | Antworten mischen | erledigt (Claude); bitte fachlich gegenlesen |
 | OPT-07 | Release 0.11.0/0.11.1 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
-| OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex); Bestandsaufnahme von Claude unten; Jakobs Freigabe zum Leeren liegt vor |
+| OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | 28 gültige Skripte übernommen (Claude, 10.10.); Leeren von `.tmp/` bei Jakob oder Codex |
 | OPT-09 | Quellenabgleich L3–L4 | maschineller Abgleich erledigt (Claude, 0.12.1): zwei fehlende Aufgaben ergänzt; Feinabgleich je Aufgabe offen |
 | OPT-10 | Rücknahme eines Abschlusses | erledigt (Claude, 0.13.0): Weg c, siehe A0c |
 | OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; nicht dringend (eigene Windows-Anmeldung je Person) |

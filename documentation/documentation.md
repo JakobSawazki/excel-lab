@@ -7,6 +7,13 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Tests übernommen (Claude, 10.10.2026, nach 0.14.0, keine App-Änderung):**
+  28 der lokalen `.tmp`-Skripte, die am aktuellen Stand bestehen, liegen mit
+  parametrisierter Adresse unter `tests/browser/codex/`; `run-all.cjs` startet
+  alle Browsertests. `.tmp/` ist unverändert und kann nach Durchsicht geleert
+  werden (Freigabe Jakob liegt vor). Einzelheiten:
+  [`claude2codex.md`](claude2codex.md), A0f.
+
 - **Veröffentlicht als 0.14.0 (Claude, 10.10.2026):** Das Lernpfad-Menü der
   Hauptnavigation stand zweimal im Code (`app.js` und `lesson-navigation.js`)
   und liegt jetzt einmal in `nav-menu.js`. Aussehen und Bedienung unverändert;

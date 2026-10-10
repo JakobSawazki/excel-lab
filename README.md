@@ -334,6 +334,7 @@ python -m http.server 4273 --bind 127.0.0.1
 node tests/browser/site.browser.cjs http://127.0.0.1:4273/
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all
 node tests/browser/a11y.browser.cjs http://127.0.0.1:4273/
+node tests/browser/run-all.cjs http://127.0.0.1:4273/     # alle Browsertests nacheinander
 ```
 
 Die Tests prüfen Browser und Anleitung, nicht die Arbeit in Excel. Übergaben
