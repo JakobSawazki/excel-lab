@@ -185,6 +185,53 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Rücknahme: nur diese Einheit wird geöffnet, die Folgeeinheit bleibt abgeschlossen und ist gesperrt", async () => {
+      const done = { completed: true, teacherChecked: true, masteryPassed: true, bonus: true, checks: [true, true, true] };
+      const state = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "test", profiles: [{ id: "test", name: "tes.pro", className: "WGW EK1", progress: { "l1-1": done, "l1-2": done, "l1-3": done } }] });
+      const { context, page, errors } = await open(browser, "l1-1.html", { state });
+      try {
+        const stored = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].progress, KEY);
+        await page.locator("#page-complete-button").click();
+        const after = await stored();
+        assert.equal(after["l1-1"].completed, false);
+        assert.equal(after["l1-1"].bonus, true, "Bonus bleibt");
+        assert.equal(after["l1-2"].completed, true, "Folgeeinheit behält ihren Abschluss");
+        assert.equal(after["l1-3"].completed, true);
+        await page.goto(base + "l1-2.html");
+        assert.equal(await page.locator("#l12-content").isHidden(), true, "L1.2 gesperrt, solange L1.1 offen ist");
+        assert.equal(await page.locator("#l12-access").isVisible(), true);
+        await page.goto(base + "l1-3.html");
+        assert.equal(await page.locator("#l13-content").isVisible(), true, "L1.3 bleibt offen");
+        await page.goto(base + "index.html#lernpfad/1");
+        assert.equal(await page.locator('[data-open-lesson="l1-2"].lesson-card').getAttribute("aria-disabled"), "true");
+        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "350");
+        // Nach erneutem Abschluss ist alles wie zuvor.
+        await page.goto(base + "l1-1.html");
+        await page.locator("#page-complete-button").click();
+        await page.goto(base + "l1-2.html");
+        assert.equal(await page.locator("#l12-content").isVisible(), true);
+        assert.match(await page.locator("#lesson-points-status").innerText(), /100 von 100 XP/);
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
+    await check("Rettungskopie lässt sich im Profildialog herunterladen", async () => {
+      const { context, page } = await open(browser, "index.html", { state: BROKEN });
+      try {
+        await page.locator("#profile-dialog").waitFor({ state: "visible" });
+        await page.locator("#profile-dialog [data-close-dialog]").click();
+        await page.locator("#profile-button").click();
+        const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#rescue-button").click()]);
+        assert.match(download.suggestedFilename(), /^\d{4}-\d\d-\d\d_Excel-Lab_Rettungskopie\.txt$/);
+        assert.equal(fs.readFileSync(await download.path(), "utf8"), BROKEN);
+      } finally { await context.close(); }
+      const normal = await open(browser, "index.html", { state: profileState });
+      try {
+        await normal.page.locator("#profile-button").click();
+        assert.equal(await normal.page.locator("#rescue-button").isHidden(), true, "ohne Rettungskopie kein Knopf");
+      } finally { await normal.context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -197,5 +244,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und sieben Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und neun Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

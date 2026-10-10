@@ -221,12 +221,8 @@
     function save(next) {
       if (dev() || !profile) return false;
       profile.progress = profile.progress && typeof profile.progress === "object" ? profile.progress : {};
-      // Die Übersicht behandelt eine abgeschlossene Folgeeinheit als offen, auch
-      // wenn diese Einheit wieder offen ist. Deshalb deren Abschluss mit
-      // zurücknehmen; ihre Checks und alle anderen Einheiten bleiben erhalten.
-      if (following && !next.completed && profile.progress[ID]?.completed && profile.progress[following.id]) {
-        profile.progress[following.id].completed = false;
-      }
+      // Eine Rücknahme ändert nur diese Einheit. Die Folgeeinheit ist gesperrt,
+      // solange diese offen ist; ihre Abschlüsse, Checks und XP bleiben erhalten.
       profile.progress[ID] = next;
       profile.updatedAt = new Date().toISOString();
       return persist();
@@ -298,7 +294,7 @@
         ? "Lege auf der Startseite zuerst dein Lernprofil mit Account und Klassenbezeichnung an."
         : current.completed
           ? following
-            ? `${points} XP wurden gutgeschrieben. Beim Wiederöffnen wird ${following.code} erneut gesperrt; ein dortiger Abschluss wird ebenfalls zurückgenommen.`
+            ? `${points} XP wurden gutgeschrieben. Beim Wiederöffnen ist ${following.code} gesperrt, bis du ${code} wieder abgeschlossen hast. Dort Erreichtes bleibt erhalten.`
             : `${points} XP wurden gutgeschrieben. Du hast die letzte Einheit bearbeitet. Sichere deinen Lernstand über das Profilmenü.`
           : `Verständnis-Check, alle ${checkWord} eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt ${points} XP gut.`;
 

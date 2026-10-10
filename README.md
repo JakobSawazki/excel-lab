@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.12.1** – L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
+Aktueller Release: **0.13.0** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
+L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
 Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
 schnellere, einheitliche Lernseiten, XP statt Punkte,
 gemischte Antworten im Verständnis-Check; zuvor Themenlandkarte, vereinfachte Bedienung und

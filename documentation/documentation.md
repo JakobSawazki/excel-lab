@@ -1,11 +1,24 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.12.1
+Projektversion: 0.13.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.13.0 (Claude, 10.10.2026, Auftrag Jakob: selbstständig
+  weiterarbeiten):** (1) Wird eine Einheit wieder geöffnet, ändert das nur noch
+  diese Einheit. Die Folgeeinheit ist gesperrt, bis die geöffnete wieder
+  abgeschlossen ist; ihr Abschluss, ihre Checks und alle XP bleiben erhalten.
+  Vorher wurde der Abschluss der Folgeeinheit gelöscht, spätere Einheiten aber
+  nicht. (2) Im hellen Farbschema sind grüne Akzentschrift und graue
+  Nebenschrift etwas dunkler (`--green`, `--text-soft`, `--text-faint`); die
+  messbaren Stellen unter 4,5 : 1 sinken von 78 auf 16. Dunkles Schema
+  unverändert. (3) Im Profildialog erscheint „Rettungskopie herunterladen“,
+  wenn ein nicht lesbarer Lernstand gesichert wurde. Maschineller Abgleich
+  auch für L1 und L2: alle Aufgabendateien zugeordnet und mit ihren Daten auf
+  den Seiten. Einzelheiten: [`claude2codex.md`](claude2codex.md).
 
 - **Veröffentlicht als 0.12.1 (Claude, 10.10.2026, Auftrag Jakob):** Abgleich
   der Lernseiten L3.1–L4.8 mit den Originalunterlagen und Ergänzung von L3.6.

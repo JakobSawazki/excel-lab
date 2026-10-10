@@ -33,11 +33,11 @@
   --surface-2: #edf3ef;
   --surface-3: #e1ebe5;
   --text: #11231a;
-  --text-soft: #52645b;
-  --text-faint: #75857c;
+  --text-soft: #46574e;
+  --text-faint: #5d6d64;
   --line: rgba(17, 35, 26, 0.11);
   --line-strong: rgba(17, 35, 26, 0.2);
-  --green: #188a55;
+  --green: #12744a;
   --green-strong: #107c41;
   --green-deep: #0d6334;
   --lime: #628e19;
@@ -2332,7 +2332,8 @@ h3 {
   gap: 0.55rem;
 }
 
-#developer-profile-actions[hidden], .profile-edit-form[hidden] { display: none; }
+#developer-profile-actions[hidden], .profile-edit-form[hidden], #rescue-button[hidden] { display: none; }
+#rescue-button { margin-top: 1rem; }
 #developer-profile-actions:not([hidden]) { margin-top: 1rem; }
 .profile-edit-form { margin: 1.2rem 0; }
 .xp-button { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; gap: 0; line-height: 1; padding: 0.25rem; }

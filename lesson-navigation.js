@@ -49,7 +49,7 @@
     const previousComplete = index === 0 || Boolean(activeProfile?.progress?.[lessons[index - 1]?.id]?.completed);
     return {
       completed,
-      unlocked: Boolean(window.EXCEL_LAB_DEV?.enabled) || completed || previousComplete,
+      unlocked: Boolean(window.EXCEL_LAB_DEV?.enabled) || previousComplete,
       requiredPoints: Math.max(0, index * 100)
     };
   }

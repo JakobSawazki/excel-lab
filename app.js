@@ -11,7 +11,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.12.1";
+  const APP_VERSION = "0.13.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -243,7 +243,8 @@
     const previousComplete = index <= 0 || getLessonProgress(lessons[index - 1].id).completed;
     return {
       index,
-      unlocked: Boolean(window.EXCEL_LAB_DEV?.enabled) || progress.completed || previousComplete,
+      // Gesperrt, solange die vorige Einheit offen ist – auch wenn diese hier schon abgeschlossen war.
+      unlocked: Boolean(window.EXCEL_LAB_DEV?.enabled) || previousComplete,
       requiredPoints: Math.max(0, index * POINTS_PER_LESSON),
       points: lesson.points || POINTS_PER_LESSON
     };
@@ -621,6 +622,7 @@
     $("#profile-edit-class").value = current?.className || "";
     $("#developer-profile-actions").hidden = !window.EXCEL_LAB_DEV?.enabled;
     $("#reset-button").disabled = !current;
+    $("#rescue-button").hidden = rescueCopy() === null;
   }
 
   function validateProfileFields(nameInput, classInput) {
@@ -743,6 +745,26 @@
     } finally {
       $("#import-file").value = "";
     }
+  }
+
+  function rescueCopy() {
+    if (unreadableState !== null) return unreadableState;
+    try { return localStorage.getItem(RESCUE_KEY); } catch { return null; }
+  }
+
+  // Die Rettungskopie ist der unveränderte Rohtext des nicht lesbaren Lernstands.
+  function downloadRescueCopy() {
+    const copy = rescueCopy();
+    if (copy === null) return;
+    const url = URL.createObjectURL(new Blob([copy], { type: "text/plain" }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `${new Date().toISOString().slice(0, 10)}_Excel-Lab_Rettungskopie.txt`;
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(url);
+    showToast("Rettungskopie zum Download bereitgestellt. Gib die Datei deiner Lehrkraft.");
   }
 
   function resetProgress() {
@@ -938,6 +960,7 @@
       openProfileDialog();
     });
     $("#reset-button").addEventListener("click", resetProgress);
+    $("#rescue-button").addEventListener("click", downloadRescueCopy);
     $("#continue-button").addEventListener("click", (event) => openLesson(event.currentTarget.dataset.lessonId));
 
     $("#profile-form").addEventListener("submit", (event) => {

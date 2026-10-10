@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.12.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.13.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -30,6 +30,26 @@ einen Eintrag im Taskstatus ergänzt.
   bringen → umgesetzt als Bonusaufgaben in 0.12.0 (OPT-23).
 - Inhaltlich prüfen, ob alle fachlichen Inhalte der BPE1-Unterlagen enthalten
   sind → OPT-09; Ergebnis siehe dort.
+
+### A0c Von Claude entschieden (0.13.0), jederzeit rücknehmbar
+
+Jakob hat am 10. Oktober verlangt, selbstständig weiterzuarbeiten. Drei offene
+Punkte hat Claude deshalb nach eigener Empfehlung umgesetzt, jeweils als
+eigene, kleine Änderung:
+
+- **OPT-10, Weg c:** `save` in `lesson-core.js` nimmt beim Wiederöffnen keinen
+  fremden Abschluss mehr zurück. `lessonAccess` (`app.js`) und `access`
+  (`lesson-navigation.js`) geben eine Einheit nur noch frei, wenn die vorige
+  abgeschlossen ist – nicht mehr schon deshalb, weil sie selbst abgeschlossen
+  war. Folge: Nach dem Wiederöffnen von L2.1 ist L2.2 gesperrt, behält aber
+  Abschluss und XP; L2.3 bleibt offen. Zurück zum alten Verhalten: die drei
+  Stellen im Commit zurücknehmen.
+- **OPT-19, Kontrast im hellen Schema:** nur drei Farbwerte in
+  `[data-theme="light"]` (`styles.css`): `--text-soft` `#52645b` → `#46574e`,
+  `--text-faint` `#75857c` → `#5d6d64`, `--green` `#188a55` → `#12744a`.
+  Startseite und Lernpfad im hellen Schema angesehen. Nicht angesehen: die
+  übrigen vier Hintergründe und vier Schriftfarben im hellen Schema.
+- **OPT-16:** Knopf `#rescue-button` im Profildialog (`index.html`, `app.js`).
 
 ### A1 Wo der Stand liegt
 
@@ -173,7 +193,9 @@ Farben geändert**, weil das die Gestaltung berührt (A2); siehe OPT-19.
 
 ### A4 Prüfstand
 
-- `node --test`: 287 Prüfungen bestanden (Stand 0.12.0).
+- `node --test`: 287 Prüfungen bestanden (Stand 0.13.0).
+- `tests/browser/site.browser.cjs`: jetzt neun Einzelprüfungen, darunter
+  Bonusaufgabe, Wiederöffnen ohne Verlust und Download der Rettungskopie.
 - Online gegen <https://jakobsawazki.github.io/excel-lab/>: Abschluss-Audit
   27 Einheiten / 83 Fragen an 0.11.0 bestanden; Seitentest an 0.11.0 mit dem
   oben genannten einen Befund; an 0.11.1 (`548012e`, Pages-Lauf 37985437922)
@@ -273,16 +295,16 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-07 | Release 0.11.0/0.11.1 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
 | OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | offen (Codex); Jakobs Freigabe zum Leeren liegt vor |
 | OPT-09 | Quellenabgleich L3–L4 | maschineller Abgleich erledigt (Claude, 0.12.1): zwei fehlende Aufgaben ergänzt; Feinabgleich je Aufgabe offen |
-| OPT-10 | Rücknahme eines Abschlusses wirkt nur eine Einheit weit | Befund; Jakob hat nachgefragt, Entscheidung offen |
+| OPT-10 | Rücknahme eines Abschlusses | erledigt (Claude, 0.13.0): Weg c, siehe A0c |
 | OPT-11 | Profile sammeln sich an; kein Profilwechsel | Befund; nicht dringend (eigene Windows-Anmeldung je Person) |
 | OPT-12 | Navigation doppelt vorhanden | offen (Codex) |
 | OPT-13 | Ungenutzter Code und ungenutzte Styles | offen (Codex); Liste in C2 |
 | OPT-14 | Veröffentlicht wird das ganze Repository | entschieden (Claude, von Jakob überlassen): bleibt so |
 | OPT-15 | Versionsparameter an Skripten und Styles | erledigt (Claude, 0.11.0) |
-| OPT-16 | Rettungskopie herunterladbar machen | Vorschlag |
+| OPT-16 | Rettungskopie herunterladbar machen | erledigt (Claude, 0.13.0) |
 | OPT-17 | Dokumentation gliedern | Vorschlag; deine Dateien |
 | OPT-18 | Lernsituationsbilder für weitere Einheiten | offen (Vorgabe Jakob vom 07.10.) |
-| OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | Kontrast gemessen (78 Stellen im hellen Schema); Farbentscheidung offen |
+| OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | Kontrast im hellen Schema verbessert (78 → 16 messbare Stellen, 0.13.0); Tastatur und Bildschirmleser offen |
 | OPT-20 | „Punkte“ und „XP“ | erledigt (Claude, 0.11.0): XP |
 | OPT-21 | Lehrkraftbestätigung und Klassenübersicht | Idee; Entscheidung Jakob |
 | OPT-22 | `.git/refs/desktop.ini` | Hinweis |
@@ -499,15 +521,10 @@ Google Drive legt `desktop.ini` in `.git/refs/` ab; jeder Git-Befehl warnt
 
 ### C3 Was bei Jakob liegt
 
-1. OPT-10: Rücknahme eines Abschlusses – a, b oder c? Claude hat die Frage
-   am 9. Oktober noch einmal in einfachen Worten gestellt.
-2. Durchsicht der veröffentlichten Fassung 0.12.1: die 27 Bonusaufgaben und die
-   beiden neuen Abschnitte KFZ-Steuer und PLZ-Suche in L3.6.
-3. OPT-19: Dürfen im hellen Schema die grüne Akzentschrift und die graue
-   Nebenschrift etwas dunkler werden, damit kleine Texte besser lesbar sind?
-
-Erledigt oder entschieden: Veröffentlichung, Geräte, Umfang der
-Veröffentlichung, XP, Freigabe für `.tmp/` (siehe A0).
+1. Durchsicht der veröffentlichten Fassung 0.13.0: die 27 Bonusaufgaben, die
+   Abschnitte KFZ-Steuer und PLZ-Suche in L3.6, das Wiederöffnen (A0c) und das
+   helle Farbschema. Was nicht gefällt, lässt sich einzeln zurücknehmen.
+2. Freigabe für neue Lernsituationsbilder (OPT-18); Claude kann keine Bilder erzeugen.
 
 ### C4 Bekannte Schwächen in Claudes Teilen
 
