@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.8 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.9 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -612,6 +612,21 @@ Lernende erfahren, warum.
   ein vollständiges Protokoll (A0ze).
 - **Nicht abgedeckt:** Klassenübersicht und Lernnachweis ohne
   `content.js`; andere fehlende Skripte.
+
+### A0zi Release 0.20.9: Streifen über dem Seitenfuß
+
+Jakobs Bildschirmfotos sind rund 1830 px breit; geprüft hatte Claude bis
+dahin höchstens 1536 px. Deshalb alle vier Ansichten der Startseite bei
+1830 px angesehen. Befund: `#view-dashboard` hat eine eigene deckende
+Hintergrundfläche; der untere Außenabstand (2 rem) des letzten
+`.home-lab-disclosure` fiel durch Zusammenfallen der Abstände aus dieser
+Fläche heraus. In dem 32 px hohen Streifen bis zum Seitenfuß war der
+Seitenhintergrund mit dem Zellraster aus 0.20.0 zu sehen, sonst auf der
+Übersicht nirgends. Behoben mit `#view-dashboard { padding-bottom: 2.5rem; }`
+am Ende von `home.css`; nachgemessen: Unterkante der Ansicht = Oberkante des
+Seitenfußes. Lernpfad, Formelsammlung und Quellen haben keine eigene Fläche
+und waren nicht betroffen. Die 14 Arten kleiner Felder mit Zeichen (Häkchen,
+Nummern, Kürzel, Abzeichen) wurden vergrößert angesehen: alle mittig.
 
 ### A1 Wo der Stand liegt
 

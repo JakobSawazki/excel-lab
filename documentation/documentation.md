@@ -1,11 +1,16 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.20.8
+Projektversion: 0.20.9
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.20.9 (Claude, 10.10.2026):** Streifen mit Zellraster
+  zwischen Übersicht und Seitenfuß beseitigt (`home.css`,
+  `#view-dashboard { padding-bottom }`); `tests/browser/overlap.browser.cjs`
+  neu; alle vier Ansichten der Startseite bei 1830 px Breite angesehen.
 
 - **Veröffentlicht als 0.20.8 (Claude, 10.10.2026):** Hinweis Jakob behoben:
   Unter „Quellen“ überdeckte die Kartennummer „03“ den Text (CSS am Ende

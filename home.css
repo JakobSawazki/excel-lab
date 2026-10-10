@@ -258,3 +258,9 @@
   #view-dashboard .home-disclosure-symbol::before,
   #view-dashboard .home-disclosure-symbol::after { background: ButtonText; }
 }
+
+/* Übersicht (0.20.9): Der untere Außenabstand des letzten Aufklapp-Bereichs
+   ragte aus der Hintergrundfläche der Übersicht heraus; darunter schien ein
+   Streifen des Seitenhintergrunds mit Zellraster durch. Der Innenabstand hält
+   den Abstand jetzt innerhalb der Fläche. */
+#view-dashboard { padding-bottom: 2.5rem; }
