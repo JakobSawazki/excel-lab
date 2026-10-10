@@ -1,6 +1,6 @@
 "use strict";
 
-// Zugänglichkeit auf allen 28 Seiten: vorlesbare Namen aller Bedienelemente,
+// Zugänglichkeit auf allen 29 Seiten: vorlesbare Namen aller Bedienelemente,
 // Überschriften ohne übersprungene Ebene, genau eine h1, Sprache gesetzt,
 // gültige ARIA-Verweise, und alles Bedienbare ist mit Tab erreichbar.
 //

@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.14.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.15.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -203,6 +203,29 @@ Dokumentation): 287 von 287 Node-Prüfungen und 31 von 31 Browsertestdateien
 (3 eigene, 28 übernommene) bestanden. Das vollständige Protokoll mit Zeiten je
 Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
 
+### A0l Release 0.15.0: Klassenübersicht und Druckansicht
+
+- **Klassenübersicht** (`lehrkraft.html`, `lehrkraft.js`, `lehrkraft.css`; Link
+  im Fuß der Startseite). Liest eine oder mehrere Speicherdateien (Auswahl oder
+  Ziehen), prüft `app`, `version`, `profile`, begrenzt auf 1 MB je Datei und
+  bereinigt die Werte selbst; unbekannte Einheiten werden ignoriert. Je Person
+  zählt die zuletzt gesicherte Datei (Schlüssel Klasse + Kürzel). Anzeige:
+  Kennzahlen, Tabelle mit ✓ / ◐ / · je Einheit, goldener Rand für gelöste
+  Bonusaufgaben, Fußzeile mit Abschlüssen je Einheit, CSV mit Semikolon und
+  BOM für deutsches Excel (führende `= + - @` werden entschärft).
+  - Nichts wird gespeichert oder übertragen; alle Dateiinhalte gelangen nur
+    über `textContent` in die Seite. Die Seite trägt `noindex`.
+  - Sie zeigt, was Lernende selbst gespeichert haben. Sie prüft keine
+    Echtheit und setzt keine Bestätigung; das bleibt der in OPT-21 offene Punkt.
+  - Neue Seiten ohne Lernablauf müssen in `tests/site.test.js` (Seitenzahl)
+    und in `tests/browser/site.browser.cjs` (Liste `lessonPages`) bedacht werden.
+- **Druckansicht:** `lesson-workspace.js` ergänzt den Knopf „Drucken“ und öffnet
+  vor dem Druck alle Abschnitte (`beforeprint`/`afterprint`);
+  `lesson-workspace.css` enthält die Druckregeln (heller Hintergrund, ohne
+  Kopf, Navigation, Seitenleiste, Videos, Eingabefelder).
+- Erledigt damit aus Abschnitt 11 der Dokumentation: „Lernstandübersicht für
+  Lehrkräfte konzipieren“ und „Druckansicht anbieten“.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
@@ -384,6 +407,7 @@ Farben geändert**, weil das die Gestaltung berührt (A2); siehe OPT-19.
 | `lesson-core.js` | Ablauf aller Lernseiten | Claude, aus deinem Code zusammengeführt |
 | `l1-1.js` … `l4-8.js` | Antworten, Hinweise, Demo der Seite | Codex, gekürzt von Claude |
 | `theme-boot.js` | Farbschema und Darstellung vor dem Zeichnen | Claude |
+| `lehrkraft.html`, `lehrkraft.js`, `lehrkraft.css` | Klassenübersicht für Lehrkräfte | Claude |
 | `nav-menu.js` | Lernpfad-Menü: Aufbau und Bedienung für alle Seiten | Claude, aus deinem Code zusammengeführt |
 | `bonus-tasks.js` | 27 freiwillige Vertiefungsaufgaben mit Kontrollwert | Claude |
 | `lesson-navigation.js`, `lesson-workspace.js`, `xp.js`, `options.js`, `developer-mode.js`, `deployment.js`, `formula-lab.js` | Navigation, Abschnitte, XP, Darstellung, Vorschau, Materialverweise, Formel-Demo | Codex |
@@ -461,7 +485,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-18 | Lernsituationsbilder für weitere Einheiten | offen (Vorgabe Jakob vom 07.10.) |
 | OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | Kontrast im hellen Schema verbessert (0.13.0); Namen, Überschriften, ARIA und Tab-Reihenfolge als Test ohne Befund (0.13.1); echter Bildschirmleser offen |
 | OPT-20 | „Punkte“ und „XP“ | erledigt (Claude, 0.11.0): XP |
-| OPT-21 | Lehrkraftbestätigung und Klassenübersicht | Idee; Entscheidung Jakob |
+| OPT-21 | Lehrkraftbestätigung und Klassenübersicht | Klassenübersicht erledigt (Claude, 0.15.0); Absicherung der Bestätigung weiter Entscheidung Jakob |
 | OPT-22 | `.git/refs/desktop.ini` | Hinweis |
 | OPT-23 | Bonusaufgaben mit Extra-XP | erledigt (Claude, 0.12.0); fachlich gegenlesen |
 

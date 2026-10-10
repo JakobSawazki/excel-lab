@@ -1,0 +1,66 @@
+/* Klassenübersicht für Lehrkräfte (lehrkraft.html). Nutzt die Farben und Flächen aus styles.css. */
+.teacher-page .site-header .header-actions .button { min-height: 44px; }
+.teacher-page .page-intro { margin-bottom: 2rem; }
+
+.teacher-drop { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; padding: 1.6rem 1.8rem; border: 1px dashed color-mix(in srgb, var(--green) 55%, var(--line-strong)); border-radius: var(--radius); background: linear-gradient(145deg, color-mix(in srgb, var(--green) 9%, var(--surface)), var(--surface) 55%); box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 10%, transparent), 0 18px 44px color-mix(in srgb, var(--green) 6%, transparent); transition: border-color .16s ease, background-color .16s ease; }
+.teacher-drop.is-dragging { border-style: solid; border-color: var(--green); background: color-mix(in srgb, var(--green) 16%, var(--surface)); }
+.teacher-drop h2 { margin: 0 0 .4rem; font-size: 1.25rem; }
+.teacher-drop p { margin: .35rem 0 0; color: var(--text-soft); max-width: 46rem; }
+.teacher-drop .teacher-privacy { font-size: .84rem; }
+.teacher-drop .teacher-privacy span { color: var(--green); margin-right: .35rem; }
+.teacher-drop-actions { display: grid; gap: .6rem; min-width: 13rem; }
+.teacher-drop-actions .button { justify-content: center; cursor: pointer; }
+.teacher-drop-actions input:focus-visible + .button, .teacher-drop-actions label:has(+ input:focus-visible) { outline: 2px solid var(--green); outline-offset: 3px; }
+.teacher-drop-actions .button:disabled { opacity: .55; cursor: not-allowed; }
+
+.teacher-status { margin: 1.4rem 0 0; color: var(--text-soft); }
+.teacher-errors { margin: .6rem 0 0; padding: .9rem 1.1rem .9rem 2.2rem; border: 1px solid color-mix(in srgb, var(--amber) 45%, var(--line-strong)); border-radius: 12px; background: color-mix(in srgb, var(--amber) 8%, var(--surface)); color: var(--text); font-size: .9rem; overflow-wrap: anywhere; }
+.teacher-errors[hidden], .teacher-summary[hidden], .teacher-table-section[hidden] { display: none; }
+
+.teacher-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.6rem; }
+.teacher-summary article { display: grid; gap: .25rem; padding: 1.1rem 1.25rem; border: 1px solid var(--line-strong); border-radius: 14px; background: linear-gradient(150deg, var(--surface-2), var(--surface)); box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent); }
+.teacher-summary small { color: var(--text-soft); font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.teacher-summary strong { font-size: 1.6rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+
+.teacher-table-section { margin-top: 2rem; }
+.teacher-table-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .6rem 1.5rem; }
+.teacher-table-head h2 { margin: 0; font-size: 1.25rem; }
+.teacher-legend { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .5rem; margin: 0; color: var(--text-soft); font-size: .82rem; }
+.teacher-legend .teacher-cell { margin-left: .5rem; }
+.teacher-table-scroll { margin-top: 1rem; overflow: auto; max-height: 70vh; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--surface); }
+.teacher-table-scroll:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+.teacher-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .86rem; font-variant-numeric: tabular-nums; }
+.teacher-table th, .teacher-table td { padding: .55rem .6rem; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
+.teacher-table thead th { position: sticky; top: 0; z-index: 2; background: var(--surface-2); color: var(--text); font-weight: 700; }
+.teacher-table thead tr:nth-child(2) th { top: 2.35rem; font-size: .76rem; }
+.teacher-table .teacher-group { height: 2.35rem; border-bottom: 1px solid var(--line-strong); font-size: .74rem; letter-spacing: .05em; text-transform: uppercase; color: var(--text-soft); }
+.teacher-table .teacher-stage { box-shadow: inset 0 -3px 0 var(--stage-color); color: var(--text); }
+.teacher-table tbody th, .teacher-table tbody td:nth-child(2), .teacher-table tfoot th { text-align: left; }
+.teacher-table .teacher-name { position: sticky; left: 0; z-index: 1; background: var(--surface); font-weight: 700; }
+.teacher-table thead tr:nth-child(2) th:first-child, .teacher-table thead tr:first-child th:first-child { left: 0; z-index: 3; }
+.teacher-table tbody tr:hover td, .teacher-table tbody tr:hover th { background: color-mix(in srgb, var(--green) 7%, var(--surface)); }
+.teacher-table .teacher-number { text-align: right; }
+.teacher-table .teacher-xp { font-weight: 700; color: var(--green); }
+.teacher-table tfoot th, .teacher-table tfoot td { position: sticky; bottom: 0; background: var(--surface-2); border-bottom: 0; border-top: 1px solid var(--line-strong); font-weight: 700; }
+
+.teacher-cell { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-2); color: var(--text-faint); font-size: .86rem; font-weight: 800; line-height: 1; }
+.teacher-cell.is-done { border-color: color-mix(in srgb, var(--green) 60%, transparent); background: color-mix(in srgb, var(--green) 20%, var(--surface)); color: var(--green); }
+.teacher-cell.is-progress { border-color: color-mix(in srgb, var(--blue) 55%, transparent); background: color-mix(in srgb, var(--blue) 14%, var(--surface)); color: var(--blue); }
+.teacher-cell.has-bonus { box-shadow: 0 0 0 2px color-mix(in srgb, var(--amber) 80%, transparent); }
+.teacher-note { margin: .9rem 0 0; color: var(--text-soft); font-size: .84rem; max-width: 52rem; }
+
+@media (max-width: 760px) {
+  .teacher-drop { grid-template-columns: minmax(0, 1fr); padding: 1.2rem; }
+  .teacher-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .teacher-page .site-header .header-actions .button { padding-inline: .8rem; font-size: .8rem; }
+}
+
+@media print {
+  .teacher-page .site-header, .teacher-page .site-footer, .teacher-drop, .teacher-status, .teacher-errors, .skip-link { display: none !important; }
+  .teacher-table-scroll { max-height: none; overflow: visible; border: 0; }
+  .teacher-table { font-size: 7pt; }
+  .teacher-table thead th, .teacher-table tfoot th, .teacher-table tfoot td, .teacher-table .teacher-name { position: static; }
+}
+.teacher-page .site-header { grid-template-columns: minmax(0, 1fr) auto; }
+.teacher-page .site-header .header-actions { margin-left: auto; justify-self: end; }
+.teacher-page .page-intro { padding-top: 2.2rem; }

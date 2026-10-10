@@ -1,11 +1,18 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.14.1
+Projektversion: 0.15.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.15.0 (Claude, 10.10.2026):** Zwei seit Langem offene
+  Punkte aus Abschnitt 11 umgesetzt. (1) Klassenübersicht `lehrkraft.html`:
+  liest Speicherdateien lokal ein, zeigt je Person Abschlüsse, Bonusaufgaben
+  und XP, je Einheit die Zahl der Abschlüsse, CSV-Export; keine Speicherung,
+  keine Übertragung. (2) Druckansicht der Lernseiten über den Knopf „Drucken“.
+  Einzelheiten: [`claude2codex.md`](claude2codex.md), A0l.
 
 - **Geprüft (Claude, 10.10.2026, keine App-Änderung):** KFZ-Steuer, PLZ-Suche
   und 15 Bonusaufgaben in echtem Excel (Version 16, deutsch) nachgerechnet,

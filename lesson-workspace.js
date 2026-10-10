@@ -94,6 +94,27 @@
       button.closest(".lesson-article").querySelectorAll(".lesson-disclosure").forEach((section) => { section.open = open; });
     });
   });
+  // Druckansicht: alle Abschnitte öffnen und danach den vorigen Zustand wiederherstellen.
+  const printActions = document.querySelector(".lesson-workspace-actions");
+  if (printActions) {
+    const printButton = document.createElement("button");
+    printButton.type = "button";
+    printButton.className = "button button-secondary";
+    printButton.dataset.printLesson = "";
+    printButton.textContent = "Drucken";
+    printButton.addEventListener("click", () => window.print());
+    printActions.append(printButton);
+  }
+  let openBeforePrint = null;
+  window.addEventListener("beforeprint", () => {
+    const sections = Array.from(document.querySelectorAll(".lesson-article details"));
+    openBeforePrint = sections.map((section) => [section, section.open]);
+    sections.forEach((section) => { section.open = true; });
+  });
+  window.addEventListener("afterprint", () => {
+    (openBeforePrint || []).forEach(([section, open]) => { section.open = open; });
+    openBeforePrint = null;
+  });
   window.addEventListener("hashchange", revealTarget);
   document.addEventListener("click", (event) => {
     const link = event.target.closest('a[href^="#"]');

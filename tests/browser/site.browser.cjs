@@ -1,6 +1,6 @@
 "use strict";
 
-// Alle 28 Seiten im echten Browser (Edge über Playwright): keine Skriptfehler,
+// Alle 29 Seiten im echten Browser (Edge über Playwright): keine Skriptfehler,
 // keine externen Anfragen, alle Bilder geladen, kein seitliches Überlaufen.
 // Dazu der Umgang mit einem nicht lesbaren Lernstand (Rettungskopie).
 //
@@ -36,7 +36,8 @@ async function open(browser, file, options = {}) {
   return { context, page, errors, external, failed };
 }
 
-const allDone = Object.fromEntries(pages.filter((file) => file !== "index.html")
+const lessonFiles = pages.filter((file) => /^l\d-\d\.html$/.test(file));
+const allDone = Object.fromEntries(lessonFiles
   .map((file) => [file.slice(0, -5), { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] }]));
 const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "test", profiles: [{ id: "test", name: "tes.pro", className: "WGW EK1", progress: allDone }] });
 
@@ -62,11 +63,11 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
             assert.deepEqual(broken, [], "Bilder nicht geladen");
             const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
             assert.ok(overflow <= 1, `Seite läuft ${overflow} px seitlich über`);
-            if (file !== "index.html") {
+            if (lessonFiles.includes(file)) {
               assert.equal(await page.locator(`#${file.slice(0, -5).replace("-", "")}-mastery-form`).count(), 1);
               assert.match(await page.locator("#lesson-points-status").innerText(), /100 von 100/);
               assert.match(await page.locator("#lesson-profile-name").innerText(), /tes\.pro/);
-            } else {
+            } else if (file === "index.html") {
               assert.match(await page.locator("#xp-button").innerText(), /2700/);
             }
             assert.deepEqual(errors, [], "Skriptfehler");
@@ -176,7 +177,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     await check("Bonusaufgaben: jede Lernseite zeigt ihren Abschnitt vor dem Verständnis-Check", async () => {
       const { context, page } = await open(browser, "l4-6.html", { state: profileState });
       try {
-        for (const file of pages.filter((name) => name !== "index.html")) {
+        for (const file of lessonFiles) {
           await page.goto(base + file);
           const prefix = file.slice(0, -5).replace("-", "");
           assert.equal(await page.evaluate((id) => document.querySelector(`#${id}-bonus-section`)?.nextElementSibling?.id, prefix), `${prefix}-mastery-section`, file);
@@ -265,6 +266,67 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       });
     }
 
+    await check("Klassenübersicht: Dateien einlesen, neueste zählt, Fehler melden, CSV", async () => {
+      const { context, page, errors, external } = await open(browser, "lehrkraft.html");
+      try {
+        const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+        const file = (name, className, progress, exportedAt, extra = {}) => ({
+          name: `${name}-${exportedAt.slice(0, 10)}.json`, mimeType: "application/json",
+          buffer: Buffer.from(JSON.stringify({ app: "Excel-Lab", version: 1, appVersion: "0.15.0", exportedAt, profile: { name, className, progress }, ...extra }))
+        });
+        await page.setInputFiles("#teacher-files", [
+          file("anna.bei", "WGW EK1", { "l1-1": { ...done, bonus: true }, "l1-2": done, "l1-3": { checks: [true, false, false] } }, "2026-10-09T08:00:00.000Z"),
+          file("anna.bei", "WGW EK1", { "l1-1": done }, "2026-10-01T08:00:00.000Z"),
+          file("ben.zwe", "WGW EK2", { "l1-1": done, "unbekannt": done, "l9-9": done }, "2026-10-08T08:00:00.000Z"),
+          { name: "kaputt.json", mimeType: "application/json", buffer: Buffer.from("{kaputt") },
+          { name: "fremd.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify({ app: "Anderes", version: 1 })) },
+          file("<img src=x onerror=alert(1)>", "=1+1", { "l1-1": done }, "2026-10-07T08:00:00.000Z")
+        ]);
+        await page.locator("#teacher-table tbody tr").nth(2).waitFor();
+        assert.equal(await page.locator("#teacher-table tbody tr").count(), 3, "drei Personen, ältere Datei verworfen");
+        assert.equal(await page.locator("#teacher-errors li").count(), 2);
+        assert.match(await page.locator("#teacher-status").innerText(), /3 Personen aus 3 Klassen.*4 von 6 Dateien gelesen.*2 nicht lesbar/);
+        const anna = page.locator("#teacher-table tbody tr", { hasText: "anna.bei" });
+        assert.deepEqual((await anna.locator("td.teacher-number").allInnerTexts()).map((text) => text.trim()), ["2/27", "1", "250"]);
+        assert.equal(await anna.locator(".teacher-cell.is-done").count(), 2);
+        assert.equal(await anna.locator(".teacher-cell.has-bonus").count(), 1);
+        assert.equal(await anna.locator(".teacher-cell.is-progress").count(), 1);
+        assert.equal(await page.locator("#teacher-table img").count(), 0, "Dateiinhalt wird nicht als HTML eingesetzt");
+        assert.equal(await page.locator("#teacher-table tfoot td").first().innerText(), "3");
+        assert.equal(await page.locator("#teacher-count").innerText(), "3");
+        const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#teacher-csv").click()]);
+        const csv = fs.readFileSync(await download.path(), "utf8");
+        assert.match(download.suggestedFilename(), /_Excel-Lab_Klassenuebersicht\.csv$/);
+        assert.ok(csv.startsWith("﻿\"Kürzel\";\"Klasse\""));
+        assert.ok(csv.includes("\"anna.bei\";\"WGW EK1\""));
+        assert.ok(csv.includes("\"'=1+1\""), "Formelzeichen entschärft");
+        assert.ok(csv.includes("abgeschlossen + Bonus"));
+        await page.locator("#teacher-clear").click();
+        assert.equal(await page.locator("#teacher-table-section").isHidden(), true);
+        assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0, "nichts gespeichert");
+        assert.deepEqual(errors, []);
+        assert.deepEqual(external, []);
+      } finally { await context.close(); }
+    });
+
+    await check("Druckansicht: Knopf vorhanden, alle Abschnitte offen, Navigation ausgeblendet", async () => {
+      const { context, page } = await open(browser, "l2-1.html", { state: profileState });
+      try {
+        assert.equal(await page.locator("[data-print-lesson]").count(), 1);
+        const before = await page.locator(".lesson-article details[open]").count();
+        await page.evaluate(() => window.dispatchEvent(new Event("beforeprint")));
+        assert.equal(await page.locator(".lesson-article details:not([open])").count(), 0);
+        await page.emulateMedia({ media: "print" });
+        assert.equal(await page.locator(".site-header").isVisible(), false);
+        assert.equal(await page.locator(".lesson-page-sidebar").isVisible(), false);
+        assert.equal(await page.locator("#l21-task-heading").isVisible(), true);
+        assert.equal(await page.evaluate(() => getComputedStyle(document.body).backgroundColor), "rgb(255, 255, 255)");
+        await page.emulateMedia({ media: "screen" });
+        await page.evaluate(() => window.dispatchEvent(new Event("afterprint")));
+        assert.equal(await page.locator(".lesson-article details[open]").count(), before, "Zustand wiederhergestellt");
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -277,5 +339,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und elf Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und dreizehn Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

@@ -14,14 +14,15 @@ const base=(__BASE + '/');
   const page=await browser.newPage(), errors=[], external=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/*',r=>{if(!r.request().url().startsWith(base)){external.push(r.request().url());return r.abort();}return r.continue();});
-  const files=fs.readdirSync('.').filter(f=>/^(index|l\d-\d)\.html$/.test(f));
-  assert.equal(files.length,28);
+  // Claude, 10.10.2026: lehrkraft.html (Klassenübersicht, 0.15.0) gehört zu den Seiten.
+  const files=fs.readdirSync('.').filter(f=>/^(index|lehrkraft|l\d-\d)\.html$/.test(f));
+  assert.equal(files.length,29);
   const inventories={};
   for(const file of files){
    assert.equal((await page.goto(base+file+'?public-preview=1')).status(),200,file);
    const info=await page.evaluate(()=>({ids:[...document.querySelectorAll('[id]')].map(e=>e.id),links:[...document.querySelectorAll('a[href]')].map(e=>e.href),headings:[...document.querySelectorAll('.lesson-article h2')].map(e=>e.textContent.trim()),checks:document.querySelectorAll('[data-page-check]').length,questions:document.querySelectorAll('.mastery-question').length,teacher:!!document.querySelector('#page-teacher-check')}));
    assert.equal(new Set(info.ids).size,info.ids.length,file+': duplicate IDs');
-   if(file!=='index.html'){
+   if(/^l\d-\d\.html$/.test(file)){ // nur Lernseiten haben Verständnis-Check und Abschluss
     const source=fs.readFileSync(file,'utf8');
     assert.equal(info.questions,(source.match(/data-mastery-question=/g)||[]).length,file+': rendered questions differ from source');
     assert.ok(info.questions>=3,file+': missing understanding check');
@@ -57,6 +58,6 @@ const base=(__BASE + '/');
    if(route.includes('/'))assert.ok((await page.locator('#location-path').innerText()).includes('L'+route.split('/')[1]),route+': wrong stage');
   }
   assert.deepEqual(errors,[]);assert.deepEqual(external,[]);assert.deepEqual(broken,[]);
-  console.log(`Path audit passed: 28 pages, ${anchors} local hash links including ${routes.size} tested app routes, unique IDs, 27 source-matched understanding/work/teacher gates, 108 large-text layouts, no external requests or browser errors. This does not verify every exercise's mathematics or classroom effectiveness.`);
+  console.log(`Path audit passed: 29 pages, ${anchors} local hash links including ${routes.size} tested app routes, unique IDs, 27 source-matched understanding/work/teacher gates, 108 large-text layouts, no external requests or browser errors. This does not verify every exercise's mathematics or classroom effectiveness.`);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

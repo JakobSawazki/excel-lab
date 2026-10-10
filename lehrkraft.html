@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Excel-Lab Klassenübersicht: Speicherdateien der Lernenden lokal einlesen und den Lernstand der Klasse vergleichen.">
+    <meta name="theme-color" content="#0b1422">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/lehrkraft.html">
+    <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
+    <title>Klassenübersicht · Excel-Lab</title>
+    <script src="theme-boot.js?v=0.15.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.15.0">
+    <link rel="stylesheet" href="lehrkraft.css?v=0.15.0">
+    <script src="content.js?v=0.15.0" defer></script>
+    <script src="bonus-tasks.js?v=0.15.0" defer></script>
+    <script src="lehrkraft.js?v=0.15.0" defer></script>
+  </head>
+  <body class="teacher-page">
+    <a class="skip-link" href="#teacher-main">Direkt zum Inhalt</a>
+    <header class="site-header">
+      <a class="brand" href="index.html#uebersicht" aria-label="Zur Excel-Lab Startseite">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+        <span class="brand-copy"><strong>Excel-Lab</strong><small>Klassenübersicht für Lehrkräfte</small></span>
+      </a>
+      <div class="header-actions">
+        <a class="button button-secondary" href="index.html#uebersicht">Zur Lernseite</a>
+      </div>
+    </header>
+
+    <main id="teacher-main">
+      <div class="page-shell">
+        <header class="page-intro">
+          <p class="eyebrow">Für Lehrkräfte</p>
+          <h1>Klassenübersicht</h1>
+          <p>Lies die Speicherdateien deiner Lernenden ein und sieh auf einen Blick, wer welche Einheit abgeschlossen und welche Bonusaufgabe gelöst hat. Die Lernenden sichern ihren Stand im Profil über „Speichern“ und geben dir die Datei.</p>
+        </header>
+
+        <section class="teacher-drop" id="teacher-drop" aria-labelledby="teacher-drop-heading">
+          <div>
+            <h2 id="teacher-drop-heading">Speicherdateien einlesen</h2>
+            <p>Wähle eine oder mehrere <code>.json</code>-Dateien aus oder ziehe sie in dieses Feld. Liegen von einer Person mehrere Dateien vor, zählt die zuletzt gesicherte.</p>
+            <p class="teacher-privacy"><span aria-hidden="true">●</span> Die Dateien werden nur in diesem Browserfenster ausgewertet. Nichts wird hochgeladen oder gespeichert; nach dem Schließen der Seite ist die Übersicht leer.</p>
+          </div>
+          <div class="teacher-drop-actions">
+            <label class="button button-primary" for="teacher-files">Dateien auswählen</label>
+            <input class="sr-only" id="teacher-files" type="file" accept="application/json,.json" multiple>
+            <button class="button button-secondary" type="button" id="teacher-csv" disabled>Als CSV speichern</button>
+            <button class="button button-secondary" type="button" id="teacher-clear" disabled>Übersicht leeren</button>
+          </div>
+        </section>
+
+        <p class="teacher-status" id="teacher-status" role="status" aria-live="polite">Noch keine Datei eingelesen.</p>
+        <ul class="teacher-errors" id="teacher-errors" hidden></ul>
+
+        <section class="teacher-summary" id="teacher-summary" aria-label="Kennzahlen der Klasse" hidden>
+          <article><small>Lernende</small><strong id="teacher-count">0</strong></article>
+          <article><small>Einheiten im Schnitt</small><strong id="teacher-average">0</strong></article>
+          <article><small>Bonusaufgaben gelöst</small><strong id="teacher-bonus">0</strong></article>
+          <article><small>XP im Schnitt</small><strong id="teacher-xp">0</strong></article>
+        </section>
+
+        <section class="teacher-table-section" id="teacher-table-section" aria-labelledby="teacher-table-heading" hidden>
+          <div class="teacher-table-head">
+            <h2 id="teacher-table-heading">Lernstand je Person</h2>
+            <p class="teacher-legend" aria-hidden="true"><span class="teacher-cell is-done">✓</span> abgeschlossen <span class="teacher-cell is-progress">◐</span> in Arbeit <span class="teacher-cell is-open">·</span> offen <span class="teacher-cell is-done has-bonus">✓</span> mit Bonus</p>
+          </div>
+          <div class="teacher-table-scroll" tabindex="0" role="region" aria-labelledby="teacher-table-heading">
+            <table class="teacher-table" id="teacher-table"></table>
+          </div>
+          <p class="teacher-note">Die Übersicht zeigt, was die Lernenden in ihrem Browser gespeichert haben. Haken und Lehrkraftbestätigung setzen sie selbst; maßgeblich bleibt deine eigene Kontrolle der Excel-Dateien.</p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand footer-brand" href="index.html#uebersicht">
+          <span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span>
+          <span class="brand-copy"><strong>Excel-Lab</strong></span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Designed by Sawazki Electronics</a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -202,3 +202,20 @@
 /* Lange Formeln in Aufgabenschritten dürfen umbrechen, statt die Seite zu verbreitern. */
 .instruction-list code, .formula-principle code, .lesson-disclosure-body > p code { overflow-wrap:anywhere; }
 .formula-principle code { white-space:normal; }
+
+/* Druckansicht der Lernseiten: heller Hintergrund, nur Inhalt, alle Abschnitte offen (lesson-workspace.js). */
+@media print {
+  .lesson-page-body, .lesson-page-body[class] { --bg:#fff; --bg-elevated:#fff; --surface:#fff; --surface-2:#f3f5f4; --surface-3:#e8ecea; --text:#000; --text-soft:#2b2b2b; --text-faint:#444; --line:#c9cfcc; --line-strong:#9aa39e; --green:#0d5c3a; --amber:#7a4f00; --blue:#1d4f86; background:#fff !important; color:#000; }
+  .lesson-page-body .site-header, .lesson-page-body .location-path, .lesson-page-body .site-footer, .lesson-page-body .toast-region, .lesson-page-body .skip-link, .lesson-page-body .developer-preview-banner, .lesson-page-body .back-link, .lesson-page-body .lesson-stepper, .lesson-page-body .lesson-workspace-intro, .lesson-page-body .lesson-video-tutorial, .lesson-page-body .lesson-page-sidebar, .lesson-page-body .lesson-disclosure-icon, .lesson-page-body .lesson-score-card, .lesson-page-body .bonus-form, .lesson-page-body .mastery-form button, .lesson-page-body .mastery-status, .lesson-page-body .download-list, .lesson-page-body .download-note, .lesson-page-body .excel-open-actions, .lesson-page-body video { display:none !important; }
+  .lesson-page-body .lesson-page-hero, .lesson-page-body .lesson-disclosure, .lesson-page-body .bonus-section, .lesson-page-body .formula-principle, .lesson-page-body .l11-situation { background:#fff !important; box-shadow:none !important; }
+  .lesson-page-body .lesson-page-layout { display:block; }
+  .lesson-page-body .page-shell { max-width:none; padding:0; }
+  .lesson-page-body .lesson-page-hero { padding:0 0 .6rem; border:0; }
+  .lesson-page-body h1 { font-size:20pt; }
+  .lesson-page-body .lesson-disclosure { margin:0 0 .5rem; border:1px solid #9aa39e; break-inside:auto; }
+  .lesson-page-body .lesson-disclosure > summary { break-after:avoid; }
+  .lesson-page-body table, .lesson-page-body .instruction-list li, .lesson-page-body .mastery-question, .lesson-page-body figure { break-inside:avoid; }
+  .lesson-page-body [class*="table-scroll"] { overflow:visible; }
+  .lesson-page-body a { color:#000; text-decoration:none; }
+  .lesson-page-body img { max-width:60%; }
+}

@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.14.1** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
+Aktueller Release: **0.15.0** – Klassenübersicht für Lehrkräfte und Druckansicht der Lernseiten,
+Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
 L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
 Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
 schnellere, einheitliche Lernseiten, XP statt Punkte,
@@ -145,6 +146,21 @@ Vertiefung“: eine freiwillige zusätzliche Aufgabe für Excel mit eigenen Date
 Wer den Kontrollwert richtig einträgt, erhält einmalig 50 Bonus-XP. Für den
 Abschluss der Einheit ist die Aufgabe nicht nötig. Die Aufgaben stehen in
 `bonus-tasks.js`.
+
+## Klassenübersicht für Lehrkräfte
+
+[`lehrkraft.html`](lehrkraft.html) (Link „Für Lehrkräfte“ im Fuß der Startseite)
+liest die Speicherdateien der Lernenden ein und zeigt je Person Abschlüsse,
+Bonusaufgaben und XP sowie je Einheit, wie viele sie abgeschlossen haben. Die
+Dateien werden nur im Browserfenster ausgewertet, nicht hochgeladen und nicht
+gespeichert. Die Tabelle lässt sich als CSV sichern und drucken. Die Übersicht
+zeigt, was die Lernenden selbst gespeichert haben; sie ersetzt keine Kontrolle
+der Excel-Dateien.
+
+## Druckansicht
+
+Jede Lernseite hat neben „Alle öffnen“ den Knopf „Drucken“. Gedruckt werden
+alle Abschnitte mit hellem Hintergrund, ohne Navigation und Abschlussleiste.
 
 ## Interaktive Themenlandkarte
 
