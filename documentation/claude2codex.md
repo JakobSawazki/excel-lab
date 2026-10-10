@@ -358,6 +358,14 @@ Abhakliste für Jakob mit vier Rückfragen am Ende.
   sichtbaren Unterschied (ein erster Nachher-Lauf zeigte zwei Bilder mit 80
   und 7 Pixeln Abweichung, die Wiederholung keines).
 
+### A0v Node-Tests laufen bei jedem Push auf GitHub
+
+`.github/workflows/tests.yml` startet `node --test` bei jedem Push auf `main`
+und bei Pull Requests (Node 22, keine Pakete, nur Leserechte). Die
+Veröffentlichung über GitHub Pages bleibt davon unabhängig: Ein roter Lauf
+verhindert sie nicht, zeigt aber sofort an, dass ein Test nicht besteht.
+Die Browsertests laufen dort nicht; sie brauchen Edge und lokal Playwright.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag

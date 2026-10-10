@@ -245,6 +245,9 @@ Veröffentlichungsgrenzen:
 node --test
 ```
 
+Auf GitHub laufen die Node-Tests bei jedem Push automatisch
+(`.github/workflows/tests.yml`).
+
 Die Browsertests laufen mit Edge über Playwright gegen eine lokale Vorschau.
 Playwright wird nicht installiert; der Pfad steht in `EXCEL_LAB_PLAYWRIGHT`.
 

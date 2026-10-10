@@ -1,0 +1,24 @@
+# Lässt bei jedem Push und Pull Request die Node-Tests laufen (ohne Pakete).
+# Die Veröffentlichung über GitHub Pages ist davon unabhängig; ein roter Lauf
+# zeigt nur an, dass ein Test nicht besteht.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Node-Tests
+        run: node --test
