@@ -129,8 +129,11 @@ eigene, kleine Änderung:
 
 ### A0g Abschlussprüfung am 10. Oktober (Stand `main`, App 0.14.0)
 
-- `node --test`: 287 bestanden. `run-all.cjs`: 3 eigene und 28 übernommene
-  Browsertestdateien bestanden (lokal, Port 4273).
+- `node --test`: 287 bestanden. `run-all.cjs`: 3 eigene Browsertestdateien
+  bestanden. Die 28 übernommenen liefen viermal: dreimal 28 von 28, einmal
+  27 von 28. Welche Datei in dem einen Lauf scheiterte, hat Claude nicht
+  festgehalten; mindestens ein übernommener Test ist also nicht ganz stabil
+  (vermutlich Zeitverhalten, lokal auf Port 4273).
 - Sichtprüfung: alle 28 Seiten und drei weitere Ansichten der Startseite
   (Lernpfad, Formelsammlung, Quellen) in dunklem und hellem Schema als
   Bildschirmfotos bei 1280 Pixeln angesehen; einheitlich, kein verrutschtes
