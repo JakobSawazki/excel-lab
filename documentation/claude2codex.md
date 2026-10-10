@@ -323,8 +323,11 @@ Datei liegt in [`testlauf-2026-10-10.txt`](testlauf-2026-10-10.txt).
   die Versionsnummer in der README anheben. Der Versionsverlauf im Dialog
   „Versionen und Impressum“ fasst mehrere Zwischenversionen unter einer Nummer
   zusammen; maßgeblich für die Geschichte ist der Changelog.
-- Nicht angefasst: `documentation/documentation.md` (über 3900 Zeilen, deine
-  Datei). Die Abschnitte 6 und 9 dort nennen weiter den alten Dateistand.
+- `documentation/documentation.md`: Die Abschnitte 6 (Dateibaum, technische
+  Entscheidungen), 7 (Datenformat mit `masteryPassed`, `bonus`, `bonus2` und
+  dem neuen Importverhalten) und 9 (Qualitätsprüfung) hat Claude am
+  10. Oktober auf den Stand 0.19.1 gebracht. Alle übrigen Abschnitte und die
+  Übergaben H-01 bis H-70 sind unverändert; die Datei ist weiter ungeteilt.
 
 ### A0t Checkliste für den Schul-PC
 

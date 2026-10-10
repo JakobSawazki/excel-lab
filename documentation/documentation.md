@@ -1150,24 +1150,28 @@ Excel-Lab verwendet bewusst keine externen Frameworks und keine
 Build-Abhängigkeiten. Die Anwendung kann als statische Website auf GitHub Pages
 bereitgestellt werden.
 
+Der aktuelle Dateibaum steht in der [README](../README.md), Abschnitt
+„Projektstruktur“; die Aufgabe jeder Datei beschreibt
+[`claude2codex.md`](claude2codex.md), Teil B1. Kurzfassung (Stand 0.19.1,
+aktualisiert von Claude am 10.10.2026):
+
 ```text
 Excel-Lab/
-├── index.html                 semantische App-Struktur
-├── l1-1.html                  eigene Lernseite für L1.1
-├── styles.css                 Layout, Komponenten und Farbschemata
-├── content.js                 Lernschritte, Einheiten und Formeln
-├── app.js                     Navigation, Profile und Fortschritt
-├── l1-1.js                    Lernlogik der L1.1-Seite
-├── favicon.svg                lokales Anwendungssymbol
-├── assets/images/             fotorealistisches Startmotiv
-├── assets/brand/              metallisches Excel-Lab-Symbol
-├── README.md                  Kurzanleitung
-├── documentation/
-│   └── documentation.md       zentrale Projektdokumentation und KI-Übergaben
-├── materialien/
-│   └── BPE1/                  lokale Schülerdateien, nicht in Git
-└── scripts/
-    └── sync-materials.ps1     reproduzierbare Materialauswahl
+├── index.html, l1-1.html … l4-8.html      Startseite und 27 Lernseiten
+├── lehrkraft.html, nachweis.html           Klassenübersicht und Lernnachweis
+├── content.js, bonus-tasks.js              Inhalte: Einheiten, Formeln, Glossar, Bonusaufgaben
+├── app.js                                  Logik der Startseite
+├── lesson-core.js, l1-1.js … l4-8.js       gemeinsamer Ablauf und Daten der Lernseiten
+├── nav-menu.js, lesson-navigation.js, lesson-workspace.js, theme-boot.js,
+│   xp.js, options.js, organizer.js, formula-lab.js, developer-mode.js,
+│   deployment.js, lehrkraft.js, nachweis.js weitere Module
+├── *.css                                   Gestaltung
+├── assets/                                 Fotos (PNG und verlustfreies WebP), Symbol
+├── tests/                                  Node-Tests, Browsertests, Nachrechnung in Excel
+├── documentation/                          diese Datei, Übergabe, Testprotokoll, Checkliste
+├── CHANGELOG.md, README.md
+├── materialien/BPE1/                       lokale Schülerdateien, nicht in Git
+└── scripts/sync-materials.ps1              reproduzierbare Materialauswahl
 ```
 
 Technische Entscheidungen:
@@ -1176,9 +1180,11 @@ Technische Entscheidungen:
 - keine Cookies, Tracker oder externen Schriftarten;
 - keine Übertragung von Profil- oder Fortschrittsdaten;
 - kein Auslesen von IP-Adresse, MAC-Adresse oder Windows-Benutzername;
-- zustandsbasierte Navigation über URL-Fragmente sowie eine eigene HTML-Seite
-  für L1.1;
-- lokale Speicherung unter `excelLab.state.v1`;
+- zustandsbasierte Navigation über URL-Fragmente auf der Startseite; jede der
+  27 Einheiten hat eine eigene HTML-Seite;
+- lokale Speicherung unter `excelLab.state.v1`; Rettungskopie eines nicht
+  lesbaren Lernstands unter `excelLab.state.rescue.v1`;
+- Skripte und Styles tragen die Versionsnummer als `?v=`-Parameter;
 - importierte Profildaten werden normalisiert und auf bekannte Einheiten
   begrenzt;
 - responsive Navigation wird auf schmalen Bildschirmen am unteren Rand
@@ -1203,12 +1209,18 @@ profiles[]
     lessonId
       completed
       teacherChecked
+      masteryPassed
+      bonus            (erste Bonusaufgabe gelöst, seit 0.12.0)
+      bonus2           (zweite Bonusaufgabe gelöst, seit 0.18.0)
       checks[]
 ```
 
-Beim JSON-Export wird nur das aktuell ausgewählte Profil ausgegeben. Ein Import
-erzeugt eine neue lokale Profil-ID, damit ein vorhandenes Profil nicht
-überschrieben wird.
+Beim JSON-Export wird nur das aktuell ausgewählte Profil ausgegeben. Seit
+0.18.1 ersetzt ein Import das vorhandene Profil derselben Person (gleiches
+Kürzel, gleiche Klasse) und fragt nach, wenn die Datei weniger Abschlüsse
+enthält; andere Personen erhalten eine neue lokale Profil-ID. Das Schema ist
+weiter Version 1; die neuen Felder sind Ergänzungen, ältere Dateien laden
+unverändert.
 
 Der Export enthält zusätzlich `exportedBy` mit Account, Klasse und Punktestand
 sowie `device` mit einer zufällig erzeugten lokalen Browser-ID und der grob
@@ -1265,23 +1277,35 @@ wenn es von Git ignoriert wird.
 
 ## 9. Qualitätsprüfung
 
-Aktuell geprüft:
+Stand 0.19.1 (aktualisiert von Claude am 10.10.2026). Die Prüfungen liegen im
+Repository unter `tests/`; Befehle und Einzelheiten stehen in der README,
+Abschnitt „Tests“, und in [`claude2codex.md`](claude2codex.md), Teil B2.
 
-- JavaScript-Syntax aller sechs JavaScript-Dateien;
-- vier Lernschritte, 27 Einheiten und 20 Formelkarten vorhanden;
-- alle 107 in den Einheiten verwendeten Materialverweise vorhanden;
-- keine Musterlösungsdatei im Webordner;
-- keine doppelten HTML-IDs;
-- Navigation, Suche, Filter und Lektionsdialog im Browser;
-- Anlegen und Wechseln lokaler Profile;
-- Abschluss-Check, Lehrkraftbestätigung, Punkte und Freischaltung;
-- vollständiger Ablauf der eigenen L1.1-Seite einschließlich Rücknahme des
-  Abschlusses;
-- JSON-Export;
-- mobile Darstellung und untere Navigation;
-- Browserkonsole ohne Fehler oder Warnungen.
-- lokaler Downloadbetrieb und öffentlicher Material-Fallback im Browser;
-- Veröffentlichungsliste ohne `materialien/BPE1`, `.tmp` und `desktop.ini`.
+Automatisch geprüft:
+
+- 297 Node-Prüfungen ohne Pakete (`node --test`), auf GitHub bei jedem Push:
+  Inhaltsliste, Aufbau aller Lernseiten, Verständnis-Checks, Verweise,
+  Bildmaße, Versionsgleichstand, Bonusaufgaben mit nachgerechneten
+  Kontrollwerten, Glossar, keine Originalmaterialien im Git-Index;
+- Abschlusswege aller 27 Einheiten im Browser (83 Fragen): Zugang,
+  Verständnis-Check, eigene Checks, Lehrkraftbestätigung, XP, Rücknahme,
+  Profilwechsel, Speicherfehler, Entwickler-Vorschau;
+- alle 30 Seiten bei 1440 und 390 Pixeln: keine Skriptfehler, keine externen
+  Anfragen, alle Bilder geladen, kein seitliches Überlaufen; dazu
+  Rettungskopie, Bonusaufgaben, Wiederöffnen, Laden, Lernpfad-Menü,
+  Formelsammlung, Klassenübersicht, Lernnachweis und Druckansicht;
+- Zugänglichkeit auf allen Seiten: vorlesbare Namen, Überschriftenebenen,
+  ARIA-Verweise, Erreichbarkeit mit der Tabulatortaste;
+- 28 von Codex übernommene Inhalts-, Übungs- und Navigationstests;
+- Rechenwege in echtem Excel (deutsch): KFZ-Steuer, PLZ-Suche, 28
+  Bonusaufgaben und die Beispiele der Fehlerwerkstatt.
+
+Werkzeuge ohne feste Abnahme: Kontrastmessung über alle 50 Farbkombinationen
+und Vorher-Nachher-Bildvergleich aller Ansichten.
+
+Nicht automatisch prüfbar: Schul-PCs, echter Bildschirmleser, Ausdruck auf
+Papier, die Arbeit der Lernenden in Excel und die Unterrichtserprobung. Dafür
+gibt es [`schul-pc-checkliste.md`](schul-pc-checkliste.md).
 
 ## 10. Abgeschlossene Aufgaben
 
