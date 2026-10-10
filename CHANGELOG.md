@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.2 – 2026-10-10
+
+**Profildialog aufgeräumt.** Die Knöpfe „Lernnachweis“ und „Rettungskopie herunterladen“ nehmen die volle Breite ein und schließen bündig an „Speichern“ und „Laden“ an. Dialoge für Profil, XP und Darstellung in beiden Schemata angesehen.
+
 ## 0.20.1 – 2026-10-10
 
 **Feinschliff, zweiter Teil.** Karten der Formelsammlung, des Glossars, der Quellen und die Lernpfad-Zusammenfassung erhalten dieselbe Tiefe wie die Lernseiten; Formelzeilen als eingelassenes Feld; Such- und Filterleiste als Glasfläche; Markierungsfarbe und Bildlaufleiste im Stil der Seite. Die vier weiteren Hintergrundoptionen mit dem neuen Hintergrund angesehen.

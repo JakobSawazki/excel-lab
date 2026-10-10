@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -433,6 +433,13 @@ Block „Feinschliff 0.20.1“ am Ende von `styles.css`:
   und Sand in beiden Schemata angesehen, ohne Auffälligkeit.
 - Der Bildvergleich (`visual-snapshots.cjs`) zeigt nach diesen beiden
   Releases gewollt Unterschiede; neue Vergleichsbasis ist der Stand 0.20.1.
+
+### A0za Release 0.20.2: Profildialog
+
+`#certificate-link` und `#rescue-button` sind jetzt so breit wie die Reihe
+„Speichern“/„Laden“ (vorher schmal und linksbündig). Die Dialoge Profil, XP
+und Darstellung wurden in beiden Schemata angesehen; die Perlmetall-Buttons
+aus 0.20.0 passen auch dort.
 
 ### A1 Wo der Stand liegt
 
