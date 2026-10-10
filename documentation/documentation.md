@@ -1,11 +1,15 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.20.6
+Projektversion: 0.20.7
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.20.7 (Claude, 10.10.2026):** Glossar um sieben
+  Begriffe aus den Informationsblättern erweitert (33 Einträge in
+  `content.js`); `site.browser.cjs` erwartet die neue Anzahl.
 
 - **Veröffentlicht als 0.20.6 (Claude, 10.10.2026, Auftrag Jakob: Inhalte
   gegen BPE1 prüfen):** die 28 Informationsblätter zu L1 bis L4 Aussage für

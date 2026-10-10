@@ -345,13 +345,13 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       try {
         await page.locator("#formula-grid .formula-card").first().waitFor();
         assert.equal(await page.locator("#formula-grid .formula-card").count(), 27);
-        assert.equal(await page.locator("#glossary-list .glossary-entry").count(), 26);
+        assert.equal(await page.locator("#glossary-list .glossary-entry").count(), 33);
         await page.locator('[data-formula-filter="Fehlermeldungen"]').click();
         assert.equal(await page.locator("#formula-grid .formula-card").count(), 7);
         assert.equal(await page.locator("#glossary").isHidden(), true);
         await page.locator('[data-formula-filter="Glossar"]').click();
         assert.equal(await page.locator("#formula-grid .formula-card").count(), 0);
-        assert.equal(await page.locator("#glossary-list .glossary-entry").count(), 26);
+        assert.equal(await page.locator("#glossary-list .glossary-entry").count(), 33);
         assert.equal(await page.locator("#formula-empty").isHidden(), true);
         await page.locator('[data-formula-filter="all"]').click();
         await page.fill("#formula-search", "absolut");

@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.7 – 2026-10-10
+
+**Glossar erweitert.** Sieben weitere Fachbegriffe aus den Informationsblättern: Funktionsassistent, Fehlerwert, Tabellenkopf, Tabellenrumpf, Bereich_Verweis, Punktwolke und Regressionsgerade (jetzt 33 Einträge).
+
 ## 0.20.6 – 2026-10-10
 
 **Informationsblätter L1 bis L4 abgeglichen.** Alle 28 Blätter Aussage für Aussage mit den Lernseiten verglichen; fachlich fehlte nichts. Ergänzt wurden Excel-Bezeichnungen, die die Blätter nennen: Funktionsassistent „Funktion einfügen“ mit der Kategorie „Datum & Zeit“ (L3.2), „Empfohlene Diagramme“, „Alle Diagramme“ und die drei Schaltflächen neben dem Diagramm (L4.1), Punktwolke, Regressionsgerade und die Häkchen für Formel und Bestimmtheitsmaß (L4.6); außerdem „An Zellengröße anpassen“ (L1.3), Eingabeteil, Ausgabeteil und Tabellenrumpf (L1.5), Spalten und einzelne Zellen einfügen mit Formatübernahme sowie der Fehlerwert #WERT! beim Kopieren (L2.2).

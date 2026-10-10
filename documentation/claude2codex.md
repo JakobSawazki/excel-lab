@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.6 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.7 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -536,6 +536,17 @@ Text.
 - **Nicht geprüft:** die Kategoriebezeichnung im Funktionsassistenten der an
   der Schule installierten Excel-Version; der Text nennt deshalb beide
   üblichen Schreibweisen.
+
+### A0zg Release 0.20.7: Glossar mit 33 Einträgen
+
+Die in 0.20.6 auf den Seiten ergänzten Begriffe stehen jetzt auch im Glossar
+(`content.js`, `glossary`): Funktionsassistent (L3.2), Fehlerwert (L2.2),
+Tabellenkopf und Tabellenrumpf (L1.5), Bereich_Verweis (L3.6), Punktwolke und
+Regressionsgerade (L4.6). Der Node-Test prüft wie bisher, dass jeder Begriff
+auf seiner Einheit vorkommt; `tests/browser/site.browser.cjs` erwartet 33
+statt 26 Einträge. Vor der Veröffentlichung liefen wegen des langsamen
+Rechners nur `site.browser.cjs` und `release-smoke.cjs` lokal, nicht der
+ganze Sammellauf; geändert wurden nur `content.js` und dieser Test.
 
 ### A1 Wo der Stand liegt
 
