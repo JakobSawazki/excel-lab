@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.4 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.20.5 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -464,6 +464,17 @@ von Startseite und Lernseite in beiden Schemata angesehen; sonst unauffällig.
   Violett, `.tag` und `.formula-principle span` bei dunklem Graphit,
   Stepper-`small` bei dunklem Sand, `.eyebrow span` und Listenziffern bei
   hellem Graphit. Alles Kleinschrift knapp unter der Schwelle.
+
+### A0zd Release 0.20.5: Kleinschriften
+
+Die in A0zc offenen 14 Stellen sind erledigt (Block „Feinschliff 0.20.5“ am
+Ende von `styles.css`): `.tag`, `.lesson-stepper small`,
+`.formula-principle span` und `.summary-icon small` mischen `--text-faint`
+mit `--text-soft`; im hellen Schema sind `.eyebrow span`, Häkchen,
+Listenziffern, `.starter-copy code` und der Bonus-Abschnittsindex leicht
+abgedunkelt. `contrast.browser.cjs`: 450 Ansichten, keine messbare Stelle
+unter dem Mindestkontrast; 24 Stellen auf Verlaufsflächen kann das Werkzeug
+nicht messen (weiße Schrift auf Metall-Grün, Profil-Kürzel, Quellennummern).
 
 ### A1 Wo der Stand liegt
 

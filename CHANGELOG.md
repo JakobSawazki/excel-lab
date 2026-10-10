@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.20.5 – 2026-10-10
+
+**Kleinschriften lesbarer.** Schlagworte, Schrittbeschreibungen, Merksätze, Abzeichen und Listenziffern erreichen jetzt in allen 450 geprüften Kombinationen aus Schema, Hintergrund und Schriftton den Mindestkontrast von 4,5 : 1.
+
 ## 0.20.4 – 2026-10-10
 
 **Kontrast nachgebessert.** Stufen-Abzeichen und Einheiten-Kürzel im Lernpfad sind im hellen Schema dunkler und damit lesbar (vorher unter 2 : 1). Die Seite hat unter dem mehrschichtigen Hintergrund wieder eine feste Grundfarbe.

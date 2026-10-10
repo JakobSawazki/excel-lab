@@ -3689,3 +3689,19 @@ html {
 [data-theme="light"] .lesson-code {
   color: color-mix(in srgb, var(--stage-color) 46%, #08170f);
 }
+
+/* Feinschliff 0.20.5: letzte Kleinschriften knapp unter 4,5 : 1 angehoben
+   (Kontrastbericht, alle Hintergrund- und Schriftoptionen). */
+.tag,
+.lesson-stepper small,
+.formula-principle span {
+  color: color-mix(in srgb, var(--text-faint) 60%, var(--text-soft));
+}
+[data-theme="light"] .eyebrow span,
+[data-theme="light"] .check-list.static span,
+[data-theme="light"] .instruction-list li > span {
+  color: color-mix(in srgb, var(--green) 78%, #000);
+}
+[data-theme="light"] .starter-copy code { color: color-mix(in srgb, var(--lime) 74%, #000); }
+.learning-summary .summary-icon small { color: var(--text-soft); }
+[data-theme="light"] .bonus-section > summary .section-index { color: color-mix(in srgb, var(--amber) 86%, #000); }
