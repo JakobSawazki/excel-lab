@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.14.0** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
+Aktueller Release: **0.14.1** – Wiederöffnen ohne Verlust anderer Abschlüsse, besser lesbares helles Schema,
 L3.6 um KFZ-Steuer und PLZ-Suche ergänzt,
 Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
 schnellere, einheitliche Lernseiten, XP statt Punkte,

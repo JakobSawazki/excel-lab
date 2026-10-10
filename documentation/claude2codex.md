@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.14.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.14.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -142,6 +142,23 @@ eigene, kleine Änderung:
   Bildschirmfotos bei 1280 Pixeln angesehen; einheitlich, kein verrutschtes
   Layout, kein fehlendes Bild. Nicht einzeln angesehen: Mobilbreite (dort
   prüfen die Tests nur das Überlaufen) und jeder aufgeklappte Abschnitt.
+
+### A0h Protokoll des Abschlusslaufs (10. Oktober, lokal auf Port 4273)
+
+Nach der Korrektur von `l11-entry-practice-smoke.cjs`, alles zweimal:
+
+| Lauf | Node-Tests | eigene Browsertests | übernommene Browsertests |
+| --- | --- | --- | --- |
+| 1 | 287 von 287 | 3 von 3 Dateien | 28 von 28 Dateien |
+| 2 | 287 von 287 | 3 von 3 Dateien | 28 von 28 Dateien |
+
+- Mobilansicht: alle 31 Ansichten bei 390 Pixeln in beiden Schemata als
+  Bildschirmfotos angesehen, ohne Auffälligkeit bis auf eine: Die Tabellen der
+  Bonusaufgaben und der neuen Abschnitte in L3.6 waren breiter als der
+  Bildschirm. **0.14.1** setzt für `.bonus-table` `min-width: 0` und erlaubt
+  Umbrüche; nachgemessen an fünf Seiten: keine Tabelle ist mehr breiter als
+  ihr Rahmen. Danach erneut 287 Node-Prüfungen und die eigenen Browsertests
+  bestanden.
 
 ### A1 Wo der Stand liegt
 

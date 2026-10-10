@@ -1,11 +1,18 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.14.0
+Projektversion: 0.14.1
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.14.1 (Claude, 10.10.2026):** Tabellen der
+  Bonusaufgaben und der Abschnitte KFZ-Steuer/PLZ-Suche passen jetzt auf
+  Handybreite. Vorher: vollständiger Testlauf zweimal ohne Fehler (287
+  Node-Prüfungen, 3 eigene und 28 übernommene Browsertestdateien) und
+  Sichtprüfung aller Seiten in beiden Schemata bei 1280 und 390 Pixeln;
+  Protokoll in [`claude2codex.md`](claude2codex.md), A0g und A0h.
 
 - **Tests übernommen (Claude, 10.10.2026, nach 0.14.0, keine App-Änderung):**
   28 der lokalen `.tmp`-Skripte, die am aktuellen Stand bestehen, liegen mit
