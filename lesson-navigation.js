@@ -98,7 +98,7 @@
         chapter.append(
           node("span", "", status.unlocked ? status.completed ? "✓" : lesson.code : "▣"),
           node("strong", "", lesson.title),
-          node("small", "", status.unlocked ? `${lesson.points || 100} XP` : `${status.requiredPoints} XP nötig`)
+          node("small", "", status.unlocked ? `${lesson.points || 100} XP` : "noch gesperrt")
         );
         flyout.append(chapter);
       }
@@ -179,7 +179,7 @@
       }
       const status = access(lesson);
       if (!status.unlocked) {
-        showToast(`Dieses Kapitel wird mit ${status.requiredPoints} XP freigeschaltet.`);
+        showToast(`Dieses Kapitel wird freigeschaltet, sobald ${lessons[lessons.indexOf(lesson) - 1].code} abgeschlossen ist.`);
         return;
       }
       if (lesson.page) location.href = lesson.page;

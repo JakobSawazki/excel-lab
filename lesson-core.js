@@ -51,6 +51,7 @@
       profile = Array.isArray(state?.profiles) ? state.profiles.find((item) => item.id === state.currentProfileId) : null;
       if (oldId !== profile?.id) {
         // Antworten gehören zum Profil, mit dem sie ausgewählt wurden.
+        if (bonusUi) { bonusUi.input.value = ""; bonusUi.feedback.textContent = ""; delete bonusUi.feedback.dataset.result; }
         form.reset();
         form.querySelectorAll(".mastery-question").forEach((question) => {
           delete question.dataset.result;
@@ -69,8 +70,135 @@
         completed: Boolean(saved?.completed),
         teacherChecked: Boolean(saved?.teacherChecked),
         masteryPassed: Boolean(saved?.masteryPassed || saved?.completed),
+        bonus: Boolean(saved?.bonus),
         checks: checks.map((_, i) => Boolean(saved?.checks?.[i]))
       };
+    }
+
+    // Freiwillige Vertiefungsaufgabe aus bonus-tasks.js: eigener Abschnitt vor
+    // dem Verständnis-Check, Prüfung über einen Kontrollwert, einmalig Bonus-XP.
+    const bonusTask = window.EXCEL_LAB_BONUS?.tasks?.[ID] || null;
+    const bonusXp = window.EXCEL_LAB_BONUS?.xp || 0;
+    let bonusUi = null;
+
+    function richText(target, text) {
+      String(text).split("`").forEach((part, i) => {
+        if (!part) return;
+        if (i % 2) { const element = document.createElement("code"); element.textContent = part; target.append(element); }
+        else target.append(document.createTextNode(part));
+      });
+      return target;
+    }
+
+    function make(tag, className, text) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (text !== undefined) richText(element, text);
+      return element;
+    }
+
+    function bonusTable(data) {
+      const wrapper = make("div", "l16-table-scroll");
+      const table = make("table", "l16-data-table bonus-table");
+      if (data.caption) table.append(make("caption", "", data.caption));
+      const headRow = document.createElement("tr");
+      data.head.forEach((cell) => { const th = make("th", "", cell); th.scope = "col"; headRow.append(th); });
+      const head = document.createElement("thead"); head.append(headRow);
+      const body = document.createElement("tbody");
+      data.rows.forEach((row) => {
+        const tr = document.createElement("tr");
+        row.forEach((cell, i) => { const element = make(i ? "td" : "th", "", cell); if (!i) element.scope = "row"; tr.append(element); });
+        body.append(tr);
+      });
+      table.append(head, body); wrapper.append(table);
+      return wrapper;
+    }
+
+    function parseNumber(value) {
+      // Deutsche Schreibweise: 1.234,56 €; auch 1234.56 wird angenommen.
+      let text = String(value).trim().replace(/[€%\s]|km\/h|Stück/gi, "");
+      if (!text) return NaN;
+      if (text.includes(",")) text = text.replace(/\./g, "").replace(",", ".");
+      else if (/^-?\d{1,3}(\.\d{3})+$/.test(text)) text = text.replace(/\./g, "");
+      return /^-?\d+(\.\d+)?$/.test(text) ? Number(text) : NaN;
+    }
+
+    function buildBonus() {
+      if (!bonusTask || !masterySection) return;
+      const section = make("details", "lesson-disclosure task-section bonus-section");
+      section.id = `${prefix}-bonus-section`;
+      const summary = document.createElement("summary");
+      const heading = make("h2", "", bonusTask.title);
+      heading.id = `${prefix}-bonus-heading`;
+      const badge = make("span", "bonus-badge", `+${bonusXp} XP`);
+      const icon = make("span", "lesson-disclosure-icon", "+");
+      icon.setAttribute("aria-hidden", "true");
+      const index = make("span", "section-index", "Bonus · Vertiefung");
+      index.append(badge);
+      summary.append(index, heading, icon);
+      const body = make("div", "lesson-disclosure-body");
+      body.append(make("p", "bonus-intro", `Freiwillig und zusätzlich: Diese Aufgabe bringt einmalig ${bonusXp} Bonus-XP. Für den Abschluss von ${code} ist sie nicht nötig.`));
+      body.append(make("p", "", bonusTask.situation));
+      if (bonusTask.table) body.append(bonusTable(bonusTask.table));
+      if (bonusTask.table2) body.append(bonusTable(bonusTask.table2));
+      const steps = make("ol", "instruction-list");
+      bonusTask.steps.forEach((step, i) => {
+        const item = document.createElement("li");
+        const text = document.createElement("div");
+        text.append(make("p", "", step));
+        item.append(make("span", "", String(i + 1)), text);
+        steps.append(item);
+      });
+      body.append(steps);
+      const bonusForm = make("form", "bonus-form");
+      bonusForm.noValidate = true;
+      const label = make("label", "bonus-label");
+      label.htmlFor = `${prefix}-bonus-input`;
+      label.append(make("strong", "", "Dein Kontrollwert"), make("span", "", bonusTask.question));
+      const row = make("div", "bonus-row");
+      const input = document.createElement("input");
+      input.id = `${prefix}-bonus-input`;
+      input.type = "text";
+      input.inputMode = "decimal";
+      input.autocomplete = "off";
+      input.placeholder = "z. B. 12,50";
+      input.setAttribute("aria-describedby", `${prefix}-bonus-feedback`);
+      const button = make("button", "button button-primary", "Kontrollwert prüfen");
+      button.type = "submit";
+      row.append(input);
+      if (bonusTask.unit) row.append(make("span", "bonus-unit", bonusTask.unit));
+      row.append(button);
+      const feedback = make("p", "bonus-feedback");
+      feedback.id = `${prefix}-bonus-feedback`;
+      feedback.setAttribute("role", "status");
+      bonusForm.append(label, row, feedback);
+      body.append(bonusForm);
+      section.append(summary, body);
+      masterySection.before(section);
+      bonusUi = { section, input, button, feedback, badge };
+
+      bonusForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const oldProfileId = profile?.id;
+        refresh();
+        if (!unlocked() || !profile || oldProfileId !== profile.id || dev() || progress().bonus) { render(); return; }
+        const value = parseNumber(input.value);
+        if (Number.isNaN(value)) {
+          feedback.dataset.result = "incorrect";
+          feedback.textContent = "Gib eine Zahl ein, zum Beispiel 12,50.";
+          return;
+        }
+        if (Math.abs(value - bonusTask.answer) > (bonusTask.tolerance ?? 0.005)) {
+          feedback.dataset.result = "incorrect";
+          feedback.textContent = `Noch nicht richtig. ${bonusTask.hint}`;
+          return;
+        }
+        const next = progress();
+        next.bonus = true;
+        const saved = save(next);
+        render();
+        if (saved) toast(`Bonusaufgabe gelöst: +${bonusXp} XP.`);
+      });
     }
 
     function toast(message) {
@@ -131,7 +259,23 @@
       $("#lesson-score-ring").style.setProperty("--progress", percent);
       $("#lesson-page-percent").textContent = `${percent}%`;
       $("#lesson-page-status").textContent = !open ? "Noch gesperrt" : current.completed ? "Abgeschlossen" : count ? "In Arbeit" : "Noch nicht begonnen";
-      $("#lesson-points-status").textContent = `${open && current.completed ? points : 0} von ${points} XP`;
+      $("#lesson-points-status").textContent = `${open && current.completed ? points : 0} von ${points} XP${current.bonus ? ` · Bonus +${bonusXp} XP` : ""}`;
+      if (bonusUi) {
+        bonusUi.input.disabled = !editable || current.bonus;
+        bonusUi.button.disabled = !editable || current.bonus;
+        bonusUi.button.hidden = current.bonus;
+        bonusUi.section.classList.toggle("is-solved", current.bonus);
+        bonusUi.badge.textContent = current.bonus ? `✓ +${bonusXp} XP` : `+${bonusXp} XP`;
+        if (current.bonus) {
+          bonusUi.feedback.dataset.result = "correct";
+          bonusUi.feedback.textContent = `Richtig – ${bonusXp} Bonus-XP wurden gutgeschrieben.`;
+          bonusUi.input.value = String(bonusTask.answer).replace(".", ",");
+        } else if (bonusUi.feedback.dataset.result === "correct") {
+          delete bonusUi.feedback.dataset.result;
+          bonusUi.feedback.textContent = "";
+          bonusUi.input.value = "";
+        }
+      }
 
       checks.forEach((element, i) => { element.checked = current.checks[i]; element.disabled = !editable; });
       $("#page-teacher-check").checked = current.teacherChecked;
@@ -265,6 +409,7 @@
     window.addEventListener("storage", (event) => { if (event.key === KEY || event.key === null) { refresh(); render(); } });
     window.addEventListener("pageshow", () => { refresh(); render(); });
     window.addEventListener("excel-lab-dev-change", () => { refresh(); render(); });
+    buildBonus();
     refresh();
     render();
   }

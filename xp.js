@@ -21,7 +21,7 @@
     <div class="xp-summary"><strong id="xp-total">0 XP</strong><span id="xp-level">Level 1</span></div>
     <p id="xp-next"></p>
     <progress id="xp-progress" max="500" value="0" aria-label="Fortschritt zum nächsten Level"></progress>
-    <p class="xp-rule">Eine abgeschlossene Einheit bringt 100 XP. Ein neues Level erreichst du nach 500 XP; das letzte Level beim Abschluss aller Einheiten.</p>
+    <p class="xp-rule">Eine abgeschlossene Einheit bringt 100 XP, jede gelöste Bonusaufgabe zusätzlich 50 XP. Ein neues Level erreichst du nach je 500 XP; das letzte Level mit allen Einheiten und allen Bonusaufgaben.</p>
   </div>`;
   document.body.append(dialog);
   function refresh() {
@@ -31,8 +31,12 @@
       if (state?.version === 1 && Array.isArray(state.profiles)) profile = state.profiles.find(item => item?.id === state.currentProfileId);
     } catch { /* Ohne gespeichertes Profil startet die Anzeige bei null. */ }
     // Nur bekannte, abgeschlossene Einheiten zählen; kein eigener XP-Speicher.
-    const xp = lessons.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.completed)).length * 100;
-    const maximum = lessons.length * 100;
+    const bonusXp = window.EXCEL_LAB_BONUS?.xp || 0;
+    const bonusTasks = window.EXCEL_LAB_BONUS?.tasks || {};
+    const withBonus = lessons.filter(lesson => bonusTasks[lesson.id]);
+    const xp = lessons.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.completed)).length * 100
+      + withBonus.filter(lesson => Boolean(profile?.progress?.[lesson.id]?.bonus)).length * bonusXp;
+    const maximum = lessons.length * 100 + withBonus.length * bonusXp;
     const thresholds = [0];
     for (let value = 500; value < maximum; value += 500) thresholds.push(value);
     if (maximum > 0) thresholds.push(maximum);
@@ -47,7 +51,7 @@
     dialog.querySelector("#xp-level").textContent = `Level ${levelIndex + 1}`;
     dialog.querySelector("#xp-next").textContent = !profile
       ? "Lege ein Profil an oder lade deine Speicherdatei, um XP zu sammeln."
-      : next === undefined ? "Höchstes Level erreicht – alle Einheiten abgeschlossen!"
+      : next === undefined ? "Höchstes Level erreicht – alle Einheiten und Bonusaufgaben geschafft!"
         : `Noch ${next - xp} XP bis Level ${levelIndex + 2} (${next} XP insgesamt).`;
     const progress = dialog.querySelector("#xp-progress");
     progress.max = next === undefined ? 1 : next - base;

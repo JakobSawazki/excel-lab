@@ -140,6 +140,51 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Bonusaufgabe: falscher und richtiger Kontrollwert, XP bleiben erhalten", async () => {
+      const state = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "test", profiles: [{ id: "test", name: "tes.pro", className: "WGW EK1", progress: {} }] });
+      const { context, page, errors } = await open(browser, "l1-1.html", { state });
+      try {
+        const stored = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].progress["l1-1"] || {}, KEY);
+        await page.evaluate(() => { document.querySelector("#l11-bonus-section").open = true; });
+        assert.match(await page.locator("#l11-bonus-section .bonus-badge").innerText(), /\+50 XP/);
+        await page.fill("#l11-bonus-input", "abc");
+        await page.locator("#l11-bonus-section button[type=submit]").click();
+        assert.match(await page.locator("#l11-bonus-feedback").innerText(), /Zahl/);
+        await page.fill("#l11-bonus-input", "40,00");
+        await page.locator("#l11-bonus-section button[type=submit]").click();
+        assert.match(await page.locator("#l11-bonus-feedback").innerText(), /Noch nicht richtig/);
+        assert.equal((await stored()).bonus || false, false);
+        await page.fill("#l11-bonus-input", "41,45 €");
+        await page.locator("#l11-bonus-section button[type=submit]").click();
+        assert.equal((await stored()).bonus, true);
+        assert.equal((await stored()).completed, false, "Bonus schließt die Einheit nicht ab");
+        assert.match(await page.locator("#lesson-points-status").innerText(), /0 von 100 XP · Bonus \+50 XP/);
+        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "50");
+        assert.equal(await page.locator("#l11-bonus-input").isDisabled(), true);
+        // Die Startseite liest, bereinigt und speichert den Lernstand; der Bonus bleibt.
+        await page.goto(base + "index.html");
+        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "50");
+        await page.locator("#theme-toggle").click();
+        assert.equal((await stored()).bonus, true, "Bonus nach Speichern der Startseite");
+        // Eine zweite Lösung derselben Aufgabe zählt nicht doppelt.
+        await page.goto(base + "l1-1.html");
+        assert.equal(await page.locator("#l11-bonus-section button[type=submit]").isHidden(), true);
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
+    await check("Bonusaufgaben: jede Lernseite zeigt ihren Abschnitt vor dem Verständnis-Check", async () => {
+      const { context, page } = await open(browser, "l4-6.html", { state: profileState });
+      try {
+        for (const file of pages.filter((name) => name !== "index.html")) {
+          await page.goto(base + file);
+          const prefix = file.slice(0, -5).replace("-", "");
+          assert.equal(await page.evaluate((id) => document.querySelector(`#${id}-bonus-section`)?.nextElementSibling?.id, prefix), `${prefix}-mastery-section`, file);
+          assert.ok((await page.locator(`#${prefix}-bonus-section .instruction-list li`).count()) >= 3, file);
+        }
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -152,5 +197,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und fünf Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und sieben Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

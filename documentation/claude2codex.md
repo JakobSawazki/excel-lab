@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-09 · Release 0.11.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-10 · Release 0.12.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -21,6 +21,15 @@ einen Eintrag im Taskstatus ergänzt.
 | „Punkte“ oder „XP“? | XP | umgesetzt in 0.11.0 (OPT-20) |
 | `.tmp/` leeren? | Ja | Freigabe erteilt; erst nachdem deine Tests übernommen sind (OPT-08) |
 | Rücknahme eines Abschlusses (OPT-10) | Jakob hat nachgefragt, was gemeint ist | noch offen |
+
+### A0b Jakobs Aufträge vom 10. Oktober 2026
+
+- Selbstständig weiterarbeiten; nach einem geeigneten Versionsstand darf Claude
+  pushen und online stellen.
+- Je Lerneinheit dürfen weitere vertiefende Aufgaben dazukommen, die Extra-XP
+  bringen → umgesetzt als Bonusaufgaben in 0.12.0 (OPT-23).
+- Inhaltlich prüfen, ob alle fachlichen Inhalte der BPE1-Unterlagen enthalten
+  sind → OPT-09; Ergebnis siehe dort.
 
 ### A1 Wo der Stand liegt
 
@@ -129,9 +138,42 @@ brauchen „XP“; Claude hat sie nicht angefasst.
 `?v=<APP_VERSION>`; zwei Node-Tests erzwingen das. Bei jedem Release den
 Parameter in allen 28 Seiten mit anheben.
 
+**OPT-23 – Bonusaufgaben (0.12.0).** Jede der 27 Einheiten hat eine freiwillige
+Vertiefungsaufgabe für Excel mit eigenen, erfundenen Daten (nicht aus dem
+BPE1-Paket). `bonus-tasks.js` enthält je Einheit Titel, Situation, Tabelle,
+Schritte, Frage, Kontrollwert, Toleranz und Hinweis. `lesson-core.js` baut
+daraus den Abschnitt „Bonus · Vertiefung“ direkt vor dem Verständnis-Check und
+prüft den eingegebenen Kontrollwert (deutsche Zahlschreibweise, Einheit
+erlaubt). Richtig gelöst: einmalig 50 XP, gespeichert als
+`progress[lessonId].bonus = true`. Der Bonus ist unabhängig vom Abschluss der
+Einheit, braucht keine Lehrkraftbestätigung und bleibt bei einer Rücknahme des
+Abschlusses erhalten.
+
+- Speicherschema bleibt Version 1; `bonus` ist ein zusätzliches Feld.
+  `normalizeProfile`, `getLessonProgress` und `writeLessonProgress` in `app.js`
+  führen es mit. Ältere Sicherungen ohne das Feld laden unverändert.
+- XP = abgeschlossene Einheiten × 100 + gelöste Bonusaufgaben × 50, höchstens
+  4050. Level weiter je 500 XP (`xp.js`). `exportedBy.points` enthält den Bonus.
+- Weil XP jetzt nicht mehr nur aus Abschlüssen entstehen, nennen gesperrte
+  Einheiten keine XP-Schwelle mehr („600 XP nötig“), sondern die Einheit, die
+  zuerst abzuschließen ist. `requiredPoints` wird nicht mehr angezeigt.
+- `tests/bonus.test.js` rechnet alle 27 Kontrollwerte unabhängig nach.
+- **Bitte fachlich gegenlesen:** Aufgabenstellungen und Hinweise stammen von
+  Claude und sind nicht im Unterricht erprobt. Die Kontrollwerte stehen wie die
+  Antworten der Verständnis-Checks lesbar im Quelltext.
+
+**Kontrast-Messwerkzeug.** `tests/browser/contrast.browser.cjs` misst Textkontraste
+in 450 Ansichten (2 Schemata × 5 Hintergründe × 5 Schriftfarben × 9 Seiten).
+Ergebnis am 10. Oktober: im dunklen Schema keine Fundstelle; im hellen Schema
+78 messbare Stellen unter 4,5 : 1, meist kleine grüne Akzentschrift
+(`--green: #188a55` auf Weiß 4,3 : 1, auf den Hintergründen Graphit und Violett
+3,3 : 1) und `--text-soft` auf getönten Hintergründen (3,5 : 1). Schrift auf
+Verlaufs- und Metallflächen kann das Werkzeug nicht messen. Claude hat **keine
+Farben geändert**, weil das die Gestaltung berührt (A2); siehe OPT-19.
+
 ### A4 Prüfstand
 
-- `node --test`: 257 Prüfungen bestanden (Stand 0.11.1).
+- `node --test`: 287 Prüfungen bestanden (Stand 0.12.0).
 - Online gegen <https://jakobsawazki.github.io/excel-lab/>: Abschluss-Audit
   27 Einheiten / 83 Fragen an 0.11.0 bestanden; Seitentest an 0.11.0 mit dem
   oben genannten einen Befund; an 0.11.1 (`548012e`, Pages-Lauf 37985437922)
@@ -168,6 +210,7 @@ Parameter in allen 28 Seiten mit anheben.
 | `lesson-core.js` | Ablauf aller Lernseiten | Claude, aus deinem Code zusammengeführt |
 | `l1-1.js` … `l4-8.js` | Antworten, Hinweise, Demo der Seite | Codex, gekürzt von Claude |
 | `theme-boot.js` | Farbschema und Darstellung vor dem Zeichnen | Claude |
+| `bonus-tasks.js` | 27 freiwillige Vertiefungsaufgaben mit Kontrollwert | Claude |
 | `lesson-navigation.js`, `lesson-workspace.js`, `xp.js`, `options.js`, `developer-mode.js`, `deployment.js`, `formula-lab.js` | Navigation, Abschnitte, XP, Darstellung, Vorschau, Materialverweise, Formel-Demo | Codex |
 | `styles.css`, `lesson-workspace.css`, `formula-lab.css`, `l4-*.css` | Gestaltung | Codex |
 | `tests/*.test.js`, `tests/helpers.cjs` | Node-Tests ohne Pakete | Claude |
@@ -180,11 +223,12 @@ Speicherschlüssel: `excelLab.state.v1` (Lernstand), `excelLab.state.rescue.v1`
 ### B2 Befehle
 
 ```powershell
-node --test                                   # 257 Prüfungen, ohne Pakete
+node --test                                   # 287 Prüfungen, ohne Pakete
 python -m http.server 4273 --bind 127.0.0.1
 node tests/browser/site.browser.cjs http://127.0.0.1:4273/
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all          # rund 5 Minuten
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all l1-1,l2-3
+node tests/browser/contrast.browser.cjs http://127.0.0.1:4273/                  # Messwerkzeug, rund 2 Minuten
 ```
 
 Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
@@ -238,10 +282,11 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-16 | Rettungskopie herunterladbar machen | Vorschlag |
 | OPT-17 | Dokumentation gliedern | Vorschlag; deine Dateien |
 | OPT-18 | Lernsituationsbilder für weitere Einheiten | offen (Vorgabe Jakob vom 07.10.) |
-| OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | offen |
+| OPT-19 | Barrierefreiheit, Kontrast, Tastatur als Tests | Kontrast gemessen (78 Stellen im hellen Schema); Farbentscheidung offen |
 | OPT-20 | „Punkte“ und „XP“ | erledigt (Claude, 0.11.0): XP |
 | OPT-21 | Lehrkraftbestätigung und Klassenübersicht | Idee; Entscheidung Jakob |
 | OPT-22 | `.git/refs/desktop.ini` | Hinweis |
+| OPT-23 | Bonusaufgaben mit Extra-XP | erledigt (Claude, 0.12.0); fachlich gegenlesen |
 
 ### C2 Die Punkte im Einzelnen
 
@@ -420,7 +465,9 @@ Google Drive legt `desktop.ini` in `.git/refs/` ab; jeder Git-Befehl warnt
 
 1. OPT-10: Rücknahme eines Abschlusses – a, b oder c? Claude hat die Frage
    am 9. Oktober noch einmal in einfachen Worten gestellt.
-2. Durchsicht der veröffentlichten Fassung 0.11.1 im Unterricht.
+2. Durchsicht der veröffentlichten Fassung 0.12.0 und der 27 Bonusaufgaben.
+3. OPT-19: Dürfen im hellen Schema die grüne Akzentschrift und die graue
+   Nebenschrift etwas dunkler werden, damit kleine Texte besser lesbar sind?
 
 Erledigt oder entschieden: Veröffentlichung, Geräte, Umfang der
 Veröffentlichung, XP, Freigabe für `.tmp/` (siehe A0).

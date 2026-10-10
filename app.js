@@ -11,8 +11,11 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.11.1";
+  const APP_VERSION = "0.12.0";
   const POINTS_PER_LESSON = 100;
+  // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
+  const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
+  const hasBonusTask = (lessonId) => Boolean(window.EXCEL_LAB_BONUS?.tasks?.[lessonId]);
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
     dashboard: "uebersicht",
@@ -113,6 +116,7 @@
           teacherChecked: Boolean(candidate.teacherChecked),
           // Abschlüsse aus der Zeit vor den Verständnis-Checks gelten als bestanden.
           masteryPassed: Boolean(candidate.masteryPassed || candidate.completed),
+          bonus: Boolean(candidate.bonus),
           checks: Array.isArray(candidate.checks)
             ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
             : lesson.checks.map(() => false)
@@ -199,6 +203,7 @@
       completed: Boolean(saved?.completed),
       teacherChecked: Boolean(saved?.teacherChecked),
       masteryPassed: Boolean(saved?.masteryPassed || saved?.completed),
+      bonus: Boolean(saved?.bonus),
       checks: lesson.checks.map((_, index) => Boolean(saved?.checks?.[index]))
     };
   }
@@ -210,6 +215,7 @@
       completed: Boolean(progress.completed),
       teacherChecked: Boolean(progress.teacherChecked),
       masteryPassed: Boolean(progress.masteryPassed),
+      bonus: Boolean(progress.bonus),
       checks: Array.isArray(progress.checks) ? progress.checks.map(Boolean) : []
     };
     profile.updatedAt = new Date().toISOString();
@@ -227,7 +233,8 @@
   function progressStats() {
     const completed = lessons.filter((lesson) => getLessonProgress(lesson.id).completed).length;
     const percent = lessons.length ? Math.round((completed / lessons.length) * 100) : 0;
-    return { completed, total: lessons.length, percent, points: completed * POINTS_PER_LESSON };
+    const bonus = lessons.filter((lesson) => hasBonusTask(lesson.id) && getLessonProgress(lesson.id).bonus).length;
+    return { completed, total: lessons.length, percent, bonus, points: completed * POINTS_PER_LESSON + bonus * BONUS_XP };
   }
 
   function lessonAccess(lesson) {
@@ -333,7 +340,7 @@
               return `<button class="nav-chapter-link ${access.unlocked ? "" : "is-locked"}" type="button" data-open-lesson="${lesson.id}">
                 <span>${access.unlocked ? progress.completed ? "✓" : escapeHtml(lesson.code) : "▣"}</span>
                 <strong>${escapeHtml(lesson.title)}</strong>
-                <small>${access.unlocked ? `${access.points} XP` : `${access.requiredPoints} XP nötig`}</small>
+                <small>${access.unlocked ? `${access.points} XP` : "noch gesperrt"}</small>
               </button>`;
             }).join("")}
           </div>
@@ -417,7 +424,7 @@
     const stats = progressStats();
     $("#learning-summary").innerHTML = `
       <span class="summary-icon">${stats.points}<small>XP</small></span>
-      <p><strong>${stats.completed} von ${stats.total} ${stats.total === 1 ? "Einheit" : "Einheiten"} erledigt.</strong> Arbeite der Reihe nach. Jede bestätigte Einheit bringt ${POINTS_PER_LESSON} XP und schaltet das nächste Kapitel frei.</p>
+      <p><strong>${stats.completed} von ${stats.total} ${stats.total === 1 ? "Einheit" : "Einheiten"} erledigt.</strong> Arbeite der Reihe nach. Jede bestätigte Einheit bringt ${POINTS_PER_LESSON} XP und schaltet das nächste Kapitel frei.${BONUS_XP ? ` Jede gelöste Bonusaufgabe bringt zusätzlich ${BONUS_XP} XP (${stats.bonus} gelöst).` : ""}</p>
       <span class="mini-progress"><span class="progress-track"><span style="--width:${stats.percent}%;--chapter-color:var(--green)"></span></span><small>${stats.percent}% Gesamtfortschritt</small></span>`;
   }
 
@@ -434,7 +441,7 @@
         <span>
           <span class="lesson-meta"><span class="lesson-code">${escapeHtml(lesson.code)}</span><span>${escapeHtml(lesson.duration)}</span><span>·</span><span>${access.points} XP</span></span>
           <h3>${escapeHtml(lesson.title)}</h3>
-          <p>${access.unlocked ? escapeHtml(lesson.description) : `Noch gesperrt. Schließe zuerst das vorherige Kapitel ab und sammle ${access.requiredPoints} XP.`}</p>
+          <p>${access.unlocked ? escapeHtml(lesson.description) : "Noch gesperrt. Schließe zuerst das vorherige Kapitel ab."}</p>
           <span class="lesson-tags">${lesson.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</span>
         </span>
         <span class="lesson-status" aria-label="${progress.completed ? "Erledigt" : access.unlocked ? "Einheit öffnen" : "Gesperrt"}">${statusIcon}</span>
@@ -477,7 +484,7 @@
     if (!window.EXCEL_LAB_DEV?.enabled && !ensureProfile()) return;
     const access = lessonAccess(lesson);
     if (!access.unlocked) {
-      showToast(`Dieses Kapitel wird mit ${access.requiredPoints} XP freigeschaltet.`);
+      showToast(`Dieses Kapitel wird freigeschaltet, sobald ${lessons[access.index - 1].code} abgeschlossen ist.`);
       return;
     }
     closeLearningMenu();
@@ -599,7 +606,7 @@
     $("#profile-list").innerHTML = current
       ? [current].map((profile) => {
         const completed = lessons.filter((lesson) => Boolean(profile.progress?.[lesson.id]?.completed)).length;
-        const points = completed * POINTS_PER_LESSON;
+        const points = progressStats().points;
         return `
           <div class="profile-list-item ${profile.id === current?.id ? "is-current" : ""}">
             <span class="profile-avatar">${escapeHtml(initials(profile.name))}</span>

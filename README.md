@@ -20,7 +20,8 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.11.1** – schnellere, einheitliche Lernseiten, XP statt Punkte,
+Aktueller Release: **0.12.0** – Bonusaufgaben mit Extra-XP in allen 27 Einheiten,
+schnellere, einheitliche Lernseiten, XP statt Punkte,
 gemischte Antworten im Verständnis-Check; zuvor Themenlandkarte, vereinfachte Bedienung und
 eigene Lernseiten für alle 27 Einheiten bis einschließlich L4.8.
 
@@ -134,6 +135,14 @@ drei Anwendungsfragen; L1.6 prüft seine fünf Rechenmodelle mit fünf Fragen. A
 möglich ist. Die Lehrkraft prüft weiterhin die tatsächlichen Excel-Dateien
 und lässt sich die Vorgehensweise erklären. Ein Browser-Quiz allein ersetzt
 keine Prüfung der praktischen Arbeit.
+
+## Bonusaufgaben
+
+Jede Lernseite enthält vor dem Verständnis-Check den Abschnitt „Bonus ·
+Vertiefung“: eine freiwillige zusätzliche Aufgabe für Excel mit eigenen Daten.
+Wer den Kontrollwert richtig einträgt, erhält einmalig 50 Bonus-XP. Für den
+Abschluss der Einheit ist die Aufgabe nicht nötig. Die Aufgaben stehen in
+`bonus-tasks.js`.
 
 ## Interaktive Themenlandkarte
 
