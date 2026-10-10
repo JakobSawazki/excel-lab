@@ -21,6 +21,9 @@ const {chromium}=require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.cache
     await page.setViewportSize({width,height:844});
     await page.evaluate(size=>document.documentElement.dataset.textSize=size,size);
     await page.waitForTimeout(180); // Existing 160ms nav transitions must finish before measuring.
+    // Claude, 10.10.2026: Auf einem ausgelasteten Rechner reichen 180 ms nicht; der Pfeil wurde
+    // mitten im Übergang gemessen (25 statt 36 px). Deshalb zusätzlich auf laufende Übergänge warten.
+    await page.evaluate(()=>Promise.all(document.getAnimations().map(animation=>animation.finished.catch(()=>{}))));
     const bounds=await page.locator('.main-nav > .nav-link, .main-nav .nav-learning-link, .main-nav .nav-menu-toggle').evaluateAll(nodes=>nodes.map(n=>{const b=n.getBoundingClientRect();return{x:b.x,right:b.right,top:b.y,bottom:b.bottom,width:b.width,height:b.height,scroll:n.scrollWidth,client:n.clientWidth};}));
     for(const b of bounds){assert.ok(b.x>=0&&b.right<=width+1&&b.top>=0&&b.bottom<=844,`${file}/${width}/${size}: bounds ${JSON.stringify(b)}`);assert.ok(b.scroll<=b.client+1,`${file}/${width}/${size}: clipped label ${JSON.stringify(b)}`);if(width<=600)assert.ok(b.height>=44,`${file}: touch height`);}
    }

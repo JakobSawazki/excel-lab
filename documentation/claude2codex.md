@@ -160,6 +160,22 @@ Nach der Korrektur von `l11-entry-practice-smoke.cjs`, alles zweimal:
   ihr Rahmen. Danach erneut 287 Node-Prüfungen und die eigenen Browsertests
   bestanden.
 
+### A0i Nachlauf der übernommenen Tests gegen 0.14.1
+
+- Ergebnis: 28 von 28 Dateien bestanden (ein einzelner, ungestörter Lauf).
+- Davor waren mehrere Läufe unbrauchbar: Claude hatte Läufe per Zeitlimit
+  abgebrochen, deren Browser weiterliefen, und parallel gegen die
+  veröffentlichte Seite getestet. Die Reste sind beendet.
+- Dabei zeigte sich ein zweiter zeitabhängiger Test:
+  `mobile-navigation-smoke.cjs` misst 180 ms nach einem Breitenwechsel. Auf
+  dem zu der Zeit etwa achtmal langsameren Rechner fiel die Messung in den
+  Übergang (Menüpfeil 25 statt 36 Pixel breit) und meldete „clipped label“.
+  Nachgemessen nach 1,5 Sekunden, lokal und online: 36 Pixel, nichts
+  abgeschnitten – kein Darstellungsfehler. Der Test wartet jetzt zusätzlich
+  auf laufende Übergänge (im Test kommentiert); danach drei von drei
+  Einzelläufen und der Gesamtlauf bestanden.
+- Hinweis: Unter Last brauchen die übernommenen Tests rund 20 statt 4 Minuten.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
