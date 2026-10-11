@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.21.0 – 2026-10-11
+
+**NAGOLD im Profil (Auftrag Jakob, wie in WorkbenchLab).** Im Profil steht der NAGOLD-Stand; ein Klick öffnet die Punktetabelle mit Datum, Uhrzeit, Anlass und Punkten. Jede abgeschlossene Lerneinheit trägt automatisch einmalig 5 NAGOLD ein (27 Einheiten: 135). Eigene Zeilen mit 1 bis 5 Punkten lassen sich hinzufügen, bearbeiten und löschen; gespeichert wird erst mit „Speichern“. Ältere Lernstände erhalten je abgeschlossener Einheit eine Zeile ohne Datum. Die Tabelle reist in der Speicherdatei mit; Lernnachweis und Klassenübersicht (auch CSV) zeigen die Summe. Die Tabelle ist eine Selbstauskunft, verbindlich bleibt die Bewertung der Lehrkraft.
+
 ## 0.20.10 – 2026-10-10
 
 **Klassenübersicht: Seitenfuß am unteren Rand.** Bei leerer Übersicht stand der Fuß mitten auf dem Bildschirm und klebte direkt unter der Statuszeile.

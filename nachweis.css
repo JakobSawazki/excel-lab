@@ -13,7 +13,7 @@
 .certificate-person { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.4rem 0 0; }
 .certificate-person dt { color: var(--text-soft); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
 .certificate-person dd { margin: .15rem 0 0; font-size: 1.15rem; font-weight: 700; overflow-wrap: anywhere; }
-.certificate-numbers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.4rem 0 2rem; }
+.certificate-numbers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1.4rem 0 2rem; }
 .certificate-numbers div { display: grid; gap: .2rem; padding: 1rem 1.15rem; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--surface-2); }
 .certificate-numbers small { color: var(--text-soft); font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .certificate-numbers strong { font-size: 1.45rem; font-variant-numeric: tabular-nums; }
@@ -53,3 +53,6 @@
   .certificate-lessons li { font-size: 9pt; padding: .2rem 0; }
   .certificate-stages { gap: .5rem; }
 }
+#certificate-nagold { color: var(--nagold); }
+@media (max-width: 900px) and (min-width: 621px) { .certificate-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media print { #certificate-nagold { color: inherit; } }

@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-10 · Release 0.20.10 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-11 · Release 0.21.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -638,6 +638,57 @@ Statuszeile. Jetzt `.teacher-page` als Spalten-Flex mit `min-height: 100vh`,
 `main` wächst und hält 4 rem Abstand nach unten (nur `@media screen`, der
 Druck bleibt unverändert). Versionsnummern sind ab hier zweistellig in der
 letzten Stelle (0.20.10); die Node-Tests kommen damit zurecht.
+
+### A0zk Release 0.21.0: NAGOLD im Profil (Auftrag Jakob vom 11. Oktober)
+
+Jakob: „Du weißt ja, wie wir das beim Projekt WorkbenchLab mit den NAGOLD in
+dem Profil-Bereich gemacht haben. Lass uns das auch so in Excel-Lab machen.“
+Vorlage war dein Stand in WorkbenchLab (`nagold.js`, Tabellen-Dialog in
+`app.js`, Abschnitte „NAGOLD im Profilbutton“ und „NAGOLD-Tabelle“ der
+dortigen Dokumentation). Übernommen sind die Regeln, nicht der Code der
+Oberfläche (Excel-Lab hat keine Lucide-Symbole und mehrere Profile).
+
+- **`nagold.js`** (neu, auf allen 30 Seiten direkt nach `content.js`):
+  `window.EXCEL_LAB_NAGOLD` mit `maxPoints` 5, `normalizeEntries`,
+  `entriesFor(profile)`, `total(profile)`, `addLessonEntry(profile, lesson,
+  date, time)`, `today()`, `clock()`, `presetOptions()`. Grenzen wie bei dir:
+  160 Zeichen Anlass, echte Kalendertage, HH:MM, 1 bis 5 ganze Punkte,
+  1000 eigene Zeilen plus 27 Einheiten.
+- **Speicherort:** `profile.nagoldEntries` im bestehenden Lernstand
+  (`excelLab.state.v1`), Zeilen `{ date, time, purpose, points, lessonId? }`.
+  `normalizeProfile` in `app.js` füllt das Feld beim Laden; die
+  Speicherdatei enthält es im Profil und die Summe in `exportedBy.nagold`.
+  **Abweichung von WorkbenchLab:** Die Formatnummer bleibt 1. Excel-Lab weist
+  jede andere Nummer zurück; eine Erhöhung hätte alle bisherigen
+  Speicherdateien unlesbar gemacht. Folge: Eine Seite, die noch mit einer
+  Version vor 0.21.0 geöffnet ist, würde die Tabelle beim Speichern
+  verwerfen. Bitte gegenprüfen, ob du das anders lösen willst.
+- **Alte Lernstände:** ohne Feld je abgeschlossener Einheit eine Zeile mit
+  5 NAGOLD, Datum und Uhrzeit „Nicht erfasst“. Eine ausdrücklich leere
+  Tabelle bleibt leer.
+- **Abschluss einer Einheit** (`lesson-core.js`): bucht einmalig 5 NAGOLD mit
+  Datum und Uhrzeit des Geräts; `lessonId` verhindert die zweite Buchung nach
+  „wieder öffnen“. Meldung: „… abgeschlossen: 100 XP und 5 NAGOLD.“
+  Bonusaufgaben bringen weiterhin nur XP.
+- **Oberfläche:** Profilknopf zeigt „Profil · n NAG“ in Gold (nur Startseite,
+  auf dem Handy mit dem übrigen Text ausgeblendet). Im Profil-Dialog der Knopf
+  `#nagold-total`; er öffnet `#nagold-dialog` mit Tabelle (Datum, Uhrzeit,
+  Wofür, NAGOLD), Plus, Stift oder Doppelklick, Minus, Summe und „Speichern“.
+  Schließen verwirft den Entwurf. Styles im Block „NAGOLD (0.21.0)“ am Ende
+  von `styles.css`, Goldton `--nagold`.
+- **Lehrkraft:** `lehrkraft.js` zeigt die Summe je Person als Spalte NAGOLD
+  (auch in der CSV), `nachweis.html` als viertes Zahlenfeld.
+- **Tests:** `tests/nagold.test.js` (acht Tests), neunzehnte Einzelprüfung in
+  `tests/browser/site.browser.cjs` (Tabelle bedienen, Abbruch, Grenzen,
+  HTML-Sicherheit, Abschluss bucht einmal, Lernnachweis, Speicherdatei,
+  Klassenübersicht). Angesehen: Profil, Tabelle und Kopfzeile dunkel und hell
+  bei 1500 px, Tabelle dunkel bei 390 px.
+- **Nicht übernommen:** deine separate Bestätigungsliste der Lehrkraft
+  (WorkbenchLab OPT-09, `workbenchlab-teacher-reviews-v1`). Die
+  Klassenübersicht zeigt hier nur die gemeldete Summe.
+- **Annahmen von Claude, von Jakob nicht ausdrücklich bestätigt:** 5 NAGOLD
+  je Einheit wie in WorkbenchLab (dort 21 Einheiten = 105, hier 27 = 135);
+  dieselben fünf Vorauswahl-Anlässe; Anzeige nur auf der Startseite.
 
 ### A1 Wo der Stand liegt
 

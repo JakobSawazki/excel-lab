@@ -1,11 +1,19 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.20.10
+Projektversion: 0.21.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.21.0 (Claude, 11.10.2026, Auftrag Jakob: „NAGOLD im
+  Profil-Bereich wie in WorkbenchLab“):** neue Datei `nagold.js`
+  (`window.EXCEL_LAB_NAGOLD`), Tabellen-Dialog `#nagold-dialog` und Knopf
+  `#nagold-total` im Profil, Anzeige „n NAG“ im Profilknopf, automatische
+  Zeile beim Abschluss in `lesson-core.js`, Spalte NAGOLD in Klassenübersicht
+  und CSV, Feld im Lernnachweis. Einzelheiten und offene Punkte in
+  [`claude2codex.md`](claude2codex.md), A0zk.
 
 - **Veröffentlicht als 0.20.10 (Claude, 10.10.2026):** Klassenübersicht
   füllt die Fensterhöhe, Seitenfuß unten (`lehrkraft.css`). Lernseite,

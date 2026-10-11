@@ -3736,3 +3736,111 @@ html {
   .teacher-section { align-items: stretch; flex-direction: column; gap: 1.2rem; padding: 1.4rem; }
 }
 @media print { .teacher-section { display: none; } }
+
+/* NAGOLD (0.21.0, wie in WorkbenchLab): Goldton, Anzeige im Profil, Tabelle. */
+:root { --nagold: #f0c45c; --nagold-deep: #b98312; }
+[data-theme="light"] { --nagold: #8a5d00; --nagold-deep: #b98312; }
+.profile-nagold { color: var(--nagold); font-weight: 800; letter-spacing: .02em; }
+.nagold-total {
+  display: flex;
+  width: 100%;
+  margin-top: .75rem;
+  align-items: center;
+  gap: .7rem;
+  padding: .8rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--nagold-deep) 62%, var(--line-strong));
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 9%, transparent), transparent 46%),
+    linear-gradient(120deg, color-mix(in srgb, var(--nagold-deep) 26%, var(--surface-2)), color-mix(in srgb, var(--nagold-deep) 8%, var(--surface)) 64%);
+  box-shadow: inset 0 1px 0 var(--metal-hairline), 0 8px 22px var(--metal-shadow);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+.nagold-total:hover:not(:disabled) { border-color: var(--nagold); transform: translateY(-1px); box-shadow: inset 0 1px 0 var(--metal-hairline), 0 12px 26px var(--metal-shadow), 0 0 20px color-mix(in srgb, var(--nagold-deep) 34%, transparent); }
+.nagold-total:focus-visible { outline: 2px solid var(--nagold); outline-offset: 3px; }
+.nagold-total:disabled { opacity: .55; cursor: not-allowed; }
+.nagold-total[hidden] { display: none; }
+.nagold-total strong { color: var(--nagold); font-size: 1.05rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nagold-total-hint { margin-left: auto; color: var(--text-soft); font-size: .78rem; text-align: right; }
+.nagold-coin {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border: 1px solid color-mix(in srgb, #5a3c00 55%, var(--nagold-deep));
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #fff3c4 0 12%, #f3cd68 34%, #c38a17 72%, #8f6209 100%);
+  box-shadow: inset 0 0 0 3px color-mix(in srgb, #fff 20%, transparent), 0 2px 6px rgba(0, 0, 0, .35);
+}
+.nagold-dialog { width: min(920px, calc(100vw - 2rem)); max-width: none; }
+.nagold-dialog h2 { color: var(--nagold); letter-spacing: .04em; }
+.nagold-intro { max-width: 62ch; color: var(--text-soft); font-size: .88rem; }
+.nagold-table-wrap { max-height: min(52vh, 460px); margin-top: 1rem; overflow: auto; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--surface); }
+.nagold-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.nagold-table th, .nagold-table td { padding: .6rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+.nagold-table thead th { position: sticky; top: 0; z-index: 1; background: var(--surface-2); color: var(--text-soft); font-size: .72rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.nagold-table tbody tr:last-child td { border-bottom: 0; }
+.nagold-table tbody tr:hover { background: color-mix(in srgb, var(--nagold-deep) 7%, transparent); }
+.nagold-table tr.is-editing { background: color-mix(in srgb, var(--nagold-deep) 10%, transparent); }
+.nagold-table td:nth-child(1), .nagold-table td:nth-child(2) { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.nagold-table .nagold-points { color: var(--nagold); font-weight: 800; font-variant-numeric: tabular-nums; }
+.nagold-table input, .nagold-table select {
+  width: 100%;
+  min-height: 40px;
+  padding: .4rem .55rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font: inherit;
+}
+.nagold-table select { margin-bottom: .35rem; }
+.nagold-table input[type="number"] { width: 4.6rem; }
+.nagold-table input:focus-visible, .nagold-table select:focus-visible { outline: 2px solid var(--nagold); outline-offset: 1px; }
+.nagold-row-actions { width: 1%; white-space: nowrap; }
+.nagold-icon-button {
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  margin-left: .3rem;
+  place-items: center;
+  border: 1px solid var(--metal-edge);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in srgb, #fff 20%, transparent), transparent 46%),
+    linear-gradient(160deg, color-mix(in srgb, var(--green) 26%, var(--surface-3)), color-mix(in srgb, var(--green) 8%, var(--surface)) 62%);
+  box-shadow: inset 0 1px 0 var(--metal-hairline), 0 4px 12px var(--metal-shadow);
+  color: var(--green);
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+.nagold-icon-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nagold-icon-button:hover:not(:disabled) { border-color: var(--green); transform: translateY(-1px); }
+.nagold-icon-button:focus-visible { outline: 2px solid var(--nagold); outline-offset: 2px; }
+.nagold-icon-button:disabled { opacity: .45; cursor: default; }
+.nagold-table-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: .9rem 0 .2rem; }
+.nagold-table-footer .nagold-icon-button { margin-left: 0; }
+#nagold-sum { color: var(--nagold); font-size: 1.05rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.nagold-error { min-height: 1.3rem; margin: .3rem 0 .7rem; color: var(--red, #ff8f8f); font-size: .84rem; font-weight: 700; }
+[data-theme="light"] .nagold-error { color: #a32020; }
+[data-theme="light"] .nagold-icon-button { background: radial-gradient(circle at 32% 26%, #fff, transparent 52%), linear-gradient(160deg, #f7faf8, color-mix(in srgb, var(--green) 14%, #e3ece6) 70%); }
+@media (max-width: 720px) {
+  .nagold-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .nagold-table, .nagold-table tbody, .nagold-table tr, .nagold-table td { display: block; width: 100%; }
+  .nagold-table tr { padding: .5rem 0; border-bottom: 1px solid var(--line-strong); }
+  .nagold-table tr:last-child { border-bottom: 0; }
+  .nagold-table td { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); align-items: center; gap: .6rem; padding: .3rem .8rem; border: 0; white-space: normal; }
+  .nagold-table td::before { content: attr(data-label); color: var(--text-soft); font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .nagold-table td.nagold-row-actions { display: flex; width: 100%; justify-content: flex-end; }
+  .nagold-table td.nagold-row-actions::before { content: none; }
+  .nagold-table select { margin-bottom: 0; }
+  .nagold-table td[data-label="Wofür"] { align-items: start; }
+  .nagold-table td[data-label="Wofür"] select { grid-column: 2; }
+  .nagold-table td[data-label="Wofür"] input { grid-column: 2; }
+  .nagold-total-hint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .nagold-total, .nagold-icon-button { transition: none; } .nagold-total:hover:not(:disabled), .nagold-icon-button:hover:not(:disabled) { transform: none; } }
+@media (forced-colors: active) { .nagold-total, .nagold-icon-button { border-color: ButtonText; background: ButtonFace; color: ButtonText; box-shadow: none; } .nagold-coin { display: none; } }

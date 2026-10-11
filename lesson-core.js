@@ -408,13 +408,18 @@
       if (!next.completed && !next.checks.every(Boolean)) { toast(`Hake zuerst alle ${checkWord} eigenen Arbeitsschritte ab.`); return; }
       if (!next.completed && !next.teacherChecked) { toast("Die Bestätigung durch die Lehrkraft fehlt noch."); return; }
       next.completed = !next.completed;
+      // Beim Abschluss kommt einmalig eine Zeile mit 5 NAGOLD in die Tabelle des Profils.
+      const nagold = window.EXCEL_LAB_NAGOLD;
+      const now = new Date();
+      const nagoldAdded = Boolean(next.completed && !dev() && profile && nagold
+        && nagold.addLessonEntry(profile, lesson, nagold.today(now), nagold.clock(now)));
       const saved = save(next);
       render();
       if (!saved) return;
       if (next.completed) {
         toast(following
-          ? `${code} abgeschlossen: ${points} XP. ${following.code} ist freigeschaltet.`
-          : `${code} abgeschlossen: ${points} XP. Sichere nun deinen Lernstand.`);
+          ? `${code} abgeschlossen: ${points} XP${nagoldAdded ? ` und ${nagold.maxPoints} NAGOLD` : ""}. ${following.code} ist freigeschaltet.`
+          : `${code} abgeschlossen: ${points} XP${nagoldAdded ? ` und ${nagold.maxPoints} NAGOLD` : ""}. Sichere nun deinen Lernstand.`);
       } else {
         toast(following ? `${code} ist wieder offen. ${following.code} ist wieder gesperrt.` : `${code} ist wieder offen.`);
       }

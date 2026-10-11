@@ -300,7 +300,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.locator("#teacher-errors li").count(), 2);
         assert.match(await page.locator("#teacher-status").innerText(), /3 Personen aus 3 Klassen.*4 von 6 Dateien gelesen.*2 nicht lesbar/);
         const anna = page.locator("#teacher-table tbody tr", { hasText: "anna.bei" });
-        assert.deepEqual((await anna.locator("td.teacher-number").allInnerTexts()).map((text) => text.trim()), ["2/27", "1", "250"]);
+        assert.deepEqual((await anna.locator("td.teacher-number").allInnerTexts()).map((text) => text.trim()), ["2/27", "1", "250", "10"], "alte Datei ohne Tabelle: 5 NAGOLD je Abschluss");
         assert.equal(await anna.locator(".teacher-cell.is-done").count(), 2);
         assert.equal(await anna.locator(".teacher-cell.has-bonus").count(), 1);
         assert.equal(await anna.locator(".teacher-cell.is-progress").count(), 1);
@@ -314,6 +314,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.ok(csv.includes("\"anna.bei\";\"WGW EK1\""));
         assert.ok(csv.includes("\"'=1+1\""), "Formelzeichen entschärft");
         assert.ok(csv.includes("abgeschlossen + Bonus"));
+        assert.ok(csv.includes("\"XP\";\"NAGOLD\";"), "Spalte NAGOLD in der CSV");
         await page.locator("#teacher-clear").click();
         assert.equal(await page.locator("#teacher-table-section").isHidden(), true);
         assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0, "nichts gespeichert");
@@ -487,6 +488,93 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       }
     });
 
+    await check("NAGOLD: Tabelle im Profil, Abschluss bucht 5, Klassenübersicht und Lernnachweis", async () => {
+      // Alter Lernstand ohne Tabelle: L1.1 abgeschlossen, L1.2 fertig zum Abschließen.
+      const ready = { completed: false, teacherChecked: true, masteryPassed: true, checks: [true, true, true, true, true, true] };
+      const old = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "nag", profiles: [{ id: "nag", name: "nag.old", className: "WGW EK1",
+        progress: { "l1-1": { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] }, "l1-2": ready } }] });
+      const { context, page, errors } = await open(browser, "index.html", { state: old });
+      const stored = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].nagoldEntries, KEY);
+      try {
+        assert.equal((await page.locator("#profile-nagold").innerText()).trim(), "· 5 NAG", "alter Stand: 5 NAGOLD im Profilknopf");
+        await page.locator("#profile-button").click();
+        assert.equal(await page.locator("#nagold-total-value").innerText(), "5 NAGOLD");
+        await page.locator("#nagold-total").click();
+        assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), true);
+        assert.equal(await page.locator("#nagold-rows tr").count(), 1);
+        assert.match(await page.locator("#nagold-rows tr").first().innerText(), /Nicht erfasst[\s\S]*L1\.1 · /, "kein erfundenes Datum");
+
+        // Neue Zeile: heutiges Datum, Uhrzeit, Vorauswahl, Grenzen 1 bis 5.
+        await page.locator("#nagold-add-button").click();
+        const row = page.locator("#nagold-rows tr").nth(1);
+        assert.match(await row.locator('[data-nagold-field="date"]').inputValue(), /^\d{4}-\d{2}-\d{2}$/);
+        assert.match(await row.locator('[data-nagold-field="time"]').inputValue(), /^\d{2}:\d{2}$/);
+        await page.locator("#nagold-save-button").click();
+        assert.match(await page.locator("#nagold-error").innerText(), /Anlass/, "leerer Anlass wird abgelehnt");
+        await row.locator("[data-nagold-preset]").selectOption("Präsentation");
+        assert.equal(await row.locator('[data-nagold-field="purpose"]').inputValue(), "Präsentation");
+        await row.locator('[data-nagold-field="points"]').fill("6");
+        await page.locator("#nagold-save-button").click();
+        assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), true, "6 Punkte werden nicht gespeichert");
+        await row.locator('[data-nagold-field="points"]').fill("3");
+        assert.equal(await page.locator("#nagold-sum").innerText(), "8 NAGOLD gesamt");
+
+        // Abbrechen verwirft den Entwurf.
+        await page.locator("#nagold-dialog [data-close-dialog]").click();
+        assert.equal(await page.evaluate((key) => "nagoldEntries" in JSON.parse(localStorage.getItem(key)).profiles[0], KEY), false, "ohne Speichern nichts geschrieben");
+        await page.locator("#nagold-total").click();
+        assert.equal(await page.locator("#nagold-rows tr").count(), 1, "Entwurf verworfen");
+
+        // Speichern, bearbeiten per Doppelklick, löschen.
+        await page.locator("#nagold-add-button").click();
+        await page.locator('#nagold-rows tr:last-child [data-nagold-field="purpose"]').fill("<b>Mitarbeit</b>");
+        await page.locator('#nagold-rows tr:last-child [data-nagold-field="points"]').fill("2");
+        await page.locator("#nagold-save-button").click();
+        assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), false);
+        assert.deepEqual((await stored()).map((entry) => [entry.purpose.slice(0, 4), entry.points]), [["L1.1", 5], ["<b>M", 2]]);
+        assert.equal(await page.locator("#nagold-total-value").innerText(), "7 NAGOLD");
+        await page.locator("#nagold-total").click();
+        assert.equal(await page.locator("#nagold-rows b").count(), 0, "Text wird nicht als HTML eingefügt");
+        await page.locator("#nagold-rows tr").nth(1).locator("td").nth(2).dblclick();
+        await page.locator('#nagold-rows tr:nth-child(2) [data-nagold-field="points"]').fill("4");
+        await page.locator('[data-nagold-remove="0"]').click();
+        await page.locator("#nagold-save-button").click();
+        assert.deepEqual((await stored()).map((entry) => entry.points), [4], "gelöschte Zeile bleibt gelöscht, auch die automatische");
+        assert.deepEqual(errors, []);
+
+        // Abschluss von L1.2 bucht genau einmal 5 NAGOLD mit Datum und Uhrzeit.
+        await page.goto(base + "l1-2.html");
+        await page.locator("#page-complete-button").click();
+        assert.match(await page.locator("#toast-region").innerText(), /100 XP und 5 NAGOLD/);
+        let entries = await stored();
+        assert.deepEqual(entries.map((entry) => [entry.lessonId || "", entry.points]), [["", 4], ["l1-2", 5]]);
+        assert.match(entries[1].date, /^\d{4}-\d{2}-\d{2}$/);
+        assert.match(entries[1].time, /^\d{2}:\d{2}$/);
+        await page.locator("#page-complete-button").click();
+        await page.locator("#page-complete-button").click();
+        assert.equal((await stored()).length, 2, "wieder öffnen und erneut abschließen bucht nicht doppelt");
+        await page.reload();
+        assert.equal((await stored()).length, 2, "Neuladen bucht nichts");
+
+        // Lernnachweis und Speicherdatei tragen die Summe.
+        await page.goto(base + "nachweis.html");
+        assert.equal(await page.locator("#certificate-nagold").innerText(), "9");
+        await page.goto(base + "index.html");
+        await page.locator("#profile-button").click();
+        const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#export-button").click()]);
+        const payload = JSON.parse(fs.readFileSync(await download.path(), "utf8"));
+        assert.equal(payload.exportedBy.nagold, 9);
+        assert.equal(payload.profile.nagoldEntries.length, 2);
+
+        // Klassenübersicht zeigt die Summe aus der Datei.
+        await page.goto(base + "lehrkraft.html");
+        await page.setInputFiles("#teacher-files", [{ name: "nag.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(payload)) }]);
+        await page.locator("#teacher-table tbody tr").first().waitFor();
+        assert.equal(await page.locator("#teacher-table tbody .teacher-nagold").first().innerText(), "9");
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -499,5 +587,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und achtzehn Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und neunzehn Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

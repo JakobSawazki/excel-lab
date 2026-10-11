@@ -19,13 +19,14 @@
   }
 
   const { stages, lessons, formulas } = content;
+  const nagold = window.EXCEL_LAB_NAGOLD || null;
   const glossary = Array.isArray(content.glossary) ? content.glossary : [];
   const GLOSSARY_FILTER = "Glossar";
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.20.10";
+  const APP_VERSION = "0.21.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -143,7 +144,9 @@
       className: typeof profile?.className === "string" ? profile.className.trim().toLocaleUpperCase("de").slice(0, 32) : "",
       createdAt: typeof profile?.createdAt === "string" ? profile.createdAt : previous?.createdAt || new Date().toISOString(),
       updatedAt: typeof profile?.updatedAt === "string" ? profile.updatedAt : previous?.updatedAt || new Date().toISOString(),
-      progress: safeProgress
+      progress: safeProgress,
+      // NAGOLD-Tabelle: alte Lernstände erhalten je abgeschlossener Einheit eine Zeile.
+      nagoldEntries: nagold ? nagold.entriesFor(profile) : Array.isArray(profile?.nagoldEntries) ? profile.nagoldEntries : []
     };
   }
 
@@ -319,6 +322,10 @@
     const profile = currentProfile();
     $("#profile-name").textContent = profile?.name || "Anmelden";
     $("#profile-avatar").textContent = initials(profile?.name);
+    const nagoldLabel = $("#profile-nagold");
+    nagoldLabel.hidden = !profile || !nagold;
+    nagoldLabel.textContent = ` · ${nagoldTotal(profile)} NAG`;
+    $("#profile-button").title = profile && nagold ? `${profile.name} · ${progressStats().points} XP · ${nagoldTotal(profile)} NAGOLD · Profil öffnen` : "Profil öffnen";
   }
 
   function renderNavMenu() {
@@ -501,12 +508,15 @@
         return `
           <div class="profile-list-item ${profile.id === current?.id ? "is-current" : ""}">
             <span class="profile-avatar">${escapeHtml(initials(profile.name))}</span>
-            <div><strong>${escapeHtml(profile.name)}</strong><small>${escapeHtml(profile.className || "ohne Klasse")} · ${points} XP · ${completed}/${lessons.length} erledigt</small><small>Browser-ID ${escapeHtml(deviceIdentity.id)}</small></div>
+            <div><strong>${escapeHtml(profile.name)}</strong><small>${escapeHtml(profile.className || "ohne Klasse")} · ${points} XP · ${nagoldTotal(profile)} NAGOLD · ${completed}/${lessons.length} erledigt</small><small>Browser-ID ${escapeHtml(deviceIdentity.id)}</small></div>
             <small>Aktiv</small>
           </div>`;
       }).join("")
       : "<p>Noch kein lokales Profil vorhanden.</p>";
     $("#export-button").disabled = !current;
+    $("#nagold-total").disabled = !current;
+    $("#nagold-total-value").textContent = `${nagoldTotal(current)} NAGOLD`;
+    $("#nagold-total").setAttribute("aria-label", `${nagoldTotal(current)} NAGOLD: Einträge öffnen`);
     $("#profile-edit-form").hidden = !current;
     $("#profile-edit-name").value = current?.name || "";
     $("#profile-edit-class").value = current?.className || "";
@@ -565,7 +575,8 @@
       exportedBy: {
         accountName: profile.name,
         className: profile.className,
-        points: progressStats().points
+        points: progressStats().points,
+        nagold: nagoldTotal(profile)
       },
       device: {
         id: deviceIdentity.id,
@@ -677,6 +688,7 @@
     const profile = currentProfile();
     if (!profile || !window.confirm(`Fortschritt von „${profile.name}“ wirklich zurücksetzen?`)) return;
     profile.progress = {};
+    profile.nagoldEntries = [];
     profile.updatedAt = new Date().toISOString();
     saveState();
     renderAll();
@@ -720,6 +732,133 @@
       textarea.remove();
     }
     showToast("Formel kopiert.");
+  }
+
+  // NAGOLD-Tabelle im Profil (wie in WorkbenchLab): Entwurf bearbeiten, erst
+  // „Speichern“ übernimmt ihn. Schließen verwirft die Änderungen.
+  let nagoldDraft = [];
+  let nagoldEditing = new Set();
+  const NAGOLD_ICONS = {
+    edit: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg>',
+    remove: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>'
+  };
+
+  function nagoldTotal(profile = currentProfile()) {
+    return nagold && profile ? nagold.total(profile) : 0;
+  }
+
+  function updateNagoldSum() {
+    $("#nagold-sum").textContent = `${nagold.normalizeEntries(nagoldDraft).reduce((sum, row) => sum + row.points, 0)} NAGOLD gesamt`;
+  }
+
+  function renderNagoldRows() {
+    const presets = nagold.presetOptions();
+    const formatDate = (value) => new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T12:00:00Z`));
+    $("#nagold-rows").innerHTML = nagoldDraft.map((row, index) => {
+      const editing = nagoldEditing.has(index);
+      const label = `Zeile ${index + 1}`;
+      return `<tr data-nagold-index="${index}" class="${editing ? "is-editing" : ""}">
+        <td data-label="Datum">${editing ? `<input type="date" data-nagold-field="date" aria-label="Datum, ${label}" value="${escapeHtml(row.date)}" ${row.allowUnknownDate ? "" : "required"}>` : escapeHtml(row.date ? formatDate(row.date) : "Nicht erfasst")}</td>
+        <td data-label="Uhrzeit">${editing ? `<input type="time" data-nagold-field="time" aria-label="Uhrzeit, ${label}" value="${escapeHtml(row.time)}" ${row.allowUnknownTime ? "" : "required"} step="60">` : escapeHtml(row.time || "Nicht erfasst")}</td>
+        <td data-label="Wofür">${editing ? `<select data-nagold-preset aria-label="Anlass auswählen, ${label}"><option value="">Eigener Anlass</option>${presets.map((preset) => `<option value="${escapeHtml(preset)}" ${preset === row.purpose ? "selected" : ""}>${escapeHtml(preset)}</option>`).join("")}</select><input type="text" data-nagold-field="purpose" aria-label="Wofür, ${label}" value="${escapeHtml(row.purpose)}" maxlength="160" placeholder="Wofür?" required>` : escapeHtml(row.purpose)}</td>
+        <td data-label="NAGOLD" class="nagold-points">${editing ? `<input type="number" data-nagold-field="points" aria-label="NAGOLD, ${label}" min="1" max="${nagold.maxPoints}" step="1" value="${Number.isFinite(row.points) ? row.points : ""}" inputmode="numeric" required>` : row.points}</td>
+        <td class="nagold-row-actions"><button class="nagold-icon-button" type="button" data-nagold-edit="${index}" title="Eintrag bearbeiten" aria-label="${label} bearbeiten" ${editing ? "disabled" : ""}>${NAGOLD_ICONS.edit}</button><button class="nagold-icon-button" type="button" data-nagold-remove="${index}" title="Zeile löschen" aria-label="${label} löschen">${NAGOLD_ICONS.remove}</button></td>
+      </tr>`;
+    }).join("");
+    $("#nagold-add-button").disabled = nagoldDraft.filter((row) => !row.lessonId).length >= nagold.maxManualEntries;
+    updateNagoldSum();
+  }
+
+  function addNagoldRow() {
+    if (nagoldDraft.filter((row) => !row.lessonId).length >= nagold.maxManualEntries) return;
+    const now = new Date();
+    nagoldDraft.push({ date: nagold.today(now), time: nagold.clock(now), purpose: "", points: nagold.maxPoints });
+    nagoldEditing.add(nagoldDraft.length - 1);
+    renderNagoldRows();
+    $('#nagold-rows tr:last-child [data-nagold-field="purpose"]').focus();
+  }
+
+  function editNagoldRow(index) {
+    if (!nagoldDraft[index] || nagoldEditing.has(index)) return;
+    nagoldEditing.add(index);
+    renderNagoldRows();
+    $(`[data-nagold-index="${index}"] [data-nagold-field="purpose"]`).focus();
+  }
+
+  function openNagoldDialog() {
+    const profile = currentProfile();
+    if (!nagold || !profile) return;
+    nagoldDraft = nagold.entriesFor(profile).map((row) => ({ ...row, allowUnknownDate: !row.date, allowUnknownTime: !row.time }));
+    nagoldEditing = new Set();
+    $("#nagold-error").textContent = "";
+    renderNagoldRows();
+    $("#nagold-dialog").showModal();
+    if (!nagoldDraft.length) addNagoldRow();
+  }
+
+  function readNagoldInput(event) {
+    const field = event.target.closest("[data-nagold-field], [data-nagold-preset]");
+    if (!field) return;
+    const row = field.closest("[data-nagold-index]");
+    const draft = nagoldDraft[Number(row.dataset.nagoldIndex)];
+    if (field.hasAttribute("data-nagold-preset")) {
+      if (!field.value) return;
+      draft.purpose = field.value;
+      row.querySelector('[data-nagold-field="purpose"]').value = field.value;
+    } else {
+      draft[field.dataset.nagoldField] = field.dataset.nagoldField === "points" ? field.valueAsNumber : field.value;
+      if (field.dataset.nagoldField === "purpose") row.querySelector("[data-nagold-preset]").value = nagold.presetOptions().includes(field.value) ? field.value : "";
+    }
+    $("#nagold-error").textContent = "";
+    updateNagoldSum();
+  }
+
+  function saveNagoldDraft(event) {
+    event.preventDefault();
+    const profile = currentProfile();
+    if (!profile) return;
+    const entries = nagold.normalizeEntries(nagoldDraft);
+    if (entries.length !== nagoldDraft.length) {
+      $("#nagold-error").textContent = `Bitte für jede Zeile ein Datum, einen Anlass und 1 bis ${nagold.maxPoints} ganze NAGOLD eintragen.`;
+      return;
+    }
+    profile.nagoldEntries = entries;
+    profile.updatedAt = new Date().toISOString();
+    saveState();
+    renderAll();
+    $("#nagold-dialog").close();
+    showToast("NAGOLD gespeichert.");
+  }
+
+  function bindNagoldEvents() {
+    if (!nagold) { $("#nagold-total").hidden = true; return; }
+    $("#nagold-total").addEventListener("click", openNagoldDialog);
+    $("#nagold-add-button").addEventListener("click", addNagoldRow);
+    $("#nagold-dialog").addEventListener("close", () => {
+      nagoldDraft = [];
+      nagoldEditing.clear();
+      $("#nagold-rows").replaceChildren();
+      if ($("#manager-dialog").open) $("#nagold-total").focus();
+    });
+    $("#nagold-rows").addEventListener("dblclick", (event) => {
+      if (event.target.closest("button, input, select")) return;
+      const row = event.target.closest("[data-nagold-index]");
+      if (row) editNagoldRow(Number(row.dataset.nagoldIndex));
+    });
+    $("#nagold-rows").addEventListener("click", (event) => {
+      const edit = event.target.closest("[data-nagold-edit]");
+      if (edit) editNagoldRow(Number(edit.dataset.nagoldEdit));
+      const remove = event.target.closest("[data-nagold-remove]");
+      if (!remove) return;
+      const index = Number(remove.dataset.nagoldRemove);
+      nagoldDraft.splice(index, 1);
+      nagoldEditing = new Set([...nagoldEditing].filter((value) => value !== index).map((value) => (value > index ? value - 1 : value)));
+      renderNagoldRows();
+      ($(`[data-nagold-remove="${Math.min(index, nagoldDraft.length - 1)}"]`) || $("#nagold-add-button")).focus();
+    });
+    $("#nagold-rows").addEventListener("input", readNagoldInput);
+    $("#nagold-rows").addEventListener("change", readNagoldInput);
+    $("#nagold-form").addEventListener("submit", saveNagoldDraft);
   }
 
   function showToast(message, duration = 3200) {
@@ -807,6 +946,7 @@
       $("#manager-dialog").showModal();
     });
     $("#export-button").addEventListener("click", exportProgress);
+    bindNagoldEvents();
     $("#import-button").addEventListener("click", loadProgressFile);
     $("#import-file").addEventListener("change", (event) => importProgress(event.target.files?.[0]));
     $("#profile-edit-form").addEventListener("change", editCurrentProfile);

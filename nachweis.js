@@ -49,6 +49,7 @@
     $("#certificate-lessons").textContent = `${completed} von ${lessons.length}`;
     $("#certificate-bonus").textContent = `${bonusSolved} von ${bonusAvailable}`;
     $("#certificate-xp").textContent = (completed * 100 + bonusSolved * BONUS_XP).toLocaleString("de-DE");
+    $("#certificate-nagold").textContent = (window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.total(profile) : 0).toLocaleString("de-DE");
 
     const container = $("#certificate-stages");
     container.replaceChildren();

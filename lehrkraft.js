@@ -59,7 +59,9 @@
       progress,
       completedCount,
       bonusCount,
-      xp: completedCount * LESSON_XP + bonusCount * BONUS_XP
+      xp: completedCount * LESSON_XP + bonusCount * BONUS_XP,
+      // Summe der NAGOLD-Tabelle aus der Datei (Selbstauskunft der Lernenden)
+      nagold: window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.total(payload.profile) : 0
     };
   }
 
@@ -100,7 +102,7 @@
     table.replaceChildren();
     const head = document.createElement("thead");
     const groupRow = document.createElement("tr");
-    for (const [text, span] of [["Person", 2], ["Stand", 3]]) {
+    for (const [text, span] of [["Person", 2], ["Stand", 4]]) {
       const cell = node("th", "teacher-group", text);
       cell.colSpan = span;
       cell.scope = "colgroup";
@@ -114,7 +116,7 @@
       groupRow.append(cell);
     }
     const labelRow = document.createElement("tr");
-    for (const text of ["Kürzel", "Klasse", "Einheiten", "Bonus", "XP"]) {
+    for (const text of ["Kürzel", "Klasse", "Einheiten", "Bonus", "XP", "NAGOLD"]) {
       const cell = node("th", "", text);
       cell.scope = "col";
       labelRow.append(cell);
@@ -136,7 +138,8 @@
       row.append(nameCell, node("td", "", student.className || "–"),
         node("td", "teacher-number", `${student.completedCount}/${lessons.length}`),
         node("td", "teacher-number", String(student.bonusCount)),
-        node("td", "teacher-number teacher-xp", String(student.xp)));
+        node("td", "teacher-number teacher-xp", String(student.xp)),
+        node("td", "teacher-number teacher-nagold", String(student.nagold)));
       for (const lesson of lessons) {
         const entry = student.progress[lesson.id];
         const status = STATUS[entry.status];
@@ -155,7 +158,7 @@
     const footRow = document.createElement("tr");
     const footLabel = node("th", "", "Abgeschlossen von");
     footLabel.scope = "row";
-    footLabel.colSpan = 5;
+    footLabel.colSpan = 6;
     footRow.append(footLabel);
     for (const lesson of lessons) {
       const count = list.filter((student) => student.progress[lesson.id].status === "done").length;
@@ -197,9 +200,9 @@
     if (!list.length) return;
     // Zellen in Anführungszeichen; führende Formelzeichen entschärfen, damit Excel nichts ausführt.
     const cell = (value) => `"${String(value).replace(/^([=+\-@])/, "'$1").replace(/"/g, '""')}"`;
-    const header = ["Kürzel", "Klasse", "Gesichert am", "Einheiten", "Bonus", "XP", ...lessons.map((lesson) => lesson.code)];
+    const header = ["Kürzel", "Klasse", "Gesichert am", "Einheiten", "Bonus", "XP", "NAGOLD", ...lessons.map((lesson) => lesson.code)];
     const rows = list.map((student) => [
-      student.name, student.className, formatDate(student.exportedAt), student.completedCount, student.bonusCount, student.xp,
+      student.name, student.className, formatDate(student.exportedAt), student.completedCount, student.bonusCount, student.xp, student.nagold,
       ...lessons.map((lesson) => {
         const entry = student.progress[lesson.id];
         return `${STATUS[entry.status].label}${entry.bonus === 1 ? " + Bonus" : entry.bonus > 1 ? ` + ${entry.bonus} Bonus` : ""}`;
