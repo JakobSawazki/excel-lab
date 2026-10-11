@@ -28,6 +28,11 @@
     }
   }
 
+  // Das X führt zurück zur Startseite und öffnet dort wieder das Profilfenster.
+  $("#certificate-close")?.addEventListener("click", () => {
+    try { sessionStorage.setItem("excelLab.openProfile", "1"); } catch { /* Dann öffnet sich nur die Startseite. */ }
+  });
+
   function render() {
     const profile = currentProfile();
     $("#certificate").hidden = !profile;

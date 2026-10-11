@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.22.2 – 2026-10-11
+
+**Profilfenster neu geordnet (Wünsche Jakob).** Oben die Profilkarte, darunter Kürzel und Klasse nebeneinander, dann XP und NAGOLD als zwei gleich hohe Felder. Im NAGOLD-Feld zeigt ein goldener Stift, dass sich die Einträge bearbeiten lassen. Der Lernnachweis hat oben rechts ein X, das zurück in die Profil-Übersicht führt.
+
 ## 0.22.1 – 2026-10-11
 
 **Profilfenster schlanker (Wünsche Jakob).** Breiter und zweispaltig, dadurch ohne Rollbalken. Im XP-Abschnitt stehen nur noch XP, Level, Balken und „Noch n XP bis Level n“; Herkunft der XP, Level-Regel und der Hinweis auf die nächsten NAGOLD erscheinen als Tooltip. Die Profilkarte zeigt nur Kürzel, Klasse und Fortschritt, die Browser-ID entfällt.

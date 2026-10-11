@@ -26,7 +26,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.22.1";
+  const APP_VERSION = "0.22.2";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -1155,9 +1155,16 @@
     renderAll();
     syncRouteFromHash();
     if (unreadableState !== null) {
-      showToast("Der gespeicherte Lernstand war nicht lesbar und bleibt als Rettungskopie im Browser erhalten. Lade deine letzte Speicherdatei über Profil › Laden.", 20000);
+      showToast("Der gespeicherte Lernstand war nicht lesbar und bleibt als Rettungskopie im Browser erhalten. Lade deine letzte Speicherdatei über das Disketten-Symbol › Laden.", 20000);
     }
     if (!currentProfile() && !window.EXCEL_LAB_DEV?.enabled) window.setTimeout(openProfileDialog, 250);
+    // Rückweg aus dem Lernnachweis: Das X dort führt zurück in die Profil-Übersicht.
+    try {
+      if (sessionStorage.getItem("excelLab.openProfile") === "1") {
+        sessionStorage.removeItem("excelLab.openProfile");
+        if (currentProfile()) { renderProfileManager(); $("#manager-dialog").showModal(); }
+      }
+    } catch { /* Ohne Sitzungsspeicher öffnet sich die Startseite ohne Profilfenster. */ }
   }
 
   init();

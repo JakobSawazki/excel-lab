@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-11 · Release 0.22.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-11 · Release 0.22.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -807,6 +807,32 @@ simple.“ Bitte bei künftigen Fenstern für Lernende beachten.
   (ein Feld ohne `select`, Filtern und Auswählen, Meldung, Abzug in der Summe,
   Tooltips erst beim Darüberfahren, Profilkarte ohne Zusatzangaben,
   Profilfenster ohne Rollbalken).
+
+### A0zo Release 0.22.2: Profilfenster neu geordnet, X im Lernnachweis
+
+Jakob (11. Oktober, mit zwei Bildschirmfotos und Skizze): „Das Profil soll
+oben angezeigt werden. Die Bereiche für XP und NAGOLD sollen möglichst gleiche
+Höhe haben. Wenn man auf Lernnachweis klickt, kann man nicht wieder zurück …
+oben rechts ein X.“ Danach: „Statt rechts ‚Einträge‘ einfach ein Stiftsymbol
+… in derselben goldenen Farbe wie NAGOLD.“
+
+- `index.html`, `#manager-dialog`: Reihenfolge jetzt Titel, `#profile-list`,
+  `#profile-edit-form` (zwei Felder nebeneinander), `.manager-panels` mit
+  `#xp-slot` und `#nagold-total`, `#certificate-link`. Die Hüllen
+  `.manager-grid`/`.manager-main`/`.manager-side` aus 0.22.1 und die
+  Unterzeile sind entfernt. `xp.js` hängt `#xp-panel` in `#xp-slot`.
+- `#nagold-total` ist ein Feld mit Titel „Deine NAGOLD“, Münze, Summe und
+  `.nagold-edit-icon` (goldener Stift). Beide Felder strecken sich im Raster
+  auf dieselbe Höhe; gemessen je 156 px bei 1830, 1500 und 1280 px Breite.
+  Unter 720 px stehen sie untereinander.
+- `nachweis.html`: Link `#certificate-close` (X oben rechts in der Karte).
+  `nachweis.js` setzt beim Klick `sessionStorage["excelLab.openProfile"]`;
+  `init()` in `app.js` liest und löscht den Merker und öffnet das
+  Profilfenster. Im Druck ist das X ausgeblendet.
+- Nebenbei: Die Meldung zur Rettungskopie verweist auf das Disketten-Symbol
+  statt auf „Profil › Laden“.
+- Tests in `site.browser.cjs`: Reihenfolge und gleiche Höhe der Felder,
+  Rückweg aus dem Lernnachweis, Merker verbraucht.
 
 ### A1 Wo der Stand liegt
 

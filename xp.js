@@ -48,7 +48,10 @@
     panel.id = "xp-panel";
     panel.setAttribute("aria-labelledby", "xp-title");
     panel.innerHTML = `<h3 id="xp-title">Deine XP</h3>${panelMarkup(false)}`;
-    managerList.after(panel);
+    // Der Abschnitt sitzt neben dem NAGOLD-Feld; ohne den Platzhalter unter der Profilkarte.
+    const slot = document.querySelector("#manager-dialog #xp-slot");
+    if (slot) slot.append(panel);
+    else managerList.after(panel);
   } else {
     // Lernseiten: eigenes Fenster hinter dem Profilknopf.
     dialog = document.createElement("dialog");

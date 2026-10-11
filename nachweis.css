@@ -56,3 +56,8 @@
 #certificate-nagold { color: var(--nagold); }
 @media (max-width: 900px) and (min-width: 621px) { .certificate-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media print { #certificate-nagold { color: inherit; } }
+/* X oben rechts: zurück zur Profil-Übersicht (0.22.2, Wunsch Jakob). */
+.certificate { position: relative; }
+.certificate-close { position: absolute; top: 1.2rem; right: 1.2rem; text-decoration: none; }
+.certificate-head { padding-right: 3.4rem; }
+@media print { .certificate-close { display: none !important; } }

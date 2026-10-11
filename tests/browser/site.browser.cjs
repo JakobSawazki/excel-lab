@@ -570,7 +570,12 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         // Lernnachweis und Speicherdatei tragen die Summe.
         await page.goto(base + "nachweis.html");
         assert.equal(await page.locator("#certificate-nagold").innerText(), "9");
-        await page.goto(base + "index.html");
+        // Das X im Lernnachweis führt zurück in die Profil-Übersicht.
+        await page.locator("#certificate-close").click();
+        await page.waitForURL(/index\.html/);
+        await page.locator("#manager-dialog[open]").waitFor();
+        assert.equal(await page.evaluate(() => sessionStorage.getItem("excelLab.openProfile")), null, "Merker verbraucht");
+        await page.locator("#manager-dialog [data-close-dialog]").click();
         // Disketten-Symbol direkt links vom Profil; Speichern und Laden nur noch dort.
         assert.equal(await page.evaluate(() => document.querySelector("#profile-button").previousElementSibling.id), "save-button");
         await page.locator("#save-button").click();
@@ -613,6 +618,10 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.locator("#xp-breakdown").innerText(), "2 von 27 Einheiten: 200 XP · 0 von 54 Bonusaufgaben: 0 XP");
         assert.equal(await page.locator("#manager-dialog .xp-rule").count(), 0);
         assert.doesNotMatch(await page.locator("#profile-list").innerText(), /Browser-ID|XP|NAGOLD|Aktiv/, "Profilkarte nur mit Kürzel, Klasse, Fortschritt");
+        // Profilkarte oben, darunter XP und NAGOLD als gleich hohe Felder nebeneinander.
+        const layout = await page.evaluate(() => { const r = (selector) => document.querySelector(selector).getBoundingClientRect(); return { card: r("#profile-list"), form: r("#profile-edit-form"), xp: r("#xp-panel"), nagold: r("#nagold-total") }; });
+        assert.ok(layout.card.bottom <= layout.form.top && layout.form.bottom <= layout.xp.top, "Reihenfolge: Profil, Felder, XP/NAGOLD");
+        assert.ok(Math.abs(layout.xp.height - layout.nagold.height) <= 1 && Math.abs(layout.xp.top - layout.nagold.top) <= 1, "XP und NAGOLD gleich hoch");
         const dialogBox = await page.locator("#manager-dialog").evaluate((dialog) => ({ scroll: dialog.scrollHeight, client: dialog.clientHeight }));
         assert.ok(dialogBox.scroll <= dialogBox.client + 1, "Profilfenster ohne Rollbalken bei 900 px Höhe");
         assert.equal(await page.locator("#profile-button .profile-label").isHidden(), true, "Text „Profil“ entfällt mit Profil");

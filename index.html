@@ -13,21 +13,21 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.22.1"></script>
-    <link rel="stylesheet" href="styles.css?v=0.22.1">
-    <link rel="stylesheet" href="home.css?v=0.22.1">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.22.1">
-    <script src="deployment.js?v=0.22.1" defer></script>
-    <script src="developer-mode.js?v=0.22.1" defer></script>
-    <script src="content.js?v=0.22.1" defer></script>
-    <script src="nagold.js?v=0.22.1" defer></script>
-    <script src="bonus-tasks.js?v=0.22.1" defer></script>
-    <script src="nav-menu.js?v=0.22.1" defer></script>
-    <script src="app.js?v=0.22.1" defer></script>
-    <script src="xp.js?v=0.22.1" defer></script>
-    <script src="options.js?v=0.22.1" defer></script>
-    <script src="organizer.js?v=0.22.1" defer></script>
-    <script src="lesson-workspace.js?v=0.22.1" defer></script>
+    <script src="theme-boot.js?v=0.22.2"></script>
+    <link rel="stylesheet" href="styles.css?v=0.22.2">
+    <link rel="stylesheet" href="home.css?v=0.22.2">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.22.2">
+    <script src="deployment.js?v=0.22.2" defer></script>
+    <script src="developer-mode.js?v=0.22.2" defer></script>
+    <script src="content.js?v=0.22.2" defer></script>
+    <script src="nagold.js?v=0.22.2" defer></script>
+    <script src="bonus-tasks.js?v=0.22.2" defer></script>
+    <script src="nav-menu.js?v=0.22.2" defer></script>
+    <script src="app.js?v=0.22.2" defer></script>
+    <script src="xp.js?v=0.22.2" defer></script>
+    <script src="options.js?v=0.22.2" defer></script>
+    <script src="organizer.js?v=0.22.2" defer></script>
+    <script src="lesson-workspace.js?v=0.22.2" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -458,21 +458,17 @@
       <div class="dialog-content">
         <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
         <h2 id="manager-dialog-title">Profil</h2>
-        <p>Dein lokales Lernprofil</p>
-        <div class="manager-grid">
-        <div class="manager-main">
         <div class="profile-list" id="profile-list"></div>
-        </div>
-        <div class="manager-side">
         <form id="profile-edit-form" class="profile-edit-form" hidden>
           <label><span>Kürzel</span><input id="profile-edit-name" type="text" maxlength="7" pattern="[a-zäöüß]{3}\.[a-zäöüß]{3}" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="z. B. jak.saw"></label>
           <label><span>Klassenbezeichnung</span><input id="profile-edit-class" type="text" minlength="3" maxlength="32" required autocapitalize="characters" spellcheck="false" placeholder="z. B. WGW EK1"></label>
         </form>
         <button class="button button-secondary" id="developer-mode-button" type="button" hidden aria-pressed="false">Entwickler-Modus</button>
-        <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-total-hint">Einträge</span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
+        <div class="manager-panels">
+          <div class="manager-panel-slot" id="xp-slot"></div>
+          <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
+        </div>
         <a class="button button-secondary" id="certificate-link" href="nachweis.html">Lernnachweis</a>
-        </div>
-        </div>
         <div class="manager-actions" id="developer-profile-actions" hidden>
           <button class="button button-secondary" type="button" id="new-profile-button">Neues Profil</button>
           <button class="button button-danger" type="button" id="reset-button">Fortschritt zurücksetzen</button>
@@ -491,7 +487,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
-            <li><span>0.22.1</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und NAGOLD stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten NAGOLD. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
+            <li><span>0.22.2</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und NAGOLD stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten NAGOLD. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
             <li><span>0.21.0</span><div><strong>NAGOLD im Profil</strong><small>Punktetabelle wie in WorkbenchLab: Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD, weitere Leistungen trägst du mit Datum, Uhrzeit und 1 bis 5 Punkten selbst ein. Der Stand steht im Profil, im Lernnachweis und in der Klassenübersicht.</small></div></li>
             <li><span>0.20.10</span><div><strong>Feinschliff am Design</strong><small>Tieferer Hintergrund mit weichen Lichtflächen und dezentem Zellraster, Nebenbuttons im hellen Farbschema als helles Perlmetall, klarer Fokusrahmen und besser lesbare Kleinstschriften. Fotos und Symbole sind unverändert.</small></div></li>
             <li><span>0.19.2</span><div><strong>Lernnachweis zum Ausdrucken</strong><small>Im Profil führt „Lernnachweis“ zu einer druckbaren Übersicht: abgeschlossene Einheiten je Lernfortschritt, Bonusaufgaben und XP, mit Unterschriftszeile für die Lehrkraft. Außerdem ersetzt „Laden“ jetzt den Stand derselben Person.</small></div></li>
