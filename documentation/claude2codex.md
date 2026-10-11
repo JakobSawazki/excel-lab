@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-11 · Release 0.22.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-11 · Release 0.23.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -833,6 +833,26 @@ oben rechts ein X.“ Danach: „Statt rechts ‚Einträge‘ einfach ein Stifts
   statt auf „Profil › Laden“.
 - Tests in `site.browser.cjs`: Reihenfolge und gleiche Höhe der Felder,
   Rückweg aus dem Lernnachweis, Merker verbraucht.
+
+### A0zp Release 0.23.0: Navigation ohne „Übersicht“
+
+Jakob (11. Oktober): „Der Navigationspunkt ‚Übersicht‘ ist irgendwie
+redundant … wenn man oben links auf das Excel-Lab-Logo klickt, gelangt man ja
+auch zur Übersicht. Besser wäre es, wenn man oben links bei BPE1 › Übersicht
+oder so als Navigationsübersicht macht.“
+
+- `index.html`: Knopf `data-view="dashboard"` aus `.main-nav` entfernt. Die
+  Ansicht und die Route `#uebersicht` bleiben; erreichbar über Logo,
+  „BPE1“ in der Pfadzeile und alle bisherigen Links.
+- `lesson-navigation.js`: derselbe Link aus der Leiste der Lernseiten
+  entfernt; „BPE1“ im Pfad trägt den Titel „Zur Übersicht“.
+- `app.js`, `renderLocationPath()`: auf der Übersicht „BPE1 › Übersicht“
+  (letzter Eintrag `aria-current="page"`), sonst wie bisher „BPE1 › …“.
+- `styles.css`: Im Dock bis 600 px spannt `.nav-dropdown` (Lernpfad) die
+  erste Zeile; darunter Formelsammlung und Quellen. Deine Regeln davor sind
+  unverändert.
+- Angesehen bei 1500, 390 und 320 px. Auf dem Handy führt nur noch das Logo
+  und „BPE1“ zur Übersicht.
 
 ### A1 Wo der Stand liegt
 

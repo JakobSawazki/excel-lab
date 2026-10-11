@@ -1,11 +1,16 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.22.2
+Projektversion: 0.23.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.23.0 (Claude, 11.10.2026, Wunsch Jakob):** Navigationspunkt
+  „Übersicht“ aus `index.html` und `lesson-navigation.js` entfernt; Pfadzeile
+  `#location-path` zeigt „BPE1 › Übersicht“. Siehe
+  [`claude2codex.md`](claude2codex.md), A0zp.
 
 - **Veröffentlicht als 0.22.2 (Claude, 11.10.2026, Wünsche Jakob):** Profilfenster
   neu geordnet (Karte oben, Felder nebeneinander, XP und NAGOLD gleich hoch

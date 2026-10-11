@@ -13,21 +13,21 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.22.2"></script>
-    <link rel="stylesheet" href="styles.css?v=0.22.2">
-    <link rel="stylesheet" href="home.css?v=0.22.2">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.22.2">
-    <script src="deployment.js?v=0.22.2" defer></script>
-    <script src="developer-mode.js?v=0.22.2" defer></script>
-    <script src="content.js?v=0.22.2" defer></script>
-    <script src="nagold.js?v=0.22.2" defer></script>
-    <script src="bonus-tasks.js?v=0.22.2" defer></script>
-    <script src="nav-menu.js?v=0.22.2" defer></script>
-    <script src="app.js?v=0.22.2" defer></script>
-    <script src="xp.js?v=0.22.2" defer></script>
-    <script src="options.js?v=0.22.2" defer></script>
-    <script src="organizer.js?v=0.22.2" defer></script>
-    <script src="lesson-workspace.js?v=0.22.2" defer></script>
+    <script src="theme-boot.js?v=0.23.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.23.0">
+    <link rel="stylesheet" href="home.css?v=0.23.0">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.23.0">
+    <script src="deployment.js?v=0.23.0" defer></script>
+    <script src="developer-mode.js?v=0.23.0" defer></script>
+    <script src="content.js?v=0.23.0" defer></script>
+    <script src="nagold.js?v=0.23.0" defer></script>
+    <script src="bonus-tasks.js?v=0.23.0" defer></script>
+    <script src="nav-menu.js?v=0.23.0" defer></script>
+    <script src="app.js?v=0.23.0" defer></script>
+    <script src="xp.js?v=0.23.0" defer></script>
+    <script src="options.js?v=0.23.0" defer></script>
+    <script src="organizer.js?v=0.23.0" defer></script>
+    <script src="lesson-workspace.js?v=0.23.0" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -44,7 +44,6 @@
       </a>
 
       <nav class="main-nav" aria-label="Hauptnavigation">
-        <button class="nav-link is-active" type="button" data-view="dashboard">Übersicht</button>
         <div class="nav-dropdown" id="learning-menu">
           <button class="nav-link nav-learning-link" id="learning-path-button" type="button" data-view="learning" aria-expanded="false" aria-controls="nav-stage-menu">Lernpfad</button>
           <button class="nav-menu-toggle" type="button" data-learning-toggle aria-label="Lernschritte und Kapitel anzeigen" aria-expanded="false" aria-controls="nav-stage-menu"><svg class="nav-chevron" aria-hidden="true" viewBox="0 0 20 20"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg></button>
@@ -72,7 +71,7 @@
       </div>
     </header>
 
-    <nav class="lesson-breadcrumb location-path" id="location-path" aria-label="Aktueller Lernpfad"><a href="#uebersicht" data-brand-home aria-current="page">BPE1</a></nav>
+    <nav class="lesson-breadcrumb location-path" id="location-path" aria-label="Aktueller Lernpfad"><a href="#uebersicht" data-brand-home title="Zur Übersicht">BPE1</a><span aria-hidden="true">›</span><a href="#uebersicht" data-brand-home aria-current="page">Übersicht</a></nav>
     <main id="main-content">
       <section class="view is-active" id="view-dashboard" data-view-panel="dashboard">
         <div class="page-shell">
@@ -487,7 +486,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
-            <li><span>0.22.2</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und NAGOLD stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten NAGOLD. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
+            <li><span>0.23.0</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und NAGOLD stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten NAGOLD. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
             <li><span>0.21.0</span><div><strong>NAGOLD im Profil</strong><small>Punktetabelle wie in WorkbenchLab: Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD, weitere Leistungen trägst du mit Datum, Uhrzeit und 1 bis 5 Punkten selbst ein. Der Stand steht im Profil, im Lernnachweis und in der Klassenübersicht.</small></div></li>
             <li><span>0.20.10</span><div><strong>Feinschliff am Design</strong><small>Tieferer Hintergrund mit weichen Lichtflächen und dezentem Zellraster, Nebenbuttons im hellen Farbschema als helles Perlmetall, klarer Fokusrahmen und besser lesbare Kleinstschriften. Fotos und Symbole sind unverändert.</small></div></li>
             <li><span>0.19.2</span><div><strong>Lernnachweis zum Ausdrucken</strong><small>Im Profil führt „Lernnachweis“ zu einer druckbaren Übersicht: abgeschlossene Einheiten je Lernfortschritt, Bonusaufgaben und XP, mit Unterschriftszeile für die Lehrkraft. Außerdem ersetzt „Laden“ jetzt den Stand derselben Person.</small></div></li>

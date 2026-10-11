@@ -26,7 +26,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.22.2";
+  const APP_VERSION = "0.23.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -291,7 +291,9 @@
       : '<a href="#lernpfad" aria-current="page">Lernpfad</a>';
     if (activeView === "formulas") detail = '<a href="#formeln" aria-current="page">Formelsammlung</a>';
     if (activeView === "sources") detail = '<a href="#quellen" aria-current="page">Quellen</a>';
-    $("#location-path").innerHTML = `<a href="#uebersicht" data-brand-home${detail ? "" : ' aria-current="page"'}>BPE1</a>${detail ? `<span aria-hidden="true">›</span>${detail}` : ""}`;
+    // Der Pfad ersetzt den früheren Navigationspunkt „Übersicht“: BPE1 führt immer dorthin.
+    if (!detail) detail = '<a href="#uebersicht" data-brand-home aria-current="page">Übersicht</a>';
+    $("#location-path").innerHTML = `<a href="#uebersicht" data-brand-home title="Zur Übersicht">BPE1</a><span aria-hidden="true">›</span>${detail}`;
   }
 
   function syncRouteFromHash() {

@@ -10,7 +10,6 @@
   nav.className = "main-nav lesson-main-nav";
   nav.setAttribute("aria-label", "Hauptnavigation");
   nav.innerHTML = `
-    <a class="nav-link" href="index.html#uebersicht">Übersicht</a>
     <div class="nav-dropdown" id="learning-menu">
       <a class="nav-link nav-learning-link is-active" id="learning-path-button" href="index.html#lernpfad" aria-expanded="false" aria-controls="nav-stage-menu">Lernpfad</a>
       <button class="nav-menu-toggle" type="button" data-learning-toggle aria-label="Lernschritte und Kapitel anzeigen" aria-expanded="false" aria-controls="nav-stage-menu"><svg class="nav-chevron" aria-hidden="true" viewBox="0 0 20 20"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg></button>
@@ -25,7 +24,7 @@
     const lesson = lessons.find(item => item.code === breadcrumb.querySelector("strong")?.textContent.trim());
     const stage = stages.find(item => item.id === lesson?.stage);
     if (lesson && stage) {
-      breadcrumb.innerHTML = `<a href="index.html#uebersicht">BPE1</a><span aria-hidden="true">›</span><a href="index.html#lernpfad/${stage.id}" title="Lernfortschritt ${stage.id}">${stage.code}</a><span aria-hidden="true">›</span><a href="${lesson.page}" aria-current="page">${lesson.code}</a>`;
+      breadcrumb.innerHTML = `<a href="index.html#uebersicht" title="Zur Übersicht">BPE1</a><span aria-hidden="true">›</span><a href="index.html#lernpfad/${stage.id}" title="Lernfortschritt ${stage.id}">${stage.code}</a><span aria-hidden="true">›</span><a href="${lesson.page}" aria-current="page">${lesson.code}</a>`;
     }
     breadcrumb.setAttribute("aria-label", "Aktueller Lernpfad");
     breadcrumb.classList.add("location-path");

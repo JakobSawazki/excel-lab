@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.23.0 – 2026-10-11
+
+**Navigation ohne „Übersicht“ (Wunsch Jakob).** Der Punkt „Übersicht“ entfällt aus der Leiste, weil das Logo bereits dorthin führt. Die Pfadzeile oben links zeigt dafür „BPE1 › Übersicht“ und auf den anderen Ansichten „BPE1 › Lernpfad“, „BPE1 › Formelsammlung“ oder „BPE1 › Quellen“; „BPE1“ führt immer zur Übersicht. Im Handy-Dock steht der Lernpfad oben über die ganze Breite.
+
 ## 0.22.2 – 2026-10-11
 
 **Profilfenster neu geordnet (Wünsche Jakob).** Oben die Profilkarte, darunter Kürzel und Klasse nebeneinander, dann XP und NAGOLD als zwei gleich hohe Felder. Im NAGOLD-Feld zeigt ein goldener Stift, dass sich die Einträge bearbeiten lassen. Der Lernnachweis hat oben rechts ein X, das zurück in die Profil-Übersicht führt.

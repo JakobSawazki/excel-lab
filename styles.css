@@ -4023,3 +4023,10 @@ html {
 .nagold-edit-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .nagold-total:hover:not(:disabled) .nagold-edit-icon { border-color: var(--nagold); transform: rotate(-8deg); }
 @media (prefers-reduced-motion: reduce) { .nagold-edit-icon { transition: none; } .nagold-total:hover:not(:disabled) .nagold-edit-icon { transform: none; } }
+
+/* 0.23.0 (Wunsch Jakob): ohne den Punkt „Übersicht“ hat die Leiste drei Einträge.
+   Im Handy-Dock steht der Lernpfad oben über die ganze Breite, darunter
+   Formelsammlung und Quellen. */
+@media (max-width: 600px) {
+  .main-nav .nav-dropdown { grid-column: 1 / -1; }
+}
