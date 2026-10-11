@@ -1,11 +1,23 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 7. Oktober 2026, Europe/Berlin
-Projektversion: 0.21.0
+Projektversion: 0.22.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.22.0 (Claude, 11.10.2026, drei Wünsche Jakob):**
+  XP und NAGOLD im Profilknopf, XP-Symbol entfernt, XP-Abschnitt im
+  Profilfenster (`xp.js` neu geschrieben); Tooltips statt Erklärzeilen im
+  Speicherfenster; Liste „Zuletzt gespeichert“ mit fünf Ständen
+  (`excelLab.saves.v1`). Einzelheiten in [`claude2codex.md`](claude2codex.md),
+  A0zm.
+
+- **Mit 0.22.0 veröffentlicht, als 0.21.1 entwickelt (Claude, 11.10.2026, Wunsch Jakob):** Speichern
+  und Laden aus dem Profilfenster in ein eigenes Fenster `#save-dialog`
+  verlegt, geöffnet über das Disketten-Symbol `#save-button` links vom
+  Profil. Einzelheiten in [`claude2codex.md`](claude2codex.md), A0zl.
 
 - **Veröffentlicht als 0.21.0 (Claude, 11.10.2026, Auftrag Jakob: „NAGOLD im
   Profil-Bereich wie in WorkbenchLab“):** neue Datei `nagold.js`

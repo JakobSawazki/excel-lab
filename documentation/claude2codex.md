@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-11 · Release 0.21.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-11 · Release 0.22.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -689,6 +689,91 @@ Oberfläche (Excel-Lab hat keine Lucide-Symbole und mehrere Profile).
 - **Annahmen von Claude, von Jakob nicht ausdrücklich bestätigt:** 5 NAGOLD
   je Einheit wie in WorkbenchLab (dort 21 Einheiten = 105, hier 27 = 135);
   dieselben fünf Vorauswahl-Anlässe; Anzeige nur auf der Startseite.
+
+### A0zl Release 0.21.1: Speicherstand hinter dem Disketten-Symbol
+
+Jakob (11. Oktober, mit Bildschirmfoto des Profilfensters): „Statt dem
+Speichern und Laden im Profil-Fenster wünsche ich mir lieber ein
+Diskette-Icon links vom Profil-Icon. Und über dieses Icon öffnet sich dann ein
+Fenster und darüber kann man dann seinen Speicherstand speichern und laden.“
+
+- `index.html`: Knopf `#save-button` (`.icon-button.save-button`, Diskette als
+  Linien-SVG) direkt vor `#profile-button`; neues Fenster `#save-dialog` mit
+  Statuszeile `#save-status`, `#export-button`, `#import-button`,
+  `#rescue-button` und `#import-file`. Die Kennungen sind unverändert, die
+  Elemente nur umgezogen. Im Profilfenster bleiben Kürzel, Klasse, NAGOLD und
+  Lernnachweis; die Unterzeile heißt „Dein lokales Lernprofil“.
+- `xp.js`, `options.js`: fügen ihre Knöpfe vor `#save-button` ein, falls es
+  ihn gibt, damit die Diskette direkt links vom Profil bleibt.
+- `app.js`: `#save-button` öffnet das Fenster; `renderProfileManager()` füllt
+  die Statuszeile. Nach dem Laden bleibt das Fenster offen und zeigt den neuen
+  Stand. Export und Import selbst sind unverändert.
+- Nur Startseite, wie bisher: Auf den Lernseiten gab es Speichern und Laden
+  auch vorher nicht.
+- Sehr schmale Handys (bis 350 px): Abstand der Kopfknöpfe und Schriftzug
+  etwas kleiner, damit „Excel-Lab“ einzeilig bleibt. Gemessen bei 320, 340,
+  360 und 390 px: kein Überlauf, keine Überdeckung.
+- Tests angepasst: `tests/browser/codex/save-load-smoke.cjs` (öffnet das neue
+  Fenster, prüft, dass das Profil die Knöpfe nicht mehr enthält; dein Ablauf
+  sonst unverändert), drei Stellen in `tests/browser/site.browser.cjs`.
+
+### A0zm Release 0.22.0: XP im Profilknopf, Tooltips, „Zuletzt gespeichert“
+
+0.21.1 (A0zl) wurde nicht einzeln veröffentlicht, sondern zusammen mit diesem
+Stand. Drei Nachrichten von Jakob vom 11. Oktober, jeweils mit Bildschirmfoto:
+
+**1. XP ins Profil.** „Lass uns die XP-Punkte bzw. den Level in das
+Profil-Icon einbinden … links von den NAGOLD-Punkten sollen die XP angezeigt
+werden. Der Text ‚Profil‘ kann weg. Wenn man auf sein Profil klickt, erfährt
+man mehr über seine XP, wie viel noch erreicht werden muss, um auf den
+nächsten Level zu kommen und damit NAGOLD zu erhalten. Das vorherige XP-Icon
+kann dann weg.“
+
+- `xp.js` neu geschrieben: kein Knopf `#xp-button` mehr. Die Datei füllt im
+  Profilknopf die Zeile `#profile-stats` (`#profile-xp` mit `.xp-count`,
+  `#profile-nagold`); ohne Profil bleibt die bisherige Beschriftung
+  (`.profile-label`). Unter 760 px, wo dein CSS `.profile-copy` ausblendet,
+  zeigt `.profile-mini` den XP-Stand neben dem Kürzel-Feld.
+- Einzelheiten (`#xp-total`, `#xp-level`, `#xp-next`, `#xp-progress`,
+  `#xp-breakdown`, neu `#xp-nagold`): auf der Startseite als Abschnitt
+  `#xp-panel` im Profilfenster direkt unter der Profilkarte; auf den
+  Lernseiten weiter im Fenster `#xp-dialog`, das sich jetzt beim Klick auf
+  `#lesson-profile-link` öffnet (mit Knopf „Profil und Speicherstand öffnen“
+  zur Startseite). Ohne Profil führt der Link wie bisher zur Startseite.
+- `app.js` setzt NAGOLD-Anzeige und Titel des Profilknopfs nicht mehr selbst.
+- **Offene Fachfrage an Jakob:** Sein Satz verknüpft das nächste Level mit
+  NAGOLD. Umgesetzt ist weiterhin die Regel aus WorkbenchLab: 5 NAGOLD je
+  abgeschlossener Einheit, unabhängig vom Level. Der Abschnitt nennt deshalb
+  beides getrennt („Noch n XP bis Level …“ und „Die nächsten 5 NAGOLD gibt es
+  für den Abschluss von Lx.y“). Falls NAGOLD an Level hängen sollen, ist das
+  eine Regeländerung in `nagold.js` und `lesson-core.js`.
+
+**2. Tooltips.** „Die Informationen unten für Speichern und Laden würde ich
+nur als Tooltip zeigen.“ Die Liste `.save-dialog-notes` ist entfernt; jeder
+Knopf sitzt in `.tip-wrap` mit `<span role="tooltip">` und `aria-describedby`.
+Sichtbar beim Darüberfahren und bei `:focus-visible`, nicht nach einem
+Mausklick und nicht auf reinen Touch-Geräten.
+
+**3. Zuletzt gespeichert.** „… ein Drop-Down-Menü, um die letzten 5 zuletzt
+gespeicherten Dateien auszuwählen, wie zuletzt verwendet.“ Eine Webseite kann
+Dateien im Download-Ordner nicht selbst wieder öffnen. Umgesetzt ist deshalb:
+`exportProgress()` legt neben dem Download eine Kopie des Speicherstands unter
+`excelLab.saves.v1` ab (höchstens fünf, neueste zuerst). `#recent-saves`
+listet sie mit Zeit, Kürzel, XP und NAGOLD; `#recent-load` lädt den gewählten
+Stand über `applyImportedPayload()`, dieselbe Prüfung und Rückfrage wie beim
+Laden einer Datei (aus `importProgress()` herausgelöst). Die Liste gilt nur
+für diesen Browser und dieses Windows-Konto; der Hinweis steht darunter.
+**Jakob bitte bestätigen,** dass diese Lösung gemeint war. Die Alternative
+wären gemerkte Dateizugriffe (File System Access API mit IndexedDB und
+Berechtigungsabfrage je Sitzung); das wurde nicht gebaut.
+
+**Tests.** `site.browser.cjs`: Profilknopf statt XP-Symbol (auch bei 390 px),
+XP-Übersicht auf der Lernseite, Tooltip erst beim Darüberfahren, Liste erst
+nach dem ersten Speichern, Wiederherstellen aus der Liste, höchstens fünf
+Einträge, XP-Abschnitt im Profil. `codex/l1-path-smoke.cjs` liest die XP aus
+`#profile-xp`. Angesehen bei 1500 px dunkel und hell sowie 390 und 320 px.
+Die Styles `.xp-button`, `.xp-count`, `.xp-label` in `styles.css` sind jetzt
+teilweise ungenutzt und nicht entfernt.
 
 ### A1 Wo der Stand liegt
 

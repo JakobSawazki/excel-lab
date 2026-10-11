@@ -68,7 +68,9 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
               assert.match(await page.locator("#lesson-points-status").innerText(), /100 von 100/);
               assert.match(await page.locator("#lesson-profile-name").innerText(), /tes\.pro/);
             } else if (file === "index.html") {
-              assert.match(await page.locator("#xp-button").innerText(), /2700/);
+              assert.equal(await page.locator("#xp-button").count(), 0, "kein eigenes XP-Symbol mehr");
+              if (viewport.width > 760) assert.match(await page.locator("#profile-xp").innerText(), /2700 XP/);
+              else assert.equal(await page.locator(".profile-mini .xp-count-mini").innerText(), "2700");
             }
             assert.deepEqual(errors, [], "Skriptfehler");
             assert.deepEqual(external, [], "externe Anfragen");
@@ -160,11 +162,11 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal((await stored()).bonus, true);
         assert.equal((await stored()).completed, false, "Bonus schließt die Einheit nicht ab");
         assert.match(await page.locator("#lesson-points-status").innerText(), /0 von 100 XP · Bonus \+50 XP/);
-        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "50");
+        await page.waitForFunction(() => document.querySelector("#profile-xp .xp-count").textContent === "50");
         assert.equal(await page.locator("#l11-bonus-input").isDisabled(), true);
         // Die Startseite liest, bereinigt und speichert den Lernstand; der Bonus bleibt.
         await page.goto(base + "index.html");
-        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "50");
+        await page.waitForFunction(() => document.querySelector("#profile-xp .xp-count").textContent === "50");
         await page.locator("#theme-toggle").click();
         assert.equal((await stored()).bonus, true, "Bonus nach Speichern der Startseite");
         // Die zweite Aufgabe derselben Einheit zählt eigenständig.
@@ -173,11 +175,12 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.fill("#l11-bonus-2-input", "80,30");
         await page.locator("#l11-bonus-2-section button[type=submit]").click();
         assert.equal((await stored()).bonus2, true);
-        await page.locator("#xp-button").click();
+        // Auf Lernseiten öffnet der Profilknopf die XP-Übersicht.
+        await page.locator("#lesson-profile-link").click();
         assert.equal(await page.locator("#xp-breakdown").innerText(), "0 von 27 Einheiten: 0 XP · 2 von 54 Bonusaufgaben: 100 XP");
         await page.locator("#xp-dialog .dialog-close").click();
         assert.match(await page.locator("#lesson-points-status").innerText(), /Bonus \+100 XP/);
-        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "100");
+        await page.waitForFunction(() => document.querySelector("#profile-xp .xp-count").textContent === "100");
         // Eine zweite Lösung derselben Aufgabe zählt nicht doppelt.
         await page.goto(base + "l1-1.html");
         assert.equal(await page.locator("#l11-bonus-section button[type=submit]").isHidden(), true);
@@ -218,7 +221,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.locator("#l13-content").isVisible(), true, "L1.3 bleibt offen");
         await page.goto(base + "index.html#lernpfad/1");
         assert.equal(await page.locator('[data-open-lesson="l1-2"].lesson-card').getAttribute("aria-disabled"), "true");
-        await page.waitForFunction(() => document.querySelector("#xp-button .xp-count").textContent === "350");
+        await page.waitForFunction(() => document.querySelector("#profile-xp .xp-count").textContent === "350");
         // Nach erneutem Abschluss ist alles wie zuvor.
         await page.goto(base + "l1-1.html");
         await page.locator("#page-complete-button").click();
@@ -229,19 +232,19 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
-    await check("Rettungskopie lässt sich im Profildialog herunterladen", async () => {
+    await check("Rettungskopie lässt sich im Fenster Speicherstand herunterladen", async () => {
       const { context, page } = await open(browser, "index.html", { state: BROKEN });
       try {
         await page.locator("#profile-dialog").waitFor({ state: "visible" });
         await page.locator("#profile-dialog [data-close-dialog]").click();
-        await page.locator("#profile-button").click();
+        await page.locator("#save-button").click();
         const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#rescue-button").click()]);
         assert.match(download.suggestedFilename(), /^\d{4}-\d\d-\d\d_Excel-Lab_Rettungskopie\.txt$/);
         assert.equal(fs.readFileSync(await download.path(), "utf8"), BROKEN);
       } finally { await context.close(); }
       const normal = await open(browser, "index.html", { state: profileState });
       try {
-        await normal.page.locator("#profile-button").click();
+        await normal.page.locator("#save-button").click();
         assert.equal(await normal.page.locator("#rescue-button").isHidden(), true, "ohne Rettungskopie kein Knopf");
       } finally { await normal.context.close(); }
     });
@@ -560,11 +563,44 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.goto(base + "nachweis.html");
         assert.equal(await page.locator("#certificate-nagold").innerText(), "9");
         await page.goto(base + "index.html");
-        await page.locator("#profile-button").click();
+        // Disketten-Symbol direkt links vom Profil; Speichern und Laden nur noch dort.
+        assert.equal(await page.evaluate(() => document.querySelector("#profile-button").previousElementSibling.id), "save-button");
+        await page.locator("#save-button").click();
+        assert.match(await page.locator("#save-status").innerText(), /nag\.old · WGW EK1 · 200 XP · 9 NAGOLD · 2\/27 erledigt/);
+        assert.equal(await page.locator("#save-dialog .save-dialog-notes").count(), 0, "Erklärungen nur noch als Tooltip");
+        assert.equal(await page.locator("#export-tip").evaluate((tip) => getComputedStyle(tip).opacity), "0");
+        await page.locator("#export-button").hover();
+        await page.waitForFunction(() => getComputedStyle(document.querySelector("#export-tip")).opacity === "1");
+        assert.match(await page.locator("#export-tip").innerText(), /Download-Ordner/);
+        assert.match(await page.locator("#import-tip").innerText(), /früher gespeicherte Datei/);
+        assert.equal(await page.locator("#recent-saves-box").isHidden(), true, "vor dem ersten Speichern keine Liste");
         const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#export-button").click()]);
         const payload = JSON.parse(fs.readFileSync(await download.path(), "utf8"));
         assert.equal(payload.exportedBy.nagold, 9);
         assert.equal(payload.profile.nagoldEntries.length, 2);
+        // Zuletzt gespeichert: Der Stand steht in der Liste und lässt sich daraus laden.
+        assert.equal(await page.locator("#recent-saves-box").isVisible(), true);
+        assert.equal(await page.locator("#recent-saves option").count(), 1);
+        assert.match(await page.locator("#recent-saves option").first().innerText(), /nag\.old · 200 XP · 9 NAGOLD/);
+        await page.evaluate((key) => { const state = JSON.parse(localStorage.getItem(key)); state.profiles[0].nagoldEntries = []; localStorage.setItem(key, JSON.stringify(state)); }, KEY);
+        await page.reload();
+        await page.waitForFunction(() => document.querySelector("#profile-nagold")?.textContent.trim() === "· 0 NAG");
+        await page.locator("#save-button").click();
+        await page.locator("#recent-load").click();
+        await page.waitForFunction(() => document.querySelector("#profile-nagold").textContent.trim() === "· 9 NAG");
+        assert.equal((await stored()).length, 2, "Stand aus der Liste wiederhergestellt");
+        for (let index = 0; index < 6; index++) await page.locator("#export-button").click();
+        assert.equal(await page.locator("#recent-saves option").count(), 5, "höchstens fünf Stände");
+        await page.locator("#save-dialog [data-close-dialog]").click();
+        // Profilfenster: XP, Level und der Weg zu den nächsten NAGOLD.
+        await page.locator("#profile-button").click();
+        assert.equal(await page.locator("#xp-panel #xp-total").innerText(), "200 XP");
+        assert.equal(await page.locator("#xp-level").innerText(), "Level 1");
+        assert.equal(await page.locator("#xp-next").innerText(), "Noch 300 XP bis Level 2 (500 XP insgesamt).");
+        assert.match(await page.locator("#xp-nagold").innerText(), /9 NAGOLD gesammelt\. Die nächsten 5 NAGOLD gibt es für den Abschluss von L1\.3\./);
+        assert.equal(await page.locator("#profile-button .profile-label").isHidden(), true, "Text „Profil“ entfällt mit Profil");
+        assert.match(await page.locator("#profile-stats").innerText(), /^200 XP · 9 NAG$/);
+        await page.locator("#manager-dialog [data-close-dialog]").click();
 
         // Klassenübersicht zeigt die Summe aus der Datei.
         await page.goto(base + "lehrkraft.html");

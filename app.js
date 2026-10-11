@@ -26,7 +26,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.21.0";
+  const APP_VERSION = "0.22.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -322,10 +322,6 @@
     const profile = currentProfile();
     $("#profile-name").textContent = profile?.name || "Anmelden";
     $("#profile-avatar").textContent = initials(profile?.name);
-    const nagoldLabel = $("#profile-nagold");
-    nagoldLabel.hidden = !profile || !nagold;
-    nagoldLabel.textContent = ` · ${nagoldTotal(profile)} NAG`;
-    $("#profile-button").title = profile && nagold ? `${profile.name} · ${progressStats().points} XP · ${nagoldTotal(profile)} NAGOLD · Profil öffnen` : "Profil öffnen";
   }
 
   function renderNavMenu() {
@@ -523,6 +519,10 @@
     $("#developer-profile-actions").hidden = !window.EXCEL_LAB_DEV?.enabled;
     $("#reset-button").disabled = !current;
     $("#rescue-button").hidden = rescueCopy() === null;
+    const saveCompleted = current ? lessons.filter((lesson) => Boolean(current.progress?.[lesson.id]?.completed)).length : 0;
+    $("#save-status").textContent = current
+      ? `${current.name} · ${current.className || "ohne Klasse"} · ${progressStats().points} XP · ${nagoldTotal(current)} NAGOLD · ${saveCompleted}/${lessons.length} erledigt`
+      : "Noch kein Lernprofil in diesem Browser. Du kannst eine gespeicherte Datei laden.";
   }
 
   function validateProfileFields(nameInput, classInput) {
@@ -596,11 +596,86 @@
     const safePart = (value) => String(value).replace(/[^a-z0-9äöüß._-]+/gi, "-").replace(/^-+|-+$/g, "") || "lernprofil";
     anchor.href = url;
     anchor.download = `${datePrefix}_Excel-Lab_${safePart(profile.name)}_${safePart(deviceIdentity.id)}.json`;
+    rememberSave(payload, anchor.download);
+    renderRecentSaves();
     document.body.append(anchor);
     anchor.click();
     anchor.remove();
     URL.revokeObjectURL(url);
     showToast("Speicherdatei zum Download bereitgestellt.");
+  }
+
+  // Zuletzt gespeichert: Die letzten fünf Speicherstände bleiben zusätzlich im
+  // Browser. Eine Webseite kann Dateien im Download-Ordner nicht selbst wieder
+  // öffnen; die Liste ersetzt deshalb das erneute Heraussuchen am selben Gerät.
+  const SAVES_KEY = "excelLab.saves.v1";
+  const MAX_SAVES = 5;
+
+  function recentSaves() {
+    try {
+      const list = JSON.parse(localStorage.getItem(SAVES_KEY) || "[]");
+      return Array.isArray(list)
+        ? list.filter((item) => item && typeof item.savedAt === "string" && item.payload?.app === "Excel-Lab" && item.payload?.version === VERSION && item.payload?.profile).slice(0, MAX_SAVES)
+        : [];
+    } catch { return []; }
+  }
+
+  function rememberSave(payload, fileName) {
+    const list = [{ savedAt: payload.exportedAt, fileName, payload }, ...recentSaves()].slice(0, MAX_SAVES);
+    try { localStorage.setItem(SAVES_KEY, JSON.stringify(list)); }
+    catch { /* Ohne freien Speicher bleibt es bei der Datei; der Download ist davon unabhängig. */ }
+  }
+
+  function renderRecentSaves() {
+    const list = recentSaves();
+    const select = $("#recent-saves");
+    const format = new Intl.DateTimeFormat("de-DE", { dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Berlin" });
+    select.replaceChildren(...list.map((item, index) => {
+      const option = document.createElement("option");
+      const by = item.payload.exportedBy || {};
+      const date = new Date(item.savedAt);
+      option.value = String(index);
+      option.textContent = `${Number.isNaN(date.getTime()) ? "Zeit unbekannt" : format.format(date)} · ${String(by.accountName || item.payload.profile.name || "").slice(0, 40)} · ${Number(by.points) || 0} XP · ${Number(by.nagold) || 0} NAGOLD`;
+      return option;
+    }));
+    $("#recent-saves-box").hidden = list.length === 0;
+  }
+
+  function loadRecentSave() {
+    const item = recentSaves()[Number($("#recent-saves").value)];
+    if (!item) return;
+    try { applyImportedPayload(item.payload); }
+    catch (error) { showToast(error.message || "Der Speicherstand konnte nicht geladen werden."); }
+  }
+
+  // Übernimmt einen geprüften Speicherstand; gemeinsam für Datei und Liste.
+  function applyImportedPayload(payload) {
+    if (payload?.app !== "Excel-Lab" || payload?.version !== VERSION || !payload?.profile) {
+      throw new Error("Keine gültige Excel-Lab-Exportdatei.");
+    }
+    const imported = normalizeProfile(payload.profile);
+    imported.updatedAt = new Date().toISOString();
+    // Dieselbe Person (Kürzel und Klasse) wird ersetzt statt als weiteres,
+    // unsichtbares Profil angelegt. Weniger Abschlüsse nur nach Rückfrage.
+    const completedIn = (profile) => lessons.filter((lesson) => profile.progress?.[lesson.id]?.completed).length;
+    const existing = state.profiles.find((profile) => profile.name === imported.name && profile.className === imported.className);
+    if (existing) {
+      if (completedIn(imported) < completedIn(existing)
+        && !window.confirm(`Die Datei enthält weniger abgeschlossene Einheiten (${completedIn(imported)}) als dein Stand in diesem Browser (${completedIn(existing)}). Trotzdem laden?`)) {
+        showToast("Laden abgebrochen. Dein Lernstand ist unverändert.");
+        return;
+      }
+      imported.id = existing.id;
+      imported.createdAt = existing.createdAt;
+      state.profiles[state.profiles.indexOf(existing)] = imported;
+    } else {
+      imported.id = createId();
+      state.profiles.push(imported);
+    }
+    state.currentProfileId = imported.id;
+    saveState();
+    renderAll();
+    showToast("Lernstand erfolgreich geladen.");
   }
 
   async function loadProgressFile() {
@@ -629,33 +704,7 @@
       if (file.size > 1_000_000) throw new Error("Datei ist zu groß.");
       const text = await file.text();
       if (text.length > 1_000_000) throw new Error("Datei ist zu groß.");
-      const payload = JSON.parse(text);
-      if (payload?.app !== "Excel-Lab" || payload?.version !== VERSION || !payload?.profile) {
-        throw new Error("Keine gültige Excel-Lab-Exportdatei.");
-      }
-      const imported = normalizeProfile(payload.profile);
-      imported.updatedAt = new Date().toISOString();
-      // Dieselbe Person (Kürzel und Klasse) wird ersetzt statt als weiteres,
-      // unsichtbares Profil angelegt. Weniger Abschlüsse nur nach Rückfrage.
-      const completedIn = (profile) => lessons.filter((lesson) => profile.progress?.[lesson.id]?.completed).length;
-      const existing = state.profiles.find((profile) => profile.name === imported.name && profile.className === imported.className);
-      if (existing) {
-        if (completedIn(imported) < completedIn(existing)
-          && !window.confirm(`Die Datei enthält weniger abgeschlossene Einheiten (${completedIn(imported)}) als dein Stand in diesem Browser (${completedIn(existing)}). Trotzdem laden?`)) {
-          showToast("Laden abgebrochen. Dein Lernstand ist unverändert.");
-          return;
-        }
-        imported.id = existing.id;
-        imported.createdAt = existing.createdAt;
-        state.profiles[state.profiles.indexOf(existing)] = imported;
-      } else {
-        imported.id = createId();
-        state.profiles.push(imported);
-      }
-      state.currentProfileId = imported.id;
-      saveState();
-      renderAll();
-      showToast("Lernstand erfolgreich geladen.");
+      applyImportedPayload(JSON.parse(text));
     } catch (error) {
       showToast(error.message || "Die Speicherdatei konnte nicht geladen werden.");
     } finally {
@@ -945,7 +994,13 @@
       renderProfileManager();
       $("#manager-dialog").showModal();
     });
+    $("#save-button").addEventListener("click", () => {
+      renderProfileManager();
+      renderRecentSaves();
+      $("#save-dialog").showModal();
+    });
     $("#export-button").addEventListener("click", exportProgress);
+    $("#recent-load").addEventListener("click", loadRecentSave);
     bindNagoldEvents();
     $("#import-button").addEventListener("click", loadProgressFile);
     $("#import-file").addEventListener("change", (event) => importProgress(event.target.files?.[0]));

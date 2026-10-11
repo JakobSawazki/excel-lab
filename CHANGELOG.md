@@ -4,6 +4,16 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.22.0 – 2026-10-11
+
+**XP im Profilknopf (Wunsch Jakob).** Der Profilknopf zeigt statt „Profil“ den Stand „n XP · n NAG“ über dem Kürzel; das eigene XP-Symbol entfällt. Ein Klick aufs Profil zeigt Level, die fehlenden XP bis zum nächsten Level, die Herkunft der XP und wofür es die nächsten NAGOLD gibt. Auf den Lernseiten öffnet der Profilknopf diese Übersicht in einem eigenen Fenster; auf dem Handy steht der XP-Stand neben dem Kürzel-Feld.
+
+**Speicherstand: Tooltips und „Zuletzt gespeichert“ (Wünsche Jakob).** Die Erklärungen zu „Speichern“ und „Laden“ erscheinen nur noch beim Darüberfahren oder bei Tastaturfokus. Neu ist die Auswahl der fünf zuletzt gespeicherten Stände: Jeder Klick auf „Speichern“ legt neben der Datei eine Kopie im Browser ab, die sich über die Liste wieder laden lässt. Die Liste gilt nur für diesen Browser; für ein anderes Gerät bleibt die Datei nötig.
+
+## 0.21.1 – 2026-10-11 (zusammen mit 0.22.0 veröffentlicht)
+
+**Speicherstand über das Disketten-Symbol (Wunsch Jakob).** „Speichern“ und „Laden“ stehen nicht mehr im Profilfenster. Links neben dem Profil sitzt ein Disketten-Symbol; es öffnet das Fenster „Speicherstand“ mit beiden Knöpfen, einer Zeile zum aktuellen Stand und, falls vorhanden, der Rettungskopie.
+
 ## 0.21.0 – 2026-10-11
 
 **NAGOLD im Profil (Auftrag Jakob, wie in WorkbenchLab).** Im Profil steht der NAGOLD-Stand; ein Klick öffnet die Punktetabelle mit Datum, Uhrzeit, Anlass und Punkten. Jede abgeschlossene Lerneinheit trägt automatisch einmalig 5 NAGOLD ein (27 Einheiten: 135). Eigene Zeilen mit 1 bis 5 Punkten lassen sich hinzufügen, bearbeiten und löschen; gespeichert wird erst mit „Speichern“. Ältere Lernstände erhalten je abgeschlossener Einheit eine Zeile ohne Datum. Die Tabelle reist in der Speicherdatei mit; Lernnachweis und Klassenübersicht (auch CSV) zeigen die Summe. Die Tabelle ist eine Selbstauskunft, verbindlich bleibt die Bewertung der Lehrkraft.

@@ -3844,3 +3844,95 @@ html {
 }
 @media (prefers-reduced-motion: reduce) { .nagold-total, .nagold-icon-button { transition: none; } .nagold-total:hover:not(:disabled), .nagold-icon-button:hover:not(:disabled) { transform: none; } }
 @media (forced-colors: active) { .nagold-total, .nagold-icon-button { border-color: ButtonText; background: ButtonFace; color: ButtonText; box-shadow: none; } .nagold-coin { display: none; } }
+
+/* Speicherstand (0.21.1, Wunsch Jakob): Disketten-Symbol links vom Profil und
+   eigenes Fenster statt der Knöpfe „Speichern“/„Laden“ im Profil. */
+.save-button svg, .save-dialog-mark svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.save-dialog { width: min(560px, calc(100vw - 2rem)); }
+.save-dialog-mark {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1.1rem;
+  place-items: center;
+  border: 1px solid var(--metal-edge);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 30% 24%, color-mix(in srgb, #fff 22%, transparent), transparent 48%),
+    linear-gradient(160deg, color-mix(in srgb, var(--green) 34%, var(--surface-3)), color-mix(in srgb, var(--green) 10%, var(--surface)) 64%);
+  box-shadow: inset 0 1px 0 var(--metal-hairline), 0 10px 24px var(--metal-shadow);
+  color: var(--green);
+}
+.save-dialog-mark svg { width: 28px; height: 28px; }
+.save-dialog-intro { color: var(--text-soft); }
+.save-dialog-status {
+  margin: 1.1rem 0 0;
+  padding: .8rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: .86rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.save-actions { margin-top: 1rem; }
+[data-theme="light"] .save-dialog-mark { background: radial-gradient(circle at 30% 24%, #fff, transparent 52%), linear-gradient(160deg, #f7faf8, color-mix(in srgb, var(--green) 16%, #e3ece6) 70%); }
+
+/* 0.22.0 (Wünsche Jakob): XP und NAGOLD im Profilknopf, XP-Abschnitt im Profil,
+   Tooltips im Speicherfenster, Liste der zuletzt gespeicherten Stände. */
+.profile-stats { display: inline; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.profile-stats[hidden], .profile-label[hidden], .profile-mini[hidden] { display: none; }
+.profile-xp { color: var(--green); font-weight: 800; }
+.profile-xp .xp-count { font-size: inherit; }
+.profile-copy small { font-size: .7rem; }
+.profile-mini { display: none; }
+.xp-panel { margin: 1rem 0 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--line-strong); border-radius: 14px; background: linear-gradient(155deg, color-mix(in srgb, var(--green) 7%, var(--surface)), var(--surface) 60%); box-shadow: inset 0 1px 0 var(--metal-hairline); }
+.xp-panel h3 { margin: 0; color: var(--text-soft); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.xp-panel .xp-summary { margin: .55rem 0 .5rem; }
+.xp-panel .xp-summary strong { font-size: 1.7rem; }
+.xp-panel p { margin: 0 0 .6rem; font-size: .86rem; }
+.xp-panel progress, .xp-dialog progress { display: block; width: 100%; height: .8rem; margin-bottom: .8rem; accent-color: var(--green); }
+.xp-panel .xp-rule { margin-bottom: 0; color: var(--text-faint); font-size: .74rem; }
+.xp-panel .xp-nagold, .xp-dialog .xp-nagold { color: var(--nagold); font-weight: 700; }
+.xp-nagold:empty { display: none; }
+#xp-profile-link { display: flex; justify-content: center; margin-top: 1rem; }
+.tip-wrap { position: relative; display: grid; }
+.tip {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: calc(100% + .6rem);
+  left: 0;
+  padding: .55rem .75rem;
+  border: 1px solid var(--metal-edge);
+  border-radius: 10px;
+  background: var(--surface-3);
+  box-shadow: 0 12px 28px var(--metal-shadow);
+  color: var(--text);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+/* Mit der Maus beim Darüberfahren, mit der Tastatur bei sichtbarem Fokus. */
+.tip-wrap:hover .tip, .tip-wrap:has(:focus-visible) .tip { opacity: 1; transform: translateY(0); }
+.recent-saves { display: grid; gap: .45rem; margin-top: 1.2rem; }
+.recent-saves[hidden] { display: none; }
+.recent-saves label { color: var(--text-soft); font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.recent-saves-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+.recent-saves select { min-width: 0; min-height: 46px; padding: .5rem .7rem; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--bg-elevated); color: var(--text); font: inherit; font-size: .86rem; }
+.recent-saves select:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.recent-saves small { color: var(--text-faint); font-size: .74rem; line-height: 1.45; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+@media (max-width: 760px) {
+  .profile-mini:not([hidden]) { display: grid; justify-items: center; padding-right: .3rem; line-height: 1; }
+  .xp-count-mini { font-size: .74rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .profile-mini-label { margin-top: .12rem; color: var(--green); font-size: .5rem; font-weight: 800; }
+}
+/* Auf reinen Touch-Geräten gibt es kein Darüberfahren; dort bleiben die Hinweise der Tastatur vorbehalten. */
+@media (hover: none) { .tip-wrap:hover .tip { opacity: 0; } .tip-wrap:has(:focus-visible) .tip { opacity: 1; } }

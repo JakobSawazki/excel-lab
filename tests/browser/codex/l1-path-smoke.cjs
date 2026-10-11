@@ -24,7 +24,7 @@ const {chromium}=require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.cache
    await page.locator('#page-teacher-check').check();await page.locator('#page-complete-button').click();
    const progress=await page.evaluate(()=>JSON.parse(localStorage.getItem('excelLab.state.v1')).profiles[0].progress);
    assert.equal(Object.values(progress).filter(p=>p.completed).length,i);
-   await page.waitForFunction(points=>document.querySelector('#xp-button').textContent.includes(String(points)),i*100);
+   await page.waitForFunction(points=>document.querySelector('#profile-xp').textContent.includes(String(points)),i*100);
    assert.equal(await page.locator('#next-lesson-link').getAttribute('aria-disabled'),'false');
    await page.locator('#next-lesson-link').click();await page.waitForURL(`**/${i===6?'l2-1':'l1-'+(i+1)}.html`);
   }

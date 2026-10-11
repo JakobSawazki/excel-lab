@@ -33,7 +33,8 @@
   button.setAttribute("aria-haspopup", "dialog");
   button.setAttribute("aria-controls", "options-dialog");
   button.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/></svg>';
-  actions.insertBefore(button, actions.querySelector(".profile-button"));
+  // Das Disketten-Symbol (nur Startseite) bleibt direkt links vom Profil.
+  actions.insertBefore(button, actions.querySelector("#save-button") || actions.querySelector(".profile-button"));
   const dialog = document.createElement("dialog");
   dialog.id = "options-dialog";
   dialog.className = "dialog options-dialog";

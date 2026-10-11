@@ -13,21 +13,21 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.21.0"></script>
-    <link rel="stylesheet" href="styles.css?v=0.21.0">
-    <link rel="stylesheet" href="home.css?v=0.21.0">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.21.0">
-    <script src="deployment.js?v=0.21.0" defer></script>
-    <script src="developer-mode.js?v=0.21.0" defer></script>
-    <script src="content.js?v=0.21.0" defer></script>
-    <script src="nagold.js?v=0.21.0" defer></script>
-    <script src="bonus-tasks.js?v=0.21.0" defer></script>
-    <script src="nav-menu.js?v=0.21.0" defer></script>
-    <script src="app.js?v=0.21.0" defer></script>
-    <script src="xp.js?v=0.21.0" defer></script>
-    <script src="options.js?v=0.21.0" defer></script>
-    <script src="organizer.js?v=0.21.0" defer></script>
-    <script src="lesson-workspace.js?v=0.21.0" defer></script>
+    <script src="theme-boot.js?v=0.22.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.22.0">
+    <link rel="stylesheet" href="home.css?v=0.22.0">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.22.0">
+    <script src="deployment.js?v=0.22.0" defer></script>
+    <script src="developer-mode.js?v=0.22.0" defer></script>
+    <script src="content.js?v=0.22.0" defer></script>
+    <script src="nagold.js?v=0.22.0" defer></script>
+    <script src="bonus-tasks.js?v=0.22.0" defer></script>
+    <script src="nav-menu.js?v=0.22.0" defer></script>
+    <script src="app.js?v=0.22.0" defer></script>
+    <script src="xp.js?v=0.22.0" defer></script>
+    <script src="options.js?v=0.22.0" defer></script>
+    <script src="organizer.js?v=0.22.0" defer></script>
+    <script src="lesson-workspace.js?v=0.22.0" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -58,10 +58,13 @@
         <button class="icon-button" id="theme-toggle" type="button" aria-label="Farbschema wechseln" title="Farbschema wechseln">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.03-.91-.1-1.35A7 7 0 0 1 13.35 3.1C12.91 3.03 12.46 3 12 3Z"/></svg>
         </button>
+        <button class="icon-button save-button" id="save-button" type="button" aria-label="Speicherstand: speichern und laden" title="Speichern und Laden" aria-haspopup="dialog" aria-controls="save-dialog">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h11.2L20 7.8V20H5V4Z"/><path d="M8.5 4v4.8h6.5V4"/><path d="M8.5 20v-6h7v6"/></svg>
+        </button>
         <button class="profile-button" id="profile-button" type="button" aria-label="Profil öffnen">
           <span class="profile-avatar" id="profile-avatar">?</span>
           <span class="profile-copy">
-            <small><span id="profile-label">Profil</span><span class="profile-nagold" id="profile-nagold" hidden></span></small>
+            <small>Profil</small>
             <strong id="profile-name">Anmelden</strong>
           </span>
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>
@@ -382,6 +385,31 @@
       </div>
     </footer>
 
+    <dialog class="dialog save-dialog" id="save-dialog" aria-labelledby="save-dialog-title">
+      <div class="dialog-content">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+        <span class="save-dialog-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h11.2L20 7.8V20H5V4Z"/><path d="M8.5 4v4.8h6.5V4"/><path d="M8.5 20v-6h7v6"/></svg></span>
+        <p class="eyebrow">Speicherdatei</p>
+        <h2 id="save-dialog-title">Speicherstand</h2>
+        <p class="save-dialog-intro">Dein Lernstand liegt nur in diesem Browser. Sichere ihn als Datei in deinen persönlichen Ordner und lade ihn an einem anderen Gerät wieder.</p>
+        <p class="save-dialog-status" id="save-status"></p>
+        <div class="manager-actions save-actions">
+          <span class="tip-wrap"><button class="button button-primary" type="button" id="export-button" aria-describedby="export-tip">Speichern</button><span class="tip" role="tooltip" id="export-tip">Legt eine Datei mit Datum und Kürzel im Download-Ordner ab.</span></span>
+          <span class="tip-wrap"><button class="button button-secondary" type="button" id="import-button" aria-describedby="import-tip">Laden</button><span class="tip" role="tooltip" id="import-tip">Übernimmt eine früher gespeicherte Datei in diesen Browser.</span></span>
+        </div>
+        <div class="recent-saves" id="recent-saves-box">
+          <label for="recent-saves">Zuletzt gespeichert</label>
+          <div class="recent-saves-row">
+            <select id="recent-saves" aria-describedby="recent-saves-hint"></select>
+            <button class="button button-secondary" type="button" id="recent-load">Diesen Stand laden</button>
+          </div>
+          <small id="recent-saves-hint">Die letzten fünf gespeicherten Stände bleiben zusätzlich in diesem Browser. Für ein anderes Gerät brauchst du die Datei.</small>
+        </div>
+        <button class="button button-secondary" type="button" id="rescue-button" hidden>Rettungskopie herunterladen</button>
+        <input id="import-file" type="file" accept="application/json,.json" hidden>
+      </div>
+    </dialog>
+
     <dialog class="dialog nagold-dialog" id="nagold-dialog" aria-labelledby="nagold-title">
       <form id="nagold-form" class="dialog-content" novalidate>
         <button class="dialog-close" type="button" data-close-dialog aria-label="NAGOLD-Tabelle schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
@@ -430,21 +458,15 @@
       <div class="dialog-content">
         <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
         <h2 id="manager-dialog-title">Profil</h2>
-        <p>Speicherdatei</p>
+        <p>Dein lokales Lernprofil</p>
         <div class="profile-list" id="profile-list"></div>
         <form id="profile-edit-form" class="profile-edit-form" hidden>
           <label><span>Kürzel</span><input id="profile-edit-name" type="text" maxlength="7" pattern="[a-zäöüß]{3}\.[a-zäöüß]{3}" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="z. B. jak.saw"></label>
           <label><span>Klassenbezeichnung</span><input id="profile-edit-class" type="text" minlength="3" maxlength="32" required autocapitalize="characters" spellcheck="false" placeholder="z. B. WGW EK1"></label>
         </form>
         <button class="button button-secondary" id="developer-mode-button" type="button" hidden aria-pressed="false">Entwickler-Modus</button>
-        <div class="manager-actions">
-          <button class="button button-secondary" type="button" id="export-button">Speichern</button>
-          <button class="button button-secondary" type="button" id="import-button">Laden</button>
-        </div>
-        <button class="button button-secondary" type="button" id="rescue-button" hidden>Rettungskopie herunterladen</button>
         <button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-total-hint">Einträge ansehen und ergänzen</span></button>
         <a class="button button-secondary" id="certificate-link" href="nachweis.html">Lernnachweis</a>
-        <input id="import-file" type="file" accept="application/json,.json" hidden>
         <div class="manager-actions" id="developer-profile-actions" hidden>
           <button class="button button-secondary" type="button" id="new-profile-button">Neues Profil</button>
           <button class="button button-danger" type="button" id="reset-button">Fortschritt zurücksetzen</button>
@@ -463,6 +485,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.22.0</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und NAGOLD stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten NAGOLD. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
             <li><span>0.21.0</span><div><strong>NAGOLD im Profil</strong><small>Punktetabelle wie in WorkbenchLab: Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD, weitere Leistungen trägst du mit Datum, Uhrzeit und 1 bis 5 Punkten selbst ein. Der Stand steht im Profil, im Lernnachweis und in der Klassenübersicht.</small></div></li>
             <li><span>0.20.10</span><div><strong>Feinschliff am Design</strong><small>Tieferer Hintergrund mit weichen Lichtflächen und dezentem Zellraster, Nebenbuttons im hellen Farbschema als helles Perlmetall, klarer Fokusrahmen und besser lesbare Kleinstschriften. Fotos und Symbole sind unverändert.</small></div></li>
             <li><span>0.19.2</span><div><strong>Lernnachweis zum Ausdrucken</strong><small>Im Profil führt „Lernnachweis“ zu einer druckbaren Übersicht: abgeschlossene Einheiten je Lernfortschritt, Bonusaufgaben und XP, mit Unterschriftszeile für die Lehrkraft. Außerdem ersetzt „Laden“ jetzt den Stand derselben Person.</small></div></li>

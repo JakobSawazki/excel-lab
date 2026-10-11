@@ -18,7 +18,11 @@ const { chromium } = require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.c
       localStorage.setItem('excelLab.device.v1', JSON.stringify({ id: 'XL-TESTDEVICE' }));
     });
     await page.goto((__BASE + '/'));
+    // Claude, 11.10.2026 (0.21.1, Wunsch Jakob): Speichern und Laden liegen im Fenster hinter dem Disketten-Symbol.
     await page.locator('#profile-button').click();
+    assert.equal(await page.locator('#manager-dialog #export-button, #manager-dialog #import-button').count(), 0);
+    await page.locator('#manager-dialog [data-close-dialog]').click();
+    await page.locator('#save-button').click();
     assert.deepEqual(await page.locator('.manager-actions button:visible').allTextContents(), ['Speichern', 'Laden']);
     assert.equal(await page.locator('#developer-profile-actions').isVisible(), false);
     assert.equal(await page.locator('#manager-dialog .dialog-hint').count(), 0);
@@ -65,10 +69,12 @@ const { chromium } = require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.c
     await (await chooser2Promise).setFiles({ name: 'saved.json', mimeType: 'application/json', buffer: Buffer.from(text) });
     await page.waitForFunction(old => { const state = JSON.parse(localStorage.getItem('excelLab.state.v1')); return state.profiles.length === 1 && JSON.stringify(state) !== old; }, before);
     const original = await page.evaluate(() => { const state = JSON.parse(localStorage.getItem('excelLab.state.v1')); return state.profiles.find(p => p.id === state.currentProfileId); });
+    await page.locator('#save-dialog [data-close-dialog]').click();
+    await page.locator('#profile-button').click();
     await page.locator('#profile-edit-name').fill('max.mus');
     await page.locator('#profile-edit-class').focus();
     await page.locator('#profile-edit-class').fill('WGW EK1');
-    await page.locator('#export-button').focus();
+    await page.locator('#certificate-link').focus();
     const edited = await page.evaluate(() => { const state = JSON.parse(localStorage.getItem('excelLab.state.v1')); return state.profiles.find(p => p.id === state.currentProfileId); });
     assert.equal(edited.id, original.id);
     assert.deepEqual(edited.progress, original.progress);
