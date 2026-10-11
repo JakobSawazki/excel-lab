@@ -3,12 +3,14 @@
 
   // NAGOLD: Punktetabelle im Profil, wie in WorkbenchLab. Je abgeschlossener
   // Lerneinheit kommt automatisch eine Zeile mit 5 NAGOLD dazu; eigene Zeilen
-  // (1 bis 5 Punkte) tragen Lernende selbst ein. Die Tabelle ist eine
+  // (ganze Punkte von -5 bis 5, nicht 0) tragen Lernende selbst ein. Die Tabelle ist eine
   // Selbstauskunft, verbindlich bleibt die Bewertung der Lehrkraft.
   const lessons = window.EXCEL_LAB_CONTENT?.lessons;
   if (!Array.isArray(lessons)) return;
 
   const maxPoints = 5;
+  // Wie in WorkbenchLab (Vorgabe Jakob, 11.10.2026): Abzüge durch die Lehrkraft sind möglich, 0 ist kein Eintrag.
+  const minPoints = -5;
   const maxManualEntries = 1000;
   const maxEntries = maxManualEntries + lessons.length;
   const presets = ["Mitarbeit", "Zusatzaufgabe", "Präsentation", "Projektarbeit", "Lernprodukt"];
@@ -35,7 +37,7 @@
     return value.slice(0, maxEntries).flatMap((entry) => {
       const time = entry?.time === undefined ? "" : entry.time;
       if (!entry || typeof entry.purpose !== "string" || !entry.purpose.trim()
-        || !Number.isInteger(entry.points) || entry.points < 1 || entry.points > maxPoints
+        || !Number.isInteger(entry.points) || entry.points === 0 || entry.points < minPoints || entry.points > maxPoints
         || (entry.date !== "" && !validDate(entry.date)) || (time !== "" && !validTime(time))) return [];
       const normalized = { date: entry.date, time, purpose: entry.purpose.trim().slice(0, 160), points: entry.points };
       if (lessons.some((lesson) => lesson.id === entry.lessonId)) normalized.lessonId = entry.lessonId;
@@ -69,7 +71,7 @@
   function presetOptions() { return [...presets, ...lessons.map(lessonPurpose)]; }
 
   window.EXCEL_LAB_NAGOLD = Object.freeze({
-    maxEntries, maxManualEntries, maxPoints, validDate, validTime, today, clock,
+    maxEntries, maxManualEntries, maxPoints, minPoints, validDate, validTime, today, clock,
     normalizeEntries, entriesFor, total, addLessonEntry, presetOptions
   });
 })();

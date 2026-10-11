@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-11 · Release 0.22.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-11 · Release 0.22.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -774,6 +774,39 @@ Einträge, XP-Abschnitt im Profil. `codex/l1-path-smoke.cjs` liest die XP aus
 `#profile-xp`. Angesehen bei 1500 px dunkel und hell sowie 390 und 320 px.
 Die Styles `.xp-button`, `.xp-count`, `.xp-label` in `styles.css` sind jetzt
 teilweise ungenutzt und nicht entfernt.
+
+### A0zn Release 0.22.1: schlankes Profilfenster, NAGOLD-Tabelle wie WorkbenchLab
+
+Vier Nachrichten von Jakob vom 11. Oktober nach 0.22.0, jeweils mit
+Bildschirmfoto. Sein Grundsatz dabei: „Ich würde da nicht so viel Text rein
+machen, das verwirrt die Schüler … wenn, nur über Tooltips.“ und „Keep it
+simple.“ Bitte bei künftigen Fenstern für Lernende beachten.
+
+- **Breiter, ohne Rollbalken:** `#manager-dialog` ist 900 px breit. Neue Hülle
+  `.manager-grid` mit `.manager-main` (Profilkarte, XP-Abschnitt) und
+  `.manager-side` (Kürzel, Klasse, NAGOLD, Lernnachweis); unter 820 px
+  einspaltig. Gemessen ohne Rollbalken bei 1830×920, 1500×800, 1280×680 und
+  390×844.
+- **Wenig Text im XP-Abschnitt** (`xp.js`, `panelMarkup`): sichtbar sind
+  `#xp-total`, `#xp-level`, `#xp-progress` und `#xp-next` („Noch n XP bis
+  Level n“). `#xp-breakdown` und `#xp-rule` sind Tooltips an XP-Zahl und
+  Level (`.tip-wrap`, `role="tooltip"`, per Tab erreichbar). Der Hinweis auf
+  die nächsten NAGOLD steht als Tooltip `#nagold-tip` am NAGOLD-Knopf, auf den
+  Lernseiten an einem NAGOLD-Feld `#xp-nagold-chip` im Fenster `#xp-dialog`.
+- **Profilkarte:** nur Kürzel, Klasse und „n/27 erledigt“. Browser-ID, XP,
+  NAGOLD und „Aktiv“ sind entfernt; die Browser-ID bleibt in der
+  Speicherdatei.
+- **NAGOLD-Tabelle:** Jakob: „alles so wie es auch in der WorkbenchLab in der
+  NAGOLD-Tabelle ist“. Übernommen aus dem dortigen Stand vom 11. Oktober:
+  kombiniertes Feld `.nagold-combo` (Textfeld mit `role="combobox"`, Liste
+  `role="listbox"`, Logik `nagoldCombo` in `app.js`), `minPoints` −5, 0 ist
+  kein Eintrag, neue Zeile beginnt bei 0, Fehlermeldung wie dort. Abweichung:
+  Die Liste richtet sich nach dem Platz im Dialog statt im Browserfenster,
+  weil der Dialog sie sonst abschneidet.
+- **Tests:** `tests/nagold.test.js` (Abzüge, 0 ungültig), `site.browser.cjs`
+  (ein Feld ohne `select`, Filtern und Auswählen, Meldung, Abzug in der Summe,
+  Tooltips erst beim Darüberfahren, Profilkarte ohne Zusatzangaben,
+  Profilfenster ohne Rollbalken).
 
 ### A1 Wo der Stand liegt
 

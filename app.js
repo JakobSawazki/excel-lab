@@ -26,7 +26,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.22.0";
+  const APP_VERSION = "0.22.1";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -504,8 +504,7 @@
         return `
           <div class="profile-list-item ${profile.id === current?.id ? "is-current" : ""}">
             <span class="profile-avatar">${escapeHtml(initials(profile.name))}</span>
-            <div><strong>${escapeHtml(profile.name)}</strong><small>${escapeHtml(profile.className || "ohne Klasse")} · ${points} XP · ${nagoldTotal(profile)} NAGOLD · ${completed}/${lessons.length} erledigt</small><small>Browser-ID ${escapeHtml(deviceIdentity.id)}</small></div>
-            <small>Aktiv</small>
+            <div><strong>${escapeHtml(profile.name)}</strong><small>${escapeHtml(profile.className || "ohne Klasse")} · ${completed}/${lessons.length} erledigt</small></div>
           </div>`;
       }).join("")
       : "<p>Noch kein lokales Profil vorhanden.</p>";
@@ -809,8 +808,8 @@
       return `<tr data-nagold-index="${index}" class="${editing ? "is-editing" : ""}">
         <td data-label="Datum">${editing ? `<input type="date" data-nagold-field="date" aria-label="Datum, ${label}" value="${escapeHtml(row.date)}" ${row.allowUnknownDate ? "" : "required"}>` : escapeHtml(row.date ? formatDate(row.date) : "Nicht erfasst")}</td>
         <td data-label="Uhrzeit">${editing ? `<input type="time" data-nagold-field="time" aria-label="Uhrzeit, ${label}" value="${escapeHtml(row.time)}" ${row.allowUnknownTime ? "" : "required"} step="60">` : escapeHtml(row.time || "Nicht erfasst")}</td>
-        <td data-label="Wofür">${editing ? `<select data-nagold-preset aria-label="Anlass auswählen, ${label}"><option value="">Eigener Anlass</option>${presets.map((preset) => `<option value="${escapeHtml(preset)}" ${preset === row.purpose ? "selected" : ""}>${escapeHtml(preset)}</option>`).join("")}</select><input type="text" data-nagold-field="purpose" aria-label="Wofür, ${label}" value="${escapeHtml(row.purpose)}" maxlength="160" placeholder="Wofür?" required>` : escapeHtml(row.purpose)}</td>
-        <td data-label="NAGOLD" class="nagold-points">${editing ? `<input type="number" data-nagold-field="points" aria-label="NAGOLD, ${label}" min="1" max="${nagold.maxPoints}" step="1" value="${Number.isFinite(row.points) ? row.points : ""}" inputmode="numeric" required>` : row.points}</td>
+        <td data-label="Wofür">${editing ? `<div class="nagold-combo"><input type="text" data-nagold-field="purpose" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="nagold-list-${index}" aria-label="Wofür, ${label}" value="${escapeHtml(row.purpose)}" maxlength="160" placeholder="Auswählen oder eintippen" autocomplete="off" required><button class="nagold-combo-toggle" type="button" data-nagold-combo-toggle tabindex="-1" aria-label="Vorschläge anzeigen, ${label}"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></button><ul class="nagold-combo-list" id="nagold-list-${index}" role="listbox" aria-label="Vorschläge, ${label}" hidden>${presets.map((preset, option) => `<li role="option" id="nagold-option-${index}-${option}" data-nagold-option="${escapeHtml(preset)}" aria-selected="false">${escapeHtml(preset)}</li>`).join("")}</ul></div>` : escapeHtml(row.purpose)}</td>
+        <td data-label="NAGOLD" class="nagold-points">${editing ? `<input type="number" data-nagold-field="points" aria-label="NAGOLD, ${label}" min="${nagold.minPoints}" max="${nagold.maxPoints}" step="1" value="${Number.isFinite(row.points) ? row.points : ""}" inputmode="numeric" required>` : row.points}</td>
         <td class="nagold-row-actions"><button class="nagold-icon-button" type="button" data-nagold-edit="${index}" title="Eintrag bearbeiten" aria-label="${label} bearbeiten" ${editing ? "disabled" : ""}>${NAGOLD_ICONS.edit}</button><button class="nagold-icon-button" type="button" data-nagold-remove="${index}" title="Zeile löschen" aria-label="${label} löschen">${NAGOLD_ICONS.remove}</button></td>
       </tr>`;
     }).join("");
@@ -821,7 +820,7 @@
   function addNagoldRow() {
     if (nagoldDraft.filter((row) => !row.lessonId).length >= nagold.maxManualEntries) return;
     const now = new Date();
-    nagoldDraft.push({ date: nagold.today(now), time: nagold.clock(now), purpose: "", points: nagold.maxPoints });
+    nagoldDraft.push({ date: nagold.today(now), time: nagold.clock(now), purpose: "", points: 0 });
     nagoldEditing.add(nagoldDraft.length - 1);
     renderNagoldRows();
     $('#nagold-rows tr:last-child [data-nagold-field="purpose"]').focus();
@@ -846,18 +845,10 @@
   }
 
   function readNagoldInput(event) {
-    const field = event.target.closest("[data-nagold-field], [data-nagold-preset]");
+    const field = event.target.closest("[data-nagold-field]");
     if (!field) return;
-    const row = field.closest("[data-nagold-index]");
-    const draft = nagoldDraft[Number(row.dataset.nagoldIndex)];
-    if (field.hasAttribute("data-nagold-preset")) {
-      if (!field.value) return;
-      draft.purpose = field.value;
-      row.querySelector('[data-nagold-field="purpose"]').value = field.value;
-    } else {
-      draft[field.dataset.nagoldField] = field.dataset.nagoldField === "points" ? field.valueAsNumber : field.value;
-      if (field.dataset.nagoldField === "purpose") row.querySelector("[data-nagold-preset]").value = nagold.presetOptions().includes(field.value) ? field.value : "";
-    }
+    const draft = nagoldDraft[Number(field.closest("[data-nagold-index]").dataset.nagoldIndex)];
+    draft[field.dataset.nagoldField] = field.dataset.nagoldField === "points" ? field.valueAsNumber : field.value;
     $("#nagold-error").textContent = "";
     updateNagoldSum();
   }
@@ -868,7 +859,7 @@
     if (!profile) return;
     const entries = nagold.normalizeEntries(nagoldDraft);
     if (entries.length !== nagoldDraft.length) {
-      $("#nagold-error").textContent = `Bitte für jede Zeile ein Datum, einen Anlass und 1 bis ${nagold.maxPoints} ganze NAGOLD eintragen.`;
+      $("#nagold-error").textContent = "Bitte für jede Zeile einen Anlass und ganze NAGOLD von −5 bis 5 eintragen. 0 gilt nicht als Eintrag.";
       return;
     }
     profile.nagoldEntries = entries;
@@ -877,6 +868,110 @@
     renderAll();
     $("#nagold-dialog").close();
     showToast("NAGOLD gespeichert.");
+  }
+
+  // Auswahlliste im Feld „Wofür“ (wie in WorkbenchLab): eigene Liste statt der
+  // Browser-Liste. Tippen filtert, Pfeiltasten wählen, Enter übernimmt, Esc
+  // schließt nur die Liste.
+  const nagoldCombo = {
+    parts(element) {
+      const box = element?.closest?.(".nagold-combo");
+      return box ? { box, input: box.querySelector("input"), list: box.querySelector("ul") } : null;
+    },
+    options(list) { return [...list.querySelectorAll("[data-nagold-option]")].filter((option) => !option.hidden); },
+    filter(input, list, all) {
+      const needle = all ? "" : input.value.trim().toLocaleLowerCase("de-DE");
+      list.querySelectorAll("[data-nagold-option]").forEach((option) => {
+        option.hidden = Boolean(needle) && !option.dataset.nagoldOption.toLocaleLowerCase("de-DE").includes(needle);
+        option.setAttribute("aria-selected", "false");
+      });
+      input.removeAttribute("aria-activedescendant");
+    },
+    open(parts, all) {
+      $$(".nagold-combo.is-open").forEach((other) => { if (other !== parts.box) this.close(this.parts(other)); });
+      this.filter(parts.input, parts.list, all);
+      if (!this.options(parts.list).length) { this.close(parts); return; }
+      // Die Liste hängt am Feld; ist darunter zu wenig Platz, klappt sie nach oben.
+      const rect = parts.input.getBoundingClientRect();
+      // Maßgeblich ist der Platz im Fenster der Tabelle, nicht im Browserfenster: sonst schneidet der Dialog die Liste ab.
+      const frame = parts.box.closest("dialog").getBoundingClientRect();
+      const below = frame.bottom - rect.bottom;
+      const above = rect.top - frame.top;
+      const upward = below < 180 && above > below;
+      parts.list.style.maxHeight = `${Math.max(120, Math.min(280, (upward ? above : below) - 16))}px`;
+      parts.box.classList.toggle("opens-upward", upward);
+      parts.list.hidden = false;
+      // Erst sichtbar machen, dann die Klasse setzen: so läuft der Übergang.
+      void parts.list.offsetHeight;
+      parts.box.classList.add("is-open");
+      parts.input.setAttribute("aria-expanded", "true");
+    },
+    close(parts) {
+      if (!parts || parts.list.hidden) return;
+      parts.box.classList.remove("is-open");
+      parts.input.setAttribute("aria-expanded", "false");
+      parts.input.removeAttribute("aria-activedescendant");
+      const list = parts.list;
+      const hide = () => { if (!parts.box.classList.contains("is-open")) list.hidden = true; };
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) hide();
+      else window.setTimeout(hide, 170);
+    },
+    move(parts, step) {
+      const options = this.options(parts.list);
+      if (!options.length) return;
+      const current = options.findIndex((option) => option.getAttribute("aria-selected") === "true");
+      const next = options[(current + step + options.length) % options.length] || options[0];
+      options.forEach((option) => option.setAttribute("aria-selected", String(option === next)));
+      parts.input.setAttribute("aria-activedescendant", next.id);
+      next.scrollIntoView({ block: "nearest" });
+    },
+    choose(parts, option) {
+      parts.input.value = option.dataset.nagoldOption;
+      parts.input.dispatchEvent(new Event("input", { bubbles: true }));
+      this.close(parts);
+      parts.input.focus();
+    }
+  };
+
+  function bindNagoldCombo() {
+    const rows = $("#nagold-rows");
+    rows.addEventListener("pointerdown", (event) => {
+      const option = event.target.closest("[data-nagold-option]");
+      const toggle = event.target.closest("[data-nagold-combo-toggle]");
+      if (!option && !toggle) return;
+      // Der Fokus bleibt im Feld; sonst schlösse das Verlassen des Feldes die Liste vor der Auswahl.
+      event.preventDefault();
+      const parts = nagoldCombo.parts(event.target);
+      if (option) nagoldCombo.choose(parts, option);
+      else if (parts.box.classList.contains("is-open")) nagoldCombo.close(parts);
+      else { parts.input.focus(); nagoldCombo.open(parts, true); }
+    });
+    rows.addEventListener("input", (event) => {
+      if (!event.target.matches(".nagold-combo input") || !event.isTrusted) return;
+      nagoldCombo.open(nagoldCombo.parts(event.target), false);
+    });
+    rows.addEventListener("keydown", (event) => {
+      if (!event.target.matches(".nagold-combo input")) return;
+      const parts = nagoldCombo.parts(event.target);
+      const isOpen = parts.box.classList.contains("is-open");
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        if (!isOpen) nagoldCombo.open(parts, true);
+        nagoldCombo.move(parts, event.key === "ArrowDown" ? 1 : -1);
+      } else if (event.key === "Enter" && isOpen) {
+        const active = parts.list.querySelector('[aria-selected="true"]');
+        if (active) { event.preventDefault(); nagoldCombo.choose(parts, active); }
+      } else if (event.key === "Escape" && isOpen) {
+        // Nur die Liste schließen, nicht den ganzen Dialog.
+        event.preventDefault();
+        event.stopPropagation();
+        nagoldCombo.close(parts);
+      }
+    });
+    rows.addEventListener("focusout", (event) => {
+      if (event.target.matches(".nagold-combo input")) nagoldCombo.close(nagoldCombo.parts(event.target));
+    });
+    $("#nagold-dialog").addEventListener("scroll", () => $$(".nagold-combo.is-open").forEach((box) => nagoldCombo.close(nagoldCombo.parts(box))), true);
   }
 
   function bindNagoldEvents() {
@@ -908,6 +1003,7 @@
     $("#nagold-rows").addEventListener("input", readNagoldInput);
     $("#nagold-rows").addEventListener("change", readNagoldInput);
     $("#nagold-form").addEventListener("submit", saveNagoldDraft);
+    bindNagoldCombo();
   }
 
   function showToast(message, duration = 3200) {

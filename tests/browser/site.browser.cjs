@@ -514,11 +514,19 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.match(await row.locator('[data-nagold-field="time"]').inputValue(), /^\d{2}:\d{2}$/);
         await page.locator("#nagold-save-button").click();
         assert.match(await page.locator("#nagold-error").innerText(), /Anlass/, "leerer Anlass wird abgelehnt");
-        await row.locator("[data-nagold-preset]").selectOption("Präsentation");
+        // Ein Feld „Wofür“ mit Vorschlagsliste: tippen filtert, Auswahl übernimmt.
+        assert.equal(await row.locator("select").count(), 0, "keine zweite Zeile mit Auswahlfeld");
+        assert.equal(await row.locator('[data-nagold-field="points"]').inputValue(), "0", "neue Zeile beginnt bei 0");
+        await row.locator('[data-nagold-field="purpose"]').pressSequentially("Prä");
+        assert.deepEqual(await row.locator(".nagold-combo-list li:visible").allInnerTexts(), ["Präsentation"]);
+        await row.locator('[data-nagold-option="Präsentation"]').click();
         assert.equal(await row.locator('[data-nagold-field="purpose"]').inputValue(), "Präsentation");
         await row.locator('[data-nagold-field="points"]').fill("6");
         await page.locator("#nagold-save-button").click();
         assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), true, "6 Punkte werden nicht gespeichert");
+        assert.match(await page.locator("#nagold-error").innerText(), /von −5 bis 5.*0 gilt nicht/);
+        await row.locator('[data-nagold-field="points"]').fill("-2");
+        assert.equal(await page.locator("#nagold-sum").innerText(), "3 NAGOLD gesamt", "Abzug wird verrechnet");
         await row.locator('[data-nagold-field="points"]').fill("3");
         assert.equal(await page.locator("#nagold-sum").innerText(), "8 NAGOLD gesamt");
 
@@ -596,8 +604,17 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.locator("#profile-button").click();
         assert.equal(await page.locator("#xp-panel #xp-total").innerText(), "200 XP");
         assert.equal(await page.locator("#xp-level").innerText(), "Level 1");
-        assert.equal(await page.locator("#xp-next").innerText(), "Noch 300 XP bis Level 2 (500 XP insgesamt).");
-        assert.match(await page.locator("#xp-nagold").innerText(), /9 NAGOLD gesammelt\. Die nächsten 5 NAGOLD gibt es für den Abschluss von L1\.3\./);
+        assert.equal(await page.locator("#xp-next").innerText(), "Noch 300 XP bis Level 2");
+        // Wenig Text im Profil: Erklärungen stehen in Tooltips und erscheinen erst beim Darüberfahren.
+        assert.equal(await page.locator("#nagold-tip").evaluate((tip) => tip.textContent), "Die nächsten 5 NAGOLD gibt es für den Abschluss von L1.3.");
+        assert.equal(await page.locator("#xp-breakdown").evaluate((tip) => getComputedStyle(tip).opacity), "0");
+        await page.locator("#xp-total").hover();
+        await page.waitForFunction(() => getComputedStyle(document.querySelector("#xp-breakdown")).opacity === "1");
+        assert.equal(await page.locator("#xp-breakdown").innerText(), "2 von 27 Einheiten: 200 XP · 0 von 54 Bonusaufgaben: 0 XP");
+        assert.equal(await page.locator("#manager-dialog .xp-rule").count(), 0);
+        assert.doesNotMatch(await page.locator("#profile-list").innerText(), /Browser-ID|XP|NAGOLD|Aktiv/, "Profilkarte nur mit Kürzel, Klasse, Fortschritt");
+        const dialogBox = await page.locator("#manager-dialog").evaluate((dialog) => ({ scroll: dialog.scrollHeight, client: dialog.clientHeight }));
+        assert.ok(dialogBox.scroll <= dialogBox.client + 1, "Profilfenster ohne Rollbalken bei 900 px Höhe");
         assert.equal(await page.locator("#profile-button .profile-label").isHidden(), true, "Text „Profil“ entfällt mit Profil");
         assert.match(await page.locator("#profile-stats").innerText(), /^200 XP · 9 NAG$/);
         await page.locator("#manager-dialog [data-close-dialog]").click();

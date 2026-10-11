@@ -4,6 +4,12 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.22.1 – 2026-10-11
+
+**Profilfenster schlanker (Wünsche Jakob).** Breiter und zweispaltig, dadurch ohne Rollbalken. Im XP-Abschnitt stehen nur noch XP, Level, Balken und „Noch n XP bis Level n“; Herkunft der XP, Level-Regel und der Hinweis auf die nächsten NAGOLD erscheinen als Tooltip. Die Profilkarte zeigt nur Kürzel, Klasse und Fortschritt, die Browser-ID entfällt.
+
+**NAGOLD-Tabelle wie in WorkbenchLab (Wunsch Jakob).** „Wofür“ ist ein einziges Feld mit aufklappender Vorschlagsliste: tippen filtert, Pfeiltasten wählen, Enter übernimmt. Punkte sind ganze Zahlen von −5 bis 5 (Abzüge durch die Lehrkraft möglich), 0 gilt nicht als Eintrag; neue Zeilen beginnen bei 0.
+
 ## 0.22.0 – 2026-10-11
 
 **XP im Profilknopf (Wunsch Jakob).** Der Profilknopf zeigt statt „Profil“ den Stand „n XP · n NAG“ über dem Kürzel; das eigene XP-Symbol entfällt. Ein Klick aufs Profil zeigt Level, die fehlenden XP bis zum nächsten Level, die Herkunft der XP und wofür es die nächsten NAGOLD gibt. Auf den Lernseiten öffnet der Profilknopf diese Übersicht in einem eigenen Fenster; auf dem Handy steht der XP-Stand neben dem Kürzel-Feld.

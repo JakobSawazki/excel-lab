@@ -16,6 +16,7 @@ const done = { completed: true };
 
 test("Grundwerte: 5 NAGOLD je Einheit, 27 Einheiten ergeben 135", () => {
   assert.equal(nagold.maxPoints, 5);
+  assert.equal(nagold.minPoints, -5);
   assert.equal(lessons.length, 27);
   const progress = Object.fromEntries(lessons.map((lesson) => [lesson.id, done]));
   assert.equal(nagold.total({ progress }), 135);
@@ -34,11 +35,12 @@ test("Datum und Uhrzeit: nur echte Kalendertage und HH:MM", () => {
   assert.equal(nagold.clock(date), "07:04");
 });
 
-test("Bereinigung: 1 bis 5 ganze Punkte, Anlass nötig, Text gekürzt, fremde Felder entfallen", () => {
+test("Bereinigung: ganze Punkte von -5 bis 5 ohne 0, Anlass nötig, Text gekürzt, fremde Felder entfallen", () => {
   const entries = plain(nagold.normalizeEntries([
     { date: "2026-10-11", time: "09:00", purpose: "  Mitarbeit  ", points: 3, extra: "x" },
     { date: "2026-10-11", time: "09:00", purpose: "zu viel", points: 6 },
-    { date: "2026-10-11", time: "09:00", purpose: "zu wenig", points: 0 },
+    { date: "2026-10-11", time: "09:00", purpose: "null zählt nicht", points: 0 },
+    { date: "2026-10-11", time: "09:00", purpose: "Abzug zu groß", points: -6 },
     { date: "2026-10-11", time: "09:00", purpose: "halb", points: 2.5 },
     { date: "2026-10-11", time: "09:00", purpose: "   ", points: 2 },
     { date: "2026-13-01", time: "09:00", purpose: "falsches Datum", points: 2 },
@@ -46,9 +48,10 @@ test("Bereinigung: 1 bis 5 ganze Punkte, Anlass nötig, Text gekürzt, fremde Fe
     { date: "", purpose: "ohne Datum und Uhrzeit", points: 1 },
     { date: "2026-10-11", time: "09:00", purpose: "x".repeat(300), points: 5, lessonId: "gibt-es-nicht" },
     { date: "2026-10-11", time: "09:00", purpose: "L1.1", points: 5, lessonId: "l1-1" },
+    { date: "2026-10-11", time: "09:00", purpose: "Abzug", points: -5 },
     null, "text"
   ]));
-  assert.deepEqual(entries.map((entry) => entry.points), [3, 1, 5, 5]);
+  assert.deepEqual(entries.map((entry) => entry.points), [3, 1, 5, 5, -5]);
   assert.deepEqual(entries[0], { date: "2026-10-11", time: "09:00", purpose: "Mitarbeit", points: 3 });
   assert.deepEqual(entries[1], { date: "", time: "", purpose: "ohne Datum und Uhrzeit", points: 1 });
   assert.equal(entries[2].purpose.length, 160);

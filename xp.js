@@ -27,13 +27,16 @@
   mini.innerHTML = '<span class="xp-count-mini">0</span><span class="profile-mini-label">XP</span>';
   profileButton.querySelector(".profile-avatar")?.after(mini);
 
-  const panelMarkup = `
-    <div class="xp-summary"><strong id="xp-total">0 XP</strong><span id="xp-level">Level 1</span></div>
-    <p id="xp-next"></p>
+  // Wenig Text: Zahl, Level, Balken und eine Zeile. Erklärungen erscheinen als
+  // Tooltip beim Darüberfahren oder bei Tastaturfokus.
+  const panelMarkup = (withNagold) => `
+    <div class="xp-summary">
+      <span class="tip-wrap tip-start"><strong id="xp-total" tabindex="0" aria-describedby="xp-breakdown">0 XP</strong><span class="tip" role="tooltip" id="xp-breakdown"></span></span>
+      ${withNagold ? '<span class="tip-wrap"><span class="xp-nagold-chip" id="xp-nagold-chip" tabindex="0" aria-describedby="xp-nagold">0 NAGOLD</span><span class="tip" role="tooltip" id="xp-nagold"></span></span>' : ""}
+      <span class="tip-wrap tip-end"><span id="xp-level" tabindex="0" aria-describedby="xp-rule">Level 1</span><span class="tip" role="tooltip" id="xp-rule">Eine Einheit bringt 100 XP, eine Bonusaufgabe 50 XP. Ein neues Level gibt es nach je 500 XP.</span></span>
+    </div>
     <progress id="xp-progress" max="500" value="0" aria-label="Fortschritt zum nächsten Level"></progress>
-    <p class="xp-breakdown" id="xp-breakdown"></p>
-    <p class="xp-nagold" id="xp-nagold"></p>
-    <p class="xp-rule">Eine abgeschlossene Einheit bringt 100 XP und 5 NAGOLD, jede gelöste Bonusaufgabe zusätzlich 50 XP. Ein neues Level erreichst du nach je 500 XP; das letzte Level mit allen Einheiten und allen Bonusaufgaben.</p>`;
+    <p id="xp-next"></p>`;
 
   const managerList = document.querySelector("#manager-dialog #profile-list");
   let dialog = null;
@@ -44,7 +47,7 @@
     panel.className = "xp-panel";
     panel.id = "xp-panel";
     panel.setAttribute("aria-labelledby", "xp-title");
-    panel.innerHTML = `<h3 id="xp-title">Deine XP</h3>${panelMarkup}`;
+    panel.innerHTML = `<h3 id="xp-title">Deine XP</h3>${panelMarkup(false)}`;
     managerList.after(panel);
   } else {
     // Lernseiten: eigenes Fenster hinter dem Profilknopf.
@@ -54,7 +57,7 @@
     dialog.setAttribute("aria-labelledby", "xp-title");
     dialog.innerHTML = `<div class="dialog-content">
       <button class="dialog-close" type="button" aria-label="XP-Übersicht schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
-      <h2 id="xp-title">Deine XP</h2>${panelMarkup}
+      <h2 id="xp-title">Deine XP</h2>${panelMarkup(true)}
       <a class="button button-secondary button-full" id="xp-profile-link" href="${profileButton.getAttribute("href") || "index.html#uebersicht"}">Profil und Speicherstand öffnen</a>
     </div>`;
     document.body.append(dialog);
@@ -118,17 +121,26 @@
     panel.querySelector("#xp-total").textContent = `${xp} XP`;
     panel.querySelector("#xp-level").textContent = `Level ${levelIndex + 1}`;
     panel.querySelector("#xp-next").textContent = !profile
-      ? "Lege ein Profil an oder lade deine Speicherdatei, um XP zu sammeln."
-      : next === undefined ? "Höchstes Level erreicht – alle Einheiten und Bonusaufgaben geschafft!"
-        : `Noch ${next - xp} XP bis Level ${levelIndex + 2} (${next} XP insgesamt).`;
+      ? "Lege ein Profil an, um XP zu sammeln."
+      : next === undefined ? "Höchstes Level erreicht"
+        : `Noch ${next - xp} XP bis Level ${levelIndex + 2}`;
     // Woher die XP kommen: Einheiten und Bonusaufgaben getrennt.
     panel.querySelector("#xp-breakdown").textContent = profile
       ? `${completed} von ${lessons.length} Einheiten: ${completed * 100} XP · ${solved} von ${available} Bonusaufgaben: ${solved * bonusXp} XP`
       : "";
+    // Wofür es die nächsten NAGOLD gibt: als Tooltip am NAGOLD-Feld.
     const nextLesson = lessons.find((lesson) => !profile?.progress?.[lesson.id]?.completed);
-    panel.querySelector("#xp-nagold").textContent = profile && nagold
-      ? `${nagoldTotal} NAGOLD gesammelt. ${nextLesson ? `Die nächsten ${nagold.maxPoints} NAGOLD gibt es für den Abschluss von ${nextLesson.code}.` : "Alle Einheiten sind abgeschlossen."}`
+    const nagoldHint = profile && nagold
+      ? nextLesson ? `Die nächsten ${nagold.maxPoints} NAGOLD gibt es für den Abschluss von ${nextLesson.code}.` : "Alle Einheiten sind abgeschlossen."
       : "";
+    const chip = panel.querySelector("#xp-nagold-chip");
+    if (chip) {
+      chip.textContent = `${nagoldTotal} NAGOLD`;
+      chip.parentElement.hidden = !profile || !nagold;
+      panel.querySelector("#xp-nagold").textContent = nagoldHint;
+    }
+    const managerNagold = document.querySelector("#nagold-tip");
+    if (managerNagold) managerNagold.textContent = nagoldHint;
     const progress = panel.querySelector("#xp-progress");
     progress.max = next === undefined ? 1 : next - base;
     progress.value = next === undefined ? 1 : xp - base;
