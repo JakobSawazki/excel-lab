@@ -1,11 +1,30 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 7. Oktober 2026, Europe/Berlin
+Stand: 12. Oktober 2026, Europe/Berlin
 Projektversion: 0.23.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Oberfläche vereinfacht (lokal, 12.10.2026):** Auf Jakobs Wunsch die
+  sichtbare Bildunterschrift „Unsere Lernsituation · KI-generierte Illustration“
+  bei L1.1 entfernt. Bildherkunft und Bearbeitungsprompt bleiben hier dokumentiert;
+  Alternativtext und Kennzeichnung des fiktiven Übungsauftrags bleiben erhalten.
+  Noch nicht veröffentlicht.
+
+- **Bildkorrektur (lokal, 12.10.2026):** Die L1.1-Grafik zeigte fälschlich
+  ein Display auf der Laptoprückseite. Mit dem eingebauten Imagegen-Werkzeug
+  korrigiert: Zur Kamera zeigt jetzt die matte silberne Deckelrückseite,
+  das nicht sichtbare Display ist den Lernenden zugewandt. Menschen, Getränke
+  und Szene weitgehend beibehalten. Neue eingebundene Datei:
+  `assets/lessons/l1-1-firmenveranstaltung-v2.png`; bisherige Dateien erhalten.
+  Noch nicht veröffentlicht; keine Änderungen an Aufgaben oder Lernständen.
+  Bild visuell geprüft; lokaler L1.1-Test mit 16 Layoutzuständen bestanden,
+  Bild geladen, keine JavaScript-Fehler oder Änderungen am Lernstand.
+  Verwendeter Bearbeitungsprompt:
+
+  > Use case: precise-object-edit. Input image: edit target, the existing Excel-Lab L1.1 company-event photograph. Change only the laptop in the lower-left foreground to correct its physical construction and viewing orientation. The camera sees the OUTER BACK of the open laptop lid, so this entire camera-facing lid surface must be plain opaque matte silver metal, with NO display, NO spreadsheet, NO glowing pixels, NO logo. The actual display faces the two trainees on the opposite side and is NOT visible to the camera. Keep a realistic single thin lid, hinge and laptop base with correct perspective. Preserve the two people, their faces and poses, bottles, crates, notebook, table, background, lighting, photo-realistic style and original landscape framing. Do not add objects or text. No watermark.
 
 - **Veröffentlicht als 0.23.0 (Claude, 11.10.2026, Wunsch Jakob):** Navigationspunkt
   „Übersicht“ aus `index.html` und `lesson-navigation.js` entfernt; Pfadzeile
