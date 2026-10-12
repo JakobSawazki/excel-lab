@@ -7,6 +7,17 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Budget und Footer veröffentlicht (12.10.2026):** Commit
+  `9bf39db92e27403dc49af3d3422087ef5f5f161d` auf GitHub gepusht;
+  Tests-Lauf `38237750970` und Pages-Lauf `38237749339` erfolgreich.
+  Öffentliche Prüfungen bestanden: L1.1-Budgettext, Rechenprüfung,
+  16 Layoutzustände, acht Theme-Kombinationen sowie Footer auf allen
+  27 Lerneinheiten mit 108 Breitenprüfungen. Release-Test: 28 Seiten,
+  60 Assets, Version 0.23.0, keine privaten Materiallinks oder
+  JavaScript-Laufzeitfehler. Die beiden folgenden lokalen Einträge sind
+  damit veröffentlicht. Keine Originalmaterialien oder temporären Tests
+  mitveröffentlicht.
+
 - **L1.1-Budgetrahmen (lokal, 12.10.2026):** Die Firmenveranstaltung plant
   jetzt mit etwa 30 Kunden und höchstens 150 € für Getränke. Aufgabe 2 ergänzt
   Budgetvergleich und Restbudget (zunächst Taschenrechner), einschließlich
@@ -15,7 +26,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Angemessenheit der Mengen gemeinsam besprechen, ohne einen sicheren Bedarf
   aus der ungefähren Gästezahl abzuleiten. Keine neuen XP oder Abschlussregeln.
   Theme-Frage geprüft: gespeicherte Auswahl hat Vorrang; ansonsten übernimmt
-  die Anwendung die Geräteeinstellung für Hell/Dunkel. Noch nicht veröffentlicht.
+  die Anwendung die Geräteeinstellung für Hell/Dunkel. Veröffentlichung siehe oben.
   Tests bestanden: L1.1-Einstieg einschließlich Budgettext, unabhängige
   Budgetrechnung, 16 Layoutzustände und acht Theme-Kombinationen auf Startseite
   und L1.1 (System hell/dunkel, ohne Auswahl oder mit abweichender Auswahl).
@@ -28,7 +39,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Browserprüfung bestanden: alle 27 Seiten, 108 Breitenprüfungen
   (320/390/760/1440 Pixel), Linkziel und Quellenhinweise korrekt,
   keine JavaScript-Fehler. Desktop-/Mobilansicht zusätzlich visuell geprüft.
-  Keine Änderung an Aufgaben, Lernstand oder XP; noch nicht veröffentlicht.
+  Keine Änderung an Aufgaben, Lernstand oder XP; Veröffentlichung siehe oben.
 
 - **Veröffentlicht und online geprüft (12.10.2026):** Korrigierte
   Laptop-Grafik und entfernte Bildunterschrift unter Commit
