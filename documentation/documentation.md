@@ -7,11 +7,23 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Veröffentlicht und online geprüft (12.10.2026):** Korrigierte
+  Laptop-Grafik und entfernte Bildunterschrift unter Commit
+  `97ad313a3f0ecc6a603340474f8e2edb9e75b6ae` auf GitHub veröffentlicht.
+  Tests-Lauf `38223718473` und Pages-Lauf `38223717510` erfolgreich.
+  Öffentliche L1.1-Seite referenziert die neue Bildversion, das Bild liefert
+  HTTP 200 und die bisherige Bildunterschrift ist entfernt. Release-Test:
+  28 Seiten, 60 Assets, Version 0.23.0, keine privaten Materiallinks oder
+  JavaScript-Laufzeitfehler. Die beiden folgenden lokalen Einträge sind
+  damit veröffentlicht. Hinweis für Wartung: Git meldete beim automatischen
+  Repack `bad object refs/desktop.ini`; Commit und Push waren erfolgreich.
+  Keine Git-internen Dateien verändert.
+
 - **Oberfläche vereinfacht (lokal, 12.10.2026):** Auf Jakobs Wunsch die
   sichtbare Bildunterschrift „Unsere Lernsituation · KI-generierte Illustration“
   bei L1.1 entfernt. Bildherkunft und Bearbeitungsprompt bleiben hier dokumentiert;
   Alternativtext und Kennzeichnung des fiktiven Übungsauftrags bleiben erhalten.
-  Noch nicht veröffentlicht.
+  Veröffentlichung und Online-Prüfung siehe Eintrag oben.
 
 - **Bildkorrektur (lokal, 12.10.2026):** Die L1.1-Grafik zeigte fälschlich
   ein Display auf der Laptoprückseite. Mit dem eingebauten Imagegen-Werkzeug
@@ -19,7 +31,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   das nicht sichtbare Display ist den Lernenden zugewandt. Menschen, Getränke
   und Szene weitgehend beibehalten. Neue eingebundene Datei:
   `assets/lessons/l1-1-firmenveranstaltung-v2.png`; bisherige Dateien erhalten.
-  Noch nicht veröffentlicht; keine Änderungen an Aufgaben oder Lernständen.
+  Veröffentlicht, siehe Eintrag oben; keine Änderungen an Aufgaben oder Lernständen.
   Bild visuell geprüft; lokaler L1.1-Test mit 16 Layoutzuständen bestanden,
   Bild geladen, keine JavaScript-Fehler oder Änderungen am Lernstand.
   Verwendeter Bearbeitungsprompt:
