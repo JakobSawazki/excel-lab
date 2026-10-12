@@ -7,6 +7,29 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **L1.1-Budgetrahmen (lokal, 12.10.2026):** Die Firmenveranstaltung plant
+  jetzt mit etwa 30 Kunden und höchstens 150 € für Getränke. Aufgabe 2 ergänzt
+  Budgetvergleich und Restbudget (zunächst Taschenrechner), einschließlich
+  Gleichheit und Überschreitung. Getränke, Preise, Mengen und Zellplan bleiben
+  unverändert; die Gästezahl ist kein zusätzlicher Faktor der Kostenformel.
+  Angemessenheit der Mengen gemeinsam besprechen, ohne einen sicheren Bedarf
+  aus der ungefähren Gästezahl abzuleiten. Keine neuen XP oder Abschlussregeln.
+  Theme-Frage geprüft: gespeicherte Auswahl hat Vorrang; ansonsten übernimmt
+  die Anwendung die Geräteeinstellung für Hell/Dunkel. Noch nicht veröffentlicht.
+  Tests bestanden: L1.1-Einstieg einschließlich Budgettext, unabhängige
+  Budgetrechnung, 16 Layoutzustände und acht Theme-Kombinationen auf Startseite
+  und L1.1 (System hell/dunkel, ohne Auswahl oder mit abweichender Auswahl).
+
+- **Einheitlicher Footer (lokal, 12.10.2026):** Alle 27 Lerneinheiten
+  erhalten über `lesson-workspace.js` unten rechts denselben Link
+  „Designed by Sawazki Electronics“ wie die Startseite, mit gleicher
+  Gestaltung über `.footer-links`. Bestehende Marke und Quellenhinweis
+  bleiben links erhalten; rechtsbündig auch auf kleinen Bildschirmen.
+  Browserprüfung bestanden: alle 27 Seiten, 108 Breitenprüfungen
+  (320/390/760/1440 Pixel), Linkziel und Quellenhinweise korrekt,
+  keine JavaScript-Fehler. Desktop-/Mobilansicht zusätzlich visuell geprüft.
+  Keine Änderung an Aufgaben, Lernstand oder XP; noch nicht veröffentlicht.
+
 - **Veröffentlicht und online geprüft (12.10.2026):** Korrigierte
   Laptop-Grafik und entfernte Bildunterschrift unter Commit
   `97ad313a3f0ecc6a603340474f8e2edb9e75b6ae` auf GitHub veröffentlicht.

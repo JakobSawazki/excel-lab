@@ -78,6 +78,23 @@
   }
 
   addVideoTutorial();
+
+  // Shared lesson footer: keep the source note and match the homepage credit.
+  const lessonFooter = document.querySelector(".lesson-page-footer");
+  if (lessonFooter && !lessonFooter.querySelector(".footer-links")) {
+    const intro = document.createElement("div");
+    intro.className = "lesson-footer-intro";
+    while (lessonFooter.firstChild) intro.append(lessonFooter.firstChild);
+    const links = document.createElement("div");
+    links.className = "footer-links";
+    const credit = document.createElement("a");
+    credit.href = "https://jakobsawazki.github.io/sawazki-electronics/";
+    credit.target = "_blank";
+    credit.rel = "noopener noreferrer";
+    credit.textContent = "Designed by Sawazki Electronics";
+    links.append(credit);
+    lessonFooter.append(intro, links);
+  }
   function revealTarget() {
     let id;
     try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
