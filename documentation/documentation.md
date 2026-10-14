@@ -7,6 +7,14 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Situationssprache veröffentlicht und geprüft (14.10.2026):** Commit
+  `4eb7a7b4c5c8181a0a7940ff94b2f2a6f0b455d7` auf GitHub gepusht;
+  Tests-Lauf `38533315914` und Pages-Lauf `38533315491` erfolgreich.
+  Alle 17 geänderten Lernseiten stimmen online mit den lokalen Texten überein.
+  Öffentlicher Release-Test bestanden: 28 Seiten, 60 Assets, Version 0.23.0,
+  keine privaten Materiallinks oder JavaScript-Laufzeitfehler.
+  Der folgende lokale Eintrag ist damit veröffentlicht.
+
 - **Direkte Situationssprache (lokal, 14.10.2026):** Auf Jakobs Wunsch
   Hinweise wie „fiktiv“, „frei erfunden“ und „Unterrichts-Beispieldaten“
   in den Situationsbeschreibungen von 17 Lerneinheiten durch direkte
@@ -15,7 +23,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Grenzen von Modellen, historische Zeitbezüge, fehlende Messungen,
   Schätzwerte, Datenschutz und Hinweise gegen erfundene Ersatzwerte
   bleiben erhalten. Keine tatsächliche Erhebung oder Durchführung behauptet;
-  Daten, Formeln, Quiz und XP bleiben unverändert. Noch nicht veröffentlicht.
+  Daten, Formeln, Quiz und XP bleiben unverändert. Veröffentlichung siehe oben.
   Prüfung bestanden: Zahlenfolgen in allen 17 geänderten Lernseiten identisch;
   lokaler Browser-Test über 28 Seiten und 60 Assets ohne Laufzeitfehler.
 
