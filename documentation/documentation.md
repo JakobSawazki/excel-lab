@@ -1,11 +1,23 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 12. Oktober 2026, Europe/Berlin
+Stand: 14. Oktober 2026, Europe/Berlin
 Projektversion: 0.23.0
 Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Direkte Situationssprache (lokal, 14.10.2026):** Auf Jakobs Wunsch
+  Hinweise wie „fiktiv“, „frei erfunden“ und „Unterrichts-Beispieldaten“
+  in den Situationsbeschreibungen von 17 Lerneinheiten durch direkte
+  Formulierungen ersetzt. L1.1 nennt die vorgegebenen Preise und die
+  Berechnung ohne Pfand, ohne den Auftrag als fiktiv zu bezeichnen.
+  Grenzen von Modellen, historische Zeitbezüge, fehlende Messungen,
+  Schätzwerte, Datenschutz und Hinweise gegen erfundene Ersatzwerte
+  bleiben erhalten. Keine tatsächliche Erhebung oder Durchführung behauptet;
+  Daten, Formeln, Quiz und XP bleiben unverändert. Noch nicht veröffentlicht.
+  Prüfung bestanden: Zahlenfolgen in allen 17 geänderten Lernseiten identisch;
+  lokaler Browser-Test über 28 Seiten und 60 Assets ohne Laufzeitfehler.
 
 - **Budget und Footer veröffentlicht (12.10.2026):** Commit
   `9bf39db92e27403dc49af3d3422087ef5f5f161d` auf GitHub gepusht;
