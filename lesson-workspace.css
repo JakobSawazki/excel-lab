@@ -154,7 +154,8 @@
 /* Kurzer Verständnis-Check: einheitlich nutzbar für weitere Lernseiten. */
 .mastery-form { display:grid; gap:1rem; margin-top:1rem; }
 .mastery-question { min-width:0; margin:0; padding:1rem; border:1px solid var(--line-strong); border-radius:12px; background:var(--surface); }
-.mastery-question legend { padding:0 .35rem; font-weight:700; line-height:1.5; }
+.mastery-question legend { float:left; width:100%; margin:0 0 .75rem; padding:0; font-weight:700; line-height:1.5; overflow-wrap:anywhere; }
+.mastery-question legend + label { clear:both; }
 .mastery-question label { display:flex; align-items:flex-start; gap:.65rem; margin:.55rem 0; padding:.7rem .8rem; border:1px solid var(--line); border-radius:9px; cursor:pointer; line-height:1.5; }
 .mastery-question label:hover { border-color:var(--green); background:color-mix(in srgb,var(--green) 6%,var(--surface)); }
 .mastery-question label:has(input:checked) { border-color:var(--green); background:color-mix(in srgb,var(--green) 12%,var(--surface)); }

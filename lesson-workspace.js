@@ -2,7 +2,7 @@
   "use strict";
   const videoTutorials = {
     "l1-1": { id: "xGg6PxGJyLI", title: "Excel Tabelle erstellen: Grundlagen", author: "Lernwas", context: "Tabellenaufbau und Dateneingabe. Deine Getränkeliste planst du anschließend selbst." },
-    "l1-2": { id: "ZbWcoOrviaw", title: "Rechnen in Excel: Grundrechenarten", author: "Computerkurs", context: "Formeln und Rechenzeichen als Ergänzung zur Getränkeliste." },
+    "l1-2": { id: "ZbWcoOrviaw", title: "Rechnen in Excel: Grundrechenarten", author: "Computerkurs", context: "Formeln und Rechenzeichen als Ergänzung zur Materialbestellung für deinen Kundenworkshop." },
     "l1-3": { id: "-beNwsieTQc", title: "Excel Basis: Zellen formatieren", author: "Jarek Galek", context: "Zellformatierung als Einstieg; für deine Datei gelten die Arbeitsaufträge auf dieser Seite." },
     "l1-4": { id: "82fEbFkxhbI", title: "Formeln kopieren: relative Zellbezüge", author: "Arno Burger", context: "Warum sich Zellbezüge beim Kopieren mitbewegen." },
     "l1-5": { id: "xGg6PxGJyLI", title: "Excel Tabelle erstellen: Grundlagen", author: "Lernwas", context: "Tabellenaufbau als Wiederholung für deine selbst entworfene Sommerfest-Liste." },
@@ -79,7 +79,7 @@
 
   addVideoTutorial();
 
-  // Shared lesson footer: keep the source note and match the homepage credit.
+  // Shared lesson footer: keep the brand and match the homepage credit.
   const lessonFooter = document.querySelector(".lesson-page-footer");
   if (lessonFooter && !lessonFooter.querySelector(".footer-links")) {
     const intro = document.createElement("div");

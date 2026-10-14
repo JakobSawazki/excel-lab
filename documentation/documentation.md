@@ -7,6 +7,62 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **L1.2 neu aufgebaut und Footer vereinfacht (lokal, 14.10.2026):**
+  Auf Jakobs Wunsch ersetzt eine Materialbestellung für einen Kundenworkshop
+  die Wiederholung der Getränkeliste als Hauptauftrag in L1.2. Rahmen:
+  30 Teilnehmer, 200 € Budget, einmalig 8 € Lieferung und 10 € fester Rabatt;
+  fünf vollständige Materialpositionen stehen direkt auf der Seite.
+  Neun Formeln üben Multiplikation, Addition, Subtraktion und Division:
+  Positionen D4:D8, Materialsumme D9, Bestellkosten D13, Durchschnitt D16,
+  Restbudget D19. Drei getrennte Änderungstests mit Rückstellung; keine
+  automatische Mengenanpassung durch Teilnehmerzahl. Fünf Verständnisfragen
+  statt drei, weiterhin 100 XP und bisherige Abschlüsse gültig. Neue Datei:
+  `L1_2 Kundenworkshop.xlsx`. L1.3 verwendet für die Formatierung wieder die
+  Getränkeliste aus L1.1; ältere L1.2-Getränkedateien bleiben verwendbar.
+  Originalmaterialien unverändert; die optionale ursprüngliche Getränkelisten-
+  Vorlage ist ausdrücklich keine Workshop-Vorlage. Diese didaktische Variante
+  ersetzt den früher dokumentierten L1.2-Hauptauftrag.
+  In allen 27 Fußzeilen die Texte „Ein Lernangebot …“ und „Inhaltlich aufgebaut …“
+  entfernt; Icon, Excel-Lab und „Designed by Sawazki Electronics“ bleiben.
+  Quellenherkunft bleibt in dieser Dokumentation erhalten.
+  Tests bestanden: Workshopdaten und unabhängige Rechen-/Änderungsprüfungen,
+  Bild geladen, 16 Layoutzustände, beide Abschlusswege L1.2/L1.3 mit acht Fragen,
+  alle 27 bereinigten Footer und alle 306 Node-Tests. Bild und Desktop-/Mobil-
+  Darstellung angesehen. Keine Behauptung einer tatsächlichen Excel-Ausführung.
+  Noch nicht veröffentlicht.
+
+  Bilddatei: `assets/lessons/l1-2-kundenworkshop.png`, 1536 × 1024 Pixel,
+  erstellt mit dem eingebauten Imagegen-Werkzeug. Verwendeter Prompt:
+
+  > Use case: photorealistic-natural. Asset type: landscape introductory photograph for Excel-Lab lesson L1.2, material planning for a customer workshop. Scene: a bright modern company training room being prepared for a workshop, meeting tables and a presentation board in the background. Subject: two young adult trainees at a work table checking a material order: stacks of notebooks and folders, pens, blank name badges, sticky-note pads, one small open delivery box, a laptop and an order checklist with no readable text. One person checks the order at the laptop while the other sorts the supplies; natural focused collaborative body language, not looking at the camera. Style: realistic editorial photography, daylight, natural skin texture and everyday fabric, tactile paper and cardboard. Composition: landscape 3:2 medium-wide, people and the workshop materials clearly visible. Crucial physical constraint: an open laptop with a single correctly oriented lid; the camera sees the plain opaque matte-metal back of its lid, the actual display faces the users and is not visible. Constraints: no drinks as the main subject, no logos, no readable text or numbers, no watermarks, no UI overlays, no real-person references.
+
+- **Fragenüberschriften in Karten (lokal, 14.10.2026):** Die Überschriften
+  der Verständnisfragen stehen nun innerhalb der Karten statt auf dem oberen
+  Rahmen. Gemeinsame CSS-Regel für alle Lernseiten; semantische Fieldsets und
+  Legends für die Radio-Gruppen bleiben erhalten. Sauberer Umbruch und Abstand
+  zu den Antwortoptionen, ohne Änderungen an Fragen oder Auswertung.
+  Browserprüfung bestanden: 27 Einheiten, 83 Fragen, 216 Layoutzustände
+  (vier Breiten × Hell/Dunkel); Überschriften innerhalb der Karten und keine
+  Überlappungen. L1.1 auf Desktop und Mobil zusätzlich visuell geprüft.
+  Noch nicht veröffentlicht.
+
+- **Einheitliches Profilfenster (lokal, 14.10.2026):** Alle 27 Lernseiten
+  öffnen jetzt direkt ein vollständiges Profilfenster statt des bisherigen
+  separaten XP-Dialogs. Anordnung und CSS-Klassen entsprechen der Startseite:
+  Profilkarte, Kürzel/Klasse, XP/Level neben NAGOLD, Lernnachweis. Kürzel und
+  Klasse werden mit denselben Formatregeln bearbeitet. NAGOLD-Einträge können
+  direkt auf der Lernseite hinzugefügt, bearbeitet, gelöscht und gespeichert
+  werden; die dortige Anlass-Auswahl nutzt eine native Vorschlagsliste.
+  Speicherung liest den neuesten Stand, bewahrt andere Profilfelder und
+  verweigert einen veralteten Entwurf nach Profilwechsel. Schreibfehler werden
+  angezeigt, ohne einen Erfolg vorzutäuschen. Ohne Profil bleibt der Weg zur
+  Startseite zur Profilerstellung erhalten. Kleine Bildschirme erhalten
+  gemeinsame Umbruchregeln für Startseite und Lernseiten.
+  Geprüft: Layoutabgleich mit Startseite, alle 27 Profildialoge, Validierung,
+  Wiederladen, unveränderter Lernfortschritt, NAGOLD-Buchung, acht Layoutzustände,
+  Profilwechsel und gesperrter Speicher. Desktop und Mobilansicht visuell geprüft.
+  Außerdem alle 306 bestehenden Node-Tests bestanden. Noch nicht veröffentlicht.
+
 - **Situationssprache veröffentlicht und geprüft (14.10.2026):** Commit
   `4eb7a7b4c5c8181a0a7940ff94b2f2a6f0b455d7` auf GitHub gepusht;
   Tests-Lauf `38533315914` und Pages-Lauf `38533315491` erfolgreich.

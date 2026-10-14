@@ -81,12 +81,12 @@
       stage: 1,
       code: "L1.2",
       title: "Rechnen mit Zelladressen",
-      duration: "30 Min.",
+      duration: "45 Min.",
       level: "Einstieg",
       points: 100,
       page: "l1-2.html",
       tags: ["Formeln", "Grundrechenarten"],
-      description: "Du vertiefst die Formeln aus deiner Getränkeliste und prüfst, wie Excel bei Änderungen automatisch mitrechnet.",
+      description: "Du planst die Materialbestellung für einen Kundenworkshop: Einkauf, Lieferkosten, Rabatt, Restbudget und Kosten pro Teilnehmer.",
       goal: "Du kannst Formeln mit = beginnen, Zelladressen einsetzen und Rechenoperatoren korrekt verwenden.",
       keyPoints: [
         { title: "Gleichheitszeichen", text: "Jede Excel-Formel beginnt mit =." },
@@ -95,15 +95,18 @@
         { title: "Plausibilitätscheck", text: "Überschlage das Ergebnis vor dem Kopieren." }
       ],
       formulas: [
-        { code: "=B2*C2", note: "Beispiel Heftkauf: Preis in B2 mal Anzahl in C2." },
-        { code: "=D2+D3+D4", note: "Beispiel: drei Ergebniszellen mit + addieren." }
+        { code: "=B4*C4", note: "Stückpreis mal Menge." },
+        { code: "=D4+D5+D6+D7+D8", note: "Materialsumme aus fünf Positionen." },
+        { code: "=D9+B11-B12", note: "Materialsumme plus Lieferkosten minus festen Rabatt." },
+        { code: "=D13/B15", note: "Bestellkosten durch die Teilnehmerzahl teilen." },
+        { code: "=B18-D13", note: "Budget minus Bestellkosten." }
       ],
       steps: [
-        "Erstelle die Getränkeliste mit den Eingabedaten auf der Lernseite oder nutze die optionale Vorlage; fülle D4 bis D9 mit Formeln.",
-        "Berechne jede Position aus Preis und Menge.",
-        "Ermittle die Gesamtsumme und prüfe das Ergebnis mit einer Überschlagsrechnung."
+        "Erstelle eine neue Materialbestellung mit den fünf Artikeln und Eingaben auf der Lernseite.",
+        "Berechne die Positionen und Materialsumme, danach Bestellkosten, Kosten pro Teilnehmer und Restbudget.",
+        "Prüfe Mengen-, Lieferkosten- und Teilnehmeränderungen getrennt und stelle alle Ausgangswerte zurück."
       ],
-      checks: ["Informationen gelesen und alle sechs Formeln mit Zelladressen geprüft", "Ergebnisse überschlagen, Neuberechnung getestet und ursprüngliche Menge wiederhergestellt", "Datei im Ordner Ergebnisse als L1_2 Getränkeliste.xlsx gespeichert"],
+      checks: ["Informationen gelesen und alle neun Formeln geprüft", "Änderungstests durchgeführt und Ausgangswerte wiederhergestellt", "Datei im Ordner Ergebnisse als L1_2 Kundenworkshop.xlsx gespeichert"],
       tip: "Ein angezeigter Wert ist nur das Ergebnis. In der Bearbeitungsleiste siehst du die zugrunde liegende Formel.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_2 Aufgabenstellung Formeln in Excel.docx", "Aufgabe Formeln in Excel", "DOCX"),

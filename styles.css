@@ -3959,6 +3959,10 @@ html {
 @media (max-width: 720px) {
   .manager-dialog .profile-edit-form, .manager-panels { grid-template-columns: minmax(0, 1fr); gap: .9rem; }
 }
+@media (max-width: 480px) {
+  .manager-dialog .dialog-content { padding:1rem; }
+  .manager-dialog .xp-summary, .manager-dialog .nagold-panel-value { flex-wrap:wrap; }
+}
 .xp-panel { padding: 1rem 1.1rem 1.05rem; }
 .xp-summary { display: flex; align-items: center; gap: .8rem; }
 .xp-summary .tip-end { margin-left: auto; }

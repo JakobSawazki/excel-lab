@@ -56,7 +56,7 @@
             <div>
               <p class="eyebrow"><span>L1.2</span> BPE 1.1 · 100 XP</p>
               <h1>Rechnen mit Zelladressen</h1>
-              <p>Du lässt Excel mit Zelladressen rechnen und prüfst, ob sich Ergebnisse bei Änderungen automatisch anpassen. Plane etwa 30 Minuten ein.</p>
+              <p>Du verantwortest die Materialbestellung für einen Kundenworkshop. Excel berechnet Einkauf, Lieferkosten, Rabatt, Restbudget und Kosten pro Teilnehmer. Plane etwa 45 Minuten ein.</p>
             </div>
             <div class="lesson-score-card">
               <span class="score-ring" id="lesson-score-ring" style="--progress:0"><strong id="lesson-page-percent">0%</strong></span>
@@ -81,13 +81,23 @@
       </section>
       <div id="l12-content" class="page-shell page-shell-narrow lesson-page-layout" hidden>
         <article class="lesson-article">
+          <section class="l11-situation" aria-labelledby="l12-situation-heading">
+            <figure><img src="assets/lessons/l1-2-kundenworkshop.png" width="1536" height="1024" alt="Zwei Teammitglieder bereiten einen Kundenworkshop vor: Eine Person prüft die Bestellung am Laptop, die andere sortiert Hefte, Mappen und Haftnotizen." fetchpriority="high"></figure>
+            <div class="l11-situation-copy">
+              <p class="section-index">Dein Auftrag</p><h2 id="l12-situation-heading">Ohne deine Planung fehlt dem Workshop etwas</h2>
+              <p>Sawazki Electronics veranstaltet einen Kundenworkshop für <strong>30 Teilnehmer</strong>. Du organisierst die Arbeitsmaterialien: Hefte, Stifte, Mappen, Namensschilder und Haftnotizen. Dein Team verlässt sich darauf, dass alles rechtzeitig bereitliegt.</p>
+              <p>Für die Materialbestellung hast du <strong>200 € Budget</strong>. Der Lieferant berechnet einmalig <strong>8 € Lieferkosten</strong> und zieht einen festen <strong>10-€-Rabatt</strong> vom Einkauf ab. Alle angegebenen Preise enthalten bereits die Umsatzsteuer; du berechnest keine zusätzliche Steuer.</p>
+              <p>Deine Teamleitung möchte wissen: „Was kostet die Bestellung insgesamt? Wie viel Budget bleibt übrig? Und wie hoch sind die durchschnittlichen Materialkosten pro Teilnehmer?“ <strong>Du baust eine Tabelle, die diese Fragen beantwortet und bei Änderungen mitrechnet.</strong></p>
+              <a class="button button-primary" href="#aufgabe-heading">Meine Materialbestellung planen ↓</a>
+            </div>
+          </section>
           <div class="lesson-workspace-intro">
             <p><strong>Hier lesen. In Excel arbeiten.</strong> Öffne die Abschnitte in deinem Tempo. Alle Informationen und Aufgaben stehen direkt hier.</p>
             <div class="lesson-workspace-actions"><a class="button button-primary" href="#aufgabe-heading">Zur Aufgabe ↓</a><button class="button button-secondary" type="button" data-expand-lessons hidden>Alle öffnen</button><button class="button button-secondary" type="button" data-collapse-lessons hidden>Alle schließen</button></div>
           </div>
 
           <details class="lesson-disclosure" open><summary><span class="section-index">01 · Lernziel</span><h2 id="ziel-heading">Excel rechnet für dich</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-            <p>Du vertiefst die ersten Formeln aus L1.1. Ändert sich ein Preis oder eine Menge, berechnet Excel den Gesamtpreis neu. Falls deine ältere Datei noch eingetippte Ergebnisse enthält, ersetzt du sie hier durch Formeln.</p>
+            <p>Preis mal Menge kennst du aus L1.1. Jetzt verbindest du mehrere Ergebnisse: Du addierst Lieferkosten, ziehst einen festen Rabatt und das verbrauchte Budget ab und teilst die Gesamtkosten durch die Teilnehmerzahl.</p>
             <ul class="learning-goals">
               <li><span>✓</span> Formeln mit = beginnen</li><li><span>✓</span> Zelladressen statt fester Zahlen verwenden</li>
               <li><span>✓</span> Die vier Rechenzeichen einsetzen</li><li><span>✓</span> Formeln und Ergebnisse prüfen</li>
@@ -164,36 +174,34 @@
               <p>Falls dein Browser das Video nicht abspielt, öffne es über den Materiallink unten in einem Videoplayer.</p>
             </details>
           </div></details>
-          <details class="lesson-disclosure task-section"><summary><span class="section-index">05 · Deine Aufgabe</span><h2 id="aufgabe-heading">Die Getränkeliste rechnet mit</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-            <p>Du arbeitest weiter an der Getränkeliste für die Firmenveranstaltung. Die Einkaufskosten sollen sich automatisch ändern, wenn Preise oder Mengen angepasst werden.</p>
-            <p>Du kannst <strong>ohne Download</strong> in einer leeren Excel-Arbeitsmappe starten. Übernimm dafür die bekannten Eingaben aus L1.1 in die unten angegebenen Zellen. Wenn dir die Lehrkraft bereits die Excel-Vorlage Getränkeliste bereitgestellt hat, kannst du stattdessen diese verwenden. Die Zahlen in der Vorlage können abweichen; gerechnet wird immer mit deinen tatsächlichen Eingabezellen.</p>
-            <details id="l12-continue-own-file"><summary>Mit deiner eigenen Datei aus L1.1 weiterarbeiten</summary><p>Du musst eine bereits passende Getränkeliste nicht noch einmal eingeben. Öffne deine eigene Datei aus L1.1 und speichere zuerst unter einem <strong>neuen Namen</strong>: <code>L1_2 Getränkeliste.xlsx</code>. Prüfe den Namen, bevor du Zahlen ersetzt; die ursprüngliche L1.1-Datei bleibt erhalten.</p><p>Wähle in der neuen Datei das Blatt mit der ursprünglichen Getränkeliste, nicht ein eventuell vorhandenes Blatt Änderungstest aus einer älteren Anleitung. Prüfe Preise, Mengen und die fünf zugehörigen Zeilen. Wenn du den Zellplan aus L1.1 verwendet hast, passen die Adressen unten bereits. Prüfe deine Formeln in D4 bis D8 und die SUMME-Formel in D9. Falls du eine ältere Datei mit eingetippten Ergebniszahlen verwendest, ersetze diese durch die Formeln. Überschreibe dabei keine Preise oder Mengen.</p><p>Bei einem anderen sinnvollen Tabellenaufbau verwende deine tatsächlichen Zelladressen und notiere, welche Zelle zu welchem Getränk gehört. Die Angaben D4 bis D9 gelten dann nicht automatisch. Vergleiche die Ergebnisse mit einer unabhängigen Rechnung. Wiederhole danach den Änderungstest: Die verbundenen Ergebnisse müssen automatisch mitrechnen. Das gilt für die neuen Formeln aus L1.1 ebenso wie für ältere Dateien, deren Ergebniszahlen du hier ersetzt hast.</p></details>
-            <p>Schreibe den Titel <strong>Getränkeeinkauf</strong> in A1. Lege die Überschriften in Zeile 3 an: <strong>A3 Getränkeart</strong>, <strong>B3 Preis je Flasche (€)</strong>, <strong>C3 Menge (Flaschen)</strong> und <strong>D3 Gesamtpreis (€)</strong>. Gib Preise als Zahlen mit Dezimalkomma ein, etwa <code>1,40</code>, nicht als Text mit angehängtem Eurozeichen. Mengen sind ebenfalls Zahlen.</p>
-            <div class="l25-table-scroll" role="region" aria-label="Eingabedaten für die Getränkeliste" tabindex="0">
+          <details class="lesson-disclosure task-section"><summary><span class="section-index">05 · Deine Aufgabe</span><h2 id="aufgabe-heading">Deine Materialbestellung rechnet mit</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+            <p>Öffne eine leere Arbeitsmappe und benenne das erste Blatt <strong>Materialbestellung</strong>. Deine Getränkeliste aus L1.1 bleibt unverändert; du brauchst sie für diesen Auftrag nicht zu kopieren. Speichere die neue Datei im Ordner <strong>Ergebnisse</strong> als <code>L1_2 Kundenworkshop.xlsx</code>.</p>
+            <p>Schreibe in A1 „Materialbestellung Kundenworkshop“. In Zeile 3 stehen die Überschriften <strong>A3 Artikel</strong>, <strong>B3 Stückpreis (€)</strong>, <strong>C3 Menge</strong> und <strong>D3 Gesamtpreis (€)</strong>. Übertrage die folgenden Eingaben; D4 bis D8 bleiben zunächst frei. Preise und Mengen müssen Zahlen sein, ohne angehängte Einheiten.</p>
+            <div class="l25-table-scroll" role="region" aria-label="Eingaben für die Materialbestellung" tabindex="0">
               <table class="l25-data-table" id="l12-input-data">
-                <caption>Eingaben aus L1.1 · Ergebniszellen D4 bis D9 zunächst leer lassen</caption>
-                <thead><tr><th scope="col">Excel-Zeile</th><th scope="col">A · Getränkeart</th><th scope="col">B · Preis (€)</th><th scope="col">C · Menge</th></tr></thead>
+                <caption>Material für den Kundenworkshop · Eingaben A4:C8</caption>
+                <thead><tr><th scope="col">Excel-Zeile</th><th scope="col">A · Artikel</th><th scope="col">B · Stückpreis (€)</th><th scope="col">C · Menge</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row">4</th><td>Cola</td><td>1,40</td><td>30</td></tr>
-                  <tr><th scope="row">5</th><td>Apfelsaft</td><td>1,59</td><td>10</td></tr>
-                  <tr><th scope="row">6</th><td>Limonade</td><td>1,00</td><td>15</td></tr>
-                  <tr><th scope="row">7</th><td>Mineralwasser</td><td>0,79</td><td>8</td></tr>
-                  <tr><th scope="row">8</th><td>Orangensaft</td><td>1,74</td><td>15</td></tr>
+                  <tr><th scope="row">4</th><td>Hefte</td><td>2,50</td><td>30</td></tr>
+                  <tr><th scope="row">5</th><td>Kugelschreiber</td><td>0,80</td><td>30</td></tr>
+                  <tr><th scope="row">6</th><td>Mappen</td><td>1,20</td><td>30</td></tr>
+                  <tr><th scope="row">7</th><td>Namensschilder</td><td>0,60</td><td>30</td></tr>
+                  <tr><th scope="row">8</th><td>Haftnotiz-Blöcke</td><td>1,50</td><td>10</td></tr>
                 </tbody>
               </table>
             </div>
-            <p>Schreibe <strong>Summe</strong> in A9; B9 und C9 bleiben leer. Die Formeln kommen anschließend in D4 bis D9. Passe die Spaltenbreiten an, damit alle Überschriften lesbar sind. Für diese Rechnung brauchst du noch keine Farben oder besondere Zahlenformate.</p>
-            <div class="task-list">
-              <div><span>1</span><p>Erstelle die Tabelle mit den Eingaben oben oder öffne die bereitgestellte Vorlage. Speichere deine eigene Arbeitsmappe im Ordner <strong>Ergebnisse</strong> als <code>L1_2 Getränkeliste.xlsx</code>. Deine Datei aus L1.1 bleibt unverändert erhalten.</p></div>
-              <div><span>2</span><p>Berechne in <strong>D4 bis D8</strong> für jedes Getränk den Gesamtpreis mit einer Formel: Einkaufspreis je Flasche mal Menge. Verwende die Zelladressen derselben Zeile und beginne mit =.</p></div>
-              <div><span>3</span><p>Berechne in <strong>D9</strong> die Summe der fünf Gesamtpreise. Verbinde dafür die Ergebniszellen mit dem Pluszeichen. Gib keinen fertig ausgerechneten Gesamtbetrag ein.</p></div>
-              <div><span>4</span><p>Prüfe in der Formelanzeige alle sechs Ergebniszellen. Stimmen Zeilen, Rechenzeichen und die fünf Summanden? Die Summenzelle selbst darf kein Summand sein.</p></div>
-              <div><span>5</span><p>Prüfe die Größenordnung durch Überschlagen. Notiere dann <strong>vor der Änderung</strong>, um welchen Betrag der Gesamtpreis und die Summe steigen müssten, wenn du zwei zusätzliche Flaschen Cola kaufst. Erhöhe nur C4 um 2. Vergleiche die Vorhersage mit D4 und D9; D5 bis D8 müssen unverändert bleiben. Stelle die ursprüngliche Menge wieder her, schalte zurück zur Ergebnisanzeige und speichere erneut.</p></div>
-              <div><span>6</span><p>Zeige der Lehrkraft deine gespeicherte Datei und erkläre an einer Formel, welche Zellwerte verwendet werden. Schließe anschließend den Check ab.</p></div>
-            </div>
-            <p class="important-note"><strong>Warum der Änderungstest?</strong> Ein richtiger Betrag allein beweist noch keine funktionierende Formel. Ändert sich die Eingabe, müssen die abhängigen Ergebnisse mitrechnen. Erkläre der Lehrkraft den Weg von C4 über D4 zu D9 und zeige die Formeln in der Bearbeitungsleiste.</p>
+            <ol class="instruction-list">
+              <li><span>1</span><div><strong>Fünf Positionen berechnen · *</strong><p>Tippe in D4 <code>=B4*C4</code>. Schreibe die passenden Formeln anschließend selbst in D5 bis D8. Jede Formel verwendet Preis und Menge ihrer eigenen Zeile. Das automatische Kopieren vertiefen wir später.</p></div></li>
+              <li><span>2</span><div><strong>Die Materialsumme bilden · +</strong><p>Schreibe in A9 „Materialsumme“. Addiere in D9 die fünf Ergebniszellen mit <code>=D4+D5+D6+D7+D8</code>. Alternativ kannst du die bekannte Formel <code>=SUMME(D4:D8)</code> nutzen. Erkläre, warum D9 nicht in seiner eigenen Summe stehen darf.</p></div></li>
+              <li><span>3</span><div><strong>Lieferkosten und Rabatt einplanen · + und −</strong><p>Schreibe in A11 „Lieferkosten“ und in B11 <strong>8</strong>, in A12 „Fester Rabatt“ und in B12 <strong>10</strong>. Der Rabatt ist ein einmaliger Eurobetrag, kein Prozentsatz und kein Rabatt je Artikel. Beschrifte A13 mit „Bestellkosten“ und berechne in D13: Materialsumme plus Lieferkosten minus Rabatt. Verwende die Zelladressen, nicht die Zahlen 8 und 10 in der Formel.</p></div></li>
+              <li><span>4</span><div><strong>Kosten pro Teilnehmer ermitteln · /</strong><p>Schreibe in A15 „Teilnehmer“ und in B15 <strong>30</strong>. Beschrifte A16 mit „Kosten pro Teilnehmer“ und teile in D16 die Bestellkosten durch B15. Der Schrägstrich <code>/</code> bedeutet „geteilt durch“. B15 muss größer als null sein. Das Ergebnis ist ein Durchschnitt für die gesamte Bestellung, nicht der Stückpreis eines Artikels.</p></div></li>
+              <li><span>5</span><div><strong>Das Budget prüfen · −</strong><p>Schreibe in A18 „Budget“ und in B18 <strong>200</strong>, in A19 „Restbudget“. Berechne in D19 Budget minus Bestellkosten. Ein negativer Rest bedeutet: Die Bestellung überschreitet das Budget. Gib diese Ergebniszahl nicht von Hand ein.</p></div></li>
+            </ol>
+            <details id="l12-formula-help"><summary>Formelhilfe für die drei neuen Rechnungen</summary><ul><li><strong>D13:</strong> <code>=D9+B11-B12</code></li><li><strong>D16:</strong> <code>=D13/B15</code></li><li><strong>D19:</strong> <code>=B18-D13</code></li></ul><p>Erkläre jede Adresse in Worten. Die neun Formeln stehen in D4 bis D9, D13, D16 und D19. Die Zeilen dazwischen bleiben frei oder enthalten die beschrifteten Eingaben. Bei einem anderen Aufbau musst du die Adressen entsprechend ändern.</p></details>
+            <details id="l12-change-tests"><summary>Deine Kontrolle: Rechnet die Bestellung wirklich mit?</summary><p>Notiere die ursprünglichen Ergebnisse und rechne mindestens eine Position sowie die Bestellkosten unabhängig mit dem Taschenrechner nach. Teste anschließend <strong>jeweils nur eine Eingabe</strong> und stelle sie danach zurück.</p><ol><li><strong>Zwei Hefte mehr:</strong> Sage zuerst voraus, um welchen Betrag sich Materialsumme, Bestellkosten und Restbudget ändern. Ändere C4 von 30 auf 32. D4, D9, D13, D16 und D19 müssen mitrechnen; D5 bis D8 bleiben unverändert. Stelle C4 wieder auf 30.</li><li><strong>Teurere Lieferung:</strong> Ändere B11 von 8 auf 12. Die Materialsumme D9 bleibt gleich. Bestellkosten und Kosten pro Teilnehmer steigen, das Restbudget sinkt. Stelle B11 wieder auf 8.</li><li><strong>Andere Teilnehmerzahl:</strong> Ändere nur B15 von 30 auf 32. Die Bestellung und das Restbudget bleiben gleich; nur die durchschnittlichen Kosten pro Teilnehmer ändern sich. Mehr Teilnehmer bestellen hier nicht automatisch mehr Artikel. Stelle B15 wieder auf 30.</li></ol><p>Bei Kosten pro Teilnehmer kann Excel mehr als zwei Nachkommastellen anzeigen. Lass die Formel zunächst unverändert; das passende Zahlenformat lernst du in L1.3. Zeige die neun Formeln über <strong>Formeln → Formeln anzeigen</strong>, prüfe die Zellbezüge und schalte zurück. Speichere, schließe und öffne die Datei erneut. Übergib der Teamleitung deine Kostenplanung und erkläre der Lehrkraft einen Änderungsweg.</p></details>
+            <p class="important-note">Das Eingeben der Teilnehmerzahl verändert nur die Durchschnittsrechnung. Hefte, Stifte, Mappen und Namensschilder planst du weiterhin über die jeweiligen Mengen in Spalte C. Ein fertiger Betrag allein beweist noch keine funktionierende Formel.</p>
           </div></details>
-          <details class="lesson-disclosure task-section" id="l12-transfer-section"><summary><span class="section-index">Transfer · Selbstständig anwenden</span><h2>Eintrittskarten statt Getränke</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
+          <details class="lesson-disclosure task-section" id="l12-transfer-section"><summary><span class="section-index">Transfer · Selbstständig anwenden</span><h2>Eintrittskarten für das Team</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
             <p>Vertiefung ohne zusätzliche XP: Lege in derselben Arbeitsmappe ein neues Blatt <strong>Karten</strong> an. Das Organisationsteam hat <strong>20 €</strong> Budget. Eine Eintrittskarte kostet <strong>1,80 €</strong>; zuerst werden <strong>7 Karten</strong> benötigt.</p>
             <ol class="instruction-list">
               <li><span>1</span><div><strong>Selbst planen</strong><p>Wähle eigene beschriftete Zellen für Budget, Kartenpreis und Anzahl. Berechne in zwei weiteren Zellen die Gesamtkosten und das Restbudget mit Zellbezügen. Nutze die passenden Rechenzeichen; gib keine fertig ausgerechneten Ergebnisse ein.</p></div></li>
@@ -203,7 +211,7 @@
             <details><summary>Ein Denkanstoß, falls du festhängst</summary><p>Schreibe zuerst in Worten auf: Wie entstehen die Gesamtkosten aus Kartenpreis und Anzahl? Was bleibt vom Budget nach dem Kauf übrig? Ersetze die Eingabewerte in diesen Rechnungen durch die Adressen deiner selbst gewählten Zellen. Die Ergebniszelle darf sich nicht selbst als Eingabe verwenden.</p></details>
           </div></details>
           <details class="lesson-disclosure material-section"><summary><span class="section-index">06 · In Excel arbeiten</span><h2 id="material-heading">Excel-Vorlage und optionales Video</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary><div class="lesson-disclosure-body">
-            <p>Alle Eingaben und Arbeitsaufträge stehen oben. Vorlage und Video sind <strong>optional</strong>; auch ohne sie kannst du die Aufgabe vollständig bearbeiten. Ordne Browser und Excel nebeneinander an (Windows-Taste + Pfeil links/rechts). Öffentlich führen die Materiallinks zur offiziellen Materialseite; lokale Originaldateien werden nicht mit veröffentlicht.</p>
+            <p>Alle Eingaben und Arbeitsaufträge stehen oben. Starte für den Kundenworkshop mit einer <strong>leeren Arbeitsmappe</strong>; eine Vorlage brauchst du nicht. Das Video erläutert Rechenformeln allgemein. Die ursprüngliche Getränkelisten-Vorlage gehört zur zusätzlichen Wiederholung und ist nicht die Vorlage für die Materialbestellung. Ordne Browser und Excel nebeneinander an (Windows-Taste + Pfeil links/rechts).</p>
             <div class="download-list page-downloads">
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Aufgabenstellungen/L1_2 Tabellenvorlage Formeln in Excel.xlsx" download><span class="file-type">XLSX</span><strong>Excel-Vorlage Getränkeliste</strong><span class="arrow" aria-hidden="true">↓</span></a>
               <a class="download-item" href="materialien/BPE1/Lernfortschritt_1/Informationsmaterial/L1_2 Video Einführung in Formeln.m4v" download><span class="file-type">VIDEO</span><strong>Video Einführung in Formeln</strong><span class="arrow" aria-hidden="true">↓</span></a>
@@ -212,7 +220,7 @@
           <details class="lesson-disclosure" id="l12-mastery-section">
             <summary><span class="section-index">07 · Verstehen</span><h2>Prüfe dein Verständnis</h2><span class="lesson-disclosure-icon" aria-hidden="true">+</span></summary>
             <div class="lesson-disclosure-body">
-              <p>Beantworte die drei Fragen. Erkläre anschließend an deiner eigenen Excel-Datei, wie deine Formeln rechnen.</p>
+              <p>Beantworte die fünf Fragen. Erkläre anschließend an deiner eigenen Excel-Datei, wie deine Formeln rechnen.</p>
               <form id="l12-mastery-form" class="mastery-form">
                 <fieldset class="mastery-question" data-mastery-question="refs">
                   <legend>1. Warum ist =B2*C2 für den Gesamtpreis besser geeignet als =2,50*6?</legend>
@@ -235,8 +243,22 @@
                   <label><input type="radio" name="circle" value="c">Ich verwende =D2*B2, also dieselben Zellen in anderer Reihenfolge</label>
                   <p class="mastery-feedback" aria-live="polite"></p>
                 </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="order">
+                  <legend>4. D9 enthält die Materialsumme, B11 die Lieferkosten und B12 den festen Rabatt. Welche Formel berechnet die Bestellkosten?</legend>
+                  <label><input type="radio" name="order" value="a">=D9-B11+B12</label>
+                  <label><input type="radio" name="order" value="b">=D9+B11+B12</label>
+                  <label><input type="radio" name="order" value="c">=D9+B11-B12</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
+                <fieldset class="mastery-question" data-mastery-question="average">
+                  <legend>5. Die Bestellung bleibt gleich. Du änderst nur die Teilnehmerzahl von 30 auf 32. Was passiert?</legend>
+                  <label><input type="radio" name="average" value="a">Die Bestellkosten steigen automatisch, weil Excel weitere Artikel bestellt</label>
+                  <label><input type="radio" name="average" value="b">Die Kosten pro Teilnehmer sinken; Bestellkosten und Restbudget bleiben gleich</label>
+                  <label><input type="radio" name="average" value="c">Die Kosten pro Teilnehmer steigen; das Restbudget sinkt</label>
+                  <p class="mastery-feedback" aria-live="polite"></p>
+                </fieldset>
                 <button class="button button-primary" type="submit">Antworten prüfen</button>
-                <p id="l12-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle drei Antworten stimmen.</p>
+                <p id="l12-mastery-status" class="mastery-status" role="status" aria-live="polite">Noch nicht bestanden. Für den Abschluss müssen alle fünf Antworten stimmen.</p>
               </form>
             </div>
           </details>
@@ -247,9 +269,9 @@
             <h2>L1.2 abschließen</h2>
             <p>Setze die Haken erst, wenn der jeweilige Arbeitsschritt wirklich erledigt ist. Du kannst jeden Haken wieder entfernen. Damit wird auch der Abschluss zurückgenommen.</p>
             <div class="completion-list">
-              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe die Informationen gelesen und alle sechs Formeln mit Zelladressen geprüft.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="0"><span>Ich habe alle neun Formeln für Positionen, Materialsumme, Bestellkosten, Kosten pro Teilnehmer und Restbudget geprüft.</span></label>
               <label class="completion-check"><input type="checkbox" data-page-check="1"><span>Ich habe die Ergebnisse überschlagen, die automatische Neuberechnung getestet und die ursprüngliche Menge wiederhergestellt.</span></label>
-              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Meine Datei ist im Ordner Ergebnisse als L1_2 Getränkeliste.xlsx gespeichert.</span></label>
+              <label class="completion-check"><input type="checkbox" data-page-check="2"><span>Meine Datei ist im Ordner Ergebnisse als L1_2 Kundenworkshop.xlsx gespeichert.</span></label>
               <label class="completion-check teacher-check"><input type="checkbox" id="page-teacher-check"><span>Die Lehrkraft hat meine Aufgabe gesehen, mit mir besprochen und als richtig bestätigt.</span></label>
             </div>
             <button class="button button-primary button-full" type="button" id="page-complete-button">L1.2 abschließen</button>
@@ -265,8 +287,7 @@
     </main>
 
     <footer class="site-footer lesson-page-footer">
-      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong><small>Ein Lernangebot von Sawazki Electronics</small></span></a>
-      <p>Inhaltlich aufgebaut nach dem lokalen BPE1-Materialpaket des Landesbildungsservers Baden-Württemberg.</p>
+      <a class="brand footer-brand" href="index.html#uebersicht"><span class="brand-mark" aria-hidden="true"><img src="assets/brand/excel-lab-mark.svg" alt=""></span><span class="brand-copy"><strong>Excel-Lab</strong></span></a>
     </footer>
     <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
   </body>
