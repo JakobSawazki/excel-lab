@@ -2,10 +2,23 @@
 
 Stand: 14. Oktober 2026, Europe/Berlin
 Projektversion: 0.23.0
-Status: Version 0.10.1 veröffentlicht; neuer L1.1-Situationseinstieg mit Bild und Formeln online geprüft; Abschlusswege aller 27 Einheiten geprüft; direkter Quellenabgleich L1/L2 dokumentiert; Quellenabgleich L3–L4 offen
+Status: Version 0.23.0 veröffentlicht; einheitliche Profilfenster, Fragenlayout und neuer L1.2-Auftrag online geprüft; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Aktueller Gesamtstand veröffentlicht (14.10.2026):** Commit
+  `0681c508ea72e78c54b8abbd36da315dbc7e7bf0` auf GitHub gepusht;
+  Tests-Lauf `38546849376` und Pages-Lauf `38546849227` erfolgreich.
+  Öffentliche Prüfungen bestanden: Profilfenster auf allen 27 Lernseiten,
+  Profildaten-/NAGOLD-Speicherung einschließlich Profilwechsel und Speicherfehler;
+  neue L1.2-Workshopgrafik, Daten, Änderungstests, fünf Fragen und Anschluss
+  an L1.3; bereinigte Footer auf allen 27 Seiten; 85 Fragenüberschriften
+  innerhalb der Karten in 216 Layoutzuständen. Release-Test bestanden:
+  28 Seiten, 61 Assets, Version 0.23.0, keine privaten Materiallinks oder
+  JavaScript-Laufzeitfehler. Die folgenden drei lokalen Änderungseinträge
+  sind damit veröffentlicht. Keine Originalmaterialien oder temporären Tests
+  mitveröffentlicht.
 
 - **L1.2 neu aufgebaut und Footer vereinfacht (lokal, 14.10.2026):**
   Auf Jakobs Wunsch ersetzt eine Materialbestellung für einen Kundenworkshop
@@ -29,7 +42,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Bild geladen, 16 Layoutzustände, beide Abschlusswege L1.2/L1.3 mit acht Fragen,
   alle 27 bereinigten Footer und alle 306 Node-Tests. Bild und Desktop-/Mobil-
   Darstellung angesehen. Keine Behauptung einer tatsächlichen Excel-Ausführung.
-  Noch nicht veröffentlicht.
+  Veröffentlichung und Online-Prüfung siehe Eintrag oben.
 
   Bilddatei: `assets/lessons/l1-2-kundenworkshop.png`, 1536 × 1024 Pixel,
   erstellt mit dem eingebauten Imagegen-Werkzeug. Verwendeter Prompt:
@@ -44,7 +57,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Browserprüfung bestanden: 27 Einheiten, 83 Fragen, 216 Layoutzustände
   (vier Breiten × Hell/Dunkel); Überschriften innerhalb der Karten und keine
   Überlappungen. L1.1 auf Desktop und Mobil zusätzlich visuell geprüft.
-  Noch nicht veröffentlicht.
+  Veröffentlichung und Online-Prüfung siehe Eintrag oben.
 
 - **Einheitliches Profilfenster (lokal, 14.10.2026):** Alle 27 Lernseiten
   öffnen jetzt direkt ein vollständiges Profilfenster statt des bisherigen
@@ -61,7 +74,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   Geprüft: Layoutabgleich mit Startseite, alle 27 Profildialoge, Validierung,
   Wiederladen, unveränderter Lernfortschritt, NAGOLD-Buchung, acht Layoutzustände,
   Profilwechsel und gesperrter Speicher. Desktop und Mobilansicht visuell geprüft.
-  Außerdem alle 306 bestehenden Node-Tests bestanden. Noch nicht veröffentlicht.
+  Außerdem alle 306 bestehenden Node-Tests bestanden. Veröffentlichung siehe oben.
 
 - **Situationssprache veröffentlicht und geprüft (14.10.2026):** Commit
   `4eb7a7b4c5c8181a0a7940ff94b2f2a6f0b455d7` auf GitHub gepusht;
