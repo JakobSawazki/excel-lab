@@ -7,6 +7,17 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
 
+- **Speichern/Laden veröffentlicht (15.10.2026):** Commit
+  `6da1c1a5093f398052b4ebcb28597016162558ff` auf GitHub gepusht;
+  Tests-Lauf `38721835334` und Pages-Lauf `38721833887` erfolgreich.
+  Öffentlicher Funktionstest bestanden: alle 27 Icons/Dialogs, 108 Kopfzeilen-
+  layouts, Sichtbarkeit beim Scrollen, Download und Dateiname, gemeinsame
+  letzte fünf Sicherungen, Export-Import-Rundlauf, Rückfrage bei älterem Stand,
+  JSON-Dateiauswahl, Import ohne Profil und Schutz bei Speicherfehlern.
+  Öffentlicher Release-Test: 28 Seiten, 62 Assets, Version 0.23.0, keine
+  privaten Materiallinks oder JavaScript-Laufzeitfehler. Der folgende lokale
+  Eintrag ist damit veröffentlicht; temporäre Tests bleiben unveröffentlicht.
+
 - **Speicher-Icon auf Lernseiten (lokal, 15.10.2026):** Alle 27 Einheiten
   binden das gemeinsame Modul `lesson-save.js` ein. Das Disketten-Icon steht
   oben rechts neben dem Farbschema-Schalter, auch ohne Profil und beim Scrollen.
@@ -24,7 +35,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
   fünf Sicherungen mit der Startseite, Rückfrage, native Picker-Parameter,
   Import ohne vorhandenes Profil, ungültige Dateien und gesperrter/unlesbarer
   Speicher. Dialog auf Desktop/Mobil visuell geprüft. Alle 306 Node-Tests
-  bestanden. Noch nicht veröffentlicht.
+  bestanden. Veröffentlichung und Online-Prüfung siehe Eintrag oben.
 
 - **Aktueller Gesamtstand veröffentlicht (14.10.2026):** Commit
   `0681c508ea72e78c54b8abbd36da315dbc7e7bf0` auf GitHub gepusht;
