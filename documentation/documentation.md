@@ -1,11 +1,30 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 14. Oktober 2026, Europe/Berlin
+Stand: 15. Oktober 2026, Europe/Berlin
 Projektversion: 0.23.0
 Status: Version 0.23.0 veröffentlicht; einheitliche Profilfenster, Fragenlayout und neuer L1.2-Auftrag online geprüft; Quellenabgleich L3–L4 offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Speicher-Icon auf Lernseiten (lokal, 15.10.2026):** Alle 27 Einheiten
+  binden das gemeinsame Modul `lesson-save.js` ein. Das Disketten-Icon steht
+  oben rechts neben dem Farbschema-Schalter, auch ohne Profil und beim Scrollen.
+  Dialog mit Speichern/Laden und gemeinsamer Liste der fünf letzten Sicherungen
+  wie auf der Startseite. Dateiformat, Schlüssel und anonyme Browserkennung
+  bleiben kompatibel; Dateiname beginnt mit Berliner Datum, Excel-Lab, Kürzel
+  und Browser-ID. Laden verwendet Downloads/JSON-Filter, sofern der Browser die
+  entsprechende Dateiauswahl unterstützt, sonst normalen Datei-Upload.
+  Import liest den neuesten Browserstand, normalisiert bekannte Lernschritte
+  und NAGOLD, erhält andere Profile und fragt vor Rückgang der Abschlüsse nach.
+  Unlesbare Bestände werden nicht überschrieben; bei Speicherfehlern kein
+  falscher Erfolgshinweis. Keine Hardwarekennung oder Übertragung an Server.
+  Tests bestanden: 27 Icons und Dialoge, 108 Kopfzeilenlayouts, Sichtbarkeit
+  beim Scrollen, Download/Dateiname, Export-Import-Rundlauf, gemeinsame letzte
+  fünf Sicherungen mit der Startseite, Rückfrage, native Picker-Parameter,
+  Import ohne vorhandenes Profil, ungültige Dateien und gesperrter/unlesbarer
+  Speicher. Dialog auf Desktop/Mobil visuell geprüft. Alle 306 Node-Tests
+  bestanden. Noch nicht veröffentlicht.
 
 - **Aktueller Gesamtstand veröffentlicht (14.10.2026):** Commit
   `0681c508ea72e78c54b8abbd36da315dbc7e7bf0` auf GitHub gepusht;
