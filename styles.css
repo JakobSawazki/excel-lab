@@ -4237,3 +4237,101 @@ body::before {
   }
   body, .lesson-page-body { background: #fff !important; color: var(--text); }
 }
+
+/* ==========================================================================
+   Feinschliff 0.29.0 (Wunsch Jakob: edel, professionell, elegant)
+   Eine gemeinsame Ebenen-Sprache für Karten, ruhigere Typografie, sanfte
+   Bewegung, einheitlicher Fokus. Nur Ergänzungen, keine neuen Inhalte.
+   ========================================================================== */
+:root {
+  /* Ebenen: feine Lichtkante oben, kurzer Kontaktschatten, weicher Fernschatten. */
+  --elev-1: inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent), 0 1px 2px rgba(0, 0, 0, .28), 0 12px 30px -16px rgba(0, 0, 0, .6);
+  --elev-2: inset 0 1px 0 color-mix(in srgb, #fff 9%, transparent), 0 2px 4px rgba(0, 0, 0, .3), 0 22px 44px -18px rgba(0, 0, 0, .7);
+  --ease-out: cubic-bezier(.22, .8, .24, 1);
+}
+[data-theme="light"] {
+  --elev-1: inset 0 1px 0 #fff, 0 1px 2px rgba(23, 57, 38, .08), 0 12px 28px -16px rgba(23, 57, 38, .22);
+  --elev-2: inset 0 1px 0 #fff, 0 2px 5px rgba(23, 57, 38, .1), 0 22px 42px -18px rgba(23, 57, 38, .3);
+}
+
+/* Typografie: ausbalancierte Überschriften, saubere Absatzenden, feine Kerning-Details. */
+body { font-feature-settings: "kern" 1, "liga" 1; text-rendering: optimizeLegibility; }
+h1, h2, h3 { text-wrap: balance; }
+h1, h2 { letter-spacing: -.022em; }
+p, li, dd { text-wrap: pretty; }
+::selection { background: color-mix(in srgb, var(--green) 32%, transparent); color: var(--text); }
+html { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--green) 38%, var(--surface-3)) transparent; }
+
+/* Karten und Panels: eine Ebenen-Sprache. */
+.lesson-card, .formula-card, .workflow-card, .stat-card, .source-card,
+#view-dashboard .home-lab, .lesson-disclosure, .lesson-check-panel,
+.organizer-topic, .hero-outcomes, .profile-list-item, .xp-panel {
+  box-shadow: var(--elev-1);
+}
+.lesson-card, .formula-card, .organizer-topic, .source-card {
+  transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
+}
+.lesson-card:not(.is-locked):hover, .formula-card:hover, .organizer-topic:hover, .source-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--metal-edge) 70%, var(--line-strong));
+  box-shadow: var(--elev-2);
+}
+.lesson-disclosure:hover, .lesson-disclosure[open] { box-shadow: var(--elev-2); }
+
+/* Einheitlicher, ruhiger Fokusring für Tastaturbedienung. */
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+/* Kopfzeile: haarfeine Metallkante statt harter Linie, weicher Schatten. */
+.site-header {
+  border-bottom-color: transparent;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--metal-edge) 28%, transparent), 0 14px 34px -24px rgba(0, 0, 0, .7);
+}
+[data-theme="light"] .site-header { box-shadow: 0 1px 0 color-mix(in srgb, var(--metal-edge) 30%, transparent), 0 14px 30px -24px rgba(23, 57, 38, .3); }
+
+/* Fußzeile: Lichtkante, die zur Mitte hin aufleuchtet, und dezenter Schliff. */
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  border-top: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 70%, var(--bg-elevated)), var(--bg-elevated));
+}
+.site-footer::before {
+  position: absolute;
+  top: 0; right: 0; left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--metal-edge) 85%, transparent) 50%, transparent);
+  content: "";
+}
+.site-footer::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--brush) 0 0 / 640px 320px;
+  content: "";
+  opacity: calc(var(--brush-strength) * .14);
+  pointer-events: none;
+}
+
+/* Seitenhintergrund: Schliff etwas ruhiger, damit Flächen nicht flimmern. */
+body::before { opacity: calc(var(--brush-strength) * .36); }
+[data-theme="light"] body::before { opacity: .32; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lesson-card, .formula-card, .organizer-topic, .source-card { transition: none; }
+  .lesson-card:not(.is-locked):hover, .formula-card:hover, .organizer-topic:hover, .source-card:hover { transform: none; }
+}
+@media print {
+  .site-footer::after { display: none; }
+  .lesson-card, .formula-card, .workflow-card, .stat-card, .source-card, .lesson-disclosure, .lesson-check-panel { box-shadow: none !important; }
+}
+@media (forced-colors: active) { .site-footer::before, .site-footer::after { display: none; } }
+
+/* Startseite: Ablauf-Leiste aus einem Stück mit haarfeinen Trennlinien (statt dunkler Spalten). */
+body #view-dashboard .hero-outcomes { gap: 1px; background: color-mix(in srgb, var(--metal-edge) 24%, var(--line)); }
+body #view-dashboard .hero-outcomes > span { background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 70%, var(--surface)), var(--surface)); }
+/* Überblick: Detailfeld füllt die Höhe ruhig; die Lernfolge steht unten. */
+body #view-dashboard .organizer-detail { display: flex; flex-direction: column; }
+body #view-dashboard .organizer-detail .organizer-sequence { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); }

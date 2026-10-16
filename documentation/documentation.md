@@ -1,11 +1,19 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.28.4
-Status: Version 0.28.4 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
+Projektversion: 0.29.0
+Status: Version 0.29.0 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.29.0 (Claude, 16.10.2026, Wunsch Jakob „edel und
+  professionell“):** Gestaltungsschicht am Ende von `styles.css`: Ebenen
+  `--elev-1/--elev-2` für Karten und Panels, Anheben anklickbarer Karten,
+  ausbalancierte Überschriften (`text-wrap`), einheitlicher Fokusring,
+  Auswahlfarbe, schmale Bildlaufleiste, Kopfzeile mit Metallkante, Fußzeile mit
+  Lichtkante und Schliff, ruhigerer Seitenhintergrund; Startseite: Ablauf-Leiste
+  aus einem Stück, Detailfeld im Überblick füllt die Höhe.
 
 - **Veröffentlicht als 0.28.4 (Claude, 16.10.2026):** Druck immer mit
   heller Palette (`styles.css`, `@media print` setzt die Farbvariablen auf die
