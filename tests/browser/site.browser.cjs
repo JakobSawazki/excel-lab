@@ -666,6 +666,60 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Speichern und Laden auf der Lernseite: Datei, Liste, Rückfrage, gemeinsam mit der Startseite", async () => {
+      // Codex, 15.10.2026: lesson-save.js; feste Prüfung ergänzt von Claude, 16.10.2026.
+      const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+      const seeded = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "ls", profiles: [{ id: "ls", name: "sav.les", className: "WGW EK1",
+        progress: { "l1-1": done, "l1-2": done }, nagoldEntries: [{ date: "2026-10-15", time: "08:10", purpose: "Mitarbeit", points: 3 }] }] });
+      const { context, page, errors } = await open(browser, "l1-3.html", { state: seeded });
+      const state = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
+      try {
+        // Disketten-Symbol direkt neben dem Farbschema-Schalter.
+        assert.equal(await page.evaluate(() => document.querySelector("#save-button")?.previousElementSibling?.id), "lesson-theme-toggle");
+        await page.locator("#save-button").click();
+        assert.match(await page.locator("#save-status").innerText(), /sav\.les · WGW EK1 · 200 XP · 3 NAGOLD · 2\/27 erledigt/);
+        assert.equal(await page.locator("#recent-saves-box").isHidden(), true);
+        const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#export-button").click()]);
+        assert.match(download.suggestedFilename(), /^\d{4}-\d{2}-\d{2}_Excel-Lab_sav\.les_XL-[A-Z0-9]+\.json$/);
+        const payload = JSON.parse(fs.readFileSync(await download.path(), "utf8"));
+        assert.equal(payload.app, "Excel-Lab");
+        assert.equal(payload.version, 1);
+        assert.equal(payload.exportedBy.points, 200);
+        assert.equal(payload.exportedBy.nagold, 3);
+        assert.equal(payload.profile.progress["l1-2"].completed, true);
+        assert.equal(await page.locator("#recent-saves option").count(), 1, "Stand in „Zuletzt gespeichert“");
+
+        // Weniger Abschlüsse in der Datei: Rückfrage; Abbrechen lässt alles, wie es ist.
+        const older = { ...payload, profile: { ...payload.profile, progress: { "l1-1": done } } };
+        page.once("dialog", (dialog) => dialog.dismiss());
+        await page.setInputFiles("#import-file", { name: "alt.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(older)) });
+        await page.waitForFunction(() => /abgebrochen/.test(document.querySelector("#save-feedback")?.textContent || ""));
+        assert.equal((await state()).profiles[0].progress["l1-2"].completed, true, "Abbrechen ändert nichts");
+
+        // Ungültige Datei: Meldung, Lernstand unverändert.
+        const before = JSON.stringify(await state());
+        await page.setInputFiles("#import-file", { name: "fremd.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify({ app: "Anderes" })) });
+        await page.waitForFunction(() => /Keine gültige Excel-Lab-Exportdatei/.test(document.querySelector("#save-feedback")?.textContent || ""));
+        assert.equal(JSON.stringify(await state()), before);
+
+        // Aus der Liste laden stellt den gespeicherten Stand wieder her, NAGOLD eingeschlossen.
+        await page.evaluate((key) => { const s = JSON.parse(localStorage.getItem(key)); s.profiles[0].nagoldEntries = []; localStorage.setItem(key, JSON.stringify(s)); }, KEY);
+        await page.locator("#recent-load").click();
+        await page.waitForFunction(() => /erfolgreich geladen/.test(document.querySelector("#save-feedback")?.textContent || ""));
+        const restored = (await state()).profiles;
+        assert.equal(restored.length, 1, "dieselbe Person wird ersetzt");
+        assert.deepEqual(restored[0].nagoldEntries.map((entry) => entry.points), [3]);
+        assert.equal(restored[0].id, "ls", "Kennung bleibt");
+        assert.match(await page.locator("#profile-stats").innerText(), /200 XP · 3 NAG/);
+
+        // Die Liste ist dieselbe wie auf der Startseite.
+        await page.goto(base + "index.html");
+        await page.locator("#save-button").click();
+        assert.equal(await page.locator("#recent-saves option").count(), 1);
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -678,5 +732,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und zwanzig Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und einundzwanzig Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

@@ -915,6 +915,16 @@ Flaschen Cola mehr 108,12 €. **29 von 29 Prüfungen bestanden.** Das
 Lösungsheft außerhalb des Repositorys (`../Lehrkraft/Excel-Lab-Loesungen.md`)
 ist mit `node tools/build-loesungen.cjs` neu erzeugt (85 Fragen).
 
+**Feste Prüfung für dein `lesson-save.js`** (nach 0.24.0, ohne
+Versionssprung): Deine Tests dafür waren temporär und liegen nicht im
+Repository. Neue Einzelprüfung in `site.browser.cjs` (jetzt
+einundzwanzig): Symbol neben `#lesson-theme-toggle`, Statuszeile,
+Dateiname und Inhalt der Speicherdatei, „Zuletzt gespeichert“, Rückfrage bei
+weniger Abschlüssen mit Abbruch, ungültige Datei, Wiederherstellen aus der
+Liste mit NAGOLD und unveränderter Profilkennung, dieselbe Liste auf der
+Startseite. Kontrastbericht nach deinen Änderungen: 450 Ansichten, keine
+messbare Stelle unter 4,5 : 1.
+
 **Hinweise zu deinem Code, nicht geändert.** `lesson-save.js` dupliziert
 Export und Import aus `app.js` (eigene Normalisierung, eigene XP-Berechnung).
 Beides stimmt derzeit überein; bei künftigen Änderungen am Dateiformat bitte

@@ -1,6 +1,6 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 15. Oktober 2026, Europe/Berlin
+Stand: 16. Oktober 2026, Europe/Berlin
 Projektversion: 0.24.0
 Status: Version 0.24.0 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
