@@ -175,10 +175,10 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.fill("#l11-bonus-2-input", "80,30");
         await page.locator("#l11-bonus-2-section button[type=submit]").click();
         assert.equal((await stored()).bonus2, true);
-        // Auf Lernseiten öffnet der Profilknopf die XP-Übersicht.
+        // Auf Lernseiten öffnet der Profilknopf das Profilfenster mit dem XP-Abschnitt.
         await page.locator("#lesson-profile-link").click();
         assert.equal(await page.locator("#xp-breakdown").innerText(), "0 von 27 Einheiten: 0 XP · 2 von 54 Bonusaufgaben: 100 XP");
-        await page.locator("#xp-dialog .dialog-close").click();
+        await page.locator("#manager-dialog .dialog-close").click();
         assert.match(await page.locator("#lesson-points-status").innerText(), /Bonus \+100 XP/);
         await page.waitForFunction(() => document.querySelector("#profile-xp .xp-count").textContent === "100");
         // Eine zweite Lösung derselben Aufgabe zählt nicht doppelt.
@@ -637,6 +637,35 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("NAGOLD auf der Lernseite: dieselbe Tabelle wie auf der Startseite", async () => {
+      const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+      const seeded = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "nl", profiles: [{ id: "nl", name: "nag.les", className: "WGW EK1", progress: { "l1-1": done } }] });
+      const { context, page, errors } = await open(browser, "l1-2.html", { state: seeded });
+      try {
+        // Das Fenster besteht von Anfang an; der Verweis des NAGOLD-Knopfs zeigt nicht ins Leere.
+        assert.equal(await page.locator("#nagold-dialog").count(), 1);
+        await page.locator("#lesson-profile-link").click();
+        assert.equal(await page.locator("#nagold-total").getAttribute("aria-controls"), "nagold-dialog");
+        await page.locator("#nagold-total").click();
+        assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), true);
+        assert.match(await page.locator("#nagold-rows tr").first().innerText(), /Nicht erfasst[\s\S]*L1\.1 · /);
+        assert.equal(await page.locator("#nagold-dialog datalist").count(), 0, "keine Browser-Vorschlagsliste");
+        assert.equal(await page.locator("#nagold-rows .nagold-icon-button svg").count(), 2, "gezeichnete Symbole statt Schriftzeichen");
+        await page.locator("#nagold-add-button").click();
+        const row = page.locator("#nagold-rows tr").nth(1);
+        await row.locator('[data-nagold-field="purpose"]').pressSequentially("Mit");
+        await row.locator('[data-nagold-option="Mitarbeit"]').click();
+        await row.locator('[data-nagold-field="points"]').fill("2");
+        await page.locator("#nagold-save-button").click();
+        assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), false);
+        const entries = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].nagoldEntries, KEY);
+        assert.deepEqual(entries.map((entry) => [entry.purpose.slice(0, 9), entry.points]), [["L1.1 · Ei", 5], ["Mitarbeit", 2]]);
+        assert.match(await page.locator("#nagold-total-value").innerText(), /^7 NAGOLD$/);
+        assert.equal((await page.locator("#profile-nagold").innerText()).trim(), "· 7 NAG");
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -649,5 +678,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und neunzehn Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und zwanzig Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

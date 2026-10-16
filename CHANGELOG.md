@@ -4,6 +4,14 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.24.0 – 2026-10-16
+
+Sammel-Release für die Änderungen vom 12. bis 16. Oktober. Codex hat sie unter 0.23.0 veröffentlicht; dieser Stand gibt ihnen eine eigene Versionsnummer, damit Browser die geänderten Skripte sicher neu laden.
+
+**Von Codex (12.–15. Oktober, Wünsche Jakob).** L1.1: korrigierte Laptop-Grafik, Budget von 150 € mit Restbudget, keine Bildunterschrift mehr. L1.2: neuer Hauptauftrag „Materialbestellung für einen Kundenworkshop“ mit neuer Grafik, neun Formeln, drei Änderungstests und fünf statt drei Verständnisfragen; L1.3 formatiert wieder die Getränkeliste aus L1.1. Direkte Situationssprache in 17 Einheiten statt „fiktiv“ oder „frei erfunden“. Schlichter Seitenfuß auf allen Lernseiten mit „Designed by Sawazki Electronics“. Fragenüberschriften stehen innerhalb der Karten. Profilfenster wie auf der Startseite und Disketten-Symbol mit Speichern, Laden und „Zuletzt gespeichert“ auf allen 27 Lernseiten.
+
+**Von Claude (16. Oktober).** Die NAGOLD-Tabelle ist auf Startseite und Lernseiten dieselbe: ein Feld „Wofür“ mit Vorschlagsliste, gezeichnete Symbole, Datum im deutschen Format. Auf dem Handy quillt die Tabelle bei geöffneter Vorschlagsliste nicht mehr über „Speichern“. Beim Laden auf einer Lernseite bleiben NAGOLD-Zeilen auch dann erhalten, wenn ein Skript nicht geladen wurde.
+
 ## 0.23.0 – 2026-10-11
 
 **Navigation ohne „Übersicht“ (Wunsch Jakob).** Der Punkt „Übersicht“ entfällt aus der Leiste, weil das Logo bereits dorthin führt. Die Pfadzeile oben links zeigt dafür „BPE1 › Übersicht“ und auf den anderen Ansichten „BPE1 › Lernpfad“, „BPE1 › Formelsammlung“ oder „BPE1 › Quellen“; „BPE1“ führt immer zur Übersicht. Im Handy-Dock steht der Lernpfad oben über die ganze Breite.

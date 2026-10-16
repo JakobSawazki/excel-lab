@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-11 · Release 0.23.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.24.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -853,6 +853,59 @@ oder so als Navigationsübersicht macht.“
   unverändert.
 - Angesehen bei 1500, 390 und 320 px. Auf dem Handy führt nur noch das Logo
   und „BPE1“ zur Übersicht.
+
+### A0zq Release 0.24.0: Release-Stand für deine Änderungen, eine NAGOLD-Tabelle
+
+Jakob am 16. Oktober: „Codex und ich haben bereits weiter daran gearbeitet.
+Setze bitte als Ziel, dass du daran autark weiter arbeitest.“ Ausgangslage:
+deine Commits `97ad313` bis `97132cb` (12.–15. Oktober), alle unter der
+Versionsnummer 0.23.0. Der Versionsparameter `?v=` an Skripten und Styles
+blieb dadurch gleich, obwohl sich `xp.js`, `lesson-workspace.js`,
+`styles.css` und andere geändert hatten; Browser konnten bis zu zehn Minuten
+die alten Dateien verwenden. **Bitte bei jeder Veröffentlichung, die Skripte
+oder Styles ändert, die Version erhöhen** (Regel in A1/B, Node-Tests prüfen
+die Gleichheit, nicht die Erhöhung).
+
+**Gesamtlauf auf deinem Stand vom 15. Oktober** (vor meinen Änderungen):
+306 Node-Tests bestanden; Browser 28 von 32. Ursachen:
+
+- drei veraltete Tests: `codex/l1-path-smoke.cjs` (L1.2 hat fünf Fragen),
+  `codex/l13-l14-transfer-smoke.cjs` (L1.3 verweist auf `l1-1.html`),
+  `site.browser.cjs` (Lernseiten öffnen jetzt `#manager-dialog`, nicht
+  `#xp-dialog`). Angepasst, Kommentare in den Dateien.
+- ein echter Befund in `a11y.browser.cjs`: auf allen 27 Lernseiten zeigte
+  `aria-controls` des NAGOLD-Knopfs auf `#lesson-nagold-dialog`, das erst
+  beim Klick entstand.
+
+**Eine NAGOLD-Tabelle (`nagold-table.js`, neu).** Deine Lernseiten-Fassung in
+`xp.js` war eine zweite, einfachere Tabelle: Schriftzeichen „✎“/„×“ statt
+gezeichneter Symbole, Browser-`datalist` statt des Felds „Wofür“ wie in
+WorkbenchLab, Datum als „2026-10-11“. Jakob hat ausdrücklich gezeichnete
+Symbole und „alles so wie in der WorkbenchLab-NAGOLD-Tabelle“ gewünscht.
+Jetzt legt `nagold-table.js` beim Laden ein Fenster `#nagold-dialog` an
+(dieselben Kennungen wie bisher auf der Startseite) und bietet
+`window.ExcelLabNagoldTable.open({ entries, save, returnFocus })`.
+`save(entries)` gibt `false` zurück, wenn die Seite nicht speichern konnte;
+dann erscheint die Meldung im Fenster. Startseite (`app.js`,
+`bindNagoldEvents`) und Lernseiten (`xp.js`, `openLessonNagold` mit deinem
+`writeProfile`) rufen nur noch das Modul auf. Das statische Fenster in
+`index.html` ist entfernt. Eingebunden direkt nach `nagold.js` auf Startseite
+und allen Lernseiten.
+
+**Weitere Korrekturen.**
+- `styles.css`: `.nagold-table-wrap` ohne eigenen Rollbereich. Bisher wurde
+  er beim Öffnen der Vorschlagsliste aufgehoben; auf dem Handy quoll die
+  Tabelle dann über Summe und „Speichern“ (auch auf der Startseite).
+- `lesson-save.js`, `normalizeProfile`: ohne `window.EXCEL_LAB_NAGOLD`
+  bleiben die NAGOLD-Zeilen der Datei erhalten (bisher `[]`, wie in `app.js`
+  schon abgesichert).
+- Neue Einzelprüfung „NAGOLD auf der Lernseite“ in `site.browser.cjs`
+  (jetzt zwanzig).
+
+**Hinweise zu deinem Code, nicht geändert.** `lesson-save.js` dupliziert
+Export und Import aus `app.js` (eigene Normalisierung, eigene XP-Berechnung).
+Beides stimmt derzeit überein; bei künftigen Änderungen am Dateiformat bitte
+beide Stellen anpassen oder zusammenführen.
 
 ### A1 Wo der Stand liegt
 

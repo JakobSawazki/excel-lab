@@ -26,7 +26,8 @@ const base=(__BASE + '/');
    assert.equal(await layout.getAttribute('open'),'');
    const layoutText=await layout.innerText();
    for(const term of (id==='l13'?['Getränkeliste','nicht Heftkauf','tatsächliche Zelladresse','Nur die Darstellung','Datei fehlt']:['Getränkeliste','Druckkosten','tatsächliche Summenzeile','ganze Blattzeile','alle sechs Positionspreise','nie mit einer Positionsformel','eigene Blätter']))assert.ok(layoutText.includes(term),id+':'+term);
-   assert.equal(await layout.locator('a').getAttribute('href'),id==='l13'?'l1-2.html':'l1-3.html');
+   // Claude, 16.10.2026: L1.3 formatiert seit 14.10. wieder die Getränkeliste aus L1.1.
+   assert.equal(await layout.locator('a').getAttribute('href'),id==='l13'?'l1-1.html':'l1-3.html');
    const section=page.locator(`#${id}-transfer-section`);
    await section.locator('summary').first().focus();await page.keyboard.press('Enter');
    assert.equal(await section.getAttribute('open'),'');

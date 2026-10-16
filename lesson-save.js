@@ -91,7 +91,7 @@
       const row=profile.progress?.[lesson.id]; if(!row||typeof row!=="object") continue;
       progress[lesson.id]={completed:Boolean(row.completed),teacherChecked:Boolean(row.teacherChecked),masteryPassed:Boolean(row.masteryPassed||row.completed),bonus:Boolean(row.bonus),bonus2:Boolean(row.bonus2),checks:lesson.checks.map((_,index)=>Boolean(Array.isArray(row.checks)&&row.checks[index]))};
     }
-    return {id:id(),name:typeof profile.name==="string"?profile.name.trim().toLocaleLowerCase("de").slice(0,40)||"lernprofil":"lernprofil",className:typeof profile.className==="string"?profile.className.trim().toLocaleUpperCase("de").slice(0,32):"",createdAt:typeof profile.createdAt==="string"?profile.createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),progress,nagoldEntries:nagold?nagold.entriesFor(profile):[]};
+    return {id:id(),name:typeof profile.name==="string"?profile.name.trim().toLocaleLowerCase("de").slice(0,40)||"lernprofil":"lernprofil",className:typeof profile.className==="string"?profile.className.trim().toLocaleUpperCase("de").slice(0,32):"",createdAt:typeof profile.createdAt==="string"?profile.createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),progress,nagoldEntries:nagold?nagold.entriesFor(profile):Array.isArray(profile.nagoldEntries)?profile.nagoldEntries:[]};
   }
   function applyPayload(payload) {
     if(payload?.app!=="Excel-Lab"||payload.version!==1||!payload.profile||typeof payload.profile!=="object"||Array.isArray(payload.profile)) throw new Error("Keine gültige Excel-Lab-Exportdatei.");

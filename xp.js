@@ -52,7 +52,7 @@
         <label><span>Klassenbezeichnung</span><input id="profile-edit-class" type="text" minlength="3" maxlength="32" required autocapitalize="characters" spellcheck="false" placeholder="z. B. WGW EK1"></label>
       </form>
       <div class="manager-panels"><div class="manager-panel-slot" id="xp-slot"></div>
-        <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="lesson-nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
+        <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
       </div><a class="button button-secondary" id="certificate-link" href="nachweis.html">Lernnachweis</a>
       <p id="lesson-profile-status" role="status" aria-live="polite" hidden></p>
     </div>`;
@@ -217,67 +217,22 @@
       renderLessonProfile(true); status("Profilangaben aktualisiert.");
     }
   }
-  let nagoldDialog = null;
+  // Dieselbe NAGOLD-Tabelle wie auf der Startseite (nagold-table.js).
   function openLessonNagold() {
     const profile = currentProfile();
-    if (!profile || !nagold) return;
+    const table = window.ExcelLabNagoldTable;
+    if (!profile || !nagold || !table) return;
     const id = profile.id;
-    let draft = nagold.entriesFor(profile).map(row => ({...row}));
-    const editing = new Set();
-    if (nagoldDialog) nagoldDialog.remove();
-    nagoldDialog = document.createElement("dialog");
-    nagoldDialog.id = "lesson-nagold-dialog"; nagoldDialog.className = "dialog nagold-dialog";
-    nagoldDialog.setAttribute("aria-labelledby", "lesson-nagold-title");
-    nagoldDialog.innerHTML = `<form class="dialog-content" novalidate><button class="dialog-close" type="button" aria-label="NAGOLD-Tabelle schließen">×</button><p class="eyebrow">Deine gesammelten Punkte</p><h2 id="lesson-nagold-title">NAGOLD</h2><p class="nagold-intro">Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD. Weitere Einträge kommen dazu; verbindlich ist die Bewertung deiner Lehrkraft.</p><div class="nagold-table-wrap"><table class="nagold-table"><caption class="sr-only">Deine NAGOLD-Einträge</caption><thead><tr><th>Datum</th><th>Uhrzeit</th><th>Wofür</th><th>NAGOLD</th><th>Aktionen</th></tr></thead><tbody></tbody></table></div><datalist id="lesson-nagold-presets"></datalist><div class="nagold-table-footer"><button class="nagold-icon-button" type="button" data-add aria-label="NAGOLD-Zeile hinzufügen">+</button><output aria-live="polite"></output></div><p class="nagold-error" role="status"></p><button class="button button-primary button-full" type="submit">Speichern</button></form>`;
-    document.body.append(nagoldDialog);
-    const tableBody = nagoldDialog.querySelector("tbody"), error = nagoldDialog.querySelector(".nagold-error");
-    const close = () => nagoldDialog.close();
-    nagoldDialog.querySelector(".dialog-close").addEventListener("click", close);
-    nagoldDialog.addEventListener("click", event => { if (event.target === nagoldDialog) close(); });
-    nagoldDialog.addEventListener("close", () => lessonManager.querySelector("#nagold-total").focus());
-    for (const purpose of nagold.presetOptions()) {
-      const option = document.createElement("option"); option.value = purpose; nagoldDialog.querySelector("datalist").append(option);
-    }
-    const sum = () => { nagoldDialog.querySelector("output").textContent = `${nagold.normalizeEntries(draft).reduce((total,row) => total+row.points,0)} NAGOLD gesamt`; };
-    function renderRows() {
-      tableBody.replaceChildren();
-      draft.forEach((row,index) => {
-        const tr = document.createElement("tr"); tr.classList.toggle("is-editing",editing.has(index));
-        for (const [field,label,type] of [["date","Datum","date"],["time","Uhrzeit","time"],["purpose","Wofür","text"],["points","NAGOLD","number"]]) {
-          const td = document.createElement("td"); td.dataset.label = label;
-          if (editing.has(index)) {
-            const input = document.createElement("input"); input.type = type; input.value = row[field];
-            input.setAttribute("aria-label",`${label}, Zeile ${index+1}`);
-            if(field === "points") { input.min = nagold.minPoints; input.max = nagold.maxPoints; input.step = 1; }
-            if(field === "purpose") { input.maxLength = 160; input.setAttribute("list","lesson-nagold-presets"); }
-            input.addEventListener("input",()=>{row[field]=field === "points"?input.valueAsNumber:input.value; error.textContent=""; sum();});
-            td.append(input);
-          } else td.textContent = String(row[field] || (field === "date" || field === "time" ? "Nicht erfasst" : ""));
-          tr.append(td);
-        }
-        const actions = document.createElement("td"); actions.className = "nagold-row-actions";
-        for (const [label,symbol,action] of [["Eintrag bearbeiten","✎",()=>{editing.add(index);renderRows();}],["Zeile löschen","×",()=>{draft.splice(index,1);editing.clear();renderRows();}]]) {
-          const button = document.createElement("button"); button.type="button"; button.className="nagold-icon-button";
-          button.textContent=symbol; button.setAttribute("aria-label",`${label}, Zeile ${index+1}`); button.addEventListener("click",action); actions.append(button);
-        }
-        tr.append(actions); tableBody.append(tr);
-      });
-      nagoldDialog.querySelector("[data-add]").disabled = draft.filter(row=>!row.lessonId).length >= nagold.maxManualEntries || draft.length >= nagold.maxEntries;
-      sum();
-    }
-    const add = () => {
-      if (draft.filter(row=>!row.lessonId).length >= nagold.maxManualEntries || draft.length >= nagold.maxEntries) return;
-      draft.push({date:nagold.today(),time:nagold.clock(),purpose:"",points:0}); editing.add(draft.length-1); renderRows();
-      tableBody.querySelector("tr:last-child input[list]")?.focus();
-    };
-    nagoldDialog.querySelector("[data-add]").addEventListener("click",add);
-    nagoldDialog.querySelector("form").addEventListener("submit",event=>{
-      event.preventDefault(); const entries=nagold.normalizeEntries(draft);
-      if(entries.length !== draft.length) {error.textContent="Bitte für jede Zeile einen Anlass und ganze NAGOLD von −5 bis 5 eintragen. 0 gilt nicht als Eintrag.";return;}
-      if(writeProfile(id,current=>{current.nagoldEntries=entries;})) {refresh();close();status("NAGOLD gespeichert.");}
-      else error.textContent="Speichern nicht möglich. Das Profil hat sich geändert oder der Speicher ist gesperrt.";
+    table.open({
+      entries: nagold.entriesFor(profile),
+      returnFocus: lessonManager.querySelector("#nagold-total"),
+      save(entries) {
+        if (!writeProfile(id, (current) => { current.nagoldEntries = entries; })) return false;
+        refresh();
+        status("NAGOLD gespeichert.");
+        return true;
+      }
     });
-    renderRows(); nagoldDialog.showModal(); if(!draft.length) add();
   }
 
   window.addEventListener("storage", refresh);

@@ -1,11 +1,21 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 15. Oktober 2026, Europe/Berlin
-Projektversion: 0.23.0
-Status: Version 0.23.0 veröffentlicht; einheitliche Profilfenster, Fragenlayout und neuer L1.2-Auftrag online geprüft; Quellenabgleich L3–L4 offen
+Projektversion: 0.24.0
+Status: Version 0.24.0 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.24.0 (Claude, 16.10.2026, Auftrag Jakob: autark
+  weiterarbeiten):** Release-Stand für Codex' Änderungen seit 0.23.0
+  (Einträge unten) mit Versionsnummer, CHANGELOG und Zeitleiste. Dazu:
+  gemeinsame NAGOLD-Tabelle `nagold-table.js` für Startseite und Lernseiten
+  (ersetzt die zweite, einfachere Fassung in `xp.js` und das statische Fenster
+  in `index.html`), Tabelle ohne eigenen Rollbereich (Überlauf auf dem Handy
+  behoben), `lesson-save.js` behält NAGOLD-Zeilen auch ohne `nagold.js`. Drei
+  veraltete Browsertests an die neuen Inhalte angepasst. Einzelheiten in
+  [`claude2codex.md`](claude2codex.md), A0zq.
 
 - **Speichern/Laden veröffentlicht (15.10.2026):** Commit
   `6da1c1a5093f398052b4ebcb28597016162558ff` auf GitHub gepusht;

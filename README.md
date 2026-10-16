@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.23.0**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.24.0**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
@@ -220,7 +220,9 @@ Excel-Lab/
 ├── lesson-workspace.js        Abschnitte, Videos, Excel-Links, Druckansicht
 ├── theme-boot.js              Farbschema und Darstellung vor dem ersten Zeichnen
 ├── xp.js, options.js          XP und NAGOLD im Profilknopf, Darstellungsoptionen
-├── nagold.js                  NAGOLD-Punktetabelle: 5 je abgeschlossener Einheit, eigene Einträge
+├── nagold.js                  NAGOLD-Regeln: 5 je abgeschlossener Einheit, eigene Einträge −5 bis 5
+├── nagold-table.js            NAGOLD-Tabelle (Fenster) für Startseite und Lernseiten
+├── lesson-save.js             Speichern und Laden auf den Lernseiten (Codex)
 ├── organizer.js               Themenlandkarte der Startseite
 ├── formula-lab.js             Formel-Demo in L1.2
 ├── lehrkraft.js, nachweis.js  Logik der beiden Zusatzseiten

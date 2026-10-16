@@ -4013,7 +4013,6 @@ html {
 .nagold-combo-list li { padding: .5rem .65rem; border-radius: 8px; cursor: pointer; overflow-wrap: anywhere; }
 .nagold-combo-list li[hidden] { display: none; }
 .nagold-combo-list li:hover, .nagold-combo-list li[aria-selected="true"] { background: color-mix(in srgb, var(--nagold-deep) 34%, var(--surface-2)); color: var(--text); }
-.nagold-table-wrap:has(.nagold-combo.is-open) { overflow: visible; }
 [data-theme="light"] .nagold-combo-list { box-shadow: 0 16px 34px rgba(31, 80, 54, .2); }
 @media (max-width: 720px) { .nagold-table td[data-label="Wofür"] .nagold-combo { grid-column: 2; } }
 @media (prefers-reduced-motion: reduce) { .nagold-combo-list, .nagold-combo-toggle svg { transition: none; } }
@@ -4033,4 +4032,18 @@ html {
    Formelsammlung und Quellen. */
 @media (max-width: 600px) {
   .main-nav .nav-dropdown { grid-column: 1 / -1; }
+}
+
+/* NAGOLD-Tabelle (16.10.2026): kein eigener Rollbereich mehr. Bei geöffneter
+   Vorschlagsliste quoll die Tabelle sonst auf schmalen Bildschirmen über
+   Summe und „Speichern“. Es rollt das ganze Fenster; die Liste richtet sich
+   nach dem Platz im Fenster (nagold-table.js). */
+.nagold-table-wrap { max-height: none; overflow: visible; }
+.nagold-table thead th:first-child { border-top-left-radius: 13px; }
+.nagold-table thead th:last-child { border-top-right-radius: 13px; }
+.nagold-table tbody tr:last-child > td:first-child { border-bottom-left-radius: 13px; }
+.nagold-table tbody tr:last-child > td:last-child { border-bottom-right-radius: 13px; }
+@media (max-width: 720px) {
+  .nagold-table tbody tr:last-child { border-radius: 0 0 13px 13px; }
+  .nagold-table tbody tr:last-child > td:first-child, .nagold-table tbody tr:last-child > td:last-child { border-radius: 0; }
 }

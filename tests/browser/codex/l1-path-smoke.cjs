@@ -14,7 +14,8 @@ const {chromium}=require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.cache
   await page.goto((__BASE + '/l1-1.html'));
   await page.evaluate(()=>localStorage.setItem('excelLab.state.v1',JSON.stringify({version:1,theme:'dark',currentProfileId:'test',profiles:[{id:'test',name:'tes.pro',className:'WGW EK1',progress:{}}]})));
   await page.reload();
-  const answers=[{structure:'b',numbers:'c',save:'a'},{refs:'b',recalc:'c',circle:'a'},{display:'b',units:'c',formula:'a'},{shift:'b',dynamic:'c',sum:'a'},{structure:'b',central:'c',phone:'a'},{revenue:'b',time:'c',volume:'a',interest:'b',package:'c'}];
+  // Claude, 16.10.2026: L1.2 hat seit dem Kundenworkshop (Codex, 14.10.) fünf Fragen.
+  const answers=[{structure:'b',numbers:'c',save:'a'},{refs:'b',recalc:'c',circle:'a',order:'c',average:'b'},{display:'b',units:'c',formula:'a'},{shift:'b',dynamic:'c',sum:'a'},{structure:'b',central:'c',phone:'a'},{revenue:'b',time:'c',volume:'a',interest:'b',package:'c'}];
   for(let i=1;i<=6;i++){
    const form=page.locator(`#l1${i}-mastery-form`);
    await page.locator(`#l1${i}-mastery-section summary`).click();

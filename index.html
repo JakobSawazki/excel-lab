@@ -13,21 +13,22 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.23.0"></script>
-    <link rel="stylesheet" href="styles.css?v=0.23.0">
-    <link rel="stylesheet" href="home.css?v=0.23.0">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.23.0">
-    <script src="deployment.js?v=0.23.0" defer></script>
-    <script src="developer-mode.js?v=0.23.0" defer></script>
-    <script src="content.js?v=0.23.0" defer></script>
-    <script src="nagold.js?v=0.23.0" defer></script>
-    <script src="bonus-tasks.js?v=0.23.0" defer></script>
-    <script src="nav-menu.js?v=0.23.0" defer></script>
-    <script src="app.js?v=0.23.0" defer></script>
-    <script src="xp.js?v=0.23.0" defer></script>
-    <script src="options.js?v=0.23.0" defer></script>
-    <script src="organizer.js?v=0.23.0" defer></script>
-    <script src="lesson-workspace.js?v=0.23.0" defer></script>
+    <script src="theme-boot.js?v=0.24.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.24.0">
+    <link rel="stylesheet" href="home.css?v=0.24.0">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.24.0">
+    <script src="deployment.js?v=0.24.0" defer></script>
+    <script src="developer-mode.js?v=0.24.0" defer></script>
+    <script src="content.js?v=0.24.0" defer></script>
+    <script src="nagold.js?v=0.24.0" defer></script>
+    <script src="nagold-table.js?v=0.24.0" defer></script>
+    <script src="bonus-tasks.js?v=0.24.0" defer></script>
+    <script src="nav-menu.js?v=0.24.0" defer></script>
+    <script src="app.js?v=0.24.0" defer></script>
+    <script src="xp.js?v=0.24.0" defer></script>
+    <script src="options.js?v=0.24.0" defer></script>
+    <script src="organizer.js?v=0.24.0" defer></script>
+    <script src="lesson-workspace.js?v=0.24.0" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -409,28 +410,6 @@
       </div>
     </dialog>
 
-    <dialog class="dialog nagold-dialog" id="nagold-dialog" aria-labelledby="nagold-title">
-      <form id="nagold-form" class="dialog-content" novalidate>
-        <button class="dialog-close" type="button" data-close-dialog aria-label="NAGOLD-Tabelle schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
-        <p class="eyebrow">Deine gesammelten Punkte</p>
-        <h2 id="nagold-title">NAGOLD</h2>
-        <p class="nagold-intro">Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD. Weitere Einträge kommen dazu; verbindlich ist die Bewertung deiner Lehrkraft.</p>
-        <div class="nagold-table-wrap">
-          <table class="nagold-table">
-            <caption class="sr-only">Deine NAGOLD-Einträge</caption>
-            <thead><tr><th scope="col">Datum</th><th scope="col">Uhrzeit</th><th scope="col">Wofür</th><th scope="col">NAGOLD</th><th scope="col"><span class="sr-only">Aktionen</span></th></tr></thead>
-            <tbody id="nagold-rows"></tbody>
-          </table>
-        </div>
-        <div class="nagold-table-footer">
-          <button class="nagold-icon-button" id="nagold-add-button" type="button" title="Zeile hinzufügen" aria-label="NAGOLD-Zeile hinzufügen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
-          <output id="nagold-sum" aria-live="polite"></output>
-        </div>
-        <p class="nagold-error" id="nagold-error" role="status" aria-live="polite"></p>
-        <button class="button button-primary button-full" id="nagold-save-button" type="submit">Speichern</button>
-      </form>
-    </dialog>
-
     <dialog class="dialog profile-dialog" id="profile-dialog" aria-labelledby="profile-dialog-title">
       <form method="dialog" id="profile-form">
         <button class="dialog-close" type="button" data-close-dialog aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
@@ -486,6 +465,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.24.0</span><div><strong>Profil und Speichern auf jeder Lernseite</strong><small>Neuer L1.2-Auftrag „Kundenworkshop“, Profilfenster und Disketten-Symbol auf allen Lernseiten, dieselbe NAGOLD-Tabelle überall, direkte Situationssprache und ein schlichterer Seitenfuß.</small></div></li>
             <li><span>0.23.0</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und NAGOLD stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten NAGOLD. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
             <li><span>0.21.0</span><div><strong>NAGOLD im Profil</strong><small>Punktetabelle wie in WorkbenchLab: Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD, weitere Leistungen trägst du mit Datum, Uhrzeit und 1 bis 5 Punkten selbst ein. Der Stand steht im Profil, im Lernnachweis und in der Klassenübersicht.</small></div></li>
             <li><span>0.20.10</span><div><strong>Feinschliff am Design</strong><small>Tieferer Hintergrund mit weichen Lichtflächen und dezentem Zellraster, Nebenbuttons im hellen Farbschema als helles Perlmetall, klarer Fokusrahmen und besser lesbare Kleinstschriften. Fotos und Symbole sind unverändert.</small></div></li>
