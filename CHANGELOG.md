@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.28.4 – 2026-10-16
+
+**Drucken immer hell.** Ausdrucke verwenden unabhängig vom gewählten Farbschema die helle Palette; im dunklen Schema kam vorher helle Schrift aufs weiße Papier. Die Klassenübersicht druckt im Querformat mit kleineren Statusfeldern, sodass alle 27 Einheiten auf die Seitenbreite passen.
+
 ## 0.28.3 – 2026-10-16
 
 **Formelsammlung als Merkblatt.** Wer die Formelsammlung mit Strg+P druckt, erhält ein kompaktes Merkblatt: drei Spalten, ohne Kopfzeile, Suche und Kopierknöpfe, mit dunkler Schrift auch im dunklen Farbschema. Am Bildschirm ändert sich nichts.

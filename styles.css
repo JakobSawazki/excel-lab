@@ -4221,3 +4221,19 @@ body::before {
   #view-formulas .formula-code { display: block; min-height: 0; margin: 2pt 0; padding: 2pt 4pt; border: 1px solid #d5ddd8; border-radius: 4pt; background: #f4f7f5; color: #0b4f2e; font-size: 7.5pt; white-space: normal; overflow-wrap: anywhere; }
   #view-formulas .formula-example { font-size: 7pt; }
 }
+
+/* Drucken immer mit der hellen Palette (0.28.4): Browser lassen Hintergründe
+   meist weg; helle Schrift des dunklen Schemas wäre auf weißem Papier kaum lesbar. */
+@media print {
+  html, html[data-theme], html[data-theme][data-background], html[data-theme][data-text-tone] {
+    color-scheme: light;
+    --bg: #ffffff; --bg-elevated: #ffffff; --surface: #ffffff; --surface-2: #edf3ef; --surface-3: #e1ebe5;
+    --text: #11231a; --text-soft: #46574e; --text-faint: #5d6d64;
+    --line: rgba(17, 35, 26, 0.16); --line-strong: rgba(17, 35, 26, 0.28);
+    --green: #12744a; --green-strong: #107c41; --green-deep: #0d6334; --lime: #4f7414;
+    --blue: #276eb8; --amber: #9a6400; --violet: #6946c6; --rose: #b9374d;
+    --nagold: #8a5d00;
+    --metal-edge: rgba(11, 107, 60, .43); --metal-hairline: rgba(255, 255, 255, .82); --metal-shadow: transparent; --metal-glow: transparent;
+  }
+  body, .lesson-page-body { background: #fff !important; color: var(--text); }
+}

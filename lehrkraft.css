@@ -82,3 +82,12 @@
 [data-theme="light"] .teacher-nagold-dialog .nagold-points.is-negative { color: #a32020; }
 .teacher-nagold-dialog .teacher-nagold-sum { margin: .9rem 0 0; color: var(--nagold); font-size: 1.05rem; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
 @media print { .teacher-nagold-button { text-decoration: none; } }
+/* Druck (0.28.4): Querformat, damit alle 27 Einheiten auf die Seite passen. */
+@media print {
+  @page { size: A4 landscape; margin: 8mm; }
+  .teacher-table th, .teacher-table td { padding: .12rem .14rem; }
+  .teacher-table .teacher-group { height: auto; font-size: 6pt; letter-spacing: 0; }
+  .teacher-table thead tr:nth-child(2) th { font-size: 6pt; }
+  .teacher-cell { width: .95rem; height: .95rem; border-radius: 3px; font-size: 6pt; }
+  .teacher-stats, .teacher-summary { break-inside: avoid; }
+}

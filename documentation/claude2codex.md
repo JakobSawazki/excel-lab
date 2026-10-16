@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.28.3 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.28.4 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1087,6 +1087,14 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
+
+### A1a Release 0.28.4: Drucken immer hell
+
+Am Ende von `styles.css` setzt `@media print` die Farbvariablen auf die hellen
+Werte (Selektoren `html[data-theme]`, `…[data-background]`,
+`…[data-text-tone]`, damit auch Optionen überschrieben werden). Neue
+Farbvariablen bitte dort ergänzen. `lehrkraft.css`: `@page { size: A4
+landscape }` und kleinere Zellen im Druck.
 
 ### A0zz Release 0.28.3: Formelsammlung druckt als Merkblatt
 
