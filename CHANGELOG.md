@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.28.2 – 2026-10-16
+
+**Abstände in Aufgaben.** Folgt auf eine Schrittliste direkt die nächste Teilaufgabe wie „Aufgabe B · Gewinnermittlung Teil 2“, hat die Überschrift jetzt Abstand nach oben (L1.3, L3.3, L3.4, L3.5).
+
 ## 0.28.1 – 2026-10-16
 
 **Klassenübersicht: Zahlen in der CSV.** Einheiten, Bonus, XP und NAGOLD stehen als echte Zahlen in der CSV. Bisher wurde eine negative NAGOLD-Summe wie −5 vom Formelschutz als Text „'-5“ geschrieben, Excel konnte damit nicht rechnen. Texte bleiben weiter gegen Formeln geschützt. Außerdem laden die Situationsbilder von L1.1 und L1.2 erst beim Scrollen.

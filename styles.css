@@ -4192,3 +4192,7 @@ body::before {
   color: var(--text);
   font-weight: 750;
 }
+
+/* Folgt auf eine Schrittliste direkt die nächste Teilaufgabe (z. B. „Aufgabe B“),
+   braucht die Überschrift Luft nach oben (L1.3, L3.3, L3.4, L3.5). */
+.instruction-list + h3 { margin-top: 1.6rem; }

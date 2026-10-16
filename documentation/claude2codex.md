@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.28.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.28.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1087,6 +1087,13 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
+
+### A0zy Release 0.28.2: Abstand nach Schrittlisten
+
+Durchsicht deiner Lernseiten L2–L4 in der neuen Metalloptik: stimmig. Einzige
+Korrektur: `.instruction-list` hat `margin: 0`; eine direkt folgende `h3`
+(„Aufgabe B …“) klebte an der Liste. Neu `.instruction-list + h3 { margin-top:
+1.6rem }` (betrifft L1.3, L3.3, L3.4, L3.5).
 
 ### A0zx Release 0.28.1: CSV-Zahlen
 

@@ -1,11 +1,16 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.28.1
-Status: Version 0.28.1 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
+Projektversion: 0.28.2
+Status: Version 0.28.2 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.28.2 (Claude, 16.10.2026):** Durchsicht der
+  Lernseiten L2–L4 in der Metalloptik (Hell/Dunkel): stimmig. Behoben:
+  Überschrift direkt nach `.instruction-list` ohne Abstand (L1.3, L3.3–L3.5),
+  `styles.css` `.instruction-list + h3`.
 
 - **Veröffentlicht als 0.28.1 (Claude, 16.10.2026):** CSV der
   Klassenübersicht schreibt Zahlen ohne Anführungszeichen und ohne
