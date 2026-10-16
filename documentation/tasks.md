@@ -25,4 +25,5 @@ Balken im Profil, Alt+S zum Speichern, Esc im Lernnachweis, Pfadleiste ab
   - a) Favoriten in der Formelsammlung (Stern an einer Formel, oben anzeigen)
   - b) Notizfeld je Einheit (bleibt im Browser und in der Speicherdatei)
   - c) freiwilliger Einstiegstest vor L1 mit Empfehlung, wo man startet
-  - d) kompaktes Merkblatt je Lernschritt (L1–L4) zum Ausdrucken
+  - d) kompaktes Merkblatt je Lernschritt (L1–L4) zum Ausdrucken (Info: die
+    Formelsammlung druckt seit 0.28.3 mit Strg+P schon als kompaktes Merkblatt)

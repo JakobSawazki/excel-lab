@@ -4196,3 +4196,28 @@ body::before {
 /* Folgt auf eine Schrittliste direkt die nächste Teilaufgabe (z. B. „Aufgabe B“),
    braucht die Überschrift Luft nach oben (L1.3, L3.3, L3.4, L3.5). */
 .instruction-list + h3 { margin-top: 1.6rem; }
+
+/* Formelsammlung als kompaktes Merkblatt beim Drucken (Strg+P), 0.28.3:
+   ohne Kopfzeile, Suche und Kopierknöpfe; Karten in drei Spalten, ohne Schatten. */
+@media print {
+  body:has(#view-formulas:not([hidden])) :is(.site-header, .location-path, .site-footer, .formula-toolbar, .formula-chip-large, .toast-region) { display: none !important; }
+  /* Papier ist weiß: feste dunkle Schrift, auch wenn am Bildschirm das dunkle Schema aktiv ist. */
+  body:has(#view-formulas:not([hidden])) { background: #fff !important; color: #111 !important; }
+  #view-formulas, #view-formulas .page-intro p, #view-formulas .formula-card p, #view-formulas .formula-example, #view-formulas .formula-example span { color: #222 !important; }
+  #view-formulas .eyebrow, #view-formulas .formula-card .category { color: #0b6b3c !important; }
+  #view-formulas h1, #view-formulas h2, #view-formulas .formula-example strong { color: #111 !important; }
+  #view-formulas .page-shell { width: auto; max-width: none; padding: 0; }
+  #view-formulas .page-intro { margin: 0 0 .6rem; padding: 0; }
+  #view-formulas .page-intro h1 { margin: 0 0 .2rem; font-size: 20pt; }
+  #view-formulas .page-intro p { margin: 0; font-size: 9pt; }
+  #view-formulas .formula-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6pt; }
+  #view-formulas .formula-card { align-content: start; gap: 2pt; padding: 6pt 7pt; border: 1px solid #b9c4bd; border-radius: 6pt; background: #fff; box-shadow: none; break-inside: avoid; color: #111; }
+  #view-formulas .formula-card-header { gap: 4pt; }
+  #view-formulas .formula-card::before, #view-formulas .formula-card::after { display: none; }
+  #view-formulas .formula-card .copy-button { display: none; }
+  #view-formulas .formula-card h2 { margin: 0; font-size: 10.5pt; }
+  #view-formulas .formula-card .category { font-size: 6.5pt; }
+  #view-formulas .formula-card p { margin: 2pt 0; font-size: 8pt; line-height: 1.3; }
+  #view-formulas .formula-code { display: block; min-height: 0; margin: 2pt 0; padding: 2pt 4pt; border: 1px solid #d5ddd8; border-radius: 4pt; background: #f4f7f5; color: #0b4f2e; font-size: 7.5pt; white-space: normal; overflow-wrap: anywhere; }
+  #view-formulas .formula-example { font-size: 7pt; }
+}

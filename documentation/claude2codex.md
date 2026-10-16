@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.28.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.28.3 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1087,6 +1087,13 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
+
+### A0zz Release 0.28.3: Formelsammlung druckt als Merkblatt
+
+Nur Druckregeln am Ende von `styles.css` (keine neue Bedienung):
+`body:has(#view-formulas:not([hidden]))` blendet Kopfzeile, Pfadleiste, Fuß,
+Suche und Beispielchip aus; Karten dreispaltig, `align-content: start`, ohne
+Mindesthöhen, feste dunkle Farben (Hintergründe druckt der Browser meist nicht).
 
 ### A0zy Release 0.28.2: Abstand nach Schrittlisten
 

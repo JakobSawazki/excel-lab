@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.28.3 – 2026-10-16
+
+**Formelsammlung als Merkblatt.** Wer die Formelsammlung mit Strg+P druckt, erhält ein kompaktes Merkblatt: drei Spalten, ohne Kopfzeile, Suche und Kopierknöpfe, mit dunkler Schrift auch im dunklen Farbschema. Am Bildschirm ändert sich nichts.
+
 ## 0.28.2 – 2026-10-16
 
 **Abstände in Aufgaben.** Folgt auf eine Schrittliste direkt die nächste Teilaufgabe wie „Aufgabe B · Gewinnermittlung Teil 2“, hat die Überschrift jetzt Abstand nach oben (L1.3, L3.3, L3.4, L3.5).
