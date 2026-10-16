@@ -1,11 +1,17 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.30.0
-Status: Version 0.30.0 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
+Projektversion: 0.31.0
+Status: Version 0.31.0 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.31.0 (Claude, 16.10.2026, Wunsch Jakob):**
+  Textmarker wie in WorkbenchLab (`highlighter.js`, auf allen 27 Lernseiten):
+  Werkzeugleiste oben in der Einheit (mitlaufend), Gelb, Mint, Koralle, Grün,
+  Radierer; Speicherung in `profile.highlights[lessonId]`, geprüft durch
+  `save-core.js` (`normalizeHighlights`), daher auch in der Speicherdatei.
 
 - **Veröffentlicht als 0.30.0 (Claude, 16.10.2026, Wunsch Jakob):**
   Fortschritt jeder Lerneinheit als Balken rechts in der Pfadleiste

@@ -70,6 +70,26 @@
 
   const xp = (profile) => xpStats(profile).xp;
 
+  // Textmarker (0.31.0, wie in WorkbenchLab): je Einheit höchstens 400 Stellen
+  // mit Absatz-Kennung, Zeichenbereich, markiertem Text und Farbe.
+  const MARK_COLORS = new Set(["yellow", "mint", "coral", "green"]);
+  function normalizeHighlights(candidate) {
+    const result = {};
+    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) return result;
+    for (const lesson of lessons) {
+      const entries = candidate[lesson.id];
+      if (!Array.isArray(entries)) continue;
+      const clean = entries.slice(0, 400).filter((item) => item
+        && typeof item.block === "string" && /^b-\d{1,4}$/.test(item.block)
+        && Number.isInteger(item.start) && Number.isInteger(item.end)
+        && item.start >= 0 && item.end > item.start && item.end <= 20000
+        && typeof item.quote === "string" && item.quote.length === item.end - item.start
+        && MARK_COLORS.has(item.color)).map(({ block, start, end, quote, color }) => ({ block, start, end, quote, color }));
+      if (clean.length) result[lesson.id] = clean;
+    }
+    return result;
+  }
+
   function normalizeProfile(profile, previous) {
     const safeProgress = {};
     if (profile && profile.progress && typeof profile.progress === "object") {
@@ -99,7 +119,8 @@
       progress: safeProgress,
       // NAGOLD-Tabelle: alte Lernstände erhalten je abgeschlossener Einheit eine Zeile.
       // Ohne nagold.js bleiben die vorhandenen Zeilen unverändert erhalten.
-      nagoldEntries: rules ? rules.entriesFor(profile) : Array.isArray(profile?.nagoldEntries) ? profile.nagoldEntries : []
+      nagoldEntries: rules ? rules.entriesFor(profile) : Array.isArray(profile?.nagoldEntries) ? profile.nagoldEntries : [],
+      highlights: normalizeHighlights(profile?.highlights)
     };
   }
 
@@ -209,6 +230,6 @@
 
   window.ExcelLabSave = Object.freeze({
     FORMAT, SAVES_KEY, DEVICE_KEY, LESSON_XP, createId, deviceId, completedCount, bonusSolved, xpStats, xp, normalizeProfile,
-    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport, isSaveShortcut, notify
+    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport, isSaveShortcut, notify, normalizeHighlights, MARK_COLORS
   });
 })();

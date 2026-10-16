@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.30.0**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.31.0**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
@@ -243,6 +243,7 @@ Excel-Lab/
 ├── xp.js, options.js          XP und NAGOLD im Profilknopf, Profilfenster der Lernseiten, Darstellungsoptionen
 ├── nagold.js                  NAGOLD-Regeln: 5 je abgeschlossener Einheit, eigene Einträge −10 bis 5
 ├── nagold-table.js            NAGOLD-Tabelle (Fenster) für Startseite und Lernseiten
+├── highlighter.js             Textmarker auf den Lernseiten (vier Farben, Radierer)
 ├── profile-progress.js        Gesamtfortschritt als Balken in der Profilkarte
 ├── save-core.js               Speichern und Laden (Dateiformat, Bereinigung, „Zuletzt gespeichert“) und XP-Regel
 ├── lesson-save.js             Disketten-Symbol und Speicherfenster der Lernseiten (Codex)

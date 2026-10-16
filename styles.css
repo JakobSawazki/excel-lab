@@ -4494,3 +4494,56 @@ body #view-dashboard .hero-outcomes > span:hover small { color: color-mix(in srg
   body #view-dashboard .hero-outcomes > span, body #view-dashboard .hero-outcomes > span small { transition: none; }
   body #view-dashboard .hero-outcomes > span::after { display: none; }
 }
+
+/* Textmarker auf den Lernseiten (0.31.0, wie in WorkbenchLab). */
+.lesson-reading-tools {
+  position: sticky;
+  z-index: 30;
+  top: 88px;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  width: fit-content;
+  margin: 0 0 1rem auto;
+  padding: .4rem .5rem;
+  border: 1px solid color-mix(in srgb, var(--metal-edge) 55%, var(--line-strong));
+  border-radius: 999px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-3) 70%, var(--surface)), var(--surface));
+  box-shadow: var(--elev-1);
+  isolation: isolate;
+}
+.lesson-reading-tools::before {
+  position: absolute; z-index: -1; inset: 0; border-radius: inherit;
+  background: var(--brush) 0 0 / 640px 320px; content: ""; opacity: calc(var(--brush-strength) * .25); pointer-events: none;
+}
+.reading-tools-icon { display: grid; place-items: center; width: 1.9rem; color: var(--text-soft); cursor: help; }
+.reading-tools-icon svg, .marker-erase svg { width: 1.05rem; height: 1.05rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.marker-swatch {
+  --marker-color: #f4d768;
+  display: grid; place-items: center;
+  width: 2.1rem; height: 2.1rem; padding: .38rem;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  background: var(--surface-2); color: var(--text-soft); cursor: pointer;
+  transition: transform 180ms var(--ease-out), border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+}
+.marker-swatch span { display: block; width: 100%; height: 100%; border-radius: 999px; background: var(--marker-color); box-shadow: inset 0 1px 1px rgba(255, 255, 255, .5), inset 0 -1px 2px rgba(0, 0, 0, .25); }
+.marker-swatch[data-highlight-color="mint"] { --marker-color: #81d6b4; }
+.marker-swatch[data-highlight-color="coral"] { --marker-color: #efa99e; }
+.marker-swatch[data-highlight-color="green"] { --marker-color: #a8db78; }
+.marker-swatch.marker-erase { --marker-color: var(--green); }
+.marker-swatch:hover, .marker-swatch:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--marker-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--marker-color) 30%, transparent), 0 8px 18px var(--metal-shadow);
+  color: var(--text);
+}
+mark[data-study-mark] { border-radius: 3px; padding: .05em 0; color: #142120; box-decoration-break: clone; -webkit-box-decoration-break: clone; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+mark[data-study-mark="yellow"] { background: #f4d768; }
+mark[data-study-mark="mint"] { background: #81d6b4; }
+mark[data-study-mark="coral"] { background: #efa99e; }
+mark[data-study-mark="green"] { background: #a8db78; }
+mark[data-study-mark] :is(code, strong, a) { color: inherit; background: transparent; }
+@media (max-width: 1050px) { .lesson-reading-tools { top: 76px; margin-right: auto; } }
+@media (prefers-reduced-motion: reduce) { .marker-swatch { transition: none; } .marker-swatch:hover { transform: none; } }
+@media print { .lesson-reading-tools { display: none !important; } }
+@media (forced-colors: active) { mark[data-study-mark] { forced-color-adjust: none; } }

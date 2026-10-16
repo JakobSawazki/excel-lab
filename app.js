@@ -27,7 +27,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.30.0";
+  const APP_VERSION = "0.31.0";
   // XP-Regel (Einheiten und Bonusaufgaben) steht in save-core.js.
   const POINTS_PER_LESSON = saveCore.LESSON_XP;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;

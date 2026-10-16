@@ -10,8 +10,7 @@ Nummern werden nicht neu vergeben, auch wenn ein Punkt gelöscht ist.
 
 ## Gerade in Arbeit (Claude)
 
-- **25.** Textmarker in mehreren Farben in jeder Lerneinheit, wie in
-  WorkbenchLab.
+*Nichts offen.*
 
 Erledigt und dokumentiert: 1–16 in Release 0.27.0 (A0zv); 17–21 in Release
 0.28.0 (A0zw): gebürstetes Metall, Pfadleiste mit Schatten, Fortschritt als

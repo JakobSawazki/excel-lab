@@ -868,6 +868,29 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await lesson.page.locator("#toast-region .toast").filter({ hasText: "Gespeichert" }).waitFor();
         assert.deepEqual(lesson.errors, []);
       } finally { await lesson.context.close(); }
+      // Textmarker: markieren, nach Neuladen sichtbar, radieren (0.31.0).
+      const marker = await open(browser, "l1-1.html", { state });
+      try {
+        const select = () => marker.page.evaluate(() => {
+          const para = [...document.querySelectorAll("[data-highlight-block]")].find((e) => e.textContent.includes("Organisationsteam"));
+          const walker = document.createTreeWalker(para, NodeFilter.SHOW_TEXT);
+          let node; while ((node = walker.nextNode()) && !node.textContent.includes("Organisationsteam"));
+          const at = node.textContent.indexOf("Organisationsteam");
+          const range = document.createRange(); range.setStart(node, at); range.setEnd(node, at + "Organisationsteam".length);
+          getSelection().removeAllRanges(); getSelection().addRange(range);
+        });
+        await select();
+        await marker.page.locator('[data-highlight-color="coral"]').click();
+        assert.equal(await marker.page.locator('mark[data-study-mark="coral"]').innerText(), "Organisationsteam");
+        await marker.page.reload();
+        assert.equal(await marker.page.locator('mark[data-study-mark="coral"]').innerText(), "Organisationsteam", "bleibt nach Neuladen");
+        const saved = await marker.page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].highlights["l1-1"], KEY);
+        assert.deepEqual(saved.map((item) => [item.quote, item.color]), [["Organisationsteam", "coral"]]);
+        await select();
+        await marker.page.locator('[data-highlight-color="erase"]').click();
+        assert.equal(await marker.page.locator("mark[data-study-mark]").count(), 0);
+        assert.deepEqual(marker.errors, []);
+      } finally { await marker.context.close(); }
       // Lernnachweis: Esc führt wie das X zurück und öffnet das Profil.
       const certificate = await open(browser, "nachweis.html", { state });
       try {

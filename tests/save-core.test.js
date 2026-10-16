@@ -131,3 +131,25 @@ test("Startseite und Lernseiten laden save-core.js vor app.js und lesson-save.js
     }
   }
 });
+
+test("Textmarker: Bereinigung der Markierungen im Profil", () => {
+  const { core } = load();
+  const good = { block: "b-3", start: 2, end: 7, quote: "Hallo", color: "mint" };
+  const cleaned = plain(core.normalizeHighlights({
+    "l1-1": [good, { ...good, color: "lila" }, { ...good, block: "x-1" }, { ...good, quote: "zu lang" }, { ...good, start: 7 }, "kaputt"],
+    "l9-9": [good],
+    "l1-2": []
+  }));
+  assert.deepEqual(cleaned, { "l1-1": [good] });
+  assert.deepEqual(plain(core.normalizeHighlights(null)), {});
+  assert.deepEqual(plain(core.normalizeProfile({ name: "ann.bei", progress: {}, highlights: { "l1-1": [good] } }).highlights), { "l1-1": [good] }, "bleibt im Profil und damit in der Speicherdatei");
+});
+
+test("Alle Lernseiten laden highlighter.js nach save-core.js", () => {
+  const fs = require("node:fs");
+  const { root } = require("./helpers.cjs");
+  for (const file of fs.readdirSync(root).filter((name) => /^l\d-\d\.html$/.test(name))) {
+    const html = read(file);
+    assert.ok(html.indexOf("highlighter.js") > html.indexOf("save-core.js") && html.indexOf("save-core.js") > 0, file);
+  }
+});

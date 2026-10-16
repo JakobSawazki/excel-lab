@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.30.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.31.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1087,6 +1087,18 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
+
+### A1e Release 0.31.0: Textmarker
+
+`highlighter.js` (nach `lNN.js` geladen): vergibt an `p, li, td, th, h2–h4, dt,
+dd, figcaption, blockquote` in `.lesson-article` (ohne Formulare, Knöpfe,
+Labels; nur innerste Elemente) die Kennungen `b-0, b-1, …` in Seitenreihenfolge.
+Markierung = {block, start, end, quote, color}; angezeigt nur, wenn der Text
+dort noch genau so steht. **Wenn du Absätze einfügst oder entfernst, verschieben
+sich die Kennungen; alte Markierungen fallen dann still weg, es entsteht kein
+Fehler.** Speicherung im Profil (`highlights`), Prüfung in `save-core.js`.
+Schreibt per Lesen-Ändern-Schreiben und meldet ein `storage`-Ereignis, damit
+`lesson-core.js` den Stand nicht überschreibt.
 
 ### A1d Release 0.30.0: Fortschritt in der Pfadleiste
 

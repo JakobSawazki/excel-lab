@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.31.0 – 2026-10-16
+
+**Textmarker in jeder Lerneinheit (wie in WorkbenchLab).** Oben in jeder Einheit steht eine kleine, beim Lesen mitlaufende Leiste mit vier Farben (Gelb, Mint, Koralle, Grün) und einem Radierer. Text auswählen, Farbe wählen – fertig. Die Markierungen gehören zum Profil, bleiben nach dem Neuladen erhalten und reisen mit der Speicherdatei. Ändert sich ein Absatz später, wird eine nicht mehr passende Markierung einfach nicht angezeigt.
+
 ## 0.30.0 – 2026-10-16
 
 **Fortschritt in der Pfadleiste.** Jede Lerneinheit zeigt ihren Fortschritt als schmalen grünen Balken mit Prozentwert rechts in der Pfadleiste („Fortschritt L1.1“); Status und XP stehen im Tooltip. Die Fortschrittskarte neben dem Titel und die Zeile „L1.1 · BPE 1.1 · 100 XP“ über dem Titel entfallen, der Titel nutzt die volle Breite. Beim Überfahren hebt sich der Balken an und leuchtet; ein Klick zeigt Status, Arbeitsschritte, Verständnis-Check, Lehrkraft, XP und Bonus. Die Kopfzeile mit Profil und Symbolen bleibt jetzt auch auf schmalen Bildschirmen beim Scrollen sichtbar; ihr Untertitel lautet überall „Tabellenkalkulation verstehen“. Auf der Startseite schließt die Leiste „Verstehen · Üben · Prüfen“ nahtlos an das Bild an und bekommt beim Überfahren einen Lichtreflex; die Überschrift lautet „Überblick“ statt „Überblick BPE1“ (der Bildungsplanbezug steht in den Quellen).
