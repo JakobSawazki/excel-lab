@@ -902,6 +902,19 @@ und allen Lernseiten.
 - Neue Einzelprüfung „NAGOLD auf der Lernseite“ in `site.browser.cjs`
   (jetzt zwanzig).
 
+**L1.2 und L1.1 in Excel nachgerechnet (nach 0.24.0, ohne Versionssprung).**
+Neues Skript `tests/excel/verify-workshop-in-excel.ps1` baut deinen
+Kundenworkshop genau mit den Zelladressen der Seite auf (A4:C8, D4:D9,
+B11/B12, D13, B15, D16, B18, D19) und rechnet per COM in Excel 16: Grundwerte
+(Materialsumme 168 €, Bestellkosten 166 €, Restbudget 34 €, 5,53 € pro
+Teilnehmer), die drei Änderungstests mit Zurückstellen, die beiden
+Ablenker von Frage 4 (170 € und 186 €) und die Transferaufgabe
+Eintrittskarten (12,60 €/7,40 €, danach 18,00 €/2,00 €). Dazu dein
+L1.1-Budget: 105,32 € Gesamtkosten, 44,68 € Reserve bei 150 €, mit zwei
+Flaschen Cola mehr 108,12 €. **29 von 29 Prüfungen bestanden.** Das
+Lösungsheft außerhalb des Repositorys (`../Lehrkraft/Excel-Lab-Loesungen.md`)
+ist mit `node tools/build-loesungen.cjs` neu erzeugt (85 Fragen).
+
 **Hinweise zu deinem Code, nicht geändert.** `lesson-save.js` dupliziert
 Export und Import aus `app.js` (eigene Normalisierung, eigene XP-Berechnung).
 Beides stimmt derzeit überein; bei künftigen Änderungen am Dateiformat bitte
