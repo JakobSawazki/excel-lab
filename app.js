@@ -26,7 +26,7 @@
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.24.1";
+  const APP_VERSION = "0.25.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -513,7 +513,7 @@
     $("#export-button").disabled = !current;
     $("#nagold-total").disabled = !current;
     $("#nagold-total-value").textContent = `${nagoldTotal(current)} NAGOLD`;
-    $("#nagold-total").setAttribute("aria-label", `${nagoldTotal(current)} NAGOLD: Einträge öffnen`);
+    $("#nagold-total").setAttribute("aria-label", `${nagoldTotal(current)} NAGOLD: Tabelle bearbeiten`);
     $("#profile-edit-form").hidden = !current;
     $("#profile-edit-name").value = current?.name || "";
     $("#profile-edit-class").value = current?.className || "";
@@ -798,14 +798,14 @@
       table.open({
         entries: nagold.entriesFor(profile),
         returnFocus: $("#nagold-total"),
+        // Wird bei jeder gültigen Änderung aufgerufen (automatisches Speichern).
         save(entries) {
           const current = currentProfile();
           if (!current || current.id !== profile.id) return false;
           current.nagoldEntries = entries;
           current.updatedAt = new Date().toISOString();
           saveState();
-          renderAll();
-          showToast("NAGOLD gespeichert.");
+          renderProfileManager();
           return true;
         }
       });

@@ -3,9 +3,11 @@
 
   // NAGOLD-Tabelle (wie in WorkbenchLab) als gemeinsames Fenster für Startseite
   // und Lernseiten: Datum, Uhrzeit, Wofür (ein Feld mit Vorschlagsliste) und
-  // Punkte. Ein Entwurf wird bearbeitet; erst „Speichern“ übergibt ihn an die
-  // Seite, Schließen verwirft ihn. Wer speichert, entscheidet die Seite über
-  // `save(entries)`; das Modul selbst schreibt nichts in den Speicher.
+  // Punkte. Wie in WorkbenchLab 0.48.0 werden gültige Zeilen und Löschungen
+  // sofort gespeichert; eine unvollständige Korrektur behält den letzten
+  // gültigen Stand, neue unvollständige Zeilen werden nicht gespeichert.
+  // Wer speichert, entscheidet die Seite über `save(entries)`; das Modul
+  // selbst schreibt nichts in den Speicher.
   const nagold = window.EXCEL_LAB_NAGOLD;
   if (!nagold) return;
 
@@ -18,7 +20,7 @@
     remove: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>',
     chevron: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>'
   };
-  const RULE_ERROR = "Bitte für jede Zeile einen Anlass und ganze NAGOLD von −5 bis 5 eintragen. 0 gilt nicht als Eintrag.";
+  const RULE_ERROR = "Unvollständige Zeilen sind noch nicht gespeichert. Datum, Uhrzeit, Anlass und ganze NAGOLD von −10 bis 5 (ohne 0) ergänzen. Bisherige gültige Einträge bleiben erhalten.";
   const SAVE_ERROR = "Speichern nicht möglich. Das Profil hat sich geändert oder der Speicher ist gesperrt.";
 
   const dialog = document.createElement("dialog");
@@ -42,7 +44,7 @@
         <output id="nagold-sum" aria-live="polite"></output>
       </div>
       <p class="nagold-error" id="nagold-error" role="status" aria-live="polite"></p>
-      <button class="button button-primary button-full" id="nagold-save-button" type="submit">Speichern</button>
+      <p class="nagold-autosave" id="nagold-autosave">Änderungen werden automatisch gespeichert.</p>
     </form>`;
   // Das Fenster besteht von Anfang an, damit Verweise wie aria-controls ins Leere gehen.
   document.body.append(dialog);
@@ -52,9 +54,34 @@
   let draft = [];
   let editing = new Set();
   let session = null;
+  // Letzter gültiger, gespeicherter Stand je Zeile und der zuletzt übergebene Gesamtstand.
+  let savedRows = new Map();
+  let persisted = "[]";
 
   function updateSum() {
-    $("#nagold-sum").textContent = `${nagold.normalizeEntries(draft).reduce((sum, row) => sum + row.points, 0)} NAGOLD gesamt`;
+    $("#nagold-sum").textContent = `${JSON.parse(persisted).reduce((sum, row) => sum + row.points, 0)} NAGOLD gesamt`;
+  }
+
+  // Speichert sofort alle gültigen Zeilen. Unvollständige neue Zeilen fehlen,
+  // bei unvollständig korrigierten Zeilen bleibt der letzte gültige Stand.
+  function autosave() {
+    let incomplete = false;
+    const entries = draft.flatMap((row) => {
+      const valid = nagold.normalizeEntries([row])[0];
+      if (valid && (row.date || row.allowUnknownDate) && (row.time || row.allowUnknownTime)) {
+        savedRows.set(row, valid);
+        return [valid];
+      }
+      incomplete = true;
+      return savedRows.has(row) ? [savedRows.get(row)] : [];
+    });
+    let failed = false;
+    if (JSON.stringify(entries) !== persisted) {
+      if (session && session.save(entries) !== false) persisted = JSON.stringify(entries);
+      else failed = true;
+    }
+    $("#nagold-error").textContent = failed ? SAVE_ERROR : incomplete ? RULE_ERROR : "";
+    updateSum();
   }
 
   function formatDate(value) {
@@ -97,10 +124,16 @@
   function readInput(event) {
     const field = event.target.closest("[data-nagold-field]");
     if (!field) return;
-    const row = draft[Number(field.closest("[data-nagold-index]").dataset.nagoldIndex)];
+    const line = field.closest("[data-nagold-index]");
+    const row = draft[Number(line.dataset.nagoldIndex)];
+    const previousPurpose = row.purpose;
     row[field.dataset.nagoldField] = field.dataset.nagoldField === "points" ? field.valueAsNumber : field.value;
-    $("#nagold-error").textContent = "";
-    updateSum();
+    // „Anwesenheit“ füllt die Punkte vor; eine andere Zahl lässt sich danach eintragen.
+    if (row.purpose !== previousPurpose && row.purpose.trim().toLocaleLowerCase("de-DE") === "anwesenheit") {
+      row.points = nagold.attendancePoints;
+      line.querySelector('[data-nagold-field="points"]').value = String(nagold.attendancePoints);
+    }
+    autosave();
   }
 
   // Auswahlliste im Feld „Wofür“ (wie in WorkbenchLab): eigene Liste statt der
@@ -202,7 +235,11 @@
   rows.addEventListener("focusout", (event) => {
     if (event.target.matches(".nagold-combo input")) combo.close(combo.parts(event.target));
   });
-  dialog.addEventListener("scroll", () => dialog.querySelectorAll(".nagold-combo.is-open").forEach((box) => combo.close(combo.parts(box))), true);
+  dialog.addEventListener("scroll", (event) => {
+    // Scrollen in der Liste selbst schließt sie nicht (Korrektur aus WorkbenchLab 0.48.0).
+    if (event.target.closest?.(".nagold-combo-list")) return;
+    dialog.querySelectorAll(".nagold-combo.is-open").forEach((box) => combo.close(combo.parts(box)));
+  }, true);
 
   rows.addEventListener("dblclick", (event) => {
     if (event.target.closest("button, input, select")) return;
@@ -216,6 +253,7 @@
     if (!remove) return;
     const index = Number(remove.dataset.nagoldRemove);
     draft.splice(index, 1);
+    autosave();
     editing = new Set([...editing].filter((value) => value !== index).map((value) => (value > index ? value - 1 : value)));
     render();
     (rows.querySelector(`[data-nagold-remove="${Math.min(index, draft.length - 1)}"]`) || $("#nagold-add-button")).focus();
@@ -223,27 +261,34 @@
   $("#nagold-add-button").addEventListener("click", addRow);
   $(".dialog-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+  // Enter in einem Feld speichert ebenfalls nur, das Fenster bleibt offen.
   $("#nagold-form").addEventListener("submit", (event) => {
     event.preventDefault();
-    const entries = nagold.normalizeEntries(draft);
-    if (entries.length !== draft.length) { $("#nagold-error").textContent = RULE_ERROR; return; }
-    if (!session || session.save(entries) === false) { $("#nagold-error").textContent = SAVE_ERROR; return; }
-    dialog.close();
+    autosave();
   });
   dialog.addEventListener("close", () => {
     const focusTarget = session?.returnFocus;
     draft = [];
     editing.clear();
+    savedRows = new Map();
     session = null;
     rows.replaceChildren();
     if (focusTarget?.isConnected && focusTarget.closest("dialog")?.open) focusTarget.focus();
   });
 
-  // entries: die bereinigten Zeilen des Profils; save(entries) gibt false zurück,
-  // wenn die Seite nicht speichern konnte; returnFocus: Knopf, der danach den Fokus erhält.
+  // entries: die bereinigten Zeilen des Profils; save(entries) wird bei jeder
+  // gültigen Änderung aufgerufen und gibt false zurück, wenn die Seite nicht
+  // speichern konnte; returnFocus: Knopf, der danach den Fokus erhält.
   function open({ entries, save, returnFocus }) {
     session = { save, returnFocus };
-    draft = nagold.normalizeEntries(entries).map((row) => ({ ...row, allowUnknownDate: !row.date, allowUnknownTime: !row.time }));
+    const start = nagold.normalizeEntries(entries);
+    persisted = JSON.stringify(start);
+    savedRows = new Map();
+    draft = start.map((row) => {
+      const copy = { ...row, allowUnknownDate: !row.date, allowUnknownTime: !row.time };
+      savedRows.set(copy, row);
+      return copy;
+    });
     editing = new Set();
     $("#nagold-error").textContent = "";
     render();

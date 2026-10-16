@@ -190,6 +190,7 @@
     lessonManager.querySelector("#profile-edit-form").hidden = !profile;
     lessonManager.querySelector("#nagold-total").disabled = !profile || !nagold;
     lessonManager.querySelector("#nagold-total-value").textContent = `${nagold && profile ? nagold.total(profile) : 0} NAGOLD`;
+    lessonManager.querySelector("#nagold-total").setAttribute("aria-label", `${nagold && profile ? nagold.total(profile) : 0} NAGOLD: Tabelle bearbeiten`);
   }
   function writeProfile(id, update) {
     try {
@@ -226,10 +227,10 @@
     table.open({
       entries: nagold.entriesFor(profile),
       returnFocus: lessonManager.querySelector("#nagold-total"),
+      // Wird bei jeder gültigen Änderung aufgerufen (automatisches Speichern).
       save(entries) {
         if (!writeProfile(id, (current) => { current.nagoldEntries = entries; })) return false;
         refresh();
-        status("NAGOLD gespeichert.");
         return true;
       }
     });

@@ -3,17 +3,20 @@
 
   // NAGOLD: Punktetabelle im Profil, wie in WorkbenchLab. Je abgeschlossener
   // Lerneinheit kommt automatisch eine Zeile mit 5 NAGOLD dazu; eigene Zeilen
-  // (ganze Punkte von -5 bis 5, nicht 0) tragen Lernende selbst ein. Die Tabelle ist eine
+  // (ganze Punkte von -10 bis 5, nicht 0) tragen Lernende selbst ein. Die Tabelle ist eine
   // Selbstauskunft, verbindlich bleibt die Bewertung der Lehrkraft.
   const lessons = window.EXCEL_LAB_CONTENT?.lessons;
   if (!Array.isArray(lessons)) return;
 
   const maxPoints = 5;
-  // Wie in WorkbenchLab (Vorgabe Jakob, 11.10.2026): Abzüge durch die Lehrkraft sind möglich, 0 ist kein Eintrag.
-  const minPoints = -5;
+  // Wie in WorkbenchLab (Vorgabe Jakob, 11.10.2026): Abzüge durch die Lehrkraft sind möglich,
+  // bis −10 für besonders schwere Fälle wie Manipulation; 0 ist kein Eintrag.
+  const minPoints = -10;
   const maxManualEntries = 1000;
   const maxEntries = maxManualEntries + lessons.length;
-  const presets = ["Mitarbeit", "Zusatzaufgabe", "Präsentation", "Projektarbeit", "Lernprodukt"];
+  // „Anwesenheit“ füllt in der Tabelle automatisch 2 NAGOLD vor (wie in WorkbenchLab 0.48.0).
+  const presets = ["Anwesenheit", "Mitarbeit", "Zusatzaufgabe", "Präsentation", "Projektarbeit", "Lernprodukt"];
+  const attendancePoints = 2;
 
   function validDate(value) {
     if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
@@ -71,7 +74,7 @@
   function presetOptions() { return [...presets, ...lessons.map(lessonPurpose)]; }
 
   window.EXCEL_LAB_NAGOLD = Object.freeze({
-    maxEntries, maxManualEntries, maxPoints, minPoints, validDate, validTime, today, clock,
+    maxEntries, maxManualEntries, maxPoints, minPoints, attendancePoints, validDate, validTime, today, clock,
     normalizeEntries, entriesFor, total, addLessonEntry, presetOptions
   });
 })();

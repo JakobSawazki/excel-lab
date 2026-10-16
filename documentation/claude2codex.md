@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.24.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.25.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -937,6 +937,43 @@ verwendet.
 Export und Import aus `app.js` (eigene Normalisierung, eigene XP-Berechnung).
 Beides stimmt derzeit überein; bei künftigen Änderungen am Dateiformat bitte
 beide Stellen anpassen oder zusammenführen.
+
+### A0zr Release 0.25.0: NAGOLD-Tabelle auf dem Stand von WorkbenchLab 0.48.0
+
+Jakobs Vorgabe vom 11. Oktober für Excel-Lab: NAGOLD „so wie in WorkbenchLab“,
+die Tabelle „alles so wie in der WorkbenchLab-NAGOLD-Tabelle“. Seitdem hat
+WorkbenchLab bis 0.48.0 (15. Oktober, dein Release) weitere Vorgaben von
+Jakob umgesetzt. Abgeglichen mit `WorkbenchLab/nagold.js`, `app.js`
+(`autosaveNagold`, `readNagoldInput`, Combo) und dem Abschnitt 0.48.0 der
+dortigen Dokumentation.
+
+**Übernommen** (betrifft nur die Tabelle):
+- `nagold.js`: `minPoints` −10 (Jakob 11.10.: „bis −10 für besonders schwere
+  Fälle, z. B. Manipulation“), Vorauswahl beginnt mit „Anwesenheit“,
+  `attendancePoints` 2.
+- `nagold-table.js`: automatisches Speichern wie `autosaveNagold`: gültige
+  Zeilen und Löschungen sofort über `save(entries)`, letzter gültiger Stand je
+  Zeile in `savedRows`, unvollständige neue Zeilen werden nicht gespeichert,
+  Hinweistext wie in WorkbenchLab. Kein Knopf „Speichern“ mehr
+  (`#nagold-save-button` entfällt), Enter speichert, Schließen nimmt nichts
+  zurück. „Anwesenheit“ füllt 2 NAGOLD vor. Scrollen in der Liste schließt
+  sie nicht (deine Korrektur `event.target.closest(".nagold-combo-list")`).
+- Startseite: `save` rendert nur noch das Profilfenster (kein `renderAll`,
+  kein Hinweis je Tastendruck); Lernseiten: `writeProfile` wie bisher.
+  `aria-label` des NAGOLD-Felds: „n NAGOLD: Tabelle bearbeiten“.
+
+**Nicht übernommen, Rückfrage an Jakob:**
+- *Startkapital* (einmalig 5 NAGOLD, `nagoldStartCapitalClaimed`): schenkt
+  Punkte und verändert damit die Bewertung; offen, ob das auch in Excel-Lab
+  gelten soll und ob es je Lab oder nur einmal je Schuljahr gilt.
+- *Jahresziel* 100 NAGOLD = 100 % = Note 1: In Excel-Lab ergeben allein die
+  27 Einheiten 135 NAGOLD (WorkbenchLab: 21 Einheiten = 105). Das Ziel lässt
+  sich nicht ohne Jakobs Festlegung übertragen.
+
+**Tests:** `tests/nagold.test.js` (−10, „Anwesenheit“, sechs Anlässe),
+`site.browser.cjs`: Ablauf mit automatischem Speichern (unvollständig, 6,
+−11, −10, Summe −5, Anwesenheit, Schließen, leere Zeile, HTML, Doppelklick,
+unvollständige Korrektur, sofortiges Löschen) und Lernseite ohne Knopf.
 
 ### A1 Wo der Stand liegt
 

@@ -507,50 +507,70 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.locator("#nagold-rows tr").count(), 1);
         assert.match(await page.locator("#nagold-rows tr").first().innerText(), /Nicht erfasst[\s\S]*L1\.1 · /, "kein erfundenes Datum");
 
-        // Neue Zeile: heutiges Datum, Uhrzeit, Vorauswahl, Grenzen 1 bis 5.
+        // Wie in WorkbenchLab 0.48.0: kein Speichern-Knopf, gültige Zeilen werden sofort gespeichert.
+        assert.equal(await page.locator("#nagold-save-button").count(), 0);
         await page.locator("#nagold-add-button").click();
         const row = page.locator("#nagold-rows tr").nth(1);
         assert.match(await row.locator('[data-nagold-field="date"]').inputValue(), /^\d{4}-\d{2}-\d{2}$/);
         assert.match(await row.locator('[data-nagold-field="time"]').inputValue(), /^\d{2}:\d{2}$/);
-        await page.locator("#nagold-save-button").click();
-        assert.match(await page.locator("#nagold-error").innerText(), /Anlass/, "leerer Anlass wird abgelehnt");
-        // Ein Feld „Wofür“ mit Vorschlagsliste: tippen filtert, Auswahl übernimmt.
         assert.equal(await row.locator("select").count(), 0, "keine zweite Zeile mit Auswahlfeld");
         assert.equal(await row.locator('[data-nagold-field="points"]').inputValue(), "0", "neue Zeile beginnt bei 0");
+        // Ein Feld „Wofür“ mit Vorschlagsliste: tippen filtert, Auswahl übernimmt.
         await row.locator('[data-nagold-field="purpose"]').pressSequentially("Prä");
         assert.deepEqual(await row.locator(".nagold-combo-list li:visible").allInnerTexts(), ["Präsentation"]);
         await row.locator('[data-nagold-option="Präsentation"]').click();
         assert.equal(await row.locator('[data-nagold-field="purpose"]').inputValue(), "Präsentation");
+        // 0 Punkte: unvollständig, nichts gespeichert, Hinweis sichtbar.
+        assert.match(await page.locator("#nagold-error").innerText(), /Unvollständige Zeilen sind noch nicht gespeichert.*−10 bis 5/);
+        assert.equal(await page.evaluate((key) => "nagoldEntries" in JSON.parse(localStorage.getItem(key)).profiles[0], KEY), false, "unvollständig: nichts geschrieben");
         await row.locator('[data-nagold-field="points"]').fill("6");
-        await page.locator("#nagold-save-button").click();
-        assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), true, "6 Punkte werden nicht gespeichert");
-        assert.match(await page.locator("#nagold-error").innerText(), /von −5 bis 5.*0 gilt nicht/);
-        await row.locator('[data-nagold-field="points"]').fill("-2");
-        assert.equal(await page.locator("#nagold-sum").innerText(), "3 NAGOLD gesamt", "Abzug wird verrechnet");
+        assert.equal(await page.evaluate((key) => "nagoldEntries" in JSON.parse(localStorage.getItem(key)).profiles[0], KEY), false, "6 Punkte werden nicht gespeichert");
+        await row.locator('[data-nagold-field="points"]').fill("-11");
+        assert.equal(await page.evaluate((key) => "nagoldEntries" in JSON.parse(localStorage.getItem(key)).profiles[0], KEY), false, "−11 Punkte werden nicht gespeichert");
+        await row.locator('[data-nagold-field="points"]').fill("-10");
+        assert.deepEqual((await stored()).map((entry) => entry.points), [5, -10], "Abzug bis −10 sofort gespeichert");
+        assert.equal(await page.locator("#nagold-sum").innerText(), "-5 NAGOLD gesamt");
+        assert.equal(await page.locator("#nagold-error").innerText(), "");
         await row.locator('[data-nagold-field="points"]').fill("3");
+        assert.deepEqual((await stored()).map((entry) => entry.points), [5, 3]);
         assert.equal(await page.locator("#nagold-sum").innerText(), "8 NAGOLD gesamt");
 
-        // Abbrechen verwirft den Entwurf.
-        await page.locator("#nagold-dialog [data-close-dialog]").click();
-        assert.equal(await page.evaluate((key) => "nagoldEntries" in JSON.parse(localStorage.getItem(key)).profiles[0], KEY), false, "ohne Speichern nichts geschrieben");
-        await page.locator("#nagold-total").click();
-        assert.equal(await page.locator("#nagold-rows tr").count(), 1, "Entwurf verworfen");
+        // „Anwesenheit“ füllt 2 NAGOLD vor und wird sofort gespeichert.
+        await page.locator("#nagold-add-button").click();
+        const attendance = page.locator("#nagold-rows tr").nth(2);
+        await attendance.locator('[data-nagold-field="purpose"]').pressSequentially("Anw");
+        await attendance.locator('[data-nagold-option="Anwesenheit"]').click();
+        assert.equal(await attendance.locator('[data-nagold-field="points"]').inputValue(), "2");
+        assert.deepEqual((await stored()).map((entry) => [entry.purpose, entry.points]).slice(1), [["Präsentation", 3], ["Anwesenheit", 2]]);
 
-        // Speichern, bearbeiten per Doppelklick, löschen.
+        // Schließen nimmt nichts zurück; eine leere neue Zeile wird nicht gespeichert.
+        await page.locator("#nagold-add-button").click();
+        await page.locator("#nagold-dialog [data-close-dialog]").click();
+        assert.equal(await page.locator("#nagold-total-value").innerText(), "10 NAGOLD");
+        assert.match(await page.locator("#nagold-total").getAttribute("aria-label"), /^10 NAGOLD: Tabelle bearbeiten$/);
+        await page.locator("#nagold-total").click();
+        assert.equal(await page.locator("#nagold-rows tr").count(), 3, "drei gespeicherte Zeilen, die leere fehlt");
+
+        // HTML bleibt Text; Doppelklick bearbeitet; eine unvollständige Korrektur behält den letzten gültigen Wert.
         await page.locator("#nagold-add-button").click();
         await page.locator('#nagold-rows tr:last-child [data-nagold-field="purpose"]').fill("<b>Mitarbeit</b>");
-        await page.locator('#nagold-rows tr:last-child [data-nagold-field="points"]').fill("2");
-        await page.locator("#nagold-save-button").click();
-        assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), false);
-        assert.deepEqual((await stored()).map((entry) => [entry.purpose.slice(0, 4), entry.points]), [["L1.1", 5], ["<b>M", 2]]);
-        assert.equal(await page.locator("#nagold-total-value").innerText(), "7 NAGOLD");
+        await page.locator('#nagold-rows tr:last-child [data-nagold-field="points"]').fill("4");
+        await page.locator("#nagold-dialog [data-close-dialog]").click();
         await page.locator("#nagold-total").click();
         assert.equal(await page.locator("#nagold-rows b").count(), 0, "Text wird nicht als HTML eingefügt");
         await page.locator("#nagold-rows tr").nth(1).locator("td").nth(2).dblclick();
-        await page.locator('#nagold-rows tr:nth-child(2) [data-nagold-field="points"]').fill("4");
-        await page.locator('[data-nagold-remove="0"]').click();
-        await page.locator("#nagold-save-button").click();
-        assert.deepEqual((await stored()).map((entry) => entry.points), [4], "gelöschte Zeile bleibt gelöscht, auch die automatische");
+        await page.locator('#nagold-rows tr:nth-child(2) [data-nagold-field="points"]').fill("1");
+        assert.deepEqual((await stored()).map((entry) => entry.points), [5, 1, 2, 4]);
+        await page.locator('#nagold-rows tr:nth-child(2) [data-nagold-field="points"]').fill("");
+        assert.deepEqual((await stored()).map((entry) => entry.points), [5, 1, 2, 4], "letzter gültiger Wert bleibt");
+        assert.match(await page.locator("#nagold-error").innerText(), /Bisherige gültige Einträge bleiben erhalten/);
+
+        // Löschen wirkt sofort, auch bei der automatischen Zeile.
+        for (let index = 0; index < 3; index++) await page.locator('[data-nagold-remove="0"]').click();
+        assert.deepEqual((await stored()).map((entry) => [entry.purpose, entry.points]), [["<b>Mitarbeit</b>", 4]], "gelöschte Zeilen bleiben gelöscht");
+        assert.equal(await page.locator("#nagold-error").innerText(), "");
+        await page.locator("#nagold-dialog [data-close-dialog]").click();
+        assert.equal(await page.locator("#nagold-total-value").innerText(), "4 NAGOLD");
         assert.deepEqual(errors, []);
 
         // Abschluss von L1.2 bucht genau einmal 5 NAGOLD mit Datum und Uhrzeit.
@@ -656,7 +676,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await row.locator('[data-nagold-field="purpose"]').pressSequentially("Mit");
         await row.locator('[data-nagold-option="Mitarbeit"]').click();
         await row.locator('[data-nagold-field="points"]').fill("2");
-        await page.locator("#nagold-save-button").click();
+        await page.locator("#nagold-dialog [data-close-dialog]").click();
         assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), false);
         const entries = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].nagoldEntries, KEY);
         assert.deepEqual(entries.map((entry) => [entry.purpose.slice(0, 9), entry.points]), [["L1.1 · Ei", 5], ["Mitarbeit", 2]]);

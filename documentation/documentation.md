@@ -1,11 +1,18 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.24.1
-Status: Version 0.24.1 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
+Projektversion: 0.25.0
+Status: Version 0.25.0 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.25.0 (Claude, 16.10.2026):** NAGOLD-Tabelle wie in
+  WorkbenchLab 0.48.0: automatisches Speichern (`nagold-table.js`,
+  `autosave`), `minPoints` −10 und Anlass „Anwesenheit“ mit 2 NAGOLD
+  (`nagold.js`), Scrollen in der Vorschlagsliste schließt sie nicht.
+  Startkapital und Jahresziel bewusst nicht übernommen (Rückfrage an Jakob).
+  Siehe [`claude2codex.md`](claude2codex.md), A0zr.
 
 - **Veröffentlicht als 0.24.1 (Claude, 16.10.2026):** acht verwaiste
   Style-Regeln entfernt (`.xp-button`, `.xp-label`, `.xp-dialog`,
