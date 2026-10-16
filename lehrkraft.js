@@ -139,8 +139,10 @@
     const body = nagoldDialog.querySelector("tbody");
     body.replaceChildren(...(student.nagoldEntries.length ? student.nagoldEntries.map((entry) => {
       const row = document.createElement("tr");
-      row.append(node("td", "", dateText(entry.date)), node("td", "", entry.time || "Nicht erfasst"), node("td", "", entry.purpose),
-        node("td", `nagold-points${entry.points < 0 ? " is-negative" : ""}`, String(entry.points)));
+      const cells = [["Datum", "", dateText(entry.date)], ["Uhrzeit", "", entry.time || "Nicht erfasst"], ["Wofür", "", entry.purpose],
+        ["NAGOLD", `nagold-points${entry.points < 0 ? " is-negative" : ""}`, String(entry.points)]];
+      // data-label trägt die Spaltennamen in die gestapelte Handyansicht.
+      for (const [label, className, text] of cells) { const cell = node("td", className, text); cell.dataset.label = label; row.append(cell); }
       return row;
     }) : [(() => { const row = document.createElement("tr"); const cell = node("td", "", "Keine Einträge."); cell.colSpan = 4; row.append(cell); return row; })()]));
     nagoldDialog.querySelector(".teacher-nagold-sum").textContent = `${student.nagold} NAGOLD gesamt`;

@@ -80,5 +80,5 @@
 .teacher-nagold-button:focus-visible { outline: 2px solid var(--nagold); outline-offset: 2px; }
 .teacher-nagold-dialog .nagold-points.is-negative { color: var(--red, #ff8f8f); }
 [data-theme="light"] .teacher-nagold-dialog .nagold-points.is-negative { color: #a32020; }
-.teacher-nagold-sum { margin: .9rem 0 0; color: var(--nagold); font-size: 1.05rem; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+.teacher-nagold-dialog .teacher-nagold-sum { margin: .9rem 0 0; color: var(--nagold); font-size: 1.05rem; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
 @media print { .teacher-nagold-button { text-decoration: none; } }

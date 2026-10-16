@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.25.2 – 2026-10-16
+
+**Klassenübersicht nachgebessert.** Die NAGOLD-Summe im Einträge-Fenster ist golden, auf dem Handy stehen die Feldbezeichnungen vor jedem Wert. Der Einleitungstext nennt NAGOLD und das Disketten-Symbol statt „im Profil über Speichern“. README auf den aktuellen Stand gebracht (Profil, Speicherstand, NAGOLD, Testserver).
+
 ## 0.25.1 – 2026-10-16
 
 **Profilfenster der Lernseiten: Hinweis bei Profilwechsel.** Wird das Profil in einem anderen Fenster gewechselt, während das Profilfenster einer Lernseite offen ist, zeigen die Felder das neue Profil und ein Hinweis erklärt das; vorher verschwand die Meldung sofort wieder. Das Profilfenster der Lernseiten hat jetzt eine feste Browserprüfung.

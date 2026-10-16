@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.25.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.25.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -999,6 +999,13 @@ Zeilen und Summe. Nur lesend, alle Texte über `textContent`; Abzüge rot.
 Bewusst kein Bestätigen wie in WorkbenchLab (OPT-09 dort): Das wäre eine
 Bewertungsregel und bleibt Jakobs Entscheidung. Test im NAGOLD-Ablauf von
 `site.browser.cjs`.
+
+**0.25.2:** Im Einträge-Fenster der Klassenübersicht fehlten auf dem Handy
+die Spaltennamen (`data-label` für die gestapelte Ansicht der
+`.nagold-table`), die Summe war grau (`.dialog p` überschrieb die Farbe).
+Einleitung von `lehrkraft.html` nennt jetzt Disketten-Symbol und NAGOLD.
+Geprüft mit `site`, `a11y`, `overlap`, `path-link-layout-audit` und
+`release-smoke` (nur `lehrkraft.*` und Dokumentation geändert).
 
 **Testserver `tools/serve.cjs` (neu).** Am 16. Oktober lieferte
 `python -m http.server` eine CSS-Datei in über einer Sekunde aus; die Tests

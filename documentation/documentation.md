@@ -1,11 +1,15 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.25.1
-Status: Version 0.25.1 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
+Projektversion: 0.25.2
+Status: Version 0.25.2 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.25.2 (Claude, 16.10.2026):** Klassenübersicht:
+  `data-label` in den NAGOLD-Einträgen (Handy), goldene Summe, Einleitung
+  aktualisiert; README um Profil, Speicherstand und NAGOLD ergänzt.
 
 - **Veröffentlicht als 0.25.1 (Claude, 16.10.2026):** `xp.js`,
   `renderLessonProfile`: bleibender Hinweis, wenn das Profil in einem anderen
