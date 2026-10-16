@@ -19,4 +19,10 @@ Balken im Profil, Alt+S zum Speichern, Esc im Lernnachweis, Pfadleiste ab
 
 ## Fragen an Jakob
 
-*Zurzeit keine offenen Fragen.*
+- **22.** Aus der alten Ideenliste wären noch möglich. Jeweils kurz „ja“ oder
+  „nein“ reicht. Ohne Antwort baue ich nichts davon, damit die Seite nicht
+  überladen wirkt.
+  - a) Favoriten in der Formelsammlung (Stern an einer Formel, oben anzeigen)
+  - b) Notizfeld je Einheit (bleibt im Browser und in der Speicherdatei)
+  - c) freiwilliger Einstiegstest vor L1 mit Empfehlung, wo man startet
+  - d) kompaktes Merkblatt je Lernschritt (L1–L4) zum Ausdrucken
