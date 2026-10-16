@@ -4335,3 +4335,21 @@ body #view-dashboard .hero-outcomes > span { background: linear-gradient(180deg,
 /* Überblick: Detailfeld füllt die Höhe ruhig; die Lernfolge steht unten. */
 body #view-dashboard .organizer-detail { display: flex; flex-direction: column; }
 body #view-dashboard .organizer-detail .organizer-sequence { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); }
+
+/* Pfadleiste: beim Überfahren hervorheben wie die Symbolknöpfe oben rechts
+   (Anheben, grüne Kante, weicher Glanz), Wunsch Jakob 16.10.2026. */
+.location-path a {
+  transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out), color 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+.location-path a:hover,
+.location-path a:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--green);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--green) 22%, var(--surface-3)), color-mix(in srgb, var(--green) 8%, var(--surface-2)));
+  box-shadow: inset 0 1px 0 var(--metal-hairline), 0 10px 24px var(--metal-glow), 0 0 0 3px color-mix(in srgb, var(--green) 14%, transparent);
+  color: var(--text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .location-path a { transition: none; }
+  .location-path a:hover, .location-path a:focus-visible { transform: none; }
+}

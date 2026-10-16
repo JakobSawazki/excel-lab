@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.29.1 – 2026-10-16
+
+**Pfadleiste beim Überfahren.** „Übersicht“ und die übrigen Glieder der Pfadleiste heben sich beim Überfahren und beim Tastaturfokus sanft an, bekommen eine grüne Kante und einen weichen Glanz – wie die Symbolknöpfe oben rechts.
+
 ## 0.29.0 – 2026-10-16
 
 **Feinschliff im Design (Wunsch Jakob: edel und professionell).** Karten und Panels folgen einer gemeinsamen Ebenen-Sprache mit feiner Lichtkante und weichen, mehrschichtigen Schatten; anklickbare Karten heben sich beim Überfahren sanft an. Überschriften sind ausbalanciert umbrochen, der Fokusring für die Tastatur ist einheitlich. Die Kopfzeile trägt eine haarfeine Metallkante, die Fußzeile eine zur Mitte aufleuchtende Lichtkante. Der gebürstete Hintergrund ist etwas ruhiger. Auf der Startseite ist die Leiste „Verstehen · Üben · Prüfen“ aus einem Stück, und das Detailfeld im Überblick füllt seine Höhe ruhig aus.
