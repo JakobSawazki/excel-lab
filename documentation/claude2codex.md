@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.28.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.28.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1087,6 +1087,14 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
+
+### A0zx Release 0.28.1: CSV-Zahlen
+
+`lehrkraft.js` `downloadCsv`: `cell()` schreibt endliche Zahlen unverändert
+(ohne Anführungszeichen, ohne Apostroph). Vorher machte der Formelschutz aus
+einer negativen NAGOLD-Summe Text („'-5“). Test in `site.browser.cjs`
+(Klassenübersicht). Dazu `loading="lazy"` an den Situationsbildern L1.1/L1.2
+(Dateien unverändert).
 
 ### A0zw Release 0.28.0: gebürstetes Metall, Fortschritt im Profil, Tastenkürzel
 

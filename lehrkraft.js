@@ -260,7 +260,9 @@
     const list = sorted();
     if (!list.length) return;
     // Zellen in Anführungszeichen; führende Formelzeichen entschärfen, damit Excel nichts ausführt.
-    const cell = (value) => `"${String(value).replace(/^([=+\-@])/, "'$1").replace(/"/g, '""')}"`;
+    // Echte Zahlen (auch negative NAGOLD-Summen) bleiben Zahlen, damit Excel mit ihnen rechnen kann.
+    const cell = (value) => Number.isFinite(value) ? String(value)
+      : `"${String(value).replace(/^([=+\-@])/, "'$1").replace(/"/g, '""')}"`;
     const header = ["Kürzel", "Klasse", "Gesichert am", "Einheiten", "Bonus", "XP", "NAGOLD", ...lessons.map((lesson) => lesson.code)];
     const rows = list.map((student) => [
       student.name, student.className, formatDate(student.exportedAt), student.completedCount, student.bonusCount, student.xp, student.nagold,

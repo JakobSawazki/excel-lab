@@ -318,6 +318,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.ok(csv.includes("\"'=1+1\""), "Formelzeichen entschärft");
         assert.ok(csv.includes("abgeschlossen + Bonus"));
         assert.ok(csv.includes("\"XP\";\"NAGOLD\";"), "Spalte NAGOLD in der CSV");
+        assert.match(csv, /"anna\.bei";"WGW EK1";"[^"]+";2;1;250;10;/, "Zahlen als Zahlen, damit Excel rechnen kann (auch negative NAGOLD)");
         await page.locator("#teacher-clear").click();
         assert.equal(await page.locator("#teacher-table-section").isHidden(), true);
         assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0, "nichts gespeichert");

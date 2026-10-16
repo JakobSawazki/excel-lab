@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.28.1 – 2026-10-16
+
+**Klassenübersicht: Zahlen in der CSV.** Einheiten, Bonus, XP und NAGOLD stehen als echte Zahlen in der CSV. Bisher wurde eine negative NAGOLD-Summe wie −5 vom Formelschutz als Text „'-5“ geschrieben, Excel konnte damit nicht rechnen. Texte bleiben weiter gegen Formeln geschützt. Außerdem laden die Situationsbilder von L1.1 und L1.2 erst beim Scrollen.
+
 ## 0.28.0 – 2026-10-16
 
 **Gebürstetes Metall, Fortschritt im Profil, Tastenkürzel (Wünsche Jakob).** Kopfzeile, Menüleiste, Lernpfad-Menü, Pfadleiste „BPE1 › Übersicht“, Symbolknöpfe, große Knöpfe, Fenster und Seitenhintergrund tragen einen feinen, unregelmäßigen Metallschliff (SVG-Rauschen im Stylesheet, keine Bilddatei); die Pfadleiste ist eine Metallschiene mit Schatten. Der Gesamtfortschritt steht nicht mehr als Karte im Startbild, sondern als Balken (L1–L4) in der Profilkarte; ein Klick zeigt die Einheiten je Lernschritt. Der Bereich unter dem Startbild rückt nach oben. Alt+S speichert sofort (Tooltip am Knopf „Speichern“), Esc schließt den Lernnachweis. Das Speicherfenster hat nur noch einen kurzen Satz statt zweier Hinweise. Die Pfadleiste beginnt mit „Übersicht“ (ohne „BPE1“), zum Beispiel „Übersicht › L1 › L1.1“; jedes Glied ist eine kleine Metallplakette. Der gebürstete Hintergrund wirkt jetzt auch auf der Startseite; das frühere feine Zellraster im Seitenhintergrund ist entfernt.

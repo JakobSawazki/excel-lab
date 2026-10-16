@@ -1,11 +1,16 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.28.0
-Status: Version 0.28.0 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
+Projektversion: 0.28.1
+Status: Version 0.28.1 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.28.1 (Claude, 16.10.2026):** CSV der
+  Klassenübersicht schreibt Zahlen ohne Anführungszeichen und ohne
+  Formelschutz-Apostroph; negative NAGOLD-Summen kamen vorher als Text „'-5“ an
+  (`lehrkraft.js`, `downloadCsv`). Situationsbilder L1.1/L1.2 laden verzögert.
 
 - **Veröffentlicht als 0.28.0 (Claude, 16.10.2026, Wünsche Jakob):**
   gebürstetes Metall (`styles.css`, Variablen `--brush`, `--brush-dark`,
