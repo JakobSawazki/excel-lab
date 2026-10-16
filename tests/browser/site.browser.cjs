@@ -860,7 +860,8 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       // Lernseite: Pfad „Übersicht › L1 › L1.2“, Alt+S mit kurzer Rückmeldung.
       const lesson = await open(browser, "l1-2.html", { state });
       try {
-        assert.equal(await lesson.page.locator(".location-path").innerText(), "Übersicht\n›\nL1\n›\nL1.2");
+        assert.deepEqual(await lesson.page.locator(".location-path a").allInnerTexts(), ["Übersicht", "L1", "L1.2"]);
+        assert.equal(await lesson.page.locator(".location-path .lesson-score-card").count(), 1, "Fortschritt in der Pfadleiste");
         const download = lesson.page.waitForEvent("download");
         await lesson.page.keyboard.press("Alt+s");
         await download;

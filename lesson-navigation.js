@@ -29,6 +29,32 @@
     breadcrumb.setAttribute("aria-label", "Aktueller Lernpfad");
     breadcrumb.classList.add("location-path");
     header.after(breadcrumb);
+    // Fortschritt dieser Einheit als schmaler Balken rechts in der Pfadleiste
+    // (Wunsch Jakob, 16.10.2026); lesson-core.js füllt die Werte über die IDs.
+    const score = document.querySelector(".lesson-score-card");
+    if (score) {
+      breadcrumb.append(score);
+      // Klick (oder Enter/Leertaste) zeigt die Einzelheiten; Esc und ein Klick daneben schließen.
+      const pop = document.createElement("div");
+      pop.className = "lesson-progress-pop";
+      pop.id = "lesson-progress-pop";
+      pop.hidden = true;
+      score.append(pop);
+      score.tabIndex = 0;
+      score.setAttribute("role", "button");
+      score.setAttribute("aria-haspopup", "true");
+      score.setAttribute("aria-controls", pop.id);
+      score.setAttribute("aria-expanded", "false");
+      score.title = "Fortschritt: Einzelheiten anzeigen";
+      const toggle = (show) => { pop.hidden = !show; score.setAttribute("aria-expanded", String(show)); score.classList.toggle("is-open", show); };
+      score.addEventListener("click", (event) => { if (!pop.contains(event.target)) toggle(pop.hidden); });
+      score.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggle(pop.hidden); }
+        if (event.key === "Escape") toggle(false);
+      });
+      document.addEventListener("click", (event) => { if (!score.contains(event.target)) toggle(false); });
+      document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !pop.hidden) { toggle(false); score.focus(); } });
+    }
   }
 
   const menu = nav.querySelector("#learning-menu");

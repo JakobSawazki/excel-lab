@@ -298,6 +298,25 @@
       $("#lesson-page-status").textContent = !open ? "Noch gesperrt" : current.completed ? "Abgeschlossen" : count ? "In Arbeit" : "Noch nicht begonnen";
       const bonusSolved = bonusItems.filter((item) => current[item.key]).length;
       $("#lesson-points-status").textContent = `${open && current.completed ? points : 0} von ${points} XP${bonusSolved ? ` · Bonus +${bonusSolved * bonusXp} XP` : ""}`;
+      // Einzelheiten zum Fortschritt im Fenster am Balken der Pfadleiste (Klick).
+      const pop = document.querySelector("#lesson-progress-pop");
+      if (pop) {
+        const rows = [
+          ["Status", $("#lesson-page-status").textContent, current.completed],
+          ["Eigene Arbeitsschritte", `${current.checks.filter(Boolean).length} von ${checks.length}`, current.checks.every(Boolean)],
+          ["Verständnis-Check", current.masteryPassed ? "bestanden" : "noch offen", current.masteryPassed],
+          ["Lehrkraft", current.teacherChecked ? "bestätigt" : "noch offen", current.teacherChecked],
+          ["XP", `${open && current.completed ? points : 0} von ${points}`, current.completed]
+        ];
+        if (bonusItems.length) rows.push(["Bonusaufgaben", `${bonusSolved} von ${bonusItems.length} (+${bonusSolved * bonusXp} XP)`, bonusSolved === bonusItems.length]);
+        pop.replaceChildren(...[Object.assign(document.createElement("strong"), { textContent: `Fortschritt ${code} · ${percent} %` }),
+          ...rows.map(([label, value, done]) => {
+            const row = document.createElement("p");
+            row.className = done ? "is-done" : "";
+            row.append(Object.assign(document.createElement("span"), { textContent: label }), Object.assign(document.createElement("b"), { textContent: value }));
+            return row;
+          })]);
+      }
       for (const item of bonusItems) {
         if (!item.ui) continue;
         const solved = current[item.key];

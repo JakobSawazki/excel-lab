@@ -2991,8 +2991,9 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
 }
 
 @media (max-width: 1050px) {
+  /* Kopfzeile bleibt auch hier oben stehen: Profil und Speichern jederzeit erreichbar (0.30.0). */
   .site-header {
-    position: static;
+    position: sticky;
     grid-template-columns: 1fr auto;
     background: var(--bg);
     backdrop-filter: none;
@@ -4352,4 +4353,144 @@ body #view-dashboard .organizer-detail .organizer-sequence { margin-top: auto; p
 @media (prefers-reduced-motion: reduce) {
   .location-path a { transition: none; }
   .location-path a:hover, .location-path a:focus-visible { transform: none; }
+}
+
+/* Fortschritt der Lerneinheit als schmaler Balken rechts in der Pfadleiste
+   (0.30.0, Wunsch Jakob). lesson-navigation.js hängt .lesson-score-card dort
+   an; Status und XP stehen im Tooltip und für Screenreader. */
+.location-path .lesson-score-card {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.location-path .lesson-score-card > div:not(.lesson-progress-pop) { order: 1; }
+.location-path .lesson-score-card > div:not(.lesson-progress-pop) small { color: var(--text-soft); font-size: .72rem; font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+.location-path .lesson-score-card > div:not(.lesson-progress-pop) :is(strong, span) {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.location-path .score-ring {
+  order: 2;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+}
+.location-path .score-ring::before {
+  width: clamp(6rem, 12vw, 11rem);
+  height: .5rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, var(--green-deep), var(--green) 60%, color-mix(in srgb, var(--green) 70%, #fff)) 0 0 / calc(var(--progress) * 1%) 100% no-repeat,
+    color-mix(in srgb, var(--green) 13%, var(--surface-3));
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .35), 0 0 0 1px color-mix(in srgb, var(--metal-edge) 25%, transparent);
+  content: "";
+}
+[data-theme="light"] .location-path .score-ring::before { box-shadow: inset 0 1px 2px rgba(23, 57, 38, .18), 0 0 0 1px color-mix(in srgb, var(--metal-edge) 30%, transparent); }
+.location-path .score-ring strong { min-width: 2.6rem; color: var(--text); font-size: .78rem; font-variant-numeric: tabular-nums; text-align: right; }
+@media (max-width: 560px) {
+  .location-path .lesson-score-card > div:not(.lesson-progress-pop) small { display: none; }
+  .location-path .score-ring::before { width: 5rem; }
+}
+/* Der Titel nutzt jetzt die volle Breite (die Fortschrittskarte steht in der Pfadleiste). */
+.lesson-page-title { grid-template-columns: minmax(0, 1fr); }
+.location-path .lesson-score-card strong { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+
+/* Fortschrittsbalken in der Pfadleiste: edel hervorheben, Klick zeigt Einzelheiten (0.30.0). */
+.location-path .lesson-score-card {
+  position: relative;
+  padding: .3rem .7rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+.location-path .lesson-score-card:hover,
+.location-path .lesson-score-card:focus-visible,
+.location-path .lesson-score-card.is-open {
+  transform: translateY(-2px);
+  border-color: var(--green);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--green) 16%, var(--surface-3)), color-mix(in srgb, var(--green) 6%, var(--surface-2)));
+  box-shadow: inset 0 1px 0 var(--metal-hairline), 0 10px 24px var(--metal-glow), 0 0 0 3px color-mix(in srgb, var(--green) 14%, transparent);
+}
+.location-path .lesson-score-card:hover .score-ring::before,
+.location-path .lesson-score-card.is-open .score-ring::before {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .3), 0 0 12px color-mix(in srgb, var(--green) 45%, transparent);
+}
+.lesson-progress-pop {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + .6rem);
+  right: 0;
+  display: grid;
+  gap: .35rem;
+  width: min(20rem, calc(100vw - 2rem));
+  padding: .9rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--metal-edge) 55%, var(--line-strong));
+  border-radius: 14px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-3) 60%, var(--surface)), var(--surface));
+  box-shadow: var(--elev-2);
+  color: var(--text);
+  cursor: default;
+  text-align: left;
+}
+.lesson-progress-pop[hidden] { display: none; }
+.lesson-progress-pop > strong { margin-bottom: .2rem; font-size: .9rem; }
+.lesson-progress-pop p { display: flex; justify-content: space-between; gap: 1rem; margin: 0; padding: .3rem 0; border-top: 1px solid var(--line); font-size: .8rem; }
+.lesson-progress-pop p span { color: var(--text-soft); }
+.lesson-progress-pop p b { font-weight: 750; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lesson-progress-pop p.is-done b { color: var(--green); }
+.lesson-progress-pop p.is-done b::before { content: "✓ "; }
+@media (prefers-reduced-motion: reduce) {
+  .location-path .lesson-score-card { transition: none; }
+  .location-path .lesson-score-card:hover, .location-path .lesson-score-card.is-open { transform: none; }
+}
+
+/* Startbild: Ablauf-Leiste nahtlos am Bildrahmen, edle Felder mit Lichtreflex beim Überfahren (0.30.0). */
+body #view-dashboard .hero-photo-frame { border-radius: 0; }
+body #view-dashboard .hero-outcomes {
+  margin-top: 0;
+  border: 1px solid var(--metal-edge);
+  border-top: 0;
+  border-radius: 0 0 18px 18px;
+  background: color-mix(in srgb, var(--metal-edge) 30%, var(--line));
+  box-shadow: 0 30px 65px -30px var(--metal-shadow), 0 0 32px -12px var(--metal-glow);
+}
+body #view-dashboard .hero-outcomes > span {
+  position: relative;
+  overflow: hidden;
+  padding: .85rem 1rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 5%, transparent), transparent 45%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 75%, var(--surface)), var(--surface));
+  transition: background 260ms var(--ease-out), box-shadow 260ms var(--ease-out);
+}
+body #view-dashboard .hero-outcomes > span::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, color-mix(in srgb, #fff 14%, transparent) 50%, transparent 65%);
+  content: "";
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+body #view-dashboard .hero-outcomes > span:hover {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 7%, transparent), transparent 45%),
+    linear-gradient(180deg, color-mix(in srgb, var(--green) 20%, var(--surface-2)), color-mix(in srgb, var(--green) 8%, var(--surface)));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--green) 55%, transparent), inset 0 -3px 0 var(--green);
+}
+body #view-dashboard .hero-outcomes > span:hover::after { transform: translateX(120%); transition: transform 700ms var(--ease-out); }
+body #view-dashboard .hero-outcomes > span small { transition: color 260ms var(--ease-out), letter-spacing 260ms var(--ease-out); }
+body #view-dashboard .hero-outcomes > span:hover small { color: color-mix(in srgb, var(--green) 70%, #fff); letter-spacing: .18em; }
+[data-theme="light"] body #view-dashboard .hero-outcomes > span:hover small { color: var(--green-deep); }
+@media (prefers-reduced-motion: reduce) {
+  body #view-dashboard .hero-outcomes > span, body #view-dashboard .hero-outcomes > span small { transition: none; }
+  body #view-dashboard .hero-outcomes > span::after { display: none; }
 }

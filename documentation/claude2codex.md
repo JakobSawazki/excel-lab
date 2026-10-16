@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.29.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.30.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1087,6 +1087,15 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
+
+### A1d Release 0.30.0: Fortschritt in der Pfadleiste
+
+Die IDs `#lesson-score-ring`, `#lesson-page-percent`, `#lesson-page-status`,
+`#lesson-points-status` bleiben (Tests, `lesson-core.js`). Die Karte
+`.lesson-score-card` steht weiter im HTML jeder Lernseite;
+`lesson-navigation.js` hängt sie in `.location-path`. Neue Lernseiten bitte
+ohne `<p class="eyebrow"><span>Lx.y</span> BPE …</p>` anlegen.
+`lesson-navigation.js` legt `#lesson-progress-pop` an (Klick/Enter, Esc schließt), `lesson-core.js` füllt es in `render()`. Kopfzeile auch unter 1051 px `position: sticky`. Untertitel der Lernseiten jetzt „Tabellenkalkulation verstehen“. Startseite: `.hero-outcomes` nahtlos unter `.hero-photo-frame`; Eyebrow „Überblick“.
 
 ### A1c Release 0.29.1: Pfadleiste beim Überfahren
 

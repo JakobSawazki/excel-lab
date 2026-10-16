@@ -91,7 +91,7 @@ const {chromium} = require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.cac
   await page.goto((__BASE + '/l4-8.html?public-preview=1'));
   assert.equal(await page.locator('.download-item[data-public-material-link=true]').count(),3);
   assert.equal(await page.locator('.lesson-main-nav').count(),1);
-  assert.equal(await page.locator('.location-path').innerText(),'Übersicht\n›\nL4\n›\nL4.8');
+  assert.deepEqual(await page.locator('.location-path a').allInnerTexts(),['Übersicht','L4','L4.8']);
   assert.ok(await page.locator('a[href="index.html#lernpfad/4"]').count()>0);
   await seed({'l4-7':{completed:true},'l4-8':{completed:true,teacherChecked:true,checks:[true,true,true]}});
   await page.goto((__BASE + '/index.html#lernpfad/4/l4-8'));
