@@ -1122,6 +1122,10 @@ Wünsche Jakob vom 16.10. (alle umgesetzt):
 - **Achtung Mobil:** `.main-nav` ist unter 1051 px unten fixiert. Deshalb kein
   `position: relative` an `.main-nav` und keine `isolation` an `.site-header`
   (sonst Überlauf bzw. Menü unter dem Inhalt) – nur per `@media (min-width: 1051px)`.
+- **Tests (nachgezogen, ohne Versionssprung):** `site.browser.cjs` Prüfung 23
+  „Alt+S, Esc, Fortschrittsbalken, Pfadleiste, Startkapital“;
+  `tests/profile-progress.test.js` (Prozent und Zählung je Lernschritt, Alt+S,
+  Skriptreihenfolge).
 
 ### A0zv Release 0.27.0: Jakobs Antworten vom 16. Oktober
 

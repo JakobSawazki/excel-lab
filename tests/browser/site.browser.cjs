@@ -816,7 +816,66 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.evaluate((key) => JSON.parse(localStorage.getItem(key)).theme, KEY), after);
       } finally { await context.close(); }
     });
+
+    // Release 0.27.0/0.28.0 (Wünsche Jakob vom 16.10.2026).
+    await check("Alt+S, Esc, Fortschrittsbalken, Pfadleiste, Startkapital", async () => {
+      const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+      const state = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "s", profiles: [{ id: "s", name: "alt.ess", className: "WGW EK1", progress: { "l1-1": done, "l1-2": done, "l2-1": done }, nagoldEntries: [] }] });
+      const { context, page, errors } = await open(browser, "index.html", { state });
+      try {
+        // Pfadleiste beginnt mit „Übersicht“, ohne „BPE1“.
+        assert.equal(await page.locator("#location-path").innerText(), "Übersicht");
+        // Alt+S speichert sofort, ohne das Fenster zu öffnen.
+        const download = page.waitForEvent("download");
+        await page.keyboard.press("Alt+s");
+        assert.match((await download).suggestedFilename(), /_Excel-Lab_alt\.ess_/);
+        assert.equal(await page.locator("#save-dialog").evaluate((dialog) => dialog.open), false);
+        // Fortschrittsbalken: 3 von 27 = 11 %, Einzelheiten je Lernschritt auf Klick.
+        await page.locator(".site-header .profile-button").click();
+        const bar = page.locator("#profile-list .profile-progress");
+        assert.equal(await bar.locator(".profile-progress-value").innerText(), "11 %");
+        assert.equal(await bar.getAttribute("aria-expanded"), "false");
+        await bar.click();
+        assert.equal(await bar.getAttribute("aria-expanded"), "true");
+        assert.deepEqual(await page.locator("#home-progress-detail .profile-progress-count").allInnerTexts(), ["2/6", "1/5", "0/8", "0/8"]);
+        // Startkapital: vorgeschlagen, füllt 5 vor, ein zweites im selben Schuljahr wird nicht gespeichert.
+        await page.locator("#nagold-total").click();
+        for (let round = 0; round < 2; round++) {
+          await page.locator("#nagold-add-button").click();
+          const purpose = page.locator('#nagold-rows tr:last-child [data-nagold-field="purpose"]');
+          if (round === 0) {
+            await purpose.click();
+            assert.equal(await page.locator("#nagold-rows tr:last-child [data-nagold-option]:not([hidden])").first().innerText(), "Startkapital");
+          }
+          await purpose.fill("Startkapital");
+          assert.equal(await page.locator('#nagold-rows tr:last-child [data-nagold-field="points"]').inputValue(), "5");
+        }
+        assert.match(await page.locator("#nagold-error").innerText(), /nur einmal je Schuljahr/);
+        const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].nagoldEntries, KEY);
+        assert.deepEqual(saved.map((entry) => [entry.purpose, entry.points]), [["Startkapital", 5]]);
+        assert.equal(await page.locator("#nagold-goal-text").innerText(), "5 / 100 · Jahresziel");
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+      // Lernseite: Pfad „Übersicht › L1 › L1.2“, Alt+S mit kurzer Rückmeldung.
+      const lesson = await open(browser, "l1-2.html", { state });
+      try {
+        assert.equal(await lesson.page.locator(".location-path").innerText(), "Übersicht\n›\nL1\n›\nL1.2");
+        const download = lesson.page.waitForEvent("download");
+        await lesson.page.keyboard.press("Alt+s");
+        await download;
+        await lesson.page.locator("#toast-region .toast").filter({ hasText: "Gespeichert" }).waitFor();
+        assert.deepEqual(lesson.errors, []);
+      } finally { await lesson.context.close(); }
+      // Lernnachweis: Esc führt wie das X zurück und öffnet das Profil.
+      const certificate = await open(browser, "nachweis.html", { state });
+      try {
+        await certificate.page.keyboard.press("Escape");
+        await certificate.page.waitForURL(/index\.html/);
+        await certificate.page.locator("#manager-dialog[open]").waitFor();
+        assert.deepEqual(certificate.errors, []);
+      } finally { await certificate.context.close(); }
+    });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und zweiundzwanzig Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und dreiundzwanzig Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

@@ -42,7 +42,7 @@ Zielplattform: moderner Browser auf schulischen Windows-PCs
 - **Veröffentlicht als 0.25.1 (Claude, 16.10.2026):** `xp.js`,
   `renderLessonProfile`: bleibender Hinweis, wenn das Profil in einem anderen
   Fenster gewechselt wurde. Neue Einzelprüfung „Profilfenster auf der
-  Lernseite“ in `site.browser.cjs` (jetzt zweiundzwanzig). Klassenübersicht:
+  Lernseite“ in `site.browser.cjs` (jetzt dreiundzwanzig). Klassenübersicht:
   NAGOLD-Zahl öffnet die Einträge der Person (nur lesend, `lehrkraft.js`). Siehe
   [`claude2codex.md`](claude2codex.md), A0zs.
 
