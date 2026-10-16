@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.25.2**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.26.0**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
@@ -233,7 +233,7 @@ Excel-Lab/
 ├── nachweis.html              druckbarer Lernnachweis
 ├── content.js                 Lernschritte, Einheiten, Formeln, Fehlermeldungen, Glossar
 ├── bonus-tasks.js             54 freiwillige Bonusaufgaben mit Kontrollwert
-├── app.js                     Startseite: Navigation, Profile, Fortschritt, Speichern und Laden
+├── app.js                     Startseite: Navigation, Profile, Fortschritt, Speicherfenster
 ├── lesson-core.js             gemeinsamer Ablauf aller Lernseiten (Zugang, Check, Bonus, Abschluss)
 ├── l1-1.js … l4-8.js          Antworten, Hinweise und Demo je Lernseite
 ├── nav-menu.js                Lernpfad-Menü für Startseite und Lernseiten
@@ -243,7 +243,8 @@ Excel-Lab/
 ├── xp.js, options.js          XP und NAGOLD im Profilknopf, Profilfenster der Lernseiten, Darstellungsoptionen
 ├── nagold.js                  NAGOLD-Regeln: 5 je abgeschlossener Einheit, eigene Einträge −10 bis 5
 ├── nagold-table.js            NAGOLD-Tabelle (Fenster) für Startseite und Lernseiten
-├── lesson-save.js             Speichern und Laden auf den Lernseiten (Codex)
+├── save-core.js               Speichern und Laden: Dateiformat, Bereinigung, „Zuletzt gespeichert“
+├── lesson-save.js             Disketten-Symbol und Speicherfenster der Lernseiten (Codex)
 ├── organizer.js               Themenlandkarte der Startseite
 ├── formula-lab.js             Formel-Demo in L1.2
 ├── lehrkraft.js, nachweis.js  Logik der beiden Zusatzseiten

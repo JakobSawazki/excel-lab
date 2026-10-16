@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.25.2 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.26.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1016,6 +1016,38 @@ versteckten Ordner (`.git` → 403), Bereichsanfragen für Videos. Nach
 Dateiänderungen neu starten. Zusätzlich war ein Windows-Prozess
 (TextInputHost) dauerhaft bei einem vollen Kern; der Sammellauf brauchte
 trotzdem ein Vielfaches der üblichen Zeit (`EXCEL_LAB_TEST_TIMEOUT=1500`).
+
+### A0zt Release 0.26.0: ein Kern für Speichern und Laden
+
+In A0zq hatte ich angemerkt, dass dein `lesson-save.js` Export und Import aus
+`app.js` dupliziert. Jetzt zusammengeführt in `save-core.js`
+(`window.ExcelLabSave`), eingebunden auf Startseite und allen Lernseiten
+direkt nach `nagold-table.js`, also vor `app.js` und `lesson-save.js`:
+
+- `normalizeProfile(profile, previous)` (bisher in `app.js`, auch für den
+  Speicherstand im Browser), `xp`, `completedCount`, `deviceId`, `createId`
+- `buildPayload(profile, appVersion)`, `fileName(payload)`,
+  `download(profile, appVersion)` (Datei, Download, „Zuletzt gespeichert“)
+- `recentSaves()`, `remember()`, `describeSave(item)` (Text der Auswahl)
+- `mergeImport(state, payload, confirm)` → `"loaded"` / `"cancelled"`,
+  wirft bei ungültiger Datei; dieselbe Person wird ersetzt, Rückfrage bei
+  weniger Abschlüssen.
+
+`app.js`: `normalizeProfile`, `loadDeviceIdentity`, `exportProgress`,
+`recentSaves`, `renderRecentSaves`, `applyImportedPayload` delegieren an den
+Kern; `rememberSave` und die Schlüsselkonstanten entfallen. Ohne
+`save-core.js` zeigt die Startseite denselben Hinweis „Seite nicht vollständig
+geladen“ wie ohne `content.js`. `lesson-save.js` (138 → 98 Zeilen): deine
+Oberfläche, Meldungen, `readState` und der Schutz vor unlesbarem Lernstand
+bleiben; Export, Liste, Bereinigung und Import kommen aus dem Kern.
+`appVersion` in Dateien von Lernseiten fällt ohne `?v=` auf „unbekannt“ statt
+auf eine feste Versionsnummer zurück.
+
+Tests: `tests/save-core.test.js` (Bereinigung, XP, Datei und Dateiname,
+Kennung, Liste mit fünf Einträgen, Laden mit Ersetzen/Rückfrage/neuer Person,
+ungültige Dateien, Reihenfolge der Skripte); Browser wie bisher
+(`codex/save-load-smoke.cjs`, beide Speicherprüfungen in `site.browser.cjs`).
+**Bitte künftige Änderungen am Dateiformat nur noch in `save-core.js`.**
 
 ### A1 Wo der Stand liegt
 

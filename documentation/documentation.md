@@ -1,11 +1,17 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.25.2
-Status: Version 0.25.2 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
+Projektversion: 0.26.0
+Status: Version 0.26.0 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.26.0 (Claude, 16.10.2026):** neues Modul
+  `save-core.js` (`window.ExcelLabSave`) für Speichern und Laden; `app.js`
+  und `lesson-save.js` nutzen es, die doppelte Logik ist entfernt. Neue
+  Node-Tests `tests/save-core.test.js` (sechs). Siehe
+  [`claude2codex.md`](claude2codex.md), A0zt.
 
 - **Veröffentlicht als 0.25.2 (Claude, 16.10.2026):** Klassenübersicht:
   `data-label` in den NAGOLD-Einträgen (Handy), goldene Summe, Einleitung
@@ -1740,18 +1746,26 @@ gibt es [`schul-pc-checkliste.md`](schul-pc-checkliste.md).
   derzeit ausdrücklich nicht umsetzen. Der bestehende clientseitige
   Entwicklungsmodus ist keine Zugriffssicherung, und Lösungsdateien dürfen
   nicht im öffentlich erreichbaren Webroot liegen.
-- [ ] Lernstandübersicht für Lehrkräfte konzipieren, ohne personenbezogene Daten
-  unnötig zu sammeln.
+- [x] Lernstandübersicht für Lehrkräfte: `lehrkraft.html` liest die
+  Speicherdateien der Klasse nur im Browser der Lehrkraft (kein Upload), mit
+  XP, NAGOLD-Einträgen und CSV (Stand 0.26.0).
 - [ ] Zusätzliche Übungsaufgaben für Berufskolleg und Berufsschule ergänzen.
-- [ ] Druckansicht beziehungsweise kompakte Merkblätter anbieten.
+- [x] Druckansicht: Lernseiten, Lernnachweis und Klassenübersicht haben eigene
+  Druckregeln (`@media print`). Kompakte Merkblätter bleiben eine Idee.
 - [x] Inhaltsversion als `appVersion` in JSON-Exporten aufnehmen; Schema bleibt
   derzeit Version 1 (`app.js`, Funktion `exportProgress`).
 - [ ] Migrationen bei einer zukünftigen Änderung des Speicherschemas ausarbeiten.
+  Bis dahin bereinigt `save-core.js` (`normalizeProfile`) ältere Stände von
+  Format 1 beim Laden (zum Beispiel NAGOLD-Zeilen je Abschluss).
 - [x] Lokale automatisierte Browser-Smoke-Tests ergänzen und ausführen.
-- [ ] Eine bereinigte, dauerhaft im Repository verfügbare Regressionstestsuite
-  aus den derzeit lokalen `.tmp`-Tests ableiten, ohne private Materialien
-  oder synthetische Lernprofile zu veröffentlichen.
-- [ ] Barrierefreiheitsprüfung nach WCAG durchführen.
+- [x] Dauerhafte Regressionstests im Repository: `tests/*.test.js`
+  (`node --test`), `tests/browser/run-all.cjs` (Browser, alle Seiten und
+  Abläufe) und `tests/excel/*.ps1` (Rechenwege in Excel). Die alten
+  `.tmp`-Tests bleiben lokal und unveröffentlicht.
+- [ ] Barrierefreiheitsprüfung nach WCAG durchführen. Automatisch geprüft werden
+  bereits vorlesbare Namen, Überschriftenfolge, ARIA-Verweise,
+  Tab-Erreichbarkeit (`tests/browser/a11y.browser.cjs`) und Kontraste
+  (`contrast.browser.cjs`); eine manuelle Prüfung mit Screenreader steht aus.
 
 ### Betrieb und nächste Veröffentlichungsschritte
 
@@ -1768,18 +1782,20 @@ gibt es [`schul-pc-checkliste.md`](schul-pc-checkliste.md).
 
 ## 12. Ideen und möglicher Ausbau
 
+Umgesetzt (Stand 0.26.0): Verständnis-Checks in jeder Einheit, Glossar
+(`content.js`, `glossary`), druckbarer Lernnachweis (`nachweis.html`),
+Fehlermeldungen wie `#NV`, `#WERT!` und `#DIV/0!` als eigene Kategorie der
+Formelsammlung, datensparsame Klassenübersicht (`lehrkraft.html`).
+
+Weiterhin offen:
+
 - freiwilliger Diagnose-Check vor L1 mit passenden Lernempfehlungen;
-- kurze Verständnisfragen innerhalb einer Einheit;
 - Formelsimulator mit veränderbaren Zellwerten;
-- Glossar für Begriffe wie Zelle, Bereich, Bezug und Funktion;
-- Kapitelzertifikat oder druckbarer Lernnachweis;
 - persönlicher Notizbereich pro Einheit;
 - Favoriten in der Formelsammlung;
 - zusätzliche Praxiswelten für Handel, Industrie, Verwaltung und Logistik;
-- Fehlerwerkstatt mit typischen Meldungen wie `#NV`, `#WERT!` und `#DIV/0!`;
 - optionale Offline-Web-App nach Klärung des Veröffentlichungsumfangs;
 - echtes Benutzerkonto mit Geräte-Synchronisierung;
-- datensparsames Klassen-Dashboard für Lehrkräfte;
 - gesicherter Import eigener Aufgabenpakete.
 
 ## 13. Bekannte Grenzen

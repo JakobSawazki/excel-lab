@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.26.0 – 2026-10-16
+
+**Ein Kern für Speichern und Laden.** Startseite und Lernseiten verwenden jetzt dasselbe Modul `save-core.js` für Dateiformat, Bereinigung des Profils, XP in der Datei, Dateinamen, „Zuletzt gespeichert“ und das Übernehmen einer Datei. Bisher war das zweimal programmiert. Für Lernende ändert sich nichts; die Speicherdateien bleiben im selben Format und lassen sich weiter auf beiden Seitenarten laden.
+
 ## 0.25.2 – 2026-10-16
 
 **Klassenübersicht nachgebessert.** Die NAGOLD-Summe im Einträge-Fenster ist golden, auf dem Handy stehen die Feldbezeichnungen vor jedem Wert. Der Einleitungstext nennt NAGOLD und das Disketten-Symbol statt „im Profil über Speichern“. README auf den aktuellen Stand gebracht (Profil, Speicherstand, NAGOLD, Testserver).

@@ -2,7 +2,7 @@
   "use strict";
 
   const content = window.EXCEL_LAB_CONTENT;
-  if (!content) {
+  if (!content || !window.ExcelLabSave) {
     // content.js wurde nicht geladen (Verbindung abgebrochen): Hinweis statt halb leerer Seite.
     const box = document.createElement("section");
     box.className = "page-shell page-shell-narrow";
@@ -20,13 +20,14 @@
 
   const { stages, lessons, formulas } = content;
   const nagold = window.EXCEL_LAB_NAGOLD || null;
+  // Speichern, Laden und Profilbereinigung teilen Startseite und Lernseiten (save-core.js).
+  const saveCore = window.ExcelLabSave;
   const glossary = Array.isArray(content.glossary) ? content.glossary : [];
   const GLOSSARY_FILTER = "Glossar";
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
-  const DEVICE_KEY = "excelLab.device.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.25.2";
+  const APP_VERSION = "0.26.0";
   const POINTS_PER_LESSON = 100;
   // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
   const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
@@ -120,51 +121,11 @@
   }
 
   function normalizeProfile(profile, previous) {
-    const safeProgress = {};
-    if (profile && profile.progress && typeof profile.progress === "object") {
-      lessons.forEach((lesson) => {
-        const candidate = profile.progress[lesson.id];
-        if (!candidate || typeof candidate !== "object") return;
-        safeProgress[lesson.id] = {
-          completed: Boolean(candidate.completed),
-          teacherChecked: Boolean(candidate.teacherChecked),
-          // Abschlüsse aus der Zeit vor den Verständnis-Checks gelten als bestanden.
-          masteryPassed: Boolean(candidate.masteryPassed || candidate.completed),
-          bonus: Boolean(candidate.bonus),
-          bonus2: Boolean(candidate.bonus2),
-          checks: Array.isArray(candidate.checks)
-            ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
-            : lesson.checks.map(() => false)
-        };
-      });
-    }
-    return {
-      id: typeof profile?.id === "string" ? profile.id.slice(0, 80) : createId(),
-      name: typeof profile?.name === "string" ? profile.name.trim().toLocaleLowerCase("de").slice(0, 40) || "lernprofil" : "lernprofil",
-      className: typeof profile?.className === "string" ? profile.className.trim().toLocaleUpperCase("de").slice(0, 32) : "",
-      createdAt: typeof profile?.createdAt === "string" ? profile.createdAt : previous?.createdAt || new Date().toISOString(),
-      updatedAt: typeof profile?.updatedAt === "string" ? profile.updatedAt : previous?.updatedAt || new Date().toISOString(),
-      progress: safeProgress,
-      // NAGOLD-Tabelle: alte Lernstände erhalten je abgeschlossener Einheit eine Zeile.
-      nagoldEntries: nagold ? nagold.entriesFor(profile) : Array.isArray(profile?.nagoldEntries) ? profile.nagoldEntries : []
-    };
+    return saveCore.normalizeProfile(profile, previous);
   }
 
   function loadDeviceIdentity() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(DEVICE_KEY) || "null");
-      if (saved?.id && typeof saved.id === "string") return { id: saved.id.slice(0, 24) };
-    } catch {
-      // Eine beschädigte Kennung wird durch eine neue lokale Kennung ersetzt.
-    }
-    const randomPart = createId().replace(/[^a-z0-9]/gi, "").slice(0, 10).toLocaleUpperCase("de");
-    const identity = { id: `XL-${randomPart}` };
-    try {
-      localStorage.setItem(DEVICE_KEY, JSON.stringify(identity));
-    } catch {
-      // Die App bleibt auch ohne persistente Gerätekennung nutzbar.
-    }
-    return identity;
+    return { id: saveCore.deviceId() };
   }
 
   // Ein nicht lesbarer Lernstand wird vor dem ersten Überschreiben als
@@ -568,75 +529,23 @@
   function exportProgress() {
     const profile = currentProfile();
     if (!profile) return;
-    const payload = {
-      app: "Excel-Lab",
-      version: VERSION,
-      appVersion: APP_VERSION,
-      exportedAt: new Date().toISOString(),
-      exportedBy: {
-        accountName: profile.name,
-        className: profile.className,
-        points: progressStats().points,
-        nagold: nagoldTotal(profile)
-      },
-      device: {
-        id: deviceIdentity.id,
-        type: "anonyme Browser-Installation",
-        operatingSystem: /win/i.test(navigator.platform || "") ? "Windows" : "nicht erkannt"
-      },
-      profile
-    };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    const dateParts = new Intl.DateTimeFormat("en", {
-      timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit"
-    }).formatToParts(new Date(payload.exportedAt));
-    const part = (type) => dateParts.find((item) => item.type === type).value;
-    const datePrefix = `${part("year")}-${part("month")}-${part("day")}`;
-    const safePart = (value) => String(value).replace(/[^a-z0-9äöüß._-]+/gi, "-").replace(/^-+|-+$/g, "") || "lernprofil";
-    anchor.href = url;
-    anchor.download = `${datePrefix}_Excel-Lab_${safePart(profile.name)}_${safePart(deviceIdentity.id)}.json`;
-    rememberSave(payload, anchor.download);
+    saveCore.download(profile, APP_VERSION);
     renderRecentSaves();
-    document.body.append(anchor);
-    anchor.click();
-    anchor.remove();
-    URL.revokeObjectURL(url);
     showToast("Speicherdatei zum Download bereitgestellt.");
   }
 
   // Zuletzt gespeichert: Die letzten fünf Speicherstände bleiben zusätzlich im
   // Browser. Eine Webseite kann Dateien im Download-Ordner nicht selbst wieder
   // öffnen; die Liste ersetzt deshalb das erneute Heraussuchen am selben Gerät.
-  const SAVES_KEY = "excelLab.saves.v1";
-  const MAX_SAVES = 5;
-
-  function recentSaves() {
-    try {
-      const list = JSON.parse(localStorage.getItem(SAVES_KEY) || "[]");
-      return Array.isArray(list)
-        ? list.filter((item) => item && typeof item.savedAt === "string" && item.payload?.app === "Excel-Lab" && item.payload?.version === VERSION && item.payload?.profile).slice(0, MAX_SAVES)
-        : [];
-    } catch { return []; }
-  }
-
-  function rememberSave(payload, fileName) {
-    const list = [{ savedAt: payload.exportedAt, fileName, payload }, ...recentSaves()].slice(0, MAX_SAVES);
-    try { localStorage.setItem(SAVES_KEY, JSON.stringify(list)); }
-    catch { /* Ohne freien Speicher bleibt es bei der Datei; der Download ist davon unabhängig. */ }
-  }
+  const recentSaves = () => saveCore.recentSaves();
 
   function renderRecentSaves() {
     const list = recentSaves();
     const select = $("#recent-saves");
-    const format = new Intl.DateTimeFormat("de-DE", { dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Berlin" });
     select.replaceChildren(...list.map((item, index) => {
       const option = document.createElement("option");
-      const by = item.payload.exportedBy || {};
-      const date = new Date(item.savedAt);
       option.value = String(index);
-      option.textContent = `${Number.isNaN(date.getTime()) ? "Zeit unbekannt" : format.format(date)} · ${String(by.accountName || item.payload.profile.name || "").slice(0, 40)} · ${Number(by.points) || 0} XP · ${Number(by.nagold) || 0} NAGOLD`;
+      option.textContent = saveCore.describeSave(item);
       return option;
     }));
     $("#recent-saves-box").hidden = list.length === 0;
@@ -651,29 +560,10 @@
 
   // Übernimmt einen geprüften Speicherstand; gemeinsam für Datei und Liste.
   function applyImportedPayload(payload) {
-    if (payload?.app !== "Excel-Lab" || payload?.version !== VERSION || !payload?.profile) {
-      throw new Error("Keine gültige Excel-Lab-Exportdatei.");
+    if (saveCore.mergeImport(state, payload, (question) => window.confirm(question)) === "cancelled") {
+      showToast("Laden abgebrochen. Dein Lernstand ist unverändert.");
+      return;
     }
-    const imported = normalizeProfile(payload.profile);
-    imported.updatedAt = new Date().toISOString();
-    // Dieselbe Person (Kürzel und Klasse) wird ersetzt statt als weiteres,
-    // unsichtbares Profil angelegt. Weniger Abschlüsse nur nach Rückfrage.
-    const completedIn = (profile) => lessons.filter((lesson) => profile.progress?.[lesson.id]?.completed).length;
-    const existing = state.profiles.find((profile) => profile.name === imported.name && profile.className === imported.className);
-    if (existing) {
-      if (completedIn(imported) < completedIn(existing)
-        && !window.confirm(`Die Datei enthält weniger abgeschlossene Einheiten (${completedIn(imported)}) als dein Stand in diesem Browser (${completedIn(existing)}). Trotzdem laden?`)) {
-        showToast("Laden abgebrochen. Dein Lernstand ist unverändert.");
-        return;
-      }
-      imported.id = existing.id;
-      imported.createdAt = existing.createdAt;
-      state.profiles[state.profiles.indexOf(existing)] = imported;
-    } else {
-      imported.id = createId();
-      state.profiles.push(imported);
-    }
-    state.currentProfileId = imported.id;
     saveState();
     renderAll();
     showToast("Lernstand erfolgreich geladen.");
