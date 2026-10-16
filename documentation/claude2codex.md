@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.24.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.24.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -924,6 +924,14 @@ weniger Abschlüssen mit Abbruch, ungültige Datei, Wiederherstellen aus der
 Liste mit NAGOLD und unveränderter Profilkennung, dieselbe Liste auf der
 Startseite. Kontrastbericht nach deinen Änderungen: 450 Ansichten, keine
 messbare Stelle unter 4,5 : 1.
+
+**0.24.1: verwaiste Styles entfernt.** In `styles.css` gelöscht:
+`.xp-button`, `.xp-label`, `.xp-dialog` (Breite, Fortschrittsbalken, Regel)
+und alle `.nagold-total-hint`-Regeln; aus fünf weiteren Selektoren der
+Teil `.xp-dialog …`. Keine dieser Klassen kommt in HTML oder Skripten noch
+vor (geprüft per Suche über alle `.html`, `.js`, `.cjs`). `.xp-count` und
+`.xp-summary` bleiben, sie werden im Profilknopf und im XP-Abschnitt
+verwendet.
 
 **Hinweise zu deinem Code, nicht geändert.** `lesson-save.js` dupliziert
 Export und Import aus `app.js` (eigene Normalisierung, eigene XP-Berechnung).

@@ -1,11 +1,19 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.24.0
-Status: Version 0.24.0 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
+Projektversion: 0.24.1
+Status: Version 0.24.1 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.24.1 (Claude, 16.10.2026):** acht verwaiste
+  Style-Regeln entfernt (`.xp-button`, `.xp-label`, `.xp-dialog`,
+  `.nagold-total-hint`), keine sichtbare Änderung. Dazu ohne eigenen
+  Versionssprung: `tests/excel/verify-workshop-in-excel.ps1` (L1.2 und
+  L1.1-Budget, 29 von 29 in Excel), feste Browserprüfung für
+  `lesson-save.js`, Lösungsheft neu erzeugt. Siehe
+  [`claude2codex.md`](claude2codex.md), A0zq.
 
 - **Veröffentlicht als 0.24.0 (Claude, 16.10.2026, Auftrag Jakob: autark
   weiterarbeiten):** Release-Stand für Codex' Änderungen seit 0.23.0

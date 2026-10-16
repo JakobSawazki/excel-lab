@@ -2064,15 +2064,10 @@ h3 {
 #rescue-button[hidden] { display: none; }
 #developer-profile-actions:not([hidden]) { margin-top: 1rem; }
 .profile-edit-form { margin: 1.2rem 0; }
-.xp-button { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; gap: 0; line-height: 1; padding: 0.25rem; }
 .xp-count { font-size: 0.8rem; font-weight: 800; font-variant-numeric: tabular-nums; }
-.xp-label { margin-top: 0.15rem; font-size: 0.55rem; font-weight: 750; color: var(--green); }
-.xp-dialog { width: min(460px, calc(100% - 2rem)); }
 .xp-summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.5rem 0; }
 .xp-summary strong { font-size: 2rem; color: var(--green); }
 .xp-summary span { border: 1px solid var(--metal-edge); border-radius: 999px; padding: 0.5rem 0.85rem; font-weight: 750; }
-.xp-dialog progress { display: block; width: 100%; height: 0.85rem; accent-color: var(--green); margin-bottom: 1.2rem; }
-.xp-dialog .xp-rule { margin-bottom: 0; font-size: 0.75rem; }
 .options-dialog { width: min(460px, calc(100% - 2rem)); }
 .option-group { min-width:0; margin:1.2rem 0; padding:0; border:0; }
 .option-group legend { margin-bottom:0.65rem; color:var(--text-soft); font-size:0.85rem; font-weight:750; }
@@ -3765,7 +3760,6 @@ html {
 .nagold-total:disabled { opacity: .55; cursor: not-allowed; }
 .nagold-total[hidden] { display: none; }
 .nagold-total strong { color: var(--nagold); font-size: 1.05rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.nagold-total-hint { margin-left: auto; color: var(--text-soft); font-size: .78rem; text-align: right; }
 .nagold-coin {
   flex: 0 0 auto;
   width: 26px;
@@ -3840,7 +3834,6 @@ html {
   .nagold-table td[data-label="Wofür"] { align-items: start; }
   .nagold-table td[data-label="Wofür"] select { grid-column: 2; }
   .nagold-table td[data-label="Wofür"] input { grid-column: 2; }
-  .nagold-total-hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .nagold-total, .nagold-icon-button { transition: none; } .nagold-total:hover:not(:disabled), .nagold-icon-button:hover:not(:disabled) { transform: none; } }
 @media (forced-colors: active) { .nagold-total, .nagold-icon-button { border-color: ButtonText; background: ButtonFace; color: ButtonText; box-shadow: none; } .nagold-coin { display: none; } }
@@ -3892,9 +3885,9 @@ html {
 .xp-panel .xp-summary { margin: .55rem 0 .5rem; }
 .xp-panel .xp-summary strong { font-size: 1.7rem; }
 .xp-panel p { margin: 0 0 .6rem; font-size: .86rem; }
-.xp-panel progress, .xp-dialog progress { display: block; width: 100%; height: .8rem; margin-bottom: .8rem; accent-color: var(--green); }
+.xp-panel progress { display: block; width: 100%; height: .8rem; margin-bottom: .8rem; accent-color: var(--green); }
 .xp-panel .xp-rule { margin-bottom: 0; color: var(--text-faint); font-size: .74rem; }
-.xp-panel .xp-nagold, .xp-dialog .xp-nagold { color: var(--nagold); font-weight: 700; }
+.xp-panel .xp-nagold { color: var(--nagold); font-weight: 700; }
 .xp-nagold:empty { display: none; }
 #xp-profile-link { display: flex; justify-content: center; margin-top: 1rem; }
 .tip-wrap { position: relative; display: grid; }
@@ -3954,7 +3947,6 @@ html {
 .nagold-panel-value { display: flex; align-items: center; gap: .7rem; }
 .manager-panels .nagold-total strong { font-size: 1.7rem; }
 .manager-panels .nagold-coin { width: 34px; height: 34px; }
-.manager-panels .nagold-total-hint { display: block; margin: 0; color: var(--text-soft); font-size: .86rem; text-align: left; }
 .manager-dialog #certificate-link { margin-top: 1.2rem; }
 @media (max-width: 720px) {
   .manager-dialog .profile-edit-form, .manager-panels { grid-template-columns: minmax(0, 1fr); gap: .9rem; }
@@ -3966,9 +3958,9 @@ html {
 .xp-panel { padding: 1rem 1.1rem 1.05rem; }
 .xp-summary { display: flex; align-items: center; gap: .8rem; }
 .xp-summary .tip-end { margin-left: auto; }
-.xp-panel .xp-summary, .xp-dialog .xp-summary { margin: .6rem 0 .8rem; }
-.xp-panel progress, .xp-dialog progress { margin-bottom: .6rem; }
-.xp-panel #xp-next, .xp-dialog #xp-next { margin: 0; color: var(--text-soft); font-size: .86rem; }
+.xp-panel .xp-summary { margin: .6rem 0 .8rem; }
+.xp-panel progress { margin-bottom: .6rem; }
+.xp-panel #xp-next { margin: 0; color: var(--text-soft); font-size: .86rem; }
 .xp-summary [tabindex] { cursor: help; }
 .xp-summary [tabindex]:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 8px; }
 .xp-nagold-chip { padding: .45rem .8rem; border: 1px solid color-mix(in srgb, var(--nagold-deep) 62%, var(--line-strong)); border-radius: 999px; color: var(--nagold); font-weight: 800; white-space: nowrap; }

@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.24.1 – 2026-10-16
+
+**Aufgeräumt und geprüft.** Verwaiste Styles des früheren XP-Symbols, des früheren XP-Fensters der Lernseiten und entfernter Hinweistexte gelöscht; keine sichtbare Änderung. Der neue L1.2-Auftrag und das L1.1-Budget sind in echtem Excel nachgerechnet (29 Prüfungen), Speichern und Laden auf den Lernseiten hat eine feste Browserprüfung.
+
 ## 0.24.0 – 2026-10-16
 
 Sammel-Release für die Änderungen vom 12. bis 16. Oktober. Codex hat sie unter 0.23.0 veröffentlicht; dieser Stand gibt ihnen eine eigene Versionsnummer, damit Browser die geänderten Skripte sicher neu laden.
