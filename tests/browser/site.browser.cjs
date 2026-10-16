@@ -576,7 +576,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         // Abschluss von L1.2 bucht genau einmal 5 NAGOLD mit Datum und Uhrzeit.
         await page.goto(base + "l1-2.html");
         await page.locator("#page-complete-button").click();
-        assert.match(await page.locator("#toast-region").innerText(), /100 XP und 5 NAGOLD/);
+        assert.match(await page.locator("#toast-region").innerText(), /\+100 XP, \+5 NAGOLD\. Jetzt über das Disketten-Symbol speichern\./);
         let entries = await stored();
         assert.deepEqual(entries.map((entry) => [entry.lessonId || "", entry.points]), [["", 4], ["l1-2", 5]]);
         assert.match(entries[1].date, /^\d{4}-\d{2}-\d{2}$/);
@@ -631,7 +631,8 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.locator("#xp-level").innerText(), "Level 1");
         assert.equal(await page.locator("#xp-next").innerText(), "Noch 300 XP bis Level 2");
         // Wenig Text im Profil: Erklärungen stehen in Tooltips und erscheinen erst beim Darüberfahren.
-        assert.equal(await page.locator("#nagold-tip").evaluate((tip) => tip.textContent), "Die nächsten 5 NAGOLD gibt es für den Abschluss von L1.3.");
+        assert.equal(await page.locator("#nagold-tip").evaluate((tip) => tip.textContent), "Noch 91 NAGOLD bis zum Jahresziel (100). Die nächsten 5 NAGOLD gibt es für den Abschluss von L1.3.");
+        assert.equal(await page.locator("#nagold-goal-text").innerText(), "9 / 100 · Jahresziel");
         assert.equal(await page.locator("#xp-breakdown").evaluate((tip) => getComputedStyle(tip).opacity), "0");
         await page.locator("#xp-total").hover();
         await page.waitForFunction(() => getComputedStyle(document.querySelector("#xp-breakdown")).opacity === "1");

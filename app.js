@@ -27,13 +27,9 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.26.0";
-  const POINTS_PER_LESSON = 100;
-  // Freiwillige Vertiefungsaufgaben (bonus-tasks.js) bringen zusätzliche XP.
-  const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
-  // Gelöste Bonusaufgaben einer Einheit: `bonus` zählt für die erste, `bonus2` für die zweite Aufgabe.
-  const solvedBonus = (lessonId, progress) => Number(Boolean(window.EXCEL_LAB_BONUS?.tasks?.[lessonId] && progress.bonus))
-    + Number(Boolean(window.EXCEL_LAB_BONUS?.extra?.[lessonId] && progress.bonus2));
+  const APP_VERSION = "0.27.0";
+  // XP-Regel (Einheiten und Bonusaufgaben) steht in save-core.js.
+  const POINTS_PER_LESSON = saveCore.LESSON_XP;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
   const routeMap = {
     dashboard: "uebersicht",
@@ -195,10 +191,9 @@
   }
 
   function progressStats() {
-    const completed = lessons.filter((lesson) => getLessonProgress(lesson.id).completed).length;
+    const { completed, bonusSolved, bonusXp, xp } = saveCore.xpStats(currentProfile());
     const percent = lessons.length ? Math.round((completed / lessons.length) * 100) : 0;
-    const bonus = lessons.reduce((sum, lesson) => sum + solvedBonus(lesson.id, getLessonProgress(lesson.id)), 0);
-    return { completed, total: lessons.length, percent, bonus, points: completed * POINTS_PER_LESSON + bonus * BONUS_XP };
+    return { completed, total: lessons.length, percent, bonus: bonusSolved, bonusXp, points: xp };
   }
 
   function lessonAccess(lesson) {
@@ -374,7 +369,7 @@
     const stats = progressStats();
     $("#learning-summary").innerHTML = `
       <span class="summary-icon">${stats.points}<small>XP</small></span>
-      <p><strong>${stats.completed} von ${stats.total} ${stats.total === 1 ? "Einheit" : "Einheiten"} erledigt.</strong> Arbeite der Reihe nach. Jede bestätigte Einheit bringt ${POINTS_PER_LESSON} XP und schaltet das nächste Kapitel frei.${BONUS_XP ? ` Jede gelöste Bonusaufgabe bringt zusätzlich ${BONUS_XP} XP (${stats.bonus} gelöst).` : ""}</p>
+      <p><strong>${stats.completed} von ${stats.total} ${stats.total === 1 ? "Einheit" : "Einheiten"} erledigt.</strong> Arbeite der Reihe nach. Jede bestätigte Einheit bringt ${POINTS_PER_LESSON} XP und schaltet das nächste Kapitel frei.${stats.bonusXp ? ` Jede gelöste Bonusaufgabe bringt zusätzlich ${stats.bonusXp} XP (${stats.bonus} gelöst).` : ""}</p>
       <span class="mini-progress"><span class="progress-track"><span style="--width:${stats.percent}%;--chapter-color:var(--green)"></span></span><small>${stats.percent}% Gesamtfortschritt</small></span>`;
   }
 

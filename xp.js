@@ -4,7 +4,7 @@
   // auf Startseite und Lernseiten im gleich gestalteten Profilfenster.
   const profileButton = document.querySelector(".site-header .profile-button");
   const lessons = window.EXCEL_LAB_CONTENT?.lessons;
-  if (!profileButton || !Array.isArray(lessons)) return;
+  if (!profileButton || !Array.isArray(lessons) || !window.ExcelLabSave) return;
   const nagold = window.EXCEL_LAB_NAGOLD || null;
 
   // Kopfzeile: „200 XP · 13 NAG“ über dem Kürzel; ohne Profil bleibt die bisherige Beschriftung.
@@ -52,7 +52,7 @@
         <label><span>Klassenbezeichnung</span><input id="profile-edit-class" type="text" minlength="3" maxlength="32" required autocapitalize="characters" spellcheck="false" placeholder="z. B. WGW EK1"></label>
       </form>
       <div class="manager-panels"><div class="manager-panel-slot" id="xp-slot"></div>
-        <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
+        <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span><span class="nagold-goal"><progress id="nagold-goal-progress" max="100" value="0" aria-hidden="true"></progress><span class="nagold-goal-text" id="nagold-goal-text">0 / 100 · Jahresziel</span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
       </div><a class="button button-secondary" id="certificate-link" href="nachweis.html">Lernnachweis</a>
       <p id="lesson-profile-status" role="status" aria-live="polite" hidden></p>
     </div>`;
@@ -100,17 +100,8 @@
   function refresh() {
     const profile = currentProfile();
     // Nur bekannte, abgeschlossene Einheiten zählen; kein eigener XP-Speicher.
-    const bonusXp = window.EXCEL_LAB_BONUS?.xp || 0;
-    const bonusTasks = window.EXCEL_LAB_BONUS?.tasks || {};
-    const extraTasks = window.EXCEL_LAB_BONUS?.extra || {};
-    // Je Einheit bis zu zwei Bonusaufgaben: `bonus` und `bonus2` im Lernstand.
-    const available = lessons.reduce((sum, lesson) => sum + Number(Boolean(bonusTasks[lesson.id])) + Number(Boolean(extraTasks[lesson.id])), 0);
-    const solved = lessons.reduce((sum, lesson) => sum
-      + Number(Boolean(bonusTasks[lesson.id] && profile?.progress?.[lesson.id]?.bonus))
-      + Number(Boolean(extraTasks[lesson.id] && profile?.progress?.[lesson.id]?.bonus2)), 0);
-    const completed = lessons.filter((lesson) => Boolean(profile?.progress?.[lesson.id]?.completed)).length;
-    const xp = completed * 100 + solved * bonusXp;
-    const maximum = lessons.length * 100 + available * bonusXp;
+    // Die XP-Regel steht in save-core.js.
+    const { completed, bonusSolved: solved, bonusAvailable: available, bonusXp, lessonXp, xp, maximum } = window.ExcelLabSave.xpStats(profile);
     const thresholds = [0];
     for (let value = 500; value < maximum; value += 500) thresholds.push(value);
     if (maximum > 0) thresholds.push(maximum);
@@ -140,7 +131,7 @@
         : `Noch ${next - xp} XP bis Level ${levelIndex + 2}`;
     // Woher die XP kommen: Einheiten und Bonusaufgaben getrennt.
     panel.querySelector("#xp-breakdown").textContent = profile
-      ? `${completed} von ${lessons.length} Einheiten: ${completed * 100} XP · ${solved} von ${available} Bonusaufgaben: ${solved * bonusXp} XP`
+      ? `${completed} von ${lessons.length} Einheiten: ${completed * lessonXp} XP · ${solved} von ${available} Bonusaufgaben: ${solved * bonusXp} XP`
       : "";
     // Wofür es die nächsten NAGOLD gibt: als Tooltip am NAGOLD-Feld.
     const nextLesson = lessons.find((lesson) => !profile?.progress?.[lesson.id]?.completed);
@@ -153,8 +144,19 @@
       chip.parentElement.hidden = !profile || !nagold;
       panel.querySelector("#xp-nagold").textContent = nagoldHint;
     }
+    // Jahresziel wie in WorkbenchLab: 100 NAGOLD = 100 %, mehr ist möglich.
+    const goal = nagold?.yearGoal || 100;
+    const goalProgress = document.querySelector("#nagold-goal-progress");
+    if (goalProgress) {
+      goalProgress.max = goal;
+      goalProgress.value = Math.min(goal, Math.max(0, nagoldTotal));
+      document.querySelector("#nagold-goal-text").textContent = `${nagoldTotal} / ${goal} · Jahresziel`;
+    }
+    const goalHint = profile && nagold
+      ? nagoldTotal >= goal ? "Jahresziel erreicht!" : `Noch ${goal - nagoldTotal} NAGOLD bis zum Jahresziel (${goal}).`
+      : "";
     const managerNagold = document.querySelector("#nagold-tip");
-    if (managerNagold) managerNagold.textContent = nagoldHint;
+    if (managerNagold) managerNagold.textContent = [goalHint, nagoldHint].filter(Boolean).join(" ");
     const progress = panel.querySelector("#xp-progress");
     progress.max = next === undefined ? 1 : next - base;
     progress.value = next === undefined ? 1 : xp - base;

@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  // Gemeinsamer Kern für Speichern und Laden (Startseite und Lernseiten).
+  // Gemeinsamer Kern für Speichern und Laden (Startseite und Lernseiten) und
+  // für die XP-Regel (auch Lernnachweis und Klassenübersicht).
   // Hier stehen Dateiformat, Bereinigung eines Profils, XP-Berechnung,
   // Dateiname, „Zuletzt gespeichert“ und das Übernehmen einer Datei. Die
   // Seiten (app.js, lesson-save.js) kümmern sich nur um Anzeige und Meldungen.
@@ -37,16 +38,37 @@
     return lessons.filter((lesson) => Boolean(profile?.progress?.[lesson.id]?.completed)).length;
   }
 
-  // 100 XP je abgeschlossener Einheit, je gelöster Bonusaufgabe die XP aus bonus-tasks.js.
-  function xp(profile) {
+  // XP-Regel an einer Stelle für Profilknopf, Startseite, Lernnachweis und
+  // Klassenübersicht: 100 XP je abgeschlossener Einheit, je gelöster
+  // Bonusaufgabe die XP aus bonus-tasks.js. Je Einheit gibt es bis zu zwei
+  // Bonusaufgaben (`bonus` und `bonus2` im Lernstand); sie zählen nur, wenn es
+  // die Aufgabe gibt.
+  const LESSON_XP = 100;
+
+  function bonusSolved(lessonId, row) {
     const bonus = window.EXCEL_LAB_BONUS || {};
-    return lessons.reduce((sum, lesson) => {
-      const row = profile?.progress?.[lesson.id];
-      return sum + (row?.completed ? 100 : 0)
-        + (bonus.tasks?.[lesson.id] && row?.bonus ? bonus.xp || 0 : 0)
-        + (bonus.extra?.[lesson.id] && row?.bonus2 ? bonus.xp || 0 : 0);
-    }, 0);
+    return Number(Boolean(bonus.tasks?.[lessonId] && row?.bonus)) + Number(Boolean(bonus.extra?.[lessonId] && row?.bonus2));
   }
+
+  function xpStats(profile) {
+    const bonus = window.EXCEL_LAB_BONUS || {};
+    const bonusXp = bonus.xp || 0;
+    const completed = completedCount(profile);
+    const bonusDone = lessons.reduce((sum, lesson) => sum + bonusSolved(lesson.id, profile?.progress?.[lesson.id]), 0);
+    const bonusAvailable = lessons.reduce((sum, lesson) => sum + Number(Boolean(bonus.tasks?.[lesson.id])) + Number(Boolean(bonus.extra?.[lesson.id])), 0);
+    return {
+      completed,
+      lessons: lessons.length,
+      bonusSolved: bonusDone,
+      bonusAvailable,
+      bonusXp,
+      lessonXp: LESSON_XP,
+      xp: completed * LESSON_XP + bonusDone * bonusXp,
+      maximum: lessons.length * LESSON_XP + bonusAvailable * bonusXp
+    };
+  }
+
+  const xp = (profile) => xpStats(profile).xp;
 
   function normalizeProfile(profile, previous) {
     const safeProgress = {};
@@ -170,7 +192,7 @@
   }
 
   window.ExcelLabSave = Object.freeze({
-    FORMAT, SAVES_KEY, DEVICE_KEY, createId, deviceId, completedCount, xp, normalizeProfile,
+    FORMAT, SAVES_KEY, DEVICE_KEY, LESSON_XP, createId, deviceId, completedCount, bonusSolved, xpStats, xp, normalizeProfile,
     buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport
   });
 })();

@@ -4,11 +4,9 @@
   // Lernnachweis: liest nur den gespeicherten Lernstand des aktuellen Profils
   // und stellt ihn druckbar dar. Die Seite schreibt nichts in den Speicher.
   const content = window.EXCEL_LAB_CONTENT;
-  if (!content) return;
+  const core = window.ExcelLabSave;
+  if (!content || !core) return;
   const { stages, lessons } = content;
-  const bonusTasks = window.EXCEL_LAB_BONUS?.tasks || {};
-  const extraTasks = window.EXCEL_LAB_BONUS?.extra || {};
-  const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
   const $ = (selector) => document.querySelector(selector);
 
   function node(tag, className, text) {
@@ -42,18 +40,15 @@
 
     const progress = profile.progress && typeof profile.progress === "object" ? profile.progress : {};
     const done = (lesson) => Boolean(progress[lesson.id]?.completed);
-    const bonus = (lesson) => Number(Boolean(bonusTasks[lesson.id] && progress[lesson.id]?.bonus))
-      + Number(Boolean(extraTasks[lesson.id] && progress[lesson.id]?.bonus2));
-    const completed = lessons.filter(done).length;
-    const bonusSolved = lessons.reduce((sum, lesson) => sum + bonus(lesson), 0);
-    const bonusAvailable = lessons.reduce((sum, lesson) => sum + Number(Boolean(bonusTasks[lesson.id])) + Number(Boolean(extraTasks[lesson.id])), 0);
+    const bonus = (lesson) => core.bonusSolved(lesson.id, progress[lesson.id]);
+    const { completed, bonusSolved, bonusAvailable, xp } = core.xpStats(profile);
 
     $("#certificate-name").textContent = String(profile.name || "").slice(0, 40);
     $("#certificate-class").textContent = String(profile.className || "–").slice(0, 32);
     $("#certificate-date").textContent = new Intl.DateTimeFormat("de-DE", { dateStyle: "long", timeZone: "Europe/Berlin" }).format(new Date());
     $("#certificate-lessons").textContent = `${completed} von ${lessons.length}`;
     $("#certificate-bonus").textContent = `${bonusSolved} von ${bonusAvailable}`;
-    $("#certificate-xp").textContent = (completed * 100 + bonusSolved * BONUS_XP).toLocaleString("de-DE");
+    $("#certificate-xp").textContent = xp.toLocaleString("de-DE");
     $("#certificate-nagold").textContent = (window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.total(profile) : 0).toLocaleString("de-DE");
 
     const container = $("#certificate-stages");

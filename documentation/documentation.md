@@ -1,11 +1,22 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.26.0
-Status: Version 0.26.0 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
+Projektversion: 0.27.0
+Status: Version 0.27.0 veröffentlicht (Startkapital, Jahresziel, Speicherhinweis, Datenschutz; Antworten Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.27.0 (Claude, 16.10.2026, Antworten Jakob in
+  `tasks.md`):** Startkapital einmal je Schuljahr (`nagold.js`:
+  `isStartCapital`, `schoolYear`, `startCapitalTaken`; Tabelle füllt 5 vor und
+  speichert kein zweites), Jahresziel 100 NAGOLD als Balken im NAGOLD-Feld
+  (`xp.js`), kurzer Speicherhinweis beim Abschluss (`lesson-core.js`),
+  Datenschutzabschnitt im Impressum-Fenster, XP-Regel nur in `save-core.js`
+  (`xpStats`, `bonusSolved`). Entschieden und unverändert: NAGOLD je Einheit
+  statt je Level, Lehrkraft-Haken bleibt selbst setzbar, Kreis in L4.4 in 2D
+  (3D nur erwähnt), „Zuletzt gespeichert“ bleibt Browserliste, Bonusaufgaben
+  freiwillig. Siehe [`claude2codex.md`](claude2codex.md), A0zv.
 
 - **Veröffentlicht als 0.26.0 (Claude, 16.10.2026):** neues Modul
   `save-core.js` (`window.ExcelLabSave`) für Speichern und Laden; `app.js`
@@ -1691,9 +1702,12 @@ gibt es [`schul-pc-checkliste.md`](schul-pc-checkliste.md).
 
 ### Hohe Priorität
 
-- [ ] Die früher gefundenen 141 Doppeldateien aus `../BPE1` nach einem
-  aktuellen Bestandsvergleich bereinigen. Vorher Prüfsummen erneut verifizieren;
-  die Kopien in `materialien/BPE1` erhalten.
+- [x] Die 141 Doppeldateien aus `../BPE1` entfernt (Claude, 16.10.2026,
+  Freigabe Jakob): jede per SHA-256 gegen `materialien/BPE1` geprüft und in den
+  Papierkorb verschoben (wiederherstellbar), dazu sieben leere Ordner und eine
+  alte Office-Sperrdatei. In `../BPE1` bleiben nur 67 Dateien ohne Kopie:
+  Musterlösungen, Lehrer-Kompetenzraster und das L1.1-PDF. Ebenso `.tmp/`
+  (390 alte Arbeitsdateien, 50 MB; Tests liegen in `tests/`).
 - [ ] Das einzigartige L1.1-Informations- und Aufgaben-PDF aus `../BPE1` nach
   `materialien/BPE1/Lernfortschritt_1/L1.1` verschieben und den Website-Einsatz
   nach fachlicher Freigabe prüfen.

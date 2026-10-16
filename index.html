@@ -13,23 +13,23 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.26.0"></script>
-    <link rel="stylesheet" href="styles.css?v=0.26.0">
-    <link rel="stylesheet" href="home.css?v=0.26.0">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.26.0">
-    <script src="deployment.js?v=0.26.0" defer></script>
-    <script src="developer-mode.js?v=0.26.0" defer></script>
-    <script src="content.js?v=0.26.0" defer></script>
-    <script src="nagold.js?v=0.26.0" defer></script>
-    <script src="nagold-table.js?v=0.26.0" defer></script>
-    <script src="save-core.js?v=0.26.0" defer></script>
-    <script src="bonus-tasks.js?v=0.26.0" defer></script>
-    <script src="nav-menu.js?v=0.26.0" defer></script>
-    <script src="app.js?v=0.26.0" defer></script>
-    <script src="xp.js?v=0.26.0" defer></script>
-    <script src="options.js?v=0.26.0" defer></script>
-    <script src="organizer.js?v=0.26.0" defer></script>
-    <script src="lesson-workspace.js?v=0.26.0" defer></script>
+    <script src="theme-boot.js?v=0.27.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.27.0">
+    <link rel="stylesheet" href="home.css?v=0.27.0">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.27.0">
+    <script src="deployment.js?v=0.27.0" defer></script>
+    <script src="developer-mode.js?v=0.27.0" defer></script>
+    <script src="content.js?v=0.27.0" defer></script>
+    <script src="nagold.js?v=0.27.0" defer></script>
+    <script src="nagold-table.js?v=0.27.0" defer></script>
+    <script src="save-core.js?v=0.27.0" defer></script>
+    <script src="bonus-tasks.js?v=0.27.0" defer></script>
+    <script src="nav-menu.js?v=0.27.0" defer></script>
+    <script src="app.js?v=0.27.0" defer></script>
+    <script src="xp.js?v=0.27.0" defer></script>
+    <script src="options.js?v=0.27.0" defer></script>
+    <script src="organizer.js?v=0.27.0" defer></script>
+    <script src="lesson-workspace.js?v=0.27.0" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -445,7 +445,7 @@
         <button class="button button-secondary" id="developer-mode-button" type="button" hidden aria-pressed="false">Entwickler-Modus</button>
         <div class="manager-panels">
           <div class="manager-panel-slot" id="xp-slot"></div>
-          <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
+          <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span><span class="nagold-goal"><progress id="nagold-goal-progress" max="100" value="0" aria-hidden="true"></progress><span class="nagold-goal-text" id="nagold-goal-text">0 / 100 · Jahresziel</span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
         </div>
         <a class="button button-secondary" id="certificate-link" href="nachweis.html">Lernnachweis</a>
         <div class="manager-actions" id="developer-profile-actions" hidden>
@@ -466,6 +466,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.27.0</span><div><strong>Startkapital und Jahresziel</strong><small>Einmal je Schuljahr 5 NAGOLD Startkapital; ein goldener Balken zeigt den Weg zum Jahresziel von 100 NAGOLD. Nach jeder Einheit erinnert ein kurzer Hinweis ans Speichern.</small></div></li>
             <li><span>0.26.0</span><div><strong>Klassenübersicht mit NAGOLD-Einträgen</strong><small>Ein Klick auf die NAGOLD-Zahl zeigt die Einträge einer Person zum Prüfen. Speichern und Laden arbeiten auf allen Seiten mit demselben Kern; ein Profilwechsel in einem anderen Fenster wird im Profil erklärt.</small></div></li>
             <li><span>0.25.0</span><div><strong>NAGOLD speichert automatisch</strong><small>Wie in WorkbenchLab: gültige Zeilen und Löschungen werden sofort gespeichert, „Anwesenheit“ trägt 2 NAGOLD vor, Abzüge sind bis −10 möglich.</small></div></li>
             <li><span>0.24.0</span><div><strong>Profil und Speichern auf jeder Lernseite</strong><small>Neuer L1.2-Auftrag „Kundenworkshop“, Profilfenster und Disketten-Symbol auf allen Lernseiten, dieselbe NAGOLD-Tabelle überall, direkte Situationssprache und ein schlichterer Seitenfuß.</small></div></li>
@@ -501,6 +502,12 @@
           <p><strong>Verantwortlich für dieses Lernangebot</strong><br>Jakob Sawazki · Sawazki Electronics<br>Mörikestraße 15 · 72250 Freudenstadt</p>
           <p>Mobil: <a href="tel:+4915202967632">0152 02967632</a><br><a href="https://jakobsawazki.github.io/sawazki-electronics/" target="_blank" rel="noopener noreferrer">Sawazki Electronics</a></p>
           <small>Dein Lernstand bleibt in diesem Browser.</small>
+        </section>
+
+        <section class="about-section imprint" aria-labelledby="privacy-heading">
+          <h3 id="privacy-heading">Datenschutz</h3>
+          <p>Excel-Lab speichert Kürzel, Klasse, Lernstand und NAGOLD nur in deinem Browser. Es gibt keine Anmeldung und keine Übertragung an uns; die Speicherdatei gibst du selbst weiter.</p>
+          <p>Lernvideos laden erst nach deinem Klick von YouTube (youtube-nocookie.com). Gehostet wird die Seite bei GitHub Pages; Einzelheiten in der <a href="https://jakobsawazki.github.io/sawazki-electronics/datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Sawazki Electronics</a>.</p>
         </section>
       </div>
     </dialog>

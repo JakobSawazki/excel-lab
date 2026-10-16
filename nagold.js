@@ -17,6 +17,11 @@
   // „Anwesenheit“ füllt in der Tabelle automatisch 2 NAGOLD vor (wie in WorkbenchLab 0.48.0).
   const presets = ["Anwesenheit", "Mitarbeit", "Zusatzaufgabe", "Präsentation", "Projektarbeit", "Lernprodukt"];
   const attendancePoints = 2;
+  // Startkapital (Vorgabe Jakob, 16.10.2026): einmalig 5 NAGOLD je Schuljahr,
+  // als Zeile „Startkapital“ wie in WorkbenchLab. Das Schuljahr beginnt am 1. August.
+  const startCapitalPoints = 5;
+  // Jahresziel wie in WorkbenchLab: 100 NAGOLD = 100 %; mehr ist möglich.
+  const yearGoal = 100;
 
   function validDate(value) {
     if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
@@ -71,10 +76,31 @@
     return true;
   }
 
-  function presetOptions() { return [...presets, ...lessons.map(lessonPurpose)]; }
+  function isStartCapital(value) {
+    return typeof value === "string" && value.trim().toLocaleLowerCase("de-DE") === "startkapital";
+  }
+
+  // Schuljahr eines Datums (JJJJ-MM-TT), zum Beispiel "2026/27"; leer bei unbekanntem Datum.
+  function schoolYear(date) {
+    if (!validDate(date)) return "";
+    const year = Number(date.slice(0, 4));
+    const start = Number(date.slice(5, 7)) >= 8 ? year : year - 1;
+    return `${start}/${String((start + 1) % 100).padStart(2, "0")}`;
+  }
+
+  // Gibt es im Schuljahr von `date` schon eine Zeile „Startkapital“? (`except`: diese Zeile nicht mitzählen)
+  function startCapitalTaken(entries, date, except) {
+    const year = schoolYear(date);
+    return Boolean(year) && (Array.isArray(entries) ? entries : []).some((entry) => entry !== except && isStartCapital(entry?.purpose) && schoolYear(entry.date) === year);
+  }
+
+  // Vorschläge für „Wofür“; „Startkapital“ nur, solange es im laufenden Schuljahr fehlt.
+  function presetOptions(entries) {
+    return [...(startCapitalTaken(entries, today()) ? [] : ["Startkapital"]), ...presets, ...lessons.map(lessonPurpose)];
+  }
 
   window.EXCEL_LAB_NAGOLD = Object.freeze({
-    maxEntries, maxManualEntries, maxPoints, minPoints, attendancePoints, validDate, validTime, today, clock,
-    normalizeEntries, entriesFor, total, addLessonEntry, presetOptions
+    maxEntries, maxManualEntries, maxPoints, minPoints, attendancePoints, startCapitalPoints, yearGoal, validDate, validTime, today, clock,
+    normalizeEntries, entriesFor, total, addLessonEntry, isStartCapital, schoolYear, startCapitalTaken, presetOptions
   });
 })();

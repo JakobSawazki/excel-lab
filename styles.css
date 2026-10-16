@@ -4042,3 +4042,14 @@ html {
 /* Automatisches Speichern der NAGOLD-Tabelle (wie WorkbenchLab 0.48.0): Hinweis statt Speichern-Knopf. */
 .nagold-autosave { margin: 0; color: var(--text-faint); font-size: .8rem; text-align: right; }
 .nagold-error:empty { min-height: 0; margin: .2rem 0; }
+
+/* Jahresziel im NAGOLD-Feld (0.27.0): 100 NAGOLD = 100 %, wie in WorkbenchLab. */
+.nagold-total { flex-wrap: wrap; }
+.nagold-goal { display: grid; gap: .3rem; width: 100%; }
+.nagold-goal progress { display: block; width: 100%; height: .55rem; border: 0; border-radius: 999px; overflow: hidden; background: color-mix(in srgb, var(--nagold-deep) 22%, var(--surface)); accent-color: var(--nagold); }
+.nagold-goal progress::-webkit-progress-bar { background: color-mix(in srgb, var(--nagold-deep) 22%, var(--surface)); border-radius: 999px; }
+.nagold-goal progress::-webkit-progress-value { background: linear-gradient(90deg, var(--nagold-deep), var(--nagold)); border-radius: 999px; }
+.nagold-goal progress::-moz-progress-bar { background: linear-gradient(90deg, var(--nagold-deep), var(--nagold)); border-radius: 999px; }
+.nagold-goal-text { color: var(--text-soft); font-size: .78rem; font-variant-numeric: tabular-nums; }
+@media (forced-colors: active) { .nagold-goal progress { accent-color: Highlight; } }
+.manager-panels .nagold-total { grid-template-rows: auto 1fr auto; }

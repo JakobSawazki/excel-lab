@@ -21,6 +21,7 @@
     chevron: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>'
   };
   const RULE_ERROR = "Unvollständige Zeilen sind noch nicht gespeichert. Datum, Uhrzeit, Anlass und ganze NAGOLD von −10 bis 5 (ohne 0) ergänzen. Bisherige gültige Einträge bleiben erhalten.";
+  const START_ERROR = "Startkapital gibt es nur einmal je Schuljahr. Diese Zeile ist noch nicht gespeichert.";
   const SAVE_ERROR = "Speichern nicht möglich. Das Profil hat sich geändert oder der Speicher ist gesperrt.";
 
   const dialog = document.createElement("dialog");
@@ -66,9 +67,13 @@
   // bei unvollständig korrigierten Zeilen bleibt der letzte gültige Stand.
   function autosave() {
     let incomplete = false;
-    const entries = draft.flatMap((row) => {
+    let duplicateStart = false;
+    const entries = draft.flatMap((row, index) => {
       const valid = nagold.normalizeEntries([row])[0];
-      if (valid && (row.date || row.allowUnknownDate) && (row.time || row.allowUnknownTime)) {
+      // Ein zweites Startkapital im selben Schuljahr wird nicht gespeichert.
+      const duplicate = valid && nagold.isStartCapital(row.purpose) && nagold.startCapitalTaken(draft.slice(0, index), row.date);
+      duplicateStart ||= Boolean(duplicate);
+      if (valid && !duplicate && (row.date || row.allowUnknownDate) && (row.time || row.allowUnknownTime)) {
         savedRows.set(row, valid);
         return [valid];
       }
@@ -80,7 +85,7 @@
       if (session && session.save(entries) !== false) persisted = JSON.stringify(entries);
       else failed = true;
     }
-    $("#nagold-error").textContent = failed ? SAVE_ERROR : incomplete ? RULE_ERROR : "";
+    $("#nagold-error").textContent = failed ? SAVE_ERROR : duplicateStart ? START_ERROR : incomplete ? RULE_ERROR : "";
     updateSum();
   }
 
@@ -89,7 +94,7 @@
   }
 
   function render() {
-    const presets = nagold.presetOptions();
+    const presets = nagold.presetOptions(draft.filter((row) => !editing.has(draft.indexOf(row))));
     rows.innerHTML = draft.map((row, index) => {
       const isEditing = editing.has(index);
       const label = `Zeile ${index + 1}`;
@@ -132,6 +137,11 @@
     if (row.purpose !== previousPurpose && row.purpose.trim().toLocaleLowerCase("de-DE") === "anwesenheit") {
       row.points = nagold.attendancePoints;
       line.querySelector('[data-nagold-field="points"]').value = String(nagold.attendancePoints);
+    }
+    // „Startkapital“ füllt 5 NAGOLD vor.
+    if (row.purpose !== previousPurpose && nagold.isStartCapital(row.purpose)) {
+      row.points = nagold.startCapitalPoints;
+      line.querySelector('[data-nagold-field="points"]').value = String(nagold.startCapitalPoints);
     }
     autosave();
   }

@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.26.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.27.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1049,6 +1049,82 @@ ungültige Dateien, Reihenfolge der Skripte); Browser wie bisher
 (`codex/save-load-smoke.cjs`, beide Speicherprüfungen in `site.browser.cjs`).
 **Bitte künftige Änderungen am Dateiformat nur noch in `save-core.js`.**
 
+### A0zu Feinabgleich L3/L4 Aufgabe für Aufgabe (ohne Versionssprung)
+
+Schließt den letzten offenen Teil von OPT-09. Gelesen (nur lesend, Text per
+Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
+`materialien/BPE1/Lernfortschritt_3/Aufgabenstellungen` und alle 14 aus
+`Lernfortschritt_4/Aufgabenstellungen`; Stichprobe aus den Excel-Vorlagen:
+`L3_5.4 Tabellenvorlage Umsatzauswertung.xlsx` (26 Kunden).
+
+- **L4.1–L4.6:** Alle Tabellenwerte stehen unverändert auf den Seiten
+  (Winteraktionstag 125/100/125/50; Schwimmen 2013–2017 120/90/85/60/50;
+  Verpflegung 3,50 € + 1,00 € für Skifahrer; 2016/2017 und 2013–2017 je
+  Aktion; Wahlanteile 1994–2017, sieben Reihen, in L4.5). Formatvorgabe
+  Titel Arial fett 16 pt, Datenbeschriftungen und Achsentitel in L4.1.
+  Pro-Kopf-Einkommen/Energieverbrauch in L4.6 (Begriffsunterschied
+  Strom/Energie wird auf der Seite benannt).
+- **L4.7/L4.8:** Filialumsätze (20 Quartalswerte), Kundenzahl und Umsatz je
+  Ort, gleichförmige Bewegung, freier Fall und Urlaubsfahrt (zehn Abschnitte,
+  950 km) stimmen Wert für Wert. Die Auswertung nach Kundenart aus L4_2.2
+  fehlt bewusst: Das Aufgabenblatt fragt nur nach Orten.
+- **L3.1–L3.6:** Skiausfahrt (Grenze „kleiner als 18“, E8 bis E20, JAHR in
+  B5 und D8:D20, Kind bis 12, Tarife 46/35/20 € als Zellbezüge mit
+  Begründung), Fußball-Toto (Tabellenpunkte, Totoergebnis, Tipp, ZÄHLENWENN,
+  Gewinnstufen 10–13 und 7–13, ISTNV mit „kein Gewinn“), bedingte
+  Formatierung (Ja grün/Nein rosa; 0 rosa, 1 gelb, 3 hellblau),
+  Notenberechnung 2 : 1 mit RUNDEN und Verweistabelle (Belobigung/nicht
+  bestanden), Kfz-Steuer mit Länderfaktor und Hubraum 2099, PLZ-Suche.
+- **L3.7:** Urlaub (Kurs 1,21, Budget 1.500 €) und Kapital (5 Jahre,
+  Zielwert 6.000 € für Zinssatz und Startkapital).
+- **L3.8:** alle sechs Vertiefungen als Fall 1–6 mit den Originalregeln und
+  -werten; Firmen- und Personennamen sind neutralisiert (Kundennummern statt
+  Namen), die Umsätze aus der Vorlage L3_5.4 stimmen alle (Stuttgart: 11
+  Kunden, 501.290 €, wie in L4_2.2).
+- **Bewusste Abweichung:** L4.4 erstellt den Kreis in 2D und bietet die vom
+  Blatt verlangte 3D-Fassung auf einer Blattkopie an, falls die Lehrkraft das
+  Originalformat verlangt (Rückfrage an Jakob bleibt, siehe A0zf).
+
+Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
+Keine Seitenänderung nötig.
+
+### A0zv Release 0.27.0: Jakobs Antworten vom 16. Oktober
+
+**Neu: `documentation/tasks.md`.** Offene Fragen an Jakob stehen dort
+nummeriert, er antwortet darunter mit derselben Nummer. Beantwortete und
+umgesetzte Punkte werden dort gelöscht und hier/in `documentation.md`
+dokumentiert. Nummern nie neu vergeben. Bitte nutze die Datei ebenfalls.
+
+Entscheidungen Jakob:
+- Startkapital: ja, **einmal je Schuljahr** (Schuljahr ab 1. August).
+  `nagold.js`: `startCapitalPoints` (5), `isStartCapital`, `schoolYear(date)`
+  („2026/27“), `startCapitalTaken(entries, date, except)`,
+  `presetOptions(entries)` zeigt „Startkapital“ nur, solange es im laufenden
+  Schuljahr fehlt. `nagold-table.js` füllt 5 vor und speichert ein zweites
+  Startkapital im selben Schuljahr nicht (Meldung `START_ERROR`).
+- Jahresziel: 100 NAGOLD = 100 %, darüber ist möglich (`yearGoal`). Balken
+  `#nagold-goal-progress` und `#nagold-goal-text` im Knopf `#nagold-total`
+  (Startseite `index.html`, Lernseiten `xp.js`), Rest als Tooltip `#nagold-tip`.
+- NAGOLD je abgeschlossener Einheit bleibt (nicht je Level).
+- Haken „Lehrkraft hat bestätigt“ dürfen Lernende selbst setzen.
+- 3D-Kreis: 2D bleibt, 3D wird erwähnt (L4.4 tut das schon).
+- „Zuletzt gespeichert“ bleibt Browserliste; Lernende sichern die Datei
+  selbst. Hinweis beim Abschluss (`lesson-core.js`, `SAVE_HINT`), Meldung
+  gekürzt: „L1.2 geschafft: +100 XP, +5 NAGOLD. Jetzt über das
+  Disketten-Symbol speichern.“
+- Datenschutz: kurzer Abschnitt im Fenster „Versionen und Impressum“ mit
+  Verweis auf die Datenschutzerklärung von Sawazki Electronics.
+- **Grundsatz Jakob:** Für Lernende einfach und verständlich, nicht mit
+  Information überfluten; mehr nur auf Abruf (Tooltip, Aufklappen).
+
+Aufgeräumt (Freigabe Jakob): 141 per SHA-256 bestätigte Doppeldateien aus
+`../BPE1` und der Ordner `.tmp/` liegen im Papierkorb; in `../BPE1` bleiben
+nur Dateien ohne Kopie (Lösungen, Kompetenzraster, L1.1-PDF).
+
+Intern: XP-Regel nur noch in `save-core.js` (`LESSON_XP`, `bonusSolved`,
+`xpStats`); `app.js`, `xp.js`, `nachweis.js`, `lehrkraft.js` rechnen nicht mehr
+selbst; `nachweis.html` und `lehrkraft.html` laden `save-core.js`.
+
 ### A1 Wo der Stand liegt
 
 - Claudes Arbeit ist auf `main` übernommen und veröffentlicht (Jakobs Auftrag
@@ -1296,7 +1372,7 @@ Playwright wird nicht installiert. Die Browsertests nehmen den Pfad aus
 | OPT-06 | Antworten mischen | erledigt (Claude); bitte fachlich gegenlesen |
 | OPT-07 | Release 0.11.0/0.11.1 und Veröffentlichung | erledigt (Claude, Auftrag Jakob) |
 | OPT-08 | Übrige `.tmp`-Tests ins Repository, `.tmp/` aus Drive | 28 gültige Skripte übernommen (Claude, 10.10.); Leeren von `.tmp/` bei Jakob oder Codex |
-| OPT-09 | Quellenabgleich L3–L4 | maschineller Abgleich erledigt (Claude, 0.12.1): zwei fehlende Aufgaben ergänzt; Feinabgleich je Aufgabe offen |
+| OPT-09 | Quellenabgleich L3–L4 | erledigt (Claude): maschinell 0.12.1, Informationsblätter 0.20.6 (A0zf), Aufgabenblätter Aufgabe für Aufgabe 16.10. (A0zu) |
 | OPT-10 | Rücknahme eines Abschlusses | erledigt (Claude, 0.13.0): Weg c, siehe A0c |
 | OPT-11 | Profile sammeln sich an; kein Profilwechsel | teilweise erledigt (Claude, 0.18.1): Laden ersetzt dieselbe Person; Aufräumen alter Profile offen |
 | OPT-12 | Navigation doppelt vorhanden | erledigt (Claude, 0.14.0): `nav-menu.js` |

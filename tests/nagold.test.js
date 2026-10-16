@@ -91,10 +91,27 @@ test("Abschluss bucht genau einmal und übernimmt den alten Stand", () => {
   assert.equal(nagold.total(null), 0);
 });
 
-test("Vorauswahl: sechs Anlässe und alle Einheiten", () => {
+test("Vorauswahl: Startkapital, sechs Anlässe und alle Einheiten", () => {
   const options = plain(nagold.presetOptions());
-  assert.deepEqual(options.slice(0, 6), ["Anwesenheit", "Mitarbeit", "Zusatzaufgabe", "Präsentation", "Projektarbeit", "Lernprodukt"]);
-  assert.equal(options.length, 6 + lessons.length);
+  assert.deepEqual(options.slice(0, 7), ["Startkapital", "Anwesenheit", "Mitarbeit", "Zusatzaufgabe", "Präsentation", "Projektarbeit", "Lernprodukt"]);
+  assert.equal(options.length, 7 + lessons.length);
+  const taken = [{ date: nagold.today(), time: "08:00", purpose: "Startkapital", points: 5 }];
+  assert.equal(plain(nagold.presetOptions(taken))[0], "Anwesenheit", "Startkapital nur einmal je Schuljahr");
+});
+
+test("Startkapital: einmal je Schuljahr (ab 1. August)", () => {
+  assert.equal(nagold.startCapitalPoints, 5);
+  assert.equal(nagold.yearGoal, 100);
+  assert.equal(nagold.schoolYear("2026-07-31"), "2025/26");
+  assert.equal(nagold.schoolYear("2026-08-01"), "2026/27");
+  assert.equal(nagold.schoolYear("2099-12-31"), "2099/00");
+  assert.equal(nagold.schoolYear(""), "");
+  assert.equal(nagold.isStartCapital(" startkapital "), true);
+  const entries = [{ date: "2026-09-15", time: "08:00", purpose: "Startkapital", points: 5 }];
+  assert.equal(nagold.startCapitalTaken(entries, "2027-07-31"), true, "gleiches Schuljahr");
+  assert.equal(nagold.startCapitalTaken(entries, "2027-08-01"), false, "neues Schuljahr");
+  assert.equal(nagold.startCapitalTaken(entries, "2026-09-15", entries[0]), false, "die Zeile selbst zählt nicht");
+  assert.equal(nagold.startCapitalTaken([{ date: "", time: "", purpose: "Startkapital", points: 5 }], "2026-09-15"), false);
 });
 
 test("Alle Seiten laden nagold.js direkt nach content.js", () => {

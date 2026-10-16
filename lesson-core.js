@@ -240,12 +240,14 @@
       });
     }
 
-    function toast(message) {
+    // Vorgabe Jakob (16.10.2026): Lernende sichern ihren Stand selbst als Datei.
+    const SAVE_HINT = "Jetzt über das Disketten-Symbol speichern.";
+    function toast(message, duration = 4500) {
       const element = document.createElement("div");
       element.className = "toast";
       element.textContent = message;
       $("#toast-region").append(element);
-      setTimeout(() => element.remove(), 4500);
+      setTimeout(() => element.remove(), duration);
     }
 
     function persist() {
@@ -417,9 +419,8 @@
       render();
       if (!saved) return;
       if (next.completed) {
-        toast(following
-          ? `${code} abgeschlossen: ${points} XP${nagoldAdded ? ` und ${nagold.maxPoints} NAGOLD` : ""}. ${following.code} ist freigeschaltet.`
-          : `${code} abgeschlossen: ${points} XP${nagoldAdded ? ` und ${nagold.maxPoints} NAGOLD` : ""}. Sichere nun deinen Lernstand.`);
+        // Kurz halten (Vorgabe Jakob): Ergebnis und ein Schritt; die nächste Einheit zeigt die Navigation.
+        toast(`${code} geschafft: +${points} XP${nagoldAdded ? `, +${nagold.maxPoints} NAGOLD` : ""}. ${SAVE_HINT}`, 7000);
       } else {
         toast(following ? `${code} ist wieder offen. ${following.code} ist wieder gesperrt.` : `${code} ist wieder offen.`);
       }

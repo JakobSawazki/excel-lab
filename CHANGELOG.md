@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.27.0 – 2026-10-16
+
+**Startkapital und Jahresziel (Antworten Jakob vom 16. Oktober).** In der NAGOLD-Tabelle gibt es den Anlass „Startkapital“ mit 5 NAGOLD, einmal je Schuljahr (ab 1. August); ein zweites im selben Schuljahr wird nicht gespeichert. Das NAGOLD-Feld im Profil zeigt einen schmalen goldenen Balken „x / 100 · Jahresziel“; mehr als 100 NAGOLD sind möglich, die Erklärung steht im Tooltip. Nach dem Abschluss einer Einheit lautet die Meldung kurz „L1.2 geschafft: +100 XP, +5 NAGOLD. Jetzt über das Disketten-Symbol speichern.“ Im Fenster „Versionen und Impressum“ steht ein kurzer Datenschutzabschnitt. Intern: Die XP-Regel steht nur noch in `save-core.js` (Profilknopf, Startseite, Lernnachweis, Klassenübersicht).
+
 ## 0.26.0 – 2026-10-16
 
 **Ein Kern für Speichern und Laden.** Startseite und Lernseiten verwenden jetzt dasselbe Modul `save-core.js` für Dateiformat, Bereinigung des Profils, XP in der Datei, Dateinamen, „Zuletzt gespeichert“ und das Übernehmen einer Datei. Bisher war das zweimal programmiert. Für Lernende ändert sich nichts; die Speicherdateien bleiben im selben Format und lassen sich weiter auf beiden Seitenarten laden.

@@ -5,12 +5,10 @@
   // ein. Nichts wird gespeichert oder übertragen; alle Texte aus den Dateien
   // gelangen ausschließlich über textContent in die Seite.
   const content = window.EXCEL_LAB_CONTENT;
-  if (!content) return;
+  // XP-Regel aus save-core.js, wie auf Startseite, Lernseiten und Lernnachweis.
+  const core = window.ExcelLabSave;
+  if (!content || !core) return;
   const { stages, lessons } = content;
-  const bonusTasks = window.EXCEL_LAB_BONUS?.tasks || {};
-  const extraTasks = window.EXCEL_LAB_BONUS?.extra || {};
-  const BONUS_XP = window.EXCEL_LAB_BONUS?.xp || 0;
-  const LESSON_XP = 100;
   const MAX_FILE_SIZE = 1_000_000;
   const $ = (selector) => document.querySelector(selector);
   const students = new Map();
@@ -46,11 +44,10 @@
       progress[lesson.id] = {
         status: completed ? "done" : started ? "progress" : "open",
         // Zahl der gelösten Bonusaufgaben dieser Einheit (0 bis 2)
-        bonus: Number(Boolean(entry.bonus) && Boolean(bonusTasks[lesson.id])) + Number(Boolean(entry.bonus2) && Boolean(extraTasks[lesson.id]))
+        bonus: core.bonusSolved(lesson.id, entry)
       };
     }
-    const completedCount = lessons.filter((lesson) => progress[lesson.id].status === "done").length;
-    const bonusCount = lessons.reduce((sum, lesson) => sum + progress[lesson.id].bonus, 0);
+    const { completed: completedCount, bonusSolved: bonusCount, xp } = core.xpStats({ progress: saved });
     return {
       name,
       className,
@@ -59,7 +56,7 @@
       progress,
       completedCount,
       bonusCount,
-      xp: completedCount * LESSON_XP + bonusCount * BONUS_XP,
+      xp,
       // Summe der NAGOLD-Tabelle aus der Datei (Selbstauskunft der Lernenden)
       nagold: window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.total(payload.profile) : 0,
       // Die einzelnen Zeilen (bereinigt) für die Ansicht „NAGOLD-Einträge“.

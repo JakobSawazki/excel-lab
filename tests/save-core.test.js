@@ -44,6 +44,25 @@ test("XP: 100 je Abschluss, Bonus nur mit vorhandener Aufgabe", () => {
   assert.equal(core.completedCount({ progress: { "l1-1": done, "l1-2": done, unbekannt: done } }), 2);
 });
 
+test("XP-Regel an einer Stelle: Kennzahlen für Profil, Lernnachweis und Klassenübersicht", () => {
+  const { core, lessons } = load();
+  const stats = plain(core.xpStats({ progress: { "l1-1": { ...done, bonus: true, bonus2: true }, "l1-2": done } }));
+  assert.equal(stats.completed, 2);
+  assert.equal(stats.lessons, lessons.length);
+  assert.equal(stats.bonusSolved, 2);
+  assert.equal(stats.xp, 2 * 100 + 2 * stats.bonusXp);
+  assert.equal(stats.maximum, lessons.length * 100 + stats.bonusAvailable * stats.bonusXp);
+  assert.equal(core.bonusSolved("l1-1", { bonus: true, bonus2: true }), 2);
+  assert.equal(core.bonusSolved("l1-1", undefined), 0);
+  for (const file of ["app.js", "xp.js", "nachweis.js", "lehrkraft.js"]) {
+    assert.doesNotMatch(read(file), /EXCEL_LAB_BONUS/, `${file}: eigene XP-Rechnung`);
+  }
+  for (const page of ["nachweis.html", "lehrkraft.html"]) {
+    const html = read(page);
+    assert.ok(html.indexOf("save-core.js") > 0 && html.indexOf("save-core.js") < html.indexOf(page.replace(".html", ".js?")), `${page}: save-core.js vor dem Seitenskript`);
+  }
+});
+
 test("Speicherdatei: Format 1, Kennzahlen, Dateiname mit Datum, Kürzel und Browser-Kennung", () => {
   const { core, store } = load();
   const profile = core.normalizeProfile({ name: "ann.bei", className: "WGW EK1", progress: { "l1-1": done }, nagoldEntries: [{ date: "2026-10-16", time: "08:00", purpose: "Anwesenheit", points: 2 }] });
