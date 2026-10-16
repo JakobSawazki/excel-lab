@@ -171,10 +171,13 @@
   function renderLessonProfile(fields) {
     const profile = currentProfile();
     if (fields || editingProfileId !== profile?.id) {
+      // Wurde das Profil in einem anderen Fenster gewechselt, zeigen die Felder
+      // das neue Profil; der Hinweis erklärt, warum sich die Werte geändert haben.
+      const switched = !fields && editingProfileId !== null && editingProfileId !== (profile?.id || null);
       editingProfileId = profile?.id || null;
       lessonManager.querySelector("#profile-edit-name").value = profile?.name || "";
       lessonManager.querySelector("#profile-edit-class").value = profile?.className || "";
-      status("");
+      status(switched ? "Ein anderes Profil ist jetzt aktiv. Die Felder zeigen seine Angaben." : "");
     }
     const list = lessonManager.querySelector("#profile-list");
     list.replaceChildren();

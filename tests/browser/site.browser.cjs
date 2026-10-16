@@ -653,6 +653,18 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.setInputFiles("#teacher-files", [{ name: "nag.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(payload)) }]);
         await page.locator("#teacher-table tbody tr").first().waitFor();
         assert.equal(await page.locator("#teacher-table tbody .teacher-nagold").first().innerText(), "9");
+        // Ein Klick auf die Zahl zeigt die Einträge der Person, nur lesend und als Text.
+        await page.locator("#teacher-table tbody .teacher-nagold-button").first().click();
+        const teacherDialog = page.locator("#teacher-nagold-dialog");
+        assert.equal(await teacherDialog.evaluate((dialog) => dialog.open), true);
+        assert.match(await teacherDialog.locator("h2").innerText(), /NAGOLD · nag\.old \(WGW EK1\)/);
+        assert.equal(await teacherDialog.locator("tbody tr").count(), 2);
+        assert.equal(await teacherDialog.locator("tbody b").count(), 0, "Text aus der Datei wird nicht als HTML eingefügt");
+        assert.match(await teacherDialog.locator("tbody").innerText(), /<b>Mitarbeit<\/b>[\s\S]*4[\s\S]*L1\.2 · /);
+        assert.match(await teacherDialog.locator(".nagold-intro").innerText(), /2 Einträge, davon 1 automatisch/);
+        assert.equal(await teacherDialog.locator(".teacher-nagold-sum").innerText(), "9 NAGOLD gesamt");
+        assert.equal(await teacherDialog.locator("input, [contenteditable]").count(), 0, "nur lesend");
+        await teacherDialog.locator(".dialog-close").click();
         assert.deepEqual(errors, []);
       } finally { await context.close(); }
     });
@@ -740,6 +752,59 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
+    await check("Profilfenster auf der Lernseite: Kürzel und Klasse ändern, Format, Profilwechsel", async () => {
+      // Codex, 14.10.2026: Profilfenster auf allen Lernseiten; feste Prüfung ergänzt von Claude, 16.10.2026.
+      const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
+      const seeded = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "pa", profiles: [
+        { id: "pa", name: "pro.les", className: "WGW EK1", progress: { "l1-1": done } },
+        { id: "pb", name: "oth.pro", className: "WGW EK2", progress: {} }] });
+      const { context, page, errors } = await open(browser, "l1-2.html", { state: seeded });
+      const profiles = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles, KEY);
+      try {
+        await page.locator("#lesson-profile-link").click();
+        const dialog = page.locator("#manager-dialog");
+        assert.equal(await dialog.evaluate((element) => element.open), true, "Profilfenster statt Seitenwechsel");
+        assert.equal(page.url().endsWith("l1-2.html"), true);
+        assert.match(await page.locator("#profile-list").innerText(), /pro\.les[\s\S]*WGW EK1 · 1\/27 erledigt/);
+        assert.equal(await page.locator("#profile-edit-name").inputValue(), "pro.les");
+        // Gleiche Anordnung wie auf der Startseite: Karte, Felder, XP neben NAGOLD, Lernnachweis.
+        const layout = await page.evaluate(() => { const r = (selector) => document.querySelector(selector).getBoundingClientRect(); return { card: r("#profile-list"), form: r("#profile-edit-form"), xp: r("#xp-panel"), nagold: r("#nagold-total"), certificate: r("#certificate-link") }; });
+        assert.ok(layout.card.bottom <= layout.form.top && layout.form.bottom <= layout.xp.top && layout.xp.bottom <= layout.certificate.top);
+        assert.ok(Math.abs(layout.xp.top - layout.nagold.top) <= 1 && Math.abs(layout.xp.height - layout.nagold.height) <= 1);
+
+        // Falsches Format: nichts gespeichert.
+        await page.locator("#profile-edit-name").fill("Falsch");
+        await page.locator("#profile-edit-name").dispatchEvent("change");
+        assert.equal((await profiles())[0].name, "pro.les", "ungültiges Kürzel wird nicht gespeichert");
+        assert.equal(await page.locator("#profile-edit-name").evaluate((input) => input.validity.valid), false);
+
+        // Gültige Änderung: Kleinschreibung, Klasse in Großbuchstaben, Kopfzeile folgt, Fortschritt bleibt.
+        await page.locator("#profile-edit-name").fill("NEU.LES");
+        await page.locator("#profile-edit-name").dispatchEvent("change");
+        await page.locator("#profile-edit-class").fill("wgw   ek3");
+        await page.locator("#profile-edit-class").dispatchEvent("change");
+        const saved = (await profiles())[0];
+        assert.equal(saved.name, "neu.les");
+        assert.equal(saved.className, "WGW EK3");
+        assert.equal(saved.progress["l1-1"].completed, true, "Fortschritt unverändert");
+        assert.equal((await profiles())[1].name, "oth.pro", "anderes Profil unverändert");
+        await page.waitForFunction(() => /neu\.les · WGW EK3/.test(document.querySelector("#lesson-profile-name").textContent));
+        assert.match(await page.locator("#lesson-profile-status").innerText(), /aktualisiert/);
+
+        // Wechselt das Profil in einem anderen Tab, wird der offene Entwurf nicht auf das falsche Profil geschrieben.
+        await page.evaluate((key) => { const s = JSON.parse(localStorage.getItem(key)); s.currentProfileId = "pb"; localStorage.setItem(key, JSON.stringify(s)); }, KEY);
+        await page.locator("#profile-edit-class").fill("WGW EK9");
+        await page.locator("#profile-edit-class").dispatchEvent("change");
+        const after = await profiles();
+        assert.equal(after[0].className, "WGW EK3", "erstes Profil bleibt");
+        assert.equal(after[1].className, "WGW EK2", "zweites Profil bleibt");
+        await page.waitForFunction(() => /anderes Profil ist jetzt aktiv/.test(document.querySelector("#lesson-profile-status").textContent));
+        assert.equal(await page.locator("#profile-edit-name").inputValue(), "oth.pro", "Felder zeigen das jetzt aktive Profil");
+        assert.equal(await page.locator("#profile-edit-class").inputValue(), "WGW EK2");
+        assert.deepEqual(errors, []);
+      } finally { await context.close(); }
+    });
+
     await check("Farbschema: Lernseite ohne Lernstand speichert die Auswahl", async () => {
       const { context, page } = await open(browser, "l1-1.html");
       try {
@@ -752,5 +817,5 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
     });
   } finally { await browser.close(); }
   assert.deepEqual(failures, []);
-  console.log(`${pages.length} Seiten bei zwei Breiten und einundzwanzig Einzelprüfungen bestanden.`);
+  console.log(`${pages.length} Seiten bei zwei Breiten und zweiundzwanzig Einzelprüfungen bestanden.`);
 })().catch((error) => { console.error(error); process.exitCode = 1; });

@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.25.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.25.1 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -974,6 +974,41 @@ dortigen Dokumentation.
 `site.browser.cjs`: Ablauf mit automatischem Speichern (unvollständig, 6,
 −11, −10, Summe −5, Anwesenheit, Schließen, leere Zeile, HTML, Doppelklick,
 unvollständige Korrektur, sofortiges Löschen) und Lernseite ohne Knopf.
+
+### A0zs Release 0.25.1: Profilfenster der Lernseiten geprüft
+
+Dein Profilfenster auf den Lernseiten (`xp.js`, 14. Oktober) hatte nur deine
+temporären Tests. Neue Einzelprüfung in `site.browser.cjs`: öffnet sich statt
+des Seitenwechsels, gleiche Anordnung wie die Startseite, ungültiges Kürzel
+wird nicht gespeichert, gültige Änderung (Kleinschreibung, Klasse in
+Großbuchstaben, Mehrfach-Leerzeichen zusammengezogen) erreicht Speicher und
+Kopfzeile, Fortschritt und andere Profile bleiben unverändert, Profilwechsel
+in einem anderen Fenster schreibt nichts auf das falsche Profil.
+
+Dabei gefunden: Dein Schutz in `writeProfile` greift, die Meldung „Das Profil
+hat sich geändert“ wurde aber sofort von `renderLessonProfile` gelöscht
+(`status("")` beim Umschalten der Felder). Jetzt zeigt `renderLessonProfile`
+beim Umschalten „Ein anderes Profil ist jetzt aktiv. Die Felder zeigen seine
+Angaben.“ Beim Öffnen des Fensters bleibt der Hinweis leer.
+
+**Klassenübersicht: NAGOLD-Einträge ansehen** (`lehrkraft.js`, `lehrkraft.css`).
+Die NAGOLD-Zahl je Person ist ein Knopf `.teacher-nagold-button`; er öffnet
+`#teacher-nagold-dialog` mit den bereinigten Zeilen (`nagoldEntries` aus
+`EXCEL_LAB_NAGOLD.entriesFor`), Sicherungsdatum, Zahl der automatischen
+Zeilen und Summe. Nur lesend, alle Texte über `textContent`; Abzüge rot.
+Bewusst kein Bestätigen wie in WorkbenchLab (OPT-09 dort): Das wäre eine
+Bewertungsregel und bleibt Jakobs Entscheidung. Test im NAGOLD-Ablauf von
+`site.browser.cjs`.
+
+**Testserver `tools/serve.cjs` (neu).** Am 16. Oktober lieferte
+`python -m http.server` eine CSS-Datei in über einer Sekunde aus; die Tests
+liefen ins Zeitlimit. `node tools/serve.cjs [Ordner] [Port]` (Vorgabe:
+Projektordner, 4273) liest jede Datei einmal und liefert sie aus dem
+Speicher, auch direkt aus Google Drive in 30–50 ms. Nur 127.0.0.1, keine
+versteckten Ordner (`.git` → 403), Bereichsanfragen für Videos. Nach
+Dateiänderungen neu starten. Zusätzlich war ein Windows-Prozess
+(TextInputHost) dauerhaft bei einem vollen Kern; der Sammellauf brauchte
+trotzdem ein Vielfaches der üblichen Zeit (`EXCEL_LAB_TEST_TIMEOUT=1500`).
 
 ### A1 Wo der Stand liegt
 

@@ -61,7 +61,9 @@
       bonusCount,
       xp: completedCount * LESSON_XP + bonusCount * BONUS_XP,
       // Summe der NAGOLD-Tabelle aus der Datei (Selbstauskunft der Lernenden)
-      nagold: window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.total(payload.profile) : 0
+      nagold: window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.total(payload.profile) : 0,
+      // Die einzelnen Zeilen (bereinigt) für die Ansicht „NAGOLD-Einträge“.
+      nagoldEntries: window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.entriesFor(payload.profile) : []
     };
   }
 
@@ -96,6 +98,66 @@
     progress: { symbol: "◐", label: "in Arbeit" },
     open: { symbol: "·", label: "offen" }
   };
+
+  // NAGOLD-Einträge einer Person, nur zum Ansehen: Die Tabelle ist eine
+  // Selbstauskunft der Lernenden, die Lehrkraft prüft sie hier Zeile für Zeile.
+  let nagoldDialog = null;
+  function showNagold(student) {
+    if (!nagoldDialog) {
+      nagoldDialog = document.createElement("dialog");
+      nagoldDialog.className = "dialog nagold-dialog teacher-nagold-dialog";
+      nagoldDialog.id = "teacher-nagold-dialog";
+      nagoldDialog.setAttribute("aria-labelledby", "teacher-nagold-title");
+      const content = node("div", "dialog-content");
+      const close = node("button", "dialog-close");
+      close.type = "button";
+      close.setAttribute("aria-label", "NAGOLD-Einträge schließen");
+      close.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>';
+      close.addEventListener("click", () => nagoldDialog.close());
+      const eyebrow = node("p", "eyebrow", "Selbstauskunft aus der Speicherdatei");
+      const title = node("h2", "", "");
+      title.id = "teacher-nagold-title";
+      const info = node("p", "nagold-intro", "");
+      const wrap = node("div", "nagold-table-wrap");
+      const table = node("table", "nagold-table");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      for (const text of ["Datum", "Uhrzeit", "Wofür", "NAGOLD"]) { const th = node("th", "", text); th.scope = "col"; headRow.append(th); }
+      head.append(headRow);
+      table.append(head, document.createElement("tbody"));
+      wrap.append(table);
+      const sum = node("p", "teacher-nagold-sum", "");
+      content.append(close, eyebrow, title, info, wrap, sum);
+      nagoldDialog.append(content);
+      nagoldDialog.addEventListener("click", (event) => { if (event.target === nagoldDialog) nagoldDialog.close(); });
+      document.body.append(nagoldDialog);
+    }
+    const dateText = (value) => value ? new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T12:00:00Z`)) : "Nicht erfasst";
+    nagoldDialog.querySelector("h2").textContent = `NAGOLD · ${student.name} (${student.className || "ohne Klasse"})`;
+    const automatic = student.nagoldEntries.filter((entry) => entry.lessonId).length;
+    nagoldDialog.querySelector(".nagold-intro").textContent = `Gesichert am ${formatDate(student.exportedAt)} · ${student.nagoldEntries.length} Einträge, davon ${automatic} automatisch für abgeschlossene Einheiten.`;
+    const body = nagoldDialog.querySelector("tbody");
+    body.replaceChildren(...(student.nagoldEntries.length ? student.nagoldEntries.map((entry) => {
+      const row = document.createElement("tr");
+      row.append(node("td", "", dateText(entry.date)), node("td", "", entry.time || "Nicht erfasst"), node("td", "", entry.purpose),
+        node("td", `nagold-points${entry.points < 0 ? " is-negative" : ""}`, String(entry.points)));
+      return row;
+    }) : [(() => { const row = document.createElement("tr"); const cell = node("td", "", "Keine Einträge."); cell.colSpan = 4; row.append(cell); return row; })()]));
+    nagoldDialog.querySelector(".teacher-nagold-sum").textContent = `${student.nagold} NAGOLD gesamt`;
+    if (!nagoldDialog.open) nagoldDialog.showModal();
+  }
+
+  function nagoldCell(student) {
+    const cell = node("td", "teacher-number teacher-nagold");
+    const button = node("button", "teacher-nagold-button", String(student.nagold));
+    button.type = "button";
+    button.title = "Einträge ansehen";
+    button.setAttribute("aria-label", `${student.name}: ${student.nagold} NAGOLD, Einträge ansehen`);
+    button.setAttribute("aria-haspopup", "dialog");
+    button.addEventListener("click", () => showNagold(student));
+    cell.append(button);
+    return cell;
+  }
 
   function renderTable(list) {
     const table = $("#teacher-table");
@@ -139,7 +201,7 @@
         node("td", "teacher-number", `${student.completedCount}/${lessons.length}`),
         node("td", "teacher-number", String(student.bonusCount)),
         node("td", "teacher-number teacher-xp", String(student.xp)),
-        node("td", "teacher-number teacher-nagold", String(student.nagold)));
+        nagoldCell(student));
       for (const lesson of lessons) {
         const entry = student.progress[lesson.id];
         const status = STATUS[entry.status];

@@ -1,11 +1,18 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.25.0
-Status: Version 0.25.0 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
+Projektversion: 0.25.1
+Status: Version 0.25.1 veröffentlicht (Release-Stand für die Änderungen vom 12. bis 16. Oktober); Quellenabgleich L3–L4: Informationsblätter abgeglichen (0.20.6, claude2codex A0zf), Feinabgleich je Aufgabe offen
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.25.1 (Claude, 16.10.2026):** `xp.js`,
+  `renderLessonProfile`: bleibender Hinweis, wenn das Profil in einem anderen
+  Fenster gewechselt wurde. Neue Einzelprüfung „Profilfenster auf der
+  Lernseite“ in `site.browser.cjs` (jetzt zweiundzwanzig). Klassenübersicht:
+  NAGOLD-Zahl öffnet die Einträge der Person (nur lesend, `lehrkraft.js`). Siehe
+  [`claude2codex.md`](claude2codex.md), A0zs.
 
 - **Veröffentlicht als 0.25.0 (Claude, 16.10.2026):** NAGOLD-Tabelle wie in
   WorkbenchLab 0.48.0: automatisches Speichern (`nagold-table.js`,

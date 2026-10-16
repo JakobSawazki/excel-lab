@@ -20,7 +20,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.25.0**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.25.1**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
@@ -38,10 +38,12 @@ Die Datei `index.html` kann direkt im Browser geöffnet werden. Für eine
 realistische lokale Vorschau empfiehlt sich ein kleiner Webserver:
 
 ```powershell
-python -m http.server 4173
+node tools/serve.cjs
 ```
 
-Danach ist die Seite unter `http://localhost:4173` erreichbar.
+Danach ist die Seite unter `http://127.0.0.1:4273` erreichbar. Der Server liest
+jede Datei einmal; nach Änderungen neu starten. `python -m http.server` geht
+ebenfalls, ist aus Google Drive aber deutlich langsamer.
 
 ## Direkt im Browser lernen
 
@@ -53,7 +55,7 @@ Die Hauptnavigation bleibt auch auf diesen eigenen Lernseiten sichtbar. Direkt
 darunter zeigt eine klickbare Standortzeile beispielsweise „BPE1 › L4 › L4.1“.
 
 L1.1 bis L1.6, L2.1 bis L2.5, L3.1 bis L3.8 und L4.1 bis L4.8 erproben zusätzlich verpflichtende Verständnis-Checks mit je
-drei Anwendungsfragen; L1.6 prüft seine fünf Rechenmodelle mit fünf Fragen. Alle Antworten müssen stimmen, bevor der Abschluss
+drei Anwendungsfragen; L1.2 (Kundenworkshop) und L1.6 (fünf Rechenmodelle) haben je fünf Fragen. Alle Antworten müssen stimmen, bevor der Abschluss
 möglich ist. Die Lehrkraft prüft weiterhin die tatsächlichen Excel-Dateien
 und lässt sich die Vorgehensweise erklären. Ein Browser-Quiz allein ersetzt
 keine Prüfung der praktischen Arbeit.
@@ -67,11 +69,30 @@ Wer einen Kontrollwert richtig einträgt, erhält je Aufgabe einmalig 50 Bonus-X
 Abschluss der Einheit ist die Aufgabe nicht nötig. Die Aufgaben stehen in
 `bonus-tasks.js`.
 
+## Profil, Speicherstand und NAGOLD
+
+Der Profilknopf oben rechts zeigt XP und NAGOLD („300 XP · 10 NAG“). Er öffnet
+auf Startseite und Lernseiten dasselbe Profilfenster: Kürzel und Klasse, Level
+mit Fortschrittsbalken, NAGOLD und den Lernnachweis. Erklärungen stehen als
+Tooltip an den Zahlen.
+
+Das Disketten-Symbol links daneben öffnet „Speicherstand“: „Speichern“ legt
+eine Datei mit Datum und Kürzel im Download-Ordner ab, „Laden“ übernimmt eine
+gespeicherte Datei. Die fünf zuletzt gespeicherten Stände bleiben zusätzlich
+im Browser und lassen sich über „Zuletzt gespeichert“ wieder laden.
+
+NAGOLD ist die Punktetabelle aus WorkbenchLab: Jede abgeschlossene Einheit
+bringt automatisch einmalig 5 NAGOLD. Weitere Zeilen (Anwesenheit mit 2,
+Mitarbeit, Zusatzaufgabe, Präsentation …) tragen Lernende mit ganzen Punkten
+von −10 bis 5 ein; die Tabelle speichert gültige Zeilen sofort. Sie ist eine
+Selbstauskunft; verbindlich bleibt die Bewertung der Lehrkraft.
+
 ## Klassenübersicht für Lehrkräfte
 
-[`lehrkraft.html`](lehrkraft.html) (Link „Für Lehrkräfte“ im Fuß der Startseite)
+[`lehrkraft.html`](lehrkraft.html) (Bereich „Für Lehrkräfte“ in der Ansicht „Quellen“)
 liest die Speicherdateien der Lernenden ein und zeigt je Person Abschlüsse,
-Bonusaufgaben und XP sowie je Einheit, wie viele sie abgeschlossen haben. Die
+Bonusaufgaben, XP und NAGOLD sowie je Einheit, wie viele sie abgeschlossen haben.
+Ein Klick auf die NAGOLD-Zahl zeigt die Einträge der Person zum Prüfen. Die
 Dateien werden nur im Browserfenster ausgewertet, nicht hochgeladen und nicht
 gespeichert. Die Tabelle lässt sich als CSV sichern und drucken. Die Übersicht
 zeigt, was die Lernenden selbst gespeichert haben; sie ersetzt keine Kontrolle
@@ -79,10 +100,10 @@ der Excel-Dateien.
 
 ## Lernnachweis
 
-Im Profildialog führt „Lernnachweis“ zu [`nachweis.html`](nachweis.html): eine
+Im Profilfenster führt „Lernnachweis“ zu [`nachweis.html`](nachweis.html): eine
 druckbare Übersicht des aktuellen Profils mit abgeschlossenen Einheiten je
-Lernfortschritt, gelösten Bonusaufgaben, XP und einer Unterschriftszeile für
-die Lehrkraft. Die Seite liest nur den Lernstand im Browser und speichert nichts.
+Lernfortschritt, gelösten Bonusaufgaben, XP, NAGOLD und einer Unterschriftszeile
+für die Lehrkraft. Das X oben rechts führt zurück ins Profilfenster. Die Seite liest nur den Lernstand im Browser und speichert nichts.
 
 ## Druckansicht
 
@@ -219,7 +240,7 @@ Excel-Lab/
 ├── lesson-navigation.js       Hauptnavigation und Standortzeile der Lernseiten
 ├── lesson-workspace.js        Abschnitte, Videos, Excel-Links, Druckansicht
 ├── theme-boot.js              Farbschema und Darstellung vor dem ersten Zeichnen
-├── xp.js, options.js          XP und NAGOLD im Profilknopf, Darstellungsoptionen
+├── xp.js, options.js          XP und NAGOLD im Profilknopf, Profilfenster der Lernseiten, Darstellungsoptionen
 ├── nagold.js                  NAGOLD-Regeln: 5 je abgeschlossener Einheit, eigene Einträge −10 bis 5
 ├── nagold-table.js            NAGOLD-Tabelle (Fenster) für Startseite und Lernseiten
 ├── lesson-save.js             Speichern und Laden auf den Lernseiten (Codex)
@@ -232,6 +253,7 @@ Excel-Lab/
 │   l4-*.css, lehrkraft.css, nachweis.css      Gestaltung
 ├── assets/                    Fotos (PNG-Original und verlustfreies WebP), Symbol
 ├── tests/                     Node-Tests, Browsertests, Nachrechnung in Excel
+├── tools/                     serve.cjs (Testvorschau), build-loesungen.cjs (Lösungsheft außerhalb des Repositorys)
 ├── documentation/             Projektdokumentation, Übergabe, Testprotokoll
 ├── CHANGELOG.md               Änderungen je Version
 ├── materialien/BPE1/          lokal synchronisiert, nicht in Git
@@ -255,12 +277,17 @@ Die Browsertests laufen mit Edge über Playwright gegen eine lokale Vorschau.
 Playwright wird nicht installiert; der Pfad steht in `EXCEL_LAB_PLAYWRIGHT`.
 
 ```powershell
-python -m http.server 4273 --bind 127.0.0.1
+node tools/serve.cjs                                   # Vorschau auf Port 4273, Dateien zwischengespeichert
 node tests/browser/site.browser.cjs http://127.0.0.1:4273/
 node tests/browser/lesson-gates.browser.cjs http://127.0.0.1:4273/ all
 node tests/browser/a11y.browser.cjs http://127.0.0.1:4273/
 node tests/browser/run-all.cjs http://127.0.0.1:4273/     # alle Browsertests nacheinander
 ```
+
+`tools/serve.cjs` liest jede Datei nur einmal; nach Änderungen den Server neu starten.
+`python -m http.server 4273 --bind 127.0.0.1` geht ebenfalls, ist aus Google Drive
+aber deutlich langsamer. Auf einem ausgelasteten Rechner hilft
+`EXCEL_LAB_TEST_TIMEOUT=1500` (Sekunden je Testdatei).
 
 Die Browsertests prüfen Seiten und Anleitung. Die Rechenwege der neuen
 Aufgaben (KFZ-Steuer, PLZ-Suche, 15 Bonusaufgaben) rechnet

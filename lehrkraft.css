@@ -74,3 +74,11 @@
   .teacher-page > main { flex: 1 0 auto; padding-bottom: 4rem; }
   .teacher-page > .site-footer { flex-shrink: 0; }
 }
+/* NAGOLD-Einträge einer Person ansehen (16.10.2026): Zahl als Knopf, Fenster nur lesend. */
+.teacher-nagold-button { padding: .15rem .45rem; border: 1px solid transparent; border-radius: 8px; background: none; color: var(--nagold); font: inherit; font-weight: 800; font-variant-numeric: tabular-nums; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; }
+.teacher-nagold-button:hover { border-color: color-mix(in srgb, var(--nagold-deep) 60%, var(--line-strong)); background: color-mix(in srgb, var(--nagold-deep) 12%, transparent); }
+.teacher-nagold-button:focus-visible { outline: 2px solid var(--nagold); outline-offset: 2px; }
+.teacher-nagold-dialog .nagold-points.is-negative { color: var(--red, #ff8f8f); }
+[data-theme="light"] .teacher-nagold-dialog .nagold-points.is-negative { color: #a32020; }
+.teacher-nagold-sum { margin: .9rem 0 0; color: var(--nagold); font-size: 1.05rem; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+@media print { .teacher-nagold-button { text-decoration: none; } }
