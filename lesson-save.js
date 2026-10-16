@@ -22,10 +22,10 @@
   dialog.innerHTML = `<div class="dialog-content">
     <button class="dialog-close" type="button" aria-label="Dialog schließen"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
     <span class="save-dialog-mark" aria-hidden="true">${mark}</span><p class="eyebrow">Speicherdatei</p><h2 id="save-dialog-title">Speicherstand</h2>
-    <p class="save-dialog-intro">Dein Lernstand liegt nur in diesem Browser. Sichere ihn als Datei in deinen persönlichen Ordner und lade ihn an einem anderen Gerät wieder.</p>
+    <p class="save-dialog-intro">Speichere deinen Stand als Datei in deinem Ordner. Mit „Laden“ holst du ihn zurück, auch an einem anderen PC.</p>
     <p class="save-dialog-status" id="save-status"></p>
-    <div class="manager-actions save-actions"><span class="tip-wrap"><button class="button button-primary" type="button" id="export-button" aria-describedby="export-tip">Speichern</button><span class="tip" role="tooltip" id="export-tip">Legt eine Datei mit Datum und Kürzel im Download-Ordner ab.</span></span><span class="tip-wrap"><button class="button button-secondary" type="button" id="import-button" aria-describedby="import-tip">Laden</button><span class="tip" role="tooltip" id="import-tip">Übernimmt eine früher gespeicherte Datei in diesen Browser.</span></span></div>
-    <div class="recent-saves" id="recent-saves-box"><label for="recent-saves">Zuletzt gespeichert</label><div class="recent-saves-row"><select id="recent-saves" aria-describedby="recent-saves-hint"></select><button class="button button-secondary" type="button" id="recent-load">Diesen Stand laden</button></div><small id="recent-saves-hint">Die letzten fünf gespeicherten Stände bleiben zusätzlich in diesem Browser. Für ein anderes Gerät brauchst du die Datei.</small></div>
+    <div class="manager-actions save-actions"><span class="tip-wrap"><button class="button button-primary" type="button" id="export-button" aria-describedby="export-tip" aria-keyshortcuts="Alt+S">Speichern</button><span class="tip" role="tooltip" id="export-tip">Legt eine Datei mit Datum und Kürzel im Download-Ordner ab. Schneller: Alt+S</span></span><span class="tip-wrap"><button class="button button-secondary" type="button" id="import-button" aria-describedby="import-tip">Laden</button><span class="tip" role="tooltip" id="import-tip">Übernimmt eine früher gespeicherte Datei in diesen Browser.</span></span></div>
+    <div class="recent-saves" id="recent-saves-box"><label for="recent-saves">Zuletzt gespeichert</label><div class="recent-saves-row"><select id="recent-saves"></select><button class="button button-secondary" type="button" id="recent-load">Diesen Stand laden</button></div></div>
     <p id="save-feedback" role="status" aria-live="polite" hidden></p><input id="import-file" type="file" accept="application/json,.json" hidden>
   </div>`;
   document.body.append(dialog);
@@ -90,6 +90,14 @@
   $(".dialog-close").addEventListener("click",()=>dialog.close());
   dialog.addEventListener("click",event=>{if(event.target===dialog) dialog.close();});
   $("#export-button").addEventListener("click",exportProgress);
+  // Alt+S speichert sofort wie „Speichern“ (Wunsch Jakob, 16.10.2026); ohne Profil öffnet sich das Fenster.
+  document.addEventListener("keydown",event=>{
+    if(!core.isSaveShortcut(event)) return;
+    event.preventDefault();
+    if(!current(readState())) { button.click(); return; }
+    exportProgress();
+    if(!dialog.open) core.notify("Gespeichert: Die Datei liegt im Download-Ordner.");
+  });
   $("#import-button").addEventListener("click",pickFile);
   $("#import-file").addEventListener("change",event=>importFile(event.target.files?.[0]));
   $("#recent-load").addEventListener("click",()=>{try {const item=savedList()[Number($("#recent-saves").value)];if(item) applyPayload(item.payload);} catch(error){message(error.message||"Der Speicherstand konnte nicht geladen werden.");}});

@@ -8,17 +8,14 @@ setzt beantwortete Punkte um, löscht sie danach hier und dokumentiert sie in
 
 Nummern werden nicht neu vergeben, auch wenn ein Punkt gelöscht ist.
 
-## Gerade in Arbeit (Claude, nach deinen Antworten vom 16.10.)
+## Gerade in Arbeit (Claude)
 
-Nur zur Info, hier musst du nichts antworten.
+*Nichts offen.*
 
-- **17.** Gebürstete Metalloptik (edel, passend) für Hintergrund, Knöpfe,
-  Menü (Lernpfad-Aufklappmenü) und wo es gestalterisch Sinn ergibt
-  (Wunsch vom 16.10.).
-
-Erledigt und dokumentiert (Release 0.27.0, `documentation.md` und
-`claude2codex.md` A0zv): 1–16 (Startkapital, Jahresziel, Speicherhinweis,
-Datenschutz, Doppeldateien, `.tmp/`).
+Erledigt und dokumentiert: 1–16 in Release 0.27.0 (A0zv); 17–21 in Release
+0.28.0 (A0zw): gebürstetes Metall, Pfadleiste mit Schatten, Fortschritt als
+Balken im Profil, Alt+S zum Speichern, Esc im Lernnachweis, Pfadleiste ab
+„Übersicht“, gebürsteter Hintergrund auf der Startseite ohne Raster.
 
 ## Fragen an Jakob
 

@@ -1,22 +1,23 @@
 /* Homepage 0.6 — scoped to the overview; lesson pages keep their own styles. */
+/* Durchsichtig (0.28.0), damit der gebürstete Seitenhintergrund auch hier wirkt. */
 #view-dashboard {
-  background: radial-gradient(ellipse at 85% 12%, color-mix(in srgb, var(--green) 10%, transparent), transparent 36%), var(--bg);
+  background: radial-gradient(ellipse at 85% 12%, color-mix(in srgb, var(--green) 10%, transparent), transparent 36%);
 }
 #view-dashboard .home-topline { display:flex; justify-content:space-between; gap:1rem; padding:1.5rem 0; border-bottom:1px solid var(--line); color:var(--text-soft); font-size:.72rem; letter-spacing:.04em; }
 #view-dashboard .home-topline i, #view-dashboard .home-sheet-title i { display:inline-block; width:7px; height:7px; margin-right:.5rem; border-radius:50%; background:var(--green); box-shadow:0 0 14px color-mix(in srgb, var(--green) 55%, transparent); }
 #view-dashboard .home-topline b { margin:0 .6rem; color:var(--text-faint); font-weight:400; }
-#view-dashboard .hero { grid-template-columns:1fr 1fr; align-items:start; gap:3.5rem; min-height:0; padding:2rem 0 3.5rem; }
+#view-dashboard .hero { grid-template-columns:1fr 1fr; align-items:start; gap:3.5rem; min-height:0; padding:2rem 0 1.5rem; }
 #view-dashboard .hero h1 { font-size:clamp(3.8rem, 6.4vw, 6rem); line-height:1.02; letter-spacing:-.065em; margin-bottom:1.5rem; }
 #view-dashboard .home-headline-accent { color:var(--lime); }
 #view-dashboard .hero-lead { font-size:1.03rem; max-width:490px; line-height:1.75; }
 #view-dashboard .hero-facts { font-size:.71rem; gap:.55rem 1rem; }
-#view-dashboard .hero-visual { padding-bottom:5.2rem; }
+/* Ohne schwebende Fortschrittskarte (0.28.0, jetzt im Profil) braucht das Startbild unten keinen Platz mehr. */
+#view-dashboard .hero-visual { padding-bottom:0; }
 #view-dashboard .home-window-bar { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.1rem; background:var(--surface); border:1px solid var(--line-strong); border-bottom:0; border-radius:18px 18px 0 0; color:var(--text-soft); font: .58rem Consolas,monospace; letter-spacing:.07em; }
 #view-dashboard .home-window-dots { color:var(--green); letter-spacing:.12em; }
 #view-dashboard .hero-photo-frame { border-radius:0 0 18px 18px; padding:7px; }
 #view-dashboard .hero-photo-frame::before { inset:7px; border-radius:7px; }
 #view-dashboard .hero-photo-frame img { height:auto; aspect-ratio:16 / 10; border-radius:7px; }
-#view-dashboard .floating-progress { right:0; bottom:0; box-shadow:0 8px 30px #0002; }
 #view-dashboard .hero-outcomes { left:0; bottom:.5rem; gap:.8rem; }
 #view-dashboard .hero-outcomes > span { min-width:0; }
 #view-dashboard .home-next { margin:0 0 4.5rem; }
@@ -81,7 +82,6 @@
   #view-dashboard .hero { grid-template-columns:1fr; padding:2.5rem 0; gap:2rem; }
   #view-dashboard .hero h1 { font-size:clamp(3.4rem,12vw,5.5rem); }
   #view-dashboard .hero-visual { padding-bottom:0; }
-  #view-dashboard .floating-progress { position:static; margin-top:.7rem; box-shadow:none; width:100%; }
   #view-dashboard .home-next { margin-bottom:2.5rem; }
   
   #view-dashboard .home-lab { grid-template-columns:1fr; padding:1.3rem; gap:1.8rem; margin-bottom:3rem; }

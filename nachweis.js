@@ -30,6 +30,11 @@
   $("#certificate-close")?.addEventListener("click", () => {
     try { sessionStorage.setItem("excelLab.openProfile", "1"); } catch { /* Dann öffnet sich nur die Startseite. */ }
   });
+  // Esc schließt den Lernnachweis wie das X (Wunsch Jakob, 16.10.2026).
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || event.defaultPrevented || document.querySelector("dialog[open]")) return;
+    $("#certificate-close")?.click();
+  });
 
   function render() {
     const profile = currentProfile();

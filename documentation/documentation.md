@@ -1,11 +1,22 @@
 # Excel-Lab – Projektdokumentation
 
 Stand: 16. Oktober 2026, Europe/Berlin
-Projektversion: 0.27.0
-Status: Version 0.27.0 veröffentlicht (Startkapital, Jahresziel, Speicherhinweis, Datenschutz; Antworten Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
+Projektversion: 0.28.0
+Status: Version 0.28.0 veröffentlicht (gebürstetes Metall, Fortschritt im Profil, Alt+S, Esc im Lernnachweis; Wünsche Jakob vom 16.10.); Quellenabgleich L3–L4 abgeschlossen: Informationsblätter (0.20.6, claude2codex A0zf) und Aufgabenblätter Aufgabe für Aufgabe (16.10., A0zu)
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
+
+- **Veröffentlicht als 0.28.0 (Claude, 16.10.2026, Wünsche Jakob):**
+  gebürstetes Metall (`styles.css`, Variablen `--brush`, `--brush-dark`,
+  `--brush-strength`; Überlagerung per `::before`), Pfadleiste als
+  Metallschiene, Gesamtfortschritt als Balken in der Profilkarte
+  (`profile-progress.js`, Startseite und Lernseiten), schwebende
+  Fortschrittskarte im Startbild entfernt (`home.css`, `app.js`), Alt+S
+  speichert (`save-core.js`: `isSaveShortcut`, `notify`), Esc schließt den
+  Lernnachweis (`nachweis.js`), Speicherfenster gekürzt, Pfadleiste ab
+  „Übersicht“ (ohne „BPE1“), Zellraster im Hintergrund entfernt. Siehe
+  [`claude2codex.md`](claude2codex.md), A0zw.
 
 - **Veröffentlicht als 0.27.0 (Claude, 16.10.2026, Antworten Jakob in
   `tasks.md`):** Startkapital einmal je Schuljahr (`nagold.js`:

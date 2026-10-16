@@ -191,6 +191,11 @@
       name.textContent = profile.name;
       detail.textContent = `${profile.className || "ohne Klasse"} · ${lessons.filter(item => profile.progress?.[item.id]?.completed).length}/${lessons.length} erledigt`;
       copy.append(name, detail); card.append(avatar, copy); list.append(card);
+      // Gesamtfortschritt als Balken, wie auf der Startseite (profile-progress.js).
+      if (window.ExcelLabProfileProgress) {
+        const [progressButton, progressDetail] = window.ExcelLabProfileProgress.render(profile, "lesson");
+        card.append(progressButton); list.append(progressDetail);
+      }
     }
     lessonManager.querySelector("#profile-edit-form").hidden = !profile;
     lessonManager.querySelector("#nagold-total").disabled = !profile || !nagold;

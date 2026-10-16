@@ -24,7 +24,7 @@
     const lesson = lessons.find(item => item.code === breadcrumb.querySelector("strong")?.textContent.trim());
     const stage = stages.find(item => item.id === lesson?.stage);
     if (lesson && stage) {
-      breadcrumb.innerHTML = `<a href="index.html#uebersicht" title="Zur Übersicht">BPE1</a><span aria-hidden="true">›</span><a href="index.html#lernpfad/${stage.id}" title="Lernfortschritt ${stage.id}">${stage.code}</a><span aria-hidden="true">›</span><a href="${lesson.page}" aria-current="page">${lesson.code}</a>`;
+      breadcrumb.innerHTML = `<a href="index.html#uebersicht" title="Zur Übersicht">Übersicht</a><span aria-hidden="true">›</span><a href="index.html#lernpfad/${stage.id}" title="Lernfortschritt ${stage.id}">${stage.code}</a><span aria-hidden="true">›</span><a href="${lesson.page}" aria-current="page">${lesson.code}</a>`;
     }
     breadcrumb.setAttribute("aria-label", "Aktueller Lernpfad");
     breadcrumb.classList.add("location-path");

@@ -191,8 +191,24 @@
     return "loaded";
   }
 
+  // Tastenkürzel Alt+S (ohne Strg, Umschalt, Befehlstaste; nicht beim Festhalten).
+  function isSaveShortcut(event) {
+    return Boolean(event?.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.repeat && event.code === "KeyS");
+  }
+
+  // Kurze Rückmeldung unten auf der Seite (Bereich #toast-region), falls vorhanden.
+  function notify(text) {
+    const region = document.querySelector("#toast-region");
+    if (!region) return;
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = text;
+    region.append(toast);
+    setTimeout(() => toast.remove(), 4000);
+  }
+
   window.ExcelLabSave = Object.freeze({
     FORMAT, SAVES_KEY, DEVICE_KEY, LESSON_XP, createId, deviceId, completedCount, bonusSolved, xpStats, xp, normalizeProfile,
-    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport
+    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport, isSaveShortcut, notify
   });
 })();

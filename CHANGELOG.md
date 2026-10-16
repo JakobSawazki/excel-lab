@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.28.0 – 2026-10-16
+
+**Gebürstetes Metall, Fortschritt im Profil, Tastenkürzel (Wünsche Jakob).** Kopfzeile, Menüleiste, Lernpfad-Menü, Pfadleiste „BPE1 › Übersicht“, Symbolknöpfe, große Knöpfe, Fenster und Seitenhintergrund tragen einen feinen, unregelmäßigen Metallschliff (SVG-Rauschen im Stylesheet, keine Bilddatei); die Pfadleiste ist eine Metallschiene mit Schatten. Der Gesamtfortschritt steht nicht mehr als Karte im Startbild, sondern als Balken (L1–L4) in der Profilkarte; ein Klick zeigt die Einheiten je Lernschritt. Der Bereich unter dem Startbild rückt nach oben. Alt+S speichert sofort (Tooltip am Knopf „Speichern“), Esc schließt den Lernnachweis. Das Speicherfenster hat nur noch einen kurzen Satz statt zweier Hinweise. Die Pfadleiste beginnt mit „Übersicht“ (ohne „BPE1“), zum Beispiel „Übersicht › L1 › L1.1“; jedes Glied ist eine kleine Metallplakette. Der gebürstete Hintergrund wirkt jetzt auch auf der Startseite; das frühere feine Zellraster im Seitenhintergrund ist entfernt.
+
 ## 0.27.0 – 2026-10-16
 
 **Startkapital und Jahresziel (Antworten Jakob vom 16. Oktober).** In der NAGOLD-Tabelle gibt es den Anlass „Startkapital“ mit 5 NAGOLD, einmal je Schuljahr (ab 1. August); ein zweites im selben Schuljahr wird nicht gespeichert. Das NAGOLD-Feld im Profil zeigt einen schmalen goldenen Balken „x / 100 · Jahresziel“; mehr als 100 NAGOLD sind möglich, die Erklärung steht im Tooltip. Nach dem Abschluss einer Einheit lautet die Meldung kurz „L1.2 geschafft: +100 XP, +5 NAGOLD. Jetzt über das Disketten-Symbol speichern.“ Im Fenster „Versionen und Impressum“ steht ein kurzer Datenschutzabschnitt. Intern: Die XP-Regel steht nur noch in `save-core.js` (Profilknopf, Startseite, Lernnachweis, Klassenübersicht).

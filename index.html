@@ -13,23 +13,24 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.27.0"></script>
-    <link rel="stylesheet" href="styles.css?v=0.27.0">
-    <link rel="stylesheet" href="home.css?v=0.27.0">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.27.0">
-    <script src="deployment.js?v=0.27.0" defer></script>
-    <script src="developer-mode.js?v=0.27.0" defer></script>
-    <script src="content.js?v=0.27.0" defer></script>
-    <script src="nagold.js?v=0.27.0" defer></script>
-    <script src="nagold-table.js?v=0.27.0" defer></script>
-    <script src="save-core.js?v=0.27.0" defer></script>
-    <script src="bonus-tasks.js?v=0.27.0" defer></script>
-    <script src="nav-menu.js?v=0.27.0" defer></script>
-    <script src="app.js?v=0.27.0" defer></script>
-    <script src="xp.js?v=0.27.0" defer></script>
-    <script src="options.js?v=0.27.0" defer></script>
-    <script src="organizer.js?v=0.27.0" defer></script>
-    <script src="lesson-workspace.js?v=0.27.0" defer></script>
+    <script src="theme-boot.js?v=0.28.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.28.0">
+    <link rel="stylesheet" href="home.css?v=0.28.0">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.28.0">
+    <script src="deployment.js?v=0.28.0" defer></script>
+    <script src="developer-mode.js?v=0.28.0" defer></script>
+    <script src="content.js?v=0.28.0" defer></script>
+    <script src="nagold.js?v=0.28.0" defer></script>
+    <script src="nagold-table.js?v=0.28.0" defer></script>
+    <script src="save-core.js?v=0.28.0" defer></script>
+    <script src="profile-progress.js?v=0.28.0" defer></script>
+    <script src="bonus-tasks.js?v=0.28.0" defer></script>
+    <script src="nav-menu.js?v=0.28.0" defer></script>
+    <script src="app.js?v=0.28.0" defer></script>
+    <script src="xp.js?v=0.28.0" defer></script>
+    <script src="options.js?v=0.28.0" defer></script>
+    <script src="organizer.js?v=0.28.0" defer></script>
+    <script src="lesson-workspace.js?v=0.28.0" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -73,7 +74,7 @@
       </div>
     </header>
 
-    <nav class="lesson-breadcrumb location-path" id="location-path" aria-label="Aktueller Lernpfad"><a href="#uebersicht" data-brand-home title="Zur Übersicht">BPE1</a><span aria-hidden="true">›</span><a href="#uebersicht" data-brand-home aria-current="page">Übersicht</a></nav>
+    <nav class="lesson-breadcrumb location-path" id="location-path" aria-label="Aktueller Lernpfad"><a href="#uebersicht" data-brand-home aria-current="page">Übersicht</a></nav>
     <main id="main-content">
       <section class="view is-active" id="view-dashboard" data-view-panel="dashboard">
         <div class="page-shell">
@@ -103,10 +104,6 @@
                 <span><small>01</small><strong>Verstehen</strong></span>
                 <span><small>02</small><strong>Üben</strong></span>
                 <span><small>03</small><strong>Prüfen</strong></span>
-              </div>
-              <div class="floating-progress">
-                <span class="ring ring-small" id="hero-ring" style="--progress: 0"><strong id="hero-percent">0%</strong></span>
-                <div><small>Dein Fortschritt</small><strong id="hero-progress-text">Noch nicht begonnen</strong></div>
               </div>
             </div>
           </section>
@@ -392,19 +389,18 @@
         <span class="save-dialog-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h11.2L20 7.8V20H5V4Z"/><path d="M8.5 4v4.8h6.5V4"/><path d="M8.5 20v-6h7v6"/></svg></span>
         <p class="eyebrow">Speicherdatei</p>
         <h2 id="save-dialog-title">Speicherstand</h2>
-        <p class="save-dialog-intro">Dein Lernstand liegt nur in diesem Browser. Sichere ihn als Datei in deinen persönlichen Ordner und lade ihn an einem anderen Gerät wieder.</p>
+        <p class="save-dialog-intro">Speichere deinen Stand als Datei in deinem Ordner. Mit „Laden“ holst du ihn zurück, auch an einem anderen PC.</p>
         <p class="save-dialog-status" id="save-status"></p>
         <div class="manager-actions save-actions">
-          <span class="tip-wrap"><button class="button button-primary" type="button" id="export-button" aria-describedby="export-tip">Speichern</button><span class="tip" role="tooltip" id="export-tip">Legt eine Datei mit Datum und Kürzel im Download-Ordner ab.</span></span>
+          <span class="tip-wrap"><button class="button button-primary" type="button" id="export-button" aria-describedby="export-tip" aria-keyshortcuts="Alt+S">Speichern</button><span class="tip" role="tooltip" id="export-tip">Legt eine Datei mit Datum und Kürzel im Download-Ordner ab. Schneller: Alt+S</span></span>
           <span class="tip-wrap"><button class="button button-secondary" type="button" id="import-button" aria-describedby="import-tip">Laden</button><span class="tip" role="tooltip" id="import-tip">Übernimmt eine früher gespeicherte Datei in diesen Browser.</span></span>
         </div>
         <div class="recent-saves" id="recent-saves-box">
           <label for="recent-saves">Zuletzt gespeichert</label>
           <div class="recent-saves-row">
-            <select id="recent-saves" aria-describedby="recent-saves-hint"></select>
+            <select id="recent-saves"></select>
             <button class="button button-secondary" type="button" id="recent-load">Diesen Stand laden</button>
           </div>
-          <small id="recent-saves-hint">Die letzten fünf gespeicherten Stände bleiben zusätzlich in diesem Browser. Für ein anderes Gerät brauchst du die Datei.</small>
         </div>
         <button class="button button-secondary" type="button" id="rescue-button" hidden>Rettungskopie herunterladen</button>
         <input id="import-file" type="file" accept="application/json,.json" hidden>
@@ -466,6 +462,7 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
+            <li><span>0.28.0</span><div><strong>Gebürstetes Metall und Fortschritt im Profil</strong><small>Feiner Metallschliff für Kopfzeile, Menü, Pfadleiste, Knöpfe und Hintergrund; Gesamtfortschritt als Balken im Profil; Pfadleiste ab „Übersicht“; Alt+S speichert sofort; Esc schließt den Lernnachweis.</small></div></li>
             <li><span>0.27.0</span><div><strong>Startkapital und Jahresziel</strong><small>Einmal je Schuljahr 5 NAGOLD Startkapital; ein goldener Balken zeigt den Weg zum Jahresziel von 100 NAGOLD. Nach jeder Einheit erinnert ein kurzer Hinweis ans Speichern.</small></div></li>
             <li><span>0.26.0</span><div><strong>Klassenübersicht mit NAGOLD-Einträgen</strong><small>Ein Klick auf die NAGOLD-Zahl zeigt die Einträge einer Person zum Prüfen. Speichern und Laden arbeiten auf allen Seiten mit demselben Kern; ein Profilwechsel in einem anderen Fenster wird im Profil erklärt.</small></div></li>
             <li><span>0.25.0</span><div><strong>NAGOLD speichert automatisch</strong><small>Wie in WorkbenchLab: gültige Zeilen und Löschungen werden sofort gespeichert, „Anwesenheit“ trägt 2 NAGOLD vor, Abzüge sind bis −10 möglich.</small></div></li>

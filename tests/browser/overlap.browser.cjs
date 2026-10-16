@@ -31,7 +31,7 @@ const scan = () => {
   for (const el of document.querySelectorAll("body *")) {
     const cs = getComputedStyle(el);
     if (cs.position !== "absolute" || !visible(el)) continue;
-    if (el.closest("[hidden], dialog, .skip-link, header.site-header, .floating-progress, nav") || cs.pointerEvents === "none" && !el.textContent.trim()) continue;
+    if (el.closest("[hidden], dialog, .skip-link, header.site-header, nav") || cs.pointerEvents === "none" && !el.textContent.trim()) continue;
     if (!el.textContent.trim()) continue; // nur Elemente mit eigenem Text (Nummern, Abzeichen)
     const a = el.getBoundingClientRect();
     for (const t of textRects) {

@@ -27,7 +27,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.27.0";
+  const APP_VERSION = "0.28.0";
   // XP-Regel (Einheiten und Bonusaufgaben) steht in save-core.js.
   const POINTS_PER_LESSON = saveCore.LESSON_XP;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
@@ -247,9 +247,10 @@
       : '<a href="#lernpfad" aria-current="page">Lernpfad</a>';
     if (activeView === "formulas") detail = '<a href="#formeln" aria-current="page">Formelsammlung</a>';
     if (activeView === "sources") detail = '<a href="#quellen" aria-current="page">Quellen</a>';
-    // Der Pfad ersetzt den früheren Navigationspunkt „Übersicht“: BPE1 führt immer dorthin.
-    if (!detail) detail = '<a href="#uebersicht" data-brand-home aria-current="page">Übersicht</a>';
-    $("#location-path").innerHTML = `<a href="#uebersicht" data-brand-home title="Zur Übersicht">BPE1</a><span aria-hidden="true">›</span>${detail}`;
+    // Der Pfad beginnt mit „Übersicht“ (Wunsch Jakob, 16.10.2026: ohne „BPE1“).
+    $("#location-path").innerHTML = detail
+      ? `<a href="#uebersicht" data-brand-home title="Zur Übersicht">Übersicht</a><span aria-hidden="true">›</span>${detail}`
+      : '<a href="#uebersicht" data-brand-home aria-current="page">Übersicht</a>';
   }
 
   function syncRouteFromHash() {
@@ -296,13 +297,8 @@
   function renderDashboard() {
     const stats = progressStats();
     $("#total-ring").style.setProperty("--progress", stats.percent);
-    $("#hero-ring").style.setProperty("--progress", stats.percent);
     $("#total-percent").textContent = `${stats.percent}%`;
-    $("#hero-percent").textContent = `${stats.percent}%`;
     $("#completed-count").textContent = `${stats.completed} von ${stats.total} Einheiten`;
-    $("#hero-progress-text").textContent = stats.completed === 0
-      ? "Noch nicht begonnen"
-      : `${stats.completed} ${stats.completed === 1 ? "Einheit" : "Einheiten"} erledigt`;
 
     const next = nextLesson();
     const continueButton = $("#continue-button");
@@ -466,6 +462,13 @@
           </div>`;
       }).join("")
       : "<p>Noch kein lokales Profil vorhanden.</p>";
+    // Gesamtfortschritt als Balken in der Karte, Einzelheiten darunter (profile-progress.js).
+    const card = $("#profile-list .profile-list-item");
+    if (card && window.ExcelLabProfileProgress) {
+      const [progressButton, progressDetail] = window.ExcelLabProfileProgress.render(current, "home");
+      card.append(progressButton);
+      card.after(progressDetail);
+    }
     $("#export-button").disabled = !current;
     $("#nagold-total").disabled = !current;
     $("#nagold-total-value").textContent = `${nagoldTotal(current)} NAGOLD`;
@@ -787,6 +790,13 @@
       $("#save-dialog").showModal();
     });
     $("#export-button").addEventListener("click", exportProgress);
+    // Alt+S speichert sofort wie „Speichern“ (Wunsch Jakob, 16.10.2026); ohne Profil öffnet sich das Fenster.
+    document.addEventListener("keydown", (event) => {
+      if (!saveCore.isSaveShortcut(event)) return;
+      event.preventDefault();
+      if (currentProfile()) exportProgress();
+      else $("#save-button").click();
+    });
     $("#recent-load").addEventListener("click", loadRecentSave);
     bindNagoldEvents();
     $("#import-button").addEventListener("click", loadProgressFile);

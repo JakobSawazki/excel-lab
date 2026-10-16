@@ -1,6 +1,6 @@
 # claude2codex.md – Übergabe von Claude an Codex (Excel-Lab)
 
-Stand: 2026-10-16 · Release 0.27.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
+Stand: 2026-10-16 · Release 0.28.0 (veröffentlicht) · Grundlage: 0.10.1 (`5e1a758`) · Autor: Claude
 
 Jakob hat Claude am 9. Oktober 2026 beauftragt, Excel-Lab wie zuvor WorkbenchLab
 zu optimieren und dir die Punkte zu übergeben, an denen du weiterarbeiten kannst.
@@ -1087,6 +1087,41 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
+
+### A0zw Release 0.28.0: gebürstetes Metall, Fortschritt im Profil, Tastenkürzel
+
+Wünsche Jakob vom 16.10. (alle umgesetzt):
+- **Gebürstetes Metall:** am Ende von `styles.css` die Variablen `--brush`
+  (helle Schliffspuren) und `--brush-dark` (dunkle) als SVG-`feTurbulence`
+  mit stark gestreckter Frequenz (waagerecht), `--brush-strength` je Schema.
+  Überlagert per `::before` (z-index −1, `isolation: isolate`) auf
+  `.site-header`, `.main-nav`, `.nav-dropdown-menu`, `.icon-button`,
+  `.profile-button`, `.dialog`, `.xp-panel`, `.nagold-total`, Pfadleiste;
+  große Knöpfe über ihr `::after`; Seitenhintergrund über `body::before`
+  (fixiert). Erste Fassung war Jakob zu kräftig gedacht – bewusst dezent
+  halten, Texte müssen ruhig lesbar bleiben.
+- **Pfadleiste** `.location-path` / `.lesson-breadcrumb` als Metallschiene mit
+  Lichtkante und Schatten; aktuelle Seite als kleine Plakette.
+- **Gesamtfortschritt:** Karte `.floating-progress` im Startbild entfernt
+  (samt CSS); neu `profile-progress.js` (`ExcelLabProfileProgress.render(profile,
+  idPrefix)` → [Knopf, Einzelheiten]): Balken aus vier Abschnitten L1–L4 in der
+  Profilkarte, Klick klappt Einzelheiten je Lernschritt auf. Eingebunden nach
+  `save-core.js` auf Startseite und Lernseiten. `home.css`: Startbild ohne
+  Platz für die Karte, Abschnitt darunter rückt hoch.
+- **Alt+S** speichert sofort (`save-core.js`: `isSaveShortcut(event)`,
+  `notify(text)`; `app.js` und `lesson-save.js`), Tooltip „Schneller: Alt+S“.
+- **Esc** schließt den Lernnachweis wie das X (`nachweis.js`).
+- **Speicherfenster:** unterer Hinweis zu „Zuletzt gespeichert“ entfernt,
+  oberer Satz vereinfacht.
+- **Pfadleiste ohne „BPE1“:** beginnt mit „Übersicht“ (`app.js`
+  `renderLocationPath`, `lesson-navigation.js`, `index.html`); alle Glieder als
+  Plakette, das aktuelle hervorgehoben.
+- **Startseite:** `#view-dashboard` (home.css) ist nicht mehr deckend, damit
+  `body::before` wirkt; das Zellraster (46/92 px) im Seitenhintergrund ist
+  entfernt (zeichnete sich als Quadrate ab).
+- **Achtung Mobil:** `.main-nav` ist unter 1051 px unten fixiert. Deshalb kein
+  `position: relative` an `.main-nav` und keine `isolation` an `.site-header`
+  (sonst Überlauf bzw. Menü unter dem Inhalt) – nur per `@media (min-width: 1051px)`.
 
 ### A0zv Release 0.27.0: Jakobs Antworten vom 16. Oktober
 
