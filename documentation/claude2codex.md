@@ -1088,6 +1088,15 @@ Skript aus den `.docx`) wurden alle 25 Aufgabenblätter aus
 Ergebnis: L3 und L4 sind fachlich vollständig und zahlengleich mit BPE1.
 Keine Seitenänderung nötig.
 
+### A1f Test: alle Lernseiten einheitlich (ohne Versionssprung)
+
+Neu `tests/browser/consistency.browser.cjs` (läuft in `run-all.cjs` mit):
+prüft auf jeder Lernseite Pfadleiste „Übersicht › Lx › Lx.y“,
+Fortschrittsbalken mit Infofenster, Textmarker-Leiste (fünf Knöpfe) mit
+mindestens 20 markierbaren Absätzen, Untertitel „Tabellenkalkulation
+verstehen“, keine Zeile „Lx.y · BPE … · 100 XP“, keine Skriptfehler. **Neue
+Lernseiten bitte nach diesem Muster anlegen; der Test zeigt Abweichungen.**
+
 ### A1e Release 0.31.0: Textmarker
 
 `highlighter.js` (nach `lNN.js` geladen): vergibt an `p, li, td, th, h2–h4, dt,
