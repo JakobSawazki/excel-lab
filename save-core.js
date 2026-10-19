@@ -13,6 +13,9 @@
   const SAVES_KEY = "excelLab.saves.v1";
   const DEVICE_KEY = "excelLab.device.v1";
   const MAX_SAVES = 5;
+  const MAX_FILE_BYTES = 10 * 1024 * 1024;
+  const STATE_KEY = "excelLab.state.v1";
+  const IMPORT_BACKUP_KEY = "excelLab.importBackup.v1";
   const nagold = () => window.EXCEL_LAB_NAGOLD || null;
 
   function createId() {
@@ -91,6 +94,7 @@
   }
 
   function normalizeProfile(profile, previous) {
+    assertNagoldEntries(profile);
     const safeProgress = {};
     if (profile && profile.progress && typeof profile.progress === "object") {
       lessons.forEach((lesson) => {
@@ -172,8 +176,17 @@
   // Erzeugt die Speicherdatei, bietet sie zum Download an und merkt sie sich.
   function download(profile, appVersion) {
     const payload = buildPayload(profile, appVersion);
+    prepareImport(payload);
     const name = fileName(payload);
-    const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }));
+    downloadPayload(payload, name);
+    remember(payload, name);
+    return name;
+  }
+
+  function downloadPayload(payload, name) {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    if (blob.size > MAX_FILE_BYTES) throw new Error("Die Speicherdatei überschreitet 10 MB. Bitte wende dich an die Lehrkraft; dein Stand bleibt erhalten.");
+    const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
     anchor.download = name;
@@ -181,8 +194,117 @@
     anchor.click();
     anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    remember(payload, name);
-    return name;
+  }
+
+  async function readFile(file) {
+    if (file.size > MAX_FILE_BYTES) throw new Error("Datei ist zu groß (höchstens 10 MB).");
+    const text = await file.text();
+    if (text.length > MAX_FILE_BYTES) throw new Error("Datei ist zu groß (höchstens 10 MB).");
+    try { return JSON.parse(text); }
+    catch { throw new Error("Die Datei ist kein lesbares JSON. Bitte bewahre das Original auf und wähle eine andere Speicherdatei."); }
+  }
+
+  // Format 1 bleibt lesbar, unabhängig von der App-Version. Unbekannte Formate
+  // niemals als leeren Stand behandeln; Migrationen brauchen eigene Tests.
+  function prepareImport(payload) {
+    if (payload?.app !== "Excel-Lab" || payload?.version !== FORMAT || !payload?.profile || typeof payload.profile !== "object" || Array.isArray(payload.profile)) {
+      throw new Error("Keine gültige Excel-Lab-Exportdatei oder noch nicht unterstütztes Dateiformat. Bitte das Original behalten und die Lehrkraft ansprechen.");
+    }
+    if (typeof payload.profile.name !== "string" || !payload.profile.name.trim()
+      || (payload.profile.progress !== undefined && (!payload.profile.progress || typeof payload.profile.progress !== "object" || Array.isArray(payload.profile.progress)))) {
+      throw new Error("Das Profil in der Speicherdatei ist unvollständig oder nicht lesbar. Keine Daten übernommen. Bitte das Original aufbewahren.");
+    }
+    const rules = nagold();
+    if (!rules) throw new Error("NAGOLD konnte nicht geladen werden. Bitte die Seite neu laden; es wurden keine Daten übernommen.");
+    const profile = normalizeProfile(payload.profile);
+    if (Object.hasOwn(payload.exportedBy || {}, "nagold")
+      && (typeof payload.exportedBy.nagold !== "number" || payload.exportedBy.nagold !== rules.total(profile))) {
+      throw new Error("Die NAGOLD-Summe passt nicht zur Tabelle in der Datei. Keine Daten übernommen. Bitte das Original durch die Lehrkraft prüfen lassen.");
+    }
+    return profile;
+  }
+
+  function assertNagoldEntries(profile) {
+    const rules = nagold();
+    if (profile && Object.hasOwn(profile, "nagoldEntries") && rules) {
+      if (!Array.isArray(profile.nagoldEntries) || profile.nagoldEntries.length > rules.maxEntries) {
+        throw new Error("Die NAGOLD-Tabelle ist nicht vollständig lesbar oder zu groß. Keine Daten übernommen. Bitte das Original zur Prüfung aufbewahren.");
+      }
+      profile.nagoldEntries.forEach((entry, index) => {
+        if (rules.normalizeEntries([entry]).length !== 1 || entry.purpose.trim().length > 160
+          || (entry.lessonId !== undefined && !lessons.some(lesson => lesson.id === entry.lessonId))) {
+          throw new Error(`NAGOLD-Zeile ${index + 1} kann nicht verlustfrei übernommen werden. Keine Daten übernommen. Bitte das Original zur Prüfung aufbewahren.`);
+        }
+      });
+    }
+  }
+
+  // Eine Rücksicherung vor JEDEM Import und vollständigen Profil-Reset.
+  // Scheitert ein Schreibvorgang (z.B.
+  // Speicher voll), bleibt der bisherige Stand unverändert und kein Erfolg wird gemeldet.
+  function persistImport(state, operation = "Laden") {
+    const serialized = JSON.stringify(state);
+    const previous = localStorage.getItem(STATE_KEY);
+    try {
+      if (previous !== null) localStorage.setItem(IMPORT_BACKUP_KEY, previous);
+      localStorage.setItem(STATE_KEY, serialized);
+    } catch {
+      throw new Error(`${operation} konnte nicht sicher gespeichert werden (Browserspeicher möglicherweise voll). Dein bisheriger Stand bleibt erhalten. Bitte zuerst eine Speicherdatei sichern.`);
+    }
+  }
+
+  function upgradePayload(payload, appVersion) {
+    const profile = prepareImport(payload);
+    return { ...payload, ...buildPayload(profile, appVersion), upgradedFrom: {
+      version: payload.version, appVersion: payload.appVersion || "unbekannt", exportedAt: payload.exportedAt || null
+    } };
+  }
+
+  // Gleicher Upgrade-Weg auf Startseite und allen Lernseiten. Nur Dateikopie:
+  // weder Browserprofil noch Originaldatei werden überschrieben.
+  function bindUpgradeControl(container, appVersion) {
+    const button = document.createElement("button");
+    button.type = "button"; button.className = "button button-secondary save-maintenance-button";
+    button.id = "upgrade-save-button"; button.textContent = "Speicherdatei aktualisieren";
+    const input = document.createElement("input");
+    input.type = "file"; input.accept = "application/json,.json"; input.hidden = true;
+    input.id = "upgrade-save-file";
+    const feedback = document.createElement("p");
+    feedback.setAttribute("role", "status"); feedback.hidden = true;
+    const backupButton = document.createElement("button");
+    backupButton.type = "button"; backupButton.className = "button button-secondary save-maintenance-button";
+    backupButton.id = "import-backup-button"; backupButton.textContent = "Vorherigen Stand sichern";
+    const refreshBackup = () => {
+      try { backupButton.hidden = !localStorage.getItem(IMPORT_BACKUP_KEY); }
+      catch { backupButton.hidden = true; }
+    };
+    refreshBackup();
+    window.addEventListener("excel-lab-progress-change", refreshBackup);
+    window.addEventListener("storage", refreshBackup);
+    backupButton.addEventListener("click", () => {
+      feedback.hidden = false;
+      try {
+        const backup = JSON.parse(localStorage.getItem(IMPORT_BACKUP_KEY) || "null");
+        const profile = backup?.profiles?.find(item => item.id === backup.currentProfileId);
+        if (!profile) throw new Error("Kein vorheriges aktives Profil vorhanden. Bitte die Lehrkraft ansprechen.");
+        const payload = buildPayload(profile, appVersion);
+        prepareImport(payload);
+        downloadPayload(payload, fileName(payload).replace(/\.json$/, "_vor-dem-laden.json"));
+        feedback.textContent = "Vorheriger Stand zum Download bereitgestellt. Zum Wiederherstellen diese Datei über „Laden“ auswählen.";
+      } catch (error) { feedback.textContent = error.message; }
+    });
+    button.addEventListener("click", () => input.click());
+    input.addEventListener("change", async () => {
+      const file = input.files?.[0]; if (!file) return;
+      feedback.hidden = false;
+      try {
+        const updated = upgradePayload(await readFile(file), appVersion);
+        downloadPayload(updated, fileName(updated).replace(/\.json$/, "_aktualisiert.json"));
+        feedback.textContent = `Datei geprüft: ${nagold().total(updated.profile)} NAGOLD, ${updated.profile.nagoldEntries.length} Tabellenzeilen. Aktualisierte Kopie zum Download bereitgestellt. Zum Übernehmen anschließend „Laden“ wählen. Original und aktueller Lernstand sind unverändert.`;
+      } catch (error) { feedback.textContent = error.message; }
+      finally { input.value = ""; }
+    });
+    container.append(button, input, backupButton, feedback);
   }
 
   // Übernimmt eine Speicherdatei in `state` (wird verändert). Dieselbe Person
@@ -190,17 +312,21 @@
   // weniger Abschlüsse nur nach Rückfrage über `confirm(text)`.
   // Ergebnis: "loaded" oder "cancelled"; ungültige Dateien werfen einen Fehler.
   function mergeImport(state, payload, confirm) {
-    if (payload?.app !== "Excel-Lab" || payload?.version !== FORMAT || !payload?.profile || typeof payload.profile !== "object" || Array.isArray(payload.profile)) {
-      throw new Error("Keine gültige Excel-Lab-Exportdatei.");
-    }
-    const imported = normalizeProfile(payload.profile);
+    const imported = prepareImport(payload);
     imported.updatedAt = new Date().toISOString();
     const existing = state.profiles.find((profile) => profile.name === imported.name && profile.className === imported.className);
     if (existing) {
-      if (completedCount(imported) < completedCount(existing)
-        && !confirm(`Die Datei enthält weniger abgeschlossene Einheiten (${completedCount(imported)}) als dein Stand in diesem Browser (${completedCount(existing)}). Trotzdem laden?`)) {
-        return "cancelled";
-      }
+      const rowKey = entry => JSON.stringify([entry.date, entry.time, entry.purpose, entry.points, entry.lessonId || ""]);
+      const incoming = imported.nagoldEntries.map(rowKey);
+      const missingRows = nagold().entriesFor(existing).some(entry => {
+        const index = incoming.indexOf(rowKey(entry));
+        if (index < 0) return true;
+        incoming.splice(index, 1); return false;
+      });
+      const warnings = [];
+      if (completedCount(imported) < completedCount(existing)) warnings.push(`Die Datei enthält weniger abgeschlossene Einheiten (${completedCount(imported)}) als dein Stand in diesem Browser (${completedCount(existing)}).`);
+      if (missingRows || xp(imported) < xp(existing)) warnings.push(`NAGOLD: ${nagold().total(existing)} → ${nagold().total(imported)}. Vorhandene NAGOLD-Zeilen oder XP fehlen bzw. sind verändert.`);
+      if (warnings.length && !confirm(`${warnings.join("\n")}\nTrotzdem laden? Der bisherige Browserstand wird zuvor lokal gesichert.`)) return "cancelled";
       imported.id = existing.id;
       imported.createdAt = existing.createdAt;
       state.profiles[state.profiles.indexOf(existing)] = imported;
@@ -230,6 +356,7 @@
 
   window.ExcelLabSave = Object.freeze({
     FORMAT, SAVES_KEY, DEVICE_KEY, LESSON_XP, createId, deviceId, completedCount, bonusSolved, xpStats, xp, normalizeProfile,
-    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport, isSaveShortcut, notify, normalizeHighlights, MARK_COLORS
+    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport, isSaveShortcut, notify, normalizeHighlights, MARK_COLORS,
+    MAX_FILE_BYTES, IMPORT_BACKUP_KEY, readFile, prepareImport, persistImport, upgradePayload, bindUpgradeControl
   });
 })();

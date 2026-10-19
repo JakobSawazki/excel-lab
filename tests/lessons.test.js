@@ -8,6 +8,34 @@ const { exists, read, loadContent, lessonPages, masteryConfig, attribute, tags, 
 const content = loadContent();
 const pages = lessonPages();
 
+test("Alle Lernseiten integrieren die Pfadleiste in die mitlaufende Kopfzeile", () => {
+  const navigation = read("lesson-navigation.js");
+  assert.match(navigation, /header\.append\(breadcrumb\)/);
+  assert.doesNotMatch(navigation, /header\.after\(breadcrumb\)/);
+  assert.match(navigation, /ResizeObserver/);
+  assert.match(read("styles.css"), /\.lesson-page-header > \.lesson-breadcrumb\s*\{/);
+  for (const { lesson, html } of pages) {
+    const header = html.slice(html.indexOf('<header class="site-header lesson-page-header">'), html.indexOf("</header>"));
+    assert.match(header, /class="lesson-breadcrumb"/, `${lesson.code}: Pfadleiste bereits ohne Skript vorhanden`);
+    assert.ok(header.includes(`<strong>${lesson.code}</strong>`), lesson.code);
+  }
+});
+
+test("L1.1: kompakte Getränkeliste ab Zeile 1, Formeln und Folgeeinheit passen dazu", () => {
+  const html = read("l1-1.html"), following = read("l1-3.html");
+  assert.match(html, /Spaltenüberschriften direkt in <strong>Zeile 1<\/strong>/);
+  assert.match(html, /<strong>A1 bis D1:<\/strong> Getränkeart/);
+  assert.match(html, /<strong>A2 bis A6:<\/strong> Cola, Apfelsaft, Limonade, Mineralwasser und Orangensaft/);
+  for (let row = 2; row <= 6; row++) assert.ok(html.includes(`=B${row}*C${row}`), `Formel in D${row}`);
+  assert.match(html, /<strong>D7<\/strong> <code>=SUMME\(D2:D6\)<\/code>/);
+  assert.match(html, /Ändere C2 von <strong>30 auf 32<\/strong>\. D2 und D7/);
+  assert.doesNotMatch(html, /Zeile 2 bleibt frei|Überschriften in Zeile 3|\bD9\b|SUMME\(D4:D8\)/);
+  assert.match(following, /Markiere A1:D1/);
+  assert.match(following, /B2:C6 sind Eingabezahlen; D2:D7 enthalten Formeln/);
+  assert.match(following, /Markiere A7:D7/);
+  assert.doesNotMatch(following, /<strong>Tabellentitel:<\/strong> A1/);
+});
+
 test("Inhaltsliste: vier Lernschritte, 27 Einheiten, eindeutige Kennungen", () => {
   assert.equal(content.stages.length, 4);
   assert.equal(content.lessons.length, 27);

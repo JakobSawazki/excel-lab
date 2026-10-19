@@ -28,7 +28,9 @@
     }
     breadcrumb.setAttribute("aria-label", "Aktueller Lernpfad");
     breadcrumb.classList.add("location-path");
-    header.after(breadcrumb);
+    // Die Pfadleiste gehört zur mitlaufenden Kopfzeile, nicht darunter in
+    // den scrollenden Seiteninhalt. Gilt auch bei gesperrten Einheiten.
+    header.append(breadcrumb);
     // Fortschritt dieser Einheit als schmaler Balken rechts in der Pfadleiste
     // (Wunsch Jakob, 16.10.2026); lesson-core.js füllt die Werte über die IDs.
     const score = document.querySelector(".lesson-score-card");
@@ -56,6 +58,15 @@
       document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !pop.hidden) { toggle(false); score.focus(); } });
     }
   }
+
+  // Schriftgröße, schmale Fenster und Profilanzeige können die Kopfzeile
+  // verändern. Mitlaufende Werkzeuge und Sprungziele halten Abstand dazu.
+  function updateHeaderHeight() {
+    document.documentElement.style.setProperty("--lesson-header-height", `${Math.ceil(header.getBoundingClientRect().height)}px`);
+  }
+  updateHeaderHeight();
+  if (typeof ResizeObserver === "function") new ResizeObserver(updateHeaderHeight).observe(header);
+  else window.addEventListener("resize", updateHeaderHeight);
 
   const menu = nav.querySelector("#learning-menu");
   const menuBody = nav.querySelector("#nav-stage-menu");

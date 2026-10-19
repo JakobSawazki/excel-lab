@@ -29,6 +29,8 @@
     <p id="save-feedback" role="status" aria-live="polite" hidden></p><input id="import-file" type="file" accept="application/json,.json" hidden>
   </div>`;
   document.body.append(dialog);
+  const appVersion = new URL(document.querySelector('script[src*="lesson-save.js"]').src).searchParams.get("v") || "unbekannt";
+  core.bindUpgradeControl(dialog.querySelector(".dialog-content"), appVersion);
   const $ = selector => dialog.querySelector(selector);
   function message(text) { $("#save-feedback").hidden = !text; $("#save-feedback").textContent = text; }
   function readState() {
@@ -56,16 +58,16 @@
   function exportProgress() {
     try {
       const profile=current(readState()); if(!profile) return;
-      const appVersion=new URL(document.querySelector('script[src*="lesson-save.js"]').src).searchParams.get("v") || "unbekannt";
       core.download(profile,appVersion);
       render(); message("Speicherdatei zum Download bereitgestellt.");
-    } catch(error) { message(error.message||"Die Speicherdatei konnte nicht erstellt werden."); }
+      return true;
+    } catch(error) { message(error.message||"Die Speicherdatei konnte nicht erstellt werden."); return false; }
   }
   function applyPayload(payload) {
     const state=readState();
     if(core.mergeImport(state,payload,(question)=>window.confirm(question))==="cancelled") { message("Laden abgebrochen. Dein Lernstand ist unverändert."); return; }
     // Only announce success after the persistent write actually succeeded.
-    localStorage.setItem(KEY,JSON.stringify(state));
+    core.persistImport(state);
     window.dispatchEvent(new StorageEvent("storage",{key:KEY,storageArea:localStorage}));
     window.dispatchEvent(new Event("excel-lab-progress-change"));
     render(); message("Lernstand erfolgreich geladen.");
@@ -73,9 +75,7 @@
   async function importFile(file) {
     if(!file) return;
     try {
-      if(file.size>1000000) throw new Error("Datei ist zu groß.");
-      const text=await file.text(); if(text.length>1000000) throw new Error("Datei ist zu groß.");
-      applyPayload(JSON.parse(text));
+      applyPayload(await core.readFile(file));
     } catch(error) {message(error.message||"Die Speicherdatei konnte nicht geladen werden.");}
     finally {$("#import-file").value="";}
   }
@@ -94,9 +94,10 @@
   document.addEventListener("keydown",event=>{
     if(!core.isSaveShortcut(event)) return;
     event.preventDefault();
-    if(!current(readState())) { button.click(); return; }
-    exportProgress();
-    if(!dialog.open) core.notify("Gespeichert: Die Datei liegt im Download-Ordner.");
+    try {
+      if(!current(readState())) { button.click(); return; }
+      if(exportProgress() && !dialog.open) core.notify("Speicherdatei zum Download bereitgestellt.");
+    } catch(error) { core.notify(error.message); }
   });
   $("#import-button").addEventListener("click",pickFile);
   $("#import-file").addEventListener("change",event=>importFile(event.target.files?.[0]));

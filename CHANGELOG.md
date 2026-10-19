@@ -4,6 +4,16 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.32.0 – 2026-10-19
+
+Im Entwicklermodus setzt „Fortschritt zurücksetzen“ jetzt das gesamte aktive Profil zurück, einschließlich Kürzel, Klasse, XP, NAGOLD und Textmarkierungen. Vorher wird eine vollständige Sicherungsdatei angeboten und eine lokale Rücksicherung angelegt. Anschließend öffnet sich die leere Profilanlage. Andere Profile bleiben erhalten; bei Sicherungs- oder Speicherfehlern wird nicht zurückgesetzt.
+
+Die anklickbare Pfadleiste („Übersicht > L1 > L1.x“) bleibt jetzt auf allen 27 Lernseiten innerhalb der mitlaufenden Kopfzeile sichtbar. Textmarker, Abschluss-Seitenleiste und Sprungziele berücksichtigen deren tatsächliche Höhe.
+
+L1.1 beginnt direkt mit den Spaltenüberschriften in Zeile 1. Die Getränke folgen in Zeile 2–6, die Summe in Zeile 7; ein zusätzlicher Titel und Leerzeilen entfallen. Alle Formelbeispiele und die anschließenden Formatierungshinweise in L1.3 sind darauf abgestimmt.
+
+Speicherdateien werden auf Startseite und Lernseiten gemeinsam geprüft. NAGOLD-Zeilen werden beim Laden nicht mehr still verworfen; beim Ersetzen vorhandener Einträge wird gewarnt. Vor dem Laden entsteht eine lokale Rücksicherung, ein fehlgeschlagenes Speichern meldet keinen Import-Erfolg. Unterstützte ältere Dateien können als neue Kopie aktualisiert werden, ohne das Original zu verändern. Die JSON-Formatversion bleibt 1. Die gemeinsame Dateigrößengrenze steigt auf 10 MB, damit auch größere Exporte mit Textmarkierungen wieder geladen werden können. Details und Grenzen stehen in der Projektdokumentation.
+
 ## 0.31.0 – 2026-10-16
 
 **Textmarker in jeder Lerneinheit (wie in WorkbenchLab).** Oben in jeder Einheit steht eine kleine, beim Lesen mitlaufende Leiste mit vier Farben (Gelb, Mint, Koralle, Grün) und einem Radierer. Text auswählen, Farbe wählen – fertig. Die Markierungen gehören zum Profil, bleiben nach dem Neuladen erhalten und reisen mit der Speicherdatei. Ändert sich ein Absatz später, wird eine nicht mehr passende Markierung einfach nicht angezeigt.

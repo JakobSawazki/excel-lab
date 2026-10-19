@@ -2411,7 +2411,15 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
 
 .lesson-page-header {
   grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto auto;
+  row-gap: .3rem;
+  padding-top: .65rem;
+  padding-bottom: .45rem;
 }
+
+.lesson-page-header > .brand { grid-column: 1; grid-row: 1; }
+.lesson-page-header > .lesson-main-nav { grid-column: 2; grid-row: 1; }
+.lesson-page-header > .header-actions { grid-column: 3; grid-row: 1; }
 
 .lesson-main-nav a.nav-link {
   display: inline-flex;
@@ -2448,6 +2456,24 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
 
 .location-path { min-height: 44px; padding: 0.65rem max(4vw, 1rem); flex-wrap: wrap; border-bottom: 1px solid var(--line); background: var(--surface); }
 .location-path [aria-current="page"] { color: var(--text); font-weight: 750; }
+
+/* Gemeinsame Kopfzeile: Logo, Bedienung und Pfadleiste bleiben zusammen
+   sichtbar. Die zweite Zeile braucht keinen separaten, hohen Rahmen. */
+.lesson-page-header > .lesson-breadcrumb {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  min-width: 0;
+  min-height: 34px;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.lesson-page-header > .lesson-breadcrumb::before { display: none; }
+.lesson-page-body .lesson-reading-tools { top: calc(var(--lesson-header-height, 112px) + .65rem); }
+.lesson-page-body .lesson-page-sidebar { top: calc(var(--lesson-header-height, 112px) + .65rem); }
+.lesson-page-body .lesson-page-main [id] { scroll-margin-top: calc(var(--lesson-header-height, 112px) + 4rem); }
 
 .lesson-profile {
   color: var(--text);
@@ -3010,8 +3036,9 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
   }
 
   .lesson-page-header {
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
+  .lesson-page-header > .header-actions { grid-column: 2; }
 
   .nav-dropdown.is-open::after { display: none; }
 
@@ -3813,6 +3840,8 @@ html {
   font-variant-numeric: tabular-nums;
 }
 .save-actions { margin-top: 1rem; }
+.save-maintenance-button { display: flex; width: 100%; margin-top: 1rem; }
+.save-maintenance-button[hidden] { display: none; }
 [data-theme="light"] .save-dialog-mark { background: radial-gradient(circle at 30% 24%, #fff, transparent 52%), linear-gradient(160deg, #f7faf8, color-mix(in srgb, var(--green) 16%, #e3ece6) 70%); }
 
 /* 0.22.0 (Wünsche Jakob): XP und NAGOLD im Profilknopf, XP-Abschnitt im Profil,
@@ -4398,6 +4427,9 @@ body #view-dashboard .organizer-detail .organizer-sequence { margin-top: auto; p
 @media (max-width: 560px) {
   .location-path .lesson-score-card > div:not(.lesson-progress-pop) small { display: none; }
   .location-path .score-ring::before { width: 5rem; }
+  /* Auf kleinen Displays genügt die anklickbare Prozentzahl. So bleibt der
+     Pfad mit allen Gliedern auch bei größerer Schrift in einer Zeile. */
+  .lesson-page-header .location-path .score-ring::before { display: none; }
 }
 /* Der Titel nutzt jetzt die volle Breite (die Fortschrittskarte steht in der Pfadleiste). */
 .lesson-page-title { grid-template-columns: minmax(0, 1fr); }

@@ -43,11 +43,20 @@
   function normalizeEntries(value) {
     if (!Array.isArray(value)) return [];
     return value.slice(0, maxEntries).flatMap((entry) => {
-      const time = entry?.time === undefined ? "" : entry.time;
+      // Ältere Dateien haben teils noch keine Uhrzeit/kein Datum. Unbekannte
+      // Angaben bleiben leer; nur eindeutige Schreibweisen werden umgewandelt.
+      let date = entry?.date ?? "";
+      let time = entry?.time ?? "";
+      if (typeof date === "string" && /^\d{1,2}\.\d{1,2}\.\d{4}$/.test(date)) {
+        const [day, month, year] = date.split(".");
+        date = `${year}-${two(month)}-${two(day)}`;
+      }
+      if (typeof time === "string" && /^\d{1,2}:\d{1,2}$/.test(time)) time = time.split(":").map(two).join(":");
+      const points = typeof entry?.points === "string" && /^-?\d+$/.test(entry.points) ? Number(entry.points) : entry?.points;
       if (!entry || typeof entry.purpose !== "string" || !entry.purpose.trim()
-        || !Number.isInteger(entry.points) || entry.points === 0 || entry.points < minPoints || entry.points > maxPoints
-        || (entry.date !== "" && !validDate(entry.date)) || (time !== "" && !validTime(time))) return [];
-      const normalized = { date: entry.date, time, purpose: entry.purpose.trim().slice(0, 160), points: entry.points };
+        || !Number.isInteger(points) || points === 0 || points < minPoints || points > maxPoints
+        || (date !== "" && !validDate(date)) || (time !== "" && !validTime(time))) return [];
+      const normalized = { date, time, purpose: entry.purpose.trim().slice(0, 160), points };
       if (lessons.some((lesson) => lesson.id === entry.lessonId)) normalized.lessonId = entry.lessonId;
       return [normalized];
     });

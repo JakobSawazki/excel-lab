@@ -7,6 +7,13 @@ am Berufskolleg und in kaufmännischen Ausbildungsberufen.
 Projektstand, erledigte und offene Aufgaben, Ideen sowie technische
 Entscheidungen stehen in [`documentation/documentation.md`](documentation/documentation.md).
 
+Speicher-Kompatibilität: App-Version und JSON-Dateiformat werden getrennt geführt.
+Bestehende Speicherdateien im Format 1 bleiben unterstützt. Ab Version 0.32.0
+bietet das Speicherfenster zusätzlich „Speicherdatei aktualisieren“
+(neue Kopie, Original unverändert) sowie eine Rücksicherung vor dem Laden.
+Unlesbare NAGOLD-Zeilen dürfen nicht still verworfen werden. Technische Grenzen,
+Testbefehle und die verbindliche Migrationsregel stehen in der Projektdokumentation.
+
 Die Anwendung gliedert den Lernstoff in vier Lernschritte:
 
 1. Grundlagen und Tabellenaufbau
@@ -20,7 +27,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.31.0**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.32.0**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
@@ -188,7 +195,14 @@ die Anwendung eine anonyme lokale Geräte-ID. Kürzel und Klassenbezeichnung
 lassen sich im Speichern/Laden-Dialog korrigieren, ohne den Fortschritt zu
 verlieren. Beide Angaben sind bei der Profilanlage Pflicht; Klassen wie
 `WGW EK1` behalten ihre Leerzeichen. Neues Profil und Zurücksetzen stehen
-nur im Entwickler-Modus zur Verfügung; Zurücksetzen verlangt eine Bestätigung.
+nur im Entwickler-Modus zur Verfügung. „Fortschritt zurücksetzen“ verlangt eine
+Bestätigung und entfernt anschließend das gesamte aktive Profil einschließlich
+Kürzel, Klasse, XP, NAGOLD-Tabelle und Textmarkierungen. Zuvor wird eine vollständige
+JSON-Sicherung zum Download bereitgestellt und der bisherige Browserstand lokal
+gesichert. Scheitert die Sicherung oder Speicherung, bleibt das Profil erhalten.
+Danach öffnet sich die leere Profilanlage für ein neues Kürzel und eine neue Klasse.
+Andere Profile und vorhandene Dateien bleiben erhalten. Im Speicherfenster ist die
+lokale Rücksicherung über „Vorherigen Stand sichern“ als JSON-Datei verfügbar.
 Browser können weder die
 MAC-Adresse noch den Windows-Benutzernamen sicher auslesen; eine öffentliche
 IP-Adresse wird aus Datenschutz- und Zuordnungsgründen nicht abgefragt.

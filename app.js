@@ -27,7 +27,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.31.0";
+  const APP_VERSION = "0.32.0";
   // XP-Regel (Einheiten und Bonusaufgaben) steht in save-core.js.
   const POINTS_PER_LESSON = saveCore.LESSON_XP;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
@@ -527,9 +527,11 @@
   function exportProgress() {
     const profile = currentProfile();
     if (!profile) return;
-    saveCore.download(profile, APP_VERSION);
-    renderRecentSaves();
-    showToast("Speicherdatei zum Download bereitgestellt.");
+    try {
+      saveCore.download(profile, APP_VERSION);
+      renderRecentSaves();
+      showToast("Speicherdatei zum Download bereitgestellt.");
+    } catch (error) { showToast(error.message || "Die Speicherdatei konnte nicht erstellt werden."); }
   }
 
   // Zuletzt gespeichert: Die letzten fünf Speicherstände bleiben zusätzlich im
@@ -558,11 +560,17 @@
 
   // Übernimmt einen geprüften Speicherstand; gemeinsam für Datei und Liste.
   function applyImportedPayload(payload) {
-    if (saveCore.mergeImport(state, payload, (question) => window.confirm(question)) === "cancelled") {
+    // Erst auf einer Kopie arbeiten; kein scheinbar erfolgreicher Import bei
+    // vollem Speicher und kein Überschreiben jüngerer Änderungen anderer Tabs.
+    const staged = JSON.parse(JSON.stringify(loadState(state)));
+    if (saveCore.mergeImport(staged, payload, (question) => window.confirm(question)) === "cancelled") {
       showToast("Laden abgebrochen. Dein Lernstand ist unverändert.");
       return;
     }
-    saveState();
+    if (!keepUnreadableState()) throw new Error("Der bisherige Stand konnte nicht als Rettungskopie gesichert werden. Laden abgebrochen.");
+    saveCore.persistImport(staged);
+    state = staged;
+    window.dispatchEvent(new Event("excel-lab-progress-change"));
     renderAll();
     showToast("Lernstand erfolgreich geladen.");
   }
@@ -590,10 +598,7 @@
   async function importProgress(file) {
     if (!file) return;
     try {
-      if (file.size > 1_000_000) throw new Error("Datei ist zu groß.");
-      const text = await file.text();
-      if (text.length > 1_000_000) throw new Error("Datei ist zu groß.");
-      applyImportedPayload(JSON.parse(text));
+      applyImportedPayload(await saveCore.readFile(file));
     } catch (error) {
       showToast(error.message || "Die Speicherdatei konnte nicht geladen werden.");
     } finally {
@@ -623,14 +628,31 @@
 
   function resetProgress() {
     if (!window.EXCEL_LAB_DEV?.enabled) return;
-    const profile = currentProfile();
-    if (!profile || !window.confirm(`Fortschritt von „${profile.name}“ wirklich zurücksetzen?`)) return;
-    profile.progress = {};
-    profile.nagoldEntries = [];
-    profile.updatedAt = new Date().toISOString();
-    saveState();
-    renderAll();
-    showToast("Lernfortschritt zurückgesetzt.");
+    try {
+      // Frischen Browserstand verwenden und andere Profile exakt erhalten.
+      const rawState = localStorage.getItem(STORAGE_KEY);
+      const staged = JSON.parse(rawState || "null");
+      if (staged?.version !== VERSION || !Array.isArray(staged.profiles)) throw new Error("Der Browserstand ist nicht lesbar. Es wurde nichts zurückgesetzt.");
+      const profile = staged.profiles.find(item => item.id === staged.currentProfileId);
+      if (!profile || !window.confirm(`Das gesamte Profil „${profile.name}“ (${profile.className || "ohne Klasse"}) zurücksetzen? Kürzel, Klasse, XP, NAGOLD-Tabelle und Textmarkierungen werden aus diesem Browserprofil entfernt. Vorher wird eine Sicherungsdatei zum Download bereitgestellt und eine lokale Rücksicherung angelegt. Andere Profile bleiben erhalten. Anschließend kannst du ein neues Kürzel und eine neue Klasse eingeben.`)) return;
+      // Kein Löschen, wenn Download-Erstellung oder Rücksicherung scheitern.
+      saveCore.download(profile, APP_VERSION);
+      if (localStorage.getItem(STORAGE_KEY) !== rawState) throw new Error("Der Lernstand wurde inzwischen geändert. Bitte den aktuellen Stand prüfen und erneut versuchen.");
+      staged.profiles.splice(staged.profiles.indexOf(profile), 1);
+      staged.currentProfileId = null;
+      saveCore.persistImport(staged, "Zurücksetzen");
+      state = staged;
+      $("#manager-dialog").close();
+      $("#profile-form").reset();
+      $("#profile-name-input").setCustomValidity("");
+      $("#profile-class-input").setCustomValidity("");
+      window.dispatchEvent(new Event("excel-lab-progress-change"));
+      renderAll();
+      openProfileDialog();
+      showToast("Profil vollständig zurückgesetzt. Sicherungsdatei zum Download bereitgestellt. Gib jetzt dein neues Kürzel und deine Klasse ein.");
+    } catch (error) {
+      showToast(`Zurücksetzen abgebrochen. ${error.message || "Der bisherige Stand bleibt erhalten."}`, 12000);
+    }
   }
 
   function applyTheme() {
@@ -853,6 +875,7 @@
 
   function init() {
     bindEvents();
+    saveCore.bindUpgradeControl($("#save-dialog .dialog-content"), APP_VERSION);
     renderAll();
     syncRouteFromHash();
     if (unreadableState !== null) {

@@ -865,7 +865,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         const download = lesson.page.waitForEvent("download");
         await lesson.page.keyboard.press("Alt+s");
         await download;
-        await lesson.page.locator("#toast-region .toast").filter({ hasText: "Gespeichert" }).waitFor();
+        await lesson.page.locator("#toast-region .toast").filter({ hasText: "Speicherdatei zum Download bereitgestellt" }).waitFor();
         assert.deepEqual(lesson.errors, []);
       } finally { await lesson.context.close(); }
       // Textmarker: markieren, nach Neuladen sichtbar, radieren (0.31.0).

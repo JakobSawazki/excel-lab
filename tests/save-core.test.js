@@ -153,3 +153,79 @@ test("Alle Lernseiten laden highlighter.js nach save-core.js", () => {
     assert.ok(html.indexOf("highlighter.js") > html.indexOf("save-core.js") && html.indexOf("save-core.js") > 0, file);
   }
 });
+
+test("Alte Format-1-Dateien: fehlende Zeit, deutsche Datumsangaben und ganzzahlige Punktetexte bleiben erhalten", () => {
+  const { core } = load();
+  const old = { app: "Excel-Lab", version: 1, appVersion: "0.1.0", profile: {
+    name: "alt.pro", className: "WGW EK1", progress: { "l1-1": done },
+    nagoldEntries: [
+      { date: "2026-10-16", purpose: "Startkapital", points: 5 },
+      { date: "19.10.2026", time: "8:5", purpose: "Anwesenheit", points: "2" },
+      { purpose: "Abzug", points: "-3" }
+    ], highlights: { "l1-1": [{ block: "b-1", start: 0, end: 3, quote: "Text".slice(0, 3), color: "mint" }] }
+  } };
+  const original = JSON.stringify(old);
+  const updated = plain(core.upgradePayload(old, "0.31.0"));
+  assert.equal(updated.version, 1);
+  assert.equal(updated.exportedBy.nagold, 4);
+  assert.equal(updated.profile.nagoldEntries.length, 3);
+  assert.deepEqual(updated.profile.nagoldEntries[1], { date: "2026-10-19", time: "08:05", purpose: "Anwesenheit", points: 2 });
+  assert.deepEqual(updated.profile.nagoldEntries[2], { date: "", time: "", purpose: "Abzug", points: -3 });
+  assert.deepEqual(updated.profile.highlights, old.profile.highlights);
+  assert.equal(JSON.stringify(old), original, "Upgrade verändert das Original nicht");
+  assert.deepEqual(plain(core.prepareImport(updated)), updated.profile, "erneutes Laden ohne Verlust");
+});
+
+test("NAGOLD: beschädigte Zeilen, abgeschnittene Tabellen und widersprüchliche Summen blockieren vollständig", () => {
+  const { core } = load();
+  const row = { date: "2026-10-19", time: "08:00", purpose: "Mitarbeit", points: 3 };
+  const file = entries => ({ app: "Excel-Lab", version: 1, profile: { name: "tes.pro", progress: {}, nagoldEntries: entries } });
+  for (const invalid of [null, {}, [row, { ...row, points: 6 }], [row, { ...row, date: "31.02.2026" }],
+    [row, { ...row, purpose: "x".repeat(161) }], [row, { ...row, lessonId: "l99-1" }], Array(1028).fill(row)]) {
+    const state = { version: 1, profiles: [], currentProfileId: null };
+    const before = JSON.stringify(state);
+    assert.throws(() => core.mergeImport(state, file(invalid), () => true), /NAGOLD/);
+    assert.equal(JSON.stringify(state), before);
+  }
+  assert.throws(() => core.prepareImport({ ...file([row]), exportedBy: { nagold: 12 } }), /Summe/);
+  assert.throws(() => core.prepareImport({ app: "Excel-Lab", version: 99, profile: {} }), /nicht unterstütztes Dateiformat/);
+  assert.throws(() => core.normalizeProfile(file([null]).profile), /NAGOLD/, "auch lokal nicht still ausfiltern");
+});
+
+test("Auch gleiche NAGOLD-Summe schützt vor Verlust einzelner Eintragungen, einschließlich Duplikaten", () => {
+  const { core } = load();
+  const row = { date: "2026-10-19", purpose: "Mitarbeit", points: 2 };
+  const existing = core.normalizeProfile({ id: "p", name: "tes.pro", className: "WGW EK1", progress: {}, nagoldEntries: [row, row] });
+  const state = { version: 1, currentProfileId: "p", profiles: [existing] };
+  const before = JSON.stringify(state), questions = [];
+  const incoming = { app: "Excel-Lab", version: 1, profile: { ...existing, nagoldEntries: [{ ...row, points: 4 }] } };
+  assert.equal(core.mergeImport(state, incoming, question => { questions.push(question); return false; }), "cancelled");
+  assert.match(questions[0], /NAGOLD: 4 → 4/);
+  assert.equal(JSON.stringify(state), before);
+});
+
+test("Import-Rücksicherung: bei Schreibfehler bleibt der bisherige Stand erhalten", () => {
+  const { core, store } = load();
+  const key = "excelLab.state.v1", old = '{"version":1,"profiles":[]}';
+  store.set(key, old);
+  const next = { version: 1, profiles: [], currentProfileId: null };
+  core.persistImport(next);
+  assert.equal(store.get(core.IMPORT_BACKUP_KEY), old);
+  assert.equal(store.get(key), JSON.stringify(next));
+  const oldSet = store.set.bind(store);
+  store.set = (name, value) => { if (name === key) throw new Error("QuotaExceededError"); return oldSet(name, value); };
+  assert.throws(() => core.persistImport({ version: 1, profiles: [{ name: "neu" }] }), /nicht sicher gespeichert/);
+  assert.equal(store.get(key), JSON.stringify(next));
+  assert.equal(store.get(core.IMPORT_BACKUP_KEY), JSON.stringify(next));
+  store.set = () => { throw new Error("QuotaExceededError"); };
+  assert.throws(() => core.persistImport({ profiles: [] }), /nicht sicher gespeichert/);
+  assert.equal(store.get(key), JSON.stringify(next));
+});
+
+test("Dateigrenze gilt gemeinsam: größere gültige JSON-Dateien bleiben ladbar", async () => {
+  const { core } = load();
+  const text = JSON.stringify({ note: "x".repeat(1000001) });
+  assert.equal((await core.readFile({ size: text.length, text: async () => text })).note.length, 1000001);
+  await assert.rejects(core.readFile({ size: core.MAX_FILE_BYTES + 1 }), /10 MB/);
+  await assert.rejects(core.readFile({ size: 1, text: async () => "{" }), /kein lesbares JSON/);
+});
