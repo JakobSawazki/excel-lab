@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  // NAGOLD: Punktetabelle im Profil, wie in WorkbenchLab. Je abgeschlossener
-  // Lerneinheit kommt automatisch eine Zeile mit 5 NAGOLD dazu; eigene Zeilen
+  // EP: Punktetabelle im Profil, wie in WorkbenchLab. Je abgeschlossener
+  // Lerneinheit kommt automatisch eine Zeile mit 5 EP dazu; eigene Zeilen
   // (ganze Punkte von -10 bis 5, nicht 0) tragen Lernende selbst ein. Die Tabelle ist eine
   // Selbstauskunft, verbindlich bleibt die Bewertung der Lehrkraft.
   const lessons = window.EXCEL_LAB_CONTENT?.lessons;
@@ -14,13 +14,13 @@
   const minPoints = -10;
   const maxManualEntries = 1000;
   const maxEntries = maxManualEntries + lessons.length;
-  // „Anwesenheit“ füllt in der Tabelle automatisch 2 NAGOLD vor (wie in WorkbenchLab 0.48.0).
+  // „Anwesenheit“ füllt in der Tabelle automatisch 2 EP vor (wie in WorkbenchLab 0.48.0).
   const presets = ["Anwesenheit", "Mitarbeit", "Zusatzaufgabe", "Präsentation", "Projektarbeit", "Lernprodukt"];
   const attendancePoints = 2;
-  // Startkapital (Vorgabe Jakob, 16.10.2026): einmalig 5 NAGOLD je Schuljahr,
+  // Startkapital (Vorgabe Jakob, 16.10.2026): einmalig 5 EP je Schuljahr,
   // als Zeile „Startkapital“ wie in WorkbenchLab. Das Schuljahr beginnt am 1. August.
   const startCapitalPoints = 5;
-  // Jahresziel wie in WorkbenchLab: 100 NAGOLD = 100 %; mehr ist möglich.
+  // Jahresziel wie in WorkbenchLab: 100 EP = 100 %; mehr ist möglich.
   const yearGoal = 100;
 
   function validDate(value) {

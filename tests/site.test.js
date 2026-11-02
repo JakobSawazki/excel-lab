@@ -11,6 +11,27 @@ const htmlFiles = fs.readdirSync(root).filter((file) => file.endsWith(".html")).
 const scriptFiles = fs.readdirSync(root).filter((file) => file.endsWith(".js")).sort();
 const MATERIALS = "materialien/BPE1/";
 
+test("EP ist die sichtbare Bezeichnung; technische Altdatei-Felder bleiben erhalten", () => {
+  for (const file of [...htmlFiles, ...scriptFiles]) {
+    assert.doesNotMatch(read(file), /\b(?:NAGOLD|NAG)\b/, `${file}: alte sichtbare Punktebezeichnung`);
+  }
+  assert.match(read("nagold-table.js"), /EP · Erfahrungspunkte/);
+  assert.match(read("nachweis.html"), /Erfahrungspunkte \(EP\)/);
+  assert.match(read("lehrkraft.js"), /"XP", "EP"/);
+  assert.match(read("save-core.js"), /nagoldEntries/);
+  assert.match(read("save-core.js"), /by\.nagold/);
+  assert.match(read("nagold.js"), /EXCEL_LAB_NAGOLD/);
+});
+
+test("Profilanlage: OK mit zugänglichem Speicherhinweis als Tooltip statt Fußtext", () => {
+  const html = read("index.html");
+  const form = html.slice(html.indexOf('id="profile-form"'), html.indexOf("</form>", html.indexOf('id="profile-form"')));
+  assert.match(form, /type="submit" aria-describedby="profile-start-tip">OK<\/button>/);
+  assert.match(form, /role="tooltip" id="profile-start-tip"/);
+  assert.match(form, /Lokal gespeichert · jederzeit als Datei sichern und laden/);
+  assert.doesNotMatch(form, /Lernprofil starten|class="privacy-note"/);
+});
+
 test("30 Seiten: Startseite, 27 Lernseiten, Klassenübersicht und Lernnachweis", () => {
   assert.equal(htmlFiles.length, 30);
   assert.ok(htmlFiles.includes("nachweis.html"));

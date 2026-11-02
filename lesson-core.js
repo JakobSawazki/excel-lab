@@ -56,6 +56,50 @@
     const dev = () => Boolean(window.EXCEL_LAB_DEV?.enabled);
     let state, profile;
 
+    // Stable per-block keys; tasks, optional material, sources and the quiz
+    // retain their own checks and are not additional reading obligations.
+    const readingBlocks = Array.from(document.querySelectorAll(".lesson-article > .lesson-disclosure"))
+      .filter((section) => !section.matches(".task-section, .material-section")
+        && section !== masterySection
+        && !/Quellen|Optional/i.test(section.querySelector(":scope > summary .section-index")?.textContent || ""))
+      .map((section, index) => {
+        const summary = section.querySelector(":scope > summary");
+        const heading = summary.querySelector("h2, h3");
+        const number = summary.querySelector(".section-index")?.textContent.match(/^\s*(\d+)/)?.[1];
+        const key = heading?.id || `section-${number || index + 1}`;
+        const label = document.createElement("label");
+        label.className = "lesson-reading-check";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.dataset.readingBlock = key;
+        input.setAttribute("aria-label", `${heading?.textContent || "Informationsblock"}: gelesen und verstanden`);
+        label.append(input, document.createTextNode("Gelesen und verstanden"));
+        section.querySelector(":scope > .lesson-disclosure-body").append(label);
+        const badge = document.createElement("span");
+        badge.className = "lesson-reading-badge";
+        badge.textContent = "✓ Gelesen";
+        badge.hidden = true;
+        summary.append(badge);
+        return { section, summary, key, input, badge };
+      });
+    const readingLabel = document.createElement("label");
+    readingLabel.className = checks[0]?.closest("label")?.className || "";
+    const readingCheck = document.createElement("input");
+    readingCheck.type = "checkbox";
+    readingCheck.id = "page-reading-check";
+    readingCheck.disabled = true;
+    readingCheck.setAttribute("aria-describedby", "page-reading-status");
+    const readingStatus = document.createElement("span");
+    readingStatus.id = "page-reading-status";
+    readingStatus.setAttribute("aria-live", "polite");
+    readingLabel.append(readingCheck, readingStatus);
+    if (readingBlocks.length) checks[0]?.closest("label")?.before(readingLabel);
+    let readingProfileId;
+
+    function allRead(current) {
+      return readingBlocks.every(({ key }) => current.reading[key] === true);
+    }
+
     // Antwortmöglichkeiten bei jedem Seitenaufruf neu mischen. In den Seiten
     // steht die richtige Antwort sonst meist an derselben Stelle (b, c, a).
     form.querySelectorAll(".mastery-question").forEach((question) => {
@@ -101,6 +145,9 @@
         masteryPassed: Boolean(saved?.masteryPassed || saved?.completed),
         bonus: Boolean(saved?.bonus),
         bonus2: Boolean(saved?.bonus2),
+        reading: Object.fromEntries(readingBlocks.map(({ key }) => [key,
+          saved?.reading && typeof saved.reading === "object"
+            ? saved.reading[key] === true : Boolean(saved?.completed)])),
         checks: checks.map((_, i) => Boolean(saved?.checks?.[i]))
       };
     }
@@ -273,8 +320,22 @@
       const open = unlocked();
       const current = progress();
       const editable = open && Boolean(profile) && !dev();
-      const count = current.checks.filter(Boolean).length + Number(current.teacherChecked) + Number(current.masteryPassed);
-      const percent = open ? current.completed ? 100 : Math.round(count / (checks.length + 3) * 100) : 0;
+      const read = allRead(current);
+      const count = current.checks.filter(Boolean).length + Number(current.teacherChecked) + Number(current.masteryPassed) + Number(readingBlocks.length > 0 && read);
+      const percent = open ? current.completed ? 100 : Math.round(count / (checks.length + 3 + Number(readingBlocks.length > 0)) * 100) : 0;
+      readingCheck.checked = read;
+      const readCount = readingBlocks.filter(({ key }) => current.reading[key]).length;
+      readingStatus.textContent = read ? "Gelesen · alle Informationsblöcke bestätigt" : `Gelesen · ${readCount} von ${readingBlocks.length} Informationsblöcken`;
+      readingBlocks.forEach(({ input, key, badge }) => {
+        input.checked = current.reading[key];
+        input.disabled = !editable;
+        badge.hidden = !current.reading[key];
+      });
+      if (readingProfileId !== profile?.id) {
+        readingProfileId = profile?.id;
+        const firstUnread = readingBlocks.find(({ key }) => !current.reading[key]);
+        readingBlocks.forEach((block) => { block.section.open = block === firstUnread; });
+      }
       // Ohne gespeicherten Lernstand gilt wie auf der Startseite die Vorgabe des Geräts.
       const light = state ? state.theme === "light" : window.matchMedia("(prefers-color-scheme: light)").matches;
       document.documentElement.dataset.theme = light ? "light" : "dark";
@@ -303,6 +364,7 @@
       if (pop) {
         const rows = [
           ["Status", $("#lesson-page-status").textContent, current.completed],
+          ["Gelesen", `${readCount} von ${readingBlocks.length}`, read],
           ["Eigene Arbeitsschritte", `${current.checks.filter(Boolean).length} von ${checks.length}`, current.checks.every(Boolean)],
           ["Verständnis-Check", current.masteryPassed ? "bestanden" : "noch offen", current.masteryPassed],
           ["Lehrkraft", current.teacherChecked ? "bestätigt" : "noch offen", current.teacherChecked],
@@ -359,7 +421,7 @@
           ? following
             ? `${points} XP wurden gutgeschrieben. Beim Wiederöffnen ist ${following.code} gesperrt, bis du ${code} wieder abgeschlossen hast. Dort Erreichtes bleibt erhalten.`
             : `${points} XP wurden gutgeschrieben. Du hast die letzte Einheit bearbeitet. Sichere deinen Lernstand über das Profilmenü.`
-          : `Verständnis-Check, alle ${checkWord} eigenen Checks und die Lehrkraftbestätigung sind nötig. Erst der Abschluss schreibt ${points} XP gut.`;
+          : `Alle Informationsblöcke als gelesen bestätigen, den Verständnis-Check bestehen, alle ${checkWord} eigenen Checks und die Lehrkraftbestätigung abhaken. Erst der Abschluss schreibt ${points} XP gut.`;
 
       const nextLink = $("#next-lesson-link");
       const ready = open && (current.completed || dev());
@@ -395,17 +457,38 @@
     });
 
     document.addEventListener("change", (event) => {
-      if (!event.target.matches("[data-page-check], #page-teacher-check") || dev()) return;
+      if (!event.target.matches("[data-page-check], #page-teacher-check, [data-reading-block]") || dev()) return;
       const oldProfileId = profile?.id;
       refresh();
       if (!unlocked() || !profile || oldProfileId !== profile.id) { render(); return; }
       const next = progress();
-      if (event.target.id === "page-teacher-check") next.teacherChecked = event.target.checked;
+      const readingBlock = readingBlocks.find(({ input }) => input === event.target);
+      if (readingBlock) next.reading[readingBlock.key] = event.target.checked;
+      else if (event.target.id === "page-teacher-check") next.teacherChecked = event.target.checked;
       else next.checks[Number(event.target.dataset.pageCheck)] = event.target.checked;
-      const revoked = next.completed && (!next.teacherChecked || !next.checks.every(Boolean));
+      const revoked = next.completed && (!next.teacherChecked || !next.checks.every(Boolean) || !allRead(next));
       if (revoked) next.completed = false;
       const saved = save(next);
       render();
+      if (saved && readingBlock && event.target.checked) {
+        readingBlock.section.open = false;
+        const followingBlock = readingBlocks.slice(readingBlocks.indexOf(readingBlock) + 1)
+          .find(({ key }) => !next.reading[key]) || readingBlocks.find(({ key }) => !next.reading[key]);
+        if (followingBlock) {
+          followingBlock.section.open = true;
+          followingBlock.summary.focus({ preventScroll: true });
+          followingBlock.summary.scrollIntoView({ block: "nearest", behavior: "instant" });
+        } else {
+          const task = document.querySelector(".lesson-article > .task-section");
+          if (task) {
+            task.open = true;
+            const summary = task.querySelector(":scope > summary");
+            summary?.focus({ preventScroll: true });
+            summary?.scrollIntoView({ block: "nearest", behavior: "instant" });
+          }
+          toast("Alle Informationsblöcke gelesen. Weiter mit deiner Aufgabe.");
+        }
+      }
       if (saved && revoked) {
         toast(following
           ? `Abschluss zurückgenommen. ${following.code} ist wieder gesperrt.`
@@ -420,6 +503,14 @@
       if (!unlocked() || oldProfileId !== profile?.id) { render(); return; }
       if (!profile) { window.location.href = "index.html#uebersicht"; return; }
       const next = progress();
+      if (!next.completed && !allRead(next)) {
+        const block = readingBlocks.find(({ key }) => !next.reading[key]);
+        block.section.open = true;
+        block.summary.focus({ preventScroll: true });
+        block.summary.scrollIntoView({ block: "start", behavior: "instant" });
+        toast("Lies die Informationsblöcke und bestätige jeweils: Gelesen und verstanden.");
+        return;
+      }
       if (!next.completed && !next.masteryPassed) {
         masterySection.open = true;
         masterySection.scrollIntoView({ block: "start", behavior: "smooth" });
@@ -429,7 +520,7 @@
       if (!next.completed && !next.checks.every(Boolean)) { toast(`Hake zuerst alle ${checkWord} eigenen Arbeitsschritte ab.`); return; }
       if (!next.completed && !next.teacherChecked) { toast("Die Bestätigung durch die Lehrkraft fehlt noch."); return; }
       next.completed = !next.completed;
-      // Beim Abschluss kommt einmalig eine Zeile mit 5 NAGOLD in die Tabelle des Profils.
+      // Beim Abschluss kommt einmalig eine Zeile mit 5 EP in die Tabelle des Profils.
       const nagold = window.EXCEL_LAB_NAGOLD;
       const now = new Date();
       const nagoldAdded = Boolean(next.completed && !dev() && profile && nagold
@@ -439,7 +530,7 @@
       if (!saved) return;
       if (next.completed) {
         // Kurz halten (Vorgabe Jakob): Ergebnis und ein Schritt; die nächste Einheit zeigt die Navigation.
-        toast(`${code} geschafft: +${points} XP${nagoldAdded ? `, +${nagold.maxPoints} NAGOLD` : ""}. ${SAVE_HINT}`, 7000);
+        toast(`${code} geschafft: +${points} XP${nagoldAdded ? `, +${nagold.maxPoints} EP` : ""}. ${SAVE_HINT}`, 7000);
       } else {
         toast(following ? `${code} ist wieder offen. ${following.code} ist wieder gesperrt.` : `${code} ist wieder offen.`);
       }

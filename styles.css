@@ -2092,7 +2092,11 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
   font-size: 0.72rem !important;
 }
 
-.about-dialog {
+.dialog.about-dialog {
+  position: fixed;
+  inset: 1rem;
+  height: fit-content;
+  margin: auto;
   width: min(760px, calc(100% - 2rem));
 }
 
@@ -2112,6 +2116,18 @@ html[data-theme="light"][data-text-tone="lavender"] { --text:#302347; --text-sof
   padding: 0;
   list-style: none;
 }
+
+.version-groups { display: grid; gap: .7rem; }
+.version-group { border: 1px solid var(--line-strong); border-radius: 13px; background: var(--surface-2); }
+.version-group > summary { display: flex; align-items: center; gap: .7rem; padding: .9rem 1rem; cursor: pointer; list-style: none; font-weight: 800; }
+.version-group > summary::-webkit-details-marker { display: none; }
+.version-group > summary small { margin-left: auto; color: var(--text-soft); font-size: .75rem; font-weight: 500; white-space: nowrap; }
+.version-group-icon { position: relative; flex: 0 0 1.8rem; width: 1.8rem; height: 1.8rem; border: 1px solid var(--metal-edge); border-radius: 50%; color: var(--green); }
+.version-group-icon::before, .version-group-icon::after { position: absolute; left: 50%; top: 50%; width: .7rem; height: 2px; border-radius: 1px; background: currentColor; content: ""; transform: translate(-50%, -50%); }
+.version-group-icon::after { width: 2px; height: .7rem; }
+.version-group[open] > summary .version-group-icon::after { display: none; }
+.version-group[open] > summary { border-bottom: 1px solid var(--line); }
+.version-group > .version-timeline { padding: 1rem; }
 
 .version-timeline li {
   display: grid;
@@ -3702,7 +3718,7 @@ html {
 }
 @media print { .teacher-section { display: none; } }
 
-/* NAGOLD (0.21.0, wie in WorkbenchLab): Goldton, Anzeige im Profil, Tabelle. */
+/* EP (0.21.0, wie in WorkbenchLab): Goldton, Anzeige im Profil, Tabelle. */
 :root { --nagold: #f0c45c; --nagold-deep: #b98312; }
 [data-theme="light"] { --nagold: #8a5d00; --nagold-deep: #b98312; }
 .profile-nagold { color: var(--nagold); font-weight: 800; letter-spacing: .02em; }
@@ -3842,9 +3858,35 @@ html {
 .save-actions { margin-top: 1rem; }
 .save-maintenance-button { display: flex; width: 100%; margin-top: 1rem; }
 .save-maintenance-button[hidden] { display: none; }
+.dialog.save-dialog { position: fixed; inset: 1rem; height: fit-content; margin: auto; width: min(600px, calc(100vw - 2rem)); }
+.save-dialog .dialog-content { display: grid; gap: .75rem; padding: 1.25rem; }
+.save-dialog .save-dialog-mark { position: absolute; top: 1.15rem; left: 1.25rem; width: 36px; height: 36px; margin: 0; border-radius: 11px; }
+.save-dialog .save-dialog-mark svg { width: 23px; height: 23px; }
+.save-dialog .eyebrow { display: none; }
+.save-dialog h2 { min-height: 36px; margin: 0; padding: .2rem 2.7rem 0 3rem; font-size: 1.35rem; }
+.save-dialog p { margin: 0; }
+.save-dialog .save-dialog-intro { font-size: .78rem; }
+.save-dialog .save-dialog-status { margin: 0; padding: .6rem .75rem; font-size: .78rem; overflow-wrap: anywhere; }
+.save-dialog .save-actions { margin: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.save-dialog .save-actions .tip-wrap { min-width: 0; }
+.save-dialog .save-actions .button { display: flex; align-items: center; justify-content: center; gap: .4rem; min-height: 48px; padding: .55rem; font-size: .85rem; }
+.save-dialog .button svg { flex: 0 0 22px; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.save-dialog .recent-saves { margin: 0; gap: .35rem; }
+.save-dialog .recent-saves label { display: block; margin: 0; font-size: .7rem; }
+.save-dialog .recent-saves-row { grid-template-columns: minmax(0, 1fr) 44px; gap: .5rem; }
+.save-dialog .recent-saves select { min-height: 44px; padding: .4rem .5rem; font-size: .78rem; }
+.save-tools { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; }
+.save-tools > small { margin-right: auto; color: var(--text-soft); font-size: .72rem; }
+.save-dialog .save-tool .button { display: grid; place-items: center; width: 44px; min-height: 44px; height: 44px; margin: 0; padding: 0; }
+.save-dialog #rescue-button { width: 44px; margin: 0; }
+.save-tool:has(> button[hidden]) { display: none; }
+.save-dialog .save-tool .tip { right: 0; left: auto; width: max-content; max-width: min(240px, calc(100vw - 5rem)); }
+.save-dialog .save-tools .save-tool { position: static; }
+.save-dialog .save-tools .tip { right: 0; left: 0; width: auto; max-width: none; }
+.save-dialog [role="status"] { font-size: .78rem; line-height: 1.4; overflow-wrap: anywhere; }
 [data-theme="light"] .save-dialog-mark { background: radial-gradient(circle at 30% 24%, #fff, transparent 52%), linear-gradient(160deg, #f7faf8, color-mix(in srgb, var(--green) 16%, #e3ece6) 70%); }
 
-/* 0.22.0 (Wünsche Jakob): XP und NAGOLD im Profilknopf, XP-Abschnitt im Profil,
+/* 0.22.0 (Wünsche Jakob): XP und EP im Profilknopf, XP-Abschnitt im Profil,
    Tooltips im Speicherfenster, Liste der zuletzt gespeicherten Stände. */
 .profile-stats { display: inline; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .profile-stats[hidden], .profile-label[hidden], .profile-mini[hidden] { display: none; }
@@ -3904,7 +3946,7 @@ html {
 
 /* Profilfenster (0.22.1/0.22.2, Wünsche Jakob): breit und ohne Rollbalken.
    Oben die Profilkarte, darunter Kürzel und Klasse nebeneinander, dann XP und
-   NAGOLD als zwei gleich hohe Felder, darunter der Lernnachweis. */
+   EP als zwei gleich hohe Felder, darunter der Lernnachweis. */
 .manager-dialog { width: min(900px, calc(100vw - 2rem)); max-width: none; }
 .manager-dialog .profile-list { margin: 1.1rem 0 0; }
 .manager-dialog .profile-edit-form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 1.4rem; margin: 1.1rem 0 0; }
@@ -3944,7 +3986,7 @@ html {
 .xp-summary > .tip-wrap:not(.tip-start):not(.tip-end):has(:focus-visible) .tip { transform: translate(-50%, 0); }
 .tip:empty { display: none; }
 
-/* NAGOLD-Tabelle wie in WorkbenchLab (0.22.1): ein Feld „Wofür“ mit eigener Vorschlagsliste. */
+/* EP-Tabelle wie in WorkbenchLab (0.22.1): ein Feld „Wofür“ mit eigener Vorschlagsliste. */
 .nagold-combo { position: relative; }
 .nagold-table .nagold-combo input { padding-right: 2.5rem; }
 .nagold-combo-toggle { position: absolute; top: 50%; right: .3rem; display: grid; width: 2rem; height: 2rem; place-items: center; transform: translateY(-50%); border: 0; border-radius: 8px; background: transparent; color: var(--text-soft); cursor: pointer; }
@@ -3998,7 +4040,7 @@ html {
   .main-nav .nav-dropdown { grid-column: 1 / -1; }
 }
 
-/* NAGOLD-Tabelle (16.10.2026): kein eigener Rollbereich mehr. Bei geöffneter
+/* EP-Tabelle (16.10.2026): kein eigener Rollbereich mehr. Bei geöffneter
    Vorschlagsliste quoll die Tabelle sonst auf schmalen Bildschirmen über
    Summe und „Speichern“. Es rollt das ganze Fenster; die Liste richtet sich
    nach dem Platz im Fenster (nagold-table.js). */
@@ -4011,11 +4053,11 @@ html {
   .nagold-table tbody tr:last-child { border-radius: 0 0 13px 13px; }
   .nagold-table tbody tr:last-child > td:first-child, .nagold-table tbody tr:last-child > td:last-child { border-radius: 0; }
 }
-/* Automatisches Speichern der NAGOLD-Tabelle (wie WorkbenchLab 0.48.0): Hinweis statt Speichern-Knopf. */
+/* Automatisches Speichern der EP-Tabelle (wie WorkbenchLab 0.48.0): Hinweis statt Speichern-Knopf. */
 .nagold-autosave { margin: 0; color: var(--text-faint); font-size: .8rem; text-align: right; }
 .nagold-error:empty { min-height: 0; margin: .2rem 0; }
 
-/* Jahresziel im NAGOLD-Feld (0.27.0): 100 NAGOLD = 100 %, wie in WorkbenchLab. */
+/* Jahresziel im EP-Feld (0.27.0): 100 EP = 100 %, wie in WorkbenchLab. */
 .nagold-total { flex-wrap: wrap; }
 .nagold-goal { display: grid; gap: .3rem; width: 100%; }
 .nagold-goal progress { display: block; width: 100%; height: .55rem; border: 0; border-radius: 999px; overflow: hidden; background: color-mix(in srgb, var(--nagold-deep) 22%, var(--surface)); accent-color: var(--nagold); }
@@ -4041,7 +4083,7 @@ html {
 [data-theme="light"] { --brush-strength: .7; }
 
 /* Flächen mit eigenem Glanz: Kopfzeile, Menüleiste, Lernpfad-Menü,
-   runde Symbolknöpfe, Profilknopf, Fenster, XP- und NAGOLD-Feld. */
+   runde Symbolknöpfe, Profilknopf, Fenster, XP- und EP-Feld. */
 /* Ohne .site-header: Auf dem Handy liegt die Menüleiste fixiert in der Kopfzeile;
    eine eigene Ebene würde sie unter den Seiteninhalt sperren. */
 .main-nav, .nav-dropdown-menu, .icon-button, .profile-button,

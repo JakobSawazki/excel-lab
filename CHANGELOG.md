@@ -4,6 +4,18 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.33.0 – 2026-11-02
+
+Die bisherige NAGOLD-Punktetabelle heißt einheitlich EP (Erfahrungspunkte): Profil, Kopfzeile, Tabelle, Speicherhinweise und Rückfragen, Lernnachweis sowie Klassenübersicht und CSV-Export verwenden die neue Bezeichnung. Punktewerte, Regeln und XP/Level bleiben unverändert. Interne Format-1-Felder bleiben aus Kompatibilitätsgründen erhalten; ältere Speicherdateien benötigen keine Migration.
+
+Informationsblöcke der 27 Lernseiten werden einzeln mit „Gelesen und verstanden“ bestätigt. Der bestätigte Block klappt zu, der nächste offene Leseblock auf; die Abschluss-Checkliste setzt „Gelesen“ automatisch erst nach allen Bestätigungen. Wiederaufklappen und Zurücknehmen bleiben möglich. Die Bestätigungen gehören zur Speicherdatei; alte Abschlüsse und NAGOLD bleiben erhalten.
+
+Das Speicherfenster ist auf Startseite und Lernseiten kompakter: Speichern/Laden mit Icons und kurzer Beschriftung, Verlauf samt Lade-Icon in einer Zeile und Zusatzfunktionen als zugängliche Icon-Leiste mit Tooltips. Die üblichen Desktop- und Mobilgrößen benötigen keine Scrollleiste; für extrem kleine Ansichten bleibt Scrollen möglich, damit keine Funktion abgeschnitten wird.
+
+Die Profilanlage bestätigt man mit „OK“. Der lokale Speicherhinweis steht nicht mehr dauerhaft darunter, sondern erscheint als Tooltip beim Darüberfahren oder Tastaturfokus.
+
+Das Excel-Lab-Logo im Seitenfuß öffnet Versionen und Impressum auch auf den Lernseiten direkt als Dialog, ohne die Seite zu wechseln oder die Scrollposition zu verlieren. Versionsstände sind vollständig in zunächst geschlossenen Gruppen wie 0.3x und 0.2x gesammelt; Plus/Minus und Tastaturbedienung klappen die Gruppen auf und zu.
+
 ## 0.32.0 – 2026-10-19
 
 Im Entwicklermodus setzt „Fortschritt zurücksetzen“ jetzt das gesamte aktive Profil zurück, einschließlich Kürzel, Klasse, XP, NAGOLD und Textmarkierungen. Vorher wird eine vollständige Sicherungsdatei angeboten und eine lokale Rücksicherung angelegt. Anschließend öffnet sich die leere Profilanlage. Andere Profile bleiben erhalten; bei Sicherungs- oder Speicherfehlern wird nicht zurückgesetzt.

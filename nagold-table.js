@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  // NAGOLD-Tabelle (wie in WorkbenchLab) als gemeinsames Fenster für Startseite
+  // EP-Tabelle (wie in WorkbenchLab) als gemeinsames Fenster für Startseite
   // und Lernseiten: Datum, Uhrzeit, Wofür (ein Feld mit Vorschlagsliste) und
   // Punkte. Wie in WorkbenchLab 0.48.0 werden gültige Zeilen und Löschungen
   // sofort gespeichert; eine unvollständige Korrektur behält den letzten
@@ -20,7 +20,7 @@
     remove: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>',
     chevron: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>'
   };
-  const RULE_ERROR = "Unvollständige Zeilen sind noch nicht gespeichert. Datum, Uhrzeit, Anlass und ganze NAGOLD von −10 bis 5 (ohne 0) ergänzen. Bisherige gültige Einträge bleiben erhalten.";
+  const RULE_ERROR = "Unvollständige Zeilen sind noch nicht gespeichert. Datum, Uhrzeit, Anlass und ganze EP von −10 bis 5 (ohne 0) ergänzen. Bisherige gültige Einträge bleiben erhalten.";
   const START_ERROR = "Startkapital gibt es nur einmal je Schuljahr. Diese Zeile ist noch nicht gespeichert.";
   const SAVE_ERROR = "Speichern nicht möglich. Das Profil hat sich geändert oder der Speicher ist gesperrt.";
 
@@ -29,19 +29,19 @@
   dialog.id = "nagold-dialog";
   dialog.setAttribute("aria-labelledby", "nagold-title");
   dialog.innerHTML = `<form id="nagold-form" class="dialog-content" novalidate>
-      <button class="dialog-close" type="button" data-close-dialog aria-label="NAGOLD-Tabelle schließen">${ICONS.close}</button>
+      <button class="dialog-close" type="button" data-close-dialog aria-label="EP-Tabelle schließen">${ICONS.close}</button>
       <p class="eyebrow">Deine gesammelten Punkte</p>
-      <h2 id="nagold-title">NAGOLD</h2>
-      <p class="nagold-intro">Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD. Weitere Einträge kommen dazu; verbindlich ist die Bewertung deiner Lehrkraft.</p>
+      <h2 id="nagold-title">EP · Erfahrungspunkte</h2>
+      <p class="nagold-intro">Jede abgeschlossene Lerneinheit bringt automatisch 5 EP. Weitere Einträge kommen dazu; verbindlich ist die Bewertung deiner Lehrkraft.</p>
       <div class="nagold-table-wrap">
         <table class="nagold-table">
-          <caption class="sr-only">Deine NAGOLD-Einträge</caption>
-          <thead><tr><th scope="col">Datum</th><th scope="col">Uhrzeit</th><th scope="col">Wofür</th><th scope="col">NAGOLD</th><th scope="col"><span class="sr-only">Aktionen</span></th></tr></thead>
+          <caption class="sr-only">Deine EP-Einträge</caption>
+          <thead><tr><th scope="col">Datum</th><th scope="col">Uhrzeit</th><th scope="col">Wofür</th><th scope="col">EP</th><th scope="col"><span class="sr-only">Aktionen</span></th></tr></thead>
           <tbody id="nagold-rows"></tbody>
         </table>
       </div>
       <div class="nagold-table-footer">
-        <button class="nagold-icon-button" id="nagold-add-button" type="button" title="Zeile hinzufügen" aria-label="NAGOLD-Zeile hinzufügen">${ICONS.add}</button>
+        <button class="nagold-icon-button" id="nagold-add-button" type="button" title="Zeile hinzufügen" aria-label="EP-Zeile hinzufügen">${ICONS.add}</button>
         <output id="nagold-sum" aria-live="polite"></output>
       </div>
       <p class="nagold-error" id="nagold-error" role="status" aria-live="polite"></p>
@@ -60,7 +60,7 @@
   let persisted = "[]";
 
   function updateSum() {
-    $("#nagold-sum").textContent = `${JSON.parse(persisted).reduce((sum, row) => sum + row.points, 0)} NAGOLD gesamt`;
+    $("#nagold-sum").textContent = `${JSON.parse(persisted).reduce((sum, row) => sum + row.points, 0)} EP gesamt`;
   }
 
   // Speichert sofort alle gültigen Zeilen. Unvollständige neue Zeilen fehlen,
@@ -102,7 +102,7 @@
         <td data-label="Datum">${isEditing ? `<input type="date" data-nagold-field="date" aria-label="Datum, ${label}" value="${escapeHtml(row.date)}" ${row.allowUnknownDate ? "" : "required"}>` : escapeHtml(row.date ? formatDate(row.date) : "Nicht erfasst")}</td>
         <td data-label="Uhrzeit">${isEditing ? `<input type="time" data-nagold-field="time" aria-label="Uhrzeit, ${label}" value="${escapeHtml(row.time)}" ${row.allowUnknownTime ? "" : "required"} step="60">` : escapeHtml(row.time || "Nicht erfasst")}</td>
         <td data-label="Wofür">${isEditing ? `<div class="nagold-combo"><input type="text" data-nagold-field="purpose" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="nagold-list-${index}" aria-label="Wofür, ${label}" value="${escapeHtml(row.purpose)}" maxlength="160" placeholder="Auswählen oder eintippen" autocomplete="off" required><button class="nagold-combo-toggle" type="button" data-nagold-combo-toggle tabindex="-1" aria-label="Vorschläge anzeigen, ${label}">${ICONS.chevron}</button><ul class="nagold-combo-list" id="nagold-list-${index}" role="listbox" aria-label="Vorschläge, ${label}" hidden>${presets.map((preset, option) => `<li role="option" id="nagold-option-${index}-${option}" data-nagold-option="${escapeHtml(preset)}" aria-selected="false">${escapeHtml(preset)}</li>`).join("")}</ul></div>` : escapeHtml(row.purpose)}</td>
-        <td data-label="NAGOLD" class="nagold-points">${isEditing ? `<input type="number" data-nagold-field="points" aria-label="NAGOLD, ${label}" min="${nagold.minPoints}" max="${nagold.maxPoints}" step="1" value="${Number.isFinite(row.points) ? row.points : ""}" inputmode="numeric" required>` : row.points}</td>
+        <td data-label="EP" class="nagold-points">${isEditing ? `<input type="number" data-nagold-field="points" aria-label="EP, ${label}" min="${nagold.minPoints}" max="${nagold.maxPoints}" step="1" value="${Number.isFinite(row.points) ? row.points : ""}" inputmode="numeric" required>` : row.points}</td>
         <td class="nagold-row-actions"><button class="nagold-icon-button" type="button" data-nagold-edit="${index}" title="Eintrag bearbeiten" aria-label="${label} bearbeiten" ${isEditing ? "disabled" : ""}>${ICONS.edit}</button><button class="nagold-icon-button" type="button" data-nagold-remove="${index}" title="Zeile löschen" aria-label="${label} löschen">${ICONS.remove}</button></td>
       </tr>`;
     }).join("");
@@ -138,7 +138,7 @@
       row.points = nagold.attendancePoints;
       line.querySelector('[data-nagold-field="points"]').value = String(nagold.attendancePoints);
     }
-    // „Startkapital“ füllt 5 NAGOLD vor.
+    // „Startkapital“ füllt 5 EP vor.
     if (row.purpose !== previousPurpose && nagold.isStartCapital(row.purpose)) {
       row.points = nagold.startCapitalPoints;
       line.querySelector('[data-nagold-field="points"]').value = String(nagold.startCapitalPoints);

@@ -1,4 +1,11 @@
-/* Shared, native lesson disclosures. No dependency on profile storage. */
+/* Shared native lesson disclosures; reading confirmations use lesson-core. */
+.lesson-reading-check { display:flex; align-items:center; gap:.75rem; min-height:48px; margin-top:1.4rem; padding:.7rem 1rem; border:1px solid var(--line-strong); border-radius:10px; background:var(--surface); color:var(--text); font-weight:700; cursor:pointer; }
+.lesson-reading-check input { flex:none; width:1.2rem; height:1.2rem; accent-color:var(--green); }
+.lesson-reading-check:focus-within { outline:3px solid var(--green); outline-offset:3px; }
+.lesson-reading-badge { display:block; margin-top:.6rem; color:var(--green); font-size:.78rem; font-weight:700; }
+.lesson-reading-badge[hidden] { display:none; }
+.lesson-disclosure > summary { scroll-margin-top:calc(var(--lesson-header-height, 112px) + 1rem); }
+@media print { .lesson-reading-check, .lesson-reading-badge { display:none; } }
 .lesson-workspace-intro { margin-bottom:1.5rem; padding:1.2rem; border:1px solid var(--line); border-radius:14px; background:var(--surface); }
 .lesson-workspace-intro p { color:var(--text-soft); margin:0 0 1rem; font-size:.88rem; }
 .lesson-workspace-intro strong { color:var(--text); }

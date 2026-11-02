@@ -44,7 +44,7 @@ const stored = page => page.evaluate(key => localStorage.getItem(key), KEY);
       assert.equal(await stored(page), initial, "Abbrechen lässt Profil unberührt");
       page.once("dialog", dialog => {
         assert.match(dialog.message(), /alt\.pro.*WGW EK1/);
-        assert.match(dialog.message(), /Kürzel, Klasse, XP, NAGOLD-Tabelle und Textmarkierungen/);
+        assert.match(dialog.message(), /Kürzel, Klasse, XP, EP-Tabelle und Textmarkierungen/);
         return dialog.accept();
       });
       const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#reset-button").click()]);

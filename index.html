@@ -13,24 +13,25 @@
     <link rel="canonical" href="https://jakobsawazki.github.io/excel-lab/">
     <link rel="icon" href="assets/brand/excel-lab-mark.svg" type="image/svg+xml">
     <title>Excel-Lab · Tabellenkalkulation lernen</title>
-    <script src="theme-boot.js?v=0.32.0"></script>
-    <link rel="stylesheet" href="styles.css?v=0.32.0">
-    <link rel="stylesheet" href="home.css?v=0.32.0">
-    <link rel="stylesheet" href="lesson-workspace.css?v=0.32.0">
-    <script src="deployment.js?v=0.32.0" defer></script>
-    <script src="developer-mode.js?v=0.32.0" defer></script>
-    <script src="content.js?v=0.32.0" defer></script>
-    <script src="nagold.js?v=0.32.0" defer></script>
-    <script src="nagold-table.js?v=0.32.0" defer></script>
-    <script src="save-core.js?v=0.32.0" defer></script>
-    <script src="profile-progress.js?v=0.32.0" defer></script>
-    <script src="bonus-tasks.js?v=0.32.0" defer></script>
-    <script src="nav-menu.js?v=0.32.0" defer></script>
-    <script src="app.js?v=0.32.0" defer></script>
-    <script src="xp.js?v=0.32.0" defer></script>
-    <script src="options.js?v=0.32.0" defer></script>
-    <script src="organizer.js?v=0.32.0" defer></script>
-    <script src="lesson-workspace.js?v=0.32.0" defer></script>
+    <script src="theme-boot.js?v=0.33.0"></script>
+    <link rel="stylesheet" href="styles.css?v=0.33.0">
+    <link rel="stylesheet" href="home.css?v=0.33.0">
+    <link rel="stylesheet" href="lesson-workspace.css?v=0.33.0">
+    <script src="deployment.js?v=0.33.0" defer></script>
+    <script src="developer-mode.js?v=0.33.0" defer></script>
+    <script src="content.js?v=0.33.0" defer></script>
+    <script src="nagold.js?v=0.33.0" defer></script>
+    <script src="nagold-table.js?v=0.33.0" defer></script>
+    <script src="save-core.js?v=0.33.0" defer></script>
+    <script src="profile-progress.js?v=0.33.0" defer></script>
+    <script src="bonus-tasks.js?v=0.33.0" defer></script>
+    <script src="nav-menu.js?v=0.33.0" defer></script>
+    <script src="app.js?v=0.33.0" defer></script>
+    <script src="xp.js?v=0.33.0" defer></script>
+    <script src="options.js?v=0.33.0" defer></script>
+    <script src="organizer.js?v=0.33.0" defer></script>
+    <script src="lesson-workspace.js?v=0.33.0" defer></script>
+    <script src="about.js?v=0.33.0" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Direkt zum Inhalt</a>
@@ -424,8 +425,10 @@
           <input id="profile-class-input" name="className" type="text" minlength="3" maxlength="32" placeholder="z. B. WGW EK1" required autocapitalize="characters" spellcheck="false" aria-describedby="class-hint">
           <small class="field-hint" id="class-hint">Bitte vollständig wie in WebUntis eintragen.</small>
         </label>
-        <button class="button button-primary button-full" type="submit">Lernprofil starten</button>
-        <p class="privacy-note"><span aria-hidden="true">●</span> Lokal gespeichert · jederzeit als Datei sichern und laden</p>
+        <span class="tip-wrap">
+          <button class="button button-primary button-full" type="submit" aria-describedby="profile-start-tip">OK</button>
+          <span class="tip" role="tooltip" id="profile-start-tip"><span aria-hidden="true">●</span> Lokal gespeichert · jederzeit als Datei sichern und laden</span>
+        </span>
       </form>
     </dialog>
 
@@ -441,12 +444,12 @@
         <button class="button button-secondary" id="developer-mode-button" type="button" hidden aria-pressed="false">Entwickler-Modus</button>
         <div class="manager-panels">
           <div class="manager-panel-slot" id="xp-slot"></div>
-          <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span><span class="nagold-goal"><progress id="nagold-goal-progress" max="100" value="0" aria-hidden="true"></progress><span class="nagold-goal-text" id="nagold-goal-text">0 / 100 · Jahresziel</span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
+          <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine EP</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 EP</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span><span class="nagold-goal"><progress id="nagold-goal-progress" max="100" value="0" aria-hidden="true"></progress><span class="nagold-goal-text" id="nagold-goal-text">0 / 100 · Jahresziel</span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
         </div>
         <a class="button button-secondary" id="certificate-link" href="nachweis.html">Lernnachweis</a>
         <div class="manager-actions" id="developer-profile-actions" hidden>
           <button class="button button-secondary" type="button" id="new-profile-button">Neues Profil</button>
-          <button class="button button-danger" type="button" id="reset-button" title="Aktuelles Profil einschließlich Kürzel, Klasse, XP, NAGOLD und Textmarkierungen sichern und vollständig zurücksetzen">Fortschritt zurücksetzen</button>
+          <button class="button button-danger" type="button" id="reset-button" title="Aktuelles Profil einschließlich Kürzel, Klasse, XP, EP und Textmarkierungen sichern und vollständig zurücksetzen">Fortschritt zurücksetzen</button>
         </div>
       </div>
     </dialog>
@@ -462,7 +465,8 @@
         <section class="about-section" aria-labelledby="version-heading">
           <h3 id="version-heading">Versionsverlauf</h3>
           <ol class="version-timeline">
-            <li><span>0.32.0</span><div><strong>Sicher speichern und den Überblick behalten</strong><small>Ältere Speicherdateien prüfen und aktualisieren, NAGOLD sicher übernehmen, Navigation beim Scrollen sichtbar halten. L1.1 startet ohne Leerzeilen; im Entwicklermodus ist ein gesicherter vollständiger Profilneustart möglich.</small></div></li>
+            <li><span>0.33.0</span><div><strong>Erfahrungspunkte und bestätigte Leseschritte</strong><small>Die Punktetabelle heißt EP (Erfahrungspunkte); ältere Speicherdateien bleiben ohne Umrechnung kompatibel. Informationsblöcke einzeln bestätigen, kompakter speichern und Versionsgruppen direkt im Dialog öffnen.</small></div></li>
+            <li><span>0.32.0</span><div><strong>Sicher speichern und den Überblick behalten</strong><small>Ältere Speicherdateien prüfen und aktualisieren, EP sicher übernehmen, Navigation beim Scrollen sichtbar halten. L1.1 startet ohne Leerzeilen; im Entwicklermodus ist ein gesicherter vollständiger Profilneustart möglich.</small></div></li>
             <li><span>0.31.0</span><div><strong>Textmarker</strong><small>In jeder Lerneinheit Text auswählen und in Gelb, Mint, Koralle oder Grün markieren; die Markierungen gehören zum Profil und zur Speicherdatei.</small></div></li>
             <li><span>0.30.0</span><div><strong>Fortschritt in der Pfadleiste</strong><small>Jede Lerneinheit zeigt ihren Fortschritt als Balken rechts oben, ein Klick zeigt Einzelheiten; die Kopfzeile bleibt immer sichtbar.</small></div></li>
             <li><span>0.29.1</span><div><strong>Pfadleiste beim Überfahren</strong><small>„Übersicht“ und die anderen Glieder heben sich an und leuchten grün auf wie die Symbolknöpfe oben rechts.</small></div></li>
@@ -470,14 +474,14 @@
             <li><span>0.28.4</span><div><strong>Drucken immer hell</strong><small>Ausdrucke sind auch im dunklen Farbschema gut lesbar; die Klassenübersicht druckt quer mit allen 27 Einheiten.</small></div></li>
             <li><span>0.28.3</span><div><strong>Formelsammlung als Merkblatt</strong><small>Mit Strg+P druckt die Formelsammlung kompakt in drei Spalten, gut lesbar auf weißem Papier.</small></div></li>
             <li><span>0.28.2</span><div><strong>Abstände in Aufgaben</strong><small>„Aufgabe B“ und ähnliche Überschriften nach einer Schrittliste haben wieder Luft nach oben.</small></div></li>
-            <li><span>0.28.1</span><div><strong>Klassenübersicht als CSV</strong><small>Zahlen bleiben Zahlen, auch negative NAGOLD-Summen; Excel kann damit rechnen.</small></div></li>
+            <li><span>0.28.1</span><div><strong>Klassenübersicht als CSV</strong><small>Zahlen bleiben Zahlen, auch negative EP-Summen; Excel kann damit rechnen.</small></div></li>
             <li><span>0.28.0</span><div><strong>Gebürstetes Metall und Fortschritt im Profil</strong><small>Feiner Metallschliff für Kopfzeile, Menü, Pfadleiste, Knöpfe und Hintergrund; Gesamtfortschritt als Balken im Profil; Pfadleiste ab „Übersicht“; Alt+S speichert sofort; Esc schließt den Lernnachweis.</small></div></li>
-            <li><span>0.27.0</span><div><strong>Startkapital und Jahresziel</strong><small>Einmal je Schuljahr 5 NAGOLD Startkapital; ein goldener Balken zeigt den Weg zum Jahresziel von 100 NAGOLD. Nach jeder Einheit erinnert ein kurzer Hinweis ans Speichern.</small></div></li>
-            <li><span>0.26.0</span><div><strong>Klassenübersicht mit NAGOLD-Einträgen</strong><small>Ein Klick auf die NAGOLD-Zahl zeigt die Einträge einer Person zum Prüfen. Speichern und Laden arbeiten auf allen Seiten mit demselben Kern; ein Profilwechsel in einem anderen Fenster wird im Profil erklärt.</small></div></li>
-            <li><span>0.25.0</span><div><strong>NAGOLD speichert automatisch</strong><small>Wie in WorkbenchLab: gültige Zeilen und Löschungen werden sofort gespeichert, „Anwesenheit“ trägt 2 NAGOLD vor, Abzüge sind bis −10 möglich.</small></div></li>
-            <li><span>0.24.0</span><div><strong>Profil und Speichern auf jeder Lernseite</strong><small>Neuer L1.2-Auftrag „Kundenworkshop“, Profilfenster und Disketten-Symbol auf allen Lernseiten, dieselbe NAGOLD-Tabelle überall, direkte Situationssprache und ein schlichterer Seitenfuß.</small></div></li>
-            <li><span>0.23.0</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und NAGOLD stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten NAGOLD. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
-            <li><span>0.21.0</span><div><strong>NAGOLD im Profil</strong><small>Punktetabelle wie in WorkbenchLab: Jede abgeschlossene Lerneinheit bringt automatisch 5 NAGOLD, weitere Leistungen trägst du mit Datum, Uhrzeit und 1 bis 5 Punkten selbst ein. Der Stand steht im Profil, im Lernnachweis und in der Klassenübersicht.</small></div></li>
+            <li><span>0.27.0</span><div><strong>Startkapital und Jahresziel</strong><small>Einmal je Schuljahr 5 EP Startkapital; ein goldener Balken zeigt den Weg zum Jahresziel von 100 EP. Nach jeder Einheit erinnert ein kurzer Hinweis ans Speichern.</small></div></li>
+            <li><span>0.26.0</span><div><strong>Klassenübersicht mit EP-Einträgen</strong><small>Ein Klick auf die EP-Zahl zeigt die Einträge einer Person zum Prüfen. Speichern und Laden arbeiten auf allen Seiten mit demselben Kern; ein Profilwechsel in einem anderen Fenster wird im Profil erklärt.</small></div></li>
+            <li><span>0.25.0</span><div><strong>EP speichert automatisch</strong><small>Wie in WorkbenchLab: gültige Zeilen und Löschungen werden sofort gespeichert, „Anwesenheit“ trägt 2 EP vor, Abzüge sind bis −10 möglich.</small></div></li>
+            <li><span>0.24.0</span><div><strong>Profil und Speichern auf jeder Lernseite</strong><small>Neuer L1.2-Auftrag „Kundenworkshop“, Profilfenster und Disketten-Symbol auf allen Lernseiten, dieselbe EP-Tabelle überall, direkte Situationssprache und ein schlichterer Seitenfuß.</small></div></li>
+            <li><span>0.23.0</span><div><strong>Profil mit XP, eigener Speicherstand</strong><small>XP und EP stehen direkt im Profilknopf; ein Klick zeigt Level, den Weg zum nächsten Level und die nächsten EP. Speichern und Laden liegen hinter dem Disketten-Symbol, mit Auswahl der fünf zuletzt gespeicherten Stände.</small></div></li>
+            <li><span>0.21.0</span><div><strong>EP im Profil</strong><small>Punktetabelle wie in WorkbenchLab: Jede abgeschlossene Lerneinheit bringt automatisch 5 EP, weitere Leistungen trägst du mit Datum, Uhrzeit und 1 bis 5 Punkten selbst ein. Der Stand steht im Profil, im Lernnachweis und in der Klassenübersicht.</small></div></li>
             <li><span>0.20.10</span><div><strong>Feinschliff am Design</strong><small>Tieferer Hintergrund mit weichen Lichtflächen und dezentem Zellraster, Nebenbuttons im hellen Farbschema als helles Perlmetall, klarer Fokusrahmen und besser lesbare Kleinstschriften. Fotos und Symbole sind unverändert.</small></div></li>
             <li><span>0.19.2</span><div><strong>Lernnachweis zum Ausdrucken</strong><small>Im Profil führt „Lernnachweis“ zu einer druckbaren Übersicht: abgeschlossene Einheiten je Lernfortschritt, Bonusaufgaben und XP, mit Unterschriftszeile für die Lehrkraft. Außerdem ersetzt „Laden“ jetzt den Stand derselben Person.</small></div></li>
             <li><span>0.18.1</span><div><strong>Zweite Bonusaufgabe je Einheit</strong><small>Jede Einheit hat zusätzlich eine Transferaufgabe mit neuen Daten. Zusammen sind es 54 Bonusaufgaben; mit allen Einheiten und Bonusaufgaben sind 5.400 XP erreichbar.</small></div></li>
@@ -512,7 +516,7 @@
 
         <section class="about-section imprint" aria-labelledby="privacy-heading">
           <h3 id="privacy-heading">Datenschutz</h3>
-          <p>Excel-Lab speichert Kürzel, Klasse, Lernstand und NAGOLD nur in deinem Browser. Es gibt keine Anmeldung und keine Übertragung an uns; die Speicherdatei gibst du selbst weiter.</p>
+          <p>Excel-Lab speichert Kürzel, Klasse, Lernstand und EP nur in deinem Browser. Es gibt keine Anmeldung und keine Übertragung an uns; die Speicherdatei gibst du selbst weiter.</p>
           <p>Lernvideos laden erst nach deinem Klick von YouTube (youtube-nocookie.com). Gehostet wird die Seite bei GitHub Pages; Einzelheiten in der <a href="https://jakobsawazki.github.io/sawazki-electronics/datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Sawazki Electronics</a>.</p>
         </section>
       </div>

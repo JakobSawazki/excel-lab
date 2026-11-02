@@ -107,6 +107,12 @@
           masteryPassed: Boolean(candidate.masteryPassed || candidate.completed),
           bonus: Boolean(candidate.bonus),
           bonus2: Boolean(candidate.bonus2),
+          // Additive format-1 field: old completed lessons remain valid; do
+          // not create an empty map for legacy files (absence is meaningful).
+          ...(candidate.reading && typeof candidate.reading === "object" && !Array.isArray(candidate.reading)
+            ? { reading: Object.fromEntries(Object.entries(candidate.reading)
+              .filter(([key, value]) => /^[a-zA-Z0-9_-]{1,80}$/.test(key) && typeof value === "boolean")
+              .slice(0, 64)) } : {}),
           checks: Array.isArray(candidate.checks)
             ? lesson.checks.map((_, index) => Boolean(candidate.checks[index]))
             : lesson.checks.map(() => false)
@@ -121,7 +127,7 @@
       createdAt: typeof profile?.createdAt === "string" ? profile.createdAt : previous?.createdAt || new Date().toISOString(),
       updatedAt: typeof profile?.updatedAt === "string" ? profile.updatedAt : previous?.updatedAt || new Date().toISOString(),
       progress: safeProgress,
-      // NAGOLD-Tabelle: alte Lernstände erhalten je abgeschlossener Einheit eine Zeile.
+      // EP-Tabelle: alte Lernstände erhalten je abgeschlossener Einheit eine Zeile.
       // Ohne nagold.js bleiben die vorhandenen Zeilen unverändert erhalten.
       nagoldEntries: rules ? rules.entriesFor(profile) : Array.isArray(profile?.nagoldEntries) ? profile.nagoldEntries : [],
       highlights: normalizeHighlights(profile?.highlights)
@@ -170,7 +176,7 @@
     const by = item.payload.exportedBy || {};
     const date = new Date(item.savedAt);
     const when = Number.isNaN(date.getTime()) ? "Zeit unbekannt" : new Intl.DateTimeFormat("de-DE", { dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Berlin" }).format(date);
-    return `${when} · ${String(by.accountName || item.payload.profile.name || "").slice(0, 40)} · ${Number(by.points) || 0} XP · ${Number(by.nagold) || 0} NAGOLD`;
+    return `${when} · ${String(by.accountName || item.payload.profile.name || "").slice(0, 40)} · ${Number(by.points) || 0} XP · ${Number(by.nagold) || 0} EP`;
   }
 
   // Erzeugt die Speicherdatei, bietet sie zum Download an und merkt sie sich.
@@ -215,11 +221,11 @@
       throw new Error("Das Profil in der Speicherdatei ist unvollständig oder nicht lesbar. Keine Daten übernommen. Bitte das Original aufbewahren.");
     }
     const rules = nagold();
-    if (!rules) throw new Error("NAGOLD konnte nicht geladen werden. Bitte die Seite neu laden; es wurden keine Daten übernommen.");
+    if (!rules) throw new Error("EP konnte nicht geladen werden. Bitte die Seite neu laden; es wurden keine Daten übernommen.");
     const profile = normalizeProfile(payload.profile);
     if (Object.hasOwn(payload.exportedBy || {}, "nagold")
       && (typeof payload.exportedBy.nagold !== "number" || payload.exportedBy.nagold !== rules.total(profile))) {
-      throw new Error("Die NAGOLD-Summe passt nicht zur Tabelle in der Datei. Keine Daten übernommen. Bitte das Original durch die Lehrkraft prüfen lassen.");
+      throw new Error("Die EP-Summe passt nicht zur Tabelle in der Datei. Keine Daten übernommen. Bitte das Original durch die Lehrkraft prüfen lassen.");
     }
     return profile;
   }
@@ -228,12 +234,12 @@
     const rules = nagold();
     if (profile && Object.hasOwn(profile, "nagoldEntries") && rules) {
       if (!Array.isArray(profile.nagoldEntries) || profile.nagoldEntries.length > rules.maxEntries) {
-        throw new Error("Die NAGOLD-Tabelle ist nicht vollständig lesbar oder zu groß. Keine Daten übernommen. Bitte das Original zur Prüfung aufbewahren.");
+        throw new Error("Die EP-Tabelle ist nicht vollständig lesbar oder zu groß. Keine Daten übernommen. Bitte das Original zur Prüfung aufbewahren.");
       }
       profile.nagoldEntries.forEach((entry, index) => {
         if (rules.normalizeEntries([entry]).length !== 1 || entry.purpose.trim().length > 160
           || (entry.lessonId !== undefined && !lessons.some(lesson => lesson.id === entry.lessonId))) {
-          throw new Error(`NAGOLD-Zeile ${index + 1} kann nicht verlustfrei übernommen werden. Keine Daten übernommen. Bitte das Original zur Prüfung aufbewahren.`);
+          throw new Error(`EP-Zeile ${index + 1} kann nicht verlustfrei übernommen werden. Keine Daten übernommen. Bitte das Original zur Prüfung aufbewahren.`);
         }
       });
     }
@@ -300,11 +306,53 @@
       try {
         const updated = upgradePayload(await readFile(file), appVersion);
         downloadPayload(updated, fileName(updated).replace(/\.json$/, "_aktualisiert.json"));
-        feedback.textContent = `Datei geprüft: ${nagold().total(updated.profile)} NAGOLD, ${updated.profile.nagoldEntries.length} Tabellenzeilen. Aktualisierte Kopie zum Download bereitgestellt. Zum Übernehmen anschließend „Laden“ wählen. Original und aktueller Lernstand sind unverändert.`;
+        feedback.textContent = `Datei geprüft: ${nagold().total(updated.profile)} EP, ${updated.profile.nagoldEntries.length} Tabellenzeilen. Aktualisierte Kopie zum Download bereitgestellt. Zum Übernehmen anschließend „Laden“ wählen. Original und aktueller Lernstand sind unverändert.`;
       } catch (error) { feedback.textContent = error.message; }
       finally { input.value = ""; }
     });
     container.append(button, input, backupButton, feedback);
+    compactSaveDialog(container, button, backupButton);
+  }
+
+  // Eine kompakte Darstellung für Startseite und Lernseiten. IDs und
+  // Ereignisbindungen bleiben erhalten; nur die Bedienelemente werden angeordnet.
+  function compactSaveDialog(container, upgradeButton, backupButton) {
+    const icons = {
+      save: "M5 4h11l4 4v12H4V4h1M8 4v5h7V4M8 20v-6h8v6",
+      load: "M3 7h7l2 2h9v11H3V7ZM3 7V4h7l2 3M12 12v5m-3-3 3 3 3-3",
+      update: "M5 3h10l4 4v5M5 3v18h6M14 3v5h5M14 17h7m-3-3 3 3-3 3",
+      history: "M4 7v5h5M4 12a8 8 0 1 1 2 6M12 8v5l3 2",
+      rescue: "M12 3 3 7v5c0 4 4 7 9 9 5-2 9-5 9-9V7l-9-4ZM12 8v7m-3-3 3 3 3-3"
+    };
+    function decorate(button, icon, iconOnly = false) {
+      if (!button) return;
+      const label = button.textContent.trim();
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24"); svg.setAttribute("aria-hidden", "true");
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", icons[icon]); svg.append(path);
+      if (!iconOnly) { button.prepend(svg); return; }
+      const name = document.createElement("span"); name.className = "sr-only"; name.textContent = label;
+      button.replaceChildren(svg, name); button.setAttribute("aria-label", label); button.title = label;
+      const wrapper = document.createElement("span"); wrapper.className = "tip-wrap save-tool";
+      button.before(wrapper); wrapper.append(button);
+      const tip = document.createElement("span");
+      tip.className = "tip"; tip.id = `${button.id}-tip`; tip.setAttribute("role", "tooltip"); tip.textContent = label;
+      button.setAttribute("aria-describedby", tip.id); wrapper.append(tip);
+      return wrapper;
+    }
+    decorate(container.querySelector("#export-button"), "save");
+    decorate(container.querySelector("#import-button"), "load");
+    decorate(container.querySelector("#recent-load"), "load", true);
+    const tools = document.createElement("div"); tools.className = "save-tools";
+    tools.setAttribute("role", "group"); tools.setAttribute("aria-label", "Weitere Speicherfunktionen");
+    const label = document.createElement("small"); label.textContent = "Datei-Werkzeuge"; tools.append(label);
+    upgradeButton.before(tools);
+    for (const [control, icon] of [[upgradeButton, "update"], [backupButton, "history"], [container.querySelector("#rescue-button"), "rescue"]]) {
+      const wrapper = decorate(control, icon, true); if (wrapper) tools.append(wrapper);
+    }
+    const intro = container.querySelector(".save-dialog-intro");
+    if (intro) intro.textContent = "Datei speichern und auf einem anderen PC laden.";
   }
 
   // Übernimmt eine Speicherdatei in `state` (wird verändert). Dieselbe Person
@@ -325,7 +373,7 @@
       });
       const warnings = [];
       if (completedCount(imported) < completedCount(existing)) warnings.push(`Die Datei enthält weniger abgeschlossene Einheiten (${completedCount(imported)}) als dein Stand in diesem Browser (${completedCount(existing)}).`);
-      if (missingRows || xp(imported) < xp(existing)) warnings.push(`NAGOLD: ${nagold().total(existing)} → ${nagold().total(imported)}. Vorhandene NAGOLD-Zeilen oder XP fehlen bzw. sind verändert.`);
+      if (missingRows || xp(imported) < xp(existing)) warnings.push(`EP: ${nagold().total(existing)} → ${nagold().total(imported)}. Vorhandene EP-Zeilen oder XP fehlen bzw. sind verändert.`);
       if (warnings.length && !confirm(`${warnings.join("\n")}\nTrotzdem laden? Der bisherige Browserstand wird zuvor lokal gesichert.`)) return "cancelled";
       imported.id = existing.id;
       imported.createdAt = existing.createdAt;

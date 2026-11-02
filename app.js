@@ -27,7 +27,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.32.0";
+  const APP_VERSION = "0.33.0";
   // XP-Regel (Einheiten und Bonusaufgaben) steht in save-core.js.
   const POINTS_PER_LESSON = saveCore.LESSON_XP;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
@@ -471,8 +471,8 @@
     }
     $("#export-button").disabled = !current;
     $("#nagold-total").disabled = !current;
-    $("#nagold-total-value").textContent = `${nagoldTotal(current)} NAGOLD`;
-    $("#nagold-total").setAttribute("aria-label", `${nagoldTotal(current)} NAGOLD: Tabelle bearbeiten`);
+    $("#nagold-total-value").textContent = `${nagoldTotal(current)} EP`;
+    $("#nagold-total").setAttribute("aria-label", `${nagoldTotal(current)} EP: Tabelle bearbeiten`);
     $("#profile-edit-form").hidden = !current;
     $("#profile-edit-name").value = current?.name || "";
     $("#profile-edit-class").value = current?.className || "";
@@ -481,7 +481,7 @@
     $("#rescue-button").hidden = rescueCopy() === null;
     const saveCompleted = current ? lessons.filter((lesson) => Boolean(current.progress?.[lesson.id]?.completed)).length : 0;
     $("#save-status").textContent = current
-      ? `${current.name} · ${current.className || "ohne Klasse"} · ${progressStats().points} XP · ${nagoldTotal(current)} NAGOLD · ${saveCompleted}/${lessons.length} erledigt`
+      ? `${current.name} · ${current.className || "ohne Klasse"} · ${progressStats().points} XP · ${nagoldTotal(current)} EP · ${saveCompleted}/${lessons.length} erledigt`
       : "Noch kein Lernprofil in diesem Browser. Du kannst eine gespeicherte Datei laden.";
   }
 
@@ -634,7 +634,7 @@
       const staged = JSON.parse(rawState || "null");
       if (staged?.version !== VERSION || !Array.isArray(staged.profiles)) throw new Error("Der Browserstand ist nicht lesbar. Es wurde nichts zurückgesetzt.");
       const profile = staged.profiles.find(item => item.id === staged.currentProfileId);
-      if (!profile || !window.confirm(`Das gesamte Profil „${profile.name}“ (${profile.className || "ohne Klasse"}) zurücksetzen? Kürzel, Klasse, XP, NAGOLD-Tabelle und Textmarkierungen werden aus diesem Browserprofil entfernt. Vorher wird eine Sicherungsdatei zum Download bereitgestellt und eine lokale Rücksicherung angelegt. Andere Profile bleiben erhalten. Anschließend kannst du ein neues Kürzel und eine neue Klasse eingeben.`)) return;
+      if (!profile || !window.confirm(`Das gesamte Profil „${profile.name}“ (${profile.className || "ohne Klasse"}) zurücksetzen? Kürzel, Klasse, XP, EP-Tabelle und Textmarkierungen werden aus diesem Browserprofil entfernt. Vorher wird eine Sicherungsdatei zum Download bereitgestellt und eine lokale Rücksicherung angelegt. Andere Profile bleiben erhalten. Anschließend kannst du ein neues Kürzel und eine neue Klasse eingeben.`)) return;
       // Kein Löschen, wenn Download-Erstellung oder Rücksicherung scheitern.
       saveCore.download(profile, APP_VERSION);
       if (localStorage.getItem(STORAGE_KEY) !== rawState) throw new Error("Der Lernstand wurde inzwischen geändert. Bitte den aktuellen Stand prüfen und erneut versuchen.");
@@ -667,11 +667,6 @@
     showToast(state.theme === "light" ? "Helles Farbschema aktiviert." : "Dunkles Farbschema aktiviert.");
   }
 
-  function openAboutDialog() {
-    const dialog = $("#about-dialog");
-    if (dialog && !dialog.open) dialog.showModal();
-  }
-
   // Bedienung des Lernpfad-Menüs liegt in nav-menu.js.
   let learningMenu = null;
   function closeLearningMenu() {
@@ -698,7 +693,7 @@
     return nagold && profile ? nagold.total(profile) : 0;
   }
 
-  // Die NAGOLD-Tabelle selbst liegt in nagold-table.js (gemeinsam mit den Lernseiten).
+  // Die EP-Tabelle selbst liegt in nagold-table.js (gemeinsam mit den Lernseiten).
   function bindNagoldEvents() {
     const table = window.ExcelLabNagoldTable;
     if (!nagold || !table) { $("#nagold-total").hidden = true; return; }
@@ -738,13 +733,6 @@
         event.preventDefault();
         closeLearningMenu();
         setView("dashboard");
-        return;
-      }
-
-      if (event.target.closest("[data-about-info]")) {
-        event.preventDefault();
-        closeLearningMenu();
-        openAboutDialog();
         return;
       }
 

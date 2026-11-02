@@ -40,6 +40,19 @@ const old = { app: "Excel-Lab", version: 1, appVersion: "0.1.0", profile: { name
       await page.goto(`http://excel-lab.test/${file}`);
       await page.locator("#save-button").click();
       const before = await page.evaluate(key => localStorage.getItem(key), KEY);
+      // Direct loading is the normal student path: no upgrade is required.
+      await page.setInputFiles("#import-file", asFile(old));
+      await page.waitForFunction(key => JSON.parse(localStorage.getItem(key)).profiles[0].nagoldEntries.length === 3, KEY);
+      assert.match(await page.locator("#save-status").textContent(), /4 EP/);
+      const [directSave] = await Promise.all([page.waitForEvent("download"), page.locator("#export-button").click()]);
+      const directPayload = JSON.parse(fs.readFileSync(await directSave.path(), "utf8"));
+      assert.equal(directPayload.version, 1);
+      assert.equal(directPayload.exportedBy.nagold, 4);
+      assert.deepEqual(directPayload.profile.nagoldEntries.map(entry => entry.points), [5, 2, -3]);
+      assert.deepEqual(directPayload.profile.nagoldEntries.map(entry => entry.purpose), old.profile.nagoldEntries.map(entry => entry.purpose));
+      await page.evaluate(([key, original]) => localStorage.setItem(key, original), [KEY, before]);
+      await page.reload();
+      await page.locator("#save-button").click();
       const [download] = await Promise.all([
         page.waitForEvent("download"), page.setInputFiles("#upgrade-save-file", asFile(old))
       ]);
@@ -68,7 +81,7 @@ const old = { app: "Excel-Lab", version: 1, appVersion: "0.1.0", profile: { name
       const stable = await page.evaluate(key => localStorage.getItem(key), KEY);
       const invalid = { ...upgraded, profile: { ...upgraded.profile, nagoldEntries: [...upgraded.profile.nagoldEntries, { ...row, points: 99 }] } };
       await page.setInputFiles("#import-file", asFile(invalid));
-      await page.waitForFunction(() => /NAGOLD-Zeile 4/.test(document.body.innerText));
+      await page.waitForFunction(() => /EP-Zeile 4/.test(document.body.innerText));
       assert.equal(await page.evaluate(key => localStorage.getItem(key), KEY), stable);
       await page.evaluate(key => {
         const write = Storage.prototype.setItem;
@@ -78,7 +91,7 @@ const old = { app: "Excel-Lab", version: 1, appVersion: "0.1.0", profile: { name
       await page.waitForFunction(() => /nicht sicher gespeichert/.test(document.body.innerText));
       assert.equal(await page.evaluate(key => localStorage.getItem(key), KEY), stable);
       assert.deepEqual(errors, []);
-      console.log(`PASS ${file}: Upgrade-Kopie, NAGOLD-Rundlauf, Rücksicherung, ungültige Zeile, voller Speicher`);
+      console.log(`PASS ${file}: alte Datei direkt laden = EP 1:1, Upgrade-Kopie, EP-Rundlauf, Rücksicherung, ungültige Zeile, voller Speicher`);
       await context.close();
     }
   } finally { await browser.close(); }

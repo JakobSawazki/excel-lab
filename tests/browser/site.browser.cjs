@@ -303,7 +303,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.locator("#teacher-errors li").count(), 2);
         assert.match(await page.locator("#teacher-status").innerText(), /3 Personen aus 3 Klassen.*4 von 6 Dateien gelesen.*2 nicht lesbar/);
         const anna = page.locator("#teacher-table tbody tr", { hasText: "anna.bei" });
-        assert.deepEqual((await anna.locator("td.teacher-number").allInnerTexts()).map((text) => text.trim()), ["2/27", "1", "250", "10"], "alte Datei ohne Tabelle: 5 NAGOLD je Abschluss");
+        assert.deepEqual((await anna.locator("td.teacher-number").allInnerTexts()).map((text) => text.trim()), ["2/27", "1", "250", "10"], "alte Datei ohne Tabelle: 5 EP je Abschluss");
         assert.equal(await anna.locator(".teacher-cell.is-done").count(), 2);
         assert.equal(await anna.locator(".teacher-cell.has-bonus").count(), 1);
         assert.equal(await anna.locator(".teacher-cell.is-progress").count(), 1);
@@ -317,8 +317,8 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.ok(csv.includes("\"anna.bei\";\"WGW EK1\""));
         assert.ok(csv.includes("\"'=1+1\""), "Formelzeichen entschärft");
         assert.ok(csv.includes("abgeschlossen + Bonus"));
-        assert.ok(csv.includes("\"XP\";\"NAGOLD\";"), "Spalte NAGOLD in der CSV");
-        assert.match(csv, /"anna\.bei";"WGW EK1";"[^"]+";2;1;250;10;/, "Zahlen als Zahlen, damit Excel rechnen kann (auch negative NAGOLD)");
+        assert.ok(csv.includes("\"XP\";\"EP\";"), "Spalte EP in der CSV");
+        assert.match(csv, /"anna\.bei";"WGW EK1";"[^"]+";2;1;250;10;/, "Zahlen als Zahlen, damit Excel rechnen kann (auch negative EP)");
         await page.locator("#teacher-clear").click();
         assert.equal(await page.locator("#teacher-table-section").isHidden(), true);
         assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0, "nichts gespeichert");
@@ -492,7 +492,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       }
     });
 
-    await check("NAGOLD: Tabelle im Profil, Abschluss bucht 5, Klassenübersicht und Lernnachweis", async () => {
+    await check("EP: Tabelle im Profil, Abschluss bucht 5, Klassenübersicht und Lernnachweis", async () => {
       // Alter Lernstand ohne Tabelle: L1.1 abgeschlossen, L1.2 fertig zum Abschließen.
       const ready = { completed: false, teacherChecked: true, masteryPassed: true, checks: [true, true, true, true, true, true] };
       const old = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "nag", profiles: [{ id: "nag", name: "nag.old", className: "WGW EK1",
@@ -500,9 +500,9 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       const { context, page, errors } = await open(browser, "index.html", { state: old });
       const stored = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].nagoldEntries, KEY);
       try {
-        assert.equal((await page.locator("#profile-nagold").innerText()).trim(), "· 5 NAG", "alter Stand: 5 NAGOLD im Profilknopf");
+        assert.equal((await page.locator("#profile-nagold").innerText()).trim(), "· 5 EP", "alter Stand: 5 EP im Profilknopf");
         await page.locator("#profile-button").click();
-        assert.equal(await page.locator("#nagold-total-value").innerText(), "5 NAGOLD");
+        assert.equal(await page.locator("#nagold-total-value").innerText(), "5 EP");
         await page.locator("#nagold-total").click();
         assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), true);
         assert.equal(await page.locator("#nagold-rows tr").count(), 1);
@@ -530,13 +530,13 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.evaluate((key) => "nagoldEntries" in JSON.parse(localStorage.getItem(key)).profiles[0], KEY), false, "−11 Punkte werden nicht gespeichert");
         await row.locator('[data-nagold-field="points"]').fill("-10");
         assert.deepEqual((await stored()).map((entry) => entry.points), [5, -10], "Abzug bis −10 sofort gespeichert");
-        assert.equal(await page.locator("#nagold-sum").innerText(), "-5 NAGOLD gesamt");
+        assert.equal(await page.locator("#nagold-sum").innerText(), "-5 EP gesamt");
         assert.equal(await page.locator("#nagold-error").innerText(), "");
         await row.locator('[data-nagold-field="points"]').fill("3");
         assert.deepEqual((await stored()).map((entry) => entry.points), [5, 3]);
-        assert.equal(await page.locator("#nagold-sum").innerText(), "8 NAGOLD gesamt");
+        assert.equal(await page.locator("#nagold-sum").innerText(), "8 EP gesamt");
 
-        // „Anwesenheit“ füllt 2 NAGOLD vor und wird sofort gespeichert.
+        // „Anwesenheit“ füllt 2 EP vor und wird sofort gespeichert.
         await page.locator("#nagold-add-button").click();
         const attendance = page.locator("#nagold-rows tr").nth(2);
         await attendance.locator('[data-nagold-field="purpose"]').pressSequentially("Anw");
@@ -547,8 +547,8 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         // Schließen nimmt nichts zurück; eine leere neue Zeile wird nicht gespeichert.
         await page.locator("#nagold-add-button").click();
         await page.locator("#nagold-dialog [data-close-dialog]").click();
-        assert.equal(await page.locator("#nagold-total-value").innerText(), "10 NAGOLD");
-        assert.match(await page.locator("#nagold-total").getAttribute("aria-label"), /^10 NAGOLD: Tabelle bearbeiten$/);
+        assert.equal(await page.locator("#nagold-total-value").innerText(), "10 EP");
+        assert.match(await page.locator("#nagold-total").getAttribute("aria-label"), /^10 EP: Tabelle bearbeiten$/);
         await page.locator("#nagold-total").click();
         assert.equal(await page.locator("#nagold-rows tr").count(), 3, "drei gespeicherte Zeilen, die leere fehlt");
 
@@ -571,13 +571,17 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.deepEqual((await stored()).map((entry) => [entry.purpose, entry.points]), [["<b>Mitarbeit</b>", 4]], "gelöschte Zeilen bleiben gelöscht");
         assert.equal(await page.locator("#nagold-error").innerText(), "");
         await page.locator("#nagold-dialog [data-close-dialog]").click();
-        assert.equal(await page.locator("#nagold-total-value").innerText(), "4 NAGOLD");
+        assert.equal(await page.locator("#nagold-total-value").innerText(), "4 EP");
         assert.deepEqual(errors, []);
 
-        // Abschluss von L1.2 bucht genau einmal 5 NAGOLD mit Datum und Uhrzeit.
+        // Abschluss von L1.2 bucht genau einmal 5 EP mit Datum und Uhrzeit.
         await page.goto(base + "l1-2.html");
+        for (const input of await page.locator("[data-reading-block]").all()) {
+          await input.evaluate(input => { input.closest("details").open = true; });
+          await input.check();
+        }
         await page.locator("#page-complete-button").click();
-        assert.match(await page.locator("#toast-region").innerText(), /\+100 XP, \+5 NAGOLD\. Jetzt über das Disketten-Symbol speichern\./);
+        assert.match(await page.locator("#toast-region").innerText(), /\+100 XP, \+5 EP\. Jetzt über das Disketten-Symbol speichern\./);
         let entries = await stored();
         assert.deepEqual(entries.map((entry) => [entry.lessonId || "", entry.points]), [["", 4], ["l1-2", 5]]);
         assert.match(entries[1].date, /^\d{4}-\d{2}-\d{2}$/);
@@ -600,7 +604,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         // Disketten-Symbol direkt links vom Profil; Speichern und Laden nur noch dort.
         assert.equal(await page.evaluate(() => document.querySelector("#profile-button").previousElementSibling.id), "save-button");
         await page.locator("#save-button").click();
-        assert.match(await page.locator("#save-status").innerText(), /nag\.old · WGW EK1 · 200 XP · 9 NAGOLD · 2\/27 erledigt/);
+        assert.match(await page.locator("#save-status").innerText(), /nag\.old · WGW EK1 · 200 XP · 9 EP · 2\/27 erledigt/);
         assert.equal(await page.locator("#save-dialog .save-dialog-notes").count(), 0, "Erklärungen nur noch als Tooltip");
         assert.equal(await page.locator("#export-tip").evaluate((tip) => getComputedStyle(tip).opacity), "0");
         await page.locator("#export-button").hover();
@@ -615,39 +619,39 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         // Zuletzt gespeichert: Der Stand steht in der Liste und lässt sich daraus laden.
         assert.equal(await page.locator("#recent-saves-box").isVisible(), true);
         assert.equal(await page.locator("#recent-saves option").count(), 1);
-        assert.match(await page.locator("#recent-saves option").first().innerText(), /nag\.old · 200 XP · 9 NAGOLD/);
+        assert.match(await page.locator("#recent-saves option").first().innerText(), /nag\.old · 200 XP · 9 EP/);
         await page.evaluate((key) => { const state = JSON.parse(localStorage.getItem(key)); state.profiles[0].nagoldEntries = []; localStorage.setItem(key, JSON.stringify(state)); }, KEY);
         await page.reload();
-        await page.waitForFunction(() => document.querySelector("#profile-nagold")?.textContent.trim() === "· 0 NAG");
+        await page.waitForFunction(() => document.querySelector("#profile-nagold")?.textContent.trim() === "· 0 EP");
         await page.locator("#save-button").click();
         await page.locator("#recent-load").click();
-        await page.waitForFunction(() => document.querySelector("#profile-nagold").textContent.trim() === "· 9 NAG");
+        await page.waitForFunction(() => document.querySelector("#profile-nagold").textContent.trim() === "· 9 EP");
         assert.equal((await stored()).length, 2, "Stand aus der Liste wiederhergestellt");
         for (let index = 0; index < 6; index++) await page.locator("#export-button").click();
         assert.equal(await page.locator("#recent-saves option").count(), 5, "höchstens fünf Stände");
         await page.locator("#save-dialog [data-close-dialog]").click();
-        // Profilfenster: XP, Level und der Weg zu den nächsten NAGOLD.
+        // Profilfenster: XP, Level und der Weg zu den nächsten EP.
         await page.locator("#profile-button").click();
         assert.equal(await page.locator("#xp-panel #xp-total").innerText(), "200 XP");
         assert.equal(await page.locator("#xp-level").innerText(), "Level 1");
         assert.equal(await page.locator("#xp-next").innerText(), "Noch 300 XP bis Level 2");
         // Wenig Text im Profil: Erklärungen stehen in Tooltips und erscheinen erst beim Darüberfahren.
-        assert.equal(await page.locator("#nagold-tip").evaluate((tip) => tip.textContent), "Noch 91 NAGOLD bis zum Jahresziel (100). Die nächsten 5 NAGOLD gibt es für den Abschluss von L1.3.");
+        assert.equal(await page.locator("#nagold-tip").evaluate((tip) => tip.textContent), "Noch 91 EP bis zum Jahresziel (100). Die nächsten 5 EP gibt es für den Abschluss von L1.3.");
         assert.equal(await page.locator("#nagold-goal-text").innerText(), "9 / 100 · Jahresziel");
         assert.equal(await page.locator("#xp-breakdown").evaluate((tip) => getComputedStyle(tip).opacity), "0");
         await page.locator("#xp-total").hover();
         await page.waitForFunction(() => getComputedStyle(document.querySelector("#xp-breakdown")).opacity === "1");
         assert.equal(await page.locator("#xp-breakdown").innerText(), "2 von 27 Einheiten: 200 XP · 0 von 54 Bonusaufgaben: 0 XP");
         assert.equal(await page.locator("#manager-dialog .xp-rule").count(), 0);
-        assert.doesNotMatch(await page.locator("#profile-list").innerText(), /Browser-ID|XP|NAGOLD|Aktiv/, "Profilkarte nur mit Kürzel, Klasse, Fortschritt");
-        // Profilkarte oben, darunter XP und NAGOLD als gleich hohe Felder nebeneinander.
+        assert.doesNotMatch(await page.locator("#profile-list").innerText(), /Browser-ID|XP|EP|Aktiv/, "Profilkarte nur mit Kürzel, Klasse, Fortschritt");
+        // Profilkarte oben, darunter XP und EP als gleich hohe Felder nebeneinander.
         const layout = await page.evaluate(() => { const r = (selector) => document.querySelector(selector).getBoundingClientRect(); return { card: r("#profile-list"), form: r("#profile-edit-form"), xp: r("#xp-panel"), nagold: r("#nagold-total") }; });
-        assert.ok(layout.card.bottom <= layout.form.top && layout.form.bottom <= layout.xp.top, "Reihenfolge: Profil, Felder, XP/NAGOLD");
-        assert.ok(Math.abs(layout.xp.height - layout.nagold.height) <= 1 && Math.abs(layout.xp.top - layout.nagold.top) <= 1, "XP und NAGOLD gleich hoch");
+        assert.ok(layout.card.bottom <= layout.form.top && layout.form.bottom <= layout.xp.top, "Reihenfolge: Profil, Felder, XP/EP");
+        assert.ok(Math.abs(layout.xp.height - layout.nagold.height) <= 1 && Math.abs(layout.xp.top - layout.nagold.top) <= 1, "XP und EP gleich hoch");
         const dialogBox = await page.locator("#manager-dialog").evaluate((dialog) => ({ scroll: dialog.scrollHeight, client: dialog.clientHeight }));
         assert.ok(dialogBox.scroll <= dialogBox.client + 1, "Profilfenster ohne Rollbalken bei 900 px Höhe");
         assert.equal(await page.locator("#profile-button .profile-label").isHidden(), true, "Text „Profil“ entfällt mit Profil");
-        assert.match(await page.locator("#profile-stats").innerText(), /^200 XP · 9 NAG$/);
+        assert.match(await page.locator("#profile-stats").innerText(), /^200 XP · 9 EP$/);
         await page.locator("#manager-dialog [data-close-dialog]").click();
 
         // Klassenübersicht zeigt die Summe aus der Datei.
@@ -659,24 +663,24 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.locator("#teacher-table tbody .teacher-nagold-button").first().click();
         const teacherDialog = page.locator("#teacher-nagold-dialog");
         assert.equal(await teacherDialog.evaluate((dialog) => dialog.open), true);
-        assert.match(await teacherDialog.locator("h2").innerText(), /NAGOLD · nag\.old \(WGW EK1\)/);
+        assert.match(await teacherDialog.locator("h2").innerText(), /Erfahrungspunkte \(EP\) · nag\.old \(WGW EK1\)/);
         assert.equal(await teacherDialog.locator("tbody tr").count(), 2);
         assert.equal(await teacherDialog.locator("tbody b").count(), 0, "Text aus der Datei wird nicht als HTML eingefügt");
         assert.match(await teacherDialog.locator("tbody").innerText(), /<b>Mitarbeit<\/b>[\s\S]*4[\s\S]*L1\.2 · /);
         assert.match(await teacherDialog.locator(".nagold-intro").innerText(), /2 Einträge, davon 1 automatisch/);
-        assert.equal(await teacherDialog.locator(".teacher-nagold-sum").innerText(), "9 NAGOLD gesamt");
+        assert.equal(await teacherDialog.locator(".teacher-nagold-sum").innerText(), "9 EP gesamt");
         assert.equal(await teacherDialog.locator("input, [contenteditable]").count(), 0, "nur lesend");
         await teacherDialog.locator(".dialog-close").click();
         assert.deepEqual(errors, []);
       } finally { await context.close(); }
     });
 
-    await check("NAGOLD auf der Lernseite: dieselbe Tabelle wie auf der Startseite", async () => {
+    await check("EP auf der Lernseite: dieselbe Tabelle wie auf der Startseite", async () => {
       const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
       const seeded = JSON.stringify({ version: 1, theme: "dark", currentProfileId: "nl", profiles: [{ id: "nl", name: "nag.les", className: "WGW EK1", progress: { "l1-1": done } }] });
       const { context, page, errors } = await open(browser, "l1-2.html", { state: seeded });
       try {
-        // Das Fenster besteht von Anfang an; der Verweis des NAGOLD-Knopfs zeigt nicht ins Leere.
+        // Das Fenster besteht von Anfang an; der Verweis des EP-Knopfs zeigt nicht ins Leere.
         assert.equal(await page.locator("#nagold-dialog").count(), 1);
         await page.locator("#lesson-profile-link").click();
         assert.equal(await page.locator("#nagold-total").getAttribute("aria-controls"), "nagold-dialog");
@@ -694,8 +698,8 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(await page.locator("#nagold-dialog").evaluate((dialog) => dialog.open), false);
         const entries = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)).profiles[0].nagoldEntries, KEY);
         assert.deepEqual(entries.map((entry) => [entry.purpose.slice(0, 9), entry.points]), [["L1.1 · Ei", 5], ["Mitarbeit", 2]]);
-        assert.match(await page.locator("#nagold-total-value").innerText(), /^7 NAGOLD$/);
-        assert.equal((await page.locator("#profile-nagold").innerText()).trim(), "· 7 NAG");
+        assert.match(await page.locator("#nagold-total-value").innerText(), /^7 EP$/);
+        assert.equal((await page.locator("#profile-nagold").innerText()).trim(), "· 7 EP");
         assert.deepEqual(errors, []);
       } finally { await context.close(); }
     });
@@ -711,7 +715,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         // Disketten-Symbol direkt neben dem Farbschema-Schalter.
         assert.equal(await page.evaluate(() => document.querySelector("#save-button")?.previousElementSibling?.id), "lesson-theme-toggle");
         await page.locator("#save-button").click();
-        assert.match(await page.locator("#save-status").innerText(), /sav\.les · WGW EK1 · 200 XP · 3 NAGOLD · 2\/27 erledigt/);
+        assert.match(await page.locator("#save-status").innerText(), /sav\.les · WGW EK1 · 200 XP · 3 EP · 2\/27 erledigt/);
         assert.equal(await page.locator("#recent-saves-box").isHidden(), true);
         const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#export-button").click()]);
         assert.match(download.suggestedFilename(), /^\d{4}-\d{2}-\d{2}_Excel-Lab_sav\.les_XL-[A-Z0-9]+\.json$/);
@@ -736,7 +740,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.waitForFunction(() => /Keine gültige Excel-Lab-Exportdatei/.test(document.querySelector("#save-feedback")?.textContent || ""));
         assert.equal(JSON.stringify(await state()), before);
 
-        // Aus der Liste laden stellt den gespeicherten Stand wieder her, NAGOLD eingeschlossen.
+        // Aus der Liste laden stellt den gespeicherten Stand wieder her, EP eingeschlossen.
         await page.evaluate((key) => { const s = JSON.parse(localStorage.getItem(key)); s.profiles[0].nagoldEntries = []; localStorage.setItem(key, JSON.stringify(s)); }, KEY);
         await page.locator("#recent-load").click();
         await page.waitForFunction(() => /erfolgreich geladen/.test(document.querySelector("#save-feedback")?.textContent || ""));
@@ -744,7 +748,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(restored.length, 1, "dieselbe Person wird ersetzt");
         assert.deepEqual(restored[0].nagoldEntries.map((entry) => entry.points), [3]);
         assert.equal(restored[0].id, "ls", "Kennung bleibt");
-        assert.match(await page.locator("#profile-stats").innerText(), /200 XP · 3 NAG/);
+        assert.match(await page.locator("#profile-stats").innerText(), /200 XP · 3 EP/);
 
         // Die Liste ist dieselbe wie auf der Startseite.
         await page.goto(base + "index.html");
@@ -769,7 +773,7 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         assert.equal(page.url().endsWith("l1-2.html"), true);
         assert.match(await page.locator("#profile-list").innerText(), /pro\.les[\s\S]*WGW EK1 · 1\/27 erledigt/);
         assert.equal(await page.locator("#profile-edit-name").inputValue(), "pro.les");
-        // Gleiche Anordnung wie auf der Startseite: Karte, Felder, XP neben NAGOLD, Lernnachweis.
+        // Gleiche Anordnung wie auf der Startseite: Karte, Felder, XP neben EP, Lernnachweis.
         const layout = await page.evaluate(() => { const r = (selector) => document.querySelector(selector).getBoundingClientRect(); return { card: r("#profile-list"), form: r("#profile-edit-form"), xp: r("#xp-panel"), nagold: r("#nagold-total"), certificate: r("#certificate-link") }; });
         assert.ok(layout.card.bottom <= layout.form.top && layout.form.bottom <= layout.xp.top && layout.xp.bottom <= layout.certificate.top);
         assert.ok(Math.abs(layout.xp.top - layout.nagold.top) <= 1 && Math.abs(layout.xp.height - layout.nagold.height) <= 1);

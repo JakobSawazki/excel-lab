@@ -57,9 +57,9 @@
       completedCount,
       bonusCount,
       xp,
-      // Summe der NAGOLD-Tabelle aus der Datei (Selbstauskunft der Lernenden)
+      // Summe der EP-Tabelle aus der Datei (Selbstauskunft der Lernenden)
       nagold: window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.total(payload.profile) : 0,
-      // Die einzelnen Zeilen (bereinigt) für die Ansicht „NAGOLD-Einträge“.
+      // Die einzelnen Zeilen (bereinigt) für die Ansicht „EP-Einträge“.
       nagoldEntries: window.EXCEL_LAB_NAGOLD ? window.EXCEL_LAB_NAGOLD.entriesFor(payload.profile) : []
     };
   }
@@ -96,7 +96,7 @@
     open: { symbol: "·", label: "offen" }
   };
 
-  // NAGOLD-Einträge einer Person, nur zum Ansehen: Die Tabelle ist eine
+  // EP-Einträge einer Person, nur zum Ansehen: Die Tabelle ist eine
   // Selbstauskunft der Lernenden, die Lehrkraft prüft sie hier Zeile für Zeile.
   let nagoldDialog = null;
   function showNagold(student) {
@@ -108,7 +108,7 @@
       const content = node("div", "dialog-content");
       const close = node("button", "dialog-close");
       close.type = "button";
-      close.setAttribute("aria-label", "NAGOLD-Einträge schließen");
+      close.setAttribute("aria-label", "EP-Einträge schließen");
       close.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>';
       close.addEventListener("click", () => nagoldDialog.close());
       const eyebrow = node("p", "eyebrow", "Selbstauskunft aus der Speicherdatei");
@@ -119,7 +119,7 @@
       const table = node("table", "nagold-table");
       const head = document.createElement("thead");
       const headRow = document.createElement("tr");
-      for (const text of ["Datum", "Uhrzeit", "Wofür", "NAGOLD"]) { const th = node("th", "", text); th.scope = "col"; headRow.append(th); }
+      for (const text of ["Datum", "Uhrzeit", "Wofür", "EP"]) { const th = node("th", "", text); th.scope = "col"; headRow.append(th); }
       head.append(headRow);
       table.append(head, document.createElement("tbody"));
       wrap.append(table);
@@ -130,19 +130,19 @@
       document.body.append(nagoldDialog);
     }
     const dateText = (value) => value ? new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T12:00:00Z`)) : "Nicht erfasst";
-    nagoldDialog.querySelector("h2").textContent = `NAGOLD · ${student.name} (${student.className || "ohne Klasse"})`;
+    nagoldDialog.querySelector("h2").textContent = `Erfahrungspunkte (EP) · ${student.name} (${student.className || "ohne Klasse"})`;
     const automatic = student.nagoldEntries.filter((entry) => entry.lessonId).length;
     nagoldDialog.querySelector(".nagold-intro").textContent = `Gesichert am ${formatDate(student.exportedAt)} · ${student.nagoldEntries.length} Einträge, davon ${automatic} automatisch für abgeschlossene Einheiten.`;
     const body = nagoldDialog.querySelector("tbody");
     body.replaceChildren(...(student.nagoldEntries.length ? student.nagoldEntries.map((entry) => {
       const row = document.createElement("tr");
       const cells = [["Datum", "", dateText(entry.date)], ["Uhrzeit", "", entry.time || "Nicht erfasst"], ["Wofür", "", entry.purpose],
-        ["NAGOLD", `nagold-points${entry.points < 0 ? " is-negative" : ""}`, String(entry.points)]];
+        ["EP", `nagold-points${entry.points < 0 ? " is-negative" : ""}`, String(entry.points)]];
       // data-label trägt die Spaltennamen in die gestapelte Handyansicht.
       for (const [label, className, text] of cells) { const cell = node("td", className, text); cell.dataset.label = label; row.append(cell); }
       return row;
     }) : [(() => { const row = document.createElement("tr"); const cell = node("td", "", "Keine Einträge."); cell.colSpan = 4; row.append(cell); return row; })()]));
-    nagoldDialog.querySelector(".teacher-nagold-sum").textContent = `${student.nagold} NAGOLD gesamt`;
+    nagoldDialog.querySelector(".teacher-nagold-sum").textContent = `${student.nagold} EP gesamt`;
     if (!nagoldDialog.open) nagoldDialog.showModal();
   }
 
@@ -151,7 +151,7 @@
     const button = node("button", "teacher-nagold-button", String(student.nagold));
     button.type = "button";
     button.title = "Einträge ansehen";
-    button.setAttribute("aria-label", `${student.name}: ${student.nagold} NAGOLD, Einträge ansehen`);
+    button.setAttribute("aria-label", `${student.name}: ${student.nagold} EP, Einträge ansehen`);
     button.setAttribute("aria-haspopup", "dialog");
     button.addEventListener("click", () => showNagold(student));
     cell.append(button);
@@ -177,7 +177,7 @@
       groupRow.append(cell);
     }
     const labelRow = document.createElement("tr");
-    for (const text of ["Kürzel", "Klasse", "Einheiten", "Bonus", "XP", "NAGOLD"]) {
+    for (const text of ["Kürzel", "Klasse", "Einheiten", "Bonus", "XP", "EP"]) {
       const cell = node("th", "", text);
       cell.scope = "col";
       labelRow.append(cell);
@@ -260,10 +260,10 @@
     const list = sorted();
     if (!list.length) return;
     // Zellen in Anführungszeichen; führende Formelzeichen entschärfen, damit Excel nichts ausführt.
-    // Echte Zahlen (auch negative NAGOLD-Summen) bleiben Zahlen, damit Excel mit ihnen rechnen kann.
+    // Echte Zahlen (auch negative EP-Summen) bleiben Zahlen, damit Excel mit ihnen rechnen kann.
     const cell = (value) => Number.isFinite(value) ? String(value)
       : `"${String(value).replace(/^([=+\-@])/, "'$1").replace(/"/g, '""')}"`;
-    const header = ["Kürzel", "Klasse", "Gesichert am", "Einheiten", "Bonus", "XP", "NAGOLD", ...lessons.map((lesson) => lesson.code)];
+    const header = ["Kürzel", "Klasse", "Gesichert am", "Einheiten", "Bonus", "XP", "EP", ...lessons.map((lesson) => lesson.code)];
     const rows = list.map((student) => [
       student.name, student.className, formatDate(student.exportedAt), student.completedCount, student.bonusCount, student.xp, student.nagold,
       ...lessons.map((lesson) => {

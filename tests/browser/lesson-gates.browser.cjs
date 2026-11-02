@@ -77,6 +77,10 @@ assert.equal(lessons.length, 27);
           await answer(true); await submit();
           assert.equal((await read()).masteryPassed, true, 'correct quiz');
           assert.equal((await read()).completed, false, 'quiz alone must not complete');
+          for (const input of await page.locator('[data-reading-block]').all()) {
+            await input.evaluate(input => { input.closest('details').open = true; });
+            await input.check();
+          }
           await complete(); assert.equal((await read()).completed, false, 'work checks missing');
           for (const input of await page.locator('[data-page-check]').all()) await input.check();
           await complete(); assert.equal((await read()).completed, false, 'teacher confirmation missing');

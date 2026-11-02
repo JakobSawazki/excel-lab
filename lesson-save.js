@@ -45,7 +45,7 @@
   function render() {
     try {
       const profile=current(readState()); $("#export-button").disabled=!profile;
-      $("#save-status").textContent=profile?`${profile.name} · ${profile.className || "ohne Klasse"} · ${core.xp(profile)} XP · ${nagold?.total(profile)||0} NAGOLD · ${lessons.filter(lesson=>profile.progress?.[lesson.id]?.completed).length}/${lessons.length} erledigt`:"Noch kein Lernprofil in diesem Browser. Du kannst eine gespeicherte Datei laden.";
+      $("#save-status").textContent=profile?`${profile.name} · ${profile.className || "ohne Klasse"} · ${core.xp(profile)} XP · ${nagold?.total(profile)||0} EP · ${lessons.filter(lesson=>profile.progress?.[lesson.id]?.completed).length}/${lessons.length} erledigt`:"Noch kein Lernprofil in diesem Browser. Du kannst eine gespeicherte Datei laden.";
     } catch(error) { $("#export-button").disabled=true; message(error.message); }
     const list=savedList(); $("#recent-saves").replaceChildren();
     list.forEach((item,index)=>{

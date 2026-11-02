@@ -1,6 +1,6 @@
 "use strict";
 
-// Prüft die NAGOLD-Tabelle (nagold.js): Grenzen, alte Lernstände, einmalige Buchung.
+// Prüft die EP-Tabelle (nagold.js): Grenzen, alte Lernstände, einmalige Buchung.
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const vm = require("node:vm");
@@ -14,7 +14,7 @@ const lessons = sandbox.window.EXCEL_LAB_CONTENT.lessons;
 const plain = (value) => JSON.parse(JSON.stringify(value));
 const done = { completed: true };
 
-test("Grundwerte: 5 NAGOLD je Einheit, 27 Einheiten ergeben 135", () => {
+test("Grundwerte: 5 EP je Einheit, 27 Einheiten ergeben 135", () => {
   assert.equal(nagold.maxPoints, 5);
   assert.equal(nagold.minPoints, -10);
   assert.equal(nagold.attendancePoints, 2);

@@ -11,7 +11,7 @@ Speicher-Kompatibilität: App-Version und JSON-Dateiformat werden getrennt gefü
 Bestehende Speicherdateien im Format 1 bleiben unterstützt. Ab Version 0.32.0
 bietet das Speicherfenster zusätzlich „Speicherdatei aktualisieren“
 (neue Kopie, Original unverändert) sowie eine Rücksicherung vor dem Laden.
-Unlesbare NAGOLD-Zeilen dürfen nicht still verworfen werden. Technische Grenzen,
+Unlesbare EP-Zeilen dürfen nicht still verworfen werden. Technische Grenzen,
 Testbefehle und die verbindliche Migrationsregel stehen in der Projektdokumentation.
 
 Die Anwendung gliedert den Lernstoff in vier Lernschritte:
@@ -27,7 +27,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.32.0**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.33.0**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
@@ -76,11 +76,11 @@ Wer einen Kontrollwert richtig einträgt, erhält je Aufgabe einmalig 50 Bonus-X
 Abschluss der Einheit ist die Aufgabe nicht nötig. Die Aufgaben stehen in
 `bonus-tasks.js`.
 
-## Profil, Speicherstand und NAGOLD
+## Profil, Speicherstand und EP
 
-Der Profilknopf oben rechts zeigt XP und NAGOLD („300 XP · 10 NAG“). Er öffnet
+Der Profilknopf oben rechts zeigt XP und EP („300 XP · 10 EP“). Er öffnet
 auf Startseite und Lernseiten dasselbe Profilfenster: Kürzel und Klasse, Level
-mit Fortschrittsbalken, NAGOLD und den Lernnachweis. Erklärungen stehen als
+mit Fortschrittsbalken, EP und den Lernnachweis. Erklärungen stehen als
 Tooltip an den Zahlen.
 
 Das Disketten-Symbol links daneben öffnet „Speicherstand“: „Speichern“ legt
@@ -88,8 +88,8 @@ eine Datei mit Datum und Kürzel im Download-Ordner ab, „Laden“ übernimmt e
 gespeicherte Datei. Die fünf zuletzt gespeicherten Stände bleiben zusätzlich
 im Browser und lassen sich über „Zuletzt gespeichert“ wieder laden.
 
-NAGOLD ist die Punktetabelle aus WorkbenchLab: Jede abgeschlossene Einheit
-bringt automatisch einmalig 5 NAGOLD. Weitere Zeilen (Anwesenheit mit 2,
+EP steht für Erfahrungspunkte und bezeichnet die Punktetabelle: Jede abgeschlossene Einheit
+bringt automatisch einmalig 5 EP. Weitere Zeilen (Anwesenheit mit 2,
 Mitarbeit, Zusatzaufgabe, Präsentation …) tragen Lernende mit ganzen Punkten
 von −10 bis 5 ein; die Tabelle speichert gültige Zeilen sofort. Sie ist eine
 Selbstauskunft; verbindlich bleibt die Bewertung der Lehrkraft.
@@ -98,8 +98,8 @@ Selbstauskunft; verbindlich bleibt die Bewertung der Lehrkraft.
 
 [`lehrkraft.html`](lehrkraft.html) (Bereich „Für Lehrkräfte“ in der Ansicht „Quellen“)
 liest die Speicherdateien der Lernenden ein und zeigt je Person Abschlüsse,
-Bonusaufgaben, XP und NAGOLD sowie je Einheit, wie viele sie abgeschlossen haben.
-Ein Klick auf die NAGOLD-Zahl zeigt die Einträge der Person zum Prüfen. Die
+Bonusaufgaben, XP und EP sowie je Einheit, wie viele sie abgeschlossen haben.
+Ein Klick auf die EP-Zahl zeigt die Einträge der Person zum Prüfen. Die
 Dateien werden nur im Browserfenster ausgewertet, nicht hochgeladen und nicht
 gespeichert. Die Tabelle lässt sich als CSV sichern und drucken. Die Übersicht
 zeigt, was die Lernenden selbst gespeichert haben; sie ersetzt keine Kontrolle
@@ -109,7 +109,7 @@ der Excel-Dateien.
 
 Im Profilfenster führt „Lernnachweis“ zu [`nachweis.html`](nachweis.html): eine
 druckbare Übersicht des aktuellen Profils mit abgeschlossenen Einheiten je
-Lernfortschritt, gelösten Bonusaufgaben, XP, NAGOLD und einer Unterschriftszeile
+Lernfortschritt, gelösten Bonusaufgaben, XP, EP und einer Unterschriftszeile
 für die Lehrkraft. Das X oben rechts führt zurück ins Profilfenster. Die Seite liest nur den Lernstand im Browser und speichert nichts.
 
 ## Druckansicht
@@ -197,7 +197,7 @@ verlieren. Beide Angaben sind bei der Profilanlage Pflicht; Klassen wie
 `WGW EK1` behalten ihre Leerzeichen. Neues Profil und Zurücksetzen stehen
 nur im Entwickler-Modus zur Verfügung. „Fortschritt zurücksetzen“ verlangt eine
 Bestätigung und entfernt anschließend das gesamte aktive Profil einschließlich
-Kürzel, Klasse, XP, NAGOLD-Tabelle und Textmarkierungen. Zuvor wird eine vollständige
+Kürzel, Klasse, XP, EP-Tabelle und Textmarkierungen. Zuvor wird eine vollständige
 JSON-Sicherung zum Download bereitgestellt und der bisherige Browserstand lokal
 gesichert. Scheitert die Sicherung oder Speicherung, bleibt das Profil erhalten.
 Danach öffnet sich die leere Profilanlage für ein neues Kürzel und eine neue Klasse.
@@ -254,9 +254,9 @@ Excel-Lab/
 ├── lesson-navigation.js       Hauptnavigation und Standortzeile der Lernseiten
 ├── lesson-workspace.js        Abschnitte, Videos, Excel-Links, Druckansicht
 ├── theme-boot.js              Farbschema und Darstellung vor dem ersten Zeichnen
-├── xp.js, options.js          XP und NAGOLD im Profilknopf, Profilfenster der Lernseiten, Darstellungsoptionen
-├── nagold.js                  NAGOLD-Regeln: 5 je abgeschlossener Einheit, eigene Einträge −10 bis 5
-├── nagold-table.js            NAGOLD-Tabelle (Fenster) für Startseite und Lernseiten
+├── xp.js, options.js          XP und EP im Profilknopf, Profilfenster der Lernseiten, Darstellungsoptionen
+├── nagold.js                  EP-Regeln: 5 je abgeschlossener Einheit, eigene Einträge −10 bis 5
+├── nagold-table.js            EP-Tabelle (Fenster) für Startseite und Lernseiten
 ├── highlighter.js             Textmarker auf den Lernseiten (vier Farben, Radierer)
 ├── profile-progress.js        Gesamtfortschritt als Balken in der Profilkarte
 ├── save-core.js               Speichern und Laden (Dateiformat, Bereinigung, „Zuletzt gespeichert“) und XP-Regel

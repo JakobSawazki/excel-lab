@@ -22,6 +22,43 @@ function load() {
 const plain = (value) => JSON.parse(JSON.stringify(value));
 const done = { completed: true, teacherChecked: true, masteryPassed: true, checks: [true, true, true] };
 
+test("Umbenennung in EP: alte Feldnamen und gespeicherte Anlässe verlustfrei beibehalten", () => {
+  const { core } = load();
+  const entries = [
+    { date: "2026-10-19", time: "10:00", purpose: "NAGOLD aus alter Datei", points: 5 },
+    { date: "2026-10-19", time: "10:05", purpose: "Korrektur", points: -2 }
+  ];
+  const old = { app: "Excel-Lab", version: 1, appVersion: "0.21.0",
+    exportedBy: { nagold: 3 }, profile: { name: "tes.pro", className: "WGW EK1", nagoldEntries: entries } };
+  const imported = plain(core.prepareImport(old));
+  const saved = plain(core.buildPayload(imported, "0.32.0"));
+  assert.equal(saved.version, 1);
+  assert.equal(saved.exportedBy.nagold, 3);
+  assert.deepEqual(saved.profile.nagoldEntries, entries);
+  assert.equal(Object.hasOwn(saved.profile, "epEntries"), false);
+  assert.equal(Object.hasOwn(saved.exportedBy, "ep"), false);
+  const reimported = plain(core.prepareImport(saved));
+  assert.deepEqual(reimported.nagoldEntries, entries);
+  assert.match(core.describeSave({ payload: saved }), /3 EP$/);
+});
+
+test("Lesebestätigungen bleiben in Format 1 erhalten; alte Abschlüsse und EP unverändert", () => {
+  const { core } = load();
+  const profile = { id: "read", name: "tes.pro", className: "WGW EK1",
+    progress: { "l1-1": { ...done, reading: { "ziel-heading": true, "grundlagen-heading": false, "invalid key": true, invalid: "true" } }, "l1-2": done },
+    nagoldEntries: [{ date: "2026-10-19", time: "10:00", purpose: "Mitarbeit", points: 3 }] };
+  const normalized = plain(core.normalizeProfile(profile));
+  assert.deepEqual(normalized.progress["l1-1"].reading, { "ziel-heading": true, "grundlagen-heading": false });
+  assert.equal(Object.hasOwn(normalized.progress["l1-2"], "reading"), false, "alte Abschlüsse nicht mit leerem reading-Feld entwerten");
+  assert.equal(normalized.progress["l1-2"].completed, true);
+  assert.deepEqual(normalized.nagoldEntries, profile.nagoldEntries);
+  const payload = plain(core.buildPayload(normalized, "0.32.0"));
+  assert.equal(payload.version, 1);
+  const imported = plain(core.prepareImport(JSON.parse(JSON.stringify(payload))));
+  assert.deepEqual(imported.progress["l1-1"].reading, normalized.progress["l1-1"].reading);
+  assert.deepEqual(imported.nagoldEntries, profile.nagoldEntries);
+});
+
 test("Bereinigung: bekannte Einheiten, Kleinbuchstaben, Klasse groß, alte Abschlüsse gelten als bestanden", () => {
   const { core } = load();
   const profile = plain(core.normalizeProfile({
@@ -34,7 +71,7 @@ test("Bereinigung: bekannte Einheiten, Kleinbuchstaben, Klasse groß, alte Absch
   assert.deepEqual(Object.keys(profile.progress), ["l1-1"], "unbekannte und kaputte Einträge entfallen");
   assert.equal(profile.progress["l1-1"].masteryPassed, true);
   assert.deepEqual(profile.progress["l1-1"].checks, [true, true, false], "so viele Haken wie die Einheit hat");
-  assert.deepEqual(profile.nagoldEntries.map((entry) => entry.lessonId), ["l1-1"], "alter Stand: NAGOLD-Zeile je Abschluss");
+  assert.deepEqual(profile.nagoldEntries.map((entry) => entry.lessonId), ["l1-1"], "alter Stand: EP-Zeile je Abschluss");
 });
 
 test("XP: 100 je Abschluss, Bonus nur mit vorhandener Aufgabe", () => {
@@ -88,7 +125,7 @@ test("Zuletzt gespeichert: höchstens fünf, neueste zuerst, fremde Einträge en
   const list = plain(core.recentSaves());
   assert.equal(list.length, 5);
   assert.equal(list[0].fileName, "datei-6.json");
-  assert.match(core.describeSave(list[0]), /ann\.bei · 0 XP · 0 NAGOLD$/);
+  assert.match(core.describeSave(list[0]), /ann\.bei · 0 XP · 0 EP$/);
   store.set(core.SAVES_KEY, JSON.stringify([{ savedAt: "x", payload: { app: "Anderes" } }, "kaputt"]));
   assert.deepEqual(plain(core.recentSaves()), []);
   store.set(core.SAVES_KEY, "{kaputt");
@@ -176,7 +213,7 @@ test("Alte Format-1-Dateien: fehlende Zeit, deutsche Datumsangaben und ganzzahli
   assert.deepEqual(plain(core.prepareImport(updated)), updated.profile, "erneutes Laden ohne Verlust");
 });
 
-test("NAGOLD: beschädigte Zeilen, abgeschnittene Tabellen und widersprüchliche Summen blockieren vollständig", () => {
+test("EP: beschädigte Zeilen, abgeschnittene Tabellen und widersprüchliche Summen blockieren vollständig", () => {
   const { core } = load();
   const row = { date: "2026-10-19", time: "08:00", purpose: "Mitarbeit", points: 3 };
   const file = entries => ({ app: "Excel-Lab", version: 1, profile: { name: "tes.pro", progress: {}, nagoldEntries: entries } });
@@ -184,15 +221,15 @@ test("NAGOLD: beschädigte Zeilen, abgeschnittene Tabellen und widersprüchliche
     [row, { ...row, purpose: "x".repeat(161) }], [row, { ...row, lessonId: "l99-1" }], Array(1028).fill(row)]) {
     const state = { version: 1, profiles: [], currentProfileId: null };
     const before = JSON.stringify(state);
-    assert.throws(() => core.mergeImport(state, file(invalid), () => true), /NAGOLD/);
+    assert.throws(() => core.mergeImport(state, file(invalid), () => true), /EP/);
     assert.equal(JSON.stringify(state), before);
   }
   assert.throws(() => core.prepareImport({ ...file([row]), exportedBy: { nagold: 12 } }), /Summe/);
   assert.throws(() => core.prepareImport({ app: "Excel-Lab", version: 99, profile: {} }), /nicht unterstütztes Dateiformat/);
-  assert.throws(() => core.normalizeProfile(file([null]).profile), /NAGOLD/, "auch lokal nicht still ausfiltern");
+  assert.throws(() => core.normalizeProfile(file([null]).profile), /EP/, "auch lokal nicht still ausfiltern");
 });
 
-test("Auch gleiche NAGOLD-Summe schützt vor Verlust einzelner Eintragungen, einschließlich Duplikaten", () => {
+test("Auch gleiche EP-Summe schützt vor Verlust einzelner Eintragungen, einschließlich Duplikaten", () => {
   const { core } = load();
   const row = { date: "2026-10-19", purpose: "Mitarbeit", points: 2 };
   const existing = core.normalizeProfile({ id: "p", name: "tes.pro", className: "WGW EK1", progress: {}, nagoldEntries: [row, row] });
@@ -200,7 +237,7 @@ test("Auch gleiche NAGOLD-Summe schützt vor Verlust einzelner Eintragungen, ein
   const before = JSON.stringify(state), questions = [];
   const incoming = { app: "Excel-Lab", version: 1, profile: { ...existing, nagoldEntries: [{ ...row, points: 4 }] } };
   assert.equal(core.mergeImport(state, incoming, question => { questions.push(question); return false; }), "cancelled");
-  assert.match(questions[0], /NAGOLD: 4 → 4/);
+  assert.match(questions[0], /EP: 4 → 4/);
   assert.equal(JSON.stringify(state), before);
 });
 

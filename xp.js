@@ -1,13 +1,13 @@
 (function () {
   "use strict";
-  // XP, Level und NAGOLD im Profilknopf der Kopfzeile. Die Einzelheiten stehen
+  // XP, Level und EP im Profilknopf der Kopfzeile. Die Einzelheiten stehen
   // auf Startseite und Lernseiten im gleich gestalteten Profilfenster.
   const profileButton = document.querySelector(".site-header .profile-button");
   const lessons = window.EXCEL_LAB_CONTENT?.lessons;
   if (!profileButton || !Array.isArray(lessons) || !window.ExcelLabSave) return;
   const nagold = window.EXCEL_LAB_NAGOLD || null;
 
-  // Kopfzeile: „200 XP · 13 NAG“ über dem Kürzel; ohne Profil bleibt die bisherige Beschriftung.
+  // Kopfzeile: „200 XP · 13 EP“ über dem Kürzel; ohne Profil bleibt die bisherige Beschriftung.
   const small = profileButton.querySelector(".profile-copy small");
   const label = document.createElement("span");
   label.className = "profile-label";
@@ -31,7 +31,7 @@
   const panelMarkup = (withNagold) => `
     <div class="xp-summary">
       <span class="tip-wrap tip-start"><strong id="xp-total" tabindex="0" aria-describedby="xp-breakdown">0 XP</strong><span class="tip" role="tooltip" id="xp-breakdown"></span></span>
-      ${withNagold ? '<span class="tip-wrap"><span class="xp-nagold-chip" id="xp-nagold-chip" tabindex="0" aria-describedby="xp-nagold">0 NAGOLD</span><span class="tip" role="tooltip" id="xp-nagold"></span></span>' : ""}
+      ${withNagold ? '<span class="tip-wrap"><span class="xp-nagold-chip" id="xp-nagold-chip" tabindex="0" aria-describedby="xp-nagold">0 EP</span><span class="tip" role="tooltip" id="xp-nagold"></span></span>' : ""}
       <span class="tip-wrap tip-end"><span id="xp-level" tabindex="0" aria-describedby="xp-rule">Level 1</span><span class="tip" role="tooltip" id="xp-rule">Eine Einheit bringt 100 XP, eine Bonusaufgabe 50 XP. Ein neues Level gibt es nach je 500 XP.</span></span>
     </div>
     <progress id="xp-progress" max="500" value="0" aria-label="Fortschritt zum nächsten Level"></progress>
@@ -52,7 +52,7 @@
         <label><span>Klassenbezeichnung</span><input id="profile-edit-class" type="text" minlength="3" maxlength="32" required autocapitalize="characters" spellcheck="false" placeholder="z. B. WGW EK1"></label>
       </form>
       <div class="manager-panels"><div class="manager-panel-slot" id="xp-slot"></div>
-        <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine NAGOLD</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 NAGOLD</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span><span class="nagold-goal"><progress id="nagold-goal-progress" max="100" value="0" aria-hidden="true"></progress><span class="nagold-goal-text" id="nagold-goal-text">0 / 100 · Jahresziel</span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
+        <span class="tip-wrap nagold-tip-wrap"><button class="nagold-total" type="button" id="nagold-total" aria-haspopup="dialog" aria-controls="nagold-dialog" aria-describedby="nagold-tip"><span class="nagold-panel-title">Deine EP</span><span class="nagold-panel-value"><span class="nagold-coin" aria-hidden="true"></span><strong id="nagold-total-value">0 EP</strong><span class="nagold-edit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></span></span><span class="nagold-goal"><progress id="nagold-goal-progress" max="100" value="0" aria-hidden="true"></progress><span class="nagold-goal-text" id="nagold-goal-text">0 / 100 · Jahresziel</span></span></button><span class="tip" role="tooltip" id="nagold-tip"></span></span>
       </div><a class="button button-secondary" id="certificate-link" href="nachweis.html">Lernnachweis</a>
       <p id="lesson-profile-status" role="status" aria-live="polite" hidden></p>
     </div>`;
@@ -83,7 +83,7 @@
     panel.id = "xp-panel";
     panel.setAttribute("aria-labelledby", "xp-title");
     panel.innerHTML = `<h3 id="xp-title">Deine XP</h3>${panelMarkup(false)}`;
-    // Der Abschnitt sitzt neben dem NAGOLD-Feld; ohne den Platzhalter unter der Profilkarte.
+    // Der Abschnitt sitzt neben dem EP-Feld; ohne den Platzhalter unter der Profilkarte.
     const slot = document.querySelector("#manager-dialog #xp-slot");
     if (slot) slot.append(panel);
     else managerList.after(panel);
@@ -116,9 +116,9 @@
     mini.hidden = !profile;
     stats.querySelector(".xp-count").textContent = xp;
     mini.querySelector(".xp-count-mini").textContent = xp;
-    stats.querySelector("#profile-nagold").textContent = nagold ? ` · ${nagoldTotal} NAG` : "";
+    stats.querySelector("#profile-nagold").textContent = nagold ? ` · ${nagoldTotal} EP` : "";
     const summary = profile
-      ? `${profile.name}: ${xp} XP, Level ${levelIndex + 1}${nagold ? `, ${nagoldTotal} NAGOLD` : ""}`
+      ? `${profile.name}: ${xp} XP, Level ${levelIndex + 1}${nagold ? `, ${nagoldTotal} EP` : ""}`
       : "";
     profileButton.title = profile ? `${summary.replace(/, /g, " · ").replace(": ", " · ")} · Profil öffnen` : "Profil öffnen";
     profileButton.setAttribute("aria-label", profile ? `${summary}. Profil öffnen` : "Profil öffnen");
@@ -133,18 +133,18 @@
     panel.querySelector("#xp-breakdown").textContent = profile
       ? `${completed} von ${lessons.length} Einheiten: ${completed * lessonXp} XP · ${solved} von ${available} Bonusaufgaben: ${solved * bonusXp} XP`
       : "";
-    // Wofür es die nächsten NAGOLD gibt: als Tooltip am NAGOLD-Feld.
+    // Wofür es die nächsten EP gibt: als Tooltip am EP-Feld.
     const nextLesson = lessons.find((lesson) => !profile?.progress?.[lesson.id]?.completed);
     const nagoldHint = profile && nagold
-      ? nextLesson ? `Die nächsten ${nagold.maxPoints} NAGOLD gibt es für den Abschluss von ${nextLesson.code}.` : "Alle Einheiten sind abgeschlossen."
+      ? nextLesson ? `Die nächsten ${nagold.maxPoints} EP gibt es für den Abschluss von ${nextLesson.code}.` : "Alle Einheiten sind abgeschlossen."
       : "";
     const chip = panel.querySelector("#xp-nagold-chip");
     if (chip) {
-      chip.textContent = `${nagoldTotal} NAGOLD`;
+      chip.textContent = `${nagoldTotal} EP`;
       chip.parentElement.hidden = !profile || !nagold;
       panel.querySelector("#xp-nagold").textContent = nagoldHint;
     }
-    // Jahresziel wie in WorkbenchLab: 100 NAGOLD = 100 %, mehr ist möglich.
+    // Jahresziel wie in WorkbenchLab: 100 EP = 100 %, mehr ist möglich.
     const goal = nagold?.yearGoal || 100;
     const goalProgress = document.querySelector("#nagold-goal-progress");
     if (goalProgress) {
@@ -153,7 +153,7 @@
       document.querySelector("#nagold-goal-text").textContent = `${nagoldTotal} / ${goal} · Jahresziel`;
     }
     const goalHint = profile && nagold
-      ? nagoldTotal >= goal ? "Jahresziel erreicht!" : `Noch ${goal - nagoldTotal} NAGOLD bis zum Jahresziel (${goal}).`
+      ? nagoldTotal >= goal ? "Jahresziel erreicht!" : `Noch ${goal - nagoldTotal} EP bis zum Jahresziel (${goal}).`
       : "";
     const managerNagold = document.querySelector("#nagold-tip");
     if (managerNagold) managerNagold.textContent = [goalHint, nagoldHint].filter(Boolean).join(" ");
@@ -199,8 +199,8 @@
     }
     lessonManager.querySelector("#profile-edit-form").hidden = !profile;
     lessonManager.querySelector("#nagold-total").disabled = !profile || !nagold;
-    lessonManager.querySelector("#nagold-total-value").textContent = `${nagold && profile ? nagold.total(profile) : 0} NAGOLD`;
-    lessonManager.querySelector("#nagold-total").setAttribute("aria-label", `${nagold && profile ? nagold.total(profile) : 0} NAGOLD: Tabelle bearbeiten`);
+    lessonManager.querySelector("#nagold-total-value").textContent = `${nagold && profile ? nagold.total(profile) : 0} EP`;
+    lessonManager.querySelector("#nagold-total").setAttribute("aria-label", `${nagold && profile ? nagold.total(profile) : 0} EP: Tabelle bearbeiten`);
   }
   function writeProfile(id, update) {
     try {
@@ -228,7 +228,7 @@
       renderLessonProfile(true); status("Profilangaben aktualisiert.");
     }
   }
-  // Dieselbe NAGOLD-Tabelle wie auf der Startseite (nagold-table.js).
+  // Dieselbe EP-Tabelle wie auf der Startseite (nagold-table.js).
   function openLessonNagold() {
     const profile = currentProfile();
     const table = window.ExcelLabNagoldTable;
