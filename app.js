@@ -27,7 +27,7 @@
   const STORAGE_KEY = "excelLab.state.v1";
   const RESCUE_KEY = "excelLab.state.rescue.v1";
   const VERSION = 1;
-  const APP_VERSION = "0.33.0";
+  const APP_VERSION = "0.34.0";
   // XP-Regel (Einheiten und Bonusaufgaben) steht in save-core.js.
   const POINTS_PER_LESSON = saveCore.LESSON_XP;
   const ACCOUNT_PATTERN = /^[a-zäöüß]{3}\.[a-zäöüß]{3}$/;
@@ -525,8 +525,9 @@
   }
 
   function exportProgress() {
+    syncStoredState();
     const profile = currentProfile();
-    if (!profile) return;
+    if (!profile) { openProfileDialog(); showToast("Lege zuerst ein Profil an oder lade deine Speicherdatei über das Laden-Symbol."); return; }
     try {
       saveCore.download(profile, APP_VERSION);
       renderRecentSaves();
@@ -794,19 +795,12 @@
       renderProfileManager();
       $("#manager-dialog").showModal();
     });
-    $("#save-button").addEventListener("click", () => {
+    saveCore.bindFileActions({ save: exportProgress, load: loadProgressFile, openManager: () => {
       renderProfileManager();
       renderRecentSaves();
-      $("#save-dialog").showModal();
-    });
+      if (!$("#save-dialog").open) $("#save-dialog").showModal();
+    } });
     $("#export-button").addEventListener("click", exportProgress);
-    // Alt+S speichert sofort wie „Speichern“ (Wunsch Jakob, 16.10.2026); ohne Profil öffnet sich das Fenster.
-    document.addEventListener("keydown", (event) => {
-      if (!saveCore.isSaveShortcut(event)) return;
-      event.preventDefault();
-      if (currentProfile()) exportProgress();
-      else $("#save-button").click();
-    });
     $("#recent-load").addEventListener("click", loadRecentSave);
     bindNagoldEvents();
     $("#import-button").addEventListener("click", loadProgressFile);
@@ -867,7 +861,7 @@
     renderAll();
     syncRouteFromHash();
     if (unreadableState !== null) {
-      showToast("Der gespeicherte Lernstand war nicht lesbar und bleibt als Rettungskopie im Browser erhalten. Lade deine letzte Speicherdatei über das Disketten-Symbol › Laden.", 20000);
+      showToast("Der gespeicherte Lernstand war nicht lesbar und bleibt als Rettungskopie im Browser erhalten. Lade deine letzte Speicherdatei über das Laden-Symbol oder Alt+O.", 20000);
     }
     if (!currentProfile() && !window.EXCEL_LAB_DEV?.enabled) window.setTimeout(openProfileDialog, 250);
     // Rückweg aus dem Lernnachweis: Das X dort führt zurück in die Profil-Übersicht.

@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.34.0 – 2026-11-04
+
+Die Diskette speichert jetzt direkt, ohne Zwischenfenster (Alt+S). Ein eigenes Ordner-Icon lädt eine Speicherdatei (Alt+O); beide Aktionen haben Tooltips und zugängliche Tastenkürzel. Verlauf, Datei-Aktualisierung und Rücksicherung bleiben im Profil unter „Speicherdateien“ erreichbar. Alte Dateien, EP und Dateiformat bleiben unverändert. Auf schmalen Geräten bleibt oben das Logo ohne zusätzlichen Markentext, damit alle Aktionen Platz haben.
+
 ## 0.33.0 – 2026-11-02
 
 Die bisherige NAGOLD-Punktetabelle heißt einheitlich EP (Erfahrungspunkte): Profil, Kopfzeile, Tabelle, Speicherhinweise und Rückfragen, Lernnachweis sowie Klassenübersicht und CSV-Export verwenden die neue Bezeichnung. Punktewerte, Regeln und XP/Level bleiben unverändert. Interne Format-1-Felder bleiben aus Kompatibilitätsgründen erhalten; ältere Speicherdateien benötigen keine Migration.

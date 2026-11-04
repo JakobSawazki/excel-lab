@@ -68,7 +68,8 @@ const stored = page => page.evaluate(key => localStorage.getItem(key), KEY);
       assert.deepEqual(fresh.progress, {}); assert.deepEqual(fresh.nagoldEntries, []); assert.deepEqual(fresh.highlights, {});
       assert.deepEqual(state.profiles.find(profile => profile.id === "other"), otherProfile);
       // Rücksicherung bleibt auch nach der Neuanlage als normale JSON-Datei erreichbar.
-      await page.locator("#save-button").click();
+      await page.locator(".site-header .profile-button").click();
+      await page.locator("#save-manager-button").click();
       const [previous] = await Promise.all([page.waitForEvent("download"), page.locator("#import-backup-button").click()]);
       assert.deepEqual(JSON.parse(fs.readFileSync(await previous.path(), "utf8")).profile, oldProfile);
       await page.setInputFiles("#import-file", { name: "ruecksicherung.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(backupFile)) });

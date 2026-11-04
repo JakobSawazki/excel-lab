@@ -386,9 +386,71 @@
     return "loaded";
   }
 
-  // Tastenkürzel Alt+S (ohne Strg, Umschalt, Befehlstaste; nicht beim Festhalten).
-  function isSaveShortcut(event) {
-    return Boolean(event?.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.repeat && event.code === "KeyS");
+  // AltGr belongs to text entry/developer mode, never to file actions.
+  function isFileShortcut(event, code) {
+    return Boolean(event?.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey
+      && !event.repeat && !event.isComposing && !event.defaultPrevented
+      && !event.getModifierState?.("AltGraph") && event.code === code);
+  }
+  const isSaveShortcut = event => isFileShortcut(event, "KeyS");
+  const isLoadShortcut = event => isFileShortcut(event, "KeyO");
+
+  // One consistent pair of direct actions on homepage and every lesson.
+  // The existing management dialog remains available through the profile.
+  function bindFileActions({ save, load, openManager }) {
+    const saveButton = document.querySelector("#save-button");
+    if (!saveButton || saveButton.dataset.fileActionsBound) return;
+    saveButton.dataset.fileActionsBound = "true";
+    const loadButton = document.createElement("button");
+    loadButton.id = "load-button";
+    loadButton.type = "button";
+    loadButton.className = "icon-button load-button";
+    loadButton.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 7V4h7l2 3h9v13H3V7Z"/><path d="M3 7h7l2 2h9M12 12v5m-3-3 3 3 3-3"/></svg>';
+    saveButton.after(loadButton);
+    for (const [button, label, shortcut, action] of [
+      [saveButton, "Speichern", "Alt+S", save], [loadButton, "Laden", "Alt+O", load]
+    ]) {
+      const text = `${label} · ${shortcut}`;
+      button.title = text;
+      button.setAttribute("aria-label", text);
+      button.setAttribute("aria-keyshortcuts", shortcut);
+      button.removeAttribute("aria-haspopup");
+      button.removeAttribute("aria-controls");
+      const wrapper = document.createElement("span");
+      wrapper.className = "tip-wrap file-action";
+      button.before(wrapper); wrapper.append(button);
+      const tip = document.createElement("span");
+      tip.className = "tip";
+      tip.id = `${button.id}-tip`;
+      tip.setAttribute("role", "tooltip");
+      tip.textContent = text;
+      button.setAttribute("aria-describedby", tip.id);
+      wrapper.append(tip);
+      button.addEventListener("click", action);
+    }
+    const manager = document.querySelector("#manager-dialog");
+    const tools = document.createElement("button");
+    tools.id = "save-manager-button";
+    tools.type = "button";
+    tools.className = "button button-secondary";
+    tools.textContent = "Speicherdateien";
+    tools.title = "Zuletzt gespeicherte Stände und Datei-Werkzeuge";
+    tools.setAttribute("aria-haspopup", "dialog");
+    tools.setAttribute("aria-controls", "save-dialog");
+    tools.addEventListener("click", () => {
+      manager?.close();
+      openManager();
+      document.querySelector("#save-dialog")?.addEventListener("close", () => {
+        document.querySelector(".site-header .profile-button")?.focus({ preventScroll: true });
+      }, { once: true });
+    });
+    manager?.querySelector("#certificate-link")?.before(tools);
+    document.addEventListener("keydown", event => {
+      const action = isSaveShortcut(event) ? save : isLoadShortcut(event) ? load : null;
+      if (!action) return;
+      event.preventDefault();
+      action();
+    });
   }
 
   // Kurze Rückmeldung unten auf der Seite (Bereich #toast-region), falls vorhanden.
@@ -404,7 +466,7 @@
 
   window.ExcelLabSave = Object.freeze({
     FORMAT, SAVES_KEY, DEVICE_KEY, LESSON_XP, createId, deviceId, completedCount, bonusSolved, xpStats, xp, normalizeProfile,
-    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport, isSaveShortcut, notify, normalizeHighlights, MARK_COLORS,
+    buildPayload, fileName, recentSaves, remember, describeSave, download, mergeImport, isSaveShortcut, isLoadShortcut, bindFileActions, notify, normalizeHighlights, MARK_COLORS,
     MAX_FILE_BYTES, IMPORT_BACKUP_KEY, readFile, prepareImport, persistImport, upgradePayload, bindUpgradeControl
   });
 })();

@@ -27,7 +27,7 @@ auf Touch-Geräten öffnet der kleine Pfeil das Menü.
 
 ## Online-Version
 
-Aktueller Release: **0.33.0**. Was sich von Version zu Version geändert hat, steht in
+Aktueller Release: **0.34.0**. Was sich von Version zu Version geändert hat, steht in
 [`CHANGELOG.md`](CHANGELOG.md).
 
 - Website: <https://jakobsawazki.github.io/excel-lab/>
@@ -83,10 +83,12 @@ auf Startseite und Lernseiten dasselbe Profilfenster: Kürzel und Klasse, Level
 mit Fortschrittsbalken, EP und den Lernnachweis. Erklärungen stehen als
 Tooltip an den Zahlen.
 
-Das Disketten-Symbol links daneben öffnet „Speicherstand“: „Speichern“ legt
-eine Datei mit Datum und Kürzel im Download-Ordner ab, „Laden“ übernimmt eine
-gespeicherte Datei. Die fünf zuletzt gespeicherten Stände bleiben zusätzlich
-im Browser und lassen sich über „Zuletzt gespeichert“ wieder laden.
+Die Diskette speichert direkt eine Datei mit Datum und Kürzel (auch mit
+**Alt+S**). Das Ordner-Symbol daneben lädt eine gespeicherte Datei (auch mit
+**Alt+O**); unterstützte Browser öffnen die JSON-Auswahl im Download-Ordner.
+Tooltips nennen Aktion und Tastenkürzel. Im Profil unter „Speicherdateien“
+bleiben „Zuletzt gespeichert“, Datei-Aktualisierung und Rücksicherung erreichbar.
+Die fünf zuletzt gespeicherten Stände bleiben zusätzlich im Browser erhalten.
 
 EP steht für Erfahrungspunkte und bezeichnet die Punktetabelle: Jede abgeschlossene Einheit
 bringt automatisch einmalig 5 EP. Weitere Zeilen (Anwesenheit mit 2,
@@ -260,7 +262,7 @@ Excel-Lab/
 ├── highlighter.js             Textmarker auf den Lernseiten (vier Farben, Radierer)
 ├── profile-progress.js        Gesamtfortschritt als Balken in der Profilkarte
 ├── save-core.js               Speichern und Laden (Dateiformat, Bereinigung, „Zuletzt gespeichert“) und XP-Regel
-├── lesson-save.js             Disketten-Symbol und Speicherfenster der Lernseiten (Codex)
+├── lesson-save.js             Direktes Speichern/Laden und Speicherdatei-Werkzeuge der Lernseiten
 ├── organizer.js               Themenlandkarte der Startseite
 ├── formula-lab.js             Formel-Demo in L1.2
 ├── lehrkraft.js, nachweis.js  Logik der beiden Zusatzseiten

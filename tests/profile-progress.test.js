@@ -36,6 +36,19 @@ test("Alt+S: nur Alt mit S, nicht mit Strg, Umschalt, Befehlstaste oder beim Fes
   assert.equal(core.isSaveShortcut(null), false);
 });
 
+test("Alt+O lädt; AltGr, Wiederholung, IME und bereits verarbeitete Ereignisse lösen keine Dateiaktion aus", () => {
+  const { ExcelLabSave: core } = load();
+  for (const [code, check] of [["KeyS", core.isSaveShortcut], ["KeyO", core.isLoadShortcut]]) {
+    const event = { altKey: true, ctrlKey: false, metaKey: false, shiftKey: false, repeat: false, code };
+    assert.equal(check(event), true);
+    for (const extra of [{ altKey: false }, { ctrlKey: true }, { shiftKey: true }, { metaKey: true },
+      { repeat: true }, { isComposing: true }, { defaultPrevented: true }, { getModifierState: name => name === "AltGraph" }, { code: "KeyA" }]) {
+      assert.equal(check({ ...event, ...extra }), false);
+    }
+    assert.equal(check(null), false);
+  }
+});
+
 test("Startseite und Lernseiten laden profile-progress.js nach save-core.js", () => {
   const fs = require("node:fs");
   const { root } = require("./helpers.cjs");

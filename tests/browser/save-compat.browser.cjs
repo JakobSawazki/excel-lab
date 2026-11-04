@@ -38,7 +38,8 @@ const old = { app: "Excel-Lab", version: 1, appVersion: "0.1.0", profile: { name
       });
       await page.addInitScript(([key, initial]) => { if (!localStorage.getItem(key)) localStorage.setItem(key, initial); }, [KEY, JSON.stringify(seeded)]);
       await page.goto(`http://excel-lab.test/${file}`);
-      await page.locator("#save-button").click();
+      await page.locator(".site-header .profile-button").click();
+      await page.locator("#save-manager-button").click();
       const before = await page.evaluate(key => localStorage.getItem(key), KEY);
       // Direct loading is the normal student path: no upgrade is required.
       await page.setInputFiles("#import-file", asFile(old));
@@ -52,7 +53,8 @@ const old = { app: "Excel-Lab", version: 1, appVersion: "0.1.0", profile: { name
       assert.deepEqual(directPayload.profile.nagoldEntries.map(entry => entry.purpose), old.profile.nagoldEntries.map(entry => entry.purpose));
       await page.evaluate(([key, original]) => localStorage.setItem(key, original), [KEY, before]);
       await page.reload();
-      await page.locator("#save-button").click();
+      await page.locator(".site-header .profile-button").click();
+      await page.locator("#save-manager-button").click();
       const [download] = await Promise.all([
         page.waitForEvent("download"), page.setInputFiles("#upgrade-save-file", asFile(old))
       ]);
@@ -77,7 +79,8 @@ const old = { app: "Excel-Lab", version: 1, appVersion: "0.1.0", profile: { name
         await page.locator("#save-dialog").screenshot({ path: path.join(root, ".tmp", "save-compat-dialog.png") });
       }
       await page.reload();
-      await page.locator("#save-button").click();
+      await page.locator(".site-header .profile-button").click();
+      await page.locator("#save-manager-button").click();
       const stable = await page.evaluate(key => localStorage.getItem(key), KEY);
       const invalid = { ...upgraded, profile: { ...upgraded.profile, nagoldEntries: [...upgraded.profile.nagoldEntries, { ...row, points: 99 }] } };
       await page.setInputFiles("#import-file", asFile(invalid));

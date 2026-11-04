@@ -22,7 +22,8 @@ const { chromium } = require(process.env.EXCEL_LAB_PLAYWRIGHT || 'C:/Users/PC/.c
     await page.locator('#profile-button').click();
     assert.equal(await page.locator('#manager-dialog #export-button, #manager-dialog #import-button').count(), 0);
     await page.locator('#manager-dialog [data-close-dialog]').click();
-    await page.locator('#save-button').click();
+    await page.locator(".site-header .profile-button").click();
+    await page.locator("#save-manager-button").click();
     assert.deepEqual(await page.locator('.manager-actions button:visible').allTextContents(), ['Speichern', 'Laden']);
     assert.equal(await page.locator('#developer-profile-actions').isVisible(), false);
     assert.equal(await page.locator('#manager-dialog .dialog-hint').count(), 0);

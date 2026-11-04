@@ -3826,7 +3826,12 @@ html {
 
 /* Speicherstand (0.21.1, Wunsch Jakob): Disketten-Symbol links vom Profil und
    eigenes Fenster statt der Knöpfe „Speichern“/„Laden“ im Profil. */
-.save-button svg, .save-dialog-mark svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.save-button svg, .load-button svg, .save-dialog-mark svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.header-actions .file-action { display:inline-flex; flex:none; z-index:41; }
+.header-actions .file-action .tip { top:calc(100% + .65rem); bottom:auto; left:auto; right:0; width:max-content; max-width:calc(100vw - 2rem); }
+@media (max-width:480px) {
+  .site-header > .brand .brand-copy { display:none; }
+}
 .save-dialog { width: min(560px, calc(100vw - 2rem)); }
 .save-dialog-mark {
   display: grid;

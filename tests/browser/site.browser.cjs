@@ -237,14 +237,16 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       try {
         await page.locator("#profile-dialog").waitFor({ state: "visible" });
         await page.locator("#profile-dialog [data-close-dialog]").click();
-        await page.locator("#save-button").click();
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#rescue-button").click()]);
         assert.match(download.suggestedFilename(), /^\d{4}-\d\d-\d\d_Excel-Lab_Rettungskopie\.txt$/);
         assert.equal(fs.readFileSync(await download.path(), "utf8"), BROKEN);
       } finally { await context.close(); }
       const normal = await open(browser, "index.html", { state: profileState });
       try {
-        await normal.page.locator("#save-button").click();
+        await normal.page.locator(".site-header .profile-button").click();
+        await normal.page.locator("#save-manager-button").click();
         assert.equal(await normal.page.locator("#rescue-button").isHidden(), true, "ohne Rettungskopie kein Knopf");
       } finally { await normal.context.close(); }
     });
@@ -601,9 +603,10 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.locator("#manager-dialog[open]").waitFor();
         assert.equal(await page.evaluate(() => sessionStorage.getItem("excelLab.openProfile")), null, "Merker verbraucht");
         await page.locator("#manager-dialog [data-close-dialog]").click();
-        // Disketten-Symbol direkt links vom Profil; Speichern und Laden nur noch dort.
-        assert.equal(await page.evaluate(() => document.querySelector("#profile-button").previousElementSibling.id), "save-button");
-        await page.locator("#save-button").click();
+        // Separate direct actions; history/tools are in the profile.
+        assert.deepEqual(await page.locator(".header-actions .icon-button").evaluateAll(buttons => buttons.map(button => button.id)), ["theme-toggle", "save-button", "load-button", "options-button"]);
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         assert.match(await page.locator("#save-status").innerText(), /nag\.old · WGW EK1 · 200 XP · 9 EP · 2\/27 erledigt/);
         assert.equal(await page.locator("#save-dialog .save-dialog-notes").count(), 0, "Erklärungen nur noch als Tooltip");
         assert.equal(await page.locator("#export-tip").evaluate((tip) => getComputedStyle(tip).opacity), "0");
@@ -623,7 +626,8 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
         await page.evaluate((key) => { const state = JSON.parse(localStorage.getItem(key)); state.profiles[0].nagoldEntries = []; localStorage.setItem(key, JSON.stringify(state)); }, KEY);
         await page.reload();
         await page.waitForFunction(() => document.querySelector("#profile-nagold")?.textContent.trim() === "· 0 EP");
-        await page.locator("#save-button").click();
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         await page.locator("#recent-load").click();
         await page.waitForFunction(() => document.querySelector("#profile-nagold").textContent.trim() === "· 9 EP");
         assert.equal((await stored()).length, 2, "Stand aus der Liste wiederhergestellt");
@@ -713,8 +717,9 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       const state = () => page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
       try {
         // Disketten-Symbol direkt neben dem Farbschema-Schalter.
-        assert.equal(await page.evaluate(() => document.querySelector("#save-button")?.previousElementSibling?.id), "lesson-theme-toggle");
-        await page.locator("#save-button").click();
+        assert.equal(await page.evaluate(() => document.querySelector("#save-button")?.closest(".file-action")?.previousElementSibling?.id), "lesson-theme-toggle");
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         assert.match(await page.locator("#save-status").innerText(), /sav\.les · WGW EK1 · 200 XP · 3 EP · 2\/27 erledigt/);
         assert.equal(await page.locator("#recent-saves-box").isHidden(), true);
         const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#export-button").click()]);
@@ -752,7 +757,8 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
 
         // Die Liste ist dieselbe wie auf der Startseite.
         await page.goto(base + "index.html");
-        await page.locator("#save-button").click();
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         assert.equal(await page.locator("#recent-saves option").count(), 1);
         assert.deepEqual(errors, []);
       } finally { await context.close(); }

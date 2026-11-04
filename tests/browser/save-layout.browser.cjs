@@ -29,7 +29,8 @@ const initial = JSON.stringify({ version: 1, theme: "dark", currentProfileId: pr
             window.ExcelLabSave.remember(payload, `test-${i}.json`);
           }
         }, font);
-        await page.locator("#save-button").click();
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         const dialog = page.locator("#save-dialog");
         assert.equal(await page.locator("#recent-saves option").count(), 5);
         for (const id of ["export-button", "import-button", "recent-load", "upgrade-save-button", "import-backup-button"]) {

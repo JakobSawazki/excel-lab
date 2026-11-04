@@ -10,9 +10,8 @@
   const mark = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h11.2L20 7.8V20H5V4Z"/><path d="M8.5 4v4.8h6.5V4"/><path d="M8.5 20v-6h7v6"/></svg>';
   const button = document.createElement("button");
   button.id = "save-button"; button.type = "button"; button.className = "icon-button save-button";
-  button.title = "Speichern und Laden";
-  button.setAttribute("aria-label", "Speicherstand: speichern und laden");
-  button.setAttribute("aria-haspopup", "dialog"); button.setAttribute("aria-controls", "save-dialog");
+  button.title = "Speichern · Alt+S";
+  button.setAttribute("aria-label", "Speichern · Alt+S");
   button.innerHTML = mark;
   header.querySelector("#lesson-theme-toggle")?.after(button);
   if (!button.isConnected) header.prepend(button);
@@ -32,7 +31,10 @@
   const appVersion = new URL(document.querySelector('script[src*="lesson-save.js"]').src).searchParams.get("v") || "unbekannt";
   core.bindUpgradeControl(dialog.querySelector(".dialog-content"), appVersion);
   const $ = selector => dialog.querySelector(selector);
-  function message(text) { $("#save-feedback").hidden = !text; $("#save-feedback").textContent = text; }
+  function message(text) {
+    $("#save-feedback").hidden = !text; $("#save-feedback").textContent = text;
+    if (text && !dialog.open) core.notify(text);
+  }
   function readState() {
     const raw = localStorage.getItem(KEY);
     if (!raw) return {version:1,theme:document.documentElement.dataset.theme || "dark",currentProfileId:null,profiles:[]};
@@ -57,7 +59,8 @@
   }
   function exportProgress() {
     try {
-      const profile=current(readState()); if(!profile) return;
+      const profile=current(readState());
+      if(!profile) { render(); if(!dialog.open) dialog.showModal(); message("Lege zuerst auf der Startseite ein Profil an oder lade deine Speicherdatei über das Laden-Symbol."); return false; }
       core.download(profile,appVersion);
       render(); message("Speicherdatei zum Download bereitgestellt.");
       return true;
@@ -86,19 +89,10 @@
       if(handle) await importFile(await handle.getFile());
     } catch(error) {if(error.name!=="AbortError") $("#import-file").click();}
   }
-  button.addEventListener("click",()=>{message("");render();dialog.showModal();});
+  core.bindFileActions({ save: exportProgress, load: pickFile, openManager: () => { message("");render();if(!dialog.open) dialog.showModal(); } });
   $(".dialog-close").addEventListener("click",()=>dialog.close());
   dialog.addEventListener("click",event=>{if(event.target===dialog) dialog.close();});
   $("#export-button").addEventListener("click",exportProgress);
-  // Alt+S speichert sofort wie „Speichern“ (Wunsch Jakob, 16.10.2026); ohne Profil öffnet sich das Fenster.
-  document.addEventListener("keydown",event=>{
-    if(!core.isSaveShortcut(event)) return;
-    event.preventDefault();
-    try {
-      if(!current(readState())) { button.click(); return; }
-      if(exportProgress() && !dialog.open) core.notify("Speicherdatei zum Download bereitgestellt.");
-    } catch(error) { core.notify(error.message); }
-  });
   $("#import-button").addEventListener("click",pickFile);
   $("#import-file").addEventListener("change",event=>importFile(event.target.files?.[0]));
   $("#recent-load").addEventListener("click",()=>{try {const item=savedList()[Number($("#recent-saves").value)];if(item) applyPayload(item.payload);} catch(error){message(error.message||"Der Speicherstand konnte nicht geladen werden.");}});

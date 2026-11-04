@@ -33,7 +33,8 @@ const profile = { id: "ep-test", name: "tes.pro", className: "WGW EK1", progress
         await page.addInitScript(({ KEY, profile }) => localStorage.setItem(KEY, JSON.stringify({ version: 1, theme: "dark", currentProfileId: profile.id, profiles: [profile] })), { KEY, profile });
         await page.goto(publicBase ? new URL(file, publicBase).href : `http://ep.test/${file}`);
         // A real old JSON file through the normal UI, including on the live site.
-        await page.locator("#save-button").click();
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         await page.setInputFiles("#import-file", { name: "2026-10-19_Excel-Lab_alt.json", mimeType: "application/json",
           buffer: Buffer.from(JSON.stringify({ app: "Excel-Lab", version: 1, appVersion: "0.21.0", exportedBy: { nagold: 3 }, profile })) });
         await page.waitForFunction(KEY => localStorage.getItem("excelLab.importBackup.v1") !== null
@@ -53,7 +54,8 @@ const profile = { id: "ep-test", name: "tes.pro", className: "WGW EK1", progress
         assert.doesNotMatch(await page.locator("#nagold-dialog").innerText(), /\bNAG(?:OLD)?\b/);
         await page.locator("#nagold-dialog [data-close-dialog]").click();
         await page.locator("#manager-dialog .dialog-close").click();
-        await page.locator("#save-button").click();
+        await page.locator(".site-header .profile-button").click();
+        await page.locator("#save-manager-button").click();
         assert.match(await page.locator("#save-status").textContent(), /3 EP/);
         const [download] = await Promise.all([page.waitForEvent("download"), page.locator("#export-button").click()]);
         const payload = JSON.parse(fs.readFileSync(await download.path(), "utf8"));
