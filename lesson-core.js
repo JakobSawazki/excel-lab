@@ -45,7 +45,6 @@
     const prefix = ID.replace("-", "");
     const answers = config.answers;
     const hints = config.hints;
-    const bothFiles = config.files === "both";
     const questionWord = NUMBER_WORDS[Object.keys(answers).length] || String(Object.keys(answers).length);
 
     const checks = Array.from(document.querySelectorAll("[data-page-check]"));
@@ -157,9 +156,9 @@
     // einmalig Bonus-XP. Die erste Aufgabe speichert `bonus`, die zweite `bonus2`.
     const bonusXp = window.EXCEL_LAB_BONUS?.xp || 0;
     const bonusItems = [
-      ["bonus", window.EXCEL_LAB_BONUS?.tasks?.[ID], "Bonus · Vertiefung"],
-      ["bonus2", window.EXCEL_LAB_BONUS?.extra?.[ID], "Bonus · Transfer"]
-    ].filter((item) => item[1]).map(([key, task, label], i) => ({ key, task, label, suffix: i ? `-${i + 1}` : "", ui: null }));
+      ["bonus", window.EXCEL_LAB_BONUS?.tasks?.[ID], "Bonusaufgabe 1", ""],
+      ["bonus2", window.EXCEL_LAB_BONUS?.extra?.[ID], "Bonusaufgabe 2", "-2"]
+    ].filter((item) => item[1]).map(([key, task, label, suffix]) => ({ key, task, label, suffix, ui: null }));
 
     function richText(target, text) {
       String(text).split("`").forEach((part, i) => {
@@ -224,6 +223,7 @@
       summary.append(index, heading, icon);
       const body = make("div", "lesson-disclosure-body");
       body.append(make("p", "bonus-intro", `Freiwillig und zusätzlich: Diese Aufgabe bringt einmalig ${bonusXp} Bonus-XP. Für den Abschluss von ${code} ist sie nicht nötig.`));
+      body.append(make("p", "bonus-workbook", `Füge in deiner Arbeitsmappe ${code}.xlsx unten mit + ein neues Tabellenblatt ein. Nenne es „${item.label}“, bearbeite die Aufgabe dort und speichere dieselbe Arbeitsmappe.`));
       body.append(make("p", "", bonusTask.situation));
       if (bonusTask.table) body.append(bonusTable(bonusTask.table));
       if (bonusTask.table2) body.append(bonusTable(bonusTask.table2));
@@ -405,9 +405,7 @@
       form.querySelectorAll(".mastery-question, button[type='submit']").forEach((element) => { element.hidden = current.masteryPassed; });
       masteryStatus.classList.toggle("is-passed", current.masteryPassed);
       masteryStatus.textContent = current.masteryPassed
-        ? bothFiles
-          ? "Verständnis-Check bestanden. Prüfe nun beide Excel-Dateien und besprich sie mit der Lehrkraft."
-          : "Verständnis-Check bestanden. Prüfe nun deine Excel-Datei und besprich sie mit der Lehrkraft."
+        ? "Verständnis-Check bestanden. Prüfe die Aufgabenblätter in deiner Arbeitsmappe und besprich sie mit der Lehrkraft."
         : `Noch nicht bestanden. Für den Abschluss müssen alle ${questionWord} Antworten stimmen.`;
 
       const button = $("#page-complete-button");
@@ -453,7 +451,7 @@
       next.masteryPassed = true;
       const saved = save(next);
       render();
-      if (saved) toast(`Verständnis-Check bestanden. Zeige nun ${bothFiles ? "beide Excel-Dateien" : "die Excel-Datei"} der Lehrkraft.`);
+      if (saved) toast("Verständnis-Check bestanden. Zeige nun deine Arbeitsmappe der Lehrkraft.");
     });
 
     document.addEventListener("change", (event) => {

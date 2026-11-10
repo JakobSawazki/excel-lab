@@ -9,6 +9,10 @@
 .lesson-workspace-intro { margin-bottom:1.5rem; padding:1.2rem; border:1px solid var(--line); border-radius:14px; background:var(--surface); }
 .lesson-workspace-intro p { color:var(--text-soft); margin:0 0 1rem; font-size:.88rem; }
 .lesson-workspace-intro strong { color:var(--text); }
+.lesson-workbook { margin-bottom:1rem; padding:.75rem 1rem; border-left:3px solid var(--green); border-radius:8px; background:var(--bg-elevated); }
+.lesson-workbook p { margin:0 0 .45rem; }
+.lesson-workbook p:last-child { margin-bottom:0; }
+.bonus-workbook { padding:.65rem .85rem; border-left:3px solid var(--green); background:var(--surface); }
 .lesson-workspace-actions { display:flex; flex-wrap:wrap; gap:.6rem; }
 .lesson-workspace-actions .button { font-size:.75rem; min-height:44px; }
 .lesson-workspace-actions [hidden] { display:none; }

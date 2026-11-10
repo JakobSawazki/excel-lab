@@ -188,12 +188,18 @@ const profileState = JSON.stringify({ version: 1, theme: "dark", currentProfileI
       } finally { await context.close(); }
     });
 
-    await check("Bonusaufgaben: jede Lernseite zeigt ihren Abschnitt vor dem Verständnis-Check", async () => {
+    await check("Arbeitsmappe und Bonusblätter in jeder Lerneinheit", async () => {
       const { context, page } = await open(browser, "l4-6.html", { state: profileState });
       try {
         for (const file of lessonFiles) {
           await page.goto(base + file);
           const prefix = file.slice(0, -5).replace("-", "");
+          const workbook = file.slice(0, -5).toUpperCase().replace("-", ".") + ".xlsx";
+          assert.equal(await page.locator(".lesson-workbook code").first().innerText(), workbook, file);
+          for (const [suffix, label] of [["", "Bonusaufgabe 1"], ["-2", "Bonusaufgabe 2"]]) {
+            const instructions = await page.locator(`#${prefix}-bonus${suffix}-section .bonus-workbook`).textContent();
+            assert.ok(instructions.includes(workbook) && instructions.includes(label), file);
+          }
           assert.equal(await page.evaluate((id) => document.querySelector(`#${id}-bonus-section`)?.nextElementSibling?.id, prefix), `${prefix}-bonus-2-section`, file);
           assert.equal(await page.evaluate((id) => document.querySelector(`#${id}-bonus-2-section`)?.nextElementSibling?.id, prefix), `${prefix}-mastery-section`, file);
           assert.ok((await page.locator(`#${prefix}-bonus-section .instruction-list li`).count()) >= 3, file);

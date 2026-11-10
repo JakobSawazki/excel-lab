@@ -7,5 +7,5 @@
     name: "Ein definierter Name verweist auf eine Zelle. Ein fester Betrag in der Formel oder ein beweglicher B3-Bezug leistet das nicht."
   };
 
-  window.ExcelLabLesson.start({ id: "l2-3", answers: masteryAnswers, hints: masteryHints, files: "both" });
+  window.ExcelLabLesson.start({ id: "l2-3", answers: masteryAnswers, hints: masteryHints });
 })();

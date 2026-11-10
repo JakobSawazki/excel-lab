@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.35.0 – 2026-11-10
+
+Jede Lerneinheit verwendet eine Excel-Arbeitsmappe mit benannten Blättern für die Hauptaufgaben. Freiwillige Bonusaufgaben erhalten die Blätter „Bonusaufgabe 1“ und „Bonusaufgabe 2“ in derselben Mappe. Benötigte Zwischenstände werden als Blattkopien gesichert.
+
 ## 0.34.0 – 2026-11-04
 
 Die Diskette speichert jetzt direkt, ohne Zwischenfenster (Alt+S). Ein eigenes Ordner-Icon lädt eine Speicherdatei (Alt+O); beide Aktionen haben Tooltips und zugängliche Tastenkürzel. Verlauf, Datei-Aktualisierung und Rücksicherung bleiben im Profil unter „Speicherdateien“ erreichbar. Alte Dateien, EP und Dateiformat bleiben unverändert. Auf schmalen Geräten bleibt oben das Logo ohne zusätzlichen Markentext, damit alle Aktionen Platz haben.

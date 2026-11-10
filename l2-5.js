@@ -7,5 +7,5 @@
     salary: "Gehälter stehen in Spalte G; D enthält Umsätze und F Provisionen."
   };
 
-  window.ExcelLabLesson.start({ id: "l2-5", answers: masteryAnswers, hints: masteryHints, files: "both" });
+  window.ExcelLabLesson.start({ id: "l2-5", answers: masteryAnswers, hints: masteryHints });
 })();

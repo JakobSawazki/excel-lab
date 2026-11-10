@@ -66,7 +66,7 @@
       steps: [
         "Lies zuerst alle Informationen auf der L1.1-Seite.",
         "Entwirf die Getränkeliste mit Getränkeart, Einkaufspreis je Flasche, Menge und Gesamtpreis.",
-        "Prüfe deine Excel-Tabelle und speichere sie im Ordner Ergebnisse als „L1_1.2 Getränkeliste.xlsx“."
+        "Prüfe deine Excel-Tabelle und speichere sie im Ordner Ergebnisse als „L1.1.xlsx“."
       ],
       checks: ["Informationen vollständig gelesen", "Tabellenentwurf und Berechnungen fertig", "Excel-Datei unter dem vorgegebenen Namen gespeichert"],
       tip: "Wenn eine Überschrift abgeschnitten wird, doppelklicke auf die rechte Grenze des Spaltenkopfs. Excel stellt dann die optimale Breite ein.",
@@ -106,7 +106,7 @@
         "Berechne die Positionen und Materialsumme, danach Bestellkosten, Kosten pro Teilnehmer und Restbudget.",
         "Prüfe Mengen-, Lieferkosten- und Teilnehmeränderungen getrennt und stelle alle Ausgangswerte zurück."
       ],
-      checks: ["Informationen gelesen und alle neun Formeln geprüft", "Änderungstests durchgeführt und Ausgangswerte wiederhergestellt", "Datei im Ordner Ergebnisse als L1_2 Kundenworkshop.xlsx gespeichert"],
+      checks: ["Informationen gelesen und alle neun Formeln geprüft", "Änderungstests durchgeführt und Ausgangswerte wiederhergestellt", "Datei im Ordner Ergebnisse als L1.2.xlsx gespeichert"],
       tip: "Ein angezeigter Wert ist nur das Ergebnis. In der Bearbeitungsleiste siehst du die zugrunde liegende Formel.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_2 Aufgabenstellung Formeln in Excel.docx", "Aufgabe Formeln in Excel", "DOCX"),
@@ -139,9 +139,9 @@
       steps: [
         "Öffne deine Datei aus L1.2 und folge dem vollständigen Formatierungsauftrag auf der L1.3-Seite.",
         "Setze die Überschrift, Spaltenköpfe, Währungsbeträge und Mengenangaben passend.",
-        "Prüfe Formeln und Lesbarkeit; speichere als L1_3 Getränkeliste formatiert.xlsx im Ordner Ergebnisse."
+        "Prüfe Formeln und Lesbarkeit; speichere als L1.3.xlsx im Ordner Ergebnisse."
       ],
-      checks: ["Schrift, Farben, Ausrichtung, Umbruch und Rahmen gestaltet", "Zahlenformate stimmen und Formeln funktionieren", "L1_3 Getränkeliste formatiert.xlsx gespeichert"],
+      checks: ["Schrift, Farben, Ausrichtung, Umbruch und Rahmen gestaltet", "Zahlenformate stimmen und Formeln funktionieren", "L1.3.xlsx gespeichert"],
       tip: "Nutze „Format übertragen“, wenn mehrere Zellen exakt gleich gestaltet werden sollen.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_3 Aufgabenstellung Formatieren von Texten und Zahlen.docx", "Aufgabe Formatierung", "DOCX"),
@@ -170,9 +170,9 @@
       steps: [
         "Ergänze vor der Summenzeile 12 Flaschen Apfelsaftschorle für je 1,25 €.",
         "Kopiere die Formel für den Gesamtpreis, statt sie erneut einzugeben.",
-        "Prüfe Bezüge und die Summe aller sechs Getränke; speichere als L1_4 Getränkeliste kopierte Formeln.xlsx."
+        "Prüfe Bezüge und die Summe aller sechs Getränke; speichere als L1.4.xlsx."
       ],
-      checks: ["Getränkezeile ergänzt und Formel kopiert", "Bezüge und Summe aller sechs Getränke im Änderungstest geprüft", "L1_4 Getränkeliste kopierte Formeln.xlsx gespeichert"],
+      checks: ["Getränkezeile ergänzt und Formel kopiert", "Bezüge und Summe aller sechs Getränke im Änderungstest geprüft", "L1.4.xlsx gespeichert"],
       tip: "Doppelklick auf das Ausfüllkästchen kopiert eine Formel oft bis zum Ende des benachbarten Datenbereichs.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_4 Aufgabenstellung Formeln kopieren.docx", "Aufgabe Formeln kopieren", "DOCX"),
@@ -204,7 +204,7 @@
         "Erfasse die fünf vorgegebenen Teilnehmenden mit Kontaktdaten und Zahlung.",
         "Berechne den offenen Betrag so, dass die Formel kopierfähig ist."
       ],
-      checks: ["Fünf Personen mit allen acht Merkmalen erfasst", "Zentraler Beitrag und offene Beträge bestehen die Änderungstests", "Übersichtliche Datei L1_5 Sommerfest.xlsx gespeichert"],
+      checks: ["Fünf Personen mit allen acht Merkmalen erfasst", "Zentraler Beitrag und offene Beträge bestehen die Änderungstests", "Übersichtliche Datei L1.5.xlsx gespeichert"],
       tip: "Vermeide verbundene Zellen im eigentlichen Datenbereich. Sie erschweren Sortieren und Filtern.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_5 Aufgabenstellung Tabellenstruktur entwerfen.docx", "Aufgabe Sommerfest", "DOCX"),
@@ -235,9 +235,9 @@
         steps: [
           "Bearbeite alle fünf Vertiefungsaufgaben: Kino, Brötchen, Dosen, Zinsen und Tarifvergleich.",
           "Erstelle für die Aufgaben 2 bis 5 eine Ergebnis- und eine Formelansicht.",
-          "Prüfe die Formeln durch Änderungstests, speichere fünf Dateien und bespreche sie mit der Lehrkraft."
+          "Prüfe die Formeln durch Änderungstests, speichere die Arbeitsmappe mit fünf Aufgabenblättern und bespreche sie mit der Lehrkraft."
         ],
-        checks: ["Alle fünf Aufgaben bearbeitet und Dateien gespeichert", "Aufgaben 2 bis 5 mit Ergebnis- und Formelansicht", "Formeln durch Änderungstests geprüft"],
+        checks: ["Alle fünf Aufgabenblätter in einer Arbeitsmappe gespeichert", "Aufgaben 2 bis 5 mit Ergebnis- und Formelansicht", "Formeln durch Änderungstests geprüft"],
       tip: "Brüche wie 1/3 können als Datum erkannt werden. Formatiere die Zelle vor der Eingabe als Bruch.",
       downloads: [
         resource("Lernfortschritt_1/Aufgabenstellungen/L1_6.1 Vertiefungsaufgabe1 Tabellen entwerfen.docx", "Vertiefung Kino", "DOCX"),
@@ -338,7 +338,7 @@
         "Prüfe, dass die Formel in D7 nach unten und rechts kopierbar ist.",
         "Erstelle alle drei Teile der Provisionsabrechnung und ersetze den festen Zellbezug durch den Namen Festgehalt."
       ],
-      checks: ["Drei Klassenfahrt-Dateien mit kopierbarer Formel", "Drei Provisionsdateien mit benanntem Festgehalt", "Randzellen und Änderungstests geprüft"],
+      checks: ["Drei Klassenfahrt-Blätter mit kopierbarer Formel", "Drei Provisionsblätter mit benanntem Festgehalt", "Randzellen und Änderungstests geprüft"],
       tip: "Sprich den Bezug laut: „Spalte C fest, Zeile beweglich“. Dann ist $C7 leichter zu merken.",
       downloads: [
         resource("Lernfortschritt_2/Aufgabenstellungen/L2_1.2.1 Vertiefungsaufgabe Klassenfahrt Teil 1.docx", "Klassenfahrt Teil 1", "DOCX"),
@@ -519,7 +519,7 @@
         "Ermittle im Toto-Beispiel die Zahl der richtigen Tipps.",
         "Werte die Skiausfahrt nach Anzahl und Umsatz je Tarifgruppe aus.",
         "Kopiere die Auswertungsformeln über alle Kategorien.",
-        "Prüfe Handzählung, Gewinnregeln und Gesamtvergleich; speichere beide eigenen Arbeitsmappen."
+        "Prüfe Handzählung, Gewinnregeln und Gesamtvergleich; speichere beide Blätter in deiner Arbeitsmappe."
       ],
       checks: ["Kriterienbereich absolut gesetzt", "Summenbereich gleich groß", "Teilsummen ergeben Gesamtsumme"],
       tip: "Markiere Kriterien- und Summenbereich nacheinander. Die erste und letzte Zeile müssen identisch sein.",
@@ -662,7 +662,7 @@
         "Nutze die Zielwertsuche für den kleinsten tragbaren positiven Kurs in CHF je Euro.",
         "Bestimme Zinssatz und Startkapital für 6.000 € in getrennten Versuchen mit wiederhergestellten Ausgangswerten."
       ],
-      checks: ["Ich habe den Urlaub kalkuliert, den Grenzkurs gesucht, beidseitig geprüft und die Datei gespeichert.", "Ich habe die fünfjährige Verzinsung mit kopierfähigen Formeln aufgebaut und beide unabhängigen Zielwertsuchen durchgeführt.", "Ich habe Ausgangswerte, Zielangaben und Rückrechnungen dokumentiert und die Kapitaldatei gespeichert."],
+      checks: ["Ich habe den Urlaub kalkuliert, den Grenzkurs gesucht, beidseitig geprüft und die Datei gespeichert.", "Ich habe die fünfjährige Verzinsung mit kopierfähigen Formeln aufgebaut und beide unabhängigen Zielwertsuchen durchgeführt.", "Ich habe Ausgangswerte, Zielangaben und Rückrechnungen dokumentiert und die Arbeitsmappe gespeichert."],
       tip: "Die Zielwertsuche verändert eine Eingabezelle dauerhaft. Notiere vorher den Ausgangswert oder arbeite in einer Kopie.",
       downloads: [
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_4.1 Aufgabenstellung Zielwertsuche Urlaub.docx", "Zielwertsuche Urlaub", "DOCX"),
@@ -695,7 +695,7 @@
         "Skizziere zuerst Eingaben, Regeln, Zwischenergebnisse und Ausgaben.",
         "Teste jede relevante Grenze und mindestens einen unbekannten Schlüssel."
       ],
-      checks: ["Zwei Fälle mit kopierfähigen Formeln bearbeitet", "Regelgrenzen und Änderungen mit Testprotokoll geprüft", "Beide XLSX-Dateien gespeichert und erneut geöffnet"],
+      checks: ["Zwei Fälle mit kopierfähigen Formeln bearbeitet", "Regelgrenzen und Änderungen mit Testprotokoll geprüft", "Arbeitsmappe mit beiden Fällen gespeichert und erneut geöffnet"],
       tip: "Wenn eine Formel kaum noch lesbar ist, teile die Berechnung in verständliche Zwischenspalten oder eine Verweistabelle auf.",
       downloads: [
         resource("Lernfortschritt_3/Aufgabenstellungen/L3_5.1 Vertiefung 1 Mitarbeiterprovision Teil 1.docx", "Aufgabe Provision Teil 1", "DOCX"),
@@ -736,7 +736,7 @@
         "Füge ein Säulendiagramm ein.",
         "Ergänze Diagrammtitel, Achsentitel und eine zurückhaltende Formatvorlage."
       ],
-      checks: ["Vier Aktionen ohne Summe als 2D-Säulen dargestellt", "Titel, Achsen, Datenlabels und Nullbasis geprüft", "Datenänderung getestet und beide XLSX-Dateien gespeichert"],
+      checks: ["Vier Aktionen ohne Summe als 2D-Säulen dargestellt", "Titel, Achsen, Datenlabels und Nullbasis geprüft", "Datenänderung getestet und die Arbeitsmappe mit beiden Blättern gespeichert"],
       tip: "Beginne die Größenachse bei null, wenn Balken- oder Säulenlängen verglichen werden. Sonst können Unterschiede übertrieben wirken.",
       downloads: [
         resource("Lernfortschritt_4/Aufgabenstellungen/L4_1.1.1 Aufgabenstellung Säulendiagramm erstellen.docx", "Aufgabe Diagramm erstellen", "DOCX"),
@@ -873,7 +873,7 @@
       checks: [
         "Ich habe die vier Aktionen 2016 und 2017 als gruppierte Säulen verglichen und die Summenzeile ausgeschlossen.",
         "Ich habe für 2013–2017 je eine gestapelte Säule mit vier Aktionen erstellt, Jahressummen kontrolliert und die Grenzen beim Segmentvergleich erklärt.",
-        "Ich habe die historischen Wahldaten 1994–2017 als 100-%-Säulen mit sieben Reihen dargestellt, Prozentwerte geprüft und alle drei Dateien gespeichert und erneut geöffnet."
+        "Ich habe die historischen Wahldaten 1994–2017 als 100-%-Säulen mit sieben Reihen dargestellt, Prozentwerte geprüft und die Arbeitsmappe mit allen drei Aufgabenblättern gespeichert und erneut geöffnet."
       ],
       tip: "100-%-gestapelt zeigt die Zusammensetzung jeder Kategorie, nicht ihre absolute Gesamtsumme.",
       downloads: [
@@ -945,7 +945,7 @@
       checks: [
         "Ich habe vier Filialdiagramme aus passenden Summen bzw. Quartalswerten erstellt und jede Auswahl schriftlich begründet.",
         "Ich habe Kundenanzahl und Umsatzanteile der vier Standorte getrennt dargestellt und unterschiedliche Bezugsgrößen erklärt.",
-        "Ich habe beide Änderungstests durchgeführt, die Eingaben wiederhergestellt und beide XLSX-Dateien gespeichert und erneut geöffnet."
+        "Ich habe beide Änderungstests durchgeführt, die Eingaben wiederhergestellt und die Arbeitsmappe mit beiden Blättern gespeichert und erneut geöffnet."
       ],
       tip: "Markiere nicht gleichzeitig Detailwerte und ihre Summe. Sonst wird derselbe Umsatz im Diagramm doppelt dargestellt.",
       downloads: [
@@ -984,7 +984,7 @@
       checks: [
         "Ich habe Bewegung und freien Fall als XY-Diagramme ausgewertet, passende Modelle begründet und Durchschnittsgeschwindigkeit von Trendsteigung unterschieden.",
         "Ich habe Strecken und Zeiten der Fahrt kumuliert, eine lineare Regression erstellt und die Fahrtdauer für 950 km mit Einheiten und Annahmen berechnet.",
-        "Ich habe Änderungstests durchgeführt, Prognosegrenzen erläutert, Originalwerte wiederhergestellt und alle drei XLSX-Dateien gespeichert und erneut geöffnet."
+        "Ich habe Änderungstests durchgeführt, Prognosegrenzen erläutert, Originalwerte wiederhergestellt und die Arbeitsmappe mit allen drei Aufgabenblättern gespeichert und erneut geöffnet."
       ],
       tip: "Ein hohes R² allein beweist kein korrektes Modell. Die Funktionsform muss auch zur Physik oder zur Fachlogik passen.",
       downloads: [

@@ -1,8 +1,8 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 4. November 2026, Europe/Berlin
-Projektversion: 0.34.0
-Status: Version 0.34.0 am 04.11.2026 auf GitHub gepusht und über GitHub Pages erfolgreich veröffentlicht; öffentliche Dateien und Browser-Funktionen geprüft. Direkte Disketten-/Ordner-Aktionen mit Alt+S/Alt+O; EP, alte Speicherdateien und Format 1 unverändert. Quellenabgleich L3–L4 bleibt abgeschlossen.
+Stand: 10. November 2026, Europe/Berlin
+Projektversion: 0.35.0
+Status: Jede Lerneinheit verwendet eine Excel-Arbeitsmappe mit benannten Aufgabenblättern. Freiwillige Bonusaufgaben und benötigte Blattkopien liegen in derselben Arbeitsmappe.
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus
