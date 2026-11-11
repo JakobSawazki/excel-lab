@@ -1,8 +1,8 @@
 # Excel-Lab – Projektdokumentation
 
-Stand: 10. November 2026, Europe/Berlin
-Projektversion: 0.35.0
-Status: Jede Lerneinheit verwendet eine Excel-Arbeitsmappe mit benannten Aufgabenblättern. Freiwillige Bonusaufgaben und benötigte Blattkopien liegen in derselben Arbeitsmappe.
+Stand: 11. November 2026, Europe/Berlin
+Projektversion: 0.35.1
+Status: L1.3 zeigt das benutzerdefinierte Zahlenformat für „Flaschen“ direkt im Arbeitsauftrag und ergänzt ein freiwilliges Lernvideo. Jede Einheit verwendet eine Excel-Arbeitsmappe mit benannten Aufgabenblättern.
 Zielplattform: moderner Browser auf schulischen Windows-PCs
 
 ## Aktueller Taskstatus

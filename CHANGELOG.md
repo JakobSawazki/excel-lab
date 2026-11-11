@@ -4,6 +4,10 @@ Ein Absatz je Veröffentlichung, neueste zuerst. Einzelheiten zu jeder Änderung
 [`documentation/documentation.md`](documentation/documentation.md) (Taskstatus) und in
 [`documentation/claude2codex.md`](documentation/claude2codex.md).
 
+## 0.35.1 – 2026-11-11
+
+L1.3 hebt Schritt 5 zum Anzeigen von „Flaschen“ in der Mengenspalte hervor. Ein freiwilliges Lernvideo zeigt, wie benutzerdefinierte Zahlenformate Einheiten hinter Zahlen anzeigen.
+
 ## 0.35.0 – 2026-11-10
 
 Jede Lerneinheit verwendet eine Excel-Arbeitsmappe mit benannten Blättern für die Hauptaufgaben. Freiwillige Bonusaufgaben erhalten die Blätter „Bonusaufgabe 1“ und „Bonusaufgabe 2“ in derselben Mappe. Benötigte Zwischenstände werden als Blattkopien gesichert.

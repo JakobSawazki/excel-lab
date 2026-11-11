@@ -13,6 +13,8 @@
 .lesson-workbook p { margin:0 0 .45rem; }
 .lesson-workbook p:last-child { margin-bottom:0; }
 .bonus-workbook { padding:.65rem .85rem; border-left:3px solid var(--green); background:var(--surface); }
+.task-list > .task-focus { border-inline-start:3px solid var(--green); background:color-mix(in srgb,var(--green) 9%,var(--surface)); }
+.task-focus ol { margin:.5rem 0; padding-inline-start:1.25rem; }
 .lesson-workspace-actions { display:flex; flex-wrap:wrap; gap:.6rem; }
 .lesson-workspace-actions .button { font-size:.75rem; min-height:44px; }
 .lesson-workspace-actions [hidden] { display:none; }

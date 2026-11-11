@@ -3,7 +3,7 @@
   const videoTutorials = {
     "l1-1": { id: "xGg6PxGJyLI", title: "Excel Tabelle erstellen: Grundlagen", author: "Lernwas", context: "Tabellenaufbau und Dateneingabe. Deine Getränkeliste planst du anschließend selbst." },
     "l1-2": { id: "ZbWcoOrviaw", title: "Rechnen in Excel: Grundrechenarten", author: "Computerkurs", context: "Formeln und Rechenzeichen als Ergänzung zur Materialbestellung für deinen Kundenworkshop." },
-    "l1-3": { id: "-beNwsieTQc", title: "Excel Basis: Zellen formatieren", author: "Jarek Galek", context: "Zellformatierung als Einstieg; für deine Datei gelten die Arbeitsaufträge auf dieser Seite." },
+    "l1-3": { id: "b9vaDl7OsBs", title: "Einheiten mit einem benutzerdefinierten Zahlenformat anzeigen", author: "Andreas Thehos", context: "Das Video zeigt am Beispiel „Tag“ und „Tage“, wie Excel Text hinter Zahlen anzeigt. In deiner Getränkeliste verwendest du dafür „Flaschen“." },
     "l1-4": { id: "82fEbFkxhbI", title: "Formeln kopieren: relative Zellbezüge", author: "Arno Burger", context: "Warum sich Zellbezüge beim Kopieren mitbewegen." },
     "l1-5": { id: "xGg6PxGJyLI", title: "Excel Tabelle erstellen: Grundlagen", author: "Lernwas", context: "Tabellenaufbau als Wiederholung für deine selbst entworfene Sommerfest-Liste." },
     "l1-6": { id: "ZbWcoOrviaw", title: "Rechnen in Excel: Grundrechenarten", author: "Computerkurs", context: "Rechenformeln als Wiederholung für die fünf Vertiefungsaufgaben." },
